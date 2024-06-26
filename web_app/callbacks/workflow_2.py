@@ -1,0 +1,336 @@
+#!/usr/bin/env python
+# MIT License
+
+# Standard library imports
+import sys
+import os
+import io
+import zipfile
+import base64
+import csv
+
+# Third-party imports
+import pandas as pd
+from Bio import SeqIO
+from Bio.Restriction import NcoI, StuI
+from Bio.SeqRecord import SeqRecord
+from pydna.dseqrecord import Dseqrecord
+from teemi.design.fetch_sequences import read_genbank_files
+
+import dash
+from dash import dcc, html, dash_table, exceptions
+from dash.dependencies import Input, Output, State
+from dash.dash_table.Format import Group
+import dash_bootstrap_components as dbc
+from dash.exceptions import PreventUpdate
+from urllib.parse import quote
+
+# Local module imports
+module_path = os.path.abspath(os.path.join('..'))
+if module_path not in sys.path:
+    sys.path.append(module_path)
+
+from streptocad.primers.primer_generation import primers_to_IDT
+from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
+from streptocad.utils import format_and_print_values
+
+
+from dash import callback_context
+from dash.exceptions import PreventUpdate
+import dash
+from dash.dependencies import Input, Output, State
+import pandas as pd
+import io
+import base64
+from urllib.parse import quote
+from Bio import SeqIO
+from Bio.Restriction import NcoI
+from pydna.dseqrecord import Dseqrecord
+from teemi.design.fetch_sequences import read_genbank_files
+
+import tempfile
+
+
+# Local module imports
+import os
+import sys
+module_path = os.path.abspath(os.path.join('..'))
+if module_path not in sys.path:
+    sys.path.append(module_path)
+
+from streptocad.sequence_loading.sequence_loading import load_and_process_gene_sequences, load_and_process_plasmid, load_and_process_genome_sequences
+from streptocad.utils import polymerase_dict
+from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
+from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
+from streptocad.crispr.crispr_best import identify_base_editing_sites, filter_sgrnas_for_base_editing, process_base_editing
+from streptocad.cloning.plasmid_processing import annotate_plasmid_with_sgrnas
+from streptocad.primers.primer_generation import checking_primers, create_idt_order_dataframe, primers_to_IDT
+
+
+def save_file(name, content):
+    """Decode and store a file uploaded with Plotly Dash."""
+    data = content.encode("utf8").split(b";base64,")[1]
+    with open(name, "wb") as fp:
+        fp.write(base64.decodebytes(data))
+
+def register_workflow_2_callbacks(app):
+
+    @app.callback(
+        [
+            Output('primers-output-table_2', 'data'),
+            Output('primers-output-table_2', 'columns'),
+            Output('pcr-table_2', 'data'),
+            Output('pcr-table_2', 'columns'),
+            Output('genbank-file-single_2', 'href'),
+            Output('primers_download_link_2', 'href'),
+            Output('download-pcr-link_2', 'href'),
+            Output('download-data-and-protocols-link_2', 'href'),
+            Output('filtered-df-table', 'data'),   # New output for filtered_df
+            Output('filtered-df-table', 'columns'), # New output for filtered_df columns
+            Output('download-filtered-df-link_2', 'href') # New output for filtered_df download link
+
+        ],
+        [
+            Input('submit-settings-button_2', 'n_clicks')
+        ],
+        [
+            State('upload-genome-file_2', 'contents'),
+            State('upload-single-vector_2', 'contents'),
+            State('upload-genome-file_2', 'filename'),
+            State('upload-single-vector_2', 'filename'),
+            State('genes-to-KO_2', 'value'),
+            State('forward-overhang-input_2', 'value'),
+            State('reverse-overhang-input_2', 'value'),
+            State('gc-upper_2', 'value'),
+            State('gc-lower_2', 'value'),
+            State('off-target-seed_2', 'value'),
+            State('off-target-upper_2', 'value'),
+            State('cas-type_2', 'value'),
+            State('number-of-sgRNAs-per-group_2', 'value'),
+            State('only-stop-codons-checkbox_2', 'value'),
+            State('chosen-polymerase_2', 'value'),
+            State('melting-temperature_2', 'value'),
+            State('primer-concentration_2', 'value'),
+            State('primer-number-increment_2', 'value'),
+            State('flanking-region-number_2', 'value')
+        ]
+    )
+    def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
+                     up_homology, dw_homology, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
+                     number_of_sgRNAs_per_group, only_stop_codons, chosen_polymerase, melting_temperature, 
+                     primer_concentration, primer_number_increment, flanking_region_number):
+        if n_clicks is None:
+            raise PreventUpdate
+
+        try:
+            print("Workflow started")
+
+
+            # Create a temporary directory
+            with tempfile.TemporaryDirectory() as tempdir:
+                genome_path = os.path.join(tempdir, genome_filename)
+                vector_path = os.path.join(tempdir, vector_filename)
+
+                # Save uploaded files to the temporary directory
+                save_file(genome_path, genome_content)
+                save_file(vector_path, vector_content)
+
+                # Read the GenBank files from the saved paths
+                print("Reading genome and vector files")
+                input_genome = list(SeqIO.parse(genome_path, "genbank"))
+                input_plasmid = list(SeqIO.parse(vector_path, "genbank"))
+
+                if not input_genome or not input_plasmid:
+                    raise ValueError("Unsupported file format. Please provide a valid GenBank file.")
+
+                genome = SeqRecord(input_genome[0].seq, id=input_genome[0].id, description=input_genome[0].description)
+                plasmid = Dseqrecord(input_plasmid[0], circular=True)
+
+                genes_to_KO_list = [gene.strip() for gene in genes_to_KO.split(',')]
+                print(f"Genes to knock out: {genes_to_KO_list}")
+
+                # Initialize SgRNAargs with desired parameters
+                args = SgRNAargs(genome_path, 
+                                 genes_to_KO_list,
+                                 step=['find', 'filter'],
+                                 gc_upper=gc_upper,
+                                 gc_lower=gc_lower,
+                                 off_target_seed=off_target_seed,
+                                 off_target_upper=off_target_upper,
+                                 cas_type=cas_type)
+
+                print("Extracting sgRNAs")
+                sgrna_df = extract_sgRNAs(args)
+                print(f"sgRNA DataFrame: {sgrna_df}")
+
+                # Load gene sequences
+                print("Loading gene sequences")
+                gene_sequences = load_and_process_gene_sequences(genome_path)
+                genes_to_KO_dict = {locus_tag: gene_sequences[locus_tag] for locus_tag in genes_to_KO_list if locus_tag in gene_sequences}
+                print(f"Genes to KO dictionary: {genes_to_KO_dict}")
+
+                # Identify and annotate base editing sites
+                print("Identifying base editing sites")
+                sgrna_df_with_editing = identify_base_editing_sites(sgrna_df)
+
+                # Filter out only sgRNAs that result in base-editing
+                print("Filtering sgRNAs for base editing")
+                filtered_sgrna_df_for_base_editing = filter_sgrnas_for_base_editing(sgrna_df_with_editing)
+                print(f"Filtered sgRNAs for base editing: {filtered_sgrna_df_for_base_editing}")
+
+                # Process the DataFrame to apply C-to-T mutations
+                print("Processing base editing")
+                mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing, 
+                                                        genes_to_KO_dict, 
+                                                        only_stop_codons=bool(only_stop_codons))
+                print(f"Mutated sgRNAs: {mutated_sgrna_df}")
+
+                # Filter the DataFrame to retain only up to 5 sgRNA sequences per locus_tag
+                print("Filtering sgRNAs to retain only up to 5 sequences per locus tag")
+                filtered_df = mutated_sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
+                print(f"Filtered DataFrame: {filtered_df}")
+
+                # Make oligos
+                print("Making ssDNA oligos")
+                list_of_ssDNAs = make_ssDNA_oligos(filtered_df, upstream_ovh=Dseqrecord(up_homology),
+                                                   downstream_ovh=Dseqrecord(dw_homology))
+                print(f"List of ssDNAs: {list_of_ssDNAs}")
+
+                # Cut plasmid
+                print("Cutting plasmid")
+                linearized_plasmid = sorted(plasmid.cut(NcoI), key=lambda x: len(x), reverse=True)[0]
+                print(f"Linearized plasmid: {linearized_plasmid}")
+
+                # Assemble plasmid
+                print("Assembling plasmid")
+                sgRNA_vectors = assemble_plasmids_by_ssDNA_bridging(list_of_ssDNAs, linearized_plasmid)
+                print(f"sgRNA vectors: {sgRNA_vectors}")
+
+                # Constructing a meaningful name, ID, and description for the assembled plasmid using user input
+                targeting_info = []
+                for index, row in filtered_df.iterrows():
+                    formatted_str = f"pCRISPR-BEST_{row['locus_tag']}_p{row['sgrna_loc']}"
+                    targeting_info.append(formatted_str)
+
+                for i in range(len(sgRNA_vectors)):
+                    sgRNA_vectors[i].name = f'{targeting_info[i]}_#{i+1}'
+                    sgRNA_vectors[i].id = sgRNA_vectors[i].name  # Using the same value for ID as for name for simplicity
+                    sgRNA_vectors[i].description = f'Assembled plasmid targeting {", ".join(genes_to_KO_list)} for base-editing, assembled using StreptoCAD.'
+
+                print("Annotating plasmids")
+                # Annotate plasmids
+                for plasmid in sgRNA_vectors: 
+                    annotate_plasmid_with_sgrnas(plasmid, filtered_df)
+
+                # Generate primers
+                print("Generating primers for IDT")
+                idt_df1 = primers_to_IDT(list_of_ssDNAs)
+                print(f"IDT primers DataFrame: {idt_df1}")
+
+                # Getting checking primers
+                print("Generating checking primers")
+                checking_primers_df = checking_primers(genome_path, genes_to_KO_list, 
+                                                       flanking_region=flanking_region_number,
+                                                       target_tm=melting_temperature, 
+                                                       primer_concentration=primer_concentration, 
+                                                       polymerase=chosen_polymerase)
+                print(f"Checking primers DataFrame: {checking_primers_df}")
+
+                idt_df2 = create_idt_order_dataframe(checking_primers_df)
+                print(f"IDT order DataFrame: {idt_df2}")
+                full_idt = pd.concat([idt_df1, idt_df2])
+                print(f"Full IDT DataFrame: {full_idt}")
+
+                # Prepare outputs for the DataTable
+                print("Preparing data for DataTables")
+                primers_columns = [{"name": col, "id": col} for col in full_idt.columns]
+                primers_data = full_idt.to_dict('records')
+
+                pcr_columns = [{"name": col, "id": col} for col in checking_primers_df.columns]
+                pcr_data = checking_primers_df.to_dict('records')
+
+                # IDT 
+                pcr_df_string = checking_primers_df.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
+                pcr_data_encoded = quote(pcr_df_string)
+                pcr_download_link = f"data:text/csv;charset=utf-8,{pcr_data_encoded}"            
+                
+                # PCR-primer-df
+                primer_df_string = full_idt.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
+                primer_data_encoded = quote(primer_df_string)
+                primer_download_link = f"data:text/csv;charset=utf-8,{primer_data_encoded}" 
+
+                # Provide a link for downloading GenBank files:
+                encoded_genbank_files = [base64.b64encode(str(vector).encode()).decode() for vector in sgRNA_vectors]
+                genbank_download_link = f"data:application/genbank;base64,{encoded_genbank_files[0]}"
+                # Create a zip archive in memory
+                zip_buffer = io.BytesIO()
+                zip_data = None  # Initialize zip_data here
+                with zipfile.ZipFile(zip_buffer, 'a', zipfile.ZIP_DEFLATED, False) as zip_file:
+                    for vector in sgRNA_vectors:
+                        # Convert each vector to GenBank format
+                        genbank_content = vector.format("genbank")
+                        zip_file.writestr(f"{vector.name}.gb", genbank_content)
+
+                # Prepare the zip archive for download
+                zip_buffer.seek(0)
+                zip_data = base64.b64encode(zip_buffer.read()).decode('utf-8')
+                genbank_download_link = f"data:application/zip;base64,{zip_data}"
+
+                ## Making data file
+                input_dict = {
+                    '######Inputs####': '',
+                    "Path_to_file": genome_filename,
+                    "Name of genome": genome.name,
+                    "Path to plasmid": vector_filename,
+                    "Plasmid name": plasmid.name,
+                    "Up homology": up_homology,
+                    "DW homology": dw_homology,
+                    'Genes to Base-edit': genes_to_KO_list, 
+                    'Flanking region for checking primers': flanking_region_number,
+                    'Upper GC content for sgRNAs': gc_upper,
+                    'Lower GC content for sgRNAs': gc_lower,
+                    'Off target seed': off_target_seed, 
+                    'Off target upper': off_target_upper, 
+                    'Cas type': cas_type, 
+                    'Number of sgRNAs per locus tag': number_of_sgRNAs_per_group,
+                    'Stop codons': bool(only_stop_codons), 
+                    "Chosen polymerase": chosen_polymerase,
+                    "Melting temperature": melting_temperature,
+                    "Primer_concentration": primer_concentration,
+                    "Primer number increment": primer_number_increment,
+                    '####### OUTPUTS #########' : '',
+                    "Primer df": full_idt,
+                    "All mutations dataframe": mutated_sgrna_df,
+                    'Filtered dataframe': filtered_df,
+                    'Plasmid assembly': [plasmid.figure() for plasmid in sgRNA_vectors],
+                }
+                
+                description = (
+                    "This document captures all the values that were put into the application "
+                    "to ensure that the experiment can be replicated accurately.\n"
+                    "Below are the details of the inputs used:\n"
+                )
+
+                data_and_protocols_package = format_and_print_values(input_dict, description, spacing=10)
+                data_package_encoded = base64.b64encode(data_and_protocols_package.encode('utf-8')).decode('utf-8')
+                data_package_download_link = f"data:text/plain;base64,{data_package_encoded}"  
+
+                print("Workflow completed successfully")
+
+                
+                # Prepare data for filtered_df
+                filtered_df_columns = [{"name": col, "id": col} for col in filtered_df.columns]
+                filtered_df_data = filtered_df.to_dict('records')
+                
+                # Generate download link for filtered_df
+                filtered_df_string = filtered_df.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
+                filtered_df_data_encoded = quote(filtered_df_string)
+                filtered_df_download_link = f"data:text/csv;charset=utf-8,{filtered_df_data_encoded}"
+
+                return (primers_data, primers_columns, pcr_data, pcr_columns, genbank_download_link, primer_download_link, 
+                        pcr_download_link, data_package_download_link, filtered_df_data, filtered_df_columns, filtered_df_download_link)
+
+
+        except Exception as e:
+            print("An error occurred:", str(e))
+            raise PreventUpdate

@@ -1,0 +1,392 @@
+from dash import dcc, html
+import dash_bootstrap_components as dbc
+from dash.dash_table import DataTable
+from components import upload_component
+
+
+from styling import text_style, upload_button_style, card_style, link_style, table_style, table_header_style, table_row_style
+from streptocad.utils import polymerase_dict
+# Reference content used in multiple tabs
+reference_content = html.Div([
+    html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below (the figure and protocol is from there).", style={'fontSize': '1.5rem'}),
+    html.A("CRISPR–Cas9, CRISPRi and CRISPR-BEST-mediated genetic manipulation in streptomycetes", href="https://www.nature.com/articles/s41596-020-0339-z", target="_blank", style={'fontSize': '1.5rem'}),
+], style={'fontSize': '1.5rem'})
+
+# Dropdown options for polymerases
+dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_dict.items()]
+
+# Tab content for Single sgRNA integration
+
+# Tab content for CRISPR-cBEST workflow
+crispr_cb_tab = html.Div(children=[
+    dbc.Row([
+        dbc.Col([
+            html.P("What is it? ", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            html.Ul([
+                html.Li("A precise method that uses a single sgRNA to target a specific genomic location for base-editing.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            ], style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            html.P("Why use it?", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            html.Ul([
+                html.Li("Perfect for those times when you have a single gene in your crosshairs.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            ], style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            html.P("Getting Started:", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            html.Ul([
+                html.Li("Find your plasmid of choice. We recommend that you use pCRISPR-cBEST.gbk", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+                html.Li("Find your genome of choice (or download an example genome below, S. coelicor A3)", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+
+                html.Li("Figure out what genes you want to target. For example the actinorhodin cluster (SCO5087)", style={'color': '#ddd', 'fontSize': '1.5rem'})
+            ], style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            html.P("Upload your genome file and CRISPR plasmid files, then click 'Submit' to generate your assembly.", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            reference_content
+        ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
+    ], className="mb-4"),
+    
+    html.Img(src='/assets/workflow_2_pic.webp', 
+             style={'width': '60%', 'margin': '20px auto'}),
+
+    dbc.Row([
+        dbc.Col(
+            html.A(
+                dbc.Button("Download Example Genome File", color="primary"),
+                href="/assets/Streptomyces_coelicolor_A3_chromosome.gb",
+                download="Streptomyces_coelicolor_A3_chromosome.gb"
+            ),
+            width={"size": 3, "order": 1}
+        ),
+        dbc.Col(
+            html.A(
+                dbc.Button("Download Example CRISPR Vector File", color="primary", className="mb-4"),
+                href="/assets/ pCRISPR-cBEST.gbk",
+                download="pCRISPR-cBEST.gbk"
+            ),
+            width={"size": 3, "order": 2}
+        )
+    ], className="mb-4", justify="start"),
+    
+    # UPLOAD genome
+    
+    dbc.Row([
+        dbc.Col([
+            html.H4("1) Upload your genome file", style=text_style),
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5("Genome File", className="card-title", style=text_style),
+                    upload_component('upload-genome-file_2', text_style, link_style, upload_button_style),  # Use upload_component
+                    html.Div(id='uploaded-genome-filename_2', children=[], style=text_style),
+                ])
+            ], style=card_style),
+        ], width=6),
+    ], className="mb-3"),
+
+    dbc.Row([
+        dbc.Col([
+            html.H4("2) Upload the plasmid of choice", style=text_style),
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5("CRISPR-BEST plasmid", className="card-title", style=text_style),
+                    upload_component('upload-single-vector_2', text_style, link_style, upload_button_style),  # Use upload_component
+                    html.Div(id='uploaded-single-vector-filename_2', children=[], style=text_style),
+                ])
+            ], style=card_style),
+        ], width=6),
+    ], className="mb-5"),
+
+        
+    dbc.Row([
+        dbc.Col([
+            html.H4("3) Choose genes to knock out", style=text_style),
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5("Genes to Knock Out (comma-separated)", className="card-title", style=text_style),
+                    dbc.Textarea(
+                        id='genes-to-KO_2',
+                        placeholder='Enter genes to knock out, e.g., SCO5087',
+                        value='SCO5087',
+                        style={'width': '100%', 'height': '100px'}
+                    )
+                ])
+            ], style=card_style),
+        ], width=6),
+    ], className="mb-3"),
+
+    dbc.Row([
+        dbc.Col([
+            html.H4("4) Select overhangs", style=text_style),
+            html.P("Please enter the 5' and 3' overhangs below for the oligo nucleotide to be made.", className="lead", style=text_style),
+            html.P("Per default the overhangs work with pCRISPR–Cas9_plasmid_addgene.gbk", className="lead", style=text_style)
+        ], width=12),
+    ], className="mb-3"),
+
+    dbc.Row([
+        dbc.Col([
+            html.Label('5 prime Overhang:', style=text_style),
+            dbc.Input(
+                id='forward-overhang-input_2',
+                type='text',
+                placeholder='Enter Forward Overhang',
+                value='CGGTTGGTAGGATCGACGGC'
+            ),
+        ], width=6, style={"marginRight": "10px", "marginLeft": "10px"}),
+    ]),
+
+    dbc.Row([
+        dbc.Col([
+            html.Label('3 prime Overhang:', style=text_style),
+            dbc.Input(
+                id='reverse-overhang-input_2',
+                type='text',
+                placeholder='Enter Reverse Overhang',
+                value='GTTTTAGAGCTAGAAATAGC'
+            ),
+        ], width=6, style={"marginRight": "10px", "marginLeft": "10px"}),
+    ], className="mb-5"),
+
+    dbc.Col([
+        html.H4("5) Filtering metrics for sgRNAs", style=text_style),
+        dbc.Row([
+            dbc.Col([
+                dbc.Label("GC Content Upper Bound", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                dbc.Input(
+                    id='gc-upper_2',
+                    type='number',
+                    value=0.99,
+                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
+                ),
+            ], width=12, className="mb-3"),
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dbc.Label("GC Content Lower Bound", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                dbc.Input(
+                    id='gc-lower_2',
+                    type='number',
+                    value=0.01,
+                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
+                ),
+            ], width=12, className="mb-3"),
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dbc.Label("Off-Target Seed Length", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                dbc.Input(
+                    id='off-target-seed_2',
+                    type='number',
+                    value=13,
+                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
+                ),
+            ], width=12, className="mb-3"),
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dbc.Label("Off-Target Upper Bound", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                dbc.Input(
+                    id='off-target-upper_2',
+                    type='number',
+                    value=10,
+                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
+                ),
+            ], width=12, className="mb-3"),
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dbc.Label("Cas Type", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                dcc.Dropdown(
+                    id='cas-type_2',
+                    options=[
+                        {'label': 'Cas9', 'value': 'cas9'},
+                        {'label': 'Cas12a', 'value': 'cas12a'}
+                    ],
+                    value='cas9',
+                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
+                ),
+            ], width=12, className="mb-3"),
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dbc.Label("Number of sgRNAs per Group", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                dbc.Input(
+                    id='number-of-sgRNAs-per-group_2',
+                    type='number',
+                    value=5,
+                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
+                ),
+            ], width=12, className="mb-3"),
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dbc.Checklist(
+                    options=[
+                        {"label": "Only Stop Codons", "value": 1},
+                    ],
+                    value=[1] if True else [],  # default value
+                    id="only-stop-codons-checkbox_2",
+                    inline=True,
+                    switch=True,
+                    className="big-switch"
+                ),
+            ], width=12, className="mb-3"),
+        ]),
+    ], width=6, style={"marginRight": "10px", "marginLeft": "10px"}),
+
+
+
+    dbc.Row([
+        dbc.Col([
+            html.H4("7) Show advanced settings for checking primers", style=text_style),
+            dbc.Checklist(
+                options=[
+                    {"label": "", "value": 1},
+                ],
+                value=[],
+                id="show-advanced-settings-checkbox",
+                inline=True,
+                switch=True,
+                className="big-switch"
+            ),
+        ], width=6),
+    ], className="mb-3"),
+
+    dbc.Row([
+        dbc.Col([
+            html.Div(id='advanced-settings-container', children=[
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Label("Choose Polymerase", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dcc.Dropdown(
+                            id='chosen-polymerase_2',
+                            options=dropdown_options,
+                            value=polymerase_dict['Phusion High-Fidelity DNA Polymerase (GC Buffer)'],  # Set default value
+                            style={'color': '#000'}  # Ensure text is black
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Target Melting Temperature (°C)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Input(
+                            id='melting-temperature_2',
+                            type='number',
+                            value=65,
+                            style={'color': '#000'}  # Ensure text is black
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Primer Concentration (μM)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Input(
+                            id='primer-concentration_2',
+                            type='number',
+                            value=0.4,
+                            style={'color': '#000'}  # Ensure text is black
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Primer Number Increment", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Input(
+                            id='primer-number-increment_2',
+                            type='number',
+                            value=1,
+                            style={'color': '#000'}  # Ensure text is black
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Flanking Region Number", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Input(
+                            id='flanking-region-number_2',
+                            type='number',
+                            value=500,
+                            style={'color': '#000'}  # Ensure text is black
+                        ),
+                    ], width=6),
+                ])
+            ], style={"display": "none"})  # Hidden by default
+        ], width=6),
+    ], className="mb-4"),
+
+
+    dbc.Row([
+        dbc.Col([
+            dbc.Button('Submit', id='submit-settings-button_2', color="primary", className="mt-3"),
+        ], width=12),
+    ], className="mb-4"),
+    
+    # Placeholder for the output
+
+    dbc.Row([
+        dbc.Col([
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5("Primers", className="card-title", style=text_style),
+                    DataTable(id='primers-output-table_2', **table_style),
+                    html.A(
+                        'Download CSV File',
+                        id='primers_download_link_2',
+                        download="ssDNA_bridging_oligos.csv",
+                        href="",
+                        target="_blank",
+                        className="btn btn-primary"
+                    )
+                ])
+            ], style=card_style),
+
+                # New DataTable and download button for filtered_df
+                dbc.Row([
+                    dbc.Col([
+                        html.H5("Filtered sgRNA DataFrame", className="card-title", style=text_style),
+                        DataTable(id='filtered-df-table', **table_style),
+                        html.A(
+                            'Download Filtered sgRNA CSV',
+                            id='download-filtered-df-link_2',
+                            download="filtered_sgRNA.csv",
+                            href="",
+                            target="_blank",
+                            className="btn btn-primary"
+                        )
+                    ], width=12),
+                ], className="mb-4"),
+
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5("PCR", className="card-title", style=text_style),
+                    DataTable(id='pcr-table_2', **table_style),
+                    html.A(
+                        'Download PCR CSV',
+                        id='download-pcr-link_2',
+                        download="pcr.csv",
+                        href="",
+                        target="_blank",
+                        className="btn btn-primary"
+                    )
+                ])
+            ], style=card_style),
+
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5("GenBank File", className="card-title", style=text_style),
+                    html.A(
+                        'Download GenBank File',
+                        id='genbank-file-single_2',
+                        download="plasmid-single.zip",
+                        href="",
+                        target="_blank",
+                        className="btn btn-primary"
+                    ), 
+                ])
+            ], style=card_style),
+
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5("Download folder with all data & protocols", className="card-title", style=text_style),
+                    DataTable(id='all_data_2', **table_style),
+                    html.A(
+                        'Data & protocols',
+                        id='download-data-and-protocols-link_2',
+                        download="all_data.txt",
+                        href="",
+                        target="_blank",
+                        className="btn btn-primary"
+                    )
+                ])
+            ], style=card_style),
+            
+        ], width=6),
+    ]),
+])
+

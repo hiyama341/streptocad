@@ -1,0 +1,11 @@
+/* Custom CSS to adjust the size and center the cube loading spinner */
+.dash-spinner {
+    width: 100px !important; /* Increase the spinner's size */
+    height: 100px !important; /* Increase the spinner's size */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* Center the spinner and scale it up */
+    transform: translate(-50%, -50%) scale(2) !important; /* Increase scale for a bigger spinner */
+    z-index: 1002; /* Ensure the spinner is above the image or other content */
+}

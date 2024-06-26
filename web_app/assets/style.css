@@ -1,0 +1,43 @@
+.dash-spinner.dash-default-spinner {
+    margin: 1rem auto;
+    width: 99%;
+    height: 20vh;
+    text-align: center;
+    font-size: 50px;
+    margin-left: 1%;
+}
+
+.dash-default-spinner-rect1,
+.dash-default-spinner-rect2,
+.dash-default-spinner-rect3,
+.dash-default-spinner-rect4,
+.dash-default-spinner-rect5{
+    background-color: #119DFF !important;
+    height: 10vh !important;
+    width: 2vh !important;
+    display: inline-block !important;
+    margin-right: 1% !important;
+    margin-top: 3.5vh !important;
+}
+
+/* style.css */
+.big-switch .form-check-input {
+    width: 10rem;
+    height: 3rem;
+    margin-right: 2rem; /* Add space to the right of the switch */
+}
+
+.big-switch .form-check-label {
+    font-size: 2rem; /* Optional: to make the label text larger */
+}
+
+.big-switch .form-check {
+    display: flex;
+    align-items: center;
+}
+
+.big-switch .form-check-label::before {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+}
