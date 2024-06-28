@@ -27,9 +27,6 @@ from Bio import SeqIO
 from pydna.dseqrecord import Dseqrecord
 
 
-
-
-
 def list_of_objects_in_a_dir(dir_path:str): 
     """List all objects in a directory.
     
