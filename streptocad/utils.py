@@ -282,9 +282,11 @@ def generate_project_directory_structure(
     input_files,
     output_files,
     input_values,
-    markdown_file_paths=None
-
+    markdown_file_paths=None,
+    create_directories=True
 ):
+    project_dir_structure = {}
+
     # Define the main project directory
     project_dir = f"./{project_name}"
     
@@ -292,39 +294,46 @@ def generate_project_directory_structure(
     inputs_dir = os.path.join(project_dir, "inputs")
     outputs_dir = os.path.join(project_dir, "outputs")
     
-    # Create directories if they don't exist
-    os.makedirs(inputs_dir, exist_ok=True)
-    os.makedirs(outputs_dir, exist_ok=True)
+    # Create directories if specified
+    if create_directories:
+        os.makedirs(inputs_dir, exist_ok=True)
+        os.makedirs(outputs_dir, exist_ok=True)
     
     # Process and save input files
     for input_file in input_files:
         file_save_path = os.path.join(inputs_dir, input_file['name'])
-        
         if isinstance(input_file['content'], list) and all(isinstance(seq, Dseqrecord) for seq in input_file['content']):
             # Save each Dseqrecord in the list as a separate GenBank file
             for i, seq in enumerate(input_file['content']):
                 seq_file_save_path = os.path.join(inputs_dir, f"{input_file['name'].split('.')[0]}_{i}.gb")
-                SeqIO.write(seq, seq_file_save_path, "genbank")
+                if create_directories:
+                    SeqIO.write(seq, seq_file_save_path, "genbank")
+                project_dir_structure[seq_file_save_path] = str(seq)
         elif isinstance(input_file['content'], SeqRecord):
-            SeqIO.write(input_file['content'], file_save_path, "genbank")
+            if create_directories:
+                SeqIO.write(input_file['content'], file_save_path, "genbank")
+            project_dir_structure[file_save_path] = str(input_file['content'])
         else:
-            with open(file_save_path, 'w') as file:
-                file.write(input_file['content'])
-    
+            if create_directories:
+                with open(file_save_path, 'w') as file:
+                    file.write(input_file['content'])
+            project_dir_structure[file_save_path] = input_file['content']
     
     # Save the input values as a JSON file
     input_values_path = os.path.join(inputs_dir, "input_values.json")
-    
-    with open(input_values_path, 'w') as json_file:
-        json.dump(input_values, json_file, indent=4)
+    if create_directories:
+        with open(input_values_path, 'w') as json_file:
+            json.dump(input_values, json_file, indent=4)
+    project_dir_structure[input_values_path] = input_values
     
     # Process and save output files
     for output_file in output_files:
         file_save_path = os.path.join(outputs_dir, output_file['name'])
-        
         if output_file['name'].endswith(".csv"):
             if isinstance(output_file['content'], pd.DataFrame):
-                output_file['content'].to_csv(file_save_path, index=False)
+                if create_directories:
+                    output_file['content'].to_csv(file_save_path, index=False)
+                project_dir_structure[file_save_path] = output_file['content'].to_dict()
             else:
                 raise TypeError(f"Expected a DataFrame for {output_file['name']}, but got {type(output_file['content'])}")
         elif output_file['name'].endswith(".gb"):
@@ -332,23 +341,132 @@ def generate_project_directory_structure(
                 # Save each SeqRecord in the list separately
                 for i, record in enumerate(output_file['content']):
                     record_file_save_path = os.path.join(outputs_dir, f"{record.id}_{i}.gb")
-                    SeqIO.write(record, record_file_save_path, "genbank")
+                    if create_directories:
+                        SeqIO.write(record, record_file_save_path, "genbank")
+                    project_dir_structure[record_file_save_path] = str(record)
             elif isinstance(output_file['content'], SeqRecord):
-                SeqIO.write(output_file['content'], file_save_path, "genbank")
+                if create_directories:
+                    SeqIO.write(output_file['content'], file_save_path, "genbank")
+                project_dir_structure[file_save_path] = str(output_file['content'])
         else:
-            with open(file_save_path, 'w') as file:
-                file.write(output_file['content'])
+            if create_directories:
+                with open(file_save_path, 'w') as file:
+                    file.write(output_file['content'])
+            project_dir_structure[file_save_path] = output_file['content']
 
-
-                    # Process and save markdown files from paths
+    # Process and save markdown files from paths
     if markdown_file_paths:
         for md_file_path in markdown_file_paths:
             md_file_name = os.path.basename(md_file_path)
             md_file_save_path = os.path.join(outputs_dir, md_file_name)
-            with open(md_file_path, 'r') as file:
-                md_content = file.read()
-            with open(md_file_save_path, 'w') as file:
-                file.write(md_content)
+            if create_directories:
+                with open(md_file_path, 'r') as file:
+                    md_content = file.read()
+                with open(md_file_save_path, 'w') as file:
+                    file.write(md_content)
+            project_dir_structure[md_file_save_path] = md_file_path
     
+    if not create_directories:
+        print(f"Project structure for '{project_name}':")
+        for path, content in project_dir_structure.items():
+            print(f"{path}: {str(content)[:100]}")  # Print first 100 characters of the content
     
-    print(f"Project structure for '{project_name}' created successfully.")
+    return project_dir_structure
+
+
+
+import io
+import zipfile
+
+
+class ProjectDirectory:
+    def __init__(self, project_name, input_files, output_files, input_values, markdown_file_paths=None):
+        self.project_name = project_name
+        self.input_files = input_files
+        self.output_files = output_files
+        self.input_values = input_values
+        self.markdown_file_paths = markdown_file_paths
+        self.project_dir_structure = {}
+        self.zip_buffer = io.BytesIO()
+
+    def create_directory_structure(self, create_directories=True):
+        # Define the main project directory
+        project_dir = f"{self.project_name}"
+        
+        # Define input and output directories
+        inputs_dir = os.path.join(project_dir, "inputs")
+        outputs_dir = os.path.join(project_dir, "outputs")
+        
+        with zipfile.ZipFile(self.zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+            # Create directories if specified
+            if create_directories:
+                zip_file.writestr(inputs_dir + "/", "")
+                zip_file.writestr(outputs_dir + "/", "")
+            
+            # Process and save input files
+            for input_file in self.input_files:
+                file_save_path = os.path.join(inputs_dir, input_file['name'])
+                if isinstance(input_file['content'], list) and all(isinstance(seq, Dseqrecord) for seq in input_file['content']):
+                    for i, seq in enumerate(input_file['content']):
+                        seq_file_save_path = os.path.join(inputs_dir, f"{input_file['name'].split('.')[0]}_{i}.gb")
+                        with io.StringIO() as seq_buffer:
+                            SeqIO.write(seq, seq_buffer, "genbank")
+                            zip_file.writestr(seq_file_save_path, seq_buffer.getvalue())
+                        self.project_dir_structure[seq_file_save_path] = str(seq)
+                elif isinstance(input_file['content'], SeqRecord):
+                    with io.StringIO() as seq_buffer:
+                        SeqIO.write(input_file['content'], seq_buffer, "genbank")
+                        zip_file.writestr(file_save_path, seq_buffer.getvalue())
+                    self.project_dir_structure[file_save_path] = str(input_file['content'])
+                else:
+                    zip_file.writestr(file_save_path, input_file['content'])
+                    self.project_dir_structure[file_save_path] = input_file['content']
+            
+            # Save the input values as a JSON file
+            input_values_path = os.path.join(inputs_dir, "input_values.json")
+            input_values_content = json.dumps(self.input_values, indent=4)
+            zip_file.writestr(input_values_path, input_values_content)
+            self.project_dir_structure[input_values_path] = self.input_values
+            
+            # Process and save output files
+            for output_file in self.output_files:
+                file_save_path = os.path.join(outputs_dir, output_file['name'])
+                if output_file['name'].endswith(".csv"):
+                    if isinstance(output_file['content'], pd.DataFrame):
+                        csv_content = output_file['content'].to_csv(index=False)
+                        zip_file.writestr(file_save_path, csv_content)
+                        self.project_dir_structure[file_save_path] = output_file['content'].to_dict()
+                    else:
+                        raise TypeError(f"Expected a DataFrame for {output_file['name']}, but got {type(output_file['content'])}")
+                elif output_file['name'].endswith(".gb"):
+                    if isinstance(output_file['content'], list) and all(isinstance(record, SeqRecord) for record in output_file['content']):
+                        for i, record in enumerate(output_file['content']):
+                            record_file_save_path = os.path.join(outputs_dir, f"{record.id}_{i}.gb")
+                            with io.StringIO() as record_buffer:
+                                SeqIO.write(record, record_buffer, "genbank")
+                                zip_file.writestr(record_file_save_path, record_buffer.getvalue())
+                            self.project_dir_structure[record_file_save_path] = str(record)
+                    elif isinstance(output_file['content'], SeqRecord):
+                        with io.StringIO() as record_buffer:
+                            SeqIO.write(output_file['content'], record_buffer, "genbank")
+                            zip_file.writestr(file_save_path, record_buffer.getvalue())
+                        self.project_dir_structure[file_save_path] = str(output_file['content'])
+                else:
+                    zip_file.writestr(file_save_path, output_file['content'])
+                    self.project_dir_structure[file_save_path] = output_file['content']
+
+            # Process and save markdown files from paths
+            if self.markdown_file_paths:
+                for md_file_path in self.markdown_file_paths:
+                    md_file_name = os.path.basename(md_file_path)
+                    md_file_save_path = os.path.join(outputs_dir, md_file_name)
+                    with open(md_file_path, 'r') as file:
+                        md_content = file.read()
+                    zip_file.writestr(md_file_save_path, md_content)
+                    self.project_dir_structure[md_file_save_path] = md_content
+        
+        self.zip_buffer.seek(0)
+        return self.zip_buffer.getvalue()
+
+    def get_zip_file(self):
+        return self.zip_buffer.getvalue()

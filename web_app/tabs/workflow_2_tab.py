@@ -378,7 +378,7 @@ crispr_cb_tab = html.Div(children=[
                     html.A(
                         'Data & protocols',
                         id='download-data-and-protocols-link_2',
-                        download="all_data.txt",
+                        download="data_package",
                         href="",
                         target="_blank",
                         className="btn btn-primary"

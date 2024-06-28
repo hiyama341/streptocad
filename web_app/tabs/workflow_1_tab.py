@@ -228,7 +228,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
                     html.A(
                         'Data & protocols',
                         id='download-data-and-protocols-link_1',
-                        download="all_I_O_&_requirements_data.txt",
+                        download="data_package",
                         href="",
                         target="_blank",
                         className="btn btn-primary"

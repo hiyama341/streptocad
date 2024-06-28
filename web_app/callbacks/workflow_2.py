@@ -8,6 +8,8 @@ import io
 import zipfile
 import base64
 import csv
+from datetime import datetime
+
 
 # Third-party imports
 import pandas as pd
@@ -32,7 +34,7 @@ if module_path not in sys.path:
 
 from streptocad.primers.primer_generation import primers_to_IDT
 from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
-from streptocad.utils import format_and_print_values
+from streptocad.utils import ProjectDirectory
 
 
 from dash import callback_context
@@ -59,7 +61,7 @@ if module_path not in sys.path:
     sys.path.append(module_path)
 
 from streptocad.sequence_loading.sequence_loading import load_and_process_gene_sequences, load_and_process_plasmid, load_and_process_genome_sequences
-from streptocad.utils import polymerase_dict
+from streptocad.utils import generate_project_directory_structure
 from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
 from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
 from streptocad.crispr.crispr_best import identify_base_editing_sites, filter_sgrnas_for_base_editing, process_base_editing
@@ -143,7 +145,7 @@ def register_workflow_2_callbacks(app):
                 if not input_genome or not input_plasmid:
                     raise ValueError("Unsupported file format. Please provide a valid GenBank file.")
 
-                genome = SeqRecord(input_genome[0].seq, id=input_genome[0].id, description=input_genome[0].description)
+                genome = Dseqrecord(input_genome[0].seq, id=input_genome[0].id, description=input_genome[0].description)
                 plasmid = Dseqrecord(input_plasmid[0], circular=True)
 
                 genes_to_KO_list = [gene.strip() for gene in genes_to_KO.split(',')]
@@ -276,48 +278,73 @@ def register_workflow_2_callbacks(app):
                 zip_data = base64.b64encode(zip_buffer.read()).decode('utf-8')
                 genbank_download_link = f"data:application/zip;base64,{zip_data}"
 
-                ## Making data file
-                input_dict = {
-                    '######Inputs####': '',
-                    "Path_to_file": genome_filename,
-                    "Name of genome": genome.name,
-                    "Path to plasmid": vector_filename,
-                    "Plasmid name": plasmid.name,
-                    "Up homology": up_homology,
-                    "DW homology": dw_homology,
-                    'Genes to Base-edit': genes_to_KO_list, 
-                    'Flanking region for checking primers': flanking_region_number,
-                    'Upper GC content for sgRNAs': gc_upper,
-                    'Lower GC content for sgRNAs': gc_lower,
-                    'Off target seed': off_target_seed, 
-                    'Off target upper': off_target_upper, 
-                    'Cas type': cas_type, 
-                    'Number of sgRNAs per locus tag': number_of_sgRNAs_per_group,
-                    'Stop codons': bool(only_stop_codons), 
-                    "Chosen polymerase": chosen_polymerase,
-                    "Melting temperature": melting_temperature,
-                    "Primer_concentration": primer_concentration,
-                    "Primer number increment": primer_number_increment,
-                    '####### OUTPUTS #########' : '',
-                    "Primer df": full_idt,
-                    "All mutations dataframe": mutated_sgrna_df,
-                    'Filtered dataframe': filtered_df,
-                    'Plasmid assembly': [plasmid.figure() for plasmid in sgRNA_vectors],
+
+                # New function call to generate project directory structure
+                input_files = [
+                    {"name": "input_genome.gb", "content": genome},
+                    {"name": "input_plasmid.gb", "content": plasmid}
+                ]
+
+                output_files = [
+                    {"name": "cBEST_w_sgRNAs.gb", "content": sgRNA_vectors}, # LIST OF Dseqrecords
+                    {"name": "primer_df.csv", "content": checking_primers_df},
+                    {"name": "full_idt.csv", "content": full_idt},
+                    {"name": "mutated_sgrna_df.csv", "content": mutated_sgrna_df},
+                    {"name": "filtered_df.csv", "content": filtered_df}
+                ]
+
+                input_values = {
+                    "genes_to_knockout": genes_to_KO,
+                    "polymerase_settings": {
+                        "chosen_polymerase": chosen_polymerase,
+                        "melting_temperature": melting_temperature,
+                        "primer_concentration": primer_concentration,
+                        "primer_number_increment": primer_number_increment,
+                        "flanking_region_number": flanking_region_number
+                    },
+                    "filtering_metrics": {
+                        "gc_upper": gc_upper,
+                        "gc_lower": gc_lower,
+                        "off_target_seed": off_target_seed,
+                        "off_target_upper": off_target_upper,
+                        "cas_type": cas_type,
+                        "number_of_sgRNAs_per_group": number_of_sgRNAs_per_group
+                    },
+                    "overlapping_sequences": {
+                        "up_homology": str(up_homology),
+                        "dw_homology": str(dw_homology)
+                    }
                 }
-                
-                description = (
-                    "This document captures all the values that were put into the application "
-                    "to ensure that the experiment can be replicated accurately.\n"
-                    "Below are the details of the inputs used:\n"
+
+
+                # Paths to Markdown files
+                markdown_file_paths = [
+                    "../protocols/conjugation_protcol.md",
+                    "../protocols/single_target_crispr_plasmid_protcol.md"
+
+                ]
+
+                # Data and time
+                timestamp = datetime.utcnow().isoformat()
+
+                # Create project directory structure
+                project_directory = ProjectDirectory(
+                    project_name=f"CRISPR_cBEST_workflow_{timestamp}",
+                    input_files=input_files,
+                    output_files=output_files,
+                    input_values=input_values,
+                    markdown_file_paths=markdown_file_paths
                 )
 
-                data_and_protocols_package = format_and_print_values(input_dict, description, spacing=10)
-                data_package_encoded = base64.b64encode(data_and_protocols_package.encode('utf-8')).decode('utf-8')
-                data_package_download_link = f"data:text/plain;base64,{data_package_encoded}"  
+                # Generate the project directory structure and get the zip content
+                zip_content = project_directory.create_directory_structure(create_directories=True)
+
+                # Encode the zip content for download
+                data_package_encoded = base64.b64encode(zip_content).decode('utf-8')
+                data_package_download_link = f"data:application/zip;base64,{data_package_encoded}"
+
 
                 print("Workflow completed successfully")
-
-                
                 # Prepare data for filtered_df
                 filtered_df_columns = [{"name": col, "id": col} for col in filtered_df.columns]
                 filtered_df_data = filtered_df.to_dict('records')
