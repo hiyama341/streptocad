@@ -22,7 +22,6 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 import os
 import json
 import pandas as pd
-from datetime import datetime
 from Bio.SeqRecord import SeqRecord
 from Bio import SeqIO
 from pydna.dseqrecord import Dseqrecord
