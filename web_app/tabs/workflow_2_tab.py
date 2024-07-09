@@ -385,7 +385,7 @@ crispr_cb_tab = html.Div(children=[
                 ])
             ], style=card_style),
             
-        ], width=6),
+        ], width=10),
     ]),
 ])
 

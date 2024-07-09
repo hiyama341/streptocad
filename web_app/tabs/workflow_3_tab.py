@@ -65,7 +65,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                 dbc.CardBody([
                     html.H5("Genome File", className="card-title", style=text_style),
                     dcc.Upload(
-                        id='upload-genome-file',
+                        id='upload-genome-file_3',
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select Genome File', style=link_style)
@@ -73,7 +73,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id='uploaded-genome-filename', children=[], style=text_style),
+                    html.Div(id='uploaded-genome-filename_3', children=[], style=text_style),
                 ])
             ], style=card_style),
         ], width=6),
@@ -86,7 +86,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                 dbc.CardBody([
                     html.H5("CRISPR Vector", className="card-title", style=text_style),
                     dcc.Upload(
-                        id='upload-single-vector',
+                        id='upload-single-vector_3',
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select CRISPR Vector File', style=link_style)
@@ -107,7 +107,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                 dbc.CardBody([
                     html.H5("Genes to Knock Out (comma-separated)", className="card-title", style=text_style),
                     dbc.Textarea(
-                        id='genes-to-KO',
+                        id='genes-to-KO_3',
                         placeholder='Enter genes to knock out, e.g., SCO5087',
                         value='SCO5087',
                         style={'width': '100%', 'height': '100px'}
@@ -122,7 +122,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             html.H4("4) Enter sgRNA handle", className="mb-3", style=text_style),
             html.P('As a default we use the sgRNA handle with cys4 (see figure above)', style=text_style),
             dbc.Input(
-                id='sgRNA-handle-input',
+                id='sgRNA-handle-input_3',
                 type='text',
                 placeholder='Enter sgRNA handle: e.g., 110-nt (pJET1.2–sgRNA handle)',
                 value='GTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGCTAGTCCGTTATCAACTTGAAAAAGTGGCACCGAGTCGGTGCTTTTTTGTTCACTGCCGTATAGGCAGCTAAGAAA'
@@ -133,7 +133,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
     dbc.Row([
         dbc.Col([
             html.H4("5) Enter Target Melting Temperature", className="mb-3", style=text_style),
-            dbc.Input(id='input-tm', type='number', placeholder='Enter Melting Temperature', value=55),
+            dbc.Input(id='input-tm_3', type='number', placeholder='Enter Melting Temperature', value=55),
             html.Br(),
         ], width=6),
     ], className="mb-5"),
@@ -145,7 +145,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             dbc.Col([
                 dbc.Label("GC Content Upper Bound", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                 dbc.Input(
-                    id='gc-upper',
+                    id='gc-upper_3',
                     type='number',
                     value=0.99,
                     style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
@@ -154,7 +154,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             dbc.Col([
                 dbc.Label("GC Content Lower Bound", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                 dbc.Input(
-                    id='gc-lower',
+                    id='gc-lower_3',
                     type='number',
                     value=0.01,
                     style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
@@ -163,7 +163,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             dbc.Col([
                 dbc.Label("Off-Target Seed Length", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                 dbc.Input(
-                    id='off-target-seed',
+                    id='off-target-seed_3',
                     type='number',
                     value=13,
                     style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
@@ -172,7 +172,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             dbc.Col([
                 dbc.Label("Off-Target Upper Bound", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                 dbc.Input(
-                    id='off-target-upper',
+                    id='off-target-upper_3',
                     type='number',
                     value=10,
                     style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
@@ -181,7 +181,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             dbc.Col([
                 dbc.Label("Cas Type", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                 dcc.Dropdown(
-                    id='cas-type',
+                    id='cas-type_3',
                     options=[
                         {'label': 'Cas9', 'value': 'cas9'},
                     ],
@@ -192,7 +192,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             dbc.Col([
                 dbc.Label("Number of sgRNAs per Group", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                 dbc.Input(
-                    id='number-of-sgRNAs-per-group',
+                    id='number-of-sgRNAs-per-group_3',
                     type='number',
                     value=5,
                     style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
@@ -204,7 +204,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                         {"label": "Only Stop Codons", "value": 1},
                     ],
                     value=[1] if True else [],  # default value
-                    id="only-stop-codons-checkbox",
+                    id="only-stop-codons-checkbox_3",
                     inline=True,
                     switch=True,
                     className="big-switch"
@@ -238,7 +238,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                     dbc.Col([
                         dbc.Label("Choose Polymerase", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                         dcc.Dropdown(
-                            id='chosen-polymerase',
+                            id='chosen-polymerase_3',
                             options=dropdown_options,
                             value=polymerase_dict['Phusion High-Fidelity DNA Polymerase (GC Buffer)'],  # Set default value
                             style={'color': '#000'}  # Ensure text is black
@@ -247,7 +247,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                     dbc.Col([
                         dbc.Label("Target Melting Temperature (°C)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                         dbc.Input(
-                            id='melting-temperature',
+                            id='melting-temperature_3',
                             type='number',
                             value=65,
                             style={'color': '#000'}  # Ensure text is black
@@ -256,7 +256,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                     dbc.Col([
                         dbc.Label("Primer Concentration (μM)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                         dbc.Input(
-                            id='primer-concentration',
+                            id='primer-concentration_3',
                             type='number',
                             value=0.4,
                             style={'color': '#000'}  # Ensure text is black
@@ -265,7 +265,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                     dbc.Col([
                         dbc.Label("Primer Number Increment", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                         dbc.Input(
-                            id='primer-number-increment',
+                            id='primer-number-increment_3',
                             type='number',
                             value=1,
                             style={'color': '#000'}  # Ensure text is black
@@ -274,7 +274,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                     dbc.Col([
                         dbc.Label("Flanking Region Number", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                         dbc.Input(
-                            id='flanking-region-number',
+                            id='flanking-region-number_3',
                             type='number',
                             value=500,
                             style={'color': '#000'}  # Ensure text is black
@@ -287,19 +287,20 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
 
     dbc.Row([
         dbc.Col([
-            dbc.Button('Submit', id='submit-button', color="primary", className="mt-3"),
+            dbc.Button('Submit', id='submit-button_3', color="primary", className="mt-3"),
         ], width=12),
     ], className="mb-5"),
 
+    ### Output
     dbc.Row([
         dbc.Col([
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Primers", className="card-title", style=text_style),
-                    DataTable(id='primer-table', **table_style),
+                    DataTable(id='primer-table_3', **table_style),
                     html.A(
                         'Download Primers CSV',
-                        id='download-primers-link',
+                        id='download-primers-link_3',
                         download="primers.csv",
                         href="",
                         target="_blank",
@@ -311,10 +312,10 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             dbc.Card([
                 dbc.CardBody([
                     html.H5("PCR", className="card-title", style=text_style),
-                    DataTable(id='pcr-table', **table_style),
+                    DataTable(id='pcr-table_3', **table_style),
                     html.A(
                         'Download PCR CSV',
-                        id='download-pcr-link',
+                        id='download-pcr-link_3',
                         download="pcr.csv",
                         href="",
                         target="_blank",
@@ -326,7 +327,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Overhang", className="card-title", style=text_style),
-                    DataTable(id='overhang-table', **table_style),
+                    DataTable(id='overhang-table_3', **table_style),
                 ])
             ], style=card_style),
 
@@ -335,7 +336,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                     html.H5("GenBank File", className="card-title", style=text_style),
                     html.A(
                         'Download GenBank File',
-                        id='genbank-file',
+                        id='genbank-file_3',
                         download="plasmid.gb",
                         href="",
                         target="_blank",
@@ -344,15 +345,14 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                 ])
             ], style=card_style),
 
-
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Download folder with all data & protocols", className="card-title", style=text_style),
-                    DataTable(id='all_data', **table_style),
+                    DataTable(id='all_data_3', **table_style),
                     html.A(
                         'Data & protocols',
-                        id='download-data-and-protocols-link',
-                        download="all_data.csv",
+                        id='download-data-and-protocols-link_3',
+                        download="all_data",
                         href="",
                         target="_blank",
                         className="btn btn-primary"
@@ -360,7 +360,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                 ])
             ], style=card_style),
 
-        ], width=12),
+        ], width=10),
     ]),
 ])
 

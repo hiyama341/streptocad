@@ -236,6 +236,6 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
                 ])
             ], style=card_style),
 
-        ], width=6),
+        ], width=10),
     ]),
 ])
