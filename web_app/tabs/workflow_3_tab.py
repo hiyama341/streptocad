@@ -295,6 +295,15 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
     dbc.Row([
         dbc.Col([
             dbc.Card([
+                dbc.Card([
+
+                dbc.CardBody([
+                    html.H5("Filtered sgRNAs", className="card-title", style=text_style),
+                    DataTable(id='mutated-sgrna-table_3', **table_style)
+                ])
+            ], style=card_style),
+
+
                 dbc.CardBody([
                     html.H5("Primers", className="card-title", style=text_style),
                     DataTable(id='primer-table_3', **table_style),
@@ -306,6 +315,14 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                         target="_blank",
                         className="btn btn-primary"
                     )
+                ])
+            ], style=card_style),
+            
+            
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5("Overhang", className="card-title", style=text_style),
+                    DataTable(id='overhang-table_3', **table_style),
                 ])
             ], style=card_style),
 
@@ -321,13 +338,6 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                         target="_blank",
                         className="btn btn-primary"
                     )
-                ])
-            ], style=card_style),
-
-            dbc.Card([
-                dbc.CardBody([
-                    html.H5("Overhang", className="card-title", style=text_style),
-                    DataTable(id='overhang-table_3', **table_style),
                 ])
             ], style=card_style),
 

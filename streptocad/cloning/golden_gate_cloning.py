@@ -191,23 +191,21 @@ class GoldenGateCloning:
             
             # Construct the dictionary representing the current amplicon's primer details
             record = {
-                "template": amplicon.template.name,
-                "f_primer_anneal(5-3)": str(amplicon.forward_primer.footprint),
-                "r_primer_anneal(5-3)": str(amplicon.reverse_primer.footprint),
+                "Locus Tag": amplicon.template.name,
+                "f_primer_name": amplicon.forward_primer.name,
+                "r_primer_name": amplicon.reverse_primer.name,
+                "f_primer_sequences(5-3)": str(amplicon.forward_primer.seq).upper(),
+                "r_primer_sequences(5-3)": str(amplicon.reverse_primer.seq).upper(),
                 "f_tm": f_tm,
                 "r_tm": r_tm,
                 "ta": ta,
-                "f_primer_sequences(5-3)": str(amplicon.forward_primer.seq).upper(),
-                "r_primer_sequences(5-3)": str(amplicon.reverse_primer.seq).upper(),
-                "f_primer_name": amplicon.forward_primer.name,
-                "r_primer_name": amplicon.reverse_primer.name,
             }
             
             # Append the record to the list
             list_of_dicts.append(record)
         
         # Convert the list of dictionaries to a DataFrame
-        df = pd.DataFrame(list_of_dicts)
+        df = pd.DataFrame(list_of_dicts, columns=["Locus Tag", "f_primer_name", "r_primer_name", "f_primer_sequences(5-3)", "r_primer_sequences(5-3)", "f_tm", "r_tm", "ta"])
         
         return df
 
