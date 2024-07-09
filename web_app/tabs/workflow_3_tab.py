@@ -184,7 +184,6 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                     id='cas-type',
                     options=[
                         {'label': 'Cas9', 'value': 'cas9'},
-                        {'label': 'Cas12a', 'value': 'cas12a'}
                     ],
                     value='cas9',
                     style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width

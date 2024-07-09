@@ -194,7 +194,6 @@ crispr_cb_tab = html.Div(children=[
                     id='cas-type_2',
                     options=[
                         {'label': 'Cas9', 'value': 'cas9'},
-                        {'label': 'Cas12a', 'value': 'cas12a'}
                     ],
                     value='cas9',
                     style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width

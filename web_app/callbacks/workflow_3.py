@@ -44,7 +44,7 @@ from streptocad.primers.primer_generation import primers_to_IDT
 from streptocad.cloning.golden_gate_cloning import GoldenGateCloning, create_overhang_dataframe, digest_amplicons_w_BsaI
 from streptocad.primers.primer_analysis import analyze_primers_and_hairpins
 from streptocad.sequence_loading.sequence_loading import load_and_process_gene_sequences, load_and_process_plasmid
-from streptocad.utils import polymerase_dict, format_and_print_values, dataframe_to_seqrecords
+from streptocad.utils import polymerase_dict, dataframe_to_seqrecords, generate_project_directory_structure
 from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
 from streptocad.crispr.crispr_best import identify_base_editing_sites, filter_sgrnas_for_base_editing, process_base_editing
 from streptocad.cloning.plasmid_processing import annotate_plasmid_with_sgrnas
