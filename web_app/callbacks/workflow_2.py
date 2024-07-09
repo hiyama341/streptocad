@@ -343,8 +343,6 @@ def register_workflow_2_callbacks(app):
                 data_package_encoded = base64.b64encode(zip_content).decode('utf-8')
                 data_package_download_link = f"data:application/zip;base64,{data_package_encoded}"
 
-
-                print("Workflow completed successfully")
                 # Prepare data for filtered_df
                 filtered_df_columns = [{"name": col, "id": col} for col in filtered_df.columns]
                 filtered_df_data = filtered_df.to_dict('records')
@@ -353,6 +351,9 @@ def register_workflow_2_callbacks(app):
                 filtered_df_string = filtered_df.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
                 filtered_df_data_encoded = quote(filtered_df_string)
                 filtered_df_download_link = f"data:text/csv;charset=utf-8,{filtered_df_data_encoded}"
+
+                print("Workflow completed successfully")
+
 
                 return (primers_data, primers_columns, pcr_data, pcr_columns, genbank_download_link, primer_download_link, 
                         pcr_download_link, data_package_download_link, filtered_df_data, filtered_df_columns, filtered_df_download_link)
