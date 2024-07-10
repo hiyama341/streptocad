@@ -4,6 +4,7 @@ from dash.dash_table import DataTable
 
 from styling import text_style, upload_button_style, card_style, link_style, table_style
 from streptocad.utils import polymerase_dict
+from components import upload_component, display_uploaded_filenames
 
 # Reference content used in multiple tabs
 reference_content = html.Div([
@@ -58,22 +59,16 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         )
     ], className="mb-4", justify="start"),
 
+    
+    # UPLOAD genome
     dbc.Row([
         dbc.Col([
-            html.H4("1) Upload your genome file", style=text_style),
+            html.H4("1) Upload syour genome file", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Genome File", className="card-title", style=text_style),
-                    dcc.Upload(
-                        id='upload-genome-file_3',
-                        children=html.Div([
-                            'Drag and Drop or ',
-                            html.A('Select Genome File', style=link_style)
-                        ], style=text_style),
-                        style=upload_button_style,
-                        multiple=False
-                    ),
-                    html.Div(id='uploaded-genome-filename_3', children=[], style=text_style),
+                    upload_component('upload-genome-file_3', text_style, link_style, upload_button_style),
+                    html.Div(id='uploaded-genome-filename_3', children=display_uploaded_filenames('uploaded-genome-filename_3', None), style=text_style),  # Add this line
                 ])
             ], style=card_style),
         ], width=6),
@@ -81,24 +76,17 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
 
     dbc.Row([
         dbc.Col([
-            html.H4("2) Upload the plasmid of choice", style=text_style),
+            html.H4("2) Upload a plasmid of choice", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("CRISPR Vector", className="card-title", style=text_style),
-                    dcc.Upload(
-                        id='upload-single-vector_3',
-                        children=html.Div([
-                            'Drag and Drop or ',
-                            html.A('Select CRISPR Vector File', style=link_style)
-                        ], style=text_style),
-                        style=upload_button_style,
-                        multiple=False
-                    ),
-                    html.Div(id='uploaded-single-vector-filename', children=[], style=text_style),
+                    html.H5("CRISPR-mcBEST plasmid", className="card-title", style=text_style),
+                    upload_component('upload-single-vector_3', text_style, link_style, upload_button_style),
+                    html.Div(id='uploaded-single-vector-filename_3', children=display_uploaded_filenames('uploaded-single-vector-filename_3', None), style=text_style),  # Add this line
                 ])
             ], style=card_style),
         ], width=6),
     ], className="mb-5"),
+
         
     dbc.Row([
         dbc.Col([
@@ -373,4 +361,3 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         ], width=10),
     ]),
 ])
-

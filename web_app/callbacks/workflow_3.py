@@ -34,6 +34,8 @@ from dash.exceptions import PreventUpdate
 from urllib.parse import quote
 import tempfile
 from datetime import datetime
+from components import display_uploaded_filenames
+
 
 
 
@@ -73,7 +75,9 @@ def register_workflow_3_callbacks(app):
             Output('download-pcr-link_3', 'href'),
             Output('download-data-and-protocols-link_3', 'href'),
             Output('mutated-sgrna-table_3', 'data'),
-            Output('mutated-sgrna-table_3', 'columns')
+            Output('mutated-sgrna-table_3', 'columns'),
+            Output('uploaded-genome-filename_3', 'children'),  # Update these lines
+            Output('uploaded-single-vector-filename_3', 'children')
         ],
         [Input('submit-button_3', 'n_clicks')],
         [
@@ -271,8 +275,8 @@ def register_workflow_3_callbacks(app):
 
                 # Prepare mutated sgRNA DataFrame for DataTable
                 print("Preparing mutated sgRNA DataFrame for DataTable")
-                mutated_sgrna_columns = [{"name": col, "id": col} for col in mutated_sgrna_df.columns]
-                mutated_sgrna_data = mutated_sgrna_df.to_dict('records')
+                filtered_sgrna_columns = [{"name": col, "id": col} for col in filtered_df.columns]
+                filtered_sgrna_data = filtered_df.to_dict('records')
 
                 # IDT download links
                 primer_df_string = full_idt.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
@@ -298,7 +302,7 @@ def register_workflow_3_callbacks(app):
                     {"name": "overhang_df.csv", "content": overhangs},
                     {"name": "pcr_df.csv", "content": primer_df},
                     {"name": "full_idt.csv", "content": full_idt},
-                    {"name": "mutated_sgrna_df.csv", "content": mutated_sgrna_df},
+                    {"name": "filtered_sgrna_df.csv", "content": filtered_df},
                     {"name": "filtered_df.csv", "content": filtered_df}
                 ]
 
@@ -357,9 +361,13 @@ def register_workflow_3_callbacks(app):
 
                 print("Workflow 3 completed successfully")
 
-                return (primers_data, primers_columns, pcr_data, pcr_columns, overhang_data, overhang_columns,
-                        genbank_download_link, primer_download_link, pcr_download_link, data_package_download_link,
-                        mutated_sgrna_data, mutated_sgrna_columns)
+                return (
+                primers_data, primers_columns, pcr_data, pcr_columns, overhang_data, overhang_columns,
+                genbank_download_link, primer_download_link, pcr_download_link, data_package_download_link,
+                filtered_sgrna_data, filtered_sgrna_columns,
+                display_uploaded_filenames('uploaded-genome-filename_3', genome_filename),  # Update these lines
+                display_uploaded_filenames('uploaded-single-vector-filename_3', vector_filename)
+            )
 
         except Exception as e:
             print("An error occurred:", str(e))
