@@ -53,7 +53,6 @@ def register_workflow_4_callbacks(app):
             Output('primer-table_4', 'columns'),
             Output('genbank-file-single_4', 'href'),
             Output('download-primers-link_4', 'href'),
-            Output('download-pcr-link_4', 'href'),
             Output('download-data-and-protocols-link_4', 'href'),
             Output('mutated-sgrna-table_4', 'data'),
             Output('mutated-sgrna-table_4', 'columns'),
@@ -85,7 +84,7 @@ def register_workflow_4_callbacks(app):
             raise PreventUpdate
 
         try:
-            logging.info("Workflow started")
+            logging.info("Workflow 4 started")
 
             with tempfile.TemporaryDirectory() as tempdir:
                 genome_path = os.path.join(tempdir, genome_filename)
@@ -230,8 +229,8 @@ def register_workflow_4_callbacks(app):
 
                 logging.info("Workflow completed successfully")
 
-                return (primers_data, primers_columns, None, None, genbank_download_link, primer_download_link, 
-                        None, data_package_download_link, filtered_df_data, filtered_df_columns)
+                return (primers_data, primers_columns, genbank_download_link, primer_download_link, 
+                         data_package_download_link, filtered_df_data, filtered_df_columns)
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
