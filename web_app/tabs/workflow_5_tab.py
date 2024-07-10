@@ -13,7 +13,7 @@ reference_content = html.Div([
 # Dropdown options for polymerases
 dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_dict.items()]
 # Tab content for CRISPR–Cas9 plasmid construction for in-frame deletion
-gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction for in-frame deletion", children=[
+gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
     dbc.Row([
         dbc.Col([
             # Introductory text
