@@ -5,7 +5,7 @@ from dash.exceptions import PreventUpdate
 import pandas as pd
 from Bio.Restriction import StuI
 import io
-import os 
+import os
 import sys
 import base64
 from teemi.design.fetch_sequences import read_genbank_files
@@ -15,6 +15,10 @@ import csv
 from urllib.parse import quote
 from datetime import datetime
 import tempfile
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # functions from StreptoCAD
 # Local module imports
@@ -29,7 +33,6 @@ from streptocad.cloning.pcr_simulation import perform_pcr_on_sequences
 from streptocad.sequence_loading.sequence_loading import load_and_process_plasmid, load_and_process_genome_sequences
 from streptocad.primers.primer_generation import generate_primer_dataframe, create_idt_order_dataframe
 from streptocad.utils import ProjectDirectory
-
 
 def register_workflow_1_callbacks(app):
     @app.callback(
@@ -67,8 +70,9 @@ def register_workflow_1_callbacks(app):
         if n_clicks is None:
             raise PreventUpdate
 
-        
         try:
+            logging.info("Workflow 1 started")
+
             # Create a temporary directory
             with tempfile.TemporaryDirectory() as tempdir:
                 # Decode the uploaded files
@@ -97,42 +101,42 @@ def register_workflow_1_callbacks(app):
                 plasmid = Dseqrecord(input_plasmid, circular=True)
 
                 # Generate primers
-                print("Generating primers")
+                logging.info("Generating primers")
                 primer_df = generate_primer_dataframe(sequences, 
                                                     melting_temperature, 
                                                     chosen_polymerase, 
                                                     primer_concentration,
                                                     up_homology, dw_homology, 
                                                     primer_number_increment)
-                print("Primer DataFrame:", primer_df)
+                logging.info(f"Primer DataFrame: {primer_df}")
 
                 # Perform PCR
-                print("Performing PCR")
+                logging.info("Performing PCR")
                 list_of_amplicons = perform_pcr_on_sequences(primer_df, sequences)
-                print("List of amplicons:", list_of_amplicons)
+                logging.info(f"List of amplicons: {list_of_amplicons}")
 
                 # Create IDT order DataFrame
-                print("Creating IDT order DataFrame")
+                logging.info("Creating IDT order DataFrame")
                 idt_df = create_idt_order_dataframe(primer_df, concentration="25nm", purification="STD")
-                print("IDT DataFrame:", idt_df)
+                logging.info(f"IDT DataFrame: {idt_df}")
 
                 # Analyze primers and hairpins
-                print("Analyzing primers and hairpins")
+                logging.info("Analyzing primers and hairpins")
                 analyzed_primers_df = analyze_primers_and_hairpins(primer_df)
-                print("Analyzed primers DataFrame:", analyzed_primers_df)
+                logging.info(f"Analyzed primers DataFrame: {analyzed_primers_df}")
 
                 # Simulate gel electrophoresis
-                print("Simulating gel electrophoresis")
+                logging.info("Simulating gel electrophoresis")
                 gel_simulation = simulate_gel_electrophoresis(list_of_amplicons)
-                print("Gel simulation completed")
+                logging.info("Gel simulation completed")
 
                 # Assemble plasmids
-                print("Assembling plasmids")
+                logging.info("Assembling plasmids")
                 assembled_plasmids, assembly_results = assemble_and_process_plasmids(plasmid, list_of_amplicons, 
                                                                                     enzyme=StuI, 
                                                                                     save_plasmids=False, 
                                                                                     save_path="../../data/plasmids/pOEX_overexpression_plasmids")
-                print("Assembly results:", assembly_results)
+                logging.info(f"Assembly results: {assembly_results}")
 
                 # Prepare outputs for the DataTable
                 primers_columns = [{"name": col, "id": col} for col in idt_df.columns]
@@ -167,7 +171,6 @@ def register_workflow_1_callbacks(app):
                 zip_buffer.seek(0)
                 zip_data = base64.b64encode(zip_buffer.read()).decode('utf-8')
                 genbank_download_link = f"data:application/zip;base64,{zip_data}"
-                
                 
                 ### DATA PACKAGE:
                 input_files = [
@@ -205,7 +208,6 @@ def register_workflow_1_callbacks(app):
                 timestamp = datetime.utcnow().isoformat()
                 project_name=f"pOEX-PKasO_workflow_{timestamp}"
 
-
                 # Create the ProjectDirectory object
                 project_directory = ProjectDirectory(
                     project_name=project_name,
@@ -222,14 +224,10 @@ def register_workflow_1_callbacks(app):
                 data_package_encoded = base64.b64encode(zip_content).decode('utf-8')
                 data_package_download_link = f"data:application/zip;base64,{data_package_encoded}"
 
+                logging.info("Workflow 1 completed successfully")
 
-
-                print("Workflow completed successfully")
-
-            
-        
-            return primers_data, primers_columns, pcr_data, pcr_columns, analyzed_primers_data, analyzed_primers_columns, genbank_download_link, primer_download_link, pcr_download_link, analyzed_primers_download_link,data_package_download_link
+            return primers_data, primers_columns, pcr_data, pcr_columns, analyzed_primers_data, analyzed_primers_columns, genbank_download_link, primer_download_link, pcr_download_link, analyzed_primers_download_link, data_package_download_link
 
         except Exception as e:
-            print("An error occurred:", str(e))
+            logging.error(f"An error occurred: {str(e)}")
             raise PreventUpdate

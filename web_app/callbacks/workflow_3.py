@@ -34,10 +34,11 @@ from dash.exceptions import PreventUpdate
 from urllib.parse import quote
 import tempfile
 from datetime import datetime
+import logging
 from components import display_uploaded_filenames
 
-
-
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Local module imports
 module_path = os.path.abspath(os.path.join('..'))
@@ -47,8 +48,7 @@ if module_path not in sys.path:
 from streptocad.cloning.golden_gate_cloning import GoldenGateCloning, create_overhang_dataframe, digest_amplicons_w_BsaI
 from streptocad.primers.primer_analysis import analyze_primers_and_hairpins
 from streptocad.sequence_loading.sequence_loading import load_and_process_gene_sequences
-from streptocad.utils import dataframe_to_seqrecords,  ProjectDirectory
-
+from streptocad.utils import dataframe_to_seqrecords, ProjectDirectory
 from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
 from streptocad.crispr.crispr_best import identify_base_editing_sites, filter_sgrnas_for_base_editing, process_base_editing
 from streptocad.cloning.plasmid_processing import annotate_plasmid_with_sgrnas
@@ -110,7 +110,7 @@ def register_workflow_3_callbacks(app):
             raise PreventUpdate
 
         try:
-            print("Workflow 3 started")
+            logging.info("Workflow 3 started")
 
             # Create a temporary directory
             with tempfile.TemporaryDirectory() as tempdir:
@@ -122,7 +122,7 @@ def register_workflow_3_callbacks(app):
                 save_file(vector_path, vector_content)
 
                 # Read the GenBank files from the saved paths
-                print("Reading genome and vector files")
+                logging.info("Reading genome and vector files")
                 input_genome = list(SeqIO.parse(genome_path, "genbank"))
                 input_plasmid = list(SeqIO.parse(vector_path, "genbank"))
 
@@ -133,7 +133,7 @@ def register_workflow_3_callbacks(app):
                 plasmid = Dseqrecord(input_plasmid[0], circular=True)
 
                 genes_to_KO_list = [gene.strip() for gene in genes_to_KO.split(',')]
-                print(f"Genes to knock out: {genes_to_KO_list}")
+                logging.info(f"Genes to knock out: {genes_to_KO_list}")
 
                 # Initialize SgRNAargs with desired parameters
                 args = SgRNAargs(genome_path,
@@ -145,39 +145,39 @@ def register_workflow_3_callbacks(app):
                                 off_target_upper=off_target_upper,
                                 cas_type=cas_type)
 
-                print("Extracting sgRNAs")
+                logging.info("Extracting sgRNAs")
                 sgrna_df = extract_sgRNAs(args)
-                print(f"sgRNA DataFrame: {sgrna_df}")
+                logging.info(f"sgRNA DataFrame: {sgrna_df}")
 
                 # Load gene sequences
-                print("Loading gene sequences")
+                logging.info("Loading gene sequences")
                 gene_sequences = load_and_process_gene_sequences(genome_path)
                 genes_to_KO_dict = {locus_tag: gene_sequences[locus_tag] for locus_tag in genes_to_KO_list if locus_tag in gene_sequences}
-                print(f"Genes to KO dictionary: {genes_to_KO_dict}")
+                logging.info(f"Genes to KO dictionary: {genes_to_KO_dict}")
 
                 # Identify and annotate base editing sites
-                print("Identifying base editing sites")
+                logging.info("Identifying base editing sites")
                 sgrna_df_with_editing = identify_base_editing_sites(sgrna_df)
 
                 # Filter out only sgRNAs that result in base-editing
-                print("Filtering sgRNAs for base editing")
+                logging.info("Filtering sgRNAs for base editing")
                 filtered_sgrna_df_for_base_editing = filter_sgrnas_for_base_editing(sgrna_df_with_editing)
-                print(f"Filtered sgRNAs for base editing: {filtered_sgrna_df_for_base_editing}")
+                logging.info(f"Filtered sgRNAs for base editing: {filtered_sgrna_df_for_base_editing}")
 
                 # Process the DataFrame to apply C-to-T mutations
-                print("Processing base editing")
+                logging.info("Processing base editing")
                 mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing,
                                                         genes_to_KO_dict,
                                                         only_stop_codons=bool(only_stop_codons))
-                print(f"Mutated sgRNAs: {mutated_sgrna_df}")
+                logging.info(f"Mutated sgRNAs: {mutated_sgrna_df}")
 
                 # Filter the DataFrame to retain only up to 5 sgRNA sequences per locus_tag
-                print("Filtering sgRNAs to retain only up to 5 sequences per locus tag")
+                logging.info("Filtering sgRNAs to retain only up to 5 sequences per locus tag")
                 filtered_df = mutated_sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
-                print(f"Filtered DataFrame: {filtered_df}")
+                logging.info(f"Filtered DataFrame: {filtered_df}")
 
                 # Generate sgRNA list and handle sites
-                print("Generating sgRNA list")
+                logging.info("Generating sgRNA list")
                 sgRNA_list = dataframe_to_seqrecords(filtered_df)
                 sgRNA_handle_cys4_sites = [Dseqrecord(sgRNA_handle_input, name='sgRNA_handle_cys4')] * len(sgRNA_list)
 
@@ -189,7 +189,7 @@ def register_workflow_3_callbacks(app):
                 cys4 = "gTTCACTGCCGTATAGGCAGCTAAGAAA"
 
                 # Golden Gate Cloning
-                print("Performing Golden Gate Cloning")
+                logging.info("Performing Golden Gate Cloning")
                 golden_gate = GoldenGateCloning(sgRNA_list,
                                                 sgRNA_handle_cys4_sites,
                                                 target_tm=input_tm,
@@ -203,41 +203,41 @@ def register_workflow_3_callbacks(app):
                                                 polymerase=chosen_polymerase)
 
                 # Generate primers
-                print("Generating primer DataFrame")
+                logging.info("Generating primer DataFrame")
                 primer_df = golden_gate.generate_primer_dataframe()
-                print(f"Primer DataFrame: {primer_df}")
+                logging.info(f"Primer DataFrame: {primer_df}")
 
                 # Primer analysis
-                print("Analyzing primers")
+                logging.info("Analyzing primers")
                 analysis_of_primers = analyze_primers_and_hairpins(primer_df)
-                print(f"Analysis of primers: {analysis_of_primers}")
+                logging.info(f"Analysis of primers: {analysis_of_primers}")
 
                 # Generate IDT order DataFrame
-                print("Generating IDT order DataFrame")
+                logging.info("Generating IDT order DataFrame")
                 idt_df = create_idt_order_dataframe(primer_df, concentration="25nm", purification="STD")
-                print(f"IDT DataFrame: {idt_df}")
+                logging.info(f"IDT DataFrame: {idt_df}")
 
                 # Simulate PCR
-                print("Simulating PCRs")
+                logging.info("Simulating PCRs")
                 list_of_amplicons = golden_gate.simulate_pcrs()
 
                 # Simulate gel electrophoresis
-                print("Simulating gel electrophoresis")
+                logging.info("Simulating gel electrophoresis")
                 simulate_gel_electrophoresis(list_of_amplicons)
 
                 # Generate overhang DataFrame
-                print("Generating overhang DataFrame")
+                logging.info("Generating overhang DataFrame")
                 overhangs = create_overhang_dataframe(list_of_amplicons)
-                print(f"Overhang DataFrame: {overhangs}")
+                logging.info(f"Overhang DataFrame: {overhangs}")
 
                 # Digest amplicons
-                print("Digesting amplicons")
+                logging.info("Digesting amplicons")
                 digest_amplicons = digest_amplicons_w_BsaI(list_of_amplicons)
                 for digest in digest_amplicons:
-                    print(digest.figure())
+                    logging.info(digest.figure())
 
                 # Digest and assemble plasmid
-                print("Digesting and assembling plasmid")
+                logging.info("Digesting and assembling plasmid")
                 linear_plasmid, _ = sorted(plasmid.cut(NcoI, NheI), key=lambda x: len(x), reverse=True)
                 for amplicon in digest_amplicons:
                     linear_plasmid.seq += amplicon.seq
@@ -245,11 +245,11 @@ def register_workflow_3_callbacks(app):
                 rec_vec = linear_plasmid.looped()
 
                 # Annotate plasmid
-                print("Annotating plasmid")
+                logging.info("Annotating plasmid")
                 annotate_plasmid_with_sgrnas(rec_vec, filtered_df)
 
                 # Generate checking primers
-                print("Generating checking primers")
+                logging.info("Generating checking primers")
                 checking_primers_df = checking_primers(genome_path, genes_to_KO_list,
                                                     flanking_region=flanking_region_number,
                                                     target_tm=melting_temperature,
@@ -258,12 +258,12 @@ def register_workflow_3_callbacks(app):
                 checking_primers_df_idt = create_idt_order_dataframe(checking_primers_df)
 
                 # Combine IDT DataFrames
-                print("Combining IDT DataFrames")
+                logging.info("Combining IDT DataFrames")
                 full_idt = pd.concat([idt_df, checking_primers_df_idt])
-                print(f"Full IDT DataFrame: {full_idt}")
+                logging.info(f"Full IDT DataFrame: {full_idt}")
 
                 # Prepare outputs for the DataTable
-                print("Preparing data for DataTables")
+                logging.info("Preparing data for DataTables")
                 primers_columns = [{"name": col, "id": col} for col in full_idt.columns]
                 primers_data = full_idt.to_dict('records')
 
@@ -274,7 +274,7 @@ def register_workflow_3_callbacks(app):
                 overhang_data = overhangs.to_dict('records')
 
                 # Prepare mutated sgRNA DataFrame for DataTable
-                print("Preparing mutated sgRNA DataFrame for DataTable")
+                logging.info("Preparing mutated sgRNA DataFrame for DataTable")
                 filtered_sgrna_columns = [{"name": col, "id": col} for col in filtered_df.columns]
                 filtered_sgrna_data = filtered_df.to_dict('records')
 
@@ -359,7 +359,7 @@ def register_workflow_3_callbacks(app):
                 data_package_encoded = base64.b64encode(zip_content).decode('utf-8')
                 data_package_download_link = f"data:application/zip;base64,{data_package_encoded}"
 
-                print("Workflow 3 completed successfully")
+                logging.info("Workflow 3 completed successfully")
 
                 return (
                 primers_data, primers_columns, pcr_data, pcr_columns, overhang_data, overhang_columns,
@@ -370,5 +370,5 @@ def register_workflow_3_callbacks(app):
             )
 
         except Exception as e:
-            print("An error occurred:", str(e))
+            logging.error(f"An error occurred: {str(e)}")
             raise PreventUpdate

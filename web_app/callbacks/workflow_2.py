@@ -10,7 +10,6 @@ import base64
 import csv
 from datetime import datetime
 
-
 # Third-party imports
 import pandas as pd
 from Bio import SeqIO
@@ -26,6 +25,11 @@ from dash.dash_table.Format import Group
 import dash_bootstrap_components as dbc
 from dash.exceptions import PreventUpdate
 from urllib.parse import quote
+import logging
+import tempfile
+
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Local module imports
 module_path = os.path.abspath(os.path.join('..'))
@@ -36,38 +40,12 @@ from streptocad.primers.primer_generation import primers_to_IDT
 from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
 from streptocad.utils import ProjectDirectory
 
-
-from dash import callback_context
-from dash.exceptions import PreventUpdate
-import dash
-from dash.dependencies import Input, Output, State
-import pandas as pd
-import io
-import base64
-from urllib.parse import quote
-from Bio import SeqIO
-from Bio.Restriction import NcoI
-from pydna.dseqrecord import Dseqrecord
-from teemi.design.fetch_sequences import read_genbank_files
-
-import tempfile
-
-
-# Local module imports
-import os
-import sys
-module_path = os.path.abspath(os.path.join('..'))
-if module_path not in sys.path:
-    sys.path.append(module_path)
-
 from streptocad.sequence_loading.sequence_loading import load_and_process_gene_sequences, load_and_process_plasmid, load_and_process_genome_sequences
 from streptocad.utils import generate_project_directory_structure
 from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
-from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
 from streptocad.crispr.crispr_best import identify_base_editing_sites, filter_sgrnas_for_base_editing, process_base_editing
 from streptocad.cloning.plasmid_processing import annotate_plasmid_with_sgrnas
 from streptocad.primers.primer_generation import checking_primers, create_idt_order_dataframe, primers_to_IDT
-
 
 def save_file(name, content):
     """Decode and store a file uploaded with Plotly Dash."""
@@ -125,8 +103,7 @@ def register_workflow_2_callbacks(app):
             raise PreventUpdate
 
         try:
-            print("Workflow started")
-
+            logging.info("Workflow 2 started")
 
             # Create a temporary directory
             with tempfile.TemporaryDirectory() as tempdir:
@@ -138,7 +115,7 @@ def register_workflow_2_callbacks(app):
                 save_file(vector_path, vector_content)
 
                 # Read the GenBank files from the saved paths
-                print("Reading genome and vector files")
+                logging.info("Reading genome and vector files")
                 input_genome = list(SeqIO.parse(genome_path, "genbank"))
                 input_plasmid = list(SeqIO.parse(vector_path, "genbank"))
 
@@ -149,7 +126,7 @@ def register_workflow_2_callbacks(app):
                 plasmid = Dseqrecord(input_plasmid[0], circular=True)
 
                 genes_to_KO_list = [gene.strip() for gene in genes_to_KO.split(',')]
-                print(f"Genes to knock out: {genes_to_KO_list}")
+                logging.info(f"Genes to knock out: {genes_to_KO_list}")
 
                 # Initialize SgRNAargs with desired parameters
                 args = SgRNAargs(genome_path, 
@@ -161,52 +138,52 @@ def register_workflow_2_callbacks(app):
                                  off_target_upper=off_target_upper,
                                  cas_type=cas_type)
 
-                print("Extracting sgRNAs")
+                logging.info("Extracting sgRNAs")
                 sgrna_df = extract_sgRNAs(args)
-                print(f"sgRNA DataFrame: {sgrna_df}")
+                logging.info(f"sgRNA DataFrame: {sgrna_df}")
 
                 # Load gene sequences
-                print("Loading gene sequences")
+                logging.info("Loading gene sequences")
                 gene_sequences = load_and_process_gene_sequences(genome_path)
                 genes_to_KO_dict = {locus_tag: gene_sequences[locus_tag] for locus_tag in genes_to_KO_list if locus_tag in gene_sequences}
-                print(f"Genes to KO dictionary: {genes_to_KO_dict}")
+                logging.info(f"Genes to KO dictionary: {genes_to_KO_dict}")
 
                 # Identify and annotate base editing sites
-                print("Identifying base editing sites")
+                logging.info("Identifying base editing sites")
                 sgrna_df_with_editing = identify_base_editing_sites(sgrna_df)
 
                 # Filter out only sgRNAs that result in base-editing
-                print("Filtering sgRNAs for base editing")
+                logging.info("Filtering sgRNAs for base editing")
                 filtered_sgrna_df_for_base_editing = filter_sgrnas_for_base_editing(sgrna_df_with_editing)
-                print(f"Filtered sgRNAs for base editing: {filtered_sgrna_df_for_base_editing}")
+                logging.info(f"Filtered sgRNAs for base editing: {filtered_sgrna_df_for_base_editing}")
 
                 # Process the DataFrame to apply C-to-T mutations
-                print("Processing base editing")
+                logging.info("Processing base editing")
                 mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing, 
                                                         genes_to_KO_dict, 
                                                         only_stop_codons=bool(only_stop_codons))
-                print(f"Mutated sgRNAs: {mutated_sgrna_df}")
+                logging.info(f"Mutated sgRNAs: {mutated_sgrna_df}")
 
                 # Filter the DataFrame to retain only up to 5 sgRNA sequences per locus_tag
-                print("Filtering sgRNAs to retain only up to 5 sequences per locus tag")
+                logging.info("Filtering sgRNAs to retain only up to 5 sequences per locus tag")
                 filtered_df = mutated_sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
-                print(f"Filtered DataFrame: {filtered_df}")
+                logging.info(f"Filtered DataFrame: {filtered_df}")
 
                 # Make oligos
-                print("Making ssDNA oligos")
+                logging.info("Making ssDNA oligos")
                 list_of_ssDNAs = make_ssDNA_oligos(filtered_df, upstream_ovh=Dseqrecord(up_homology),
                                                    downstream_ovh=Dseqrecord(dw_homology))
-                print(f"List of ssDNAs: {list_of_ssDNAs}")
+                logging.info(f"List of ssDNAs: {list_of_ssDNAs}")
 
                 # Cut plasmid
-                print("Cutting plasmid")
+                logging.info("Cutting plasmid")
                 linearized_plasmid = sorted(plasmid.cut(NcoI), key=lambda x: len(x), reverse=True)[0]
-                print(f"Linearized plasmid: {linearized_plasmid}")
+                logging.info(f"Linearized plasmid: {linearized_plasmid}")
 
                 # Assemble plasmid
-                print("Assembling plasmid")
+                logging.info("Assembling plasmid")
                 sgRNA_vectors = assemble_plasmids_by_ssDNA_bridging(list_of_ssDNAs, linearized_plasmid)
-                print(f"sgRNA vectors: {sgRNA_vectors}")
+                logging.info(f"sgRNA vectors: {sgRNA_vectors}")
 
                 # Constructing a meaningful name, ID, and description for the assembled plasmid using user input
                 targeting_info = []
@@ -219,32 +196,32 @@ def register_workflow_2_callbacks(app):
                     sgRNA_vectors[i].id = sgRNA_vectors[i].name  # Using the same value for ID as for name for simplicity
                     sgRNA_vectors[i].description = f'Assembled plasmid targeting {", ".join(genes_to_KO_list)} for base-editing, assembled using StreptoCAD.'
 
-                print("Annotating plasmids")
+                logging.info("Annotating plasmids")
                 # Annotate plasmids
                 for plasmid in sgRNA_vectors: 
                     annotate_plasmid_with_sgrnas(plasmid, filtered_df)
 
                 # Generate primers
-                print("Generating primers for IDT")
+                logging.info("Generating primers for IDT")
                 idt_df1 = primers_to_IDT(list_of_ssDNAs)
-                print(f"IDT primers DataFrame: {idt_df1}")
+                logging.info(f"IDT primers DataFrame: {idt_df1}")
 
                 # Getting checking primers
-                print("Generating checking primers")
+                logging.info("Generating checking primers")
                 checking_primers_df = checking_primers(genome_path, genes_to_KO_list, 
                                                        flanking_region=flanking_region_number,
                                                        target_tm=melting_temperature, 
                                                        primer_concentration=primer_concentration, 
                                                        polymerase=chosen_polymerase)
-                print(f"Checking primers DataFrame: {checking_primers_df}")
+                logging.info(f"Checking primers DataFrame: {checking_primers_df}")
 
                 idt_df2 = create_idt_order_dataframe(checking_primers_df)
-                print(f"IDT order DataFrame: {idt_df2}")
+                logging.info(f"IDT order DataFrame: {idt_df2}")
                 full_idt = pd.concat([idt_df1, idt_df2])
-                print(f"Full IDT DataFrame: {full_idt}")
+                logging.info(f"Full IDT DataFrame: {full_idt}")
 
                 # Prepare outputs for the DataTable
-                print("Preparing data for DataTables")
+                logging.info("Preparing data for DataTables")
                 primers_columns = [{"name": col, "id": col} for col in full_idt.columns]
                 primers_data = full_idt.to_dict('records')
 
@@ -352,13 +329,12 @@ def register_workflow_2_callbacks(app):
                 filtered_df_data_encoded = quote(filtered_df_string)
                 filtered_df_download_link = f"data:text/csv;charset=utf-8,{filtered_df_data_encoded}"
 
-                print("Workflow completed successfully")
-
+                logging.info("Workflow 2 completed successfully")
 
                 return (primers_data, primers_columns, pcr_data, pcr_columns, genbank_download_link, primer_download_link, 
                         pcr_download_link, data_package_download_link, filtered_df_data, filtered_df_columns, filtered_df_download_link)
 
 
         except Exception as e:
-            print("An error occurred:", str(e))
+            logging.error(f"An error occurred: {str(e)}")
             raise PreventUpdate
