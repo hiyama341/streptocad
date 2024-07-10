@@ -65,7 +65,7 @@ crispri_tab = html.Div(children=[
                 dbc.CardBody([
                     html.H5("Genome File", className="card-title", style=text_style),
                     dcc.Upload(
-                        id='upload-genome-file',
+                        id='upload-genome-file_4',
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select Genome File', style=link_style)
@@ -73,7 +73,7 @@ crispri_tab = html.Div(children=[
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id='uploaded-genome-filename', children=[], style=text_style),
+                    html.Div(id='uploaded-genome-filename_4', children=[], style=text_style),
                 ])
             ], style=card_style),
         ], width=6),
@@ -86,7 +86,7 @@ crispri_tab = html.Div(children=[
                 dbc.CardBody([
                     html.H5("CRISPRi Vector", className="card-title", style=text_style),
                     dcc.Upload(
-                        id='upload-crispri-vector',
+                        id='upload-crispri-vector_4',
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select CRISPRi Vector File', style=link_style)
@@ -94,7 +94,7 @@ crispri_tab = html.Div(children=[
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id='uploaded-crispri-vector-filename', children=[], style=text_style),
+                    html.Div(id='uploaded-crispri-vector-filename_4', children=[], style=text_style),
                 ])
             ], style=card_style),
         ], width=6),
@@ -107,7 +107,7 @@ crispri_tab = html.Div(children=[
                 dbc.CardBody([
                     html.H5("Genes to Knock Out (comma-separated)", className="card-title", style=text_style),
                     dbc.Textarea(
-                        id='genes-to-KO',
+                        id='genes-to-KO_4',
                         placeholder='Enter genes to knock out, e.g., SCO5087',
                         value='SCO5087',
                         style={'width': '100%', 'height': '100px'}
@@ -129,7 +129,7 @@ crispri_tab = html.Div(children=[
         dbc.Col([
             html.Label('5 prime Overhang:', style=text_style),
             dbc.Input(
-                id='forward-overhang-input',
+                id='forward-overhang-input_4',
                 type='text',
                 placeholder='Enter Forward Overhang',
                 value='CGGTTGGTAGGATCGACGGC'
@@ -141,7 +141,7 @@ crispri_tab = html.Div(children=[
         dbc.Col([
             html.Label('3 prime Overhang:', style=text_style),
             dbc.Input(
-                id='reverse-overhang-input',
+                id='reverse-overhang-input_4',
                 type='text',
                 placeholder='Enter Reverse Overhang',
                 value='GTTTTAGAGCTAGAAATAGC'
@@ -156,7 +156,7 @@ crispri_tab = html.Div(children=[
                 dbc.Col([
                     dbc.Label("GC Content Upper Bound", style={'color': '#ddd'}),  
                     dbc.Input(
-                        id='gc-upper',
+                        id='gc-upper_4',
                         type='number',
                         value=0.99,
                         style={'color': '#000', 'width': '100%'}
@@ -165,7 +165,7 @@ crispri_tab = html.Div(children=[
                 dbc.Col([
                     dbc.Label("GC Content Lower Bound", style={'color': '#ddd'}),  
                     dbc.Input(
-                        id='gc-lower',
+                        id='gc-lower_4',
                         type='number',
                         value=0.01,
                         style={'color': '#000', 'width': '100%'}
@@ -174,7 +174,7 @@ crispri_tab = html.Div(children=[
                 dbc.Col([
                     dbc.Label("Off-Target Seed Length", style={'color': '#ddd'}),  
                     dbc.Input(
-                        id='off-target-seed',
+                        id='off-target-seed_4',
                         type='number',
                         value=13,
                         style={'color': '#000', 'width': '100%'}
@@ -183,7 +183,7 @@ crispri_tab = html.Div(children=[
                 dbc.Col([
                     dbc.Label("Off-Target Upper Bound", style={'color': '#ddd'}),  
                     dbc.Input(
-                        id='off-target-upper',
+                        id='off-target-upper_4',
                         type='number',
                         value=10,
                         style={'color': '#000', 'width': '100%'}
@@ -192,10 +192,9 @@ crispri_tab = html.Div(children=[
                 dbc.Col([
                     dbc.Label("Cas Type", style={'color': '#ddd'}),  
                     dcc.Dropdown(
-                        id='cas-type',
+                        id='cas-type_4',
                         options=[
                             {'label': 'Cas9', 'value': 'cas9'},
-                            {'label': 'Cas12a', 'value': 'cas12a'}
                         ],
                         value='cas9',
                         style={'color': '#000', 'width': '100%'}
@@ -204,9 +203,18 @@ crispri_tab = html.Div(children=[
                 dbc.Col([
                     dbc.Label("Number of sgRNAs per Group", style={'color': '#ddd'}),  
                     dbc.Input(
-                        id='number-of-sgRNAs-per-group',
+                        id='number-of-sgRNAs-per-group_4',
                         type='number',
                         value=5,
+                        style={'color': '#000', 'width': '100%'}
+                    ),
+                ], width=12, className="mb-3"),
+                dbc.Col([
+                    dbc.Label("Extension to Promoter Region", style={'color': '#ddd'}),  
+                    dbc.Input(
+                        id='extension-to-promoter-region_4',
+                        type='number',
+                        value=100,
                         style={'color': '#000', 'width': '100%'}
                     ),
                 ], width=12, className="mb-3"),
@@ -214,53 +222,46 @@ crispri_tab = html.Div(children=[
         ], width=6, className="mb-4"),
     ], className="mb-3"),
 
-
-
     dbc.Row([
         dbc.Col([
-            dbc.Button('Submit', id='submit-settings-button', color="primary", className="mt-3"),
+            dbc.Button('Submit', id='submit-settings-button_4', color="primary", className="mt-3"),
         ], width=12),
     ], className="mb-4"),
     
-    # Placeholder for the output
+    ### Output
     dbc.Row([
         dbc.Col([
             dbc.Card([
+                dbc.Card([
+
                 dbc.CardBody([
-                    html.H5("Primers", className="card-title", style=text_style),
-                    DataTable(id='primers-output-table', **table_style),
-                    html.A(
-                        'Download CSV File',
-                        id='csv_download_link',
-                        download="ssDNA_bridging_oligos.csv",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    )
+                    html.H5("Filtered sgRNAs", className="card-title", style=text_style),
+                    DataTable(id='mutated-sgrna-table_4', **table_style)
                 ])
             ], style=card_style),
 
-            dbc.Card([
+
                 dbc.CardBody([
-                    html.H5("PCR", className="card-title", style=text_style),
-                    DataTable(id='pcr-table', **table_style),
+                    html.H5("Primers", className="card-title", style=text_style),
+                    DataTable(id='primer-table_4', **table_style),
                     html.A(
-                        'Download PCR CSV',
-                        id='download-pcr-link',
-                        download="pcr.csv",
+                        'Download Primers CSV',
+                        id='download-primers-link_4',
+                        download="primers.csv",
                         href="",
                         target="_blank",
                         className="btn btn-primary"
                     )
                 ])
             ], style=card_style),
+            
 
             dbc.Card([
                 dbc.CardBody([
                     html.H5("GenBank File", className="card-title", style=text_style),
                     html.A(
                         'Download GenBank File',
-                        id='genbank-file-single',
+                        id='genbank-file-single_4',
                         download="plasmid-single.zip",
                         href="",
                         target="_blank",
@@ -272,10 +273,10 @@ crispri_tab = html.Div(children=[
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Download folder with all data & protocols", className="card-title", style=text_style),
-                    DataTable(id='all_data', **table_style),
+                    DataTable(id='all_data_4', **table_style),
                     html.A(
                         'Data & protocols',
-                        id='download-data-and-protocols-link',
+                        id='download-data-and-protocols-link_4',
                         download="all_data.csv",
                         href="",
                         target="_blank",
@@ -284,6 +285,6 @@ crispri_tab = html.Div(children=[
                 ])
             ], style=card_style),
             
-        ], width=6),
+        ], width=10),
     ]),
 ])

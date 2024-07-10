@@ -16,7 +16,7 @@ from styling import tab_style, active_tab_style, vertical_tab_style, text_style,
 from callbacks.workflow_1 import register_workflow_1_callbacks  # Import the new callback registration function
 from callbacks.workflow_2 import register_workflow_2_callbacks
 from callbacks.workflow_3 import register_workflow_3_callbacks
-#from callbacks.workflow_4 import register_workflow_4_callbacks  # Added callback registration for workflow 4
+from callbacks.workflow_4 import register_workflow_4_callbacks  # Added callback registration for workflow 4
 from callbacks.workflow_5 import register_workflow_5_callbacks
 from callbacks_interactivity import register_interactivity_callbacks  # Import the interactivity callbacks
 
@@ -190,7 +190,7 @@ def toggle_advanced_settings(checkbox_value):
 register_workflow_1_callbacks(app)
 register_workflow_2_callbacks(app)
 register_workflow_3_callbacks(app)
-#register_workflow_4_callbacks(app)
+register_workflow_4_callbacks(app)
 register_workflow_5_callbacks(app)
 #register_workflow_6_callbacks(app)
 register_interactivity_callbacks(app)  # Register the interactivity callbacks
