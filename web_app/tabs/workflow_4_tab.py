@@ -121,7 +121,7 @@ crispri_tab = html.Div(children=[
         dbc.Col([
             html.H4("4) Select overhangs", style=text_style),
             html.P("Please enter the 5' and 3' overhangs below for the oligo nucleotide to be made.", className="lead", style=text_style),
-            html.P("Per default the overhangs work with the example CRISPRi vector.", className="lead", style=text_style)
+            html.P("Per default the overhangs work with the example pCRISPR-dCas9.gbk plasmid.", className="lead", style=text_style)
         ], width=12),
     ], className="mb-3"),
 
