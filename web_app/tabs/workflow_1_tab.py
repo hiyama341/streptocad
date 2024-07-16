@@ -1,5 +1,3 @@
-# workflow_1_tab.py
-
 from dash import dcc, html
 import dash_bootstrap_components as dbc
 from dash.dash_table import DataTable
@@ -164,14 +162,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
                 dbc.CardBody([
                     html.H5("Primers", className="card-title", style=text_style),
                     DataTable(id='primers-output-table_1', **table_style),
-                    html.A(
-                        'Download CSV File',
-                        id='primers_download_link_1',
-                        download="Overexpression_oligoes.csv",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    )
+                    # Removed other download buttons
                 ])
             ], style=card_style),
             
@@ -180,14 +171,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
                 dbc.CardBody([
                     html.H5("Analyzed Primers", className="card-title", style=text_style),
                     DataTable(id='analyzed-primers-table_1', **table_style),
-                    html.A(
-                        'Download Analyzed Primers CSV',
-                        id='download-analyzed-primers-link_1',
-                        download="Overexpression_analyzed_primers.csv",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    )
+                    # Removed other download buttons
                 ])
             ], style=card_style),
 
@@ -195,31 +179,16 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
                 dbc.CardBody([
                     html.H5("PCR", className="card-title", style=text_style),
                     DataTable(id='pcr-table_1', **table_style),
-                    html.A(
-                        'Download PCR CSV',
-                        id='download-pcr-link_1',
-                        download="Overexpression_pcr_files.csv",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    )
+                    # Removed other download buttons
                 ])
             ], style=card_style),
 
             dbc.Card([
                 dbc.CardBody([
                     html.H5("GenBank File", className="card-title", style=text_style),
-                    html.A(
-                        'Download GenBank File',
-                        id='genbank-file-single_1',
-                        download="plasmid-single.zip",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    ), 
+                    # Removed other download buttons
                 ])
             ], style=card_style),
-
 
             dbc.Card([
                 dbc.CardBody([

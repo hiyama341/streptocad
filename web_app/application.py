@@ -70,6 +70,7 @@ introduction_page = html.Div(
     ],
     style={'height': '100vh', 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'center', 'alignItems': 'center', 'backgroundColor': '#2C3E50'}
 )
+
 # Footer content
 footer = html.Footer([
     html.Div([
@@ -110,6 +111,9 @@ main_layout = dcc.Loading(
                 ], width=9),
             ]),
             footer,
+            dcc.ConfirmDialog(
+                id='error-dialog'
+            )
         ], fluid=True, style={'backgroundColor': '#2C3E50', 'padding': '20px', 'color': '#ddd'})
     ]
 )
@@ -194,8 +198,6 @@ register_workflow_4_callbacks(app)
 register_workflow_5_callbacks(app)
 #register_workflow_6_callbacks(app)
 register_interactivity_callbacks(app)  # Register the interactivity callbacks
-
-
 
 if __name__ == '__main__':
     app.run_server(debug=True)

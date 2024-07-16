@@ -43,11 +43,9 @@ def register_workflow_1_callbacks(app):
             Output('pcr-table_1', 'columns'),
             Output('analyzed-primers-table_1', 'data'),
             Output('analyzed-primers-table_1', 'columns'),
-            Output('genbank-file-single_1', 'href'),
-            Output('primers_download_link_1', 'href'),
-            Output('download-pcr-link_1', 'href'),
-            Output('download-analyzed-primers-link_1', 'href'),
-            Output('download-data-and-protocols-link_1', 'href')
+            Output('download-data-and-protocols-link_1', 'href'),
+            Output('error-dialog', 'message'),
+            Output('error-dialog', 'displayed')
         ],
         [
             Input('submit-settings-button_1', 'n_clicks')
@@ -148,19 +146,6 @@ def register_workflow_1_callbacks(app):
                 analyzed_primers_columns = [{"name": col, "id": col} for col in analyzed_primers_df.columns]
                 analyzed_primers_data = analyzed_primers_df.to_dict('records')
 
-                # Create download links for CSV data
-                primer_df_string = idt_df.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
-                primer_data_encoded = quote(primer_df_string)
-                primer_download_link = f"data:text/csv;charset=utf-8,{primer_data_encoded}"
-
-                pcr_df_string = primer_df.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
-                pcr_data_encoded = quote(pcr_df_string)
-                pcr_download_link = f"data:text/csv;charset=utf-8,{pcr_data_encoded}"
-
-                analyzed_primers_string = analyzed_primers_df.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
-                analyzed_primers_data_encoded = quote(analyzed_primers_string)
-                analyzed_primers_download_link = f"data:text/csv;charset=utf-8,{analyzed_primers_data_encoded}"
-
                 # Create download link for GenBank files
                 zip_buffer = io.BytesIO()
                 with zipfile.ZipFile(zip_buffer, 'a', zipfile.ZIP_DEFLATED, False) as zip_file:
@@ -226,8 +211,9 @@ def register_workflow_1_callbacks(app):
 
                 logging.info("Workflow 1 completed successfully")
 
-            return primers_data, primers_columns, pcr_data, pcr_columns, analyzed_primers_data, analyzed_primers_columns, genbank_download_link, primer_download_link, pcr_download_link, analyzed_primers_download_link, data_package_download_link
+            return primers_data, primers_columns, pcr_data, pcr_columns, analyzed_primers_data, analyzed_primers_columns, data_package_download_link, "", False
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
-            raise PreventUpdate
+            error_message = f"An error occurred: {str(e)}"
+            return [], [], [], [], [], [], "", error_message, True
