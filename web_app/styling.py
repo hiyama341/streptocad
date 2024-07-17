@@ -130,3 +130,5 @@ table_row_style = {
     'maxWidth': '150px',
     'whiteSpace': 'normal'
 }
+
+
