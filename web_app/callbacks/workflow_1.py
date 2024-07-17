@@ -17,8 +17,9 @@ from datetime import datetime
 import tempfile
 import logging
 
-# Set up logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Set up logging to use a StringIO buffer
+log_stream = io.StringIO()
+logging.basicConfig(stream=log_stream, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # functions from StreptoCAD
 # Local module imports
@@ -44,8 +45,8 @@ def register_workflow_1_callbacks(app):
             Output('analyzed-primers-table_1', 'data'),
             Output('analyzed-primers-table_1', 'columns'),
             Output('download-data-and-protocols-link_1', 'href'),
-            Output('error-dialog', 'message'),
-            Output('error-dialog', 'displayed')
+            Output('error-dialog_1', 'message'),
+            Output('error-dialog_1', 'displayed')
         ],
         [
             Input('submit-settings-button_1', 'n_clicks')
@@ -123,10 +124,6 @@ def register_workflow_1_callbacks(app):
                 analyzed_primers_df = analyze_primers_and_hairpins(primer_df)
                 logging.info(f"Analyzed primers DataFrame: {analyzed_primers_df}")
 
-                # Simulate gel electrophoresis
-                logging.info("Simulating gel electrophoresis")
-                gel_simulation = simulate_gel_electrophoresis(list_of_amplicons)
-                logging.info("Gel simulation completed")
 
                 # Assemble plasmids
                 logging.info("Assembling plasmids")
@@ -211,9 +208,13 @@ def register_workflow_1_callbacks(app):
 
                 logging.info("Workflow 1 completed successfully")
 
+            # Clear the log stream after successful execution
+            log_stream.truncate(0)
+            log_stream.seek(0)
+
             return primers_data, primers_columns, pcr_data, pcr_columns, analyzed_primers_data, analyzed_primers_columns, data_package_download_link, "", False
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
-            error_message = f"An error occurred: {str(e)}"
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
             return [], [], [], [], [], [], "", error_message, True
