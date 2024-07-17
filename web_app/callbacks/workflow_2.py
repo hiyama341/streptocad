@@ -28,8 +28,9 @@ from urllib.parse import quote
 import logging
 import tempfile
 
-# Set up logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Set up logging to use a StringIO buffer
+log_stream = io.StringIO()
+logging.basicConfig(stream=log_stream, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Local module imports
 module_path = os.path.abspath(os.path.join('..'))
@@ -67,8 +68,9 @@ def register_workflow_2_callbacks(app):
             Output('download-data-and-protocols-link_2', 'href'),
             Output('filtered-df-table', 'data'),   # New output for filtered_df
             Output('filtered-df-table', 'columns'), # New output for filtered_df columns
-            Output('download-filtered-df-link_2', 'href') # New output for filtered_df download link
-
+            Output('download-filtered-df-link_2', 'href'), # New output for filtered_df download link
+            Output('error-dialog_2', 'message'),
+            Output('error-dialog_2', 'displayed')
         ],
         [
             Input('submit-settings-button_2', 'n_clicks')
@@ -331,10 +333,14 @@ def register_workflow_2_callbacks(app):
 
                 logging.info("Workflow 2 completed successfully")
 
-                return (primers_data, primers_columns, pcr_data, pcr_columns, genbank_download_link, primer_download_link, 
-                        pcr_download_link, data_package_download_link, filtered_df_data, filtered_df_columns, filtered_df_download_link)
+                # Clear the log stream after successful execution
+                log_stream.truncate(0)
+                log_stream.seek(0)
 
+                return (primers_data, primers_columns, pcr_data, pcr_columns, genbank_download_link, primer_download_link, 
+                        pcr_download_link, data_package_download_link, filtered_df_data, filtered_df_columns, filtered_df_download_link, "", False)
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
-            raise PreventUpdate
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
+            return [], [], [], [], "", "", "", "", [], [], "", error_message, True
