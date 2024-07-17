@@ -1,0 +1,28 @@
+/* assets/custom_spinner.css */
+#loading-spinner {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#loading-spinner.visible {
+    display: block;
+}
+
+.spinner {
+    border: 16px solid rgba(243, 243, 243, 0.3); /* Lightly transparent border */
+    border-top: 16px solid #3498db; /* Primary color */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 1.5s ease-in-out infinite; /* Smoother and slightly faster animation */
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5); /* Glow effect matching the primary color */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
