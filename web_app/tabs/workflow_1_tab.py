@@ -156,13 +156,13 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
         ], width=12),
     ], className="mb-4"),
     
-    # Placeholder for the output wrapped with dcc.Loading
-    dcc.Loading(
-        id="loading-1",
-        type="cube",
-        children=[
-            dbc.Row([
-                dbc.Col([
+    # Placeholder for the output
+    dbc.Row([
+        dbc.Col([
+            dcc.Loading(
+                id="loading-overlay",
+                type="circle",
+                children=[
                     dbc.Card([
                         dbc.CardBody([
                             html.H5("Primers", className="card-title", style=text_style),
@@ -223,7 +223,6 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
                         ])
                     ], style=card_style),
 
-
                     dbc.Card([
                         dbc.CardBody([
                             html.H5("Download folder with all data & protocols", className="card-title", style=text_style),
@@ -238,9 +237,8 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
                             )
                         ])
                     ], style=card_style),
-
-                ], width=10),
-            ]),
-        ]
-    )
+                ]
+            )
+        ], width=10),
+    ]),
 ])

@@ -1,3 +1,4 @@
+# callback1.py
 from dash import dcc, html, dash_table, exceptions
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
@@ -46,7 +47,7 @@ def register_workflow_1_callbacks(app):
             Output('analyzed-primers-table_1', 'columns'),
             Output('download-data-and-protocols-link_1', 'href'),
             Output('error-dialog_1', 'message'),
-            Output('error-dialog_1', 'displayed')
+            Output('error-dialog_1', 'displayed'),
         ],
         [
             Input('submit-settings-button_1', 'n_clicks')
@@ -61,13 +62,14 @@ def register_workflow_1_callbacks(app):
             State('chosen-polymerase_1', 'value'),
             State('melting-temperature_1', 'value'),
             State('primer-concentration_1', 'value'),
-            State('primer-number-increment_1', 'value')
+            State('primer-number-increment_1', 'value'),
         ]
     )
     def run_workflow(n_clicks, sequences_content, plasmid_content, sequences_filename, plasmid_filename, up_homology, dw_homology, 
                      chosen_polymerase, melting_temperature, primer_concentration, primer_number_increment):
         if n_clicks is None:
             raise PreventUpdate
+
 
         try:
             logging.info("Workflow 1 started")
@@ -124,6 +126,10 @@ def register_workflow_1_callbacks(app):
                 analyzed_primers_df = analyze_primers_and_hairpins(primer_df)
                 logging.info(f"Analyzed primers DataFrame: {analyzed_primers_df}")
 
+                # Simulate gel electrophoresis
+                logging.info("Simulating gel electrophoresis")
+                gel_simulation = simulate_gel_electrophoresis(list_of_amplicons)
+                logging.info("Gel simulation completed")
 
                 # Assemble plasmids
                 logging.info("Assembling plasmids")
@@ -212,9 +218,10 @@ def register_workflow_1_callbacks(app):
             log_stream.truncate(0)
             log_stream.seek(0)
 
-            return primers_data, primers_columns, pcr_data, pcr_columns, analyzed_primers_data, analyzed_primers_columns, data_package_download_link, "", False
+
+            return primers_data, primers_columns, pcr_data, pcr_columns, analyzed_primers_data, analyzed_primers_columns, data_package_download_link, "", False,
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
             error_message = f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            return [], [], [], [], [], [], "", error_message, True
+            return [], [], [], [], [], [], "", error_message, Truee
