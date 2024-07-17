@@ -12,6 +12,7 @@
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
 
+# styling.py
 
 ##########################
 # Define the common styles
@@ -96,32 +97,66 @@ button_style_darkly = {
 
 # Table styles
 table_style = {
-    'style_table': {'overflowX': 'auto'},
-    'style_header': {
+    'style_table': {
+        'maxHeight': '500px',
+        'overflowY': 'auto',
+        'border': 'none',  # Remove the border to eliminate the white line
         'backgroundColor': '#2C3E50',
+    },
+    'style_header': {
+        'backgroundColor': '#1A242F',
         'fontWeight': 'bold',
-        'color': 'white',
-        'textAlign': 'left'
+        'color': '#fff',
+        'border': 'none',  # Remove the border to eliminate the white line
+        'textAlign': 'center'
     },
     'style_cell': {
+        'padding': '10px',
         'backgroundColor': '#34495E',
-        'color': 'white',
-        'border': '1px solid #444'
+        'color': '#ddd',
+        'border': 'none',  # Remove the border to eliminate the white line
+        'textAlign': 'left',
     },
     'style_data_conditional': [
         {
             'if': {'row_index': 'odd'},
+            'backgroundColor': '#3A475B'
+        },
+        {
+            'if': {'row_index': 'even'},
             'backgroundColor': '#2C3E50'
+        },
+        {
+            'if': {'column_id': 'some_column'},
+            'textAlign': 'center'
+        },
+        {
+            'if': {'state': 'active'},  # Active cell styling
+            'backgroundColor': '#1A242F',
+            'border': '1px solid #3498DB',
+            'color': '#fff'
+        },
+        {
+            'if': {'state': 'selected'},  # Selected cell styling
+            'backgroundColor': '#1A242F',
+            'border': '1px solid #3498DB',
+            'color': '#fff'
         }
-    ]
+    ],
+    'style_as_list_view': True,
+    'style_data': {
+        'border': 'none'  # Remove the border to eliminate the white line
+    },
 }
 
+# Specific header style for tables
 table_header_style = {
-    'backgroundColor': '#34495E',
+    'backgroundColor': '#1A242F',
     'fontWeight': 'bold',
     'color': '#FFF'
 }
 
+# Specific row style for tables
 table_row_style = {
     'backgroundColor': '#2C3E50',
     'color': '#ddd',
@@ -130,5 +165,3 @@ table_row_style = {
     'maxWidth': '150px',
     'whiteSpace': 'normal'
 }
-
-

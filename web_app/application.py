@@ -13,7 +13,7 @@ from urllib.parse import quote
 import dash_bootstrap_components as dbc
 
 # Styling module
-from styling import tab_style, active_tab_style, vertical_tab_style, text_style, upload_button_style, card_style, link_style, button_style_darkly, table_style, table_header_style, table_row_style
+from styling import tab_style, active_tab_style, vertical_tab_style, text_style, upload_button_style, card_style, link_style, button_style_darkly, table_style
 
 # Import callback registration functions
 from callbacks.workflow_1 import register_workflow_1_callbacks  # Import the new callback registration function
