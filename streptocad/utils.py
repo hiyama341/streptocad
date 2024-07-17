@@ -273,7 +273,8 @@ polymerase_dict = {
  'Q5 Hot Start High-Fidelity DNA Polymerase': 'q5hs-0',
  'Q5 Hot Start High-Fidelity 2X Master Mix': 'q5hs-1',
  'Q5U Hot Start High-Fidelity DNA Polymerase': 'q5u-0',
- 'Q5 Blood Direct 2X Master Mix': 'q5bd-0'
+ 'Q5 Blood Direct 2X Master Mix': 'q5bd-0',
+ 'default': 'default'
 }
 
 
