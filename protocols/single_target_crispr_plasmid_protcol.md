@@ -6,7 +6,7 @@
 
 1. **Design ssDNA Oligonucleotides**:
 
-   - Design ssDNA oligonucleotides for the single-target CRISPR plasmid construction from the protospacer sequences obtained using the app StreptoAIM. Check the file called : "primers.csv"
+   - Design ssDNA oligonucleotides for the single-target CRISPR plasmid construction from the protospacer sequences obtained using the app StreptoCAD. Check the file called : "primers.csv"
 
 2. **Order Oligonucleotides**:
 

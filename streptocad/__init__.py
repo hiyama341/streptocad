@@ -1,4 +1,4 @@
-"""Top-level package for StreptoAIM."""
+"""Top-level package for StreptoCAD."""
 
 __author__ = """Lucas Levassor"""
 __email__ = "luclev@biosustain.dtu.dk"

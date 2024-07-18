@@ -5,7 +5,7 @@
 ### Preparing sgRNA Cassettes for Multiple-Target CRISPR Plasmid Construction
 
 1. **sgRNA Cassette Preparation**:
-   - sgRNA cassette preparation for multiplexing-compatible CRISPR plasmids requires PCR to obtain the cassettes. First, design and order primers for each sgRNA fragment according StreptoAIM file generate called "primers.csv".
+   - sgRNA cassette preparation for multiplexing-compatible CRISPR plasmids requires PCR to obtain the cassettes. First, design and order primers for each sgRNA fragment according StreptoCAD file generate called "primers.csv".
 
 **CAUTION**: Check that the overhang dataframe does not contain duplicates.
 

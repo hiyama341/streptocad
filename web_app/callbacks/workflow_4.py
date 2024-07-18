@@ -149,7 +149,7 @@ def register_workflow_4_callbacks(app):
                 for i in range(len(sgRNA_vectors)):
                     sgRNA_vectors[i].name = f'p{targeting_info[i]}_#{i+1}'
                     sgRNA_vectors[i].id = sgRNA_vectors[i].name
-                    sgRNA_vectors[i].description = f'Assembled plasmid targeting {", ".join(genes_to_KO_list)} for single gene KNOCK-DOWN, assembled using StreptoAIM.'
+                    sgRNA_vectors[i].description = f'Assembled plasmid targeting {", ".join(genes_to_KO_list)} for single gene KNOCK-DOWN, assembled using StreptoCAD.'
 
                 logging.info("Generating primers for IDT")
                 idt_df1 = primers_to_IDT(list_of_ssDNAs)
