@@ -25,6 +25,8 @@ import pandas as pd
 from Bio.SeqRecord import SeqRecord
 from Bio import SeqIO
 from pydna.dseqrecord import Dseqrecord
+from datetime import datetime
+
 
 
 def list_of_objects_in_a_dir(dir_path:str): 
@@ -471,3 +473,34 @@ class ProjectDirectory:
 
     def get_zip_file(self):
         return self.zip_buffer.getvalue()
+
+
+def extract_metadata_to_dataframe(seqrecords, previous_plasmid, integration_list):
+    # Initialize lists to store metadata
+    names = []
+    dates = []
+    plasmid_origins = []
+    integrations = []
+    lengths = []
+    
+    # Get today's date
+    today_date = datetime.today().strftime('%Y-%m-%d')
+    
+    # Extract metadata from each SeqRecord
+    for i, record in enumerate(seqrecords):
+        names.append(record.name)
+        dates.append(today_date)  # Use today's date
+        plasmid_origins.append(previous_plasmid)
+        integrations.append(integration_list[i] if i < len(integration_list) else 'Unknown')
+        lengths.append(len(record.seq))  # Length of the plasmid
+    
+    # Create a DataFrame from the metadata
+    data = {
+        'plasmid_name': names,
+        'date': dates,
+        'original_plasmid': plasmid_origins,
+        'integration': integrations,
+        'size': lengths
+    }
+    df = pd.DataFrame(data)
+    return df
