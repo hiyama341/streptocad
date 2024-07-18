@@ -54,8 +54,8 @@ def assemble_and_process_plasmids(clean_plasmid: Dseq, list_of_amplicons: List[A
             assembly_results.append(assembly_result)
 
             my_plasmid = Dseqrecord(assembly_result.seq, circular=True)
-            my_plasmid.name = f'p{i+1}_{list_of_amplicons[i].name[:14]}'
-            my_plasmid.id = f'p{i+1}_{list_of_amplicons[i].name[:14]}'
+            my_plasmid.name = f'pOEx-KasO_{i+1}'
+            my_plasmid.id = f'pOEx-KasO_{i+1}'
 
             # Copy annotations from digested vector and assembly result
             my_plasmid.features = digested_vector.features[:]
