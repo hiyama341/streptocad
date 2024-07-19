@@ -293,6 +293,10 @@ def find_sgrna_hits_cas9(filepath: str, strain_name: str, locus_tags: List[str],
                                 if len(sgrna) != protospacer_len:  # Check if sgRNA is exactly 23 nt long
                                     print(f"sgRNA generated were outside the designated border in {locus_tag}. To incorporate this extent borders. Skipping to next locus tag.")
                                     continue  # This skips the rest of the current iteration and moves to the next feature
+                                
+                                if len(pam) != pam_len:  # Check if sgRNA is exactly 23 nt long
+                                    print(f"Pam was found outside designated locus_tag: {locus_tag}. To incorporate this extent borders. Skipping to next locus tag.")
+                                    continue  # This skips the rest of the current iteration and moves to the next feature
 
                                 # Calculate GC content of the sgRNA
                                 gc_content = len([base for base in sgrna if base in ["C", "G"]]) / len(sgrna) if len(sgrna) > 0 else 0
