@@ -219,8 +219,76 @@ def make_primer_records(filtered_df: pd.DataFrame) -> List[Dseqrecord]:
     
     return primer_records
 
-def checking_primers(genbank_file, locus_tags, flanking_region=500, 
+def checking_primers(record:Dseqrecord, locus_tags, flanking_region=500, 
                      target_tm=58, 
+                     limit=10, 
+                     primer_concentration=0.4, 
+                     polymerase='onetaq-3', 
+                     **primer_kwargs):
+    
+
+
+    # Set default values for primer_kwargs if not provided
+    if not primer_kwargs:
+        primer_kwargs = {'conc': primer_concentration, 'prodcode': polymerase}
+
+    # Prepare a list to store primer information
+    primer_info = []
+
+    for locus_tag in locus_tags:
+        # Find the feature with the specified locus_tag
+        feature = None
+        for f in record.features:
+            if f.type == "CDS" and "locus_tag" in f.qualifiers and f.qualifiers["locus_tag"][0] == locus_tag:
+                feature = f
+                break
+
+        if feature is None:
+            raise ValueError(f"Locus tag {locus_tag} not found in the GenBank file.")
+
+        # Extract the sequence including flanking regions
+        start = max(0, feature.location.start - flanking_region)
+        end = min(len(record), feature.location.end + flanking_region)
+        target_seq = record.seq[start:end]
+        
+        # Convert to pydna Dseqrecord
+        dseqrecord = Dseqrecord(target_seq)
+        
+        # Design primers with specified parameters and kwargs
+        primers = primer_design(
+            dseqrecord, 
+            target_tm=target_tm, 
+            limit=limit, 
+            **primer_kwargs
+        )
+        
+        # Rename the primers
+        forward_primer_name = f"{locus_tag}_fwd_checking_primer"
+        reverse_primer_name = f"{locus_tag}_rev_checking_primer"
+        primers.forward_primer.name = forward_primer_name
+        primers.reverse_primer.name = reverse_primer_name
+        
+        # Collect primer information in the desired format
+        primer_info.append({
+            "locus tag": locus_tag,
+            "f_primer_name": forward_primer_name,
+            "r_primer_name": reverse_primer_name,
+            "f_primer_sequences(5-3)": str(primers.forward_primer.seq),
+            "r_primer_sequences(5-3)": str(primers.reverse_primer.seq),
+            "f_tm": primer_tm_neb(str(primers.forward_primer.seq), **primer_kwargs),
+            "r_tm": primer_tm_neb(str(primers.reverse_primer.seq), **primer_kwargs),
+            "ta": primer_ta_neb(str(primers.forward_primer.seq), str(primers.reverse_primer.seq), **primer_kwargs)
+        })
+
+    # Create a DataFrame from the collected primer information
+    primer_df = pd.DataFrame(primer_info)
+    
+    return primer_df
+
+
+
+def checking_primers1(record, locus_tags, flanking_region=500, 
+                     target_tm=65, 
                      limit=10, 
                      primer_concentration=0.4, 
                      polymerase='onetaq-3', 
@@ -229,9 +297,6 @@ def checking_primers(genbank_file, locus_tags, flanking_region=500,
     if not primer_kwargs:
         primer_kwargs = {'conc': primer_concentration, 'prodcode': polymerase}
 
-    # Parse the GenBank file
-    record = SeqIO.read(genbank_file, "genbank")
-    
     # Prepare a list to store primer information
     primer_info = []
 
