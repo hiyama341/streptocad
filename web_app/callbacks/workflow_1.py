@@ -126,11 +126,6 @@ def register_workflow_1_callbacks(app):
                 analyzed_primers_df = analyze_primers_and_hairpins(primer_df)
                 logging.info(f"Analyzed primers DataFrame: {analyzed_primers_df}")
 
-                # Simulate gel electrophoresis
-                logging.info("Simulating gel electrophoresis")
-                gel_simulation = simulate_gel_electrophoresis(list_of_amplicons)
-                logging.info("Gel simulation completed")
-
                 # Assemble plasmids
                 logging.info("Assembling plasmids")
                 assembled_plasmids, assembly_results = assemble_and_process_plasmids(plasmid, list_of_amplicons, 
@@ -138,7 +133,6 @@ def register_workflow_1_callbacks(app):
                                                                                     save_plasmids=False, 
                                                                                     save_path="../../data/plasmids/pOEX_overexpression_plasmids")
                 logging.info(f"Assembly results: {assembly_results}")
-
                 # Prepare outputs for the DataTable
                 primers_columns = [{"name": col, "id": col} for col in idt_df.columns]
                 primers_data = idt_df.to_dict('records')
@@ -224,4 +218,4 @@ def register_workflow_1_callbacks(app):
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
             error_message = f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            return [], [], [], [], [], [], "", error_message, Truee
+            return [], [], [], [], [], [], "", error_message, True

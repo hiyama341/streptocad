@@ -307,7 +307,7 @@ def register_workflow_3_callbacks(app):
                 ]
 
                 input_values = {
-                    "genes_to_knockout": ['SCO5087', 'SCO5089', 'SCO5090'],
+                    "genes_to_knockout": genes_to_KO_list,
                     "filtering_metrics": {
                         "gc_upper": gc_upper,
                         "gc_lower": gc_lower,
