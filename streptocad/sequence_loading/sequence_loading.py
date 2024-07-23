@@ -44,6 +44,9 @@ def load_and_process_genome_sequences(path_to_file: str) -> List[Dseqrecord]:
 
     return clean_seq
 
+import os
+from pydna.dseqrecord import Dseqrecord
+from typing import List
 
 def load_and_process_plasmid(path_to_file: str) -> List[Dseqrecord]:
 
@@ -77,13 +80,16 @@ def load_and_process_plasmid(path_to_file: str) -> List[Dseqrecord]:
     else:
         raise ValueError("Unsupported file format. Please provide a FASTA or GenBank file.")
 
-    #Assuming the file contains only one plasmid sequence, mark it as circular
+    # Assuming the file contains only one plasmid sequence, mark it as circular
     if sequences:
         clean_plasmid = Dseqrecord(sequences[0], circular=True)
+        clean_plasmid.name = sequences[0].name
+        clean_plasmid.id = sequences[0].id
     else:
         raise ValueError("No sequences found in the file.")
 
     return clean_plasmid
+
 
 
 def load_and_process_gene_sequences(path_to_genome: str) -> dict:
