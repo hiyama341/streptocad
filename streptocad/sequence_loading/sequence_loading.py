@@ -175,7 +175,7 @@ def convert_to_dict(input_list):
         start, end = validate_range_format(item)
         
         # Create the dictionary for this region
-        region_key = f'region_{index + 1}_({start}-{end})'
+        region_key = f'region{index + 1}_({start}-{end})'
         region_dict = {region_key: [start, end]}
         
         # Add the dictionary to the list
