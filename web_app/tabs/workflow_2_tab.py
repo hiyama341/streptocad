@@ -254,7 +254,7 @@ crispr_cb_tab = html.Div(children=[
                         dcc.Dropdown(
                             id='chosen-polymerase_2',
                             options=dropdown_options,
-                            value=polymerase_dict['Phusion High-Fidelity DNA Polymerase (GC Buffer)'],  # Set default value
+                            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],  # Set default value
                             style={'color': '#000'}  # Ensure text is black
                         ),
                     ], width=6),

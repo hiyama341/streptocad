@@ -124,7 +124,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
         dcc.Dropdown(
             id='chosen-polymerase_1',
             options=dropdown_options,
-            value=polymerase_dict['Phusion High-Fidelity DNA Polymerase (GC Buffer)'],  # Set default value
+            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],  # Set default value
             style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
         ),
         dbc.Label("Target Melting Temperature (°C)", style={'color': '#ddd'}),  

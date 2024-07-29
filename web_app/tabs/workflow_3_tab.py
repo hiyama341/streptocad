@@ -228,7 +228,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                         dcc.Dropdown(
                             id='chosen-polymerase_3',
                             options=dropdown_options,
-                            value=polymerase_dict['Phusion High-Fidelity DNA Polymerase (GC Buffer)'],  # Set default value
+                            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],  # Set default value
                             style={'color': '#000'}  # Ensure text is black
                         ),
                     ], width=6),
