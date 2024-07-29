@@ -203,9 +203,10 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
 ], className="mb-4"),
 
 
+    # Advanced settings section with one button to toggle visibility
     dbc.Row([
         dbc.Col([
-            html.H4("7) Show advanced settings for checking primers", style=text_style),
+            html.H4("7) Show advanced settings for checking primers and Golden Gate Cloning", style=text_style),
             dbc.Checklist(
                 options=[
                     {"label": "", "value": 1},
@@ -224,48 +225,93 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             html.Div(id='advanced-settings-container', children=[
                 dbc.Row([
                     dbc.Col([
-                        dbc.Label("Choose Polymerase", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label("Choose Polymerase", style={'color': '#ddd'}),
                         dcc.Dropdown(
                             id='chosen-polymerase_3',
                             options=dropdown_options,
-                            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],  # Set default value
-                            style={'color': '#000'}  # Ensure text is black
+                            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],
+                            style={'color': '#000'}
                         ),
                     ], width=6),
                     dbc.Col([
-                        dbc.Label("Target Melting Temperature (°C)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label("Target Melting Temperature (°C)", style={'color': '#ddd'}),
                         dbc.Input(
                             id='melting-temperature_3',
                             type='number',
                             value=65,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
                     ], width=6),
                     dbc.Col([
-                        dbc.Label("Primer Concentration (μM)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label("Primer Concentration (μM)", style={'color': '#ddd'}),
                         dbc.Input(
                             id='primer-concentration_3',
                             type='number',
                             value=0.4,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
                     ], width=6),
                     dbc.Col([
-                        dbc.Label("Primer Number Increment", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label("Primer Number Increment", style={'color': '#ddd'}),
                         dbc.Input(
                             id='primer-number-increment_3',
                             type='number',
                             value=1,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
                     ], width=6),
                     dbc.Col([
-                        dbc.Label("Flanking Region Number", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label("Flanking Region Number", style={'color': '#ddd'}),
                         dbc.Input(
                             id='flanking-region-number_3',
                             type='number',
                             value=500,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Restriction Overhang Forward", style={'color': '#ddd'}),
+                        dbc.Input(
+                            id='restriction-overhang-f',
+                            type='text',
+                            value="GATCGggtctcc",
+                            style={'color': '#000'}
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Restriction Overhang Reverse", style={'color': '#ddd'}),
+                        dbc.Input(
+                            id='restriction-overhang-r',
+                            type='text',
+                            value="GATCAGGTCTCg",
+                            style={'color': '#000'}
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Backbone Overhang Forward", style={'color': '#ddd'}),
+                        dbc.Input(
+                            id='backbone-overhang-f',
+                            type='text',
+                            value="cATG",
+                            style={'color': '#000'}
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Backbone Overhang Reverse", style={'color': '#ddd'}),
+                        dbc.Input(
+                            id='backbone-overhang-r',
+                            type='text',
+                            value="cTAG",
+                            style={'color': '#000'}
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Cys4 Sequence", style={'color': '#ddd'}),
+                        dbc.Input(
+                            id='cys4-sequence',
+                            type='text',
+                            value="gTTCACTGCCGTATAGGCAGCTAAGAAA",
+                            style={'color': '#000'}
                         ),
                     ], width=6),
                 ])
@@ -273,11 +319,6 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         ], width=6),
     ], className="mb-4"),
 
-    dbc.Row([
-        dbc.Col([
-            dbc.Button('Submit', id='submit-button_3', color="primary", className="mt-3"),
-        ], width=12),
-    ], className="mb-5"),
 
     ### Output
     dbc.Row([
