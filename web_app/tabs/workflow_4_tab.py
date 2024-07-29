@@ -9,7 +9,7 @@ from streptocad.utils import polymerase_dict
 reference_content = html.Div([
     html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below (the figure and protocol is from there)."),
     html.A("CRISPR–Cas9, CRISPRi and CRISPR-BEST-mediated genetic manipulation in streptomycetes", href="https://www.nature.com/articles/s41596-020-0339-z", target="_blank"),
-], style={'fontSize': '1.5rem'})
+], style=text_style)
 
 # Dropdown options for polymerases
 dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_dict.items()]
@@ -18,20 +18,20 @@ dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_
 crispri_tab = html.Div(children=[
     dbc.Row([
         dbc.Col([
-            html.P("What is it? ", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([
-                html.Li("CRISPR interference (CRISPRi) is a method that uses a catalytically dead Cas9 (dCas9) to block transcription of target genes.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            ], style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.P("Why use it?", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([
-                html.Li("It allows for the precise and reversible silencing of genes without altering the DNA sequence.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            ], style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.P("Getting Started:", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([
-                html.Li("Find your plasmid of choice. We recommend that you use a dCas9 vector suitable for CRISPRi.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-                html.Li("Figure out what genes you want to target. For example the actinorhodin cluster (SCO5087)", style={'color': '#ddd', 'fontSize': '1.5rem'})
-            ], style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.P("Upload your genome file and CRISPRi plasmid files, then click 'Submit' to generate your assembly.", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            dcc.Markdown("""
+            ## **What is it?**
+            - CRISPR interference (CRISPRi) is a method that uses a catalytically dead Cas9 (dCas9) to block transcription of target genes.
+
+            ## **Why use it?**
+            - It allows for the precise and reversible silencing of genes without altering the DNA sequence.
+
+            ## **Getting Started**
+            - Find your plasmid of choice. We recommend that you use a dCas9 vector suitable for CRISPRi.
+            - Figure out what genes you want to target. For example, the actinorhodin cluster (SCO5087).
+
+            ## **Instructions**
+            Upload your genome file and CRISPRi plasmid files, then click 'Submit' to generate your assembly.
+            """, style=text_style),
             reference_content
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
     ], className="mb-4"),

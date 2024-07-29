@@ -6,28 +6,33 @@ from styling import text_style, upload_button_style, card_style, link_style, tab
 from streptocad.utils import polymerase_dict
 # Reference content used in multiple tabs
 reference_content = html.Div([
-    html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below (the figure and protocol is from there).", style={'fontSize': '1.5rem'}),
-    html.A("CRISPR–Cas9, CRISPRi and CRISPR-BEST-mediated genetic manipulation in streptomycetes", href="https://www.nature.com/articles/s41596-020-0339-z", target="_blank", style={'fontSize': '1.5rem'}),
-], style={'fontSize': '1.5rem'})
+    html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below (the figure and protocol is from there).", style=text_style),
+    html.A("CRISPR–Cas9, CRISPRi and CRISPR-BEST-mediated genetic manipulation in streptomycetes", href="https://www.nature.com/articles/s41596-020-0339-z", target="_blank", style=text_style),
+], style=text_style)
 
 # Dropdown options for polymerases
 dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_dict.items()]
+
 # Tab content for CRISPR–Cas9 plasmid construction for in-frame deletion
 gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
     dbc.Row([
         dbc.Col([
-            # Introductory text
-            html.P("What is it? ", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([html.Li("A method that retrieves repair regions up/downstream and generates primers and PCRs for the assembly.", style={'color': '#ddd', 'fontSize': '1.5rem'})]),
-            html.P("Why use it? ", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([html.Li("When you aim to delete a specific gene.", style={'color': '#ddd', 'fontSize': '1.5rem'})]),
-            html.P("Getting Started:", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([
-                html.Li("Find your plasmids (or download an example below).", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-                html.Li("Fetch your organisms genome.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-                html.Li("Figure out what genes you want to target. For example the actinorhodin cluster (SCO5087)", style={'color': '#ddd', 'fontSize': '1.5rem'})
-            ]),
-            html.P("Upload your files, then click 'Submit' to generate your assembly.", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            # Introductory text using Markdown for styling
+            dcc.Markdown("""
+            ## **What is it?**
+            - A method that retrieves repair regions up/downstream and generates primers and PCRs for the assembly.
+
+            ## **Why use it?**
+            - When you aim to delete a specific gene.
+
+            ## **Getting Started**
+            - Find your plasmids (or download an example below).
+            - Fetch your organism's genome.
+            - Figure out what genes you want to target. For example, the actinorhodin cluster (SCO5087).
+
+            ## **Instructions**
+            Upload your files, then click 'Submit' to generate your assembly.
+            """, style=text_style),
             reference_content
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
     ], className="mb-4"),
@@ -227,6 +232,8 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
             ),
         ], width=6),
     ], className="mb-3"),
+    
+
 
     dbc.Row([
         dbc.Col([
@@ -237,7 +244,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                         dcc.Dropdown(
                             id='chosen-polymerase',
                             options=dropdown_options,
-                            value=polymerase_dict['Phusion High-Fidelity DNA Polymerase (GC Buffer)'],  # Set default value
+                            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],  # Set default value
                             style={'color': '#000'}  # Ensure text is black
                         ),
                     ], width=6),
@@ -280,6 +287,24 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 ])
             ], style={"display": "none"})  # Hidden by default
         ], width=6),
+    ], className="mb-3"),
+
+    dbc.Row([
+        dbc.Col([
+            html.H4("7) Generate in-frame deletions", style=text_style),
+            html.P("Note: adding repair templates to your plasmids", style={'color': '#ddd', 'fontSize': '1rem'}),
+            dbc.Checklist(
+                options=[
+                    {"label": "", "value": 1},
+                ],
+                value=[],
+                id="show-inframe-deletions-settings-checkbox",
+                inline=True,
+                switch=True,  # This creates a regular checkbox
+                className="big-switch"
+
+            ),
+        ], width=10),
     ], className="mb-3"),
 
 

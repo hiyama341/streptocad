@@ -13,27 +13,27 @@ dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_
 reference_content = html.Div([
     html.P("Note: For more information on overexpression workflows and details, please visit our paper.", style=text_style),
     html.A("StreptoCAD: An open-source software toolbox supporting genome engineering workflows in Streptomyces", href="https://example.com/overexpression-protocol", target="_blank", style=link_style),
-], style={'fontSize': '1.5rem'})  
+], style=text_style)  
 
 # Workflow 1 Tab content
 workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction", children=[
     dbc.Row([
         dbc.Col([
-            html.P("What is it? ", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([
-                html.Li("A method to overexpress specific genes within a host organism using plasmid vectors.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            ], style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.P("Why use it?", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([
-                html.Li("Useful for studying the function of genes by increasing their expression levels.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-                html.Li("Enables the production of proteins at higher levels for research and industrial applications.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            ], style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.P("Getting Started:", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([
-                html.Li("Select your plasmid vector that is suitable for the host organism.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-                html.Li("Prepare the gene sequences you want to overexpress.", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            ], style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.P("Upload your gene sequences and plasmid files, then configure the settings to generate your constructs.", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            dcc.Markdown("""
+            ## **What is it?**
+            - A method to overexpress specific genes within a host organism using plasmid vectors.
+
+            ## **Why use it?**
+            - Useful for studying the function of genes by increasing their expression levels.
+            - Enables the production of proteins at higher levels for research and industrial applications.
+
+            ## **Getting Started**
+            - Select your plasmid vector that is suitable for the host organism.
+            - Prepare the gene sequences you want to overexpress.
+
+            ## **Instructions**
+            Upload your gene sequences and plasmid files, then configure the settings to generate your constructs.
+            """, style=text_style),
             reference_content
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
     ], className="mb-4"),

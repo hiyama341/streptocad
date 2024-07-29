@@ -6,9 +6,9 @@ from styling import text_style, upload_button_style, card_style, link_style, tab
 from streptocad.utils import polymerase_dict
 # Reference content used in multiple tabs
 reference_content = html.Div([
-    html.P("Note: For more information on CRISPR techniques and details, please visit the article  below (the figure and protocol is from there).", style={'fontSize': '1.5rem'}),
-    html.A("CASCADE-Cas3 Enables Highly Efficient Genome Engineering in Streptomyces Species", href="https://www.biorxiv.org/content/10.1101/2023.05.09.539971v1.full", target="_blank", style={'fontSize': '1.5rem'}),
-], style={'fontSize': '1.5rem'})
+    html.P("Note: For more information on CRISPR techniques and details, please visit the article  below (the figure and protocol is from there).", style=text_style),
+    html.A("CASCADE-Cas3 Enables Highly Efficient Genome Engineering in Streptomyces Species", href="https://www.biorxiv.org/content/10.1101/2023.05.09.539971v1.full", target="_blank", style=text_style),
+], style=text_style)
 
 # Dropdown options for polymerases
 dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_dict.items()]
@@ -17,17 +17,21 @@ dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_
 cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
     dbc.Row([
         dbc.Col([
-            # Introductory text
-            html.P("What is it? ", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([html.Li("A method that retrieves repair regions up/downstream and generates primers and PCRs for the assembly.", style={'color': '#ddd', 'fontSize': '1.5rem'})]),
-            html.P("Why use it? ", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([html.Li("When you aim to delete a specific gene.", style={'color': '#ddd', 'fontSize': '1.5rem'})]),
-            html.P("Getting Started:", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-            html.Ul([
-                html.Li("Find your Cas3 plasmid (Or download an example genome below).", style={'color': '#ddd', 'fontSize': '1.5rem'}),
-                html.Li("Fetch your organisms genome (Or download an example genome below).", style={'color': '#ddd', 'fontSize': '1.5rem'})
-            ]),
-            html.P("Upload your files, then click 'Submit' to generate your assembly.", className="lead", style={'color': '#ddd', 'fontSize': '1.5rem'}),
+            # Introductory text using Markdown for styling
+            dcc.Markdown("""
+            ## **What is it?**
+            - A method that retrieves repair regions up/downstream and generates primers and PCRs for the assembly.
+
+            ## **Why use it?**
+            - When you aim to delete a specific gene.
+
+            ## **Getting Started**
+            - Find your Cas3 plasmid (Or download an example genome below).
+            - Fetch your organism's genome (Or download an example genome below).
+
+            ## **Instructions**
+            Upload your files, then click 'Submit' to generate your assembly.
+            """, style=text_style),
             reference_content
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
     ], className="mb-4"),
@@ -279,6 +283,24 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
                 ])
             ], style={"display": "none"})  # Hidden by default
         ], width=6),
+    ], className="mb-3"),
+
+    dbc.Row([
+        dbc.Col([
+            html.H4("7) Generate in-frame deletions", style=text_style),
+            html.P("Note: adding repair templates to your plasmids", style={'color': '#ddd', 'fontSize': '1rem'}),
+            dbc.Checklist(
+                options=[
+                    {"label": "", "value": 1},
+                ],
+                value=[],
+                id="show-inframe-deletions-settings-checkbox",
+                inline=True,
+                switch=True,  # This creates a regular checkbox
+                className="big-switch"
+
+            ),
+        ], width=10),
     ], className="mb-3"),
 
 
