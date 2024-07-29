@@ -35,6 +35,8 @@ from tabs.workflow_6_tab import cas3_tab
 from header import header_content
 from introduction_page import introduction_page
 from welcome_message import welcome_message_content
+from footer import footer_content
+
 
 external_stylesheets = [
     dbc.themes.DARKLY,
@@ -45,13 +47,6 @@ external_stylesheets = [
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_callback_exceptions=True)
 
-# Footer content
-footer = html.Footer([
-    html.Div([
-        html.A("Contact Us", href="mailto:your-email@example.com", style={"marginRight": "20px", "fontSize": "30px"}),  # Email link
-        html.A([html.I(className="fab fa-github")], href="https://github.com/YourGitHubProfile", style={"fontSize": "30px"}),  # GitHub link
-    ], style={"textAlign": "center", "padding": "40px 0", "backgroundColor": "#1A242F", "color": "#ddd", "fontSize": "30px"})  # Center-align text, add padding, set background and text colors, and increase font size
-])
 
 # Main VERTICAL app layout with the loading spinner for submit button
 main_layout = dbc.Container([
@@ -73,7 +68,7 @@ main_layout = dbc.Container([
             html.Div(id="tab-content", style={'padding': '20px'})
         ], width=9),
     ]),
-    footer,
+    footer_content,
     dcc.ConfirmDialog(
         id='error-dialog_1',
         message=""
