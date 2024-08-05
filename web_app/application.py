@@ -37,7 +37,6 @@ from introduction_page import introduction_page
 from welcome_message import welcome_message_content
 from footer import footer_content
 
-
 external_stylesheets = [
     dbc.themes.DARKLY,
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
@@ -46,7 +45,6 @@ external_stylesheets = [
 ]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_callback_exceptions=True)
-
 
 # Main VERTICAL app layout with the loading spinner for submit button
 main_layout = dbc.Container([
@@ -62,6 +60,7 @@ main_layout = dbc.Container([
                 dcc.Tab(label="Workflow 4: CRISPRi plasmid generation", value="workflow_4", style=vertical_tab_style, selected_style=active_tab_style),
                 dcc.Tab(label="Workflow 5: CRISPR-Cas9 plasmid generation", value="workflow_5", style=vertical_tab_style, selected_style=active_tab_style),
                 dcc.Tab(label="Workflow 6: CRISPR-Cas3 plasmid generation", value="workflow_6", style=vertical_tab_style, selected_style=active_tab_style),
+                dcc.Tab(label="About StreptoCAD", value="about", style=vertical_tab_style, selected_style=active_tab_style)
             ])
         ], width=3),
         dbc.Col([
@@ -98,7 +97,9 @@ def display_main_page(n_clicks, children):
     [Input("main-tabs", "value")]
 )
 def render_tab_content(tab):
-    if tab == "workflow_1":
+    if tab == "about":
+        return welcome_message_content
+    elif tab == "workflow_1":
         return workflow_1_tab
     elif tab == "workflow_2":
         return crispr_cb_tab
