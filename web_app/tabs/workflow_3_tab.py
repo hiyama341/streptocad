@@ -320,85 +320,67 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
     ], className="mb-4"),
 
 
-    ### Output
+   ### Output
     dbc.Row([
         dbc.Col([
-            dbc.Card([
-                dbc.Card([
+            dcc.Loading(
+                id="loading-overlay-3",
+                type="circle",
+                children=[
+                    dbc.Card([
+                        dbc.CardBody([
+                            html.H5("Filtered sgRNAs", className="card-title", style=text_style),
+                            DataTable(id='mutated-sgrna-table_3', **table_style),
+                        ])
+                    ], style=card_style),
 
-                dbc.CardBody([
-                    html.H5("Filtered sgRNAs", className="card-title", style=text_style),
-                    DataTable(id='mutated-sgrna-table_3', **table_style)
-                ])
-            ], style=card_style),
+                    dbc.Card([
+                        dbc.CardBody([
+                            html.H5("Primers", className="card-title", style=text_style),
+                            DataTable(id='primer-table_3', **table_style),
+                            # Removed the download button
+                        ])
+                    ], style=card_style),
+                    
+                    dbc.Card([
+                        dbc.CardBody([
+                            html.H5("Overhang", className="card-title", style=text_style),
+                            DataTable(id='overhang-table_3', **table_style),
+                        ])
+                    ], style=card_style),
 
+                    dbc.Card([
+                        dbc.CardBody([
+                            html.H5("PCR", className="card-title", style=text_style),
+                            DataTable(id='pcr-table_3', **table_style),
+                            # Removed the download button
+                        ])
+                    ], style=card_style),
 
-                dbc.CardBody([
-                    html.H5("Primers", className="card-title", style=text_style),
-                    DataTable(id='primer-table_3', **table_style),
-                    html.A(
-                        'Download Primers CSV',
-                        id='download-primers-link_3',
-                        download="primers.csv",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    )
-                ])
-            ], style=card_style),
-            
-            
-            dbc.Card([
-                dbc.CardBody([
-                    html.H5("Overhang", className="card-title", style=text_style),
-                    DataTable(id='overhang-table_3', **table_style),
-                ])
-            ], style=card_style),
+                    dbc.Card([
+                        dbc.CardBody([
+                            html.H5("Overview of plasmids generated", className="card-title", style=text_style),
+                            # Removed the download button
+                        ])
+                    ], style=card_style),
 
-            dbc.Card([
-                dbc.CardBody([
-                    html.H5("PCR", className="card-title", style=text_style),
-                    DataTable(id='pcr-table_3', **table_style),
-                    html.A(
-                        'Download PCR CSV',
-                        id='download-pcr-link_3',
-                        download="pcr.csv",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    )
-                ])
-            ], style=card_style),
-
-            dbc.Card([
-                dbc.CardBody([
-                    html.H5("GenBank File", className="card-title", style=text_style),
-                    html.A(
-                        'Download GenBank File',
-                        id='genbank-file_3',
-                        download="plasmid.gb",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    )
-                ])
-            ], style=card_style),
-
-            dbc.Card([
-                dbc.CardBody([
-                    html.H5("Download folder with all data & protocols", className="card-title", style=text_style),
-                    DataTable(id='all_data_3', **table_style),
-                    html.A(
-                        'Data & protocols',
-                        id='download-data-and-protocols-link_3',
-                        download="all_data",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    )
-                ])
-            ], style=card_style),
-
+                    dbc.Card([
+                        dbc.CardBody([
+                            html.H5("Download folder with all data & protocols", className="card-title", style=text_style),
+                            DataTable(id='all_data_3', **table_style),
+                            html.A(
+                                'Download All Data & protocols',
+                                id='download-data-and-protocols-link_3',
+                                download="all_data",
+                                href="",
+                                target="_blank",
+                                className="btn btn-primary"
+                            )
+                        ])
+                    ], style=card_style),
+                ]
+            )
         ], width=10),
     ]),
+
 ])
