@@ -45,9 +45,6 @@ def load_and_process_genome_sequences(path_to_file: str) -> List[Dseqrecord]:
 
     return clean_seq
 
-import os
-from pydna.dseqrecord import Dseqrecord
-from typing import List
 
 def load_and_process_plasmid(path_to_file: str) -> List[Dseqrecord]:
 
@@ -81,16 +78,13 @@ def load_and_process_plasmid(path_to_file: str) -> List[Dseqrecord]:
     else:
         raise ValueError("Unsupported file format. Please provide a FASTA or GenBank file.")
 
-    # Assuming the file contains only one plasmid sequence, mark it as circular
+    #Assuming the file contains only one plasmid sequence, mark it as circular
     if sequences:
         clean_plasmid = Dseqrecord(sequences[0], circular=True)
-        clean_plasmid.name = sequences[0].name
-        clean_plasmid.id = sequences[0].id
     else:
         raise ValueError("No sequences found in the file.")
 
     return clean_plasmid
-
 
 
 def load_and_process_gene_sequences(path_to_genome: str) -> dict:
@@ -120,36 +114,71 @@ def load_and_process_gene_sequences(path_to_genome: str) -> dict:
     return gene_sequences
 
 
-
-def check_and_convert_input(input_list):
-    def convert_input_to_dict(input_list):
-        target_dict = []
-        target_keys = []
-        for index, item in enumerate(input_list):
-            positions = item.split('-')
-            
-            # Ensure the length of positions is even and contains exactly two numbers
-            assert len(positions) == 2, f"Input format error: {item} should contain exactly two numbers separated by a dash."
-            
-            # Ensure all positions are numbers
-            for pos in positions:
-                assert pos.isdigit(), f"Input format error: {pos} is not a valid number."
-            
-            # Convert positions to integers
-            start, end = int(positions[0]), int(positions[1])
-            
-            # Ensure the second number is not smaller than the first number
-            assert start <= end, f"Input format error: the second number {end} is smaller than the first number {start} in {item}."
-            
-            # Create the dictionary for this region
-            region_key = f'target_region_{index + 1}'
-            region_dict = {region_key: [start, end]}
-            
-            # Add the dictionary to the list
-            target_keys.append(region_key)
-            target_dict.append(region_dict)
+def process_specified_gene_sequences_from_record(seq_record: SeqRecord, specified_locus_tags: list) -> dict:
+    """
+    Process gene sequences from a SeqRecord object for specified locus tags.
+    
+    Parameters
+    ----------
+    seq_record : SeqRecord
+        A SeqRecord object containing genome data.
+    specified_locus_tags : list
+        A list of locus tags to collect sequences for.
         
-        return target_dict, target_keys, True
+    Returns
+    -------
+    dict
+        Dictionary mapping specified locus tags to their gene sequences if found.
+    """
+    gene_sequences = {}
+    
+    for feature in seq_record.features:
+        if feature.type == "CDS":
+            locus_tag = feature.qualifiers.get("locus_tag", [""])[0]
+            if locus_tag in specified_locus_tags:
+                gene_seq = feature.extract(seq_record.seq)
+                gene_sequences[locus_tag] = gene_seq
+                
+    return gene_sequences
+
+
+
+
+def validate_range_format(item):
+    """Validates the range format 'start-end' and ensures 'start' and 'end' are valid."""
+    positions = item.split('-')
+    
+    # Ensure the length of positions is even and contains exactly two numbers
+    assert len(positions) == 2, f"Input format error: {item} should contain exactly two numbers separated by a dash."
+    
+    # Ensure all positions are numbers
+    for pos in positions:
+        assert pos.isdigit(), f"Input format error: {pos} is not a valid number."
+    
+    # Convert positions to integers
+    start, end = int(positions[0]), int(positions[1])
+    
+    # Ensure the second number is not smaller than the first number
+    assert start <= end, f"Input format error: the second number {end} is smaller than the first number {start} in {item}."
+    
+    return start, end
+
+def convert_to_dict(input_list):
+    """Converts a list of correctly formatted ranges into a list of dictionaries."""
+    target_dict = []
+    target_keys = []
+    for index, item in enumerate(input_list):
+        start, end = validate_range_format(item)
+        
+        # Create the dictionary for this region
+        region_key = f'chosen_region_{index + 1}'
+        region_dict = {region_key: [start, end]}
+        
+        # Add the dictionary to the list
+        target_keys.append(region_key)
+        target_dict.append(region_dict)
+    
+    return target_dict, target_keys, True
 
 def check_and_convert_input(input_list):
     """Checks the input type and converts it appropriately."""
@@ -183,3 +212,4 @@ def annotate_dseqrecord(dseqrecord, target_dict):
             dseqrecord.features.append(feature)
     
     return dseqrecord
+

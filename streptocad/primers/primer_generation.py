@@ -8,7 +8,7 @@ from Bio.SeqFeature import SeqFeature, FeatureLocation
 from pydna.dseqrecord import Dseqrecord
 from Bio import SeqIO
 
-from ..primers.primer_analysis import analyze_primers_and_hairpins
+
 from ..cloning.pcr_simulation import make_amplicons
 
 
@@ -219,24 +219,24 @@ def make_primer_records(filtered_df: pd.DataFrame) -> List[Dseqrecord]:
     
     return primer_records
 
-
-
-import warnings
-import primer3
-import pandas as pd
-from pydna.dseqrecord import Dseqrecord
-from pydna.design import primer_design
-
-def checking_primers(record, locus_tags, flanking_region=500, 
-                     target_tm=65, limit=10, 
-                     primer_concentration=0.4, polymerase='onetaq-3', 
+def checking_primers(genbank_file, locus_tags, flanking_region=500, 
+                     target_tm=58, 
+                     limit=10, 
+                     primer_concentration=0.4, 
+                     polymerase='onetaq-3', 
                      **primer_kwargs):
+    # Set default values for primer_kwargs if not provided
     if not primer_kwargs:
         primer_kwargs = {'conc': primer_concentration, 'prodcode': polymerase}
 
+    # Parse the GenBank file
+    record = SeqIO.read(genbank_file, "genbank")
+    
+    # Prepare a list to store primer information
     primer_info = []
 
     for locus_tag in locus_tags:
+        # Find the feature with the specified locus_tag
         feature = None
         for f in record.features:
             if f.type == "CDS" and "locus_tag" in f.qualifiers and f.qualifiers["locus_tag"][0] == locus_tag:
@@ -246,33 +246,31 @@ def checking_primers(record, locus_tags, flanking_region=500,
         if feature is None:
             raise ValueError(f"Locus tag {locus_tag} not found in the GenBank file.")
 
+        # Extract the sequence including flanking regions
         start = max(0, feature.location.start - flanking_region)
         end = min(len(record), feature.location.end + flanking_region)
         target_seq = record.seq[start:end]
         
+        # Convert to pydna Dseqrecord
         dseqrecord = Dseqrecord(target_seq)
         
-        with warnings.catch_warnings(record=True) as w:
-            warnings.simplefilter("always")
-            primers = primer_design(
-                dseqrecord, 
-                target_tm=target_tm, 
-                limit=limit, 
-                **primer_kwargs
-            )
-
-            # Check for the specific warning about non-unique PCR products
-            for warning in w:
-                if "unique PCR product" in str(warning.message):
-                    raise ValueError("Primers do not yield a unique PCR product, iterating again.")
-
+        # Design primers with specified parameters and kwargs
+        primers = primer_design(
+            dseqrecord, 
+            target_tm=target_tm, 
+            limit=limit, 
+            **primer_kwargs
+        )
+        
+        # Rename the primers
         forward_primer_name = f"{locus_tag}_fwd_checking_primer"
         reverse_primer_name = f"{locus_tag}_rev_checking_primer"
         primers.forward_primer.name = forward_primer_name
         primers.reverse_primer.name = reverse_primer_name
         
+        # Collect primer information in the desired format
         primer_info.append({
-            "locus tag": locus_tag,
+            "Locus Tag": locus_tag,
             "f_primer_name": forward_primer_name,
             "r_primer_name": reverse_primer_name,
             "f_primer_sequences(5-3)": str(primers.forward_primer.seq),
@@ -282,81 +280,37 @@ def checking_primers(record, locus_tags, flanking_region=500,
             "ta": primer_ta_neb(str(primers.forward_primer.seq), str(primers.reverse_primer.seq), **primer_kwargs)
         })
 
+    # Create a DataFrame from the collected primer information
     primer_df = pd.DataFrame(primer_info)
     
     return primer_df
 
-def validate_primers(analysis_df):
-    for _, row in analysis_df.iterrows():
-        if (row['homodimer_forward_deltaG (kcal/mol)'] < -9 or
-            row['homodimer_reverse_deltaG (kcal/mol)'] < -9 or
-            row['heterodimer_deltaG (kcal/mol)'] < -9 or
-            row['hairpin_forward_deltaG (kcal/mol)'] < -9 or
-            row['hairpin_reverse_deltaG (kcal/mol)'] < -9 or
-            row['hairpin_forward_structure_found'] or
-            row['hairpin_reverse_structure_found']):
-            return False
-    return True
 
-def find_best_check_primers_from_genome(record, locus_tags,
-                                         flanking_region=500, 
-                                         target_tm=65, 
-                                         limit=10, 
-                                         primer_concentration=0.4, 
-                                         polymerase='onetaq-3', 
-                                         max_iterations=50, 
-                                         **primer_kwargs):
-    if not primer_kwargs:
-        primer_kwargs = {'conc': primer_concentration, 'prodcode': polymerase}
+def create_dseqrecords_from_df(primer_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Iterates through a DataFrame and converts primer sequences to Dseqrecords with appropriate names.
 
-    initial_flanking_region = flanking_region
-    successful_primers = []
-    remaining_locus_tags = set(locus_tags.copy())
+    Parameters
+    ----------
+    primer_df : pd.DataFrame
+        DataFrame containing primer information with columns:
+        'Locus Tag', 'Forward Primer Sequence', 'Forward Primer Tm',
+        'Reverse Primer Sequence', 'Reverse Primer Tm', 'Reverse Primer Ta'.
 
-    for iteration in range(max_iterations):
-        if not remaining_locus_tags:
-            break
-
-        try:
-            primer_df = checking_primers(
-                record=record,
-                locus_tags=list(remaining_locus_tags),
-                flanking_region=flanking_region,
-                target_tm=target_tm,
-                limit=limit,
-                primer_concentration=primer_concentration,
-                polymerase=polymerase,
-                **primer_kwargs
-            )
-
-            analysis_df = analyze_primers_and_hairpins(primer_df)
-
-            valid_primers = []
-            invalid_primers = set()
-
-            for idx, row in primer_df.iterrows():
-                locus_tag = row['locus tag']
-                if validate_primers(analysis_df.iloc[[idx]]):
-                    row['flanking_region'] = flanking_region
-                    valid_primers.append(pd.concat([row.to_frame().T.reset_index(drop=True), analysis_df.iloc[[idx]].reset_index(drop=True)], axis=1))
-                    remaining_locus_tags.discard(locus_tag)  # Remove successful locus tag
-                else:
-                    invalid_primers.add(locus_tag)
-
-            successful_primers.extend(valid_primers)
-            remaining_locus_tags = invalid_primers
-
-            if not valid_primers:
-                flanking_region += 50  # Increase flanking region only if no valid primers were found
-
-        except ValueError as e:
-            if "unique PCR product" in str(e):
-                flanking_region += 50
-            else:
-                raise
-
-    if not successful_primers:
-        raise ValueError(f"Could not find suitable primers within the maximum number of iterations, started with {initial_flanking_region} flanking region and ended with {flanking_region} flanking region")
-
-    final_result_df = pd.concat(successful_primers, axis=0).reset_index(drop=True)
-    return final_result_df
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame with Dseqrecord objects for the primer sequences.
+    """
+    primer_dseqrecords = []
+    for _, row in primer_df.iterrows():
+        fwd_dseqrecord = Dseqrecord(row['Forward Primer Sequence'])
+        fwd_dseqrecord.name = row['Locus Tag'] + "_fwd_checking_primer"
+        
+        rev_dseqrecord = Dseqrecord(row['Reverse Primer Sequence'])
+        rev_dseqrecord.name = row['Locus Tag'] + "_rev_checking_primer"
+        
+        primer_dseqrecords.append(fwd_dseqrecord)
+        primer_dseqrecords.append(rev_dseqrecord)
+    
+    return primer_dseqrecords
