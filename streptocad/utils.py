@@ -475,7 +475,7 @@ class ProjectDirectory:
         return self.zip_buffer.getvalue()
 
 
-def extract_metadata_to_dataframe(seqrecords, previous_plasmid, integration_list):
+def extract_metadata_to_dataframe(seqrecords:Dseqrecord, previous_plasmid:Dseqrecord, integration_list):
     # Initialize lists to store metadata
     names = []
     dates = []
@@ -490,7 +490,7 @@ def extract_metadata_to_dataframe(seqrecords, previous_plasmid, integration_list
     for i, record in enumerate(seqrecords):
         names.append(record.name)
         dates.append(today_date)  # Use today's date
-        plasmid_origins.append(previous_plasmid)
+        plasmid_origins.append(previous_plasmid.id)
         integrations.append(integration_list[i] if i < len(integration_list) else 'Unknown')
         lengths.append(len(record.seq))  # Length of the plasmid
     

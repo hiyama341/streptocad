@@ -1,5 +1,5 @@
 import os
-from typing import List, Optional
+from typing import List, Optional, Dict
 from pydna.dseq import Dseq
 from pydna.dseqrecord import Dseqrecord
 from pydna.amplicon import Amplicon
@@ -7,6 +7,8 @@ from pydna.assembly import Assembly
 from Bio.Restriction import StuI
 import pandas as pd
 from Bio.SeqFeature import SeqFeature, FeatureLocation
+from Bio.Restriction import RestrictionBatch
+
 
 
 def assemble_and_process_plasmids(clean_plasmid: Dseq, list_of_amplicons: List[Amplicon], enzyme: Optional[object] = StuI, save_plasmids: bool = False, save_path: str = "data_for_tf_activation_project/plasmids/") -> List[Dseqrecord]:
@@ -133,3 +135,83 @@ def annotate_plasmid_with_sgrnas(plasmid_record: Dseqrecord, df: pd.DataFrame) -
             plasmid_record.features.append(sgrna_feature)
     
     return plasmid_record
+
+
+
+def check_plasmid_restriction_sites(plasmid: Dseqrecord, enzymes: List[str]) -> Dict[str, int]:
+    """
+    Check if the plasmid has specific enzyme cutters and how many times each enzyme cuts.
+
+    Parameters
+    ----------
+    plasmid : Dseqrecord
+        The plasmid sequence as a Dseqrecord object.
+    enzymes : List[str]
+        A list of enzyme names to check for.
+
+    Returns
+    -------
+    dict
+        A dictionary with enzyme names as keys and the number of cutting sites as values.
+    """
+    # Create a RestrictionBatch with the specified enzymes
+    enzyme_batch = RestrictionBatch(enzymes)
+    
+    # Analyze the plasmid sequence for restriction sites
+    analysis = enzyme_batch.search(plasmid.seq)
+    
+    # Create a dictionary with enzyme names and the number of cutting sites
+    results = {str(enzyme): len(sites) for enzyme, sites in analysis.items()}
+    
+    return results
+
+def determine_workflow_order_for_plasmids(sgRNA_plasmids: List[Dseqrecord], repair_template_plasmids: List[Dseqrecord], enzymes: List[str]) -> pd.DataFrame:
+    """
+    Determine the workflow for each combination of sgRNA and repair template plasmids.
+
+    Parameters
+    ----------
+    sgRNA_plasmids : List[Dseqrecord]
+        List of plasmids with sgRNA integrated.
+    repair_template_plasmids : List[Dseqrecord]
+        List of plasmids with repair templates integrated.
+
+    Returns
+    -------
+    pd.DataFrame
+        A DataFrame with columns indicating the sgRNA plasmid, repair template plasmid, and the workflow decision.
+    """
+    results = []
+
+    for sgRNA_plasmid in sgRNA_plasmids:
+        sgRNA_sites = check_plasmid_restriction_sites(sgRNA_plasmid, enzymes)
+        if 'region' in sgRNA_plasmid.name: 
+            sgRNA_base_name = sgRNA_plasmid.name.split("_")[1]
+            
+        else: 
+            sgRNA_base_name = sgRNA_plasmid.name.split("_")[1]
+        
+        for repair_template_plasmid in repair_template_plasmids:
+            repair_template_base_name = repair_template_plasmid.name.split("_")[1]
+            
+            if sgRNA_base_name == repair_template_base_name:
+                repair_template_sites = check_plasmid_restriction_sites(repair_template_plasmid, enzymes)
+
+                # Determine the workflow based on the restriction sites
+                if sgRNA_sites["StuI"] > 1 and repair_template_sites["NcoI"] > 0:
+                    workflow = "Plasmid cannot be used in this workflow"
+                elif sgRNA_sites["StuI"] > 1:
+                    workflow = "Integrate repair templates first"
+                else:
+                    workflow = "Proceed with sgRNA integration first"
+
+                results.append({
+                    "sgRNA plasmid": sgRNA_plasmid.name,
+                    "repair template plasmid": repair_template_plasmid.name,
+                    "which workflow to proceed with": workflow,
+                    f"sgRNA plasmid #{enzymes[0]} sites": sgRNA_sites["StuI"],
+                    f"repair template plasmid #{enzymes[1]} sites": repair_template_sites["NcoI"]
+                })
+
+    df = pd.DataFrame(results)
+    return df

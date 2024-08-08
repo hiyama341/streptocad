@@ -19,6 +19,7 @@ import re
 from collections import Counter
 from Bio.Seq import Seq
 from typing import Callable, Dict, Optional, List, Tuple
+from pydna.dseqrecord import Dseqrecord
 
 
 class SgRNAargs:
@@ -27,14 +28,14 @@ class SgRNAargs:
 
     Attributes
     ----------
-    genbank : str
-        Path to the genbank file.
+    dseqrecord : Dseqrecord
+        Dseqrecord containing the genomic data.
     locus_tag : list of str
         List of locus tags (i.e., genes) to be analyzed.
-    model_param : str, optional
-        Path to .csv file containing model parameters (default is 'path/to/model_param.csv').
+    cas_type : str
+        The type of the CRISPR-Cas system used ('cas9', 'cas12a', or 'cas13').
     step : list of str, optional
-        Pipeline components to execute (default is ['find', 'filter', 'mismatch']).
+        Pipeline components to execute (default is ['find', 'filter']).
     downstream : int, optional
         Number of downstream nucleotides to consider when filtering sgRNAs (default is 15).
     off_target_seed : int, optional
@@ -49,25 +50,40 @@ class SgRNAargs:
         GC cutoff filter (maximum-value) (default is 1).
     gc_lower : float, optional
         GC cutoff filter (minimum-value) (default is 0).
-    offset_upper : int, optional
-        Maximum distance from start codon past which to filter (default is 1000).
     off_target_upper : int, optional
         Maximum number of seed nucleotides allowed for off-target (default is 10).
-    cas_type : str
-        The type of the CRISPR-Cas system used ('cas9', 'cas12a', or 'cas13').
+    extension_to_promoter_region : int, optional
+        Additional parameter to extend the promoter region (default is 0).
+    upstream_tss : int, optional
+        Number of upstream nucleotides to consider from the TSS (default is 100).
+    dwstream_tss : int, optional
+        Number of downstream nucleotides to consider from the TSS (default is 100).
+    target_non_template_strand : bool, optional
+        Whether to target the non-template strand (default is True).
+    strain_name : str
+        Strain name extracted from the Dseqrecord.
     """
-    def __init__(self, genbank: str, locus_tag: List[str], cas_type: str = 'cas9',
+
+    def __init__(self, dseqrecord: Dseqrecord, locus_tag: List[str], cas_type: str = 'cas9',
                  step: List[str] = ['find', 'filter'], 
                  downstream: int = 15, 
-                 off_target_seed: int = 13, 
+                 off_target_seed: int = 9, 
                  pam_remove: Optional[List[str]] = None, 
                  downstream_remove: Optional[List[str]] = None, 
                  sgrna_remove: Optional[List[str]] = None, 
                  gc_upper: float = 1, gc_lower: float = 0, 
                  off_target_upper: int = 10, 
-                 extension = 0):
+                 extension_to_promoter_region: int = 0, 
+                 upstream_tss: int = 100, 
+                 dwstream_tss: int = 100, 
+                 target_non_template_strand = True,
+
+                 ):
         
-        self.genbank = genbank
+        if not isinstance(dseqrecord, Dseqrecord):
+            raise ValueError("Input must be an instance of Dseqrecord.")
+        
+        self.dseqrecord = dseqrecord
         self.locus_tag = locus_tag if isinstance(locus_tag, list) else [locus_tag]
         self.step = step
         self.downstream = downstream
@@ -79,31 +95,13 @@ class SgRNAargs:
         self.gc_lower = gc_lower
         self.off_target_upper = off_target_upper
         self.cas_type = cas_type
-        self.extension = extension
+        self.extension_to_promoter_region = extension_to_promoter_region
+        self.upstream_tss = upstream_tss
+        self.dwstream_tss = dwstream_tss
+        self.target_non_template_strand = target_non_template_strand
 
-        # Extract strain name from the genbank path
-        self.strain_name = self.extract_strain_name(genbank)
-    
-    @staticmethod
-    def extract_strain_name(genbank_path: str) -> str:
-        """
-        Extracts the strain name from the genbank file path.
-        
-        Parameters
-        ----------
-        genbank_path : str
-            The path to the genbank file.
-            
-        Returns
-        -------
-        str
-            The extracted strain name.
-        """
-        # Extract the filename from the path (everything after the last "/")
-        filename = genbank_path.split('/')[-1]
-        # Extract the strain name by removing the ".gb" extension
-        strain_name = filename.rsplit('.gb', 1)[0]
-        return strain_name
+        # Extract strain name from the Dseqrecord
+        self.strain_name = self.dseqrecord.id
 
 
 def revcomp(x: str) -> str:
@@ -122,15 +120,19 @@ def revcomp(x: str) -> str:
     """
     return str(Seq(x).reverse_complement())
 
+from Bio.SeqRecord import SeqRecord
+import pandas as pd
+from typing import Tuple, List
+from Bio import SeqIO
 
-def parse_genbank_file(filepath: str) -> Tuple[List[str], pd.DataFrame]:
+def parse_genbank_record(dseqrecord: SeqRecord) -> Tuple[List[str], pd.DataFrame]:
     """
-    Parse a genbank file and extract gene information and sequences.
+    Parse a Dseqrecord and extract gene information and sequences.
 
     Parameters
     ----------
-    filepath : str
-        The path to the genbank file to parse.
+    dseqrecord : Dseqrecord
+        The Dseqrecord to parse.
 
     Returns
     -------
@@ -138,30 +140,15 @@ def parse_genbank_file(filepath: str) -> Tuple[List[str], pd.DataFrame]:
         A list of sequences of positive and negative strands (reverse complement).
     gene_df : pd.DataFrame
         A DataFrame of gene information containing locus tags, gene names, strands, starts, and ends.
-
     """
-    gene_info = list()
     sequences = list()
 
-    # Parse the genbank file and extract gene information and sequences
-    for record in SeqIO.parse(filepath, "gb"):
-        sequences.append(str(record.seq))  # Store sequence of positive strand
-        sequences.append(str(record.reverse_complement().seq))  # Store sequence of negative strand (reverse complement)
-        if record.features:
-            for feature in record.features:
-                if feature.type == "CDS":  # Check if feature is a coding sequence
-                    # Extract gene information
-                    locus_tag = feature.qualifiers.get("locus_tag", ["NA"])[0]
-                    location = feature.location
-                    # Store gene information
-                    gene_info.append((locus_tag, location.strand, location.start, location.end))
+    # Extract gene information and sequences from the Dseqrecord
+    sequences.append(str(dseqrecord.seq))  # Store sequence of positive strand
+    sequences.append(str(dseqrecord.reverse_complement().seq))  # Store sequence of negative strand (reverse complement)
 
-    # Convert gene information into a DataFrame
-    gene_df = pd.DataFrame(
-        gene_info, columns=["locus_tag", "strand", "start", "end"]
-    )
+    return sequences
 
-    return sequences, gene_df
 
 
 
@@ -220,16 +207,16 @@ def find_off_target_hits(sequences: List[str], off_target_seed: int, cas_type:st
     return off_target_counter
 
 
-def find_sgrna_hits_cas9(filepath: str, strain_name: str, locus_tags: List[str], off_target_counter: Counter, off_target_seed: int, revcomp: callable) -> pd.DataFrame:
+def find_sgrna_hits_cas9(record: Dseqrecord, strain_name: str, locus_tags: List[str], off_target_counter: Counter, off_target_seed: int, revcomp: callable) -> pd.DataFrame:
     """
-    Parse a genbank file to find sgRNA hits.
+    Parse a Dseqrecord object to find sgRNA hits.
 
     Parameters
     ----------
-    filepath : str
-        The path to the genbank file to parse.
+    record : Dseqrecord
+        Dseqrecord object from pydna.
     locus_tags : List[str]
-        List of locus tags to find in the genbank file.
+        List of locus tags to find in the record.
     off_target_counter : Counter
         Counter object containing the frequency of each off-target hit.
     off_target_seed : int
@@ -256,83 +243,79 @@ def find_sgrna_hits_cas9(filepath: str, strain_name: str, locus_tags: List[str],
     protospacer_len = 20
     pam_len = 3
 
-    # Parse the genbank file again to find sgRNAs
-    for record in SeqIO.parse(filepath, "gb"):
-        if record.features:
-            for feature in record.features:
-                if feature.type == "CDS":  # Check if feature is a coding sequence
-                    locus_tag = feature.qualifiers.get("locus_tag", ["NA"])[0]
-                    if locus_tag in locus_tags or "all" in locus_tags:  # Check if gene tag is in the list of locus tags
-                        # Extract the sequence of the coding sequence
-                        coding_sequence = str(feature.extract(record.seq))
-                        coding_sequence_revcomp = revcomp(coding_sequence)
+    # Parse the Dseqrecord again to find sgRNAs
+    for feature in record.features:
+        if feature.type == "CDS":  # Check if feature is a coding sequence
+            locus_tag = feature.qualifiers.get("locus_tag", ["NA"])[0]
+            if locus_tag in locus_tags or "all" in locus_tags:  # Check if gene tag is in the list of locus tags
+                # Extract the sequence of the coding sequence
+                coding_sequence = str(feature.extract(record.seq))
+                coding_sequence_revcomp = revcomp(coding_sequence)
 
-                        # Extract location of the feature
-                        location = feature.location
-                        gene_strand = feature.location.strand
+                # Extract location of the feature
+                location = feature.location
+                gene_strand = feature.location.strand
 
-                        # Find potential sgRNAs in both the coding sequence and its reverse complement
-                        for sequence in [(-1, coding_sequence), (1, coding_sequence_revcomp)]:
+                # Find potential sgRNAs in both the coding sequence and its reverse complement
+                for sequence in [(-1, coding_sequence), (1, coding_sequence_revcomp)]:
 
-                            # Increment gene counter
-                            gene_counter = gene_counter + 1
+                    # Increment gene counter
+                    gene_counter = gene_counter + 1
+                    for match in re.finditer(pam_pattern, sequence[1]):
 
+                        sgrna_pam = str(sequence[1][match.start():(match.start() + pam_len + protospacer_len)])
+            
+                        # Get reverse complement of the sgRNA and PAM sequence
+                        sgrna = revcomp(sgrna_pam)[0:protospacer_len]
+                        pam = revcomp(sgrna_pam)[protospacer_len:protospacer_len+pam_len]
 
-                            for match in re.finditer(pam_pattern, sequence[1]):
+                        if not sgrna:
+                            print(f"No sgRNA found for locus tag {locus_tag}. Skipping to next locus tag.")
+                            continue  # This skips the rest of the current iteration and moves to the next feature
 
-                                sgrna_pam = str(sequence[1][match.start():(match.start() + pam_len + protospacer_len)])
-                 
-                                # Get reverse complement of the sgRNA and PAM sequence
-                                sgrna = revcomp(sgrna_pam)[0:protospacer_len]
-                                pam = revcomp(sgrna_pam)[protospacer_len:protospacer_len+pam_len]
+                        if len(sgrna) != protospacer_len:  # Check if sgRNA is exactly 23 nt long
+                            print(f"sgRNA generated were outside the designated border in {locus_tag}. To incorporate this extent borders. Skipping to next locus tag.")
+                            continue  # This skips the rest of the current iteration and moves to the next feature
+                        
+                        if len(pam) != pam_len:  # Check if sgRNA is exactly 23 nt long
+                            print(f"Pam was found outside designated locus_tag: {locus_tag}. To incorporate this extent borders. Skipping to next locus tag.")
+                            continue  # This skips the rest of the current iteration and moves to the next feature
 
-                                if not sgrna:
-                                    print(f"No sgRNA found for locus tag {locus_tag}. Skipping to next locus tag.")
-                                    continue  # This skips the rest of the current iteration and moves to the next feature
+                        # Calculate GC content of the sgRNA
+                        gc_content = len([base for base in sgrna if base in ["C", "G"]]) / len(sgrna) if len(sgrna) > 0 else 0
 
-                                if len(sgrna) != protospacer_len:  # Check if sgRNA is exactly 23 nt long
-                                    print(f"sgRNA generated were outside the designated border in {locus_tag}. To incorporate this extent borders. Skipping to next locus tag.")
-                                    continue  # This skips the rest of the current iteration and moves to the next feature
-                                
-                                if len(pam) != pam_len:  # Check if sgRNA is exactly 23 nt long
-                                    print(f"Pam was found outside designated locus_tag: {locus_tag}. To incorporate this extent borders. Skipping to next locus tag.")
-                                    continue  # This skips the rest of the current iteration and moves to the next feature
+                        # Calculate genomic location of the sgRNA depending on the strand
+                        if sequence[0] == 1:
+                            genome_location = (int(location.start)) +1
+                            position_sgrna = len(sequence[1]) -match.start()-3
+                            strand_sgrna = 1
 
-                                # Calculate GC content of the sgRNA
-                                gc_content = len([base for base in sgrna if base in ["C", "G"]]) / len(sgrna) if len(sgrna) > 0 else 0
+                        if sequence[0] == -1:
+                            genome_location = int(location.start)+1
+                            position_sgrna = match.end() + protospacer_len+3   
+                            strand_sgrna = -1
 
-                                # Calculate genomic location of the sgRNA depending on the strand
-                                if sequence[0] == 1:
-                                    genome_location = (int(location.start)) +1
-                                    position_sgrna = len(sequence[1]) -match.start()-3
-                                    strand_sgrna = 1
+                        sgrna_seed = sgrna[(protospacer_len - off_target_seed):protospacer_len]
 
-                                if sequence[0] == -1:
-                                    genome_location = int(location.start)+1
-                                    position_sgrna = match.end() + protospacer_len+3   
-                                    strand_sgrna = -1
-
-                                sgrna_seed = sgrna[(protospacer_len - off_target_seed):protospacer_len]
-
-                                # Get number of off-target hits for the seed sequence
-                                off_target_count = (
-                                    off_target_counter[sgrna_seed] - 1 # if it turns out to be minus 1 it has not found the seed and there is a mistake.
-                                )
-                                # Store sgRNA hit
-                                sgrna_hits.append(
-                                    (strain_name, 
-                                        locus_tag, 
-                                        genome_location, 
-                                        gene_strand, 
-                                        strand_sgrna,
-                                        position_sgrna,
-                                        gc_content,
-                                        pam,
-                                        sgrna,
-                                        sgrna_seed,
-                                        off_target_count,
-                                    )
-                                )
+                        # Get number of off-target hits for the seed sequence
+                        off_target_count = (
+                            off_target_counter[sgrna_seed] - 1 # if it turns out to be minus 1 it has not found the seed and there is a mistake.
+                        )
+                        # Store sgRNA hit
+                        sgrna_hits.append(
+                            (strain_name, 
+                                locus_tag, 
+                                genome_location, 
+                                gene_strand, 
+                                strand_sgrna,
+                                position_sgrna,
+                                gc_content,
+                                pam,
+                                sgrna,
+                                sgrna_seed,
+                                off_target_count,
+                            )
+                        )
 
     # Convert sgRNA hits into a DataFrame
     sgrna_df = pd.DataFrame(
@@ -493,13 +476,13 @@ def find_sgrna_hits_cas12a(filepath: str, strain_name: str, locus_tags: List[str
 
 
 
-def find_sgrna_hits_cas3(filepath: str, strain_name: str, locus_tags: List[str], off_target_counter: Counter, off_target_seed: int, revcomp: callable) -> pd.DataFrame:
+def find_sgrna_hits_cas3(record: Dseqrecord, strain_name: str, locus_tags: List[str], off_target_counter: Counter, off_target_seed: int, revcomp: callable) -> pd.DataFrame:
     """
     Parse a genbank file to find sgRNA hits.
 
     Parameters
     ----------
-    filepath : str
+    record: Dseqrecord
         The path to the genbank file to parse.
     locus_tags : List[str]
         List of locus tags to find in the genbank file.
@@ -530,87 +513,90 @@ def find_sgrna_hits_cas3(filepath: str, strain_name: str, locus_tags: List[str],
     pam_len = 3
 
     # Parse the genbank file again to find sgRNAs
-    for record in SeqIO.parse(filepath, "gb"):
-        if record.features:
-            for feature in record.features:
-                if feature.type == "CDS":  # Check if feature is a coding sequence
-                    locus_tag = feature.qualifiers.get("locus_tag", ["NA"])[0]
-                    if locus_tag in locus_tags or "all" in locus_tags:  # Check if gene tag is in the list of locus tags
-                        # Extract the sequence of the coding sequence
-                        coding_sequence = str(feature.extract(record.seq))
-                        coding_sequence_revcomp = revcomp(coding_sequence)
 
-                        # Extract location of the feature
-                        location = feature.location
-                        gene_strand = feature.location.strand
+    for feature in record.features:
+        if feature.type == "CDS":  # Check if feature is a coding sequence
+            locus_tag = feature.qualifiers.get("locus_tag", ["NA"])[0]
+            if locus_tag in locus_tags or "all" in locus_tags:  # Check if gene tag is in the list of locus tags
+                # Extract the sequence of the coding sequence
+                coding_sequence = str(feature.extract(record.seq))
+                coding_sequence_revcomp = revcomp(coding_sequence)
 
-                        # Find potential sgRNAs in both the coding sequence and its reverse complement
-                        for sequence in [(-1, coding_sequence), (1, coding_sequence_revcomp)]:
-                            
-                            # Counter for sgRNAs found in the current gene
-                            sgrna_counter = 0
+                # Extract location of the feature
+                location = feature.location
+                gene_strand = feature.location.strand
 
-                            # Increment gene counter
-                            gene_counter = gene_counter + 1
+                # Find potential sgRNAs in both the coding sequence and its reverse complement
+                for sequence in [(-1, coding_sequence), (1, coding_sequence_revcomp)]:
+                    
+                    # Counter for sgRNAs found in the current gene
+                    sgrna_counter = 0
 
-                            for match in re.finditer(pam_pattern, sequence[1]):
-                                
-                                # Increment sgRNA counter
-                                sgrna_counter = sgrna_counter + 1
+                    # Increment gene counter
+                    gene_counter = gene_counter + 1
 
-                                # Extract the sgRNA sequence following the PAM
-                                sgrna_start = match.start() - protospacer_len  
-                                pam_start = sgrna_start + protospacer_len  
-                                sgrna_with_pam = str(sequence[1][sgrna_start+protospacer_len:pam_start + pam_len+ protospacer_len])
+                    for match in re.finditer(pam_pattern, sequence[1]):
+                        
+                        # Increment sgRNA counter
+                        sgrna_counter = sgrna_counter + 1
 
-                                # We're dealing with the reverse complement
-                                sgrna = sgrna_with_pam[pam_len:]  # Extract sgRNA
-                                pam = sgrna_with_pam[:pam_len]  # Extract pam
+                        # Extract the sgRNA sequence following the PAM
+                        sgrna_start = match.start() - protospacer_len  
+                        pam_start = sgrna_start + protospacer_len  
+                        sgrna_with_pam = str(sequence[1][sgrna_start+protospacer_len:pam_start + pam_len+ protospacer_len])
 
-                                if not sgrna:
-                                    print(f"No sgRNA found for locus tag {locus_tag}. Skipping to next locus tag.")
-                                    continue  # This skips the rest of the current iteration and moves to the next feature
+                        # We're dealing with the reverse complement
+                        sgrna = sgrna_with_pam[pam_len:]  # Extract sgRNA
+                        pam = sgrna_with_pam[:pam_len]  # Extract pam
 
-                                if len(sgrna) != protospacer_len:  # Check if sgRNA is exactly 23 nt long
-                                    print(f"sgRNA generated were too small{locus_tag}. To incorporate this extent borders. Skipping to next locus tag.")
-                                    continue  # This skips the rest of the current iteration and moves to the next feature
+                        if not sgrna:
+                            print(f"No sgRNA found for locus tag {locus_tag}. Skipping to next locus tag.")
+                            continue  # This skips the rest of the current iteration and moves to the next feature
 
-                                # Calculate GC content of the sgRNA
-                                gc_content = len([base for base in sgrna if base in ["C", "G"]]) / len(sgrna) if len(sgrna) > 0 else 0
+                        if len(sgrna) != protospacer_len:  # Check if sgRNA is exactly 23 nt long
+                            print(f"sgRNA generated were too small{locus_tag}. To incorporate this extent borders. Skipping to next locus tag.")
+                            continue  # This skips the rest of the current iteration and moves to the next feature
 
-                                # Calculate genomic location of the sgRNA depending on the strand
-                                if sequence[0] == 1:
-                                    genome_location = (int(location.start)) +1
-                                    position_sgrna = len(sequence[1]) -match.start()-3
-                                    strand_sgrna = sequence[0]
-                                if sequence[0] == -1:
-                                    genome_location = int(location.start)+1
-                                    position_sgrna = match.end() + protospacer_len+3   
-                                    strand_sgrna = sequence[0]
+                        if len(pam) != pam_len:  # Check if sgRNA is exactly 23 nt long
+                            print(f"Pam was found outside designated locus_tag: {locus_tag}. To incorporate this extent borders. Skipping to next locus tag.")
+                            continue  # This skips the rest of the current iteration and moves to the next feature
 
-                                # For Cas12a, extract the seed sequence from the beginning of the sgRNA
-                                sgrna_seed = sgrna[:off_target_seed]
+                        # Calculate GC content of the sgRNA
+                        gc_content = len([base for base in sgrna if base in ["C", "G"]]) / len(sgrna) if len(sgrna) > 0 else 0
 
-                                # Get number of off-target hits for the seed sequence
-                                off_target_count = (
-                                    off_target_counter[sgrna_seed] - 1
-                                )
+                        # Calculate genomic location of the sgRNA depending on the strand
+                        if sequence[0] == 1:
+                            genome_location = (int(location.start)) +1
+                            position_sgrna = len(sequence[1]) -match.start()-3
+                            strand_sgrna = sequence[0]
+                        if sequence[0] == -1:
+                            genome_location = int(location.start)+1
+                            position_sgrna = match.end() + protospacer_len+3   
+                            strand_sgrna = sequence[0]
 
-                                # Store sgRNA hit
-                                sgrna_hits.append(
-                                    (strain_name, 
-                                        locus_tag, 
-                                        genome_location, 
-                                        gene_strand, 
-                                        strand_sgrna,
-                                        position_sgrna,
-                                        gc_content,
-                                        pam,
-                                        sgrna,
-                                        sgrna_seed,
-                                        off_target_count,
-                                    )
-                                )
+                        # For Cas12a, extract the seed sequence from the beginning of the sgRNA
+                        sgrna_seed = sgrna[:off_target_seed]
+
+                        # Get number of off-target hits for the seed sequence
+                        off_target_count = (
+                            off_target_counter[sgrna_seed] - 1
+                        )
+
+                        # Store sgRNA hit
+                        sgrna_hits.append(
+                            (strain_name, 
+                                locus_tag, 
+                                genome_location, 
+                                gene_strand, 
+                                strand_sgrna,
+                                position_sgrna,
+                                gc_content,
+                                pam,
+                                sgrna,
+                                sgrna_seed,
+                                off_target_count,
+                            )
+                        )
 
     # Convert sgRNA hits into a DataFrame
     sgrna_df = pd.DataFrame(
@@ -685,7 +671,7 @@ def extract_sgRNAs(args: SgRNAargs) -> Tuple[pd.DataFrame, Counter, pd.DataFrame
         downstream sequence, sgrna_pam_downstream, seed, off-target count.
     """
     # Extract gene information
-    sequences, gene_df = parse_genbank_file(args.genbank)
+    sequences = parse_genbank_record(args.dseqrecord)
 
 
     # If 'find' is in the steps, execute off-target and sgRNA finding
@@ -695,13 +681,13 @@ def extract_sgRNAs(args: SgRNAargs) -> Tuple[pd.DataFrame, Counter, pd.DataFrame
         
         if 'cas3' in args.cas_type:
             # Find all potential sgRNA hits
-            sgrna_df = find_sgrna_hits_cas3(args.genbank,args.strain_name, args.locus_tag, off_target_counter, 
-                                    args.off_target_seed, revcomp)
+            sgrna_df = find_sgrna_hits_cas3(args.dseqrecord, args.strain_name, args.locus_tag, off_target_counter, 
+                                    args.off_target_seed, revcomp=revcomp)
 
         if 'cas9' in args.cas_type:
             # Find all potential sgRNA hits
-            sgrna_df = find_sgrna_hits_cas9(args.genbank,args.strain_name, args.locus_tag, off_target_counter, 
-                                    args.off_target_seed, revcomp)
+            sgrna_df = find_sgrna_hits_cas9(args.dseqrecord, args.strain_name, args.locus_tag, off_target_counter, 
+                                    args.off_target_seed, revcomp=revcomp)
 
         if 'cas12a' in args.cas_type:
             # Find all potential sgRNA hits
