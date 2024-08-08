@@ -6,7 +6,6 @@ from teemi.design.fetch_sequences import read_fasta_files, read_genbank_files
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 import re
 import tempfile
-from Bio.SeqRecord import SeqRecord
 
 def load_and_process_genome_sequences(path_to_file: str) -> List[Dseqrecord]:
     """
@@ -45,6 +44,9 @@ def load_and_process_genome_sequences(path_to_file: str) -> List[Dseqrecord]:
 
     return clean_seq
 
+import os
+from pydna.dseqrecord import Dseqrecord
+from typing import List
 
 def load_and_process_plasmid(path_to_file: str) -> List[Dseqrecord]:
 
@@ -78,13 +80,16 @@ def load_and_process_plasmid(path_to_file: str) -> List[Dseqrecord]:
     else:
         raise ValueError("Unsupported file format. Please provide a FASTA or GenBank file.")
 
-    #Assuming the file contains only one plasmid sequence, mark it as circular
+    # Assuming the file contains only one plasmid sequence, mark it as circular
     if sequences:
         clean_plasmid = Dseqrecord(sequences[0], circular=True)
+        clean_plasmid.name = sequences[0].name
+        clean_plasmid.id = sequences[0].id
     else:
         raise ValueError("No sequences found in the file.")
 
     return clean_plasmid
+
 
 
 def load_and_process_gene_sequences(path_to_genome: str) -> dict:
@@ -114,7 +119,8 @@ def load_and_process_gene_sequences(path_to_genome: str) -> dict:
     return gene_sequences
 
 
-def process_specified_gene_sequences_from_record(seq_record: SeqRecord, specified_locus_tags: list) -> dict:
+
+def process_specified_gene_sequences_from_record(seq_record: Dseqrecord, specified_locus_tags: list) -> dict:
     """
     Process gene sequences from a SeqRecord object for specified locus tags.
     
@@ -140,8 +146,6 @@ def process_specified_gene_sequences_from_record(seq_record: SeqRecord, specifie
                 gene_sequences[locus_tag] = gene_seq
                 
     return gene_sequences
-
-
 
 
 def validate_range_format(item):
@@ -171,7 +175,7 @@ def convert_to_dict(input_list):
         start, end = validate_range_format(item)
         
         # Create the dictionary for this region
-        region_key = f'chosen_region_{index + 1}'
+        region_key = f'region{index + 1}'#_({start}-{end})'
         region_dict = {region_key: [start, end]}
         
         # Add the dictionary to the list
@@ -212,4 +216,3 @@ def annotate_dseqrecord(dseqrecord, target_dict):
             dseqrecord.features.append(feature)
     
     return dseqrecord
-
