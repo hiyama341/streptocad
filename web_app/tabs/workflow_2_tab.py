@@ -336,6 +336,7 @@ crispr_cb_tab = html.Div(children=[
                     dbc.Card([
                         dbc.CardBody([
                             html.H5("Overview of plasmids generated", className="card-title", style=text_style),
+                            DataTable(id='plasmid-metadata-table_2', **table_style),
                         ])
                     ], style=card_style),
 

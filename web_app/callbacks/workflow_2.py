@@ -13,7 +13,7 @@ from datetime import datetime
 # Third-party imports
 import pandas as pd
 from Bio import SeqIO
-from Bio.Restriction import NcoI, StuI
+from Bio.Restriction import NcoI
 from Bio.SeqRecord import SeqRecord
 from pydna.dseqrecord import Dseqrecord
 from teemi.design.fetch_sequences import read_genbank_files
@@ -21,7 +21,6 @@ from teemi.design.fetch_sequences import read_genbank_files
 import dash
 from dash import dcc, html, dash_table, exceptions
 from dash.dependencies import Input, Output, State
-from dash.dash_table.Format import Group
 import dash_bootstrap_components as dbc
 from dash.exceptions import PreventUpdate
 from urllib.parse import quote
@@ -37,16 +36,13 @@ module_path = os.path.abspath(os.path.join('..'))
 if module_path not in sys.path:
     sys.path.append(module_path)
 
-from streptocad.primers.primer_generation import primers_to_IDT
-from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
-from streptocad.utils import ProjectDirectory
-
-from streptocad.sequence_loading.sequence_loading import load_and_process_gene_sequences, load_and_process_plasmid, load_and_process_genome_sequences
-from streptocad.utils import generate_project_directory_structure
+from streptocad.sequence_loading.sequence_loading import load_and_process_plasmid, load_and_process_genome_sequences, annotate_dseqrecord, check_and_convert_input, process_specified_gene_sequences_from_record
+from streptocad.utils import polymerase_dict, ProjectDirectory, extract_metadata_to_dataframe
 from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
+from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
 from streptocad.crispr.crispr_best import identify_base_editing_sites, filter_sgrnas_for_base_editing, process_base_editing
 from streptocad.cloning.plasmid_processing import annotate_plasmid_with_sgrnas
-from streptocad.primers.primer_generation import checking_primers, create_idt_order_dataframe, primers_to_IDT
+from streptocad.primers.primer_generation import find_best_check_primers_from_genome, create_idt_order_dataframe, primers_to_IDT
 
 def save_file(name, content):
     """Decode and store a file uploaded with Plotly Dash."""
@@ -63,10 +59,12 @@ def register_workflow_2_callbacks(app):
             Output('pcr-table_2', 'data'),
             Output('pcr-table_2', 'columns'),
             Output('download-data-and-protocols-link_2', 'href'),
-            Output('filtered-df-table', 'data'),   # New output for filtered_df
-            Output('filtered-df-table', 'columns'), # New output for filtered_df columns
+            Output('filtered-df-table', 'data'),
+            Output('filtered-df-table', 'columns'),
             Output('error-dialog_2', 'message'),
-            Output('error-dialog_2', 'displayed')
+            Output('error-dialog_2', 'displayed'),
+            Output('plasmid-metadata-table_2', 'data'),  # New Output for plasmid metadata DataTable
+            Output('plasmid-metadata-table_2', 'columns') # New Output for plasmid metadata DataTable columns
         ],
         [
             Input('submit-settings-button_2', 'n_clicks')
@@ -114,162 +112,105 @@ def register_workflow_2_callbacks(app):
 
                 # Read the GenBank files from the saved paths
                 logging.info("Reading genome and vector files")
-                input_genome = list(SeqIO.parse(genome_path, "genbank"))
-                input_plasmid = list(SeqIO.parse(vector_path, "genbank"))
+                genome = load_and_process_genome_sequences(genome_path)[0]
+                clean_plasmid = load_and_process_plasmid(vector_path)
 
-                if not input_genome or not input_plasmid:
-                    raise ValueError("Unsupported file format. Please provide a valid GenBank file.")
-
-                genome = Dseqrecord(input_genome[0].seq, id=input_genome[0].id, description=input_genome[0].description)
-                plasmid = Dseqrecord(input_plasmid[0], circular=True)
-
+                # Process genes to KO
                 genes_to_KO_list = [gene.strip() for gene in genes_to_KO.split(',')]
                 logging.info(f"Genes to knock out: {genes_to_KO_list}")
 
-                # Initialize SgRNAargs with desired parameters
-                args = SgRNAargs(genome_path, 
-                                 genes_to_KO_list,
-                                 step=['find', 'filter'],
-                                 gc_upper=gc_upper,
-                                 gc_lower=gc_lower,
-                                 off_target_seed=off_target_seed,
-                                 off_target_upper=off_target_upper,
-                                 cas_type=cas_type)
+                # Check and convert input genes for annotation
+                target_dict, genes_to_KO_list, annotation_input = check_and_convert_input(genes_to_KO_list)
+                if annotation_input:
+                    genome = annotate_dseqrecord(genome, target_dict)
+                logging.info("Annotation completed.")
 
-                logging.info("Extracting sgRNAs")
+                # Extract sgRNAs
+                args = SgRNAargs(genome, 
+                                genes_to_KO_list,
+                                step=['find', 'filter'],
+                                gc_upper=gc_upper,
+                                gc_lower=gc_lower,
+                                off_target_seed=off_target_seed,
+                                off_target_upper=off_target_upper,
+                                cas_type=cas_type)
                 sgrna_df = extract_sgRNAs(args)
-                logging.info(f"sgRNA DataFrame: {sgrna_df}")
+                logging.info("sgRNA extraction completed.")
 
                 # Load gene sequences
-                logging.info("Loading gene sequences")
-                gene_sequences = load_and_process_gene_sequences(genome_path)
+                gene_sequences = process_specified_gene_sequences_from_record(genome, genes_to_KO_list)
                 genes_to_KO_dict = {locus_tag: gene_sequences[locus_tag] for locus_tag in genes_to_KO_list if locus_tag in gene_sequences}
-                logging.info(f"Genes to KO dictionary: {genes_to_KO_dict}")
 
                 # Identify and annotate base editing sites
-                logging.info("Identifying base editing sites")
                 sgrna_df_with_editing = identify_base_editing_sites(sgrna_df)
 
                 # Filter out only sgRNAs that result in base-editing
-                logging.info("Filtering sgRNAs for base editing")
                 filtered_sgrna_df_for_base_editing = filter_sgrnas_for_base_editing(sgrna_df_with_editing)
-                logging.info(f"Filtered sgRNAs for base editing: {filtered_sgrna_df_for_base_editing}")
+                logging.info("Filtering sgRNAs for base editing completed.")
 
                 # Process the DataFrame to apply C-to-T mutations
-                logging.info("Processing base editing")
-                mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing, 
-                                                        genes_to_KO_dict, 
-                                                        only_stop_codons=bool(only_stop_codons))
-                logging.info(f"Mutated sgRNAs: {mutated_sgrna_df}")
+                mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing, genes_to_KO_dict, only_stop_codons=bool(only_stop_codons))
 
                 # Filter the DataFrame to retain only up to 5 sgRNA sequences per locus_tag
-                logging.info("Filtering sgRNAs to retain only up to 5 sequences per locus tag")
                 filtered_df = mutated_sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
                 logging.info(f"Filtered DataFrame: {filtered_df}")
 
                 # Make oligos
-                logging.info("Making ssDNA oligos")
-                list_of_ssDNAs = make_ssDNA_oligos(filtered_df, upstream_ovh=Dseqrecord(up_homology),
-                                                   downstream_ovh=Dseqrecord(dw_homology))
-                logging.info(f"List of ssDNAs: {list_of_ssDNAs}")
+                list_of_ssDNAs = make_ssDNA_oligos(filtered_df, upstream_ovh=up_homology, downstream_ovh=dw_homology)
 
                 # Cut plasmid
-                logging.info("Cutting plasmid")
-                linearized_plasmid = sorted(plasmid.cut(NcoI), key=lambda x: len(x), reverse=True)[0]
-                logging.info(f"Linearized plasmid: {linearized_plasmid}")
+                linearized_plasmid = sorted(clean_plasmid.cut(NcoI), key=lambda x: len(x), reverse=True)[0]
 
                 # Assemble plasmid
-                logging.info("Assembling plasmid")
                 sgRNA_vectors = assemble_plasmids_by_ssDNA_bridging(list_of_ssDNAs, linearized_plasmid)
-                logging.info(f"sgRNA vectors: {sgRNA_vectors}")
 
-                # Constructing a meaningful name, ID, and description for the assembled plasmid using user input
-                targeting_info = []
-                for index, row in filtered_df.iterrows():
-                    formatted_str = f"pCRISPR-BEST_{row['locus_tag']}_p{row['sgrna_loc']}"
-                    targeting_info.append(formatted_str)
+                # Construct meaningful names, IDs, and descriptions
+                targeting_info = [f"pCRISPR-BEST_{row['locus_tag']}_p{row['sgrna_loc']}" for _, row in filtered_df.iterrows()]
+                for i, vector in enumerate(sgRNA_vectors):
+                    vector.name = f'{targeting_info[i]}_#{i+1}'
+                    vector.id = vector.name
+                    vector.description = f'Assembled plasmid targeting {", ".join(genes_to_KO_list)} for base-editing, assembled using StreptoCAD.'
 
-                for i in range(len(sgRNA_vectors)):
-                    sgRNA_vectors[i].name = f'{targeting_info[i]}_#{i+1}'
-                    sgRNA_vectors[i].id = sgRNA_vectors[i].name  # Using the same value for ID as for name for simplicity
-                    sgRNA_vectors[i].description = f'Assembled plasmid targeting {", ".join(genes_to_KO_list)} for base-editing, assembled using StreptoCAD.'
-
-                logging.info("Annotating plasmids")
                 # Annotate plasmids
                 for plasmid in sgRNA_vectors: 
                     annotate_plasmid_with_sgrnas(plasmid, filtered_df)
 
+                # Extract metadata for plasmid
+                integration_names = filtered_df.apply(lambda row: f"sgRNA_{row['locus_tag']}({row['sgrna_loc']})", axis=1).tolist()
+                plasmid_metadata_df = extract_metadata_to_dataframe(sgRNA_vectors, clean_plasmid, integration_names)
+                
                 # Generate primers
-                logging.info("Generating primers for IDT")
                 idt_df1 = primers_to_IDT(list_of_ssDNAs)
-                logging.info(f"IDT primers DataFrame: {idt_df1}")
-
-                # Getting checking primers
-                logging.info("Generating checking primers")
-                checking_primers_df = checking_primers(genome_path, genes_to_KO_list, 
-                                                       flanking_region=flanking_region_number,
-                                                       target_tm=melting_temperature, 
-                                                       primer_concentration=primer_concentration, 
-                                                       polymerase=chosen_polymerase)
-                logging.info(f"Checking primers DataFrame: {checking_primers_df}")
-
+                checking_primers_df = find_best_check_primers_from_genome(genome, genes_to_KO_list, flanking_region=flanking_region_number, target_tm=melting_temperature, primer_concentration=primer_concentration, polymerase=chosen_polymerase)
                 idt_df2 = create_idt_order_dataframe(checking_primers_df)
-                logging.info(f"IDT order DataFrame: {idt_df2}")
                 full_idt = pd.concat([idt_df1, idt_df2])
-                logging.info(f"Full IDT DataFrame: {full_idt}")
 
                 # Prepare outputs for the DataTable
-                logging.info("Preparing data for DataTables")
                 primers_columns = [{"name": col, "id": col} for col in full_idt.columns]
                 primers_data = full_idt.to_dict('records')
 
                 pcr_columns = [{"name": col, "id": col} for col in checking_primers_df.columns]
                 pcr_data = checking_primers_df.to_dict('records')
 
-                # IDT 
-                pcr_df_string = checking_primers_df.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
-                pcr_data_encoded = quote(pcr_df_string)
-                pcr_download_link = f"data:text/csv;charset=utf-8,{pcr_data_encoded}"            
-                
-                # PCR-primer-df
-                primer_df_string = full_idt.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
-                primer_data_encoded = quote(primer_df_string)
-                primer_download_link = f"data:text/csv;charset=utf-8,{primer_data_encoded}" 
+                # Generate download link for filtered_df
+                filtered_df_columns = [{"name": col, "id": col} for col in filtered_df.columns]
+                filtered_df_data = filtered_df.to_dict('records')
 
-                # Provide a link for downloading GenBank files:
-                encoded_genbank_files = [base64.b64encode(str(vector).encode()).decode() for vector in sgRNA_vectors]
-                genbank_download_link = f"data:application/genbank;base64,{encoded_genbank_files[0]}"
-                # Create a zip archive in memory
-                zip_buffer = io.BytesIO()
-                zip_data = None  # Initialize zip_data here
-                with zipfile.ZipFile(zip_buffer, 'a', zipfile.ZIP_DEFLATED, False) as zip_file:
-                    for vector in sgRNA_vectors:
-                        # Convert each vector to GenBank format
-                        genbank_content = vector.format("genbank")
-                        zip_file.writestr(f"{vector.name}.gb", genbank_content)
-
-                # Prepare the zip archive for download
-                zip_buffer.seek(0)
-                zip_data = base64.b64encode(zip_buffer.read()).decode('utf-8')
-                genbank_download_link = f"data:application/zip;base64,{zip_data}"
-
-
-                # New function call to generate project directory structure
+                # Generate project directory structure
                 input_files = [
                     {"name": "input_genome.gb", "content": genome},
-                    {"name": "input_plasmid.gb", "content": plasmid}
+                    {"name": "input_plasmid.gb", "content": clean_plasmid}
                 ]
-
                 output_files = [
-                    {"name": "cBEST_w_sgRNAs.gb", "content": sgRNA_vectors}, # LIST OF Dseqrecords
+                    {"name": "cBEST_w_sgRNAs.gb", "content": sgRNA_vectors},
                     {"name": "primer_df.csv", "content": checking_primers_df},
                     {"name": "full_idt.csv", "content": full_idt},
                     {"name": "mutated_sgrna_df.csv", "content": mutated_sgrna_df},
-                    {"name": "filtered_df.csv", "content": filtered_df}
+                    {"name": "filtered_df.csv", "content": filtered_df},
+                    {"name": "plasmid_metadata_df.csv", "content": plasmid_metadata_df},
                 ]
-
                 input_values = {
-                    "genes_to_knockout": genes_to_KO,
+                    "genes_to_knockout": genes_to_KO_list,
                     "polymerase_settings": {
                         "chosen_polymerase": chosen_polymerase,
                         "melting_temperature": melting_temperature,
@@ -290,19 +231,9 @@ def register_workflow_2_callbacks(app):
                         "dw_homology": str(dw_homology)
                     }
                 }
-
-
-                # Paths to Markdown files
-                markdown_file_paths = [
-                    "../protocols/conjugation_protcol.md",
-                    "../protocols/single_target_crispr_plasmid_protcol.md"
-
-                ]
-
-                # Data and time
+                markdown_file_paths = ["../protocols/conjugation_protcol.md", "../protocols/single_target_crispr_plasmid_protcol.md"]
                 timestamp = datetime.utcnow().isoformat()
 
-                # Create project directory structure
                 project_directory = ProjectDirectory(
                     project_name=f"CRISPR_cBEST_workflow_{timestamp}",
                     input_files=input_files,
@@ -310,34 +241,35 @@ def register_workflow_2_callbacks(app):
                     input_values=input_values,
                     markdown_file_paths=markdown_file_paths
                 )
-
-                # Generate the project directory structure and get the zip content
                 zip_content = project_directory.create_directory_structure(create_directories=True)
-
-                # Encode the zip content for download
                 data_package_encoded = base64.b64encode(zip_content).decode('utf-8')
                 data_package_download_link = f"data:application/zip;base64,{data_package_encoded}"
-
-                # Prepare data for filtered_df
-                filtered_df_columns = [{"name": col, "id": col} for col in filtered_df.columns]
-                filtered_df_data = filtered_df.to_dict('records')
-                
-                # Generate download link for filtered_df
-                filtered_df_string = filtered_df.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
-                filtered_df_data_encoded = quote(filtered_df_string)
-                filtered_df_download_link = f"data:text/csv;charset=utf-8,{filtered_df_data_encoded}"
 
                 logging.info("Workflow 2 completed successfully")
 
                 # Clear the log stream after successful execution
                 log_stream.truncate(0)
                 log_stream.seek(0)
+                # Prepare columns and data for the plasmid metadata DataTable
+                plasmid_metadata_columns = [{"name": col, "id": col} for col in plasmid_metadata_df.columns]
+                plasmid_metadata_data = plasmid_metadata_df.to_dict('records')
 
-                return (primers_data, primers_columns, pcr_data, pcr_columns, 
-                         data_package_download_link, filtered_df_data, filtered_df_columns, "", False)
-
+            return (
+                primers_data, 
+                primers_columns, 
+                pcr_data, 
+                pcr_columns, 
+                data_package_download_link, 
+                filtered_df_data, 
+                filtered_df_columns, 
+                "", 
+                False, 
+                plasmid_metadata_data,  # Data for the new plasmid metadata DataTable
+                plasmid_metadata_columns # Columns for the new plasmid metadata DataTable
+            )
+        
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
             error_message = f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
             display_error = True
-            return [], [], [], [], "", [], [], error_message, display_error
+            return [], [], [], [], "", [], [], error_message, display_error, [], []
