@@ -333,10 +333,11 @@ def register_workflow_2_callbacks(app):
                 log_stream.truncate(0)
                 log_stream.seek(0)
 
-                return (primers_data, primers_columns, pcr_data, pcr_columns, genbank_download_link, primer_download_link, 
-                        pcr_download_link, data_package_download_link, filtered_df_data, filtered_df_columns, filtered_df_download_link, "", False)
+                return (primers_data, primers_columns, pcr_data, pcr_columns, 
+                         data_package_download_link, filtered_df_data, filtered_df_columns, "", False)
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
             error_message = f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            return [], [], [], [], "", "", "", "", [], [], "", error_message, True
+            display_error = True
+            return [], [], [], [], "", [], [], error_message, display_error
