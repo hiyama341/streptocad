@@ -15,9 +15,6 @@ reference_content = html.Div([
 # Dropdown options for polymerases
 dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_dict.items()]
 
-# Tab content for Single sgRNA integration
-
-# Tab content for CRISPR-cBEST workflow
 # Tab content for CRISPR-cBEST workflow
 crispr_cb_tab = html.Div(children=[
     dbc.Row([
@@ -94,10 +91,12 @@ crispr_cb_tab = html.Div(children=[
         
     dbc.Row([
         dbc.Col([
-            html.H4("3) Choose genes to knock out", style=text_style),
+            html.H4("3) Choose genes/regions to knock out", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("Genes to Knock Out (comma-separated)", className="card-title", style=text_style),
+                    html.H5("Example for genes: SCO5087, SCO5087,... (comma-separated)", className="card-title", style=text_style),
+                    html.H5("Example for regions: 1000-2000, 100000-101000,... (comma-separated)", className="card-title", style=text_style),
+
                     dbc.Textarea(
                         id='genes-to-KO_2',
                         placeholder='Enter genes to knock out, e.g., SCO5087',

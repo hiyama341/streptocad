@@ -90,10 +90,11 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         
     dbc.Row([
         dbc.Col([
-            html.H4("3) Choose genes to knock out", style=text_style),
+            html.H4("3) Choose genes/regions to knock out", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("Genes to Knock Out (comma-separated)", className="card-title", style=text_style),
+                    html.H5("Example for genes: SCO5087, SCO5087,... (comma-separated)", className="card-title", style=text_style),
+                    html.H5("Example for regions: 1000-2000, 100000-101000,... (comma-separated)", className="card-title", style=text_style),
                     dbc.Textarea(
                         id='genes-to-KO_3',
                         placeholder='Enter genes to knock out, e.g., SCO5087',
