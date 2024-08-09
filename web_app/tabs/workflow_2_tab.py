@@ -202,7 +202,7 @@ crispr_cb_tab = html.Div(children=[
         ]),
         dbc.Row([
             dbc.Col([
-                dbc.Label("Number of sgRNAs per Group", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                dbc.Label("Number of sgRNAs per region/locus tag", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                 dbc.Input(
                     id='number-of-sgRNAs-per-group_2',
                     type='number',
