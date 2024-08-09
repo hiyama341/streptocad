@@ -62,13 +62,9 @@ def register_workflow_2_callbacks(app):
             Output('primers-output-table_2', 'columns'),
             Output('pcr-table_2', 'data'),
             Output('pcr-table_2', 'columns'),
-            Output('genbank-file-single_2', 'href'),
-            Output('primers_download_link_2', 'href'),
-            Output('download-pcr-link_2', 'href'),
             Output('download-data-and-protocols-link_2', 'href'),
             Output('filtered-df-table', 'data'),   # New output for filtered_df
             Output('filtered-df-table', 'columns'), # New output for filtered_df columns
-            Output('download-filtered-df-link_2', 'href'), # New output for filtered_df download link
             Output('error-dialog_2', 'message'),
             Output('error-dialog_2', 'displayed')
         ],

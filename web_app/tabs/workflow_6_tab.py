@@ -202,7 +202,7 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
                 ),
             ], width=12, className="mb-3"),
             dbc.Col([
-                dbc.Label("Number of sgRNAs per Group", style={'color': '#ddd'}),  
+                dbc.Label("Number of sgRNAs per region/locus tag", style={'color': '#ddd'}),  
                 dbc.Input(
                     id='number-of-sgRNAs-per-group',
                     type='number',
@@ -310,69 +310,64 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
         ], width=12),
     ], className="mb-4"),
     
-    # Placeholder for the output
-    dbc.Row([
-        dbc.Col([
-            dbc.Card([
-                dbc.CardBody([
-                    html.H5("Primers", className="card-title", style=text_style),
-                    DataTable(id='primers-output-table', **table_style),
-                    html.A(
-                        'Download CSV File',
-                        id='csv_download_link',
-                        download="ssDNA_bridging_oligos.csv",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    )
-                ])
-            ], style=card_style),
-
-            dbc.Card([
-                dbc.CardBody([
-                    html.H5("PCR", className="card-title", style=text_style),
-                    DataTable(id='pcr-table', **table_style),
-                    html.A(
-                        'Download PCR CSV',
-                        id='download-pcr-link',
-                        download="pcr.csv",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    )
-                ])
-            ], style=card_style),
-
-            dbc.Card([
-                dbc.CardBody([
-                    html.H5("GenBank File", className="card-title", style=text_style),
-                    html.A(
-                        'Download GenBank File',
-                        id='genbank-file-single',
-                        download="plasmid-single.zip",
-                        href="",
-                        target="_blank",
-                        className="btn btn-primary"
-                    ), 
-                ])
-            ], style=card_style),
+# Placeholder for the output
+dbc.Row([
+    dbc.Col([
+        dcc.Loading(
+            id="loading-overlay",
+            type="circle",
+            children=[
+                dbc.Card([
+                    dbc.CardBody([
+                        html.H5("Filtered sgRNAs", className="card-title", style=text_style),
+                        DataTable(id='mutated-sgrna-table_6', **table_style),
+                        # Removed the download button
+                    ])
+                ], style=card_style),
 
 
-        dbc.Card([
-            dbc.CardBody([
-                html.H5("Download folder with all data & protocols", className="card-title", style=text_style),
-                DataTable(id='all_data', **table_style),
-                html.A(
-                    'Data & protocols',
-                    id='download-data-and-protocols-link',
-                    download="all_data.csv",
-                    href="",
-                    target="_blank",
-                    className="btn btn-primary"
-                )
-            ])
-        ], style=card_style),
-        
-        ], width=6),
-    ]),
+
+
+                dbc.Card([
+                    dbc.CardBody([
+                        html.H5("Primers Output Table", className="card-title", style=text_style),
+                        DataTable(id='primers-output-table', **table_style),
+                        # Removed the download button
+                    ])
+                ], style=card_style),
+
+                dbc.Card([
+                    dbc.CardBody([
+                        html.H5("PCR Table", className="card-title", style=text_style),
+                        DataTable(id='pcr-table', **table_style),
+                        # Removed the download button
+                    ])
+                ], style=card_style),
+
+                dbc.Card([
+                    dbc.CardBody([
+                        html.H5("Overview of Plasmids", className="card-title", style=text_style),
+                        # Removed the download button
+                    ])
+                ], style=card_style),
+
+                dbc.Card([
+                    dbc.CardBody([
+                        html.H5("Download All Data & Protocols", className="card-title", style=text_style),
+                        DataTable(id='all_data', **table_style),
+                        html.A(
+                            'Download All Data & Protocols',
+                            id='download-data-and-protocols-link',
+                            download="all_data.csv",
+                            href="",
+                            target="_blank",
+                            className="btn btn-primary"
+                        )
+                    ])
+                ], style=card_style),
+            ]
+        )
+    ], width=6),
+]),
+
 ])

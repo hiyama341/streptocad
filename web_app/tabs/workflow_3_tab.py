@@ -178,7 +178,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                 ),
             ], width=12, className="mb-3"),
             dbc.Col([
-                dbc.Label("Number of sgRNAs per Group", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                dbc.Label("Number of sgRNAs per region/locus tag", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                 dbc.Input(
                     id='number-of-sgRNAs-per-group_3',
                     type='number',

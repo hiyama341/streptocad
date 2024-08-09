@@ -51,8 +51,7 @@ def register_workflow_4_callbacks(app):
         [
             Output('primer-table_4', 'data'),
             Output('primer-table_4', 'columns'),
-            Output('genbank-file-single_4', 'href'),
-            Output('download-primers-link_4', 'href'),
+
             Output('download-data-and-protocols-link_4', 'href'),
             Output('mutated-sgrna-table_4', 'data'),
             Output('mutated-sgrna-table_4', 'columns'),
