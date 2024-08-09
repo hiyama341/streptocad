@@ -7,13 +7,13 @@ header_content = dbc.Row(
         dbc.Col(
             html.Div(
                 [
+                    html.Img(src='/assets/StreptoCAD_logo_round.png', style={'height': '200px', 'marginRight': '20px'}),  # Adjust the height and margin to create space between the image and the text
                     html.H2(
                         "StreptoCAD: An open-source software toolbox supporting genome engineering workflows in Streptomyces - version 0.1.0",
-                        style={'color': '#ddd', 'fontSize': '2.5rem', 'marginRight': 'auto'}  # Adjust font size and margin to push the logo to the right
+                        style={'color': '#ddd', 'fontSize': '2.5rem'}  # Adjust font size, removed marginRight to avoid pushing text
                     ),
-                    html.Img(src='/assets/dtu_logo.png', style={'height': '100px', 'marginLeft': 'auto'})  # Adjust the height and margin to push the logo to the right
                 ],
-                className="d-flex align-items-center justify-content-between"  # Use flexbox to align items horizontally and center them vertically
+                className="d-flex align-items-center justify-content-start"  # Use flexbox to align items horizontally and start them to the left
             ),
             width=12,  # Use the full width of the row
         ),
