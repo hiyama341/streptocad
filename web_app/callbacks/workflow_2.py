@@ -27,9 +27,38 @@ from urllib.parse import quote
 import logging
 import tempfile
 
-# Set up logging to use a StringIO buffer
+# Create a StringIO object to capture logs in memory
 log_stream = io.StringIO()
-logging.basicConfig(stream=log_stream, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Remove any existing handlers
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
+        logging.StreamHandler(log_stream)   # Capture logs in StringIO
+    ]
+)
+
+# Create a logger
+logger = logging.getLogger(__name__)
+
+# Test logging with different levels
+logger.debug("This debug message won't be shown")
+logger.info("This is an info message")
+logger.warning("This is a warning message")
+logger.error("This is an error message")
+logger.critical("This is a critical message")
+
+# Print the content of log_stream to verify it's capturing logs
+log_stream.seek(0)
+print("Captured logs in StringIO:")
+print(log_stream.read())
+
 
 # Local module imports
 module_path = os.path.abspath(os.path.join('..'))
@@ -250,6 +279,7 @@ def register_workflow_2_callbacks(app):
                 # Clear the log stream after successful execution
                 log_stream.truncate(0)
                 log_stream.seek(0)
+                
                 # Prepare columns and data for the plasmid metadata DataTable
                 plasmid_metadata_columns = [{"name": col, "id": col} for col in plasmid_metadata_df.columns]
                 plasmid_metadata_data = plasmid_metadata_df.to_dict('records')
