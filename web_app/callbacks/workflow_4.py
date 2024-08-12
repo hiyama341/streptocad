@@ -25,14 +25,21 @@ module_path = os.path.abspath(os.path.join('..'))
 if module_path not in sys.path:
     sys.path.append(module_path)
 
-from streptocad.sequence_loading.sequence_loading import load_and_process_gene_sequences, load_and_process_plasmid, load_and_process_genome_sequences
-from streptocad.utils import ProjectDirectory
+from streptocad.sequence_loading.sequence_loading import (
+    load_and_process_gene_sequences, 
+    load_and_process_plasmid, 
+    load_and_process_genome_sequences,
+    check_and_convert_input,
+    annotate_dseqrecord,
+    process_specified_gene_sequences_from_record
+)
+from streptocad.utils import ProjectDirectory, extract_metadata_to_dataframe
 from streptocad.crispr.guideRNA_crispri import extract_sgRNAs_for_crispri, SgRNAargs
 from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
-from streptocad.primers.primer_generation import checking_primers, create_idt_order_dataframe, primers_to_IDT
+from streptocad.primers.primer_generation import create_idt_order_dataframe, primers_to_IDT
 
 # Setup logging
-logging.basicConfig(level=logging.DEBUG,
+logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(levelname)s %(message)s',
                     handlers=[
                         logging.FileHandler("workflow4_debug.log"),
@@ -51,7 +58,6 @@ def register_workflow_4_callbacks(app):
         [
             Output('primer-table_4', 'data'),
             Output('primer-table_4', 'columns'),
-
             Output('download-data-and-protocols-link_4', 'href'),
             Output('mutated-sgrna-table_4', 'data'),
             Output('mutated-sgrna-table_4', 'columns'),
@@ -94,31 +100,28 @@ def register_workflow_4_callbacks(app):
                 save_file(vector_path, vector_content)
 
                 logging.info("Reading genome and vector files")
-                input_genome = list(SeqIO.parse(genome_path, "genbank"))
-                input_plasmid = list(SeqIO.parse(vector_path, "genbank"))
+                genome = load_and_process_genome_sequences(genome_path)[0]
+                clean_plasmid = load_and_process_plasmid(vector_path)
 
-                if not input_genome or not input_plasmid:
-                    logging.error("Unsupported file format. Please provide a valid GenBank file.")
-                    raise ValueError("Unsupported file format. Please provide a valid GenBank file.")
-
-                genome = Dseqrecord(input_genome[0].seq, id=input_genome[0].id, description=input_genome[0].description)
-                plasmid = Dseqrecord(input_plasmid[0], circular=True)
-
-                genes_to_KO_list = [gene.strip() for gene in genes_to_KO.split(',')]
+                logging.info("Processing genes to KO")
+                target_dict, genes_to_KO_list, annotation_input = check_and_convert_input(genes_to_KO)
+                if annotation_input:
+                    genome = annotate_dseqrecord(genome, target_dict)
                 logging.info(f"Genes to knock out: {genes_to_KO_list}")
 
-                args = SgRNAargs(genome_path, 
-                                 genes_to_KO_list,
-                                 step=['find', 'filter'],
-                                 gc_upper=gc_upper,
-                                 gc_lower=gc_lower,
-                                 off_target_seed=off_target_seed,
-                                 off_target_upper=off_target_upper,
-                                 cas_type=cas_type,
-                                 extension_to_promoter_region=extension_to_promoter_region,
-                                 upstream_tss = extension_to_promoter_region,
-                                 dwstream_tss = extension_to_promoter_region,
-                                 target_non_template_strand=True)
+                # Extract sgRNAs
+                args = SgRNAargs(
+                    genome,
+                    genes_to_KO_list,
+                    step=['find', 'filter'],
+                    gc_upper=gc_upper,
+                    gc_lower=gc_lower,
+                    off_target_seed=off_target_seed,
+                    off_target_upper=off_target_upper,
+                    cas_type=cas_type,
+                    extension_to_promoter_region=extension_to_promoter_region,
+                    target_non_template_strand=True
+                )
 
                 logging.info("Extracting sgRNAs for CRISPRi")
                 sgrna_df = extract_sgRNAs_for_crispri(args)
@@ -128,12 +131,15 @@ def register_workflow_4_callbacks(app):
                 logging.debug(f"Filtered DataFrame: {filtered_df}")
 
                 logging.info("Making ssDNA oligos")
-                list_of_ssDNAs = make_ssDNA_oligos(filtered_df, upstream_ovh=Dseqrecord(up_homology),
-                                                   downstream_ovh=Dseqrecord(dw_homology))
+                list_of_ssDNAs = make_ssDNA_oligos(
+                    filtered_df, 
+                    upstream_ovh=Dseqrecord(up_homology),
+                    downstream_ovh=Dseqrecord(dw_homology)
+                )
                 logging.debug(f"List of ssDNAs: {list_of_ssDNAs}")
 
                 logging.info("Cutting plasmid")
-                linearized_plasmid = sorted(plasmid.cut(NcoI), key=lambda x: len(x), reverse=True)[0]
+                linearized_plasmid = sorted(clean_plasmid.cut(NcoI), key=lambda x: len(x), reverse=True)[0]
                 logging.debug(f"Linearized plasmid: {linearized_plasmid}")
 
                 logging.info("Assembling plasmid")
@@ -151,43 +157,28 @@ def register_workflow_4_callbacks(app):
                     sgRNA_vectors[i].description = f'Assembled plasmid targeting {", ".join(genes_to_KO_list)} for single gene KNOCK-DOWN, assembled using StreptoCAD.'
 
                 logging.info("Generating primers for IDT")
-                idt_df1 = primers_to_IDT(list_of_ssDNAs)
-                logging.debug(f"IDT primers DataFrame: {idt_df1}")
+                idt_primers = primers_to_IDT(list_of_ssDNAs)
+                logging.debug(f"IDT primers DataFrame: {idt_primers}")
 
-                primers_columns = [{"name": col, "id": col} for col in idt_df1.columns]
-                primers_data = idt_df1.to_dict('records')
+                # Prepare DataTables outputs
+                primers_columns = [{"name": col, "id": col} for col in idt_primers.columns]
+                primers_data = idt_primers.to_dict('records')
 
-                primer_df_string = idt_df1.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
-                primer_data_encoded = quote(primer_df_string)
-                primer_download_link = f"data:text/csv;charset=utf-8,{primer_data_encoded}"
-
-                encoded_genbank_files = [base64.b64encode(str(vector).encode()).decode() for vector in sgRNA_vectors]
-                genbank_download_link = f"data:application/genbank;base64,{encoded_genbank_files[0]}"
-
-                zip_buffer = io.BytesIO()
-                with zipfile.ZipFile(zip_buffer, 'a', zipfile.ZIP_DEFLATED, False) as zip_file:
-                    for vector in sgRNA_vectors:
-                        genbank_content = vector.format("genbank")
-                        zip_file.writestr(f"{vector.name}.gb", genbank_content)
-
-                zip_buffer.seek(0)
-                zip_data = base64.b64encode(zip_buffer.read()).decode('utf-8')
-                genbank_download_link = f"data:application/zip;base64,{zip_data}"
-
+                # Prepare download link for the data package
                 input_files = [
                     {"name": "input_genome.gb", "content": genome},
-                    {"name": "input_plasmid.gb", "content": plasmid}
+                    {"name": "input_plasmid.gb", "content": clean_plasmid}
                 ]
 
                 output_files = [
                     {"name": "cBEST_w_sgRNAs.gb", "content": sgRNA_vectors},
-                    {"name": "full_idt.csv", "content": idt_df1},
+                    {"name": "full_idt.csv", "content": idt_primers},
                     {"name": "sgrna_df.csv", "content": sgrna_df},
                     {"name": "filtered_df.csv", "content": filtered_df}
                 ]
 
                 input_values = {
-                    "genes_to_knockout": genes_to_KO,
+                    "genes_to_knockout": genes_to_KO_list,
                     "filtering_metrics": {
                         "gc_upper": gc_upper,
                         "gc_lower": gc_lower,
@@ -228,8 +219,7 @@ def register_workflow_4_callbacks(app):
 
                 logging.info("Workflow completed successfully")
 
-                return (primers_data, primers_columns, genbank_download_link, primer_download_link, 
-                         data_package_download_link, filtered_df_data, filtered_df_columns)
+                return (primers_data, primers_columns, data_package_download_link, filtered_df_data, filtered_df_columns)
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
