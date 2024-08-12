@@ -6,6 +6,8 @@ from components import upload_component
 
 from styling import text_style, upload_button_style, card_style, link_style, table_style, table_header_style, table_row_style
 from streptocad.utils import polymerase_dict
+
+
 # Reference content used in multiple tabs
 reference_content = html.Div([
     html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below (the figure and protocol is from there).", style=text_style),
@@ -62,14 +64,23 @@ crispr_cb_tab = html.Div(children=[
     
     # UPLOAD genome
     
+    
     dbc.Row([
         dbc.Col([
             html.H4("1) Upload your genome file", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Genome File", className="card-title", style=text_style),
-                    upload_component('upload-genome-file_2', text_style, link_style, upload_button_style),  # Use upload_component
-                    html.Div(id='uploaded-genome-filename_2', children=[], style=text_style),
+                    dcc.Upload(
+                        id={'type': 'upload-component', 'index': 'genome-file-2'},  # Updated to use pattern matching ID
+                        children=html.Div([
+                            'Drag and Drop or ',
+                            html.A('Select Genome File', style=link_style)
+                        ], style=text_style),
+                        style=upload_button_style,
+                        multiple=False
+                    ),
+                    html.Div(id={'type': 'filename-display', 'index': 'genome-file-2'}, children=[], style=text_style),  # Updated to use pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),
@@ -81,8 +92,16 @@ crispr_cb_tab = html.Div(children=[
             dbc.Card([
                 dbc.CardBody([
                     html.H5("CRISPR-BEST plasmid", className="card-title", style=text_style),
-                    upload_component('upload-single-vector_2', text_style, link_style, upload_button_style),  # Use upload_component
-                    html.Div(id='uploaded-single-vector-filename_2', children=[], style=text_style),
+                    dcc.Upload(
+                        id={'type': 'upload-component', 'index': 'single-vector-2'},  # Updated to use pattern matching ID
+                        children=html.Div([
+                            'Drag and Drop or ',
+                            html.A('Select CRISPR-BEST plasmid File', style=link_style)
+                        ], style=text_style),
+                        style=upload_button_style,
+                        multiple=False
+                    ),
+                    html.Div(id={'type': 'filename-display', 'index': 'single-vector-2'}, children=[], style=text_style),  # Updated to use pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),

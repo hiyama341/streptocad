@@ -66,8 +66,16 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Sequences (GenBank file)", className="card-title", style=text_style),
-                    upload_component({'type': 'upload-input', 'index': 'sequences'}, text_style, link_style, upload_button_style),
-                    html.Div(id={'type': 'uploaded-filename', 'index': 'sequences'}, children=[], style=text_style),
+                    dcc.Upload(
+                        id={'type': 'upload-component', 'index': 'sequences'},  # Updated to use pattern matching ID
+                        children=html.Div([
+                            'Drag and Drop or ',
+                            html.A('Select Sequences File', style=link_style)
+                        ], style=text_style),
+                        style=upload_button_style,
+                        multiple=False
+                    ),
+                    html.Div(id={'type': 'filename-display', 'index': 'sequences'}, children=[], style=text_style),  # Updated to use pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),
@@ -79,8 +87,16 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Plasmid File", className="card-title", style=text_style),
-                    upload_component({'type': 'upload-input', 'index': 'plasmid'}, text_style, link_style, upload_button_style),
-                    html.Div(id={'type': 'uploaded-filename', 'index': 'plasmid'}, children=[], style=text_style),
+                    dcc.Upload(
+                        id={'type': 'upload-component', 'index': 'plasmid'},  # Updated to use pattern matching ID
+                        children=html.Div([
+                            'Drag and Drop or ',
+                            html.A('Select Plasmid File', style=link_style)
+                        ], style=text_style),
+                        style=upload_button_style,
+                        multiple=False
+                    ),
+                    html.Div(id={'type': 'filename-display', 'index': 'plasmid'}, children=[], style=text_style),  # Updated to use pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),

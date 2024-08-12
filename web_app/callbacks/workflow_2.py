@@ -67,7 +67,6 @@ def save_file(name, content):
         fp.write(base64.decodebytes(data))
 
 def register_workflow_2_callbacks(app):
-
     @app.callback(
         [
             Output('primers-output-table_2', 'data'),
@@ -79,17 +78,17 @@ def register_workflow_2_callbacks(app):
             Output('filtered-df-table', 'columns'),
             Output('error-dialog_2', 'message'),
             Output('error-dialog_2', 'displayed'),
-            Output('plasmid-metadata-table_2', 'data'),  # New Output for plasmid metadata DataTable
-            Output('plasmid-metadata-table_2', 'columns') # New Output for plasmid metadata DataTable columns
+            Output('plasmid-metadata-table_2', 'data'),  # Output for plasmid metadata DataTable
+            Output('plasmid-metadata-table_2', 'columns') # Output for plasmid metadata DataTable columns
         ],
         [
             Input('submit-settings-button_2', 'n_clicks')
         ],
         [
-            State('upload-genome-file_2', 'contents'),
-            State('upload-single-vector_2', 'contents'),
-            State('upload-genome-file_2', 'filename'),
-            State('upload-single-vector_2', 'filename'),
+            State({'type': 'upload-component', 'index': 'genome-file-2'}, 'contents'),  # Corrected ID
+            State({'type': 'upload-component', 'index': 'single-vector-2'}, 'contents'),   # Corrected ID
+            State({'type': 'upload-component', 'index': 'genome-file-2'}, 'filename'),  # Corrected ID
+            State({'type': 'upload-component', 'index': 'single-vector-2'}, 'filename'),   # Corrected ID
             State('genes-to-KO_2', 'value'),
             State('forward-overhang-input_2', 'value'),
             State('reverse-overhang-input_2', 'value'),

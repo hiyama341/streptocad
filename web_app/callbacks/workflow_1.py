@@ -69,10 +69,10 @@ def register_workflow_1_callbacks(app):
             Input('submit-settings-button_1', 'n_clicks')
         ],
         [
-            State({'type': 'upload-input', 'index': 'sequences'}, 'contents'),
-            State({'type': 'upload-input', 'index': 'plasmid'}, 'contents'),
-            State({'type': 'upload-input', 'index': 'sequences'}, 'filename'),
-            State({'type': 'upload-input', 'index': 'plasmid'}, 'filename'),
+            State({'type': 'upload-component', 'index': 'sequences'}, 'contents'),  # Corrected ID
+            State({'type': 'upload-component', 'index': 'plasmid'}, 'contents'),   # Corrected ID
+            State({'type': 'upload-component', 'index': 'sequences'}, 'filename'),  # Corrected ID
+            State({'type': 'upload-component', 'index': 'plasmid'}, 'filename'),   # Corrected ID
             State('forward-overhang-input_1', 'value'),
             State('reverse-overhang-input_1', 'value'),
             State('chosen-polymerase_1', 'value'),

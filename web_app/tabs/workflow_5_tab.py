@@ -58,7 +58,8 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
             width={"size": 3, "order": 2}
         )
     ], className="mb-4", justify="start"),
-
+    
+    # uPload
     dbc.Row([
         dbc.Col([
             html.H4("1) Upload your genome file", style=text_style),
@@ -66,7 +67,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 dbc.CardBody([
                     html.H5("Genome File", className="card-title", style=text_style),
                     dcc.Upload(
-                        id='upload-genome-file',
+                        id={'type': 'upload-component', 'index': 'genome-file'},  # Updated to use pattern matching ID
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select Genome File', style=link_style)
@@ -74,7 +75,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id='uploaded-genome-filename', children=[], style=text_style),
+                    html.Div(id={'type': 'filename-display', 'index': 'genome-file'}, children=[], style=text_style),  # Updated to use pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),
@@ -87,7 +88,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 dbc.CardBody([
                     html.H5("CRISPR Vector", className="card-title", style=text_style),
                     dcc.Upload(
-                        id='upload-single-vector',
+                        id={'type': 'upload-component', 'index': 'single-vector'},  # Updated to use pattern matching ID
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select CRISPR Vector File', style=link_style)
@@ -95,12 +96,12 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id='uploaded-single-vector-filename', children=[], style=text_style),
+                    html.Div(id={'type': 'filename-display', 'index': 'single-vector'}, children=[], style=text_style),  # Updated to use pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),
     ], className="mb-5"),
-        
+            
     dbc.Row([
         dbc.Col([
             html.H4("3) Choose genes/regions to knock out", style=text_style),

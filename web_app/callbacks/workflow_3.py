@@ -89,51 +89,50 @@ def save_file(name, content):
         fp.write(base64.decodebytes(data))
 
 def register_workflow_3_callbacks(app):
-
     @app.callback(
-        [
-            Output('primer-table_3', 'data'),
-            Output('primer-table_3', 'columns'),
-            Output('pcr-table_3', 'data'),
-            Output('pcr-table_3', 'columns'),
-            Output('overhang-table_3', 'data'),
-            Output('overhang-table_3', 'columns'),
-            Output('download-data-and-protocols-link_3', 'href'),
-            Output('mutated-sgrna-table_3', 'data'),
-            Output('mutated-sgrna-table_3', 'columns'), 
-            Output('plasmid-metadata-table_3', 'data'),
-            Output('plasmid-metadata-table_3', 'columns'),
-            Output('error-dialog_3', 'message'),
-            Output('error-dialog_3', 'displayed'),
-        ],
-        [
-            Input('submit-button_3', 'n_clicks')
-        ],
-        [
-            State('upload-genome-file_3', 'contents'),
-            State('upload-single-vector_3', 'contents'),
-            State('upload-genome-file_3', 'filename'),
-            State('upload-single-vector_3', 'filename'),
-            State('genes-to-KO_3', 'value'),
-            State('sgRNA-handle-input_3', 'value'),
-            State('input-tm_3', 'value'),
-            State('gc-upper_3', 'value'),
-            State('gc-lower_3', 'value'),
-            State('off-target-seed_3', 'value'),
-            State('off-target-upper_3', 'value'),
-            State('cas-type_3', 'value'),
-            State('number-of-sgRNAs-per-group_3', 'value'),
-            State('only-stop-codons-checkbox_3', 'value'),
-            State('chosen-polymerase_3', 'value'),
-            State('melting-temperature_3', 'value'),
-            State('primer-concentration_3', 'value'),
-            State('primer-number-increment_3', 'value'),
-            State('flanking-region-number_3', 'value'),
-            State('restriction-overhang-f', 'value'),
-            State('restriction-overhang-r', 'value'),
-            State('backbone-overhang-f', 'value'),
-            State('backbone-overhang-r', 'value'),
-            State('cys4-sequence', 'value')
+    [
+        Output('primer-table_3', 'data'),
+        Output('primer-table_3', 'columns'),
+        Output('pcr-table_3', 'data'),
+        Output('pcr-table_3', 'columns'),
+        Output('overhang-table_3', 'data'),
+        Output('overhang-table_3', 'columns'),
+        Output('download-data-and-protocols-link_3', 'href'),
+        Output('mutated-sgrna-table_3', 'data'),
+        Output('mutated-sgrna-table_3', 'columns'), 
+        Output('plasmid-metadata-table_3', 'data'),
+        Output('plasmid-metadata-table_3', 'columns'),
+        Output('error-dialog_3', 'message'),
+        Output('error-dialog_3', 'displayed'),
+    ],
+    [
+        Input('submit-button_3', 'n_clicks')
+    ],
+    [
+        State({'type': 'upload-component', 'index': 'genome-file-3'}, 'contents'),  # This matches the layout
+        State({'type': 'upload-component', 'index': 'single-vector-3'}, 'contents'),   # This matches the layout
+        State({'type': 'upload-component', 'index': 'genome-file-3'}, 'filename'),  # This matches the layout
+        State({'type': 'upload-component', 'index': 'single-vector-3'}, 'filename'),   # This matches the layout
+        State('genes-to-KO_3', 'value'),
+        State('sgRNA-handle-input_3', 'value'),
+        State('input-tm_3', 'value'),
+        State('gc-upper_3', 'value'),
+        State('gc-lower_3', 'value'),
+        State('off-target-seed_3', 'value'),
+        State('off-target-upper_3', 'value'),
+        State('cas-type_3', 'value'),
+        State('number-of-sgRNAs-per-group_3', 'value'),
+        State('only-stop-codons-checkbox_3', 'value'),
+        State('chosen-polymerase_3', 'value'),
+        State('melting-temperature_3', 'value'),
+        State('primer-concentration_3', 'value'),
+        State('primer-number-increment_3', 'value'),
+        State('flanking-region-number_3', 'value'),
+        State('restriction-overhang-f', 'value'),
+        State('restriction-overhang-r', 'value'),
+        State('backbone-overhang-f', 'value'),
+        State('backbone-overhang-r', 'value'),
+        State('cys4-sequence', 'value')
         ]
     )
     

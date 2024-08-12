@@ -58,6 +58,7 @@ crispri_tab = html.Div(children=[
         )
     ], className="mb-4", justify="start"),
 
+    
     dbc.Row([
         dbc.Col([
             html.H4("1) Upload your genome file", style=text_style),
@@ -65,7 +66,7 @@ crispri_tab = html.Div(children=[
                 dbc.CardBody([
                     html.H5("Genome File", className="card-title", style=text_style),
                     dcc.Upload(
-                        id='upload-genome-file_4',
+                        id={'type': 'upload-component', 'index': 'genome-file-4'},  # Updated to use pattern matching ID
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select Genome File', style=link_style)
@@ -73,7 +74,7 @@ crispri_tab = html.Div(children=[
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id='uploaded-genome-filename_4', children=[], style=text_style),
+                    html.Div(id={'type': 'filename-display', 'index': 'genome-file-4'}, children=[], style=text_style),  # Updated to use pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),
@@ -86,7 +87,7 @@ crispri_tab = html.Div(children=[
                 dbc.CardBody([
                     html.H5("CRISPRi Vector", className="card-title", style=text_style),
                     dcc.Upload(
-                        id='upload-crispri-vector_4',
+                        id={'type': 'upload-component', 'index': 'crispri-vector-4'},  # Updated to use pattern matching ID
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select CRISPRi Vector File', style=link_style)
@@ -94,7 +95,7 @@ crispri_tab = html.Div(children=[
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id='uploaded-crispri-vector-filename_4', children=[], style=text_style),
+                    html.Div(id={'type': 'filename-display', 'index': 'crispri-vector-4'}, children=[], style=text_style),  # Updated to use pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),
