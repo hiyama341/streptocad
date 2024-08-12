@@ -12,7 +12,6 @@
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
 # callbacks_interactivity.py
-
 from dash.dependencies import Input, Output, State, ALL
 from dash.exceptions import PreventUpdate
 
@@ -40,16 +39,33 @@ def register_interactivity_callbacks(app):
             raise PreventUpdate
         return [validate_file_extension(filename) for filename in filenames]
 
-    # Add the callback specifically for tab2
+    # Separate callback for tab2 and tab3 to avoid conflicts
     @app.callback(
         [
             Output('uploaded-genome-filename_2', 'children'),
-            Output('uploaded-single-vector-filename_2', 'children')
+            Output('uploaded-single-vector-filename_2', 'children'),
         ],
         [
             Input('upload-genome-file_2', 'filename'),
-            Input('upload-single-vector_2', 'filename')
+            Input('upload-single-vector_2', 'filename'),
         ]
     )
-    def display_uploaded_filenames(genome_filename, vector_filename):
-        return genome_filename or "No file selected", vector_filename or "No file selected"
+    def display_uploaded_filenames_tab2(genome_filename, vector_filename):
+        genome_text = genome_filename or "No file selected"
+        vector_text = vector_filename or "No file selected"
+        return genome_text, vector_text
+
+    @app.callback(
+        [
+            Output('uploaded-genome-filename_3', 'children'),
+            Output('uploaded-single-vector-filename_3', 'children')
+        ],
+        [
+            Input('upload-genome-file_3', 'filename'),
+            Input('upload-single-vector_3', 'filename')
+        ]
+    )
+    def display_uploaded_filenames_tab3(genome_filename, vector_filename):
+        genome_text = genome_filename or "No file selected"
+        vector_text = vector_filename or "No file selected"
+        return genome_text, vector_text
