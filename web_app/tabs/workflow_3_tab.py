@@ -261,6 +261,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                             style={'color': '#000'}
                         ),
                     ], width=6),
+
                     dbc.Col([
                         dbc.Label("Flanking Region Number", style={'color': '#ddd'}),
                         dbc.Input(
@@ -270,6 +271,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                             style={'color': '#000'}
                         ),
                     ], width=6),
+
                     dbc.Col([
                         dbc.Label("Restriction Overhang Forward", style={'color': '#ddd'}),
                         dbc.Input(
@@ -320,6 +322,12 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         ], width=6),
     ], className="mb-4"),
 
+    dbc.Row([
+        dbc.Col([
+            dbc.Button('Submit', id='submit-button_3', color="primary", className="mt-3"),
+        ], width=12),
+    ], className="mb-4"),
+    
 
    ### Output
     dbc.Row([
@@ -339,7 +347,6 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                         dbc.CardBody([
                             html.H5("Primers", className="card-title", style=text_style),
                             DataTable(id='primer-table_3', **table_style),
-                            # Removed the download button
                         ])
                     ], style=card_style),
                     
@@ -361,18 +368,18 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                     dbc.Card([
                         dbc.CardBody([
                             html.H5("Overview of plasmids generated", className="card-title", style=text_style),
-                            # Removed the download button
+                            DataTable(id='plasmid-metadata-table_3', **table_style),
                         ])
                     ], style=card_style),
 
                     dbc.Card([
                         dbc.CardBody([
                             html.H5("Download folder with all data & protocols", className="card-title", style=text_style),
-                            DataTable(id='all_data_3', **table_style),
+                            DataTable(id='all_data_4', **table_style),
                             html.A(
                                 'Download All Data & protocols',
                                 id='download-data-and-protocols-link_3',
-                                download="all_data",
+                                download="data_package",
                                 href="",
                                 target="_blank",
                                 className="btn btn-primary"

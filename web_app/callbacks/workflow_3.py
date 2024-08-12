@@ -2,58 +2,99 @@
 # MIT License
 # Copyright (c) 2024, Technical University of Denmark (DTU)
 #
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-
+# Standard library imports
 import os
 import sys
 import io
 import zipfile
 import base64
 import csv
+from datetime import datetime
+
+# Third-party imports
 import pandas as pd
 from Bio import SeqIO
 from Bio.Restriction import NcoI, NheI
-from Bio.SeqRecord import SeqRecord
 from pydna.dseqrecord import Dseqrecord
-from teemi.design.fetch_sequences import read_genbank_files
-from teemi.build.PCR import primer_tm_neb 
-import dash
-from dash import dcc, html, dash_table
+from dash import dcc, html, dash_table, exceptions
 from dash.dependencies import Input, Output, State
-from dash.dash_table.Format import Group
 import dash_bootstrap_components as dbc
 from dash.exceptions import PreventUpdate
 from urllib.parse import quote
-import tempfile
-from datetime import datetime
 import logging
-from components import display_uploaded_filenames
+import tempfile
+from teemi.build.PCR import primer_tm_neb
+import logging
+import sys
+import io
 
-# Set up logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Create a StringIO object to capture logs in memory
+log_stream = io.StringIO()
+
+# Remove any existing handlers
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
+        logging.StreamHandler(log_stream)   # Capture logs in StringIO
+    ]
+)
+
+# Create a logger
+logger = logging.getLogger(__name__)
+
+# Test logging with different levels
+logger.debug("This debug message won't be shown")
+logger.info("This is an info message")
+logger.warning("This is a warning message")
+logger.error("This is an error message")
+logger.critical("This is a critical message")
+
+# Print the content of log_stream to verify it's capturing logs
+log_stream.seek(0)
+print("Captured logs in StringIO:")
+print(log_stream.read())
+
+
+
 
 # Local module imports
 module_path = os.path.abspath(os.path.join('..'))
 if module_path not in sys.path:
     sys.path.append(module_path)
 
-from streptocad.cloning.golden_gate_cloning import GoldenGateCloning, create_overhang_dataframe, digest_amplicons_w_BsaI
-from streptocad.primers.primer_analysis import analyze_primers_and_hairpins
-from streptocad.sequence_loading.sequence_loading import load_and_process_gene_sequences
-from streptocad.utils import dataframe_to_seqrecords, ProjectDirectory
+from streptocad.sequence_loading.sequence_loading import (
+    load_and_process_genome_sequences,
+    load_and_process_plasmid, 
+    check_and_convert_input,
+    annotate_dseqrecord,
+    process_specified_gene_sequences_from_record
+)
+
+from streptocad.utils import polymerase_dict, dataframe_to_seqrecords, ProjectDirectory, extract_metadata_to_dataframe
 from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
-from streptocad.crispr.crispr_best import identify_base_editing_sites, filter_sgrnas_for_base_editing, process_base_editing
-from streptocad.cloning.plasmid_processing import annotate_plasmid_with_sgrnas
+from streptocad.crispr.crispr_best import (
+    identify_base_editing_sites,
+    filter_sgrnas_for_base_editing,
+    process_base_editing
+)
+
+from streptocad.cloning.golden_gate_cloning import (
+    GoldenGateCloning,
+    create_overhang_dataframe,
+    digest_amplicons_w_BsaI
+)
+
+from streptocad.primers.primer_analysis import analyze_primers_and_hairpins
+from streptocad.primers.primer_generation import create_idt_order_dataframe
 from streptocad.wet_lab.gel_simulation import simulate_gel_electrophoresis
-from streptocad.primers.primer_generation import checking_primers, create_idt_order_dataframe
+from streptocad.cloning.plasmid_processing import annotate_plasmid_with_sgrnas
 
 def save_file(name, content):
     """Decode and store a file uploaded with Plotly Dash."""
@@ -62,6 +103,7 @@ def save_file(name, content):
         fp.write(base64.decodebytes(data))
 
 def register_workflow_3_callbacks(app):
+
     @app.callback(
         [
             Output('primer-table_3', 'data'),
@@ -70,16 +112,17 @@ def register_workflow_3_callbacks(app):
             Output('pcr-table_3', 'columns'),
             Output('overhang-table_3', 'data'),
             Output('overhang-table_3', 'columns'),
-            Output('genbank-file_3', 'href'),
-            Output('download-primers-link_3', 'href'),
-            Output('download-pcr-link_3', 'href'),
             Output('download-data-and-protocols-link_3', 'href'),
             Output('mutated-sgrna-table_3', 'data'),
-            Output('mutated-sgrna-table_3', 'columns'),
-            Output('uploaded-genome-filename_3', 'children'),  # Update these lines
-            Output('uploaded-single-vector-filename_3', 'children')
+            Output('mutated-sgrna-table_3', 'columns'), 
+            Output('plasmid-metadata-table_3', 'data'),
+            Output('plasmid-metadata-table_3', 'columns'),
+            Output('error-dialog_3', 'message'),
+            Output('error-dialog_3', 'displayed'),
         ],
-        [Input('submit-button_3', 'n_clicks')],
+        [
+            Input('submit-button_3', 'n_clicks')
+        ],
         [
             State('upload-genome-file_3', 'contents'),
             State('upload-single-vector_3', 'contents'),
@@ -99,18 +142,28 @@ def register_workflow_3_callbacks(app):
             State('melting-temperature_3', 'value'),
             State('primer-concentration_3', 'value'),
             State('primer-number-increment_3', 'value'),
-            State('flanking-region-number_3', 'value')
+            State('flanking-region-number_3', 'value'),
+            State('restriction-overhang-f', 'value'),
+            State('restriction-overhang-r', 'value'),
+            State('backbone-overhang-f', 'value'),
+            State('backbone-overhang-r', 'value'),
+            State('cys4-sequence', 'value')
         ]
     )
+    
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO,
                     sgRNA_handle_input, input_tm, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type,
                     number_of_sgRNAs_per_group, only_stop_codons, chosen_polymerase, melting_temperature,
-                    primer_concentration, primer_number_increment, flanking_region_number):
+                    primer_concentration, primer_number_increment, flanking_region_number,
+                    restriction_overhang_f, restriction_overhang_r, backbone_overhang_f, backbone_overhang_r, cys4_sequence):
+
         if n_clicks is None:
             raise PreventUpdate
 
         try:
-            logging.info("Workflow 3 started")
+            logger.info("Workflow 3 started")
+            print("Workflow 3 started")  # Fallback print statement
+
 
             # Create a temporary directory
             with tempfile.TemporaryDirectory() as tempdir:
@@ -123,20 +176,27 @@ def register_workflow_3_callbacks(app):
 
                 # Read the GenBank files from the saved paths
                 logging.info("Reading genome and vector files")
-                input_genome = list(SeqIO.parse(genome_path, "genbank"))
-                input_plasmid = list(SeqIO.parse(vector_path, "genbank"))
+                #print("Reading genome and vector files")  # Fallback print statement
 
-                if not input_genome or not input_plasmid:
-                    raise ValueError("Unsupported file format. Please provide a valid GenBank file.")
+                genome = load_and_process_genome_sequences(genome_path)[0]
+                clean_plasmid = load_and_process_plasmid(vector_path)
 
-                genome = Dseqrecord(input_genome[0].seq, id=input_genome[0].id, description=input_genome[0].description)
-                plasmid = Dseqrecord(input_plasmid[0], circular=True)
-
+                # Process genes to KO
                 genes_to_KO_list = [gene.strip() for gene in genes_to_KO.split(',')]
                 logging.info(f"Genes to knock out: {genes_to_KO_list}")
+                #print(f"Genes to knock out: {genes_to_KO_list}")
 
-                # Initialize SgRNAargs with desired parameters
-                args = SgRNAargs(genome_path,
+
+                # Check and convert input genes for annotation
+                target_dict, genes_to_KO_list, annotation_input = check_and_convert_input(genes_to_KO_list)
+                if annotation_input:
+                    genome = annotate_dseqrecord(genome, target_dict)
+                logging.info("Annotation completed.")
+                #print("Annotation completed.")
+
+
+                # Extract sgRNAs
+                args = SgRNAargs(genome, 
                                 genes_to_KO_list,
                                 step=['find', 'filter'],
                                 gc_upper=gc_upper,
@@ -144,231 +204,191 @@ def register_workflow_3_callbacks(app):
                                 off_target_seed=off_target_seed,
                                 off_target_upper=off_target_upper,
                                 cas_type=cas_type)
-
-                logging.info("Extracting sgRNAs")
                 sgrna_df = extract_sgRNAs(args)
-                logging.info(f"sgRNA DataFrame: {sgrna_df}")
+                logging.info("sgRNA extraction completed.")
+                #print("sgRNA extraction completed.")
 
-                # Load gene sequences
-                logging.info("Loading gene sequences")
-                gene_sequences = load_and_process_gene_sequences(genome_path)
+
+                # Further processing of gene sequences and base editing
+                gene_sequences = process_specified_gene_sequences_from_record(genome, genes_to_KO_list)
+                logger.info(f"Gene sequences processed: {list(gene_sequences.keys())}")
+                #print(f"Gene sequences processed: {list(gene_sequences.keys())}")
+
                 genes_to_KO_dict = {locus_tag: gene_sequences[locus_tag] for locus_tag in genes_to_KO_list if locus_tag in gene_sequences}
-                logging.info(f"Genes to KO dictionary: {genes_to_KO_dict}")
-
-                # Identify and annotate base editing sites
-                logging.info("Identifying base editing sites")
                 sgrna_df_with_editing = identify_base_editing_sites(sgrna_df)
+                logger.info(f"Base editing sites identified: {sgrna_df_with_editing.shape[0]} rows")
+                #print(f"Base editing sites identified: {sgrna_df_with_editing.shape[0]} rows")
 
-                # Filter out only sgRNAs that result in base-editing
-                logging.info("Filtering sgRNAs for base editing")
+
                 filtered_sgrna_df_for_base_editing = filter_sgrnas_for_base_editing(sgrna_df_with_editing)
-                logging.info(f"Filtered sgRNAs for base editing: {filtered_sgrna_df_for_base_editing}")
+                logger.info(f"sgRNAs filtered for base editing: {filtered_sgrna_df_for_base_editing.shape[0]} rows")
+                #print(f"sgRNAs filtered for base editing: {filtered_sgrna_df_for_base_editing.shape[0]} rows")
 
-                # Process the DataFrame to apply C-to-T mutations
-                logging.info("Processing base editing")
-                mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing,
-                                                        genes_to_KO_dict,
-                                                        only_stop_codons=bool(only_stop_codons))
-                logging.info(f"Mutated sgRNAs: {mutated_sgrna_df}")
-
-                # Filter the DataFrame to retain only up to 5 sgRNA sequences per locus_tag
-                logging.info("Filtering sgRNAs to retain only up to 5 sequences per locus tag")
+                mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing, genes_to_KO_dict, only_stop_codons=bool(only_stop_codons))
+                logger.info(f"Base editing applied: {mutated_sgrna_df.shape[0]} rows")
                 filtered_df = mutated_sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
-                logging.info(f"Filtered DataFrame: {filtered_df}")
+                logger.info(f"sgRNAs filtered by group: {filtered_df.shape[0]} rows")
+                #print(f"sgRNAs filtered by group: {filtered_df.shape[0]} rows")
 
-                # Generate sgRNA list and handle sites
-                logging.info("Generating sgRNA list")
+
+                # Prepare sgRNA list and perform Golden Gate Cloning
                 sgRNA_list = dataframe_to_seqrecords(filtered_df)
+                logger.info(f"sgRNA list prepared: {len(sgRNA_list)} sequences")
+                #print(f"sgRNA list prepared: {len(sgRNA_list)} sequences")
+
                 sgRNA_handle_cys4_sites = [Dseqrecord(sgRNA_handle_input, name='sgRNA_handle_cys4')] * len(sgRNA_list)
+                golden_gate = GoldenGateCloning(sgRNA_list, sgRNA_handle_cys4_sites, target_tm=input_tm,
+                                                restriction_overhang_f=restriction_overhang_f, restriction_overhang_r=restriction_overhang_r,
+                                                backbone_overhang_f=backbone_overhang_f, backbone_overhang_r=backbone_overhang_r,
+                                                cys4=cys4_sequence, tm_function=primer_tm_neb,
+                                                primer_incrementation=primer_number_increment, polymerase=chosen_polymerase)
+                logger.info("Golden Gate Cloning setup completed.")
+                #print("Golden Gate Cloning setup completed.")
 
-                # Parameters for golden gate cloning
-                restriction_overhang_f = "GATCGggtctcc"
-                restriction_overhang_r = "GATCAGGTCTCg"
-                backbone_overhang_f = "cATG"
-                backbone_overhang_r = "cTAG"
-                cys4 = "gTTCACTGCCGTATAGGCAGCTAAGAAA"
 
-                # Golden Gate Cloning
-                logging.info("Performing Golden Gate Cloning")
-                golden_gate = GoldenGateCloning(sgRNA_list,
-                                                sgRNA_handle_cys4_sites,
-                                                target_tm=input_tm,
-                                                restriction_overhang_f=restriction_overhang_f,
-                                                restriction_overhang_r=restriction_overhang_r,
-                                                backbone_overhang_f=backbone_overhang_f,
-                                                backbone_overhang_r=backbone_overhang_r,
-                                                cys4=cys4,
-                                                tm_function=primer_tm_neb,
-                                                primer_incrementation=primer_number_increment,
-                                                polymerase=chosen_polymerase)
-
-                # Generate primers
-                logging.info("Generating primer DataFrame")
+                # Primer generation, analysis, and gel electrophoresis simulation
                 primer_df = golden_gate.generate_primer_dataframe()
-                logging.info(f"Primer DataFrame: {primer_df}")
+                logger.info(f"Primer dataframe generated: {primer_df.shape[0]} rows")
+                #print(f"Primer dataframe generated: {primer_df.shape[0]} rows")
 
-                # Primer analysis
-                logging.info("Analyzing primers")
-                analysis_of_primers = analyze_primers_and_hairpins(primer_df)
-                logging.info(f"Analysis of primers: {analysis_of_primers}")
+                analyze_primers_and_hairpins(primer_df)
+                logger.info("Primers analyzed for hairpins.")
+                #print("Primers analyzed for hairpins.")
 
-                # Generate IDT order DataFrame
-                logging.info("Generating IDT order DataFrame")
                 idt_df = create_idt_order_dataframe(primer_df, concentration="25nm", purification="STD")
-                logging.info(f"IDT DataFrame: {idt_df}")
+                logger.info(f"IDT order dataframe created: {idt_df.shape[0]} rows")
+                #print(f"IDT order dataframe created: {idt_df.shape[0]} rows")
 
-                # Simulate PCR
-                logging.info("Simulating PCRs")
                 list_of_amplicons = golden_gate.simulate_pcrs()
 
-                # Simulate gel electrophoresis
-                logging.info("Simulating gel electrophoresis")
-                simulate_gel_electrophoresis(list_of_amplicons)
-
-                # Generate overhang DataFrame
-                logging.info("Generating overhang DataFrame")
-                overhangs = create_overhang_dataframe(list_of_amplicons)
-                logging.info(f"Overhang DataFrame: {overhangs}")
-
-                # Digest amplicons
-                logging.info("Digesting amplicons")
-                digest_amplicons = digest_amplicons_w_BsaI(list_of_amplicons)
-                for digest in digest_amplicons:
-                    logging.info(digest.figure())
-
                 # Digest and assemble plasmid
-                logging.info("Digesting and assembling plasmid")
-                linear_plasmid, _ = sorted(plasmid.cut(NcoI, NheI), key=lambda x: len(x), reverse=True)
+                overhangs = create_overhang_dataframe(list_of_amplicons)
+                logger.info(f"Overhang dataframe created: {overhangs.shape[0]} rows")
+                #print(f"Overhang dataframe created: {overhangs.shape[0]} rows")
+
+                digest_amplicons = digest_amplicons_w_BsaI(list_of_amplicons)
+                logger.info(f"Amplicons digested: {len(digest_amplicons)} fragments")
+                #print(f"Amplicons digested: {len(digest_amplicons)} fragments")
+
+                linear_plasmid, _ = sorted(clean_plasmid.cut(NcoI, NheI), key=lambda x: len(x), reverse=True)
+                logger.info("Plasmid linearized.")
+                #print("Plasmid linearized.")
+                
                 for amplicon in digest_amplicons:
                     linear_plasmid.seq += amplicon.seq
-
                 rec_vec = linear_plasmid.looped()
+                logger.info("Plasmid recircularized.")
+                #print("Plasmid recircularized.")
 
-                # Annotate plasmid
-                logging.info("Annotating plasmid")
+
+                # Annotate and generate plasmid metadata
                 annotate_plasmid_with_sgrnas(rec_vec, filtered_df)
+                logger.info("Plasmid annotated with sgRNAs.")
+                #print("Plasmid annotated with sgRNAs.")
 
-                # Generate checking primers
-                logging.info("Generating checking primers")
-                checking_primers_df = checking_primers(genome_path, genes_to_KO_list,
-                                                    flanking_region=flanking_region_number,
-                                                    target_tm=melting_temperature,
-                                                    primer_concentration=primer_concentration,
-                                                    polymerase=chosen_polymerase)
-                checking_primers_df_idt = create_idt_order_dataframe(checking_primers_df)
+                integration_names = filtered_df.apply(lambda row: f"sgRNA_{row['locus_tag']}({row['sgrna_loc']})", axis=1).tolist()
+                integration_names = [';'.join(integration_names)]
 
-                # Combine IDT DataFrames
-                logging.info("Combining IDT DataFrames")
-                full_idt = pd.concat([idt_df, checking_primers_df_idt])
-                logging.info(f"Full IDT DataFrame: {full_idt}")
+                plasmid_metadata_df = extract_metadata_to_dataframe([rec_vec],
+                                                                    clean_plasmid,
+                                                                    integration_names)
 
-                # Prepare outputs for the DataTable
-                logging.info("Preparing data for DataTables")
-                primers_columns = [{"name": col, "id": col} for col in full_idt.columns]
-                primers_data = full_idt.to_dict('records')
+                logger.info(f"Plasmid metadata extracted: {plasmid_metadata_df.shape[0]} rows")
+                #print(f"Plasmid metadata extracted: {plasmid_metadata_df.shape[0]} rows")
 
-                pcr_columns = [{"name": col, "id": col} for col in checking_primers_df.columns]
-                pcr_data = checking_primers_df.to_dict('records')
+                # Prepare DataTables outputs
+                primers_columns = [{"name": col, "id": col} for col in idt_df.columns]
+                primers_data = idt_df.to_dict('records')
+
+                pcr_columns = [{"name": col, "id": col} for col in primer_df.columns]
+                pcr_data = primer_df.to_dict('records')
 
                 overhang_columns = [{"name": col, "id": col} for col in overhangs.columns]
                 overhang_data = overhangs.to_dict('records')
 
-                # Prepare mutated sgRNA DataFrame for DataTable
-                logging.info("Preparing mutated sgRNA DataFrame for DataTable")
                 filtered_sgrna_columns = [{"name": col, "id": col} for col in filtered_df.columns]
                 filtered_sgrna_data = filtered_df.to_dict('records')
 
-                # IDT download links
-                primer_df_string = full_idt.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
-                primer_data_encoded = quote(primer_df_string)
-                primer_download_link = f"data:text/csv;charset=utf-8,{primer_data_encoded}"
+                plasmid_metadata_columns = [{"name": col, "id": col} for col in plasmid_metadata_df.columns]
+                plasmid_metadata_data = plasmid_metadata_df.to_dict('records')
 
-                pcr_df_string = checking_primers_df.to_csv(index=False, quoting=csv.QUOTE_NONNUMERIC)
-                pcr_data_encoded = quote(pcr_df_string)
-                pcr_download_link = f"data:text/csv;charset=utf-8,{pcr_data_encoded}"
-
-                # Provide a link for downloading GenBank files
-                encoded_genbank_file = base64.b64encode(str(rec_vec).encode()).decode()
-                genbank_download_link = f"data:application/genbank;base64,{encoded_genbank_file}"
-
-                # New function call to generate project directory structure
-                input_files = [
-                    {"name": "input_genome.gb", "content": genome},
-                    {"name": "input_plasmid.gb", "content": plasmid}
-                ]
-
-                output_files = [
-                    {"name": "mcBEST_w_sgRNAs.gb", "content": rec_vec},
-                    {"name": "overhang_df.csv", "content": overhangs},
-                    {"name": "pcr_df.csv", "content": primer_df},
-                    {"name": "full_idt.csv", "content": full_idt},
-                    {"name": "filtered_sgrna_df.csv", "content": filtered_df},
-                    {"name": "filtered_df.csv", "content": filtered_df}
-                ]
-
-                input_values = {
-                    "genes_to_knockout": genes_to_KO_list,
-                    "filtering_metrics": {
-                        "gc_upper": gc_upper,
-                        "gc_lower": gc_lower,
-                        "off_target_seed": off_target_seed,
-                        "off_target_upper": off_target_upper,
-                        "cas_type": cas_type,
-                        "number_of_sgRNAs_per_group": number_of_sgRNAs_per_group
-                    },
-                    "polymerase_settings": {
-                        "chosen_polymerase": chosen_polymerase,
-                        "melting_temperature": melting_temperature,
-                        "primer_concentration": primer_concentration,
-                        "primer_number_increment": primer_number_increment,
-                        "flanking_region": flanking_region_number
-                    },
-                    "overlapping_sequences": {
-                        "restriction_overhang_f": restriction_overhang_f,
-                        "restriction_overhang_r": restriction_overhang_r,
-                        "backbone_overhang_f": backbone_overhang_f,
-                        "backbone_overhang_r": backbone_overhang_r,
-                        "cys4": cys4,
-                        "sgRNA_handle_cys4_site": str(sgRNA_handle_cys4_sites[0].seq)
-                    }
-                }
-
-                # Paths to Markdown files
-                markdown_file_paths = [
-                    "../protocols/conjugation_protcol.md",
-                    "../protocols/multi_target_crispr_plasmid_protcol.md"
-                ]
-
-                # Data and time
-                timestamp = datetime.utcnow().isoformat()
-                project_name = f"CRISPR_mcBEST_workflow_{timestamp}"
-
-                # Create project directory structure
+                # Generate download link for data package
+                input_files = [{"name": "input_genome.gb", "content": genome},
+                            {"name": "input_plasmid.gb", "content": clean_plasmid}]
+                output_files = [{"name": "mcBEST_w_sgRNAs.gb", "content": rec_vec},
+                                {"name": "overhang_df.csv", "content": overhangs},
+                                {"name": "pcr_df.csv", "content": primer_df},
+                                {"name": "full_idt.csv", "content": idt_df},
+                                {"name": "mutated_sgrna_df.csv", "content": mutated_sgrna_df},
+                                {"name": "filtered_df.csv", "content": filtered_df},
+                                {"name": "plasmid_metadata_df.csv", "content": plasmid_metadata_df}]
+                input_values = {"genes_to_knockout": genes_to_KO_list,
+                                "filtering_metrics": {"gc_upper": gc_upper, "gc_lower": gc_lower,
+                                                    "off_target_seed": off_target_seed,
+                                                    "off_target_upper": off_target_upper,
+                                                    "cas_type": cas_type,
+                                                    "number_of_sgRNAs_per_group": number_of_sgRNAs_per_group},
+                                "polymerase_settings": {"chosen_polymerase": chosen_polymerase,
+                                                        "melting_temperature": melting_temperature,
+                                                        "primer_concentration": primer_concentration,
+                                                        "primer_number_increment": primer_number_increment,
+                                                        "flanking_region": flanking_region_number},
+                                "overlapping_sequences": {"restriction_overhang_f": restriction_overhang_f,
+                                                        "restriction_overhang_r": restriction_overhang_r,
+                                                        "backbone_overhang_f": backbone_overhang_f,
+                                                        "backbone_overhang_r": backbone_overhang_r,
+                                                        "cys4": cys4_sequence,
+                                                        "sgRNA_handle_cys4_site": str(sgRNA_handle_cys4_sites[0].seq)}}
+                markdown_file_paths = ["../protocols/conjugation_protcol.md",
+                                    "../protocols/multi_target_crispr_plasmid_protcol.md"]
+                
+                
                 project_directory = ProjectDirectory(
-                    project_name=project_name,
+                    project_name=f"CRISPR_mcBEST_workflow_{datetime.utcnow().isoformat()}",
                     input_files=input_files,
                     output_files=output_files,
                     input_values=input_values,
                     markdown_file_paths=markdown_file_paths
                 )
 
-                # Generate the project directory structure and get the zip content
                 zip_content = project_directory.create_directory_structure(create_directories=True)
-
-                # Encode the zip content for download
                 data_package_encoded = base64.b64encode(zip_content).decode('utf-8')
                 data_package_download_link = f"data:application/zip;base64,{data_package_encoded}"
 
-                logging.info("Workflow 3 completed successfully")
 
-                return (
-                primers_data, primers_columns, pcr_data, pcr_columns, overhang_data, overhang_columns,
-                genbank_download_link, primer_download_link, pcr_download_link, data_package_download_link,
-                filtered_sgrna_data, filtered_sgrna_columns,
-                display_uploaded_filenames('uploaded-genome-filename_3', genome_filename),  # Update these lines
-                display_uploaded_filenames('uploaded-single-vector-filename_3', vector_filename)
+
+                logger.info("Workflow 3 completed successfully")
+                #print("Workflow 3 completed successfully")
+
+
+
+            # Clear the log stream after successful execution
+            #log_stream.truncate(0)
+            #log_stream.seek(0)
+
+            return (
+                primers_data, 
+                primers_columns,
+                pcr_data, 
+                pcr_columns,
+                overhang_data, 
+                overhang_columns,
+                data_package_download_link,
+                filtered_sgrna_data, 
+                filtered_sgrna_columns,
+                plasmid_metadata_data, 
+                plasmid_metadata_columns,
+                "",  # Empty message if no error occurred
+                False  # Error dialog should not be displayed
             )
 
         except Exception as e:
-            logging.error(f"An error occurred: {str(e)}")
-            raise PreventUpdate
+            logger.error(f"An error occurred: {str(e)}")
+            print(f"An error occurred: {str(e)}")  # Fallback print
+
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
+            display_error = True
+            return [], [], [], [], "", [], [], [], [], [], [], error_message, display_error
+        
+
+
