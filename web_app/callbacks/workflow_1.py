@@ -38,19 +38,6 @@ logging.basicConfig(
 # Create a logger
 logger = logging.getLogger(__name__)
 
-# Test logging with different levels
-logger.debug("This debug message won't be shown")
-logger.info("This is an info message")
-logger.warning("This is a warning message")
-logger.error("This is an error message")
-logger.critical("This is a critical message")
-
-# Print the content of log_stream to verify it's capturing logs
-log_stream.seek(0)
-print("Captured logs in StringIO:")
-print(log_stream.read())
-
-
 # functions from StreptoCAD
 # Local module imports
 module_path = os.path.abspath(os.path.join('..'))
