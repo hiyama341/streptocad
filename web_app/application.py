@@ -68,12 +68,18 @@ main_layout = dbc.Container([
         ], width=9),
     ]),
     footer_content,
+
+    #### ERROR BOX 
     dcc.ConfirmDialog(
         id='error-dialog_1',
         message=""
     ),
     dcc.ConfirmDialog(
         id='error-dialog_2',
+        message=""
+    ),
+    dcc.ConfirmDialog(
+        id='error-dialog_3',
         message=""
     ),
 ], fluid=True, style={'backgroundColor': '#2C3E50', 'padding': '20px', 'color': '#ddd'})
