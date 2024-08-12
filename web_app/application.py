@@ -4,7 +4,7 @@
 # DASH imports
 import dash
 from dash import dcc, html, no_update
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output, State, MATCH
 from dash.exceptions import PreventUpdate
 import time
 from urllib.parse import quote
@@ -141,6 +141,15 @@ def toggle_advanced_settings(checkbox_value):
         return {'display': 'block'}
     else:
         return {'display': 'none'}
+    
+
+@app.callback(
+    Output({'type': 'filename-display', 'index': MATCH}, 'children'),
+    Input({'type': 'upload-component', 'index': MATCH}, 'filename')
+)
+def update_filename_display(filename):
+    return f"Uploaded file: {filename}" if filename else "No file uploaded"
+
 
 # Register callbacks to the app
 register_workflow_1_callbacks(app)
