@@ -14,6 +14,17 @@ If you have used StreptoCAD in a publication, please remember to cite us.
 # Introduction page
 introduction_page = html.Div(
     [
+        # Logo at the top center
+        html.Img(
+            src="/assets/StreptoCAD_logo_round.png",
+            style={
+                'width': '150px',
+                'marginBottom': '20px',
+                'display': 'block',
+                'marginLeft': 'auto',
+                'marginRight': 'auto',
+            }
+        ),
         dcc.Markdown(
             introduction_text,
             style={
@@ -58,4 +69,3 @@ introduction_page = html.Div(
     ],
     style={'height': '100vh', 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'center', 'alignItems': 'center', 'backgroundColor': '#2C3E50'}
 )
-
