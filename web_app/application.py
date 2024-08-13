@@ -82,6 +82,14 @@ main_layout = dbc.Container([
         id='error-dialog_3',
         message=""
     ),
+    dcc.ConfirmDialog(
+        id='error-dialog_4',
+        message=""
+    ),
+    dcc.ConfirmDialog(
+        id='error-dialog_5',
+        message=""
+    ),
 ], fluid=True, style={'backgroundColor': '#2C3E50', 'padding': '20px', 'color': '#ddd'})
 
 # Overall layout with introduction page
