@@ -67,7 +67,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 dbc.CardBody([
                     html.H5("Genome File", className="card-title", style=text_style),
                     dcc.Upload(
-                        id={'type': 'upload-component', 'index': 'genome-file'},  # Updated to use pattern matching ID
+                        id={'type': 'upload-component', 'index': 'genome-file-5'},  # Updated to use pattern matching ID
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select Genome File', style=link_style)
@@ -75,7 +75,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id={'type': 'filename-display', 'index': 'genome-file'}, children=[], style=text_style),  # Updated to use pattern matching ID
+                    html.Div(id={'type': 'filename-display', 'index': 'genome-file-5'}, children=[], style=text_style),  # Updated to use pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),
@@ -88,7 +88,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 dbc.CardBody([
                     html.H5("CRISPR Vector", className="card-title", style=text_style),
                     dcc.Upload(
-                        id={'type': 'upload-component', 'index': 'single-vector'},  # Updated to use pattern matching ID
+                        id={'type': 'upload-component', 'index': 'single-vector-5'},  # Updated to use pattern matching ID
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select CRISPR Vector File', style=link_style)
@@ -96,7 +96,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id={'type': 'filename-display', 'index': 'single-vector'}, children=[], style=text_style),  # Updated to use pattern matching ID
+                    html.Div(id={'type': 'filename-display', 'index': 'single-vector-5'}, children=[], style=text_style),  # Updated to use pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),
@@ -110,7 +110,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                     html.H5("Example for genes: SCO5087, SCO5087,... (comma-separated)", className="card-title", style=text_style),
                     html.H5("Example for regions: 1000-2000, 100000-101000,... (comma-separated)", className="card-title", style=text_style),
                     dbc.Textarea(
-                        id='genes-to-KO',
+                        id='genes-to-KO_5',
                         placeholder='Enter genes to knock out, e.g., SCO5087',
                         value='SCO5087',
                         style={'width': '100%', 'height': '100px'}
@@ -132,7 +132,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
         dbc.Col([
             html.Label('5 prime Overhang:', style=text_style),
             dbc.Input(
-                id='forward-overhang-input',
+                id='forward-overhang-input_5',
                 type='text',
                 placeholder='Enter Forward Overhang',
                 value='CGGTTGGTAGGATCGACGGC'
@@ -144,7 +144,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
         dbc.Col([
             html.Label('3 prime Overhang:', style=text_style),
             dbc.Input(
-                id='reverse-overhang-input',
+                id='reverse-overhang-input_5',
                 type='text',
                 placeholder='Enter Reverse Overhang',
                 value='GTTTTAGAGCTAGAAATAGC'
@@ -159,7 +159,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 dbc.Col([
                     dbc.Label("GC Content Upper Bound", style={'color': '#ddd'}),  
                     dbc.Input(
-                        id='gc-upper',
+                        id='gc-upper_5',
                         type='number',
                         value=0.99,
                         style={'color': '#000', 'width': '100%'}
@@ -168,16 +168,17 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 dbc.Col([
                     dbc.Label("GC Content Lower Bound", style={'color': '#ddd'}),  
                     dbc.Input(
-                        id='gc-lower',
+                        id='gc-lower_5',
                         type='number',
                         value=0.01,
                         style={'color': '#000', 'width': '100%'}
                     ),
                 ], width=12, className="mb-3"),
+
                 dbc.Col([
                     dbc.Label("Off-Target Seed Length", style={'color': '#ddd'}),  
                     dbc.Input(
-                        id='off-target-seed',
+                        id='off-target-seed_5',
                         type='number',
                         value=13,
                         style={'color': '#000', 'width': '100%'}
@@ -186,7 +187,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 dbc.Col([
                     dbc.Label("Off-Target Upper Bound", style={'color': '#ddd'}),  
                     dbc.Input(
-                        id='off-target-upper',
+                        id='off-target-upper_5',
                         type='number',
                         value=10,
                         style={'color': '#000', 'width': '100%'}
@@ -195,10 +196,9 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 dbc.Col([
                     dbc.Label("Cas Type", style={'color': '#ddd'}),  
                     dcc.Dropdown(
-                        id='cas-type',
+                        id='cas-type_5',
                         options=[
                             {'label': 'Cas9', 'value': 'cas9'},
-                            {'label': 'Cas12a', 'value': 'cas12a'}
                         ],
                         value='cas9',
                         style={'color': '#000', 'width': '100%'}
@@ -207,7 +207,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 dbc.Col([
                     dbc.Label("Number of sgRNAs per region/locus tag", style={'color': '#ddd'}),  
                     dbc.Input(
-                        id='number-of-sgRNAs-per-group',
+                        id='number-of-sgRNAs-per-group_5',
                         type='number',
                         value=5,
                         style={'color': '#000', 'width': '100%'}
@@ -244,7 +244,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                     dbc.Col([
                         dbc.Label("Choose Polymerase", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                         dcc.Dropdown(
-                            id='chosen-polymerase',
+                            id='chosen-polymerase_5',
                             options=dropdown_options,
                             value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],  # Set default value
                             style={'color': '#000'}  # Ensure text is black
@@ -253,7 +253,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                     dbc.Col([
                         dbc.Label("Target Melting Temperature (°C)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                         dbc.Input(
-                            id='melting-temperature',
+                            id='melting-temperature_5',
                             type='number',
                             value=65,
                             style={'color': '#000'}  # Ensure text is black
@@ -262,7 +262,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                     dbc.Col([
                         dbc.Label("Primer Concentration (μM)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                         dbc.Input(
-                            id='primer-concentration',
+                            id='primer-concentration_5',
                             type='number',
                             value=0.4,
                             style={'color': '#000'}  # Ensure text is black
@@ -271,7 +271,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                     dbc.Col([
                         dbc.Label("Primer Number Increment", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                         dbc.Input(
-                            id='primer-number-increment',
+                            id='primer-number-increment_5',
                             type='number',
                             value=1,
                             style={'color': '#000'}  # Ensure text is black
@@ -280,7 +280,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                     dbc.Col([
                         dbc.Label("Flanking Region Number", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
                         dbc.Input(
-                            id='flanking-region-number',
+                            id='flanking-region-number_5',
                             type='number',
                             value=500,
                             style={'color': '#000'}  # Ensure text is black
@@ -294,13 +294,13 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
     dbc.Row([
         dbc.Col([
             html.H4("7) Generate in-frame deletions", style=text_style),
-            html.P("Note: adding repair templates to your plasmids", style={'color': '#ddd', 'fontSize': '1rem'}),
+            html.P("Note: adding repair templates to your plasmids (default 1000 bp)", style={'color': '#ddd', 'fontSize': '1rem'}),
             dbc.Checklist(
                 options=[
                     {"label": "", "value": 1},
                 ],
                 value=[],
-                id="show-inframe-deletions-settings-checkbox",
+                id="show-inframe-deletions-settings-checkbox_5",
                 inline=True,
                 switch=True,  # This creates a regular checkbox
                 className="big-switch"
@@ -312,7 +312,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
 
     dbc.Row([
         dbc.Col([
-            dbc.Button('Submit', id='submit-settings-button', color="primary", className="mt-3"),
+            dbc.Button('Submit', id='submit-settings-button_5', color="primary", className="mt-3"),
         ], width=12),
     ], className="mb-4"),
     
@@ -326,8 +326,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                     dbc.Card([
                         dbc.CardBody([
                             html.H5("Filtered sgRNAs", className="card-title", style=text_style),
-                            DataTable(id='mutated-sgrna-table_5', **table_style),
-                            # Removed the download button
+                            DataTable(id='filtered-df-table_5', **table_style),
                         ])
                     ], style=card_style),
 
@@ -352,7 +351,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                     dbc.Card([
                         dbc.CardBody([
                             html.H5("Overview of plasmids", className="card-title", style=text_style),
-                            DataTable(id='overview-of-plasmids-table_5', **table_style),
+                            DataTable(id='plasmid-metadata-table_5', **table_style),
 
                         ])
                     ], style=card_style),
@@ -364,8 +363,8 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                             DataTable(id='all_data', **table_style),
                             html.A(
                                 'Download All Data & Protocols',
-                                id='download-data-and-protocols-link',
-                                download="all_data.csv",
+                                id='download-data-and-protocols-link_5',
+                                download="all_data",
                                 href="",
                                 target="_blank",
                                 className="btn btn-primary"
