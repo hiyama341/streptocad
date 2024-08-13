@@ -38,13 +38,25 @@ from streptocad.crispr.guideRNA_crispri import extract_sgRNAs_for_crispri, SgRNA
 from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
 from streptocad.primers.primer_generation import create_idt_order_dataframe, primers_to_IDT
 
+# Create a StringIO object to capture logs in memory
+log_stream = io.StringIO()
+
+# Remove any existing handlers
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
 # Setup logging
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s %(levelname)s %(message)s',
-                    handlers=[
-                        logging.FileHandler("workflow4_debug.log"),
-                        logging.StreamHandler()
-                    ])
+logging.basicConfig(
+    level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
+        logging.StreamHandler(log_stream)   # Capture logs in StringIO
+    ]
+)
+
+# Create a logger
+logger = logging.getLogger(__name__)
 
 def save_file(name, content):
     """Decode and store a file uploaded with Plotly Dash."""
@@ -61,15 +73,19 @@ def register_workflow_4_callbacks(app):
             Output('download-data-and-protocols-link_4', 'href'),
             Output('mutated-sgrna-table_4', 'data'),
             Output('mutated-sgrna-table_4', 'columns'),
+            Output('plasmid-metadata-table_4', 'data'),
+            Output('plasmid-metadata-table_4', 'columns'),
+            Output('error-dialog_4', 'message'),
+            Output('error-dialog_4', 'displayed'),
         ],
         [
             Input('submit-settings-button_4', 'n_clicks')
         ],
         [
-            State('upload-genome-file_4', 'contents'),
-            State('upload-crispri-vector_4', 'contents'),
-            State('upload-genome-file_4', 'filename'),
-            State('upload-crispri-vector_4', 'filename'),
+        State({'type': 'upload-component', 'index': 'genome-file-4'}, 'contents'),  # This matches the layout
+        State({'type': 'upload-component', 'index': 'single-vector-4'}, 'contents'),   # This matches the layout
+        State({'type': 'upload-component', 'index': 'genome-file-4'}, 'filename'),  # This matches the layout
+        State({'type': 'upload-component', 'index': 'single-vector-4'}, 'filename'),   # This matches the layout
             State('genes-to-KO_4', 'value'),
             State('forward-overhang-input_4', 'value'),
             State('reverse-overhang-input_4', 'value'),
@@ -164,6 +180,12 @@ def register_workflow_4_callbacks(app):
                 primers_columns = [{"name": col, "id": col} for col in idt_primers.columns]
                 primers_data = idt_primers.to_dict('records')
 
+
+                # Metadata df
+                integration_names = filtered_df.apply(lambda row: f"sgRNA_{row['locus_tag']}({row['sgrna_loc']})", axis=1).tolist()
+                plasmid_metadata_df = extract_metadata_to_dataframe(sgRNA_vectors,
+                                                                    clean_plasmid,
+                                                                    integration_names)
                 # Prepare download link for the data package
                 input_files = [
                     {"name": "input_genome.gb", "content": genome},
@@ -214,13 +236,35 @@ def register_workflow_4_callbacks(app):
                 data_package_encoded = base64.b64encode(zip_content).decode('utf-8')
                 data_package_download_link = f"data:application/zip;base64,{data_package_encoded}"
 
+                # filtered sgrnas
                 filtered_df_columns = [{"name": col, "id": col} for col in filtered_df.columns]
                 filtered_df_data = filtered_df.to_dict('records')
 
+
+                # metadata table
+                plasmid_metadata_df_columns = [{"name": col, "id": col} for col in plasmid_metadata_df.columns]
+                plasmid_metadata_df_data = plasmid_metadata_df.to_dict('records')
+
                 logging.info("Workflow completed successfully")
 
-                return (primers_data, primers_columns, data_package_download_link, filtered_df_data, filtered_df_columns)
-
+                return (primers_data, 
+                        primers_columns, 
+                        data_package_download_link, 
+                        filtered_df_data, 
+                        filtered_df_columns,
+                        plasmid_metadata_df_data, 
+                        plasmid_metadata_df_columns,
+                        "",  # Empty message if no error occurred
+                        False  # Error dialog should not be displayed
+                        )
+        
+        
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
-            raise PreventUpdate
+            print(f"An error occurred: {str(e)}")  # Fallback print
+
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
+            display_error = True
+            return [], [], [], [], "", [], [], [], [], error_message, display_error
+        
+

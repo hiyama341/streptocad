@@ -4,6 +4,8 @@ from dash.dash_table import DataTable
 
 from styling import text_style, upload_button_style, card_style, link_style, table_style
 from streptocad.utils import polymerase_dict
+from components import upload_component_with_display
+
 
 # Reference content used in multiple tabs
 reference_content = html.Div([
@@ -59,22 +61,19 @@ crispri_tab = html.Div(children=[
     ], className="mb-4", justify="start"),
 
     
+    # UPLOAD genome
     dbc.Row([
         dbc.Col([
             html.H4("1) Upload your genome file", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Genome File", className="card-title", style=text_style),
-                    dcc.Upload(
-                        id={'type': 'upload-component', 'index': 'genome-file-4'},  # Updated to use pattern matching ID
-                        children=html.Div([
-                            'Drag and Drop or ',
-                            html.A('Select Genome File', style=link_style)
-                        ], style=text_style),
-                        style=upload_button_style,
-                        multiple=False
-                    ),
-                    html.Div(id={'type': 'filename-display', 'index': 'genome-file-4'}, children=[], style=text_style),  # Updated to use pattern matching ID
+                    upload_component_with_display(
+                        {'type': 'upload-component', 'index': 'genome-file-4'},  # Corrected: Directly use the dictionary
+                        text_style, 
+                        link_style, 
+                        upload_button_style
+                    )
                 ])
             ], style=card_style),
         ], width=6),
@@ -85,17 +84,13 @@ crispri_tab = html.Div(children=[
             html.H4("2) Upload the plasmid of choice", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("CRISPRi Vector", className="card-title", style=text_style),
-                    dcc.Upload(
-                        id={'type': 'upload-component', 'index': 'crispri-vector-4'},  # Updated to use pattern matching ID
-                        children=html.Div([
-                            'Drag and Drop or ',
-                            html.A('Select CRISPRi Vector File', style=link_style)
-                        ], style=text_style),
-                        style=upload_button_style,
-                        multiple=False
-                    ),
-                    html.Div(id={'type': 'filename-display', 'index': 'crispri-vector-4'}, children=[], style=text_style),  # Updated to use pattern matching ID
+                    html.H5("CRISPRi plasmid", className="card-title", style=text_style),
+                    upload_component_with_display(
+                        {'type': 'upload-component', 'index': 'single-vector-4'},  # Corrected: Directly use the dictionary
+                        text_style, 
+                        link_style, 
+                        upload_button_style
+                    )
                 ])
             ], style=card_style),
         ], width=6),
@@ -256,8 +251,8 @@ crispri_tab = html.Div(children=[
                     
                     dbc.Card([
                         dbc.CardBody([
-                            html.H5("GenBank File", className="card-title", style=text_style),
-                            # Removed the download button
+                            html.H5("Overview of plasmids generated", className="card-title", style=text_style),
+                            DataTable(id='plasmid-metadata-table_4', **table_style),
                         ])
                     ], style=card_style),
 
