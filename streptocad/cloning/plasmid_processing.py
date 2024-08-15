@@ -165,7 +165,12 @@ def check_plasmid_restriction_sites(plasmid: Dseqrecord, enzymes: List[str]) -> 
     
     return results
 
-def determine_workflow_order_for_plasmids(sgRNA_plasmids: List[Dseqrecord], repair_template_plasmids: List[Dseqrecord], enzymes: List[str]) -> pd.DataFrame:
+def determine_workflow_order_for_plasmids(
+    sgRNA_plasmids: List[Dseqrecord], 
+    repair_template_plasmids: List[Dseqrecord], 
+    sgRNA_enzymes: List[str], 
+    repair_template_enzymes: List[str]
+) -> pd.DataFrame:
     """
     Determine the workflow for each combination of sgRNA and repair template plasmids.
 
@@ -175,6 +180,10 @@ def determine_workflow_order_for_plasmids(sgRNA_plasmids: List[Dseqrecord], repa
         List of plasmids with sgRNA integrated.
     repair_template_plasmids : List[Dseqrecord]
         List of plasmids with repair templates integrated.
+    sgRNA_enzymes : List[str]
+        List of enzyme names to check for in sgRNA plasmids.
+    repair_template_enzymes : List[str]
+        List of enzyme names to check for in repair template plasmids.
 
     Returns
     -------
@@ -184,34 +193,42 @@ def determine_workflow_order_for_plasmids(sgRNA_plasmids: List[Dseqrecord], repa
     results = []
 
     for sgRNA_plasmid in sgRNA_plasmids:
-        sgRNA_sites = check_plasmid_restriction_sites(sgRNA_plasmid, enzymes)
-        if 'region' in sgRNA_plasmid.name: 
-            sgRNA_base_name = sgRNA_plasmid.name.split("_")[1]
-            
-        else: 
-            sgRNA_base_name = sgRNA_plasmid.name.split("_")[1]
+        sgRNA_sites = check_plasmid_restriction_sites(sgRNA_plasmid, sgRNA_enzymes)
+        sgRNA_base_name = sgRNA_plasmid.name.split("_")[1]
         
         for repair_template_plasmid in repair_template_plasmids:
             repair_template_base_name = repair_template_plasmid.name.split("_")[1]
             
             if sgRNA_base_name == repair_template_base_name:
-                repair_template_sites = check_plasmid_restriction_sites(repair_template_plasmid, enzymes)
+                repair_template_sites = check_plasmid_restriction_sites(repair_template_plasmid, repair_template_enzymes)
 
                 # Determine the workflow based on the restriction sites
-                if sgRNA_sites["StuI"] > 1 and repair_template_sites["NcoI"] > 0:
+                # This logic assumes the first enzyme in each list is critical for decision making.
+                sgRNA_critical_enzyme = sgRNA_enzymes[0]
+                repair_template_critical_enzyme = repair_template_enzymes[0]
+
+                if sgRNA_sites.get(sgRNA_critical_enzyme, 0) > 1 and repair_template_sites.get(repair_template_critical_enzyme, 0) > 0:
                     workflow = "Plasmid cannot be used in this workflow"
-                elif sgRNA_sites["StuI"] > 1:
+                elif sgRNA_sites.get(sgRNA_critical_enzyme, 0) > 1:
                     workflow = "Integrate repair templates first"
                 else:
                     workflow = "Proceed with sgRNA integration first"
 
-                results.append({
+                result_row = {
                     "sgRNA plasmid": sgRNA_plasmid.name,
                     "repair template plasmid": repair_template_plasmid.name,
                     "which workflow to proceed with": workflow,
-                    f"sgRNA plasmid #{enzymes[0]} sites": sgRNA_sites["StuI"],
-                    f"repair template plasmid #{enzymes[1]} sites": repair_template_sites["NcoI"]
-                })
+                }
+
+                # Add sgRNA enzyme sites to the row
+                for enzyme in sgRNA_enzymes:
+                    result_row[f"sgRNA plasmid #{enzyme} sites"] = sgRNA_sites.get(enzyme, 0)
+
+                # Add repair template enzyme sites to the row
+                for enzyme in repair_template_enzymes:
+                    result_row[f"repair template plasmid #{enzyme} sites"] = repair_template_sites.get(enzyme, 0)
+
+                results.append(result_row)
 
     df = pd.DataFrame(results)
     return df
