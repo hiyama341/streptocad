@@ -50,7 +50,7 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
         ),
         dbc.Col(
             html.A(
-                dbc.Button("Download Example CRISPR Vector File", color="primary", className="mb-4"),
+                dbc.Button("Download Example Plasmid File", color="primary", className="mb-4"),
                 href="/assets/pCRISPR_cas3.gbk",
                 download="pCRISPR_cas3.gbk"
             ),

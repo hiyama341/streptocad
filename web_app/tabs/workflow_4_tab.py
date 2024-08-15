@@ -52,7 +52,7 @@ crispri_tab = html.Div(children=[
         ),
         dbc.Col(
             html.A(
-                dbc.Button("Download Example CRISPRi Vector File", color="primary", className="mb-4"),
+                dbc.Button("Download Example CRISPRi Plasmid File", color="primary", className="mb-4"),
                 href="/assets/pCRISPR-dCas9.gbk",
                 download="pCRISPR-dCas9.gbk"
             ),

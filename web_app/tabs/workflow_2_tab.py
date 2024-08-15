@@ -54,7 +54,7 @@ crispr_cb_tab = html.Div(children=[
         ),
         dbc.Col(
             html.A(
-                dbc.Button("Download Example CRISPR Vector File", color="primary", className="mb-4"),
+                dbc.Button("Download Example CRISPR Plasmid File", color="primary", className="mb-4"),
                 href="/assets/ pCRISPR-cBEST.gbk",
                 download="pCRISPR-cBEST.gbk"
             ),

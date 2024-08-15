@@ -51,7 +51,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         ),
         dbc.Col(
             html.A(
-                dbc.Button("Download Example CRISPR Vector File", color="primary", className="mb-4"),
+                dbc.Button("Download Example CRISPR Plasmid File", color="primary", className="mb-4"),
                 href="/assets/pCRISPR-MCBE_Csy4_kasopGFP.gb",
                 download="pCRISPR-MCBE_Csy4_kasopGFP.gb"
             ),

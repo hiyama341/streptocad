@@ -45,7 +45,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
         dbc.Col(
             html.A(
                 dbc.Button("Download Example Sequence File", color="primary"),
-                href="/assets/GOE_regulators.gb", # GOE regulators
+                href="/assets/GOE_regulators.gb", 
                 download="example_sequence_file(LuxR_&_SARPs).csv"
             ),
             width={"size": 3, "order": 1}
@@ -53,7 +53,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
         dbc.Col(
             html.A(
                 dbc.Button("Download Example Plasmid File", color="primary", className="mb-4"),
-                href="/assets/pOEX-PkasO.gb", # PKasO file
+                href="/assets/pOEX-PkasO.gb", 
                 download="pOEX-PkasO.gb"
             ),
             width={"size": 3, "order": 2}
