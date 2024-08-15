@@ -239,7 +239,7 @@ def register_workflow_5_callbacks(app):
                                                                         integration_names)
                     workflow_df = determine_workflow_order_for_plasmids(sgRNA_vectors, 
                                                                             assembled_contigs,
-                                                                            ["StuI", "NcoI"])
+                                                                            ["StuI"], [ "NcoI"])
                     
                 else: 
                     integration_names = filtered_df.apply(lambda row: f"sgRNA_{row['locus_tag']}({row['sgrna_loc']})", axis=1).tolist()
