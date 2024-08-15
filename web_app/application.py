@@ -21,6 +21,8 @@ from callbacks.workflow_2 import register_workflow_2_callbacks
 from callbacks.workflow_3 import register_workflow_3_callbacks
 from callbacks.workflow_4 import register_workflow_4_callbacks  # Added callback registration for workflow 4
 from callbacks.workflow_5 import register_workflow_5_callbacks
+from callbacks.workflow_6 import register_workflow_6_callbacks
+
 from callbacks_interactivity import register_interactivity_callbacks  # Import the interactivity callbacks
 
 # Import tab content
@@ -88,6 +90,10 @@ main_layout = dbc.Container([
     ),
     dcc.ConfirmDialog(
         id='error-dialog_5',
+        message=""
+    ),
+    dcc.ConfirmDialog(
+        id='error-dialog_6',
         message=""
     ),
 ], fluid=True, style={'backgroundColor': '#2C3E50', 'padding': '20px', 'color': '#ddd'})
@@ -165,7 +171,7 @@ register_workflow_2_callbacks(app)
 register_workflow_3_callbacks(app)
 register_workflow_4_callbacks(app)
 register_workflow_5_callbacks(app)
-#register_workflow_6_callbacks(app)
+register_workflow_6_callbacks(app)
 register_interactivity_callbacks(app)  # Register the interactivity callbacks
 
 if __name__ == '__main__':
