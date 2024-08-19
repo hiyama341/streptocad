@@ -1,4 +1,3 @@
-
 import pytest
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
@@ -11,40 +10,52 @@ import pandas as pd
 from teemi.design.fetch_sequences import read_genbank_files
 from pydna.amplicon import Amplicon
 
-from src.teemi_functions.cloning.golden_gate_cloning import (
+from streptocad.cloning.golden_gate_cloning import (
     GoldenGateCloning, 
-    make_amplicons, 
     make_golden_gate_overhangs_forward_primers, 
     make_golden_gate_overhangs_reverse_primers,
+    make_amplicons, 
     digest_amplicons_w_BsaI,
     create_overhang_dataframe
 )
 
-from src.teemi_functions.sgRNA import (
-    make_antismash_df_to_dseq
-)
+from streptocad.utils import dataframe_to_seqrecords
+from streptocad.utils import polymerase_dict
 
 
 # Input
-sco5087 = pd.read_csv('data/CRISPy_results/SCO5087_BEST_STOP.csv')
-pCRISPR_plasmid_MCBE = read_genbank_files('data/plasmids/pCRISPR-MCBE_Csy4_kasopGFP.gb')[0]
+filtered_df = pd.read_csv('tests/test_files/filtered_BEST_df.csv')
+pCRISPR_plasmid_MCBE = read_genbank_files('tests/test_files/pCRISPR-MCBE_Csy4_kasopGFP.gb')[0]
 vector = Dseqrecord(pCRISPR_plasmid_MCBE, circular = True)
 vector.name = 'pCRISPR-MCBE_Csy4'
 
 #Calculations: 
-sgRNA_list = make_antismash_df_to_dseq(sco5087)
+sgRNA_list = dataframe_to_seqrecords(filtered_df)
 # This is the 82nt sgRNA handle + 28nt csy4
 sgRNA_handle_cys4_sites = [Dseqrecord('GTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGCTAGTCCGTTATCAACTTGAAAAAGTGGCACCGAGTCGGTGCTTTTTTGTTCACTGCCGTATAGGCAGCTAAGAAA', name = 'sgRNA_handle_cys4')]*len(sgRNA_list)
+cys4 = "gTTCACTGCCGTATAGGCAGCTAAGAAA"
+chosen_polymerase = polymerase_dict['Phusion High-Fidelity DNA Polymerase (GC Buffer)']
+primer_concentration = 0.4 
+primer_number_increment = 0
 
 golden_gate = GoldenGateCloning(sgRNA_list,
                                 sgRNA_handle_cys4_sites, 
-                                target_tm= 60) 
+                                target_tm= 65,
+                                cys4 = cys4,
+                                tm_function = primer_tm_neb, 
+                                primer_concentration=primer_concentration,
+                                primer_incrementation = primer_number_increment, 
+                                polymerase = chosen_polymerase ) 
 
 # make amplicons
 list_of_amplicons = golden_gate.simulate_pcrs()
 
 # Making a vector 
 digest = digest_amplicons_w_BsaI(list_of_amplicons)
+
+# melting temperatures
+list_of_melting_temperatures = golden_gate.calculate_melting_temperature()
+
 
 # Digest vector
 from Bio.Restriction import NcoI,NheI
@@ -61,9 +72,12 @@ rec_vec = rec_vec.looped()
 ##### TESTING ########
 #######################
 
+# TODO make a direct test of Golden gate cloning
+
 def test_amplicon_lengths():
-    predicted_length_of_amplicons = [190, 158, 158, 158, 158]
+    predicted_length_of_amplicons = [190, 158, 158, 158, 158, 158, 158]
     list_of_amplicons = golden_gate.simulate_pcrs()
+    print('lenght of amplicons:   ', list_of_amplicons)
     length_of_amplicons = [len(amplicon) for amplicon in list_of_amplicons]
     assert predicted_length_of_amplicons == length_of_amplicons
     assert all(isinstance(item, Dseqrecord) for item in list_of_amplicons)
@@ -71,84 +85,93 @@ def test_amplicon_lengths():
 
 
 def test_melting_temperatures():
-    predicted_melting_temperatures = [(59.84033214711462, 60.61636492495495),
-                                    (59.84033214711462, 60.61636492495495),
-                                    (59.84033214711462, 60.61636492495495),
-                                    (59.84033214711462, 60.61636492495495),
-                                    (59.84033214711462, 60.61636492495495)]
-    list_of_melting_temperatures = golden_gate.calculate_melting_temperature()
+    predicted_melting_temperatures = [(63,59),
+                                    (63,59),
+                                    (63,59),
+                                    (63,59),
+                                    (63,59),
+                                    (63,59),
+                                    (63,59),]
+
     assert predicted_melting_temperatures == list_of_melting_temperatures
 
+
+
 def test_pcr_dataframe():
-    data = {
-        'amplicon_name': [
-            'amplicon_CY00000014', 'amplicon_CY00000058',
-            'amplicon_CY00000155', 'amplicon_CY00000196',
-            'amplicon_CY00000239'
+    data =  {
+        "amplicon_name": [
+            "amplicon_0_(SCO5090_140)", "amplicon_1_(SCO5089_167)", "amplicon_2_(SCO5090_174)", 
+            "amplicon_3_(SCO5090_208)", "amplicon_4_(SCO5087_210)", "amplicon_5_(SCO5087_522)", 
+            "amplicon_6_(SCO5090_640)"
         ],
-        'f_primer_id': ['P001', 'P003', 'P005', 'P007', 'P009'],
-        'r_primer_id': ['P002', 'P004', 'P006', 'P008', 'P010'],
-        'template_for_amplification': ['sgRNA_handle_cys4'] * 5,
-        'f_primer tm': [59.840332] * 5,
-        'r_primer_tm': [60.616365] * 5,
-        'ta': [62] * 5
-    }
+        "f_primer_id": [
+            "primer_0", "primer_2", "primer_4", 
+            "primer_6", "primer_8", "primer_10", 
+            "primer_12"
+        ],
+        "r_primer_id": [
+            "primer_1", "primer_3", "primer_5", 
+            "primer_7", "primer_9", "primer_11", 
+            "primer_13"
+        ],
+        "template_for_amplification": [
+            "sgRNA_handle_cys4", "sgRNA_handle_cys4", "sgRNA_handle_cys4", 
+            "sgRNA_handle_cys4", "sgRNA_handle_cys4", "sgRNA_handle_cys4", 
+            "sgRNA_handle_cys4"
+        ],
+        "f_primer_tm": [63, 63, 63, 63, 63, 63, 63],
+        "r_primer_tm": [59, 59, 59, 59, 59, 59, 59],
+        "ta": [63, 63, 63, 63, 63, 63, 63]
+    }  
+
     expected_df = pd.DataFrame(data)
     pd.testing.assert_frame_equal(golden_gate.make_pcr_df(), expected_df, check_dtype=False)
 
-def test_primer_dataframe():
-    expected_primer_dataframe = pd.DataFrame({
-        'id': [
-            'P001_CY00000014', 'P002_CY00000014',
-            'P003_CY00000058', 'P004_CY00000058',
-            'P005_CY00000155', 'P006_CY00000155',
-            'P007_CY00000196', 'P008_CY00000196',
-            'P009_CY00000239', 'P010_CY00000239'
-        ],
-        'sequence': [
-            'GATCGggtctcccATGgTTCACTGCCGTATAGGCAGCTAAGAAAGAGCAGTTCCCAGAACTGCCGTTTTAGAGCTAGAAATAGCAAGTTAAA',
-            'GATCAGGTCTCgCGACTTTCTTAGCTGCCTATACGG',
-            'GATCGggtctccGTCGACCTCCCAGTCACGGCGTTTTAGAGCTAGAAATAGCAAGTTAAA',
-            'GATCAGGTCTCgCGGCTTTCTTAGCTGCCTATACGG',
-            'GATCGggtctccGCCGACCGCCCAGGCGACCTGTTTTAGAGCTAGAAATAGCAAGTTAAA',
-            'GATCAGGTCTCgACGGTTTCTTAGCTGCCTATACGG',
-            'GATCGggtctccCCGTTCACAGGTCGCGGCGGGTTTTAGAGCTAGAAATAGCAAGTTAAA',
-            'GATCAGGTCTCgCGGTTTTCTTAGCTGCCTATACGG',
-            'GATCGggtctccACCGCCCAGGCGACCTCGGCGTTTTAGAGCTAGAAATAGCAAGTTAAA',
-            'GATCAGGTCTCgCTAgTTTCTTAGCTGCCTATACGG'
-        ],
-        'len_primer': [92, 36, 60, 36, 60, 36, 60, 36, 60, 36],
-        'annealing_tm': [59.84033214711462, 
-                         60.61636492495495, 
-                         59.84033214711462, 
-                         60.61636492495495, 
-                         59.84033214711462, 
-                         60.61636492495495, 
-                         59.84033214711462, 
-                         60.61636492495495, 
-                         59.84033214711462, 
-                         60.61636492495495],
-        'primer_type': [
-            'Forward', 'Reverse', 'Forward', 'Reverse',
-            'Forward', 'Reverse', 'Forward', 'Reverse',
-            'Forward', 'Reverse'
-        ],
-        'annealing_sequence': [
-            'GTTTTAGAGCTAGAAATAGCAAGTTAAA',
-            'TTTCTTAGCTGCCTATACGG',
-            'GTTTTAGAGCTAGAAATAGCAAGTTAAA',
-            'TTTCTTAGCTGCCTATACGG',
-            'GTTTTAGAGCTAGAAATAGCAAGTTAAA',
-            'TTTCTTAGCTGCCTATACGG',
-            'GTTTTAGAGCTAGAAATAGCAAGTTAAA',
-            'TTTCTTAGCTGCCTATACGG',
-            'GTTTTAGAGCTAGAAATAGCAAGTTAAA',
-            'TTTCTTAGCTGCCTATACGG'
-        ],
-        'template': ['sgRNA_handle_cys4'] * 10
-    })
 
-    pd.testing.assert_frame_equal(golden_gate.make_primer_df(), expected_primer_dataframe)
+
+def test_primer_dataframe():
+    data = {
+        "Locus Tag": [
+            "sgRNA_handle_cys4", "sgRNA_handle_cys4", "sgRNA_handle_cys4", 
+            "sgRNA_handle_cys4", "sgRNA_handle_cys4", "sgRNA_handle_cys4", 
+            "sgRNA_handle_cys4"
+        ],
+        "f_primer_name": [
+            "primer_0", "primer_2", "primer_4", 
+            "primer_6", "primer_8", "primer_10", 
+            "primer_12"
+        ],
+        "r_primer_name": [
+            "primer_1", "primer_3", "primer_5", 
+            "primer_7", "primer_9", "primer_11", 
+            "primer_13"
+        ],
+        "f_primer_sequences(5-3)": [
+            "GATCGGGTCTCCCATGGTTCACTGCCGTATAGGCAGCTAAGAAACACGTACAGGTCCTGGAGCGGTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGC",
+            "GATCGGGTCTCCGCGCGACTCGAGAGCCGGTAGTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGC",
+            "GATCGGGTCTCCCGCCCAGATCCGGAAGCGTTGTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGC",
+            "GATCGGGTCTCCGGGACGTCCAGGTCTTCACCGTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGC",
+            "GATCGGGTCTCCGAGCAGTTCCCAGAACTGCCGTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGC",
+            "GATCGGGTCTCCGTCGACCTCCCAGTCACGGCGTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGC",
+            "GATCGGGTCTCCGACCGTCCAGGACATGACCAGTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGC"
+        ],
+        "r_primer_sequences(5-3)": [
+            "GATCAGGTCTCGGCGCTTTCTTAGCTGCCTATACGGC",
+            "GATCAGGTCTCGGGCGTTTCTTAGCTGCCTATACGGC",
+            "GATCAGGTCTCGTCCCTTTCTTAGCTGCCTATACGGC",
+            "GATCAGGTCTCGGCTCTTTCTTAGCTGCCTATACGGC",
+            "GATCAGGTCTCGCGACTTTCTTAGCTGCCTATACGGC",
+            "GATCAGGTCTCGGGTCTTTCTTAGCTGCCTATACGGC",
+            "GATCAGGTCTCGCTAGTTTCTTAGCTGCCTATACGGC"
+        ],
+        "f_tm": [63, 63, 63, 63, 63, 63, 63],
+        "r_tm": [59, 59, 59, 59, 59, 59, 59],
+        "ta": [63, 63, 63, 63, 63, 63, 63]
+    }
+
+    primer_df = golden_gate.generate_primer_dataframe()
+    expected_primer_dataframe = pd.DataFrame(data)
+    pd.testing.assert_frame_equal(primer_df, expected_primer_dataframe, check_dtype=False)
 
 
 def test_initialization():
@@ -172,110 +195,183 @@ def test_make_amplicons():
     assert all(isinstance(i, Dseqrecord) for i in list_of_amplicons), "All elements in 'list_of_amplicons' must be Dseqrecord objects"
     assert all(isinstance(i, Amplicon) for i in amplicons), "All elements in 'list_of_amplicons' must be Dseqrecord objects"
 
-
-
 def test_make_golden_gate_overhangs_forward_primers():
     # This is the 82nt sgRNA handle + 28nt csy4
-    list_of_amplicons =[Dseqrecord('GTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGCTAGTCCGTTATCAACTTGAAAAAGTGGCACCGAGTCGGTGCTTTTTT')]*3 
-    amplicons = make_amplicons(list_of_amplicons, 
-                               target_tm = 55,
-                                 limit= 10)
+    list_of_amplicons = [
+        Dseqrecord(
+            'GTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGCTAGTCCGTTATCAACTTGAAAAAGTGGCACCGAGTCGGTGCTTTTTT'
+        )
+    ] * 3
+    amplicons = make_amplicons(
+        list_of_amplicons,
+        target_tm=55,
+        limit=10
+    )
     assert len(amplicons) == 3
+
     # protospacers
-    sgRNAs = [Dseqrecord('aGTGCTGGATCCTATTCCAG'),Dseqrecord('CGATGAGAGGAGTATTCGTC'),Dseqrecord('CGGGATGTTTTATCTAAACA')]
+    sgRNAs = [
+        Dseqrecord('aGTGCTGGATCCTATTCCAG'),
+        Dseqrecord('CGATGAGAGGAGTATTCGTC'),
+        Dseqrecord('CGGGATGTTTTATCTAAACA')
+    ]
+
     # the restriction enzyme (RE) handle, the BsaI recognition site is in lowercase letters
     restriction_overhang_f = "GATCGggtctcc"
-    # 28nt Csy4 recognition site that will be appended the the forward primer only in the first construct
-    cys4= "gTTCACTGCCGTATAGGCAGCTAAGAAA"
-    # what fits with the backbone plasmid 
+    # 28nt Csy4 recognition site that will be appended to the forward primer only in the first construct
+    cys4 = "gTTCACTGCCGTATAGGCAGCTAAGAAA"
+    # what fits with the backbone plasmid
     backbone_overhang_f = "cATG"
 
-    amplicons_w_f_overhang = make_golden_gate_overhangs_forward_primers(amplicons,
-                                                           sgRNAs,
-            restriction_overhang_f=restriction_overhang_f,
-            backbone_overhang_f=backbone_overhang_f,
-            cys4=cys4,
-        )
+    amplicons_w_f_overhang = make_golden_gate_overhangs_forward_primers(
+        amplicons,
+        sgRNAs,
+        restriction_overhang_f=restriction_overhang_f,
+        backbone_overhang_f=backbone_overhang_f,
+        cys4=cys4,
+    )
     assert len(amplicons_w_f_overhang) == 3
-    # First have csy4 sites. The string below is the annealing part of the primer
-    assert len(amplicons_w_f_overhang[0].forward_primer.seq) == len(str(restriction_overhang_f)+str(backbone_overhang_f)+str(cys4)+str(sgRNAs[0].seq)+ 'GTTTTAGAGCTAGAAATAGCA')
-    assert str(amplicons_w_f_overhang[0].forward_primer.seq) == str(str(restriction_overhang_f)+str(backbone_overhang_f)+str(cys4)+str(sgRNAs[0].seq)+ 'GTTTTAGAGCTAGAAATAGCA')
-    # After that no csy4 sites and no backbone overhang bc it comes from the protspacer.
-    assert len(amplicons_w_f_overhang[1].forward_primer.seq) == len(str(restriction_overhang_f)+str(sgRNAs[1].seq)+ 'GTTTTAGAGCTAGAAATAGCA')
-    assert str(amplicons_w_f_overhang[1].forward_primer.seq) == str(str(restriction_overhang_f)+str(sgRNAs[1].seq)+ 'GTTTTAGAGCTAGAAATAGCA')
-    # After that no csy4 sites. The string below is the annealing part of the primer
-    assert len(amplicons_w_f_overhang[2].forward_primer.seq) == len(str(restriction_overhang_f)+str(sgRNAs[2].seq)+ 'GTTTTAGAGCTAGAAATAGCA')
-    assert str(amplicons_w_f_overhang[2].forward_primer.seq) == str(str(restriction_overhang_f)+str(sgRNAs[2].seq)+ 'GTTTTAGAGCTAGAAATAGCA')
+
+    # Construct the expected sequence for the first amplicon
+    expected_seq_0 = (
+        restriction_overhang_f +
+        backbone_overhang_f +
+        cys4 +
+        str(sgRNAs[0].seq) +
+        'GTTTTAGAGCTAGAAATAGC'
+    )
+    actual_seq_0 = str(amplicons_w_f_overhang[0].forward_primer.seq)
+
+    assert len(actual_seq_0) == len(expected_seq_0), f"Expected length {len(expected_seq_0)}, got {len(actual_seq_0)}"
+    assert actual_seq_0 == expected_seq_0, f"Expected sequence: {expected_seq_0}, got: {actual_seq_0}"
+
+    # Construct the expected sequence for the second amplicon
+    expected_seq_1 = (
+        restriction_overhang_f +
+        str(sgRNAs[1].seq) +
+        'GTTTTAGAGCTAGAAATAGC'
+    )
+    actual_seq_1 = str(amplicons_w_f_overhang[1].forward_primer.seq)
+
+    assert len(actual_seq_1) == len(expected_seq_1), f"Expected length {len(expected_seq_1)}, got {len(actual_seq_1)}"
+    assert actual_seq_1 == expected_seq_1, f"Expected sequence: {expected_seq_1}, got: {actual_seq_1}"
+
+    # Construct the expected sequence for the third amplicon
+    expected_seq_2 = (
+        restriction_overhang_f +
+        str(sgRNAs[2].seq) +
+        'GTTTTAGAGCTAGAAATAGC'
+    )
+    actual_seq_2 = str(amplicons_w_f_overhang[2].forward_primer.seq)
+
+    assert len(actual_seq_2) == len(expected_seq_2), f"Expected length {len(expected_seq_2)}, got {len(actual_seq_2)}"
+    assert actual_seq_2 == expected_seq_2, f"Expected sequence: {expected_seq_2}, got: {actual_seq_2}"
+
 
 
 def test_make_GG_overhangs_reverse_primers():
-        # This is the 82nt sgRNA handle 
-    list_of_amplicons =[Dseqrecord('GTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGCTAGTCCGTTATCAACTTGAAAAAGTGGCACCGAGTCGGTGCTTTTTT')]*3 
-    amplicons = make_amplicons(list_of_amplicons, 
-                               target_tm = 55,
-                                 limit= 10)
+    # This is the 82nt sgRNA handle 
+    list_of_amplicons = [
+        Dseqrecord(
+            'GTTTTAGAGCTAGAAATAGCAAGTTAAAATAAGGCTAGTCCGTTATCAACTTGAAAAAGTGGCACCGAGTCGGTGCTTTTTT'
+        )
+    ] * 3
+    amplicons = make_amplicons(
+        list_of_amplicons,
+        target_tm=55,
+        limit=10
+    )
     assert len(amplicons) == 3
+
     # protospacers
-    sgRNAs = [Dseqrecord('gcggCGAACCAGCCCATCAT'),Dseqrecord('cccccgatGAGAGGAGTATTCGTC'),Dseqrecord('CGGGATGTTTTATCTAAACA')]
+    sgRNAs = [
+        Dseqrecord('gcggCGAACCAGCCCATCAT'),
+        Dseqrecord('cccccgatGAGAGGAGTATTCGTC'),
+        Dseqrecord('CGGGATGTTTTATCTAAACA')
+    ]
+
     # the restriction enzyme (RE) handle, the BsaI recognition site is in lowercase letters
     restriction_overhang_f = "GATCGggtctcc"
     # 28nt Csy4 recognition site that will be appended the the forward primer only in the first construct
-    # what fits with the backbone plasmid 
     backbone_overhang_f = "cATG"
 
-    amplicons_w_f_overhang = make_golden_gate_overhangs_forward_primers(amplicons,
-                                                           sgRNAs,
-            restriction_overhang_f=restriction_overhang_f,
-            backbone_overhang_f=backbone_overhang_f,
+    amplicons_w_f_overhang = make_golden_gate_overhangs_forward_primers(
+        amplicons,
+        sgRNAs,
+        restriction_overhang_f=restriction_overhang_f,
+        backbone_overhang_f=backbone_overhang_f,
+    )
 
-        )
     # FORWARD AND REVERSE PRIMERS 
-    restriction_overhang_r: str = "GATCAGGTCTCg"
-    backbone_overhang_r: str = "cTAG"
+    restriction_overhang_r = "GATCAGGTCTCg"
+    backbone_overhang_r = "cTAG"
 
-
-    amplicons_w_f_r_primer_overhang = make_golden_gate_overhangs_reverse_primers(amplicons_w_f_overhang,
-                                               sgRNAs, 
-                                               backbone_overhang_r, 
-                                               restriction_overhang_r )
-    
+    amplicons_w_f_r_primer_overhang = make_golden_gate_overhangs_reverse_primers(
+        amplicons_w_f_overhang,
+        sgRNAs,
+        backbone_overhang_r,
+        restriction_overhang_r
+    )
 
     assert len(amplicons_w_f_r_primer_overhang) == 3
-    # FIRST we have the restriction overhang, then overlapping 4nt sgRNA from the next sgRNA,  and finally the annealing
-    assert len(amplicons_w_f_r_primer_overhang[0].reverse_primer.seq) == len(str(restriction_overhang_r)+ str(sgRNAs[1][0:4].seq.reverse_complement())+str(Dseqrecord('CGAGTCGGTGCTTTTTT').seq.reverse_complement()))
-    assert str(amplicons_w_f_r_primer_overhang[0].reverse_primer.seq) == str(str(restriction_overhang_r)+ str(sgRNAs[1][0:4].seq.reverse_complement())+str(Dseqrecord('CGAGTCGGTGCTTTTTT').seq.reverse_complement()))
-    # FIRST we have the restriction overhang, then overlapping 4nt sgRNA from the next sgRNA,  and finally the annealing
-    assert len(amplicons_w_f_r_primer_overhang[1].reverse_primer.seq) == len(str(restriction_overhang_r)+ str(sgRNAs[2][0:4].seq.reverse_complement())+str(Dseqrecord('CGAGTCGGTGCTTTTTT').seq.reverse_complement()))
-    assert str(amplicons_w_f_r_primer_overhang[1].reverse_primer.seq) == str(str(restriction_overhang_r)+ str(sgRNAs[2][0:4].seq.reverse_complement())+str(Dseqrecord('CGAGTCGGTGCTTTTTT').seq.reverse_complement()))
-    # Finally, we have the restriction overhang, then the last reverse have a fixed backbone_overhang_r, and annealing ofc
-    assert len(amplicons_w_f_r_primer_overhang[2].reverse_primer.seq) == len(str(restriction_overhang_r)+ str(Dseqrecord(backbone_overhang_r).seq.reverse_complement())+str(Dseqrecord('CGAGTCGGTGCTTTTTT').seq.reverse_complement()))
-    assert str(amplicons_w_f_r_primer_overhang[2].reverse_primer.seq) == str(str(restriction_overhang_r)+ str(Dseqrecord(backbone_overhang_r).seq.reverse_complement())+str(Dseqrecord('CGAGTCGGTGCTTTTTT').seq.reverse_complement()))
+
+    # Check first amplicon reverse primer
+    expected_seq_0 = (
+        str(restriction_overhang_r) +
+        str(sgRNAs[1][0:4].seq.reverse_complement()) +
+        str(Dseqrecord('AGTCGGTGCTTTTTT').seq.reverse_complement())
+    )
+    assert len(amplicons_w_f_r_primer_overhang[0].reverse_primer.seq) == len(expected_seq_0)
+    assert str(amplicons_w_f_r_primer_overhang[0].reverse_primer.seq) == expected_seq_0
+
+    # Check second amplicon reverse primer
+    expected_seq_1 = (
+        str(restriction_overhang_r) +
+        str(sgRNAs[2][0:4].seq.reverse_complement()) +
+        str(Dseqrecord('AGTCGGTGCTTTTTT').seq.reverse_complement())
+    )
+    assert len(amplicons_w_f_r_primer_overhang[1].reverse_primer.seq) == len(expected_seq_1)
+    assert str(amplicons_w_f_r_primer_overhang[1].reverse_primer.seq) == expected_seq_1
+
+    # Check third amplicon reverse primer
+    expected_seq_2 = (
+        str(restriction_overhang_r) +
+        str(Dseqrecord(backbone_overhang_r).seq.reverse_complement()) +
+        str(Dseqrecord('AGTCGGTGCTTTTTT').seq.reverse_complement())
+    )
+    assert len(amplicons_w_f_r_primer_overhang[2].reverse_primer.seq) == len(expected_seq_2)
+    assert str(amplicons_w_f_r_primer_overhang[2].reverse_primer.seq) == expected_seq_2
+
 
 
 def test_digest_amplicons_w_BsaI():
     digested_amplicons_w_BsaI = digest_amplicons_w_BsaI(list_of_amplicons)
     digested_length = [len(digest.seq) for digest in digested_amplicons_w_BsaI]
 
-    assert len(digested_amplicons_w_BsaI) == 5
-    assert digested_length == [166, 134, 134, 134, 134]
+    assert len(digested_amplicons_w_BsaI) == 7
+    assert digested_length == [166, 134, 134, 134, 134,134, 134]
     # First amplicon
     assert str(digested_amplicons_w_BsaI[0][0:10].seq).upper() == 'CATGGTTCAC'
-    assert str(digested_amplicons_w_BsaI[0][-10:].seq).upper() == 'AAGAAAGTCG'
+    assert str(digested_amplicons_w_BsaI[0][-10:].seq).upper() == 'AAGAAAGCGC'
+
 
 
 def test_create_overhang_dataframe():
     overhang_df = create_overhang_dataframe(list_of_amplicons)
     test_data = {
-        'Amplicon Name': [
-            'Amplicon_CY00000014_pcr_products', 'Amplicon_CY00000058_pcr_products',
-            'Amplicon_CY00000155_pcr_products', 'Amplicon_CY00000196_pcr_products',
-            'Amplicon_CY00000239_pcr_products'    
-        ],
-        '5\' Overhang': ['cATG', 'GTCG', 'GCCG','CCGT','ACCG' ],
-        '5\' Duplicate': ['No']*5,
-        '3\' Overhang': ['GTCG', 'GCCG', 'CCGT', 'ACCG', 'cTAG'] ,
-        '3\' Duplicate': ['No'] * 5,
-    }
+    "Amplicon Name": [
+        "Amplicon_SCO5090_140_pcr_products", "Amplicon_SCO5089_167_pcr_products", 
+        "Amplicon_SCO5090_174_pcr_products", "Amplicon_SCO5090_208_pcr_products", 
+        "Amplicon_SCO5087_210_pcr_products", "Amplicon_SCO5087_522_pcr_products", 
+        "Amplicon_SCO5090_640_pcr_products"
+    ],
+    "5' Overhang": ["CATG", "GCGC", "CGCC", "GGGA", "GAGC", "GTCG", "GACC"],
+    "5' Duplicate": ["No", "No", "No", "No", "No", "No", "No"],
+    "3' Overhang": ["GCGC", "CGCC", "GGGA", "GAGC", "GTCG", "GACC", "CTAG"],
+    "3' Duplicate": ["No", "No", "No", "No", "No", "No", "No"]
+}
+
+
     expected_df = pd.DataFrame(test_data)
 
     pd.testing.assert_frame_equal(overhang_df, expected_df, check_dtype=False)
