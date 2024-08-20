@@ -44,7 +44,6 @@ module_path = os.path.abspath(os.path.join('..'))
 if module_path not in sys.path:
     sys.path.append(module_path)
 
-from streptocad.wet_lab.gel_simulation import simulate_gel_electrophoresis
 from streptocad.primers.primer_analysis import analyze_primers_and_hairpins
 from streptocad.cloning.plasmid_processing import assemble_and_process_plasmids
 from streptocad.cloning.pcr_simulation import perform_pcr_on_sequences

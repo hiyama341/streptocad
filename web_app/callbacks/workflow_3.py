@@ -79,7 +79,6 @@ from streptocad.cloning.golden_gate_cloning import (
 
 from streptocad.primers.primer_analysis import analyze_primers_and_hairpins
 from streptocad.primers.primer_generation import create_idt_order_dataframe
-from streptocad.wet_lab.gel_simulation import simulate_gel_electrophoresis
 from streptocad.cloning.plasmid_processing import annotate_plasmid_with_sgrnas
 
 def save_file(name, content):
