@@ -1,0 +1,93 @@
+LOCUS       Multiplexing_PCR         110 bp    DNA     linear   SYN 14-FEB-2020
+DEFINITION  .
+ACCESSION   Multiplexing_PCR
+VERSION     Multiplexing_PCR
+KEYWORDS    .
+SOURCE      
+  ORGANISM  .
+            .
+COMMENT     
+            ApEinfo:methylated:1
+FEATURES             Location/Qualifiers
+     source          1..110
+                     /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
+     ncRNA           1..82
+                     /label="gRNA scaffold"
+                     /ncRNA_class="guide_RNA"
+     primer_bind     1..30
+                     /label="CW105_sgRNA-scaff-fwd"
+     primer_bind     1..30
+                     /label="Scaffold1_fwd_NcoI"
+     primer_bind     1..30
+                     /label="scaffold_fwd3"
+     primer_bind     1..30
+                     /label="Scaffold_fwd2"
+     primer_bind     1..30
+                     /label="Scaffold_fwd1"
+     primer_bind     1..25
+                     /label="CW7_sgRNA1-cl3-fwd"
+     primer_bind     1..25
+                     /label="CW9_sgRNA1-cl3-GA-fwd"
+     primer_bind     1..25
+                     /label="CW10_sgRNA2-cl3-fwd"
+     primer_bind     1..25
+                     /label="CW11_sgRNA2-cl3-GA-fwd"
+     primer_bind     1..25
+                     /label="CW12_sgRNA3-cl3-fwd"
+     primer_bind     1..25
+                     /label="CW13_sgRNA3-cl3-GA-fwd"
+     primer_bind     1..25
+                     /label="CW56_Cas9-ssDNA-fwd"
+     primer_bind     1..25
+                     /label="CW59_Cas9-2ndcas-MunI-fwd"
+     primer_bind     1..24
+                     /label="MCBE_CW222_Red3_fwd"
+     primer_bind     1..24
+                     /label="MCBE_CW220_CDAnew2_fwd"
+     primer_bind     1..24
+                     /label="MCBE_CW218-Blue1_fwd"
+     primer_bind     1..24
+                     /label="MCBE_CW216-CDAold3_fwd"
+     primer_bind     1..24
+                     /label="MCBE_CW214-Red2_fwd"
+     primer_bind     1..24
+                     /label="MCBE_CW212-Blue1_fwd"
+     primer_bind     1..24
+                     /label="MCBE_CW210-Red3_fwd"
+     primer_bind     1..24
+                     /label="MCBE_CW208-Blue2_fwd"
+     primer_bind     1..24
+                     /label="MCBE_CW206-CDA-old1_fwd"
+     primer_bind     62..75
+                     /label="CW58_Cas9-ssDNA-2ndcas-rev"
+     primer_bind     complement(63..83)
+                     /label="CW58_Cas9-ssDNA-2ndcas-rev"
+     primer_bind     complement(65..110)
+                     /label="CW106_sgRNA-scaff-Csy4-full_rev"
+     primer_bind     complement(66..82)
+                     /label="CW8_sgRNA-rev"
+     misc_feature    83..110
+                     /label="Csy4 site"
+     primer_bind     complement(91..110)
+                     /label="MCBE_CW223_Red3_rev"
+     primer_bind     complement(91..110)
+                     /label="MCBE_CW221_CDAnew2_rev"
+     primer_bind     complement(91..110)
+                     /label="MCBE_CW219_Blue1_rev"
+     primer_bind     complement(91..110)
+                     /label="MCBE_CW217-CDAold3_rev"
+     primer_bind     complement(91..110)
+                     /label="MCBE_CW215-Red2_rev"
+     primer_bind     complement(91..110)
+                     /label="MCBE_CW213-Blue1_rev"
+     primer_bind     complement(91..110)
+                     /label="MCBE_CW211-Red3_rev"
+     primer_bind     complement(91..110)
+                     /label="MCBE_CW209-Blue2_rev"
+     primer_bind     complement(91..110)
+                     /label="MCBE_CW207-CDA-old1_rev"
+ORIGIN
+        1 gttttagagc tagaaatagc aagttaaaat aaggctagtc cgttatcaac ttgaaaaagt
+       61 ggcaccgagt cggtgctttt ttgttcactg ccgtataggc agctaagaaa
+//

@@ -1,6 +1,6 @@
 import os
 import pytest
-from src.utils import list_of_objects_in_a_dir
+from streptocad.utils import list_of_objects_in_a_dir
 
 # Test the normal behavior with a temporary directory
 def test_list_of_objects_in_a_dir_with_files(tmp_path):

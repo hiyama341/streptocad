@@ -186,31 +186,6 @@ def create_primer_df_from_dict(records: List[Dict[str, Any]]) -> pd.DataFrame:
 
 
 
-# TODO might delete function
-def make_antismash_df_to_dseq(df):
-    """Convert the sequences in a dataframe to pydnas's Dseqrecord objects. 
-    
-    Parameters
-    ----------
-    df : pandas.DataFrame
-        Dataframe containing the sequences to be converted. Must contain two columns: 'Sequence' and 'ID' 
-        where the sequences and their respective names are located.
-    
-    Returns
-    -------
-    sgRNA_Dseqrecords : List[pydna.Dseqrecord]
-        List of Dseqrecord objects with the sequences and their respective names as attributes.
-    """
-    sgRNA_list = df['Sequence'].to_list()
-    sgRNA_names = df['ID'].to_list()
-    
-    sgRNA_Dseqrecords = []
-    for i in range(len(sgRNA_list)): 
-        sgRNA_Dseqrecords.append(Dseqrecord(sgRNA_list[i], name = sgRNA_names[i]))
-    return sgRNA_Dseqrecords
-
-
-
 def get_top_sgRNAs(gRNAs:pd.DataFrame, number_of_sgRNAs:int = 4)->pd.DataFrame:
     ''' Retrieves top sgRNAs from a pd.DataFrame.
         

@@ -11,8 +11,7 @@ import pandas as pd
 from teemi.design.fetch_sequences import read_genbank_files
 from pydna.amplicon import Amplicon
 
-from src.teemi_functions.cloning.plasmid_processing import (
-     # TODO move this function
+from streptocad.cloning.plasmid_processing import (
     assemble_and_process_plasmids,
     assemble_plasmids_by_ssDNA_bridging, 
     annotate_plasmid_with_sgrnas, 
