@@ -66,7 +66,7 @@ def perform_pcr_on_sequences(df: pd.DataFrame, clean_seq: List[Dseqrecord]) -> L
     return list_of_amplicons
 
 
-
+# TODO delete this function?
 
 def make_amplicons(list_of_amplicons: List[SeqRecord], 
                    target_tm: int = 58, 
