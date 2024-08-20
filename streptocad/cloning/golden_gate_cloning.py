@@ -430,45 +430,6 @@ def make_amplicons(
 
 
 
-
-# def make_amplicons(
-#     list_of_amplicons: List[Dseqrecord],
-#     target_tm: int = 55,
-#     limit: int = 10,
-#     tm_function: Callable = _tm_default
-# ) -> List[Dseqrecord]:
-#     """Generates pydna.amplicons which contains primers with a target temperature.
-
-#     Parameters
-#     ----------
-#     list_of_amplicons : list
-#         list of pydna.Dseqrecords
-#     target_tm : int
-#         representing the target melting temperature for the primers (default=55)
-#     limit: int
-#         representing the maximum primer size (default=5)
-#     tm_function : function
-#         for calculating primer melting temperature (default=primer_tm_neb)
-
-#     Returns:
-#     amplicons: list
-#         list of amplicon objects with designed primer sequences
-#     """
-#     amplicons = []
-#     for i in range(len(list_of_amplicons)):
-#         amplicon = primer_design(
-#             list_of_amplicons[i],
-#             target_tm=target_tm,
-#             limit=limit,
-#             tm_function=tm_function,
-#             name = list_of_amplicons[i].name
-#         )
-
-#         amplicons.append(amplicon)
-
-#     return amplicons
-
-
 def digest_amplicons_w_BsaI(list_of_amplicons: List[Dseqrecord]) -> List[Dseqrecord]:
     """
     Digests a list of amplicons with BsaI and selects the largest fragment from each digestion.

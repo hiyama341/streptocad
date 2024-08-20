@@ -298,5 +298,7 @@ def assemble_multiple_plasmids_with_repair_templates_for_deletion(
 
                         }
                         list_of_records.append(record)
-
+            else: 
+                print('We didnt find a match! Name you plasmid differently')
+                
     return list_of_records
