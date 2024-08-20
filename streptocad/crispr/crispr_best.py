@@ -47,9 +47,29 @@ def identify_base_editing_sites(sgrna_df: pd.DataFrame, editing_window_start: in
         for i in range(editing_window_start - 1, editing_window_end):
             if i < len(sgrna) and sgrna[i] == 'C':
                 editable_positions.append(i + 1)  # Convert to 1-based index
+                # editing context
+                if i < len(sgrna) and sgrna[i-1] == 'G':
+                    editable_positions.append(1)
+                else: 
+                    editable_positions.append(0)
+                
         return ",".join(map(str, editable_positions))
     
-    sgrna_df = sgrna_df.copy()
+    def find_context_dependent_seqs(sgrna: str) -> str:
+        """Find positions of editable cytosines within the editing window."""
+        sequence_context_bases = []
+        for i in range(editing_window_start - 1, editing_window_end):
+            if i < len(sgrna) and sgrna[i] == 'C':
+                # editing context
+                if i < len(sgrna) and sgrna[i-1] == 'G':
+                    sequence_context_bases.append(1)
+                else: 
+                    sequence_context_bases.append(0)
+                
+        return ",".join(map(str, sequence_context_bases))
+    
+    sgrna_df = sgrna_df.copy() 
+    sgrna_df['editing_context'] = sgrna_df['sgrna'].apply(find_context_dependent_seqs)
     sgrna_df['editable_cytosines'] = sgrna_df['sgrna'].apply(find_editable_cytosines)
     return sgrna_df
 
@@ -106,12 +126,14 @@ def process_base_editing(df: pd.DataFrame, gene_sequences: dict,only_stop_codons
         mutated_seq = list(str(gene_seq))
         
         # Mutate the editable cytosines in the sgRNA
+        #  a C·G base pair becomes T·A
         for pos in map(int, row['editable_cytosines'].split(',')):
             if row['sgrna_strand'] == -1:
                 genome_pos = sgrna_start - pos + 20
                 if mutated_seq[genome_pos] == 'G':
                     mutated_seq[genome_pos] = 'A'
             else:
+                # watson strand
                 genome_pos = sgrna_start + pos - 1
                 if mutated_seq[genome_pos] == 'C':
                     mutated_seq[genome_pos] = 'T'
