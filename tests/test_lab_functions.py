@@ -1,5 +1,5 @@
 
-from src.teemi_functions.lab_functions import (
+from streptocad.wet_lab.lab_functions import (
     calculate_master_mix,     
     calculate_volume_and_total_concentration_df, 
     dilute_solution,
@@ -39,21 +39,15 @@ def test_calculate_master_mix():
 
 def test_calculate_volume_and_total_concentration_df(capsys):
     # Primers
-    primers = pd.read_csv('data/golden_gate_sgRNAs/CY00000014_CY00000058_CY00000155_CY00000196_CY00000239.csv')[:5]
-    forward_primers = list(primers['f_primer'])
-    reverse_primers = list(primers['r_primer'])
-    forward_primers_footprint = list(primers['f_primer_annealing'])
-    reverse_primers_footprint = list(primers['r_primer_annealing'])
-    print(forward_primers,  reverse_primers)
-    print(forward_primers_footprint,  reverse_primers_footprint)
-    print(len(forward_primers),  len(reverse_primers))
-    print(len(forward_primers_footprint),  len(reverse_primers_footprint))
+    primers = pd.read_csv('tests/test_files/pcr_df.csv')
+    forward_primers = list(primers['f_primer_sequences(5-3)'])
+    reverse_primers = list(primers['r_primer_sequences(5-3)'])
 
-    forward_primers_list = [Primer(forward_primers[i], footprint=len(forward_primers_footprint[i])) for i in range(len(forward_primers))]
-    reverse_primers_list = [Primer(reverse_primers[i], footprint=len(reverse_primers_footprint[i])) for i in range(len(reverse_primers))]
-
+    forward_primers_list = [Primer(forward_primers[i]) for i in range(len(forward_primers))]
+    reverse_primers_list = [Primer(reverse_primers[i]) for i in range(len(reverse_primers))]
+    
     # Template: 
-    pJet = read_genbank_files('data/plasmids/Multiplexing_PCR_scaffold.gb')[0]
+    pJet = read_genbank_files('tests/test_files/Multiplexing_PCR_scaffold.gb')[0]
 
     # PCR
     amplicon_names = ['PCR_CY00000014', 'PCR_CY00000058', 'PCR_CY00000155', 'PCR_CY00000196', 'PCR_CY00000239']
@@ -80,15 +74,15 @@ def test_calculate_volume_and_total_concentration_df(capsys):
     # Expected DataFrame
     expected_df = pd.DataFrame({
         "name": ['PCR_CY00000014', 'PCR_CY00000058', 'PCR_CY00000155', 'PCR_CY00000196', 'PCR_CY00000239'],
-        "volume to add": [7.7, 4.7, 13.5, 4.3, 3.3],  # Example values, replace with actual expected values
+        "volume to add": [9.0, 5.7, 16.4, 5.3, 4.0],  # Example values, replace with actual expected values
         "concentration": [55, 72, 25, 78, 103],
         "location": ['l5_D01', 'l5_D02', 'l5_D03', 'l5_D04', 'l5_D05']
     })
 
-
     # Call the function
     result_df = calculate_volume_and_total_concentration_df(list_of_amplicons, amplicon_parts_amounts_total)
 
+    print(result_df)
     # Assertions
     pd.testing.assert_frame_equal(result_df, expected_df)
     
@@ -96,8 +90,8 @@ def test_calculate_volume_and_total_concentration_df(capsys):
     captured = capsys.readouterr()
 
     # Validate printed output
-    assert "Total volume of the parts mixed : 33.5" in captured.out
-    assert "Final concentration of the parts mixed : 52.976119402985084" in captured.out
+    assert "Total volume of the parts mixed : 40.4" in captured.out
+    assert "Final concentration of the parts mixed : 52.990099009900995" in captured.out
 
 
 

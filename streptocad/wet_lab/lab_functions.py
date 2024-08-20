@@ -13,21 +13,10 @@
 # copies or substantial portions of the Software.
 
 from teemi.build.PCR import (
-    calculate_elongation_time,
-    primer_ta_neb,
-    primer_tm_neb,
     calculate_volumes,
 )
 from teemi.build.transformation import wanted_mass, wanted_volume
-
-import textwrap as _textwrap
-from pydna._pretty import pretty_str as _pretty_str
 import pandas as pd
-from Bio.SeqRecord import SeqRecord
-from dna_features_viewer import GraphicFeature, CircularGraphicRecord
-from dna_features_viewer import BiopythonTranslator
-from pydna.dseqrecord import Dseqrecord
-
 
 def calculate_master_mix(
     vol_p_reac=0, no_of_reactions=1, standard_reagents=[], standard_volumes=[]
@@ -42,8 +31,10 @@ def calculate_master_mix(
         standard_volumes=standard_volumes,
     )
 
-    # mastermix - change columns
+    # Ensure the column that will hold mixed types is of object dtype
     master_mix.columns = ["vol_p_reac", f"mastermix for {no_of_reactions} reactions"]
+    master_mix[f"mastermix for {no_of_reactions} reactions"] = master_mix[f"mastermix for {no_of_reactions} reactions"].astype(object)
+    
     for k, v in master_mix.iterrows():
         if "Primer" in k or "primer" in k:
             master_mix.loc[
@@ -51,7 +42,6 @@ def calculate_master_mix(
             ] = "Add primers individually"
 
     return master_mix
-
 
 def calculate_volume_and_total_concentration_df(
     amplicons, amplicon_parts_amounts_total, n=1
