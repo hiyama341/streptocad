@@ -247,7 +247,7 @@ crispr_cb_tab = html.Div(children=[
             dbc.Col([
                 dbc.Checklist(
                     options=[
-                        {"label": "Editing Context", "value": 1},
+                        {"label": "Editing Sequence Context", "value": 1},
                     ],
                     value=[1] if True else [],  # default value
                     id="editing_context_2",
