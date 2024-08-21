@@ -195,6 +195,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                     style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
                 ),
             ], width=12, className="mb-3"),
+            
             dbc.Col([
                 dbc.Checklist(
                     options=[
@@ -207,9 +208,22 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                     className="big-switch"
                 ),
             ], width=12, className="mb-3"),
-        ]),
-    ], width=6),
-], className="mb-4"),
+
+            dbc.Col([
+                dbc.Checklist(
+                    options=[
+                        {"label": "Editing Context", "value": 1},
+                    ],
+                    value=[1] if True else [],  # default value
+                    id="editing_context_3",
+                    inline=True,
+                    switch=True,
+                    className="big-switch"
+                ),
+            ], width=12, className="mb-3"),
+            ]),
+        ], width=6),
+    ], className="mb-4"),
 
 
     # Advanced settings section with one button to toggle visibility

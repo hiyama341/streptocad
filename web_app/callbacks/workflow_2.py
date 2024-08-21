@@ -103,13 +103,15 @@ def register_workflow_2_callbacks(app):
             State('melting-temperature_2', 'value'),
             State('primer-concentration_2', 'value'),
             State('primer-number-increment_2', 'value'),
-            State('flanking-region-number_2', 'value')
+            State('flanking-region-number_2', 'value'), 
+            State('editing_context_2', 'value')
+
         ]
     )
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
                      up_homology, dw_homology, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
                      number_of_sgRNAs_per_group, only_stop_codons, chosen_polymerase, melting_temperature, 
-                     primer_concentration, primer_number_increment, flanking_region_number):
+                     primer_concentration, primer_number_increment, flanking_region_number, editing_context):
         if n_clicks is None:
             raise PreventUpdate
 
@@ -162,10 +164,12 @@ def register_workflow_2_callbacks(app):
                 # Filter out only sgRNAs that result in base-editing
                 filtered_sgrna_df_for_base_editing = filter_sgrnas_for_base_editing(sgrna_df_with_editing)
                 logging.info("Filtering sgRNAs for base editing completed.")
-
-                # Process the DataFrame to apply C-to-T mutations
-                mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing, genes_to_KO_dict, only_stop_codons=bool(only_stop_codons))
-
+                
+                mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing, 
+                                                        genes_to_KO_dict, 
+                                                        only_stop_codons=bool(only_stop_codons), 
+                                                        editing_context=bool(editing_context))
+                
                 # Filter the DataFrame to retain only up to 5 sgRNA sequences per locus_tag
                 filtered_df = mutated_sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
                 logging.info(f"Filtered DataFrame: {filtered_df}")

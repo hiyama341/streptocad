@@ -131,7 +131,9 @@ def register_workflow_3_callbacks(app):
         State('restriction-overhang-r', 'value'),
         State('backbone-overhang-f', 'value'),
         State('backbone-overhang-r', 'value'),
-        State('cys4-sequence', 'value')
+        State('cys4-sequence', 'value'),
+        State('editing_context_3', 'value')
+
         ]
     )
     
@@ -139,7 +141,8 @@ def register_workflow_3_callbacks(app):
                     sgRNA_handle_input, input_tm, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type,
                     number_of_sgRNAs_per_group, only_stop_codons, chosen_polymerase, melting_temperature,
                     primer_concentration, primer_number_increment, flanking_region_number,
-                    restriction_overhang_f, restriction_overhang_r, backbone_overhang_f, backbone_overhang_r, cys4_sequence):
+                    restriction_overhang_f, restriction_overhang_r, backbone_overhang_f, backbone_overhang_r, cys4_sequence, 
+                    editing_context):
 
         if n_clicks is None:
             raise PreventUpdate
@@ -197,8 +200,12 @@ def register_workflow_3_callbacks(app):
 
                 filtered_sgrna_df_for_base_editing = filter_sgrnas_for_base_editing(sgrna_df_with_editing)
                 logger.info(f"sgRNAs filtered for base editing: {filtered_sgrna_df_for_base_editing.shape[0]} rows")
-
-                mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing, genes_to_KO_dict, only_stop_codons=bool(only_stop_codons))
+                
+                mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing, 
+                                                        genes_to_KO_dict, 
+                                                        only_stop_codons=bool(only_stop_codons), 
+                                                        editing_context=bool(editing_context))
+                
                 logger.info(f"Base editing applied: {mutated_sgrna_df.shape[0]} rows")
                 filtered_df = mutated_sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
                 logger.info(f"sgRNAs filtered by group: {filtered_df.shape[0]} rows")

@@ -243,6 +243,20 @@ crispr_cb_tab = html.Div(children=[
                 ),
             ], width=12, className="mb-3"),
         ]),
+        dbc.Row([
+            dbc.Col([
+                dbc.Checklist(
+                    options=[
+                        {"label": "Editing Context", "value": 1},
+                    ],
+                    value=[1] if True else [],  # default value
+                    id="editing_context_2",
+                    inline=True,
+                    switch=True,
+                    className="big-switch"
+                ),
+            ], width=12, className="mb-3"),
+        ]),
     ], width=6, style={"marginRight": "10px", "marginLeft": "10px"}),
 
 
