@@ -20,6 +20,10 @@ from collections import Counter
 from Bio.Seq import Seq
 from typing import Callable, Dict, Optional, List, Tuple
 from pydna.dseqrecord import Dseqrecord
+from Bio.SeqRecord import SeqRecord
+import pandas as pd
+from typing import Tuple, List
+from Bio import SeqIO
 
 
 class SgRNAargs:
@@ -103,7 +107,7 @@ class SgRNAargs:
         # Extract strain name from the Dseqrecord
         self.strain_name = self.dseqrecord.id
 
-
+# TODO incorporate this into the code? 
 def revcomp(x: str) -> str:
     """
     Compute the reverse complement of a DNA sequence.
@@ -120,10 +124,6 @@ def revcomp(x: str) -> str:
     """
     return str(Seq(x).reverse_complement())
 
-from Bio.SeqRecord import SeqRecord
-import pandas as pd
-from typing import Tuple, List
-from Bio import SeqIO
 
 def parse_genbank_record(dseqrecord: SeqRecord) -> Tuple[List[str], pd.DataFrame]:
     """
@@ -150,9 +150,6 @@ def parse_genbank_record(dseqrecord: SeqRecord) -> Tuple[List[str], pd.DataFrame
     return sequences
 
 
-
-
-# Modify the find_off_target_hits function to account for the different PAM site in Cas13
 def find_off_target_hits(sequences: List[str], off_target_seed: int, cas_type:str) -> Counter:
     """
     Find all potential off-target hits in both strands and count their frequencies.
@@ -164,7 +161,7 @@ def find_off_target_hits(sequences: List[str], off_target_seed: int, cas_type:st
     off_target_seed : int
         The length of the off-target seed sequence to match.
     cas_type : str
-        The type of the CRISPR-Cas system used ('cas9', 'cas12a', or 'cas13').
+        The type of the CRISPR-Cas system used ('cas9', 'cas12a', or 'cas3').
 
     Returns
     -------
