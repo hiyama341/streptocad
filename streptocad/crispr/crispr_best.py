@@ -47,11 +47,6 @@ def identify_base_editing_sites(sgrna_df: pd.DataFrame, editing_window_start: in
         for i in range(editing_window_start - 1, editing_window_end):
             if i < len(sgrna) and sgrna[i] == 'C':
                 editable_positions.append(i + 1)  # Convert to 1-based index
-                # editing context
-                if i < len(sgrna) and sgrna[i-1] == 'G':
-                    editable_positions.append(1)
-                else: 
-                    editable_positions.append(0)
                 
         return ",".join(map(str, editable_positions))
     
@@ -98,7 +93,9 @@ def filter_sgrnas_for_base_editing(sgrna_df: pd.DataFrame) -> pd.DataFrame:
     return sgrna_df[sgrna_df['editable_cytosines'] != '']
 
 
-def process_base_editing(df: pd.DataFrame, gene_sequences: dict,only_stop_codons: bool = False) -> pd.DataFrame:
+def process_base_editing(df: pd.DataFrame, gene_sequences: dict,
+                         only_stop_codons: bool = False, 
+                         editing_context: bool = True) -> pd.DataFrame:
     """
     Process the DataFrame to apply C-to-T (or C-to-A if sgrna_strand is -1) mutations at specified positions and identify amino acid changes.
     
@@ -191,5 +188,10 @@ def process_base_editing(df: pd.DataFrame, gene_sequences: dict,only_stop_codons
         
         # Drop the first_mutation_position column if you don't want it in the final output
         df = df.drop(columns=['first_mutation_position'])
+
+    if editing_context: 
+        # Filter out rows where 'editing_context' contains '1'
+        df = df[~df['editing_context'].str.contains(r'1')]
+
     
     return df
