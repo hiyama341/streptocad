@@ -6,7 +6,10 @@ from pydna.design import primer_design
 import pandas as pd
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 from pydna.dseqrecord import Dseqrecord
-from Bio import SeqIO
+import warnings
+import pandas as pd
+from pydna.dseqrecord import Dseqrecord
+from pydna.design import primer_design
 
 from ..primers.primer_analysis import analyze_primers_and_hairpins
 from ..cloning.pcr_simulation import make_amplicons
@@ -182,19 +185,6 @@ def make_primer_records(filtered_df: pd.DataFrame) -> List[Dseqrecord]:
     -------
     List[Dseqrecord]
         A list of Dseqrecord objects for the forward and reverse primers.
-
-    Examples
-    --------
-    >>> data = {
-    ...     'locus_tag': ['gene1', 'gene2'],
-    ...     'sgrna_loc': ['loc1', 'loc2'],
-    ...     'Fwd Primer': ['ATCGGTCGCcCggCaaAaccGg', 'GCTAGTCGCcCggCaaAaccGg'],
-    ...     'Rev Primer': ['CGATGTTTCAATCCACGCGCCCGT', 'TAGCGTTTCAATCCACGCGCCCGT']
-    ... }
-    >>> df = pd.DataFrame(data)
-    >>> primer_records = make_primer_records(df)
-    >>> for record in primer_records:
-    >>>     print(record)
     """
     primer_records: List[Dseqrecord] = []
     
@@ -203,17 +193,19 @@ def make_primer_records(filtered_df: pd.DataFrame) -> List[Dseqrecord]:
         fwd_primer_record = Dseqrecord(row['Fwd Primer'], 
                                        id=f"{row['locus_tag']}_fwd_{str(index)}", 
                                        name=f"{row['locus_tag']}_loc_{row['sgrna_loc']}_fwd")
+        fwd_label = f"Fwd_{row['locus_tag']}_loc_{row['sgrna_loc']}"
         fwd_primer_record.features.append(SeqFeature(FeatureLocation(0, len(row['Fwd Primer'])),
                                                      type="primer_bind",
-                                                     qualifiers={"label": f"Fwd_{row['locus_tag']}_loc_{row['sgrna_loc']}"}))
+                                                     qualifiers={"label": fwd_label}))
         
         # Create Dseqrecord for reverse primer
         rev_primer_record = Dseqrecord(row['Rev Primer'], 
                                        id=f"{row['locus_tag']}_rev_{str(index)}", 
                                        name=f"{row['locus_tag']}_loc_{row['sgrna_loc']}_rev")
+        rev_label = f"Rev_{row['locus_tag']}_loc_{row['sgrna_loc']}"
         rev_primer_record.features.append(SeqFeature(FeatureLocation(0, len(row['Rev Primer'])),
                                                      type="primer_bind",
-                                                     qualifiers={"label": f"Rev_{row['locus_tag']}_loc_{row['sgrna_loc']}"}))
+                                                     qualifiers={"label": rev_label}))
         
         primer_records.extend([fwd_primer_record, rev_primer_record])
     
@@ -221,11 +213,6 @@ def make_primer_records(filtered_df: pd.DataFrame) -> List[Dseqrecord]:
 
 
 
-import warnings
-import primer3
-import pandas as pd
-from pydna.dseqrecord import Dseqrecord
-from pydna.design import primer_design
 
 def checking_primers(record, locus_tags, flanking_region=500, 
                      target_tm=65, limit=10, 

@@ -1,0 +1,543 @@
+LOCUS       pOEX-PkasO        5230 bp DNA     circular SYN 06-DEC-2023
+DEFINITION  synthetic circular DNA.
+ACCESSION   pOEX-PkasO
+VERSION     pOEX-PkasO
+KEYWORDS    pOEX-PkasO
+SOURCE      synthetic DNA construct
+  ORGANISM  synthetic DNA construct
+REFERENCE   1  (bases 1 to 5230)
+  AUTHORS   .
+  TITLE     Direct Submission
+  JOURNAL   Exported Jun 18, 2024 from SnapGene 7.2.1
+            https://www.snapgene.com
+COMMENT     Imported using the Genbank importer. File name: 
+            p270_pRM4e-PkasO-RBS.gb
+FEATURES             Location/Qualifiers
+     source          1..5230
+                     /mol_type="other DNA"
+                     /label=source
+                     /organism="recombinant plasmid"
+     rep_origin      complement(112..682)
+                     /direction=LEFT
+                     /label=ColE1
+                     /note="origin of replication from pBR322 (also known 
+                     aspMB1, pUC origin)"
+                     /note="Derived using Geneious Prime 2021.1.1 'Annotatefrom 
+                     Database' based on nucleotide similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; <a 
+                     href=""urn:local:.:2bv-cppa2zg"">ColE1</a>"
+                     /note="/Transferred_From=ColE1"
+                     /note="/Transferred_Similarity=100.00%"
+     misc_feature    793..4980
+                     /label=Streptomyces integration Cassette
+                     /label=nonstandard type: Integrasion Streptomyces
+                     /note="/created_by=matmal"
+     CDS             886..1689
+                     /codon_start=1
+                     /transl_table=11
+                     /product="Aac(3)IV"
+                     /label=Aac
+                     /note="aminoglycoside N(3')-acetyltransferase"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aac(3)IV CDS (GU270843)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aac(3)IV CDS (MW879728)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aac(3)IV CDS (MW879732)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aacC4 CDS (KX863721)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aacC4 CDS (KX863722)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aacC4 CDS (KX863720)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aacC4 CDS (KX863719)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aacIV CDS (KU523901)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:9/0;aac(3)-IVa CDS (NG_047253)"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     Aac(3)IVCDS (LN864415)"
+                     /note="/Transferred_From=LN864415"
+                     /note="/Transferred_Similarity=100.00%"
+                     /note="/Transferred_Translation=MSSAVECNVVQYEWRKAELIGQLLNLG
+                     VTPGG 
+                     VLLVHSSFRSVRPLEDGPLGLIEALRAALGPGGTLVMPSWSGLDDEPFDPATSPVTPD 
+                     LGVVSDTFWRLPNVKRSAHPFAFAAAGPQAEQIISDPLPLPPHSPASPVARVHELDGQ 
+                     VLLLGVGHDANTTLHLAELMAKVPYGVPRHCTILQDGKLVRVDYLENDHCCERFALAD 
+                     RWLKEKSLQKEGPVGHAFARLIRSRDIVATALGQLGRDPLIFLHPPEAGCEECDAARQ 
+                     SIG"
+                     /db_xref="GI:831358675"
+                     /db_xref="GOA:E9LMD4"
+                     /db_xref="InterPro:IPR003679"
+                     /db_xref="UniProtKB/TrEMBL:E9LMD4"
+                     /protein_id="CRL58830.1"
+                     /translation="MSSAVECNVVQYEWRKAELIGQLLNLGVTPGGVLLVHSSFRSVRP
+                     LEDGPLGLIEALRAALGPGGTLVMPSWSGLDDEPFDPATSPVTPDLGVVSDTFWRLPNV
+                     KRSAHPFAFAAAGPQAEQIISDPLPLPPHSPASPVARVHELDGQVLLLGVGHDANTTLH
+                     LAELMAKVPYGVPRHCTILQDGKLVRVDYLENDHCCERFALADRWLKEKSLQKEGPVGH
+                     AFARLIRSRDIVATALGQLGRDPLIFLHPPEAGCEECDAARQSIG"
+     CDS             886..1689
+                     /codon_start=1
+                     /gene="apmR"
+                     /product="aminoglycoside 3-N-acetyltransferase type IV"
+                     /label=apmR
+                     /note="confers resistance to apramycin"
+                     /note="Derived using Geneious Prime 2021.1.1 'Annotatefrom 
+                     Database' based on nucleotide similarity"
+                     /note="/Adjusted_Transferred_Similarity=96.64%"
+                     /note="/Color=#797979"
+                     /note="/Primary_Match=100.00%; 
+                     Adjusted-Interval-0:27/0(adjusted to 96.64%; 
+                     Adjusted-Interval-0:0/0); <a 
+                     href=""urn:local:.:fw-cppa29f"">apmR</a>"
+                     /note="/Transferred_From=apmR"
+                     /note="/Transferred_Similarity=100.00%"
+                     /note="/kind=selectable marker"
+                     /translation="MSSAVECNVVQYEWRKAELIGQLLNLGVTPGGVLLVHSSFRSVRP
+                     LEDGPLGLIEALRAALGPGGTLVMPSWSGLDDEPFDPATSPVTPDLGVVSDTFWRLPNV
+                     KRSAHPFAFAAAGPQAEQIISDPLPLPPHSPASPVARVHELDGQVLLLGVGHDANTTLH
+                     LAELMAKVPYGVPRHCTILQDGKLVRVDYLENDHCCERFALADRWLKEKSLQKEGPVGH
+                     AFARLIRSRDIVATALGQLGRDPLIFLHPPEAGCEECDAARQSIG"
+     gene            886..1686
+                     /gene="aac(3)IV"
+                     /label=aac(3)IV
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aac(3)IV gene (MW879728)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aac(3)IV gene (MW879732)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aacC4 gene (KX863721)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aacC4 gene (KX863722)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aacC4 gene (KX863720)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aacC4 gene (KX863719)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;aacIV gene (KU523901)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:9/0;aac(3)-IVa gene (NG_047253)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:9/0;aacC4 gene (DQ241380)"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     aac(3)IVgene (GU270843)"
+                     /note="/Transferred_From=GU270843"
+                     /note="/Transferred_Similarity=100.00%"
+     misc_feature    886..960
+                     /label=Region: PCR 2
+                     /note="Region: PCR 2"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:1/-23;TCA to AGT (MW879728)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:2/-22;TCA to AGT (MW879728)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:1/-23;TCA to AGT (MW879732)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:2/-22;TCA to AGT (MW879732)"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     Region:PCR 2 (LN864415)"
+                     /note="/Transferred_From=LN864415"
+                     /note="/Transferred_Similarity=100.00%"
+     regulatory      901..903
+                     /label=Shine Dalgarno sequence
+                     /note="Shine Dalgarno sequence"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     ShineDalgarno sequence regulatory (X01385)"
+                     /note="/Transferred_From=X01385"
+                     /note="/Transferred_Similarity=100.00%"
+                     /regulatory_class="ribosome_binding_site"
+     old_sequence    1033..1035
+                     /label=cca was ccca in [1]
+                     /note="cca was ccca in [1]"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     ccawasccca in [1] old sequence (X01385)"
+                     /note="/Transferred_From=X01385"
+                     /note="/Transferred_Similarity=100.00%"
+     misc_feature    1096..1098
+                     /gene="aac(3)IV"
+                     /label=TCG to AGC
+                     /note="TCG to AGC"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;TCGto AGC (MW879732)"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     TCGtoAGC (MW879728)"
+                     /note="/Transferred_From=MW879728"
+                     /note="/Transferred_Similarity=100.00%"
+     misc_feature    1102..1104
+                     /gene="aac(3)IV"
+                     /label=TCA to AGT
+                     /note="TCA to AGT"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;TCAto AGT (MW879732)"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     TCAtoAGT (MW879728)"
+                     /note="/Transferred_From=MW879728"
+                     /note="/Transferred_Similarity=100.00%"
+     misc_feature    1138..1140
+                     /gene="aac(3)IV"
+                     /label=TCG to AGC
+                     /note="TCG to AGC"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;TCGto AGC (MW879732)"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     TCGtoAGC (MW879728)"
+                     /note="/Transferred_From=MW879728"
+                     /note="/Transferred_Similarity=100.00%"
+     misc_feature    1285..1287
+                     /gene="aac(3)IV"
+                     /label=TCG to AGC
+                     /note="TCG to AGC"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;TCGto AGC (MW879732)"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     TCGtoAGC (MW879728)"
+                     /note="/Transferred_From=MW879728"
+                     /note="/Transferred_Similarity=100.00%"
+     old_sequence    1498..1500
+                     /label=cg was cgg in [1]
+                     /note="cg was cgg in [1]"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; cg 
+                     wascgg in [1] old sequence (X01385)"
+                     /note="/Transferred_From=X01385"
+                     /note="/Transferred_Similarity=100.00%"
+     misc_feature    1678..1680
+                     /gene="aac(3)IV"
+                     /label=TCG to AGC
+                     /note="TCG to AGC"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;TCGto AGC (MW879732)"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     TCGtoAGC (MW879728)"
+                     /note="/Transferred_From=MW879728"
+                     /note="/Transferred_Similarity=100.00%"
+     regulatory      complement(2120..2491)
+                     /gene="traJ"
+                     /label=traJ
+                     /note="conjugal transfer transcriptional regulator"
+                     /note="Derived using Geneious Prime 2021.1.1 'Annotatefrom 
+                     Database' based on nucleotide similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; <a 
+                     href=""urn:local:.:26k-cppa2up"">traJ</a>"
+                     /note="/Transferred_From=traJ"
+                     /note="/Transferred_Similarity=100.00%"
+                     /note="/product=protein TraJ"
+                     /regulatory_class="other"
+     CDS             complement(2120..2491)
+                     /codon_start=1
+                     /label=traJ probably not necessary here, it is nor fou
+                     /label=traJ\probably\not\necessary\here,\it\is\nor\found 
+                     in\pGM1190
+                     /note="/vntifkey=4"
+                     /translation="MADETKPTRKGSPPIKVYCLPDERRAIEEKAAAAGMSLSAYLLAV
+                     GQGYKITGVVDYEHVRELARINGDLGRLGGLLKLWLTDDPRTARFGDATILALLAKIEE
+                     KQDELGKVMMGVVRPRAEP"
+     CDS             complement(2120..2491)
+                     /codon_start=1
+                     /transl_table=11
+                     /product="TraJ"
+                     /label=TraJ
+                     /note="plasmid conjugative transfer protein"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJCDS (J04942)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJCDS (MK809155)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJCDS (MF991287)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJCDS (FJ797652)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJCDS (HQ875762)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJCDS (HQ875764)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJCDS (FJ797647)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJCDS (HQ875758)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJCDS (HQ875760)"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     TraJ CDS(JX465735)"
+                     /note="/Transferred_From=JX465735"
+                     /note="/Transferred_Similarity=100.00%"
+                     /note="/Transferred_Translation=MLNGNPALRGWPATAGVTDEGKRMADE
+                     TKPTR 
+                     KGSPPIKVYCLPDERRAIEEKAAAAGMSLSAYLLAVGQGYKITGVVDYEHVRELARIN 
+                     GDLGRLGGLLKLWLTDDPRTARFGDATILALLAKIEEKQDELGKVMMGVVRPRAEP"
+                     /db_xref="GI:418434440"
+                     /protein_id="AFX65557.1"
+                     /translation="MADETKPTRKGSPPIKVYCLPDERRAIEEKAAAAGMSLSAYLLAV
+                     GQGYKITGVVDYEHVRELARINGDLGRLGGLLKLWLTDDPRTARFGDATILALLAKIEE
+                     KQDELGKVMMGVVRPRAEP"
+     oriT            2123..2491
+                     /label=GmR-oriT
+                     /note="GmR-oriT"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     GmR-oriT(MK809155)"
+                     /note="/Transferred_From=MK809155"
+                     /note="/Transferred_Similarity=100.00%"
+     misc_feature    2123..2491
+                     /label=RP4 mob site
+                     /note="RP4 mob site"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     RP4mobsite (JQ769377)"
+                     /note="/Transferred_From=JQ769377"
+                     /note="/Transferred_Similarity=100.00%"
+     gene            complement(2123..2491)
+                     /gene="traJ"
+                     /label=traJ
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJgene (MK809155)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJgene (MF991287)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJgene (FJ797652)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJgene (HQ875762)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJgene (HQ875764)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJgene (FJ797647)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJgene (HQ875758)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJgene (HQ875760)"
+                     /note="/Alternative_Match=100.00%; 
+                     Adjusted-Interval-0:0/0;traJgene (FJ797648)"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     traJgene (J04942)"
+                     /note="/Transferred_From=J04942"
+                     /note="/Transferred_Similarity=100.00%"
+     misc_feature    complement(2123..2491)
+                     /label=lacZ alpha
+                     /note="lacZ alpha"
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; 
+                     lacZalpha (JX465735)"
+                     /note="/Transferred_From=JX465735"
+                     /note="/Transferred_Similarity=100.00%"
+     primer_bind     complement(2263..2332)
+                     /label=CW959_pRM4e_kasO_fwd
+     rep_origin      complement(2524..2645)
+                     /direction=LEFT
+                     /label=incP oriT
+                     /note="incP origin of transfer"
+                     /note="Derived using Geneious Prime 2021.1.1 'Annotatefrom 
+                     Database' based on nucleotide similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; <a 
+                     href=""urn:local:.:2cg-cppa2zr"">incP oriT</a>"
+                     /note="/Transferred_From=incP oriT"
+                     /note="/Transferred_Similarity=100.00%"
+     primer_bind     2557..2578
+                     /label=CW748_PRM4-bb_fwd
+     primer_bind     complement(2557..2578)
+                     /label=CW749_PRM4-bb_rev
+     rep_origin      2571..2669
+                     /label=RP4 oriT
+                     /note="origin of transfer for RP4 plasmid"
+                     /note="Derived using Geneious Prime 2021.1.1 'Annotatefrom 
+                     Database' based on nucleotide similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; <a 
+                     href=""urn:local:.:2dl-cppa30f"">RP4 oriT</a>"
+                     /note="/Transferred_From=RP4 oriT"
+                     /note="/Transferred_Similarity=100.00%"
+     CDS             3078..4880
+                     /codon_start=1
+                     /transl_table=11
+                     /gene="Int"
+                     /product="phiC31 integrase"
+                     /label=Int
+                     /note="Derived using Geneious Prime 2022.0.1 'Annotate 
+                     byBLAST' based on protein similarity"
+                     /note="/Alternative_Match=99.50%; Adjusted-Interval-0:0/0; 
+                     IntCDS (KC897092)"
+                     /note="/Alternative_Match=99.50%; 
+                     Adjusted-Interval-0:0/0;hypothetical protein CDS 
+                     (CP032052)"
+                     /note="/Alternative_Match=99.50%; 
+                     Adjusted-Interval-0:0/0;hypothetical protein CDS 
+                     (CP020569)"
+                     /note="/Alternative_Match=99.50%; 
+                     Adjusted-Interval-0:0/0;hypothetical protein CDS 
+                     (CP032052)"
+                     /note="/Alternative_Match=99.50%; Adjusted-Interval-0:0/0; 
+                     intCDS (KT362048)"
+                     /note="/Alternative_Match=99.50%; Adjusted-Interval-0:0/0; 
+                     intCDS (KT265816)"
+                     /note="/Alternative_Match=99.50%; Adjusted-Interval-0:0/0; 
+                     intCDS (KP823602)"
+                     /note="/Alternative_Match=99.50%; Adjusted-Interval-0:0/0; 
+                     intCDS (MW810319)"
+                     /note="/Alternative_Match=99.50%; Adjusted-Interval-0:0/0; 
+                     intCDS (CP071800)"
+                     /note="/Primary_Match=99.50%; Adjusted-Interval-0:0/0; Int 
+                     CDS(KC897091)"
+                     /note="/Transferred_From=KC897091"
+                     /note="/Transferred_Similarity=99.50%"
+                     /note="/Transferred_Translation=MTQGVVTGVDTYAGAYDRQSRERENSS
+                     AASPA 
+                     TQRSANEDKAADLQREVERDGGRFRFVGHFSEAPGTSAFGTAERPEFERILNECRAGR 
+                     LNMIIVYDVSRFSRLKVMDAIPIVSELLALGVTIVSTQEGVFRQGNVMDLIHLIMRLD 
+                     ASHKESSLKSAKILDTKNLQRELGGYVGGKAPYGFELVSETKEITRNGRMVNVVINKL 
+                     AHSTTPLTGPFEFEPDVIRWWWREIKTHKHLPFKPGSQAAIHPGSITGLCKRMDADAV 
+                     PTRGETIGKKTASSAWDPATVMRILRDPRIAGFAAEVIYKKKPDGTPTTKIEGYRIQR 
+                     DPITLRPVELDCGPIIEPAEWYELQAWLDGRGRGKGLSRGQAILSAMDKLYCECGAVM 
+                     TSKRGEESIKDSYRCRRRKVVDPSAPGQHEGTCNVSMAALDKFVAERIFNKIRHAEGD 
+                     EETLALLWEAARRFGKLTEAPEKSGERANLVAERADALNALEELYEDRAAGAYDGPVG 
+                     RKHFRKQQAALTLRQQGAEERLAELEAAEAPKLPLDQWFPEDADADPTGPKSWWGRAS 
+                     VDDKRVFVGLFVDKIVVTKSTTGRGQGTPIEKRASITWAKPPTDDDEDDAQDGTEDVA 
+                     A"
+                     /db_xref="GI:529177979"
+                     /protein_id="AGS58500.1"
+                     /translation="VLTTVSRASARNSSAASPATQRSANEDKAADLQREVERDGGRFRF
+                     VGHFSEAPGTSAFGTAERPEFERILNECRAGRLNMIIVYDVSRFSRLKVMDAIPIVSEL
+                     LALGVTIVSTQEGVFRQGNVMDLIHLIMRLDASHKESSLKSAKILDTKNLQRELGGYVG
+                     GKAPYGFELVSETKEITRNGRMVNVVINKLAHSTTPLTGPFEFEPDVIRWWWREIKTHK
+                     HLPFKPGSQAAIHPGSITGLCKRMDADAVPTRGETIGKKTASSAWDPATVMRILRDPRI
+                     AGFAAEVIYKKKPDGTPTTKIEGYRIQRDPITLRPVELDCGPIIEPAEWYELQAWLDGR
+                     GRGKGLSRGQAILSAMDKLYCECGAVMTSKRGEESIKDSYRCRRRKVVDPSAPGQHEGT
+                     CNVSMAALDKFVAERIFNKIRHAEGDEETLALLWEAARRFGKLTEAPEKSGERANLVAE
+                     RADALNALEELYEDRAAGAYDGPVGRKHFRKQQAALTLRQQGAEERLAELEAAEAPKPP
+                     LDQWFPEDADADPTGPKSWWGRASVDDKRVFVGLFVDKIVVTKSTTGRGQGTPIEKRAS
+                     ITWAKPPTDDDEDDAQDGTEDVAA"
+     primer_bind     complement(4994..5071)
+                     /label=CW958_prM4e_kasO_rev
+     misc_feature    5014..5076
+                     /label=PkasO*
+     regulatory      5014
+                     /label=CAP BS
+                     /note="catabolite activator protein binding site"
+                     /note="Derived using Geneious Prime 2021.1.1 'Annotatefrom 
+                     Database' based on nucleotide similarity"
+                     /note="/Primary_Match=100.00%; Adjusted-Interval-0:0/0; <a 
+                     href=""urn:local:.:1pa-cppa2mr"">CAP BS</a>"
+                     /note="/Transferred_From=CAP BS"
+                     /note="/Transferred_Similarity=100.00%"
+                     /regulatory_class="other"
+     primer_bind     5052..5135
+                     /label=CW959_pRM4e_kasO_fwd
+     misc_feature    5097..5101
+                     /label=RBS
+     primer_bind     5115..5135
+                     /label=CW746_PRM4-MCS_fwd
+ORIGIN
+        1 aaaggcggta atacggttat ccacagaatc aggggataac gcaggaaaga acatgtgagc
+       61 aaaaggccag caaaaggcca ggaaccgtaa aaaggccgcg ttgctggcgt ttttccatag
+      121 gctccgcccc cctgacggct caagtcagag gtggcgaaac ccgacaggac tataaagata
+      181 ccaggcgttt ccccctggaa gctccctcgt gcgctctcct gttccgaccc tgccgcttac
+      241 cggatacctg tccgcctttc tcccttcggg aagcgtggcg ctttctcata gctcacgctg
+      301 taggtatctc agttcggtgt aggtcgttcg ctccaagctg ggctgtgtgc acgaaccccc
+      361 cgttcagccc gaccgctgcg ccttatccgg taactatcgt cttgagtcca acccggtaag
+      421 acacgactta tcgccactgg cagcagccac tggtaacagg attagcagag cgaggtatgt
+      481 aggcggtgct acagagttct tgaagtggtg gcctaactac ggctacacta gaagaacagt
+      541 atttggtatc tgcgctctgc tgaagccagt taccttcgga aaaagagttg gtagctcttg
+      601 atccggcaaa caaaccaccg ctggtagcgg tggttttttt gtttgcaagc agcagattac
+      661 gcgcagaaaa aaaggatctc aagaagatcc tttgatcttt tctacggggt ctgacgctca
+      721 gtggaacgaa aactcacgtt aagggatttt ggtcatgaga ttatcaaaaa ggatcttcac
+      781 ctagatcctt ttggttcatg tgcagctcca tcagcaaaag gggatgataa gtttatcacc
+      841 accgactatt tgcaacagtg ccgttgatcg tgctatgatc gactgatgtc atcagcggtg
+      901 gagtgcaatg tcgtgcaata cgaatggcga aaagccgagc tcatcggtca gcttctcaac
+      961 cttggggtta cccccggcgg tgtgctgctg gtccacagct ccttccgtag cgtccggccc
+     1021 ctcgaagatg ggccacttgg actgatcgag gccctgcgtg ctgcgctggg tccgggaggg
+     1081 acgctcgtca tgccctcgtg gtcaggtctg gacgacgagc cgttcgatcc tgccacgtcg
+     1141 cccgttacac cggaccttgg agttgtctct gacacattct ggcgcctgcc aaatgtaaag
+     1201 cgcagcgccc atccatttgc ctttgcggca gcggggccac aggcagagca gatcatctct
+     1261 gatccattgc ccctgccacc tcactcgcct gcaagcccgg tcgcccgtgt ccatgaactc
+     1321 gatgggcagg tacttctcct cggcgtggga cacgatgcca acacgacgct gcatcttgcc
+     1381 gagttgatgg caaaggttcc ctatggggtg ccgagacact gcaccattct tcaggatggc
+     1441 aagttggtac gcgtcgatta tctcgagaat gaccactgct gtgagcgctt tgccttggcg
+     1501 gacaggtggc tcaaggagaa gagccttcag aaggaaggtc cagtcggtca tgcctttgct
+     1561 cggttgatcc gctcccgcga cattgtggcg acagccctgg gtcaactggg ccgagatccg
+     1621 ttgatcttcc tgcatccgcc agaggcggga tgcgaagaat gcgatgccgc tcgccagtcg
+     1681 attggctgag ctcatgagcg gagaacgaga tgacgttgga ggggcaaggt cgcgctgatt
+     1741 gctggggcaa cacgtggagc ggatcgggga ttgtctttct tcagctcgct gatgatatgc
+     1801 tgacgctcaa tgccgtttgg cctccgacta acgaaaatcc cgcatttgga cggctgatcc
+     1861 gattggcacg gcggacggcg aatggcggag cagacgctcg tccgggggca atgagatatg
+     1921 aaaaagcctg aactcaccgc gacgtatcgg gccctggcca gccagctaga gtcgacctgc
+     1981 aggtccccgg ggatcggtct tgccttgctc gtcggtgatg tacttcacca gctccgcgaa
+     2041 gtcgctcttc ttgatggagc gcatggggac gtgcttggca atcacgcgca ccccccggcc
+     2101 gttttagcgg ctaaaaaagt catggctctg ccctcgggcg gaccacgccc atcatgacct
+     2161 tgccaagctc gtcctgcttc tcttcgatct tcgccagcag ggcgaggatc gtggcatcac
+     2221 cgaaccgcgc cgtgcgcggg tcgtcggtga gccagagttt cagcaggccg cccaggcggc
+     2281 ccaggtcgcc attgatgcgg gccagctcgc ggacgtgctc atagtccacg acgcccgtga
+     2341 ttttgtagcc ctggccgacg gccagcaggt aggccgacag gctcatgccg gccgccgccg
+     2401 ccttttcctc aatcgctctt cgttcgtctg gaaggcagta caccttgata ggtgggctgc
+     2461 ccttcctggt tggcttggtt tcatcagcca tccgcttgcc ctcatctgtt acgccggcgg
+     2521 tagccggcca gcctcgcaga gcaggattcc cgttgagcac cgccaggtgc gaataaggga
+     2581 cagtgaagaa ggaacacccg ctcgcgggtg ggcctacttc acctatcctg cccggctgac
+     2641 gccgttggat acaccaagga aagtctacac gaaccctttg gcaaaatcct gtatatcgtg
+     2701 cgaaaaagga tggatatacc gaaaaaatcg ctataatgac cccgaagcag ggttatgcag
+     2761 cggaaaagat ccgtcgacct gcaggcatgc aagctctagc gattccagac gtcccgaagg
+     2821 cgtggcgcgg cttccccgtg ccggagcaat cgccctgggt gggttacacg acgcccctct
+     2881 atggcccgta ctgacggaca caccgaagcc ccggcggcaa ccctcagcgg atgccccggg
+     2941 gcttcacgtt ttcccaggtc agaagcggtt ttcgggagta gtgccccaac tggggtaacc
+     3001 tttgagttct ctcagttggg ggcgtagggt cgccgacatg acacaagggg ttgtgaccgg
+     3061 ggtggacacg tacgcgggtg cttacgaccg tcagtcgcgc gagcgcgaga aattcgagcg
+     3121 cagcaagccc agcgacacag cgtagcgcca acgaagacaa ggcggccgac cttcagcgcg
+     3181 aagtcgagcg cgacgggggc cggttcaggt tcgtcgggca tttcagcgaa gcgccgggca
+     3241 cgtcggcgtt cgggacggcg gagcgcccgg agttcgaacg catcctgaac gaatgccgcg
+     3301 ccgggcggct caacatgatc attgtctatg acgtgtcgcg cttctcgcgc ctgaaggtca
+     3361 tggacgcgat tccgattgtc tcggaattgc tcgccctggg cgtgacgatt gtttccactc
+     3421 aggaaggcgt cttccggcag ggaaacgtca tggacctgat tcacctgatt atgcggctcg
+     3481 acgcgtcgca caaagaatct tcgctgaagt cggcgaagat tctcgacacg aagaaccttc
+     3541 agcgcgaatt gggcgggtac gtcggcggga aggcgcctta cggcttcgag cttgtttcgg
+     3601 agacgaagga gatcacgcgc aacggccgaa tggtcaatgt cgtcatcaac aagctggcgc
+     3661 actcgaccac tccccttacc ggacccttcg agttcgagcc cgacgtaatc cggtggtggt
+     3721 ggcgtgagat caagacgcac aaacaccttc ccttcaagcc gggcagtcaa gccgccattc
+     3781 acccgggcag catcacgggg ctttgtaagc gcatggacgc tgacgccgtg ccgacccggg
+     3841 gcgagacgat tgggaagaag accgcttcaa gcgcctggga cccggcaacc gttatgcgaa
+     3901 tccttcggga cccgcgtatt gcgggcttcg ccgctgaggt gatctacaag aagaagccgg
+     3961 acggcacgcc gaccacgaag attgagggtt accgcattca gcgcgacccg atcacgctcc
+     4021 ggccggtcga gcttgattgc ggaccgatca tcgagcccgc tgagtggtat gagcttcagg
+     4081 cgtggttgga cggcaggggg cgcggcaagg ggctttcccg ggggcaagcc attctgtccg
+     4141 ccatggacaa gctgtactgc gagtgtggcg ccgtcatgac ttcgaagcgc ggggaagaat
+     4201 cgatcaagga ctcttaccgc tgccgtcgcc ggaaggtggt cgacccgtcc gcacctgggc
+     4261 agcacgaagg cacgtgcaac gtcagcatgg cggcactcga caagttcgtt gcggaacgca
+     4321 tcttcaacaa gatcaggcac gccgaaggcg acgaagagac gttggcgctt ctgtgggaag
+     4381 ccgcccgacg cttcggcaag ctcactgagg cgcctgagaa gagcggcgaa cgggcgaacc
+     4441 ttgttgcgga gcgcgccgac gccctgaacg cccttgaaga gctgtacgaa gaccgcgcgg
+     4501 caggcgcgta cgacggaccc gttggcagga agcacttccg gaagcaacag gcagcgctga
+     4561 cgctccggca gcaaggggcg gaagagcggc ttgccgaact tgaagccgcc gaagccccga
+     4621 agccgcccct tgaccaatgg ttccccgaag acgccgacgc tgacccgacc ggccctaagt
+     4681 cgtggtgggg gcgcgcgtca gtagacgaca agcgcgtgtt cgtcgggctc ttcgtagaca
+     4741 agatcgttgt cacgaagtcg actacgggca gggggcaggg aacgcccatc gagaagcgcg
+     4801 cttcgatcac gtgggcgaag ccgccgaccg acgacgacga agacgacgcc caggacggca
+     4861 cggaagacgt agcggcgtag cgagacaccc gggaagcctg atctacgtct gtcgagaagt
+     4921 ttctgatcga aaagttcgac agcgtctccg acctgatgca ggctggcacg acaggtttcc
+     4981 cgactggaaa gcgggcagtg agcgcaacgc aattgttcac attcgaaccg tctctgcttt
+     5041 gacaacatgc tgtgcggtgt tgtaaagtcg tggccatcta gtccatggcg agcaacggag
+     5101 gtacggacag gccttccgtt cgagtggcgg cttgcgcccg atgctagtcg cggttgatcg
+     5161 gcgatcgcag gtgcacgcgg tcgatcttga cggctggcga gaggtgcggg gaggatctga
+     5221 ccgacgcggt
+//
