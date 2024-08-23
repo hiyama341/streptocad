@@ -30,10 +30,6 @@ def coelicolor_genbank_record():
 
 
 ### TESTS ###
-
-
-
-
 def test_sgrnaargs_initialization():
     # Create a mock Dseqrecord object
     seq = Seq("ATGCATGCATGCATGCATGC")
