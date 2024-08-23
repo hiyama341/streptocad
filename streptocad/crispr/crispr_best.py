@@ -121,20 +121,25 @@ def process_base_editing(df: pd.DataFrame, gene_sequences: dict,
         
         # Create a mutable list of the gene sequence
         mutated_seq = list(str(gene_seq))
+        gene_length = len(mutated_seq)
         
         # Mutate the editable cytosines in the sgRNA
-        #  a C·G base pair becomes T·A
         for pos in map(int, row['editable_cytosines'].split(',')):
             if row['sgrna_strand'] == -1:
                 genome_pos = sgrna_start - pos + 20
-                if mutated_seq[genome_pos] == 'G':
-                    mutated_seq[genome_pos] = 'A'
+                if 0 <= genome_pos < gene_length:  # Boundary check
+                    if mutated_seq[genome_pos] == 'G':
+                        mutated_seq[genome_pos] = 'A'
+                else:
+                    print(f"Warning: genome_pos {genome_pos} out of range for gene length {gene_length}")
             else:
-                # watson strand
                 genome_pos = sgrna_start + pos - 1
-                if mutated_seq[genome_pos] == 'C':
-                    mutated_seq[genome_pos] = 'T'
-        
+                if 0 <= genome_pos < gene_length:  # Boundary check
+                    if mutated_seq[genome_pos] == 'C':
+                        mutated_seq[genome_pos] = 'T'
+                else:
+                    print(f"Warning: genome_pos {genome_pos} out of range for gene length {gene_length}")
+    
         # Return the mutated sequence as a string
         return ''.join(mutated_seq)
     
