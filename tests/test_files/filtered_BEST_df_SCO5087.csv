@@ -1,0 +1,3 @@
+,strain_name,locus_tag,gene_loc,gene_strand,sgrna_strand,sgrna_loc,gc,pam,sgrna,sgrna_seed_sequence,off_target_count,editable_cytosines,mutations
+17,NC_003888.3,SCO5087,5529801,1,-1,210,0.6,GGG,GAGCAGTTCCCAGAACTGCC,TCCCAGAACTGCC,0,"4,9,10","W67*, E68K"
+54,NC_003888.3,SCO5087,5529801,1,-1,522,0.7,CGG,GTCGACCTCCCAGTCACGGC,TCCCAGTCACGGC,0,"3,6,7,9,10","W171*, E172K, V173I, D174N"
