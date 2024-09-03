@@ -1,0 +1,795 @@
+LOCUS       LLPMBPKK_00292           813 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1016:LuxR family DNA-binding response
+            regulator (Score: 187.1; E-value: 4.1e-57).
+ACCESSION   LLPMBPKK_00292
+VERSION     LLPMBPKK_00292
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..813
+                     /name="LLPMBPKK_00292"
+                     /product="LLPMBPKK_00292"
+                     /description="regulatory (smcogs) SMCOG1016:LuxR family
+                     DNA-binding response regulator (Score: 187.1; E-value:
+                     4.1e-57)"
+ORIGIN
+        1 gtgacccagc ccgccgccga ccgccacatc ccccaggccc cgaaccggat gccgaacacc
+       61 caggagccag gaccggaccc gagcaaggaa accgtcgccc cgcgcgtcct catcgccgac
+      121 gacgaggagc tcatccgaac cggcttccgc ctcatcctca cctcgcgcgg catcgacgtc
+      181 atcggcgagg ccgcagacgg cgtacaggcc gtcgcagaag ccgagcggct acgcccggac
+      241 gtcatcctga tggacatccg catgcccaaa ctggacggcc tggaagcggc caagcgcgtc
+      301 ctgcggctac tcccgcgctg ccgggtcctc atgctcacca cgttcgacct cgaccgctac
+      361 gtgtacgcgg cgctcgcggc cggggcgagc ggattcctgc tcaaggacgt caccgccgcc
+      421 catctcgccg cggcggtgcg gctggtgaac acgggcgacg cgctgctcgc cccttcgatc
+      481 acccgccgtc tggtcgaacg ctacgcgacc acccacgagg ccggccgagc cgaggcggct
+      541 caccgccccg ccgctgcggc gaccgtggat cgcacacccc cgcttcaccg cgacctcgct
+      601 ccgctgaccc cccgcgaacg cgaggtgctg gcgctgatgg gccggggcct gtcgaacacc
+      661 gaactcgccg aagccctcac cctgagcgag gccaccgtga agacccacgt cgcccggatc
+      721 ttcgccaagc tcaccctccg cgaccgcgcc caagccgtca tcctcgccta cgagacgggc
+      781 ctggtcaccc ccggcagctc cgccgccgaa tga
+//
+
+LOCUS       LLPMBPKK_00328          2859 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1149:LuxR family transcriptional regulator
+            (Score: 972.3; E-value: 4.8e-294).
+ACCESSION   LLPMBPKK_00328
+VERSION     LLPMBPKK_00328
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..2859
+                     /name="LLPMBPKK_00328"
+                     /product="LLPMBPKK_00328"
+                     /description="regulatory (smcogs) SMCOG1149:LuxR family
+                     transcriptional regulator (Score: 972.3; E-value:
+                     4.8e-294)"
+ORIGIN
+        1 atgatgaagg ggatgccgcc ggtggccccg cctgctggtt ccggttcgta cggaacgcgg
+       61 cgaaccgtgc tgatggaacg cgaggaacaa ctcgaccgcg tccgggcgtg gttggccgac
+      121 ccgcagccga cagggcaggt gttcctggtg gaggggacgg tgggcgcggg caagacggag
+      181 ttcctgcgcg aagtcacgga gtacgcccag tccgtcgagg tcatcccgct gaacgccgtc
+      241 tgctccttcg aggagcggga tctgccgttc ggggccctcg gccagctgtt cgacagtccg
+      301 gcgctcccca cggaactgcg cagccgcatc tcaccggtgc tgcgccggct catggggtcg
+      361 acccggcccg agagcatgca cgagaccgtg gagcgcaaca gggccgacat ctggtacgac
+      421 ctcttcctgc ccgtcatcga actggccgcc accacaccgg tcgtggtgtg cgtggatgat
+      481 gtcgaccaca tggacgccgc gtcgcagcag tgcctgttgt acctggtccg ccggctgagc
+      541 tcggcaccgc ttctgatggt gttgaccgag cgcgccgagc cgtgcgggac gcaccgtccg
+      601 ttccatgccg aactcctgcg ccagtcctcc gtcgtgtccg cccggctcac accgctctcc
+      661 ccggaagccg tgcgcaccct gatcggtctg cgcctcggca cgggggcggc ccgcgagctg
+      721 agcgatacgt tcctcaccta cagcggcggc aaccccctgc tgctcgacgc cctgatccac
+      781 gacgagcaca taggcggcgg ggaccgtcaa cagggctacc ggcgcgcact gttgaactgt
+      841 ctgcaccgca gcgaacccca caccctgcgg gtggcgcgcg ccatggcggt ctacggcgac
+      901 gacgcctcac cggaggacct cggggcactg gtcgacacgg acgcgggcac cgtcgagcgg
+      961 acgcagcgcg ccatgaccga ggccgggctg ctgtgggcag gccggttccg gcacgcgctg
+     1021 gccgcgcgca ccgtactcga cgacctggcc cccggggacc gggagcaact gcaccaccgg
+     1081 gccgcgcgac tgctctacga ccagggtgct ccggcggccg acgccgcgca ccatctggcc
+     1141 gaggccggtc gggtgtcgga gccctgggcg ctgcgtgtgc tgctggaggc gtcttcggag
+     1201 gcactgctgc acggtgaggt gcaacgcacc ctgcgctacc tgaactcggc acagcagtcg
+     1261 tgcacgaacg agagggaccg ctgggaggtc cgggccaggc tcgcccaggc cgaatggcaa
+     1321 ctcagccccc cggcctcgct gcggcacctg atcgcgctca ccgaggccgt tcgcaacgat
+     1381 caactggatc cccacgagac gatgctgctc gtacggcaac tgctgtggct gcaccgtacg
+     1441 caggaggccg ccgagatcct ctcgctgctc cgcaagcggg cgacgcgccc accgtccgcg
+     1501 gccatcgccc ccgggaccgg cacgccgagg cagccggcgg acctgcacga catggaggtc
+     1561 tggctggcct gcacctaccc gccgctcgcc ggacgggcgc agagcggacc cgtgcccacc
+     1621 ggtcccgagg gagcacccac cacccggggc cggagcttct ggctgcagtc gatcggcgcg
+     1681 ctctccgggg gcctcgtccg caggcgcacc ggcgagacgc aggagtgggc ctcgcacgtc
+     1741 ctcggccagc tcgacctcaa ccacaacgcc ccctgggccg aggaagcaac cctcctcgcg
+     1801 ctgatgtccc tcgtctacgg cggccggctg agcgatgccg ccaaccggtg ccggagcctg
+     1861 gacgaacgcc acaccgggcg cctctctccg atgtggcaag gcgtcctgga cgccgccgag
+     1921 gcggagatcc ggctgcgccg aggtgatctc cgggaggcgg tgaagcgggg cacatcggcc
+     1981 ctggagcatg tgtccgtcca gggatggggc accgccgtag gcctgcccct gggcacactg
+     2041 atcctggctc acacccgcat gggggagttg gacgaggcca cggccctcgt caaccggagc
+     2101 atccccgacg agatgttcca gagccggtac ggactgcact acctgtatgc ccgcgggcac
+     2161 taccacctgg ccatgaaccg gacgcgcgcg gcgctcgggg acttcctctc ctgcggcgaa
+     2221 ctcatgggca agtggggact ggacctgccc ggcatcgtgc cctggcggag cagcgcggcc
+     2281 gaggcgtggc tgctgcaggg caaccgagac caggccaaac gcctgatgaa ggagcagctg
+     2341 acccttccgg ggccggagga caccgtcagc cgggcgctcg ccctgcgcct gatggccgtg
+     2401 ttcagttcgc tggggcagcg cccgcgcctg ctcggtgagg ccgcggacct cctggaggcg
+     2461 gacggctaca cctatgagct ggccaggacc ctgtccgatc tgggccgggc ctaccacgcg
+     2521 ctgggcaaac accgccgcgc acgggtgatc atccgccgtg cctggagggt ggcacacctc
+     2581 tgtcaggcgg aacccctgtg cagggaactg ctgccggaca cgagtgccga ggcgggcctg
+     2641 acggaggacg aggagaggac cacggccatc gcctcgctga ccaactccga gcgcaggatc
+     2701 gcctcgatgg cggtcatggg gtacaccaac cgggagatcg cggagaagct gttcatcacg
+     2761 cccagtacgg tcgagcagca cctgacgcgg gtctaccgca aactggccgt gaagaaccgc
+     2821 cagagtctgc cgggctacct gcgcaccgac tccggctga
+//
+
+LOCUS       LLPMBPKK_00586           636 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1016:LuxR family DNA-binding response
+            regulator (Score: 166.8; E-value: 6.4e-51).
+ACCESSION   LLPMBPKK_00586
+VERSION     LLPMBPKK_00586
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..636
+                     /name="LLPMBPKK_00586"
+                     /product="LLPMBPKK_00586"
+                     /description="regulatory (smcogs) SMCOG1016:LuxR family
+                     DNA-binding response regulator (Score: 166.8; E-value:
+                     6.4e-51)"
+ORIGIN
+        1 gtgaccgaca cccccatccg tctcctcctg gccgacgacc accccgtggt ccgcgccggg
+       61 ctgcgcgccg tgctggagac ggaacccggt ctggaggtgg tcgccgaggc cgccaccgcc
+      121 gagcaggccg tcgagcgcgc cgccgggggc gacatcgacg tcgtcctcat ggacctccag
+      181 ttcggcaagg gcatgaacgg cgccgaggcc accgcccgga tcaccgcccg tccgggtgcc
+      241 ccgcgcgtgc tgatcgtcac cacgtacgac tccgatgccg acaccctgcc cgccatcgag
+      301 gcgggcgcca ccggctacct cctcaaggac gcccctcccg aggacctggc cgccgccgtg
+      361 cgcaccgccg ccgccggacg caccaccctg gccccggccg tcgccgaacg cctcctgaac
+      421 cggctgcgcg caccgggcac cgccctgacc cggcgcgaga ccgaagtcct cgccctggtc
+      481 gccgagggcc tgtccaacca ggccgtcggt cgccgcctcc acctcaccga gggcacggtc
+      541 aaatcccacc tggcccgcat ctacaccaag ctcgccgtcg actcccgcac cgccgccgtc
+      601 gccaccgcca cccagctcgg cctcatccgc cgctga
+//
+
+LOCUS       LLPMBPKK_01488          2319 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1041:transcriptional regulator, SARP family
+            (Score: 314.4; E-value: 3.3e-95).
+ACCESSION   LLPMBPKK_01488
+VERSION     LLPMBPKK_01488
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..2319
+                     /name="LLPMBPKK_01488"
+                     /product="LLPMBPKK_01488"
+                     /description="regulatory (smcogs) SMCOG1041:transcriptional
+                     regulator, SARP family (Score: 314.4; E-value: 3.3e-95)"
+ORIGIN
+        1 atgggccgtg tgagcgggga cacatacggc ggggaacgga tcgacttccg caacgggata
+       61 ttccggggcg aaacgatcgg gaagaaggtg gagcatcacc accactacgg acccatgccg
+      121 caggtagagg acgcactgcc cccggcggcc gcggagttca ccgggcgcga cgacgaactc
+      181 ggctcactgc tggcggccct ggctccggac gacacggtcc ctttcacccc ggtccctgtc
+      241 accgcggtgg ccggcctcgg cggcgtcggc aagaccgccc tcgccgtgcg ggccgcccac
+      301 acggcacggg aacgcggctg gttcccgggc ggcgcgctgt tcgtcgactg ccacggctac
+      361 gacgagaaac ccgccgggcc ggaacagctc ctggaggccc tgctgcgcgc cctgggcgtg
+      421 gcggccgcgc atgtgccgag cacgctggac gagcgcgccg ggctctaccg ctcggtcctc
+      481 gccgagcggg cccgcgcgag cggccgggta ctgatcgtgg tggacaacgc ctcgcatccc
+      541 gcgcaggtca gacccctgct gcccggccac cccgcgcacc gcgtgctcgt cacctcgcgt
+      601 gacaccatgc cgcagctcgg cgcccaccag cttcacctgg acatcctgcg gcccgcggtg
+      661 gcgcgggacg tcctgcgtac ggcactgcgc acggcggccc ccgccgaccc gcgcgtccag
+      721 gacgagcccg acgcgaccgg gcggctgtgc gcgctgtgcg ggcacctgcc gctggcgttg
+      781 cagatcgcgg ccgctctgct gatctccgat ccgggcaagc cggtggcgga actcgtggcc
+      841 gagctgaccg gctccgccac ggtcctcgat cacctggacg acggcgaacg cggcgtacgg
+      901 gccgccttcg acctgtccta ccgccgcctc ggtccggaac ccgcgcggct gttccgcctc
+      961 ctggccctcg ccccgggccc ggagaccagc gacgaagcac tcaccgtgct gtccggagcc
+     1021 gacagcgtcc cacggcggga gctgaacgtc ctgatccgcg cccacctggt cgcacccggc
+     1081 agtgtccggg gctgctggac cctgcacgac ctggtgcggg cctacgccct ggaccgggtg
+     1141 tcccggcagg aggagctgcg gatcgagggc acgcgcgcgc gtacccggct cctcgcccac
+     1201 taccggcgac gggccgaggc tgcggaccgg tacctgcaga gccgttccgg cccggccccg
+     1261 gcctcggagt tcagcgggcc gcaggacgcg ctgcgctggc tcgaccgcga gcgcaccggc
+     1321 ctgatctccg ccgcgctgtg ggcggccgac cccgttcatg cccagaacgg actgggactg
+     1381 gcgctcagcc tttacgggta tctccaccgg cggcgatatt tcgacgacgc cgtgtccgtc
+     1441 taccggtgcg cggcgcaggc ggcactcgcc ctgcgcgacg agctcggcgc gggcagggca
+     1501 tggaacgccc tcggtctggc actgcgcaac aaccgcagaa tcgaggagtc cgtcacggcg
+     1561 cacacccggg ccgtcgagat ccaccgggag cgcggcgacc ggctccagga aggcaagtcc
+     1621 tgggacatgc tgggagtctc cttgaccgaa gcacgcaggt tcgacgagtc ggtcgcggct
+     1681 cacgaacacg cccgtgaact ggtgcgtgcg gtggcggacg gacggctcgt cgaggcgtcg
+     1741 agctggaaca acagcggccg tgccctgttc aagctgggcc ggttcgacga gtcggtcgtc
+     1801 gcgctcaccc gggcctgcga gatgttccgt tcgatcggcg accggtcccg tgaggccacc
+     1861 gcgacgaaca atctggggcg cgcgttccgg gagaccgggc ggctggagga ggcgctggcc
+     1921 gcacacacca ccgcccgggc ggttttccgg gagctgggcg accgggaacg ccacgccacg
+     1981 gcatggaacg acttcggtgt cgccctgtcc gcgctgggcc gcttcgacga agcggtcgac
+     2041 gcgcaccttc tcgccgtgcg ggaatacgag gatctggctg accggcatcg ccaggcgatc
+     2101 gcggccaacg acctcggagt cacgctgcgg cgcgcgggcc gccacgacga ggctgtggac
+     2161 gcacaccgcc aggccctgcg cctgttcgga gagttcgccg accgctacgg cgagggcgag
+     2221 acgctgaaac tcctcacggc cgccgggcag ggggaagaag gaccgctcgg agaagaacgg
+     2281 ctcggagaag aaccgctcgc agaagagggg aaccgatga
+//
+
+LOCUS       LLPMBPKK_02197           822 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1041:transcriptional regulator, SARP family
+            (Score: 259.2; E-value: 1.5e-78).
+ACCESSION   LLPMBPKK_02197
+VERSION     LLPMBPKK_02197
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..822
+                     /name="LLPMBPKK_02197"
+                     /product="LLPMBPKK_02197"
+                     /description="regulatory (smcogs) SMCOG1041:transcriptional
+                     regulator, SARP family (Score: 259.2; E-value: 1.5e-78)"
+ORIGIN
+        1 gtggctctgt tccacatgct cggtccgctc gtggcggagc cccgggcgcc cggggaccgg
+       61 ctcaccgtgc cgcggggccc gaaagtgcgg aagctgctgt gcctcttcct cctgcacccg
+      121 ggcacgatca tgacgctgaa ccagatcatg gacgaactct ggggggagga ggcggtcgac
+      181 agcgccgtcc ccacggtgcg gacacacgtg taccacctgc gccgcgtgct cgcccagcgc
+      241 ggcgcgggcg gcgcacacgg cgcgatgatc cacaccacca gctcgggata cgtgctggac
+      301 ctcggggacg acggcaccga cgtgctggcc ttccgctcct ccgcccggcg cggcgccgac
+      361 ctgctcaggg cgggggacca cgcggcggcg gcccgcgaac tgcgcggcgc gctcgcgcag
+      421 tggcgcggtc cggcgctcgg cgacgtctgc cacggccgcg tcctggagca ggaggtcgtc
+      481 cacctggaag gccagcggca ggacgcgctg caccagcgga tcatcgccga cctgcacctc
+      541 ggcgaccacc gccgcatcat cggcgaactg cgccggctgg tggccgcgga accgctcaac
+      601 gaatggctct acggctgcct gatcgaaagc ctctaccaca gcggcctgcg caacgaggcg
+      661 ctgcgcgcgt accggcagat ccgccacacg ctggacacgg agctgggtct ggaacccgcc
+      721 ccgttcctgc aggagatgca gcagatgatt ctcgaccccg cggcggggac cgttccccgc
+      781 tccggatccc tcatgaccca agcgttcccg acccttgcat ga
+//
+
+LOCUS       LLPMBPKK_02209          1353 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1016:LuxR family DNA-binding response
+            regulator (Score: 66; E-value: 4.5e-20).
+ACCESSION   LLPMBPKK_02209
+VERSION     LLPMBPKK_02209
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..1353
+                     /name="LLPMBPKK_02209"
+                     /product="LLPMBPKK_02209"
+                     /description="regulatory (smcogs) SMCOG1016:LuxR family
+                     DNA-binding response regulator (Score: 66; E-value:
+                     4.5e-20)"
+ORIGIN
+        1 gtggaagtta tggaacgggg gattcggatg ttcggcaggg aaaccgatcg acagtcgatg
+       61 gcgtctgtgc tcgactcggt ggcagcggga ggcaccaaca gtctcctggt gatcgagggc
+      121 cgggcgggcg tcggaaagac gaccatgctc tcggagctgg cgcggctcgc ccgcagccgt
+      181 ggcttcaccg tcgagttccc ggcagacctc tccgtatccg ccgtactgcc ggagtcaccc
+      241 cgattctccc ccgccgcacc gaagctgatc gtcgtggacg gcgtcgagga cgccggtccg
+      301 gcggtggtca ccgccctctg cgacgccctc gcgcgcatga ccgggcgggg gtgcctgctg
+      361 gccttcgccg tgcgtcccgg acgggtgagc gactgcctgc gccggatcag cccgggcggc
+      421 cgtgtgcgcg tggccaggac gcagttgggg gagctgtcga agcgggacgc gctgctgctg
+      481 tgcgccgagc tcgccggggc gcgtccctca cccgaactgg cctgcctcgt ggagtcggcg
+      541 ggcggcaatc cgctcctggt gaccgagctg gtcggcggtc tgatggagga gggcgggatc
+      601 gaggtcctcg acggcgtggc ctggctgcgg tcgccggcgc tgccggagcg gatccaggtc
+      661 gtcgtccggg gctatctgtc ctccctgtcg gagggcagcc ggcacatgct ccgtgtcgct
+      721 gcggtgctga acaccgcgct gcggccggcc cagctgtcct ccctggcggc gttcctcggc
+      781 aagtccacgg ccacgctcat gccgttgctg gacgaggcgc tcgaagcggg gctgctgatg
+      841 gacagcgagg gcaagctcgt cttccccggc gccctgctcc gcagggtggt cgccgagtcc
+      901 gtgccgtggt ccatgcggca ggcgctgatc cacgaggcga ggacgcagca gagcgccgag
+      961 agcgagcccc tcgccccccg cccgcccctg cccggcgccg aaccgccggt cgagtacgag
+     1021 gaggtggcga ccgtgcggca cgcgcacgcc gccggggcgc ggccggtgcg cggggacggc
+     1081 ctcggcctct ccgtgccctc cgcggtgggg gtcgtcgacg tcgccggccc ccggggcggg
+     1141 cacgccgacc tgaccacgcg tgaactggag gtcctccggt gcgtggccaa ggcgatgagc
+     1201 aaccgccagg tcggacggca cctgtccatc accgagggca ccgtcaaacg gcacatgagg
+     1261 aacatcttcc ggaaactcga cgcgacctcg cgcatcgacg cggtgaacaa ggtggggccc
+     1321 ctgatagcgg cgcagccccg gctcaggtcc tga
+//
+
+LOCUS       LLPMBPKK_02563           654 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1016:LuxR family DNA-binding response
+            regulator (Score: 143.4; E-value: 9.7e-44).
+ACCESSION   LLPMBPKK_02563
+VERSION     LLPMBPKK_02563
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..654
+                     /name="LLPMBPKK_02563"
+                     /product="LLPMBPKK_02563"
+                     /description="regulatory (smcogs) SMCOG1016:LuxR family
+                     DNA-binding response regulator (Score: 143.4; E-value:
+                     9.7e-44)"
+ORIGIN
+        1 gtgcgtgttg tcctagccga agacctcttc ctgctgcgcg acgggctggt gcggatgctg
+       61 gaggcgtacg gcttcgagat cgcggcggcc gtggagtccg ggccggaact cgcccgggcg
+      121 ctggaggagt tgcggcccga cgtcgcggtg gtcgacgtac gcctgccgcc cacgcacacc
+      181 gacgagggcc tgcagtgcgc gctcgcggcc cggcgggcgc ggccgggcct gccggtgctg
+      241 gtcctctccc agcacgtgga gcagctgtac gcgcgcgagc tgctcgcgga cggcacaggc
+      301 ggggtcggct atctgctgaa ggaccgggtc ttcgacgcgg agcagttcgt cgacgccgta
+      361 cggcgggtgg cggcgggcgg tacggcgatg gacccgcagg tgatccagca gctgctgtcc
+      421 aggcggtcgg ccggcgggac accgctcgac cgtctcaccc cgcgcgagcg ggaggtgctg
+      481 gagctgatgg cgcaggggcg gtccaacgcg ggtatcgcgg cgcagctcgt ggtgacggaa
+      541 cgggcgatcg ccaagcacac ctccaacatc ttcgccaagc tcggactgga ggtgtcggac
+      601 gacgacaacc ggcgcgtgct cgcggtcctc gcccatctgg accgggaccg ctga
+//
+
+LOCUS       LLPMBPKK_02633           813 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1041:transcriptional regulator, SARP family
+            (Score: 266.8; E-value: 7.8e-81).
+ACCESSION   LLPMBPKK_02633
+VERSION     LLPMBPKK_02633
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..813
+                     /name="LLPMBPKK_02633"
+                     /product="LLPMBPKK_02633"
+                     /description="regulatory (smcogs) SMCOG1041:transcriptional
+                     regulator, SARP family (Score: 266.8; E-value: 7.8e-81)"
+ORIGIN
+        1 atggcgcatc tggacatcgg gctcctggga ccgttcacgg cgtgcatcga cggtgcgtcc
+       61 atcgtcccca ccgcggccaa gcagcgcagg ctcctggcgt tgctggcgat cgacaccggg
+      121 cacgaggtga gcatggcctc gatcgcggag ggcctgtggg aggggtgccc gccgaccggc
+      181 ccgtccgcgg ccgtgcagac gtacgtgaag cagctgcggc agcgcatcgc ccccgcggcc
+      241 tcccggctca cgccccggat cgaccccaag cggatccttc tgcgcggtca cagcgggtac
+      301 cagctccaga tgccgcaggt ccgggtcgac gcacgggagt tcgagcgtct ggtgcagcag
+      361 ggtcaccagg cgatcgccga cgatcaggac gaccggggtg tgcgcctgct gtccgacggt
+      421 ctcgcgatgt ggcgagggca ggcgctgggt gacgtacggg cgtcgggggc gctgcgtgcc
+      481 gaggccctgc ggctggacga gatgcggatc gccgccctgg agacgcgcat cgacgcggag
+      541 ctgcgtctgg gccgccacgc ccgtctggtg agcgagctga ccgcgctgac caccctgcac
+      601 ccgttgcagg agaacctgca cgcccagctc atggtggccc tctgccgcag cggtcgtccg
+      661 tcgcaggcgc tggaggcgtt ccgccggctg cgggagacgt cggtgcggga gttggggatc
+      721 gaaccgtcac ggcggctcca ggagctgcac tgccgggtgc tggccggcga gccgcctctc
+      781 gacgccccgc tgcgcacgct ggccccgctg tag
+//
+
+LOCUS       LLPMBPKK_02635           609 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1016:LuxR family DNA-binding response
+            regulator (Score: 151.1; E-value: 4.3e-46).
+ACCESSION   LLPMBPKK_02635
+VERSION     LLPMBPKK_02635
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..609
+                     /name="LLPMBPKK_02635"
+                     /product="LLPMBPKK_02635"
+                     /description="regulatory (smcogs) SMCOG1016:LuxR family
+                     DNA-binding response regulator (Score: 151.1; E-value:
+                     4.3e-46)"
+ORIGIN
+        1 gtgattcgga tcctgctcgc agaagacatg aacatggtcc gcggggcgct ggtcgccctg
+       61 ctgagcctgg aaaacgattt cgaggtcgtg agcgagctgg aacgcgggga cgagatcctc
+      121 gacgccgcgc tcaaggccaa gcccgacatc gccgtgatcg acatcgacct gccgggcctg
+      181 gacggcctca gcgccgccac acagatccgt gaacgactgc ccgcctgcag aacgttgatg
+      241 ctcaccagcc tcggccgtcc cggcaccctg cgccgcgccc tcgccgcgga ggtcgacggg
+      301 tacctcctca aggacgagtc gccggccgaa ctcgcccacg ccatacggcg cgtggtcgcc
+      361 ggccaccggg tcatcgactc caaactcgcg ctggccgcgt ggagcggtac ggagagcccg
+      421 ctcacggacc gggagaccga ggtactgcgc ctggccgcgg agggctcgga ggccaaggag
+      481 atcgccggcg cgctccacct gtccacgggg accgtgcgca actacctgac gacggtggtc
+      541 gcgaagctga acgcccgcaa cagggtggac gcgatccgca tcgcccgcga cgcgggctgg
+      601 ctggtctag
+//
+
+LOCUS       LLPMBPKK_02637           648 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1016:LuxR family DNA-binding response
+            regulator (Score: 175.3; E-value: 1.7e-53).
+ACCESSION   LLPMBPKK_02637
+VERSION     LLPMBPKK_02637
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..648
+                     /name="LLPMBPKK_02637"
+                     /product="LLPMBPKK_02637"
+                     /description="regulatory (smcogs) SMCOG1016:LuxR family
+                     DNA-binding response regulator (Score: 175.3; E-value:
+                     1.7e-53)"
+ORIGIN
+        1 atgaccgaca ccgacaacga ccggatccgc gtggtcgtgg tggacgacca cgccgtgatg
+       61 cgcgccgggg tcgtcgccct gctgaccggt gaacccacca tcgagatcgt cggcgaggcg
+      121 agcgacggac gcgagggcgt cgacctggtc cggcggctcg cccccgacgt cgccctcctc
+      181 gacctgcgca tgccggtgct cgacggagtg gccgccacca ccgagatcgt cgccctgccg
+      241 gtgccgaccc gggtgctgat cctcaccacg tacgacacgg acgtggagat cgaacgggcg
+      301 gtggaggccg gcgccgtcgg ctacctgctc aaggacacca cccgggagca gctcgccgac
+      361 gccatccgct cggcggcgcg cggggagacg gtcctcgcgc ccaaggtcgc cgaacgcctc
+      421 gtggccagaa tgcgccgtcc ggaaccggtc gctctcaccg cacgggaacg cgatgtgctg
+      481 ctcgcggtcg ccgacgggct gtccaacgcc gagatcggcc gccgcctggt catcggcgag
+      541 gccacggtga agacccatct gctgcgggtc ttcgcgaaac tcgacgtcag cgaccgtacg
+      601 cgggccgtcg tcgtcgccct cgaacggggc cttctcgccc gctcctga
+//
+
+LOCUS       LLPMBPKK_02662           786 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1041:transcriptional regulator, SARP family
+            (Score: 252.9; E-value: 1.2e-76).
+ACCESSION   LLPMBPKK_02662
+VERSION     LLPMBPKK_02662
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..786
+                     /name="LLPMBPKK_02662"
+                     /product="LLPMBPKK_02662"
+                     /description="regulatory (smcogs) SMCOG1041:transcriptional
+                     regulator, SARP family (Score: 252.9; E-value: 1.2e-76)"
+ORIGIN
+        1 atggacatac aggttctcgg ttcggtttcc gtgcggtacg gcaatcgaca gcacgcggtg
+       61 gggtcgaagc gtctgacggc gatcctcgcg ctgctcgcgc tctcgccggg acgcacgatc
+      121 ccggcggacc agctggagga cgagctgtgg gcgggccgca cgctcgccaa cgcccgcaac
+      181 gcgctgcagg cgagcgtcgg ccggctgcgc aggtacctgg aatcgatcac cggccggcgc
+      241 ggcgacgagc tgatccgcac cgtgggcggg ggctaccagc tcggtgtccc cgccgaccgg
+      301 gtggacgccc accgcttccg ggagctggcg cgcagcggcg ccgacctggt ggcgagcgac
+      361 ccggcgctgg ccgccgtagc gctggaggag gccctgtccc tgtggcgtgg actcgccctg
+      421 atggacgccc acgacggcct gcgggtgcgt atcgccgcgg ccgatctgga ggaacggcgc
+      481 atcaccgtgt acgaggatct gaccacggcg cggctcgcgg tggacccgca ccggatctcg
+      541 ctgccggaac tgcgcgggac ggccgccgaa caccccgaac gggagcggct caccgaactg
+      601 ctgatgctgg cgctctacca cgcgggacgg caggccgagg ccctcgacgt gttccaccgc
+      661 gcccgccgca ggctcgccga cgaaatgggg ctggaaccgg gccgtgcgct gcaccacgcc
+      721 tatcaggcga ttctgcagca ggacgacatg ctcggcgaac cgcggcaggt tctcgcccac
+      781 cgctga
+//
+
+LOCUS       LLPMBPKK_05992           888 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1016:LuxR family DNA-binding response
+            regulator (Score: 84.7; E-value: 8.6e-26).
+ACCESSION   LLPMBPKK_05992
+VERSION     LLPMBPKK_05992
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..888
+                     /name="LLPMBPKK_05992"
+                     /product="LLPMBPKK_05992"
+                     /description="regulatory (smcogs) SMCOG1016:LuxR family
+                     DNA-binding response regulator (Score: 84.7; E-value:
+                     8.6e-26)"
+ORIGIN
+        1 gtggtgcgca aggggcgcca gcaggcgaac cggcgttccc cgcacctcac cgtggcccgt
+       61 ctgtccgagc aggaaatgat cgaggtcgag gcgtgcaatc cgtttgaccg agctgccggt
+      121 caccagaggc tgttccgcga ggtggccgcg ctggccgacc agcggtggcg tgaattgcgg
+      181 gtgacgccgc tgtcgaatcc cgccggaaac aacagcgccg cgaacgctcc ctgggtcaag
+      241 gcccgcattc ttctcgccgg aatacacgcc atcccgctcg ccggtctgcg cagtgtgctc
+      301 gacggggcgc gtggcgaggg cctgcaggtg gtgggcgcgg tgcgggaaca cgcgcacgcg
+      361 ctgtccgagg cgggacggta ccggcccgac ctgatcctcc tcggcgccac cgacgacttc
+      421 ggcaaggacc tcgccctggc gcgcagcctg cgccagtcgc aggacgccgc ggacgcccgg
+      481 gtcgtcctcc tgcggcgggt cgagaacgcg gcccaggtga gccgcatgct caaggccggg
+      541 gtgagcggcg ccttcccgct cgaccaggac ccgcagtgcg tcatccgcgc actggcgatt
+      601 gtcagcgccg gggggtcgat cttcctgccg gcccccgtgg gcgaggagca cagcgccccc
+      661 gatccgctgg agacgcagga accggcggtg gacgacgccc gcctgaccga ccgcgagcgc
+      721 gacgtgctgg cgctgctcgc ccgcggactg tccaacgcgg agatcgggcg ggaactctcc
+      781 ctctccgtgc ccaccgtgaa gaagcacctg acccaggcca tgcgcaagat ccgccagccc
+      841 gaccggctcc gggcagcgct ctacgcgcac cggcagggcc tgggctga
+//
+
+LOCUS       LLPMBPKK_06337          3420 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1041:transcriptional regulator, SARP family
+            (Score: 511.2; E-value: 9.9e-155).
+ACCESSION   LLPMBPKK_06337
+VERSION     LLPMBPKK_06337
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..3420
+                     /name="LLPMBPKK_06337"
+                     /product="LLPMBPKK_06337"
+                     /description="regulatory (smcogs) SMCOG1041:transcriptional
+                     regulator, SARP family (Score: 511.2; E-value: 9.9e-155)"
+ORIGIN
+        1 atgcggttag gggtgctcgg accactcgcg gtgtgggacg acgacgggga gcagcttcag
+       61 gtccccgaga ccaaggtgcg ggcgctgctg gcggatctgc tcgcgcacga cggcggcccc
+      121 gtctccgcgg accggctcat cgacgacctg tggggcgacc gtctccccgg caatccggcg
+      181 ggcgcgctgc aggccaaggt ctcgcagctg cgccgggtgc tcggccggga acggctgctg
+      241 cggcagccgc cggggtacgg gctgcggctc ggccccgccg acgacgtgga cgccgaccgc
+      301 ttcggccggc tcgtcgccga ggcacgctcc gtcgcggacc cgcggaggcg ggccggcctg
+      361 ctcaccgagg ccctcggact gtggcggggg ccggcgtacg cggacttcgc cgacgagggg
+      421 ttcgtccgcg cggcccggga gtgcctcgcg gagcagcggc tggccgtgct ggaggagcgg
+      481 gccgaggcac gcctggcggc gggggaccac ctgctgctcg ccggcgaact ggccgcgctc
+      541 gtgaccgagc acccgctgcg ggagcggctg cgggccgtgc agatgcgggc gctgtaccgg
+      601 gccggccacc agggcgaggc cctcgcgtcg tacgaggacc tgcgcacccg cctcgccacc
+      661 gaactgggcg cctgccccgc ccccgccctg agcgccctcc accaggccat gctccgccag
+      721 gacccggacc tggacgcgac gctgccctcc acggctccgc cccaccccgg gtcctcgtac
+      781 gccgcggtgg cgtccaccgc ctccccgtcc gcccgaccgg caccgccgac ccccacggcg
+      841 cttacgaccc ccacgacgcc tacaaccccc accacgccta cgccccccac tacgcgcacg
+      901 acccccacga cccccacgac ccccgcctcc gcccagccgg ctgcgcaccc cgacgtcccg
+      961 cgggccgccg ccgcgtcggc caaccttccc gtgcccctca ccgcgctcat cggccgggag
+     1021 gaggcgctcg ggcggatctc ccggatgctc gggcggcagc ggctcgtgac cctcaccggg
+     1081 cccggtggag tcggcaagac ccgcctggcc gtggccgccg cgcacgacgc ggtgaccggt
+     1141 ggcggggagc tgcccgacgg ggcctggttc gtggagttcg cgggggtgcg cagtgccggc
+     1201 ccggacgacc tcgccggcct cgtcgccgcg accctcggca tccgggacga cgccccctcc
+     1261 gccccgcccg ccaccggcac cggggccgcc tcccccgtgc accggctgac cgccgccctg
+     1321 cgcgaccgcc gtaccctgct ggtgctggac aactgcgaac acgtcgtctc ggccaccgcc
+     1381 gagctggtcg cgctgctcct gcgcagcgcc ccgcagctgc gcatcctcac caccagccag
+     1441 gaaccgctgg ccctggccgg cgaggccgtg ttcctggtcg agccgctccc caccccggac
+     1501 gccgtacgcc tgttcaccga gcgggccgcc gcctgcgcgc ccggtttccg gctcggcgcg
+     1561 ggcgaagggc ccgagcacgc cgccgtagcc gagatctgcc gccgcctgga cggcatcccg
+     1621 ctcgccctgg aactggcggc gacccgggta cgcgccctgg gcgtgaggga gctggccgcc
+     1681 cgcctcggcg accggttccg ggtgctgacc tccgggcagc ggggcgcgcc ggcccgccag
+     1741 cagaccctgc gcgcgatgat cgactggagc tgggagctgc tcagcccgcc cgaacgcctc
+     1801 gtcctcagcc gtctcgccgt gcaccgcgac ggctgcggcc tcgacgcggc ggaggcggtg
+     1861 tgcgcggggg agggcgtggc cggcgccgac gtgctcgacc tcgtcacccg gctggtggag
+     1921 aagtccctcg tggtcgtcac ggacagcccc gccggccccc gctaccgcct cctggagtcc
+     1981 gtcgccgcct acgccaccga gcggttgcac gagaccgccg acggggccgc ggcccgcgaa
+     2041 cgccacctgc accactacct cgcgctcgcc gaacgcgccg agcaccggct gcgcggtccc
+     2101 gggcagcggg actggctcgc ccgcctggac accgaggcgt gcaacctgcg cgccgccctc
+     2161 gacgaggcgg tgcgacgggc cgccgacggg cgcagcgagg aggccgtccg gctcgccacc
+     2221 gccctgtcct ggtggtggct gctgcgcggc cggctcaccg agggccgccg cgccctggcc
+     2281 gccgtcctcg cggccaccgc cggccactgc gacccggaac tcgccctgct gcactccggg
+     2341 ttcgtgctgc tgaccgggga gcgcacggtg acctgctgcg ccgacgccgt acccgacccc
+     2401 gtgcgccgcg cccgggcgct gtggctgaac gcctacggca ggttcagcgt cggcgacctg
+     2461 gacggcagcc gtgcgctgaa cacccgcgcg ctcctccact tcgaggccgc ggacgagcag
+     2521 tggggcatcg ccgcggcgct gggcctgcgg gcggcgctcg ccctggtccg cggtgacctg
+     2581 gacggcctgg cccgcgacgg acggcgcagc cgcgccctct tccgcgagct gggcgaccgc
+     2641 tggggcgaac tgcagaccgt ctcaccgctc gccgcgctcg ccgagatcaa gggggagtac
+     2701 gcacaggcgg cgcaccgcca gcacgagggg ctccagatcg cccgggagct gagtctggag
+     2761 gccgaggtgt cggcccggct gtccgggctc ggccggctcg ccctgctcgc ccaggacttc
+     2821 gaccgcgccc gcgaactgca cgagcaggcc cgccgtatcg ccgtcgaaca gggctacaag
+     2881 tacggcgaga tccacgcgga catgggcctg gcgctcggcg cgcggcgctc cggggacatc
+     2941 gacgcggccg aggcgcacct gctgcgcatc cgcgacgccc acgccgacgt ctcctcaccg
+     3001 gccggtgacc atctgctcca cgccgaactc gggttcatcg ccgaactccg cggcgacgcc
+     3061 gcccggtccg ccgcccacca cctgcgcggt ctgcgcatcg cccgccggct ggacgagccg
+     3121 cgcgccctcg ccctctccct ggagggcctc gccggcacgg ccgcgctgtg cgggcaccgc
+     3181 tccggcgcca cctgcgcggc cctgctcctc ggcgccgccc acgccgcgcg ccgcagcgtg
+     3241 ggcgcacccc tgccccccgc ggaacgcggt gacgccgacc ggatcaccgc ggcggcccag
+     3301 ggcgtcctgg gcgggcgggc cttcaccgag gcgttcgagc gcggggcgtg gctgggcccc
+     3361 gccgaggcgg agcaccacgc ccgcaccgcc ctggccgcac tggcggacaa agcggcctga
+//
+
+LOCUS       LLPMBPKK_06422          1830 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1041:transcriptional regulator, SARP family
+            (Score: 476.5; E-value: 3.1e-144).
+ACCESSION   LLPMBPKK_06422
+VERSION     LLPMBPKK_06422
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..1830
+                     /name="LLPMBPKK_06422"
+                     /product="LLPMBPKK_06422"
+                     /description="regulatory (smcogs) SMCOG1041:transcriptional
+                     regulator, SARP family (Score: 476.5; E-value: 3.1e-144)"
+ORIGIN
+        1 gtgcttcaga tagagctgct tggaactctg caggtcagaa acggcgatgt gaacgtcacc
+       61 cccaccgctc cgaaggtccg ccaggtcctc gccctgctgg cacttcgagc caacaccacc
+      121 gtgcccccgc acctgctcat ggaagagctc tgggaggagc accccccgtc cagcgcggcg
+      181 acgacgctgc agacgtacat ctaccagctg cgcaagcttc ccggtctgtg ctcgcagcga
+      241 caggacgaca cggccggcac cggcgctctg ctgaccaccc ccggcggcta tcgcctgctg
+      301 ctgccgtccg agtcgctgga cgcacagcgc ttcggcgcac tcgccaccct cggacggcag
+      361 gccatggaga gaggagaggt cgccgaagcg gccgacctcc tcaagcgggc cctcgccgtc
+      421 tggcgggggc ccgctctgga tgacctgtcc cccggccccg tcatcggcat agacgtgctg
+      481 cggctccagg agcagcggta cgaggcgctc gaggggcgga tcgacgccga tctgcagatg
+      541 ggcaggcacc atcagctcat cagcgagctg accgcgctca cggccgacaa cccgacccgg
+      601 gagagcctgc acaccaagct catgctctgc ctctaccgcg cgggtcgccg ttcggacgcg
+      661 ctggacgtct tccagcggat cagggagacc ctcgtccggg agctggggct cgaaccgtgc
+      721 tcggcgctgc agcggctgca ccagcgcgtg ctggccggtg acgcggccct cgaccttccc
+      781 ggagggcgga tcctggtgtc cggcggctcc cccagcacgc ctcccgtcac catgcccccg
+      841 gccccgcggc tgatcggccg ggaggccgaa ctccggtgcg ccgaacggct gctgtgccag
+      901 agcgggcggg cggggaacac cccgggctgc gtcgccgtgg ccgggcctcc cggcgtggga
+      961 gcgacggcct tcgccgtcca cctcgcccac cgcctcggtg acgcgttccc cgacggcagg
+     1021 ctgtacacgt cgctgaacgg tccggacgac gtctcctgcg tccacgcggc gctcgccgac
+     1081 ctgctggagg ccgccggact cgagcgcgcc aagctgccgt tccgcgtcga cgaccaggcc
+     1141 cgcctgttca aggagtggac cgccggccgc aaggtgctcg tcgtcgtgga caacgtggcg
+     1201 gccgccgcgc agatcacccc cctgctgccc gccgacagcg ggtccgccct ggtcgtggtg
+     1261 ggccatcggc ggctgcacgg caaccagttg accgggcggg tccacctgcg cccgatcgac
+     1321 cgccggcact ccctggaact cctgcgggcc gcccgcgccg agcacccgct cggcgacgag
+     1381 gccgagttcg acgtcctgct ggacctgctc ggcgacctgc ccgggcccct gaccgacgcg
+     1441 gcgggcctgc tgatgcgcag accgcactgg tccgccaaac agctggccga ctggctgtgc
+     1501 cgggaccggg gcccggtcat gccgtggccg cacgcctacc ccttccaccc ggtgagccgg
+     1561 cgctgcgagc agctgctgcc cgagctgcgg gacgcgctgg ccgtcatcgc gggagagccc
+     1621 ggggagagcc tgaccgtcga gcacgcggcc atggtgctcg acaggaacgc cgacgacacc
+     1681 gaggaactcc tggaggaact cacggagttc ttcctcctgg aggtcgaggt ggccaccgac
+     1741 gcctcctcca cccggccctt ccagtaccgg ctgccgccgc tggtgcgcgc cgcgctgcgc
+     1801 cccgggctgg tgcgcaccct ggcggcctga
+//
+
+LOCUS       LLPMBPKK_06907          1221 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1149:LuxR family transcriptional regulator
+            (Score: 62.2; E-value: 4.9e-19).
+ACCESSION   LLPMBPKK_06907
+VERSION     LLPMBPKK_06907
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..1221
+                     /name="LLPMBPKK_06907"
+                     /product="LLPMBPKK_06907"
+                     /description="regulatory (smcogs) SMCOG1149:LuxR family
+                     transcriptional regulator (Score: 62.2; E-value: 4.9e-19)"
+ORIGIN
+        1 atggagttag ccgccgccgc gtcggaaccg gccacgggag aacgtcccgt ccgcgaggcg
+       61 ccgttggagg cgcgcatctg gtacgcgacg ctgctgacac gagtccgcgg cctccggccg
+      121 gccgaacggc tcctcgcggg cgaggagacc gccgcccgcg aaccgcaccg gctggaggcc
+      181 caggcggcac ggctgctgtg cgaggcggag atccacctcg ccgtgggcag actcggcgag
+      241 gcgaccgcgg cggccgaagc cgggctccgg ctggcgtccc aggccggcaa ccgcggactc
+      301 ccaccacgcg gccacgtcgt cctggccgtg tgctccgtcc gctccctgga cctcacgacc
+      361 ggcctgctgt acgccaaccg gctccgggac gcggccctgc tcgggcagga gaacctcatg
+      421 ccgggacagt gcgtctgggc cgcggcgcag gccctggagg cgcgcgacgg catggagagc
+      481 gtggcccacc tgctcaaggg catcctccac gacgacgtcc tcacccgcga gctgctcctc
+      541 tcccagcccg ccgcggcccc ctggctggtc cgggccggac agcggctcgg cgacaccgac
+      601 ctcgccgaac gcaccgtccg caccatgagc cggctcgccc tgacgaaccg cagcttccgc
+      661 agcgtccagg ccgcggccga gcacgcctcc gggctgtacg cccgcgacgc ggacgccctg
+      721 gaggccgcct ccgcacggca cctcgacccc tgggcccggg cctccgccct ggaggacgcg
+      781 agccgggtcc gctccgtacg cgtcccggaa cgcgaccggg cggtcgacct gctccggcgc
+      841 gccgccgacg cctacctgag cgccggggcc tcccgggacc tctcgcgggt ccagagccgg
+      901 ctgcgcgaac tcgacgacca cggcggccgg ccggcccgcg gccgcacccg ggtcagccgg
+      961 ctcaccgaca ccgagttcgc cgtggccgag ctggtcagcc agggcctcac caacggccgg
+     1021 gtcggcagcc agctctacat ctccccgcac acggtggcgt tccacctgaa gaagatcttc
+     1081 cgcaagctcg acgtgacgtc ccgcgtggaa ctggcccgct cctggagccg gatcctggtg
+     1141 gaggaacgcg cggaccggcc cgccaccacg cccgaacccg acttcctcgt ccgcacctcc
+     1201 atggcccggc aggccgggta g
+//
+
+LOCUS       LLPMBPKK_07531          2421 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1149:LuxR family transcriptional regulator
+            (Score: 158; E-value: 5.7e-48).
+ACCESSION   LLPMBPKK_07531
+VERSION     LLPMBPKK_07531
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..2421
+                     /name="LLPMBPKK_07531"
+                     /product="LLPMBPKK_07531"
+                     /description="regulatory (smcogs) SMCOG1149:LuxR family
+                     transcriptional regulator (Score: 158; E-value: 5.7e-48)"
+ORIGIN
+        1 ttgcccaccc gtgaggacac tcggcaagcc gaccacgcag cagccctccg gggcccttcc
+       61 gacagccggc cgacgacagc cgacgggccc gcccgcgccc cgcacggcag agcgcgggaa
+      121 ctggccgcgc tggaccgggt cctcgaccgg gacgaccccg gcgtgccgct catcgaggtg
+      181 cggggcgacc cctggatggg caagtcggcg ctcctgggcg ccctgggcga acgcgcccgg
+      241 gaacgggggt ggacggtggc cgccgccgcg ggcggatcgg tccccgaggg gcttcccttc
+      301 ggggtcttcg ccgacgccct ggacgagttg ctgtcgtccg tcggcgagca gagcgtgtcc
+      361 tggctctccc cgcaccacct gtcctggctg gccggcatct tcccggccct gtcctggcac
+      421 gctcctgccg tcgcgctccc cgccggcccg tcggagcgtc accacgtgct gcacgcggtc
+      481 cgcggcctgc tcggccgtct cggctcccgc aaccgcctgc tgctggtcct cgacgacatg
+      541 cacctggccg acgaggcgtc ggtcctgctc gtgcagcacc tgctgcggca tcccgcgcca
+      601 ggggtcgtgc tggccctcgc gcaccggccc cggcagaacc agcagagcct gcgcatcctg
+      661 ctgggcgagg ccgcggcggc cggccggtcc gcccggctgg agctgccacc gctgcccgac
+      721 gaggagatga gcggcctcct gccccggccg ctgccgcccg cccagctgcg cagcctgctc
+      781 cacgcctcgc agggccgccc ggggctgctc cgtgccctcg ccgtgagcgc gccctgggcc
+      841 gagggcgcac cgggcgcgcc ccactccccc gccgatccct cgatgccgct gctgcgcgag
+      901 ttccgcggac tgtccccgct gggacggacg gtggcgcacg cggcggcggt cctgcaggag
+      961 cccttcgaca ccgggctcct ggcgcgggcc gcgcaggccg gggaggacga ggcccgggcc
+     1021 ggcgtcgacg aactgctgcg gcgggacatc ctgcgccccg gcactctccg gggcaccttc
+     1081 cggttccgcg atccgctggt gcgccgtacc gcccacgaca cggcgggcgc cgcctggcag
+     1141 ctgggcgcgc acgcgcgggc ggccgcggcc ctgcgcgacc gcgcggcctc cccggcacgc
+     1201 gtcgcctggc acctcggcca cggcgccctc accggtcagg acggtgacgg cgtccgcatc
+     1261 ctccaggagg cggcgcgcac cgtcctgtgg cagcgccccg accgggcggc cggctggctc
+     1321 cgggcggtgc tcgggccgcg ccccggcacg ggtgatccgc ggcagcggct gcggctcgcg
+     1381 accgcgctgg cgctgagcgg agaactggcc gagagcctgg ccctgttcga cggcacgctg
+     1441 gccaggggct cggtggcgca tccggacgcc gagctgtggc gggcccgggt gctgcgcctg
+     1501 ctggggcggc acggcgacgc ggcggacctg ctggagaaga cggccgccaa cctggcgccg
+     1561 gacgcctgcg aggtgcgggc gcgtacgacg ggggcgctgc tggcgacctg cctggaggcg
+     1621 ggggaacgcc cgcgtccggc cctggtcgag gacgccggcg ccgtcacgga gaccgaccag
+     1681 gcgctccagg cccagctgct ggcgctgcgc tcgctggcgt ccggcgccga cggcgccccg
+     1741 gacggcgggc cggccgaact ggtccagcgg gcggcgcgtc tggcggacgg gctgggcgac
+     1801 gagccggccc gccgctccct ggacacgctc tactgggtgg cccgggccga gagcgctctg
+     1861 ggccgggaca ccgcggcact cgggcgcctg gagcgcgccc tcgacctcgc cctgcggcac
+     1921 cggctgcgct acgtcgtccc ccaactggcc accgaggccg gccgcatcct gctcgcccgc
+     1981 ggggacaggg ccgccgccct gctccacgcc gaccacgcgc ggtgggccgc cgagcgcatc
+     2041 cgcagcggtt tccaggccga cgcggccggc cggctccgca cgcgcatcga ccggtccggt
+     2101 ccccccggcc cgccgcacgc cggccccgcg gaggacctcg ccgggcccgg gccggagccc
+     2161 ggcaccggcc aggccccgca gccggcgccc cggggccgtc ccgcggaccc ctcgaccgga
+     2221 ctgggccggc tcagcgaacg cgagcgggag atctccgtcc tggtcagcaa gggccggacc
+     2281 aaccagcaga tcgcgcgggc gctggcgctg agccccaaga cggtggagac ctatctcgcc
+     2341 cgggtgttca agaagctgac gctgtgctcg cgggcccagc tggccgccct cgtggggatg
+     2401 gaggggggcc tgaccggctg a
+//
+
+LOCUS       LLPMBPKK_07744          2916 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1149:LuxR family transcriptional regulator
+            (Score: 117.2; E-value: 1.2e-35).
+ACCESSION   LLPMBPKK_07744
+VERSION     LLPMBPKK_07744
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..2916
+                     /name="LLPMBPKK_07744"
+                     /product="LLPMBPKK_07744"
+                     /description="regulatory (smcogs) SMCOG1149:LuxR family
+                     transcriptional regulator (Score: 117.2; E-value: 1.2e-35)"
+ORIGIN
+        1 atgcgttccc atgcgccttc tctggtcgga cgggactccc aactggccct gctcgacagt
+       61 gccctggccg acgcgcgcca gggtcgcggc ggtgtcgtgt tcctggtggg agaggccggt
+      121 gtcggcaagt cgcgggtcgc cgcggaggcc gtcggcggtg cgctgggcgc cgggatgcgg
+      181 gtgctgcggg gccgcagcag caccacggga ccggccgtac cgttccgacc gctcaccgag
+      241 gccctgatgt cgctcttccg gagtggcgaa cccatggacg acctgcccct cggcccctac
+      301 cggccggttc tcgggcggct gatcccggac tgggacaccg gggaacggga cagcagctcc
+      361 atggtcatcc tgggcgaggc cgtgctgcgc ctgctcatcg ccgccgggcg cgggcagggc
+      421 cagttgctgc tgctggagga tctgcacgac gccgacccgg aaacgctcgg cgttctcgaa
+      481 tacctggtgg acaacctgga ctactcgccc gtcctgctgc tcgccacggt ccggacggat
+      541 ttcagcgacg ccctcgacct cgcgcagtcc gcccgccggc gcggcgcggc caccctggtg
+      601 gaactcccgc ccctgacccg gccccagacg tacgagatga tcgcggcgca actcgggacc
+      661 gacggcccgg agcaggtgcc cgcggcggtg ctggagcggc tgtgggagga cagttcgggg
+      721 agcccgtacc tggtcgagga gctgctccag tcgatgatcg gggccggcac cctggtgcgg
+      781 ggcccggagg gctggcgggc tgtcggcgac ctccgcagcg acgtctcctc gtcgctggcg
+      841 cgtggcatcc tgcggcgtat cgaccggctc ggcgcgcagg gcctgaccct gctgtcggcc
+      901 gccgccgtgc tcggacggcg cttcccgctc acggtgctgc agcgcatgac cggcgtcgac
+      961 gaccgggccc tgctcagcca tctgcacgcc ggggtggccg cgcggctggt ggttcccgac
+     1021 gaacccgcgc cggactggta ctccttccgt cactcgctca ccgtggaggc cctgttcacg
+     1081 cagatgaccc cggggctgcg ggcggacctg gcccggcggg gcgcggaagc ggtggaggaa
+     1141 ctgcatccgg acctgcccgg tgactggtgc ccgctcgcgg ccgggctgcg cagcaccgcg
+     1201 ggggacaagg tggaggccgg tctgctgttc gcggacgcgg gcgggcgggc gctggcggcc
+     1261 ggggcgctcg gctccgccgt caccctgctg agccggtccg agagcctgct ggccgacgcg
+     1321 ggcgatccgc agtcgcgggc cacggtgctg gagaacctgc tgccggccct cgcggaggcc
+     1381 ggtgacttcg cccgcgccct cgacctggcc gaggacctgc acgcattgga cgggtcgggg
+     1441 ctgagccccg cccgcctggc cacgctgcac acccggctgg ccaaggtcgc ccacacggcg
+     1501 ggccggtgga gtgacggcaa ccggcagata gcccgcgccc gtgaggtgct ggccgcggca
+     1561 ccggacgagt cggtcgccgc ggccgtcgac gtcacagccg cctacctggc cctggacacg
+     1621 ccggggcccg accgcaccca gcacgcggag aaactggccc ggtccgccgc cgacaccgcc
+     1681 gaacggcacg gtctgcccgt cgtcgcctgc caggcccggg agctgctcgc gacggtggcc
+     1741 cgcgaacggg accccgagga gtcggcggcg atgctcgggc aggcactggc cacggcggag
+     1801 cgccaccgtc tcccgctgca gcgcatgtac gcggccaccc ggctcggcgg caacgcctgg
+     1861 ctggccgacg gcgacaccac gggcctggtg gcggtccgcg aggaggccct gcggctcggc
+     1921 tccgtgaaca tcgtgcacac cgtggacggc atcctggttc tggacgcggt gctgcgcggc
+     1981 cgctacgacg ccgcccggtc ggccgccgcc gagtgcctgg ccgtcgtccg caggctgcgt
+     2041 ctcgcgcccg tcgtgcggta cgtcctgatg gcccaggccg ttctggcggc ccatcatgcc
+     2101 gaccgcgcgg cgatggagcg gtcgctggcg gctttcgccg agtgggacgg cgccggttca
+     2161 caggaggagg cgctcggccg cggtctggcc cggaccttct gcgccctgct ggaggaggac
+     2221 cgcggcctcg cccgggagga gctgcggcag gtgctggcgc tggaggcggg caacccctcg
+     2281 acgtaccatc tcggcggcac ccacggtctg gtcctgctgc tggacgtgct cgccggggac
+     2341 gcggaccggg cccggcacga ggagatcacc gccaccgccg tcgcccggat gcgctggaac
+     2401 cgtcagttcg tcctgctcgc cgacgccgtg ctgctcggcc gcgagagcga gggagagcgg
+     2461 gcggcgggcg cggtggaggc cgcgctggcg gtggccgagc cgtacccgct ggcgcagcat
+     2521 ctcgggctgc ggctgatcgc ggacgcggcg cacgaggacg gctggggcga tccggtgggc
+     2581 tggctgcggc gggcggagca ctacttccac gagcgggacg tccaggccgt caccggcgcc
+     2641 tgccgggccg ggctgcgccg gctcggcgcc tccgtgcacc agcaccgcac cggcaccagc
+     2701 ggcatccccg accagctgcg cgcccagggc gtcacggtgc gggagttcga ggtgttccgg
+     2761 ttactggcgg agcggctgag caacaaggac atcgccgacc ggctgttcat ctcaccgcgc
+     2821 acggcggaga agcacatcgc gagtctggtc acgaagacgg gggcggcgaa ccgggcggac
+     2881 ctgtgcgcgc ggtcggccgc cctgcgggac gcctag
+//
+
+LOCUS       LLPMBPKK_07949          2304 bp    DNA              UNK 01-JAN-1980
+DEFINITION  regulatory (smcogs) SMCOG1041:transcriptional regulator, SARP family
+            (Score: 358.4; E-value: 1.5e-108).
+ACCESSION   LLPMBPKK_07949
+VERSION     LLPMBPKK_07949
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     gene            1..2304
+                     /name="LLPMBPKK_07949"
+                     /product="LLPMBPKK_07949"
+                     /description="regulatory (smcogs) SMCOG1041:transcriptional
+                     regulator, SARP family (Score: 358.4; E-value: 1.5e-108)"
+ORIGIN
+        1 gtgcacgacg gcacgccttc cccgggggac ttcggacagc ggttgcggca cctgcgggtc
+       61 cgttgcgggc tgagccggga agcgctgtcg catgtggccg gggtgagcgt cagggcgctg
+      121 gccgacatgg aacgcggacg cacccgggga ccacagcgcc gtacggtgca ggcgctggcc
+      181 gaggcgctgg gactggacag cgacgaagcg gccggcctcg agaagtccgc cgccctgggc
+      241 cgcccgcgcc cccggaccgc gcccggaccg gccgggggcg ggcccctggc gctgccgcgc
+      301 gacatccagg acttcaccgc ccggggcccg gcgctggccc ggttgctgga actggcgcag
+      361 gacaccgatg cgggggtgcc ggtggtcacc gtggtcaccg ggcagccggg gctcggcaag
+      421 acctcgttcg cggtgcacgc cgcgcaccac ctcgctccgc acttcccgga cgggcagttc
+      481 gccctggacc tgcacggaat ggatcccgag ccgacgaccc cgcgggacgc gctggcccgg
+      541 ctgctcggtg cgctgggggt cgccgacgcg gcgataccgg ccggtgccga cgaccgtgcc
+      601 ggtctgtggc ggtccctggc cggtgagcga cgcctgctgc tgctcctcga caacgccgcc
+      661 gacgaatcgc aggtgacccc cctgctgccc ggcagcggtc cgtccctgac cctcgtcacc
+      721 agccgccatt ccctggccgg cctggagtcc gtccaccgca ccgatctcgc cctgctgcgg
+      781 cgcgaggagg cggtcgaact gctgacccgc atcatcgggc cggaccgggt acgggcggag
+      841 gcacaggccg cgcgtgatct cgccgacctg tgcgggcacc tgcccctggc cgtccggatc
+      901 gccggccagc ggctcctcag ccggccccac gaacgcctcg gcaagctcgt cgcccgtctc
+      961 gctgccgagg gtcggcggct ggacggcctg caggccggaa gtctgcgggt gcgtgcggcc
+     1021 ttcgcgctct cctaccggca actgccgacg gaatcacaga cgttgctccg gcgtgccgcg
+     1081 ctggccgccg gaacggattt cagccccgag accgccgcgc tcctggccgg cctgtcccac
+     1141 gacgaggcgg tgggctgcgc ggaggaactc accgacgccg gtctgctcca gagcgacggc
+     1201 gccaccgagc gctaccgctt ccacgacctg ctcaggctgt acgcggccga gcaggtggac
+     1261 accgaggacg gtcccgaggt gcgcgacgcc gcgctcgacc gggccgcgtc ctggatgctg
+     1321 cgccgggcca cggccgccgc gctgcacttc gacaccgacc acgaacagac cgtgccgcac
+     1381 gacgacccgg acccggagac ggcgcccgcc ggccgcgacg aggcgcgggc ctggctggag
+     1441 gccgagcggg cccagtggct cgcctcactg cgccgggccc atgacaccgg ccgtcatcgc
+     1501 caggtcctgg acacggcgaa ggcgatgcac tggttctccg acctcaacca ccactgggag
+     1561 cagtgggtgg aggtgttccg gctctccgcc gcctccgccc gccttctggg cagcagacgg
+     1621 gaggaggcgg tccacctcaa ctacctctcc tgggcttaca acttctgtac ccacgacgcc
+     1681 cgcgccgccc tgacgagtgc cgacgccgcg ctcgcggcgg cccgcgagtg ccgggacaca
+     1741 ctccaggagg gctgggcact cggttacggc gcgggcgcgc tccagcggca gggccgcatg
+     1801 caggaggccg aggagcggct gcgcgagggc gccctccgta tcaccaccga gaagtcgccg
+     1861 cagggccggc tggccgagct gacactcctc aacaccctgg gtaccctgct gcgcgagacc
+     1921 ggccgggcgg ccgaggcact ggacctgcac caccgcagcg aacggatctg ccgcgcgggc
+     1981 atccccggcc ggacggacag ggtgatcgcg ctgtacctcg ccgtcacgcg cctgcacatc
+     2041 ggcaacgacc tcgcggccct gggacgctgg cacgaggccg agacgccgct gcggcaggcc
+     2101 ctcagcgccc tggaggccgc ccaggtgtcg gcgtgggccg aacgggcccg cctgcacctg
+     2161 ggtcagacac tcgccgccct gggacacccg caagcccgca cgacactgcg caccgcccgc
+     2221 gacgccctcg ccgcactgcg aagcccgctc cagaccgagg ccaccgaagc actcgccgcc
+     2281 ctcgacgccg ccgccaccgc ctga
+//
+
