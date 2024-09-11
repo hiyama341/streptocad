@@ -41,7 +41,7 @@ StreptoCAD offers six distinct workflows for various genetic engineering tasks:
 
 ## Experimental Validation
 
-StreptoCAD's efficiency and user-friendliness were validated by designing and constructing 13 overexpression strains in Streptomyces coelicolor in just eight weeks. This highlights the tool's capability to accelerate genome engineering projects.
+StreptoCAD's efficiency and user-friendliness were validated by designing and constructing overexpression strains in Streptomyces Göe40/10 in just eight weeks. This highlights the tool's capability to accelerate genome engineering projects.
 
 ## Future Developments
 
@@ -49,7 +49,47 @@ Future expansions will include additional genome engineering tools and integrati
 
 ## Get Started
 
-Visit [www.streptocad.com](http://www.streptocad.com) to download StreptoCAD, access detailed documentation, and join the community of users and contributors working to advance Streptomyces research.
+Visit [www.streptocad.bioengineering.dtu.com](www.streptocad.bioengineering.dtu.com) to download StreptoCAD, access detailed documentation, and join the community of users and contributors working to advance Streptomyces research.
+
+## Want to run StreptoCAD locally?
+
+#### 1. Set up a Conda virtual environment (Why it's smart)
+
+Using a Conda virtual environment is a great way to manage dependencies for your project. Conda makes it easy to create and manage isolated environments, ensuring your project’s libraries are kept separate from other projects and system-wide dependencies. This helps avoid compatibility issues and makes it simpler to reproduce your development environment.
+
+To create a new Conda environment, run:
+
+```bash
+conda create --name streptocad python=3.11
+```
+
+Replace myenv with your preferred environment name, and replace 3.11 with the specific version of Python you need.
+
+Then activate it:
+
+```bash
+conda activate streptocad
+```
+
+#### 2. Install the requirements
+
+Once your Conda environment is active, you can install the required dependencies from requirements.txt. This ensures your environment has all the necessary packages for the project. Use the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+(Note: Even though you're using Conda, pip is still used to install from requirements.txt.)
+
+#### 3. Run the application
+
+Finally, to run the StreptoCAD application, execute the following command:
+
+```bash
+python3 application.py
+```
+
+This will launch the application locally, and you're ready to go! Follow the url that your terminal shows.
 
 ## License
 
