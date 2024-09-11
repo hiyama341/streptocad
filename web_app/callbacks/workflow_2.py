@@ -165,6 +165,7 @@ def register_workflow_2_callbacks(app):
                 filtered_sgrna_df_for_base_editing = filter_sgrnas_for_base_editing(sgrna_df_with_editing)
                 logging.info("Filtering sgRNAs for base editing completed.")
                 
+                # Here we check for stop codons and for editing context
                 mutated_sgrna_df = process_base_editing(filtered_sgrna_df_for_base_editing, 
                                                         genes_to_KO_dict, 
                                                         only_stop_codons=bool(only_stop_codons), 
