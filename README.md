@@ -63,7 +63,7 @@ To create a new Conda environment, run:
 conda create --name streptocad python=3.11
 ```
 
-Replace myenv with your preferred environment name, and replace 3.11 with the specific version of Python you need.
+Replace streptocad with your preferred environment name, and replace 3.11 with the specific version of Python you need.
 
 Then activate it:
 
