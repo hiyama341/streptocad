@@ -177,5 +177,6 @@ register_workflow_6_callbacks(app)
 register_interactivity_callbacks(app)  # Register the interactivity callbacks
 
 if __name__ == '__main__':
+    app.run_server(debug=True)
     # for AWS
-    application.run(host='0.0.0.0', port='8080')
+    #application.run(host='0.0.0.0', port='8080')
