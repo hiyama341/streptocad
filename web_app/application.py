@@ -47,6 +47,8 @@ external_stylesheets = [
 ]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_callback_exceptions=True)
+# For AWS
+application = app.server
 
 # Main VERTICAL app layout with the loading spinner for submit button
 main_layout = dbc.Container([
@@ -175,4 +177,5 @@ register_workflow_6_callbacks(app)
 register_interactivity_callbacks(app)  # Register the interactivity callbacks
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    # for AWS
+    application.run(host='0.0.0.0', port='8080')
