@@ -201,7 +201,7 @@ def register_workflow_6_callbacks(app):
                                                                         primer_tm_kwargs={'conc':primer_concentration, 'prodcode':chosen_polymerase} )
                     
                     logging.info("Digesting plasmids with StuI.")
-                    processed_records = [Dseqrecord(record, circular=True).cut(StuI)[0] for record in assembled_cas3_plasmids]
+                    processed_records = [sorted(Dseqrecord(record, circular=True).cut(StuI), key=lambda x: len(x), reverse=True)[0] for record in assembled_cas3_plasmids]
 
                     logging.info("Renaming processed records.")
                     for i in range(len(processed_records)):
