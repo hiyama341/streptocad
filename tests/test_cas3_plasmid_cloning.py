@@ -5,7 +5,7 @@
 
 # # Local module imports
 # from src.teemi_functions.cloning.cas3_plasmid_cloning import (
-#     generate_cas3_primers, 
+#     generate_cas3_protospacer_primers, 
 #     cas3_plasmid_pcrs,
 #     assemble_cas3_plasmids,
 # )
@@ -19,7 +19,7 @@
 
 
 # def test_generate_cas3_primers():
-#     # generate_cas3_primers()
+#     # generate_cas3_protospacer_primers()
 #     pass
 
 
@@ -36,7 +36,7 @@ import pandas as pd
 from pydna.dseqrecord import Dseqrecord
 from Bio.Seq import Seq
 from streptocad.cloning.cas3_plasmid_cloning import (
-    generate_cas3_primers, 
+    generate_cas3_protospacer_primers, 
     cas3_plasmid_pcrs,
     assemble_cas3_plasmids,
 )
@@ -78,12 +78,12 @@ def sample_spacer_table():
 
 @pytest.fixture
 def filtered_spacer_table_with_primers(sample_spacer_table):
-    return generate_cas3_primers(sample_spacer_table)
+    return generate_cas3_protospacer_primers(sample_spacer_table)
 
 
 # Tests
 def test_generate_cas3_primers(sample_spacer_table):
-    df_with_primers = generate_cas3_primers(sample_spacer_table)
+    df_with_primers = generate_cas3_protospacer_primers(sample_spacer_table)
 
     # Verify that the expected columns are present
     assert 'Fwd Primer' in df_with_primers.columns

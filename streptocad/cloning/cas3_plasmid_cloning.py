@@ -8,8 +8,10 @@ from pydna.amplify import pcr
 from pydna.assembly import Assembly
 from Bio.Restriction import  BstBI, NdeI
 
+from Bio.Seq import Seq
+import pandas as pd
 
-def generate_cas3_primers(spacer_table: pd.DataFrame) -> pd.DataFrame:
+def generate_cas3_protospacer_primers(spacer_table: pd.DataFrame, fwd_overhang: str = "GTCGCcCggCaaAaccGg", rev_overhang: str = "GTTTCAATCCACGCGCCCGT") -> pd.DataFrame:
     """
     Generate forward and reverse primers for the given spacer sequences.
 
@@ -17,6 +19,10 @@ def generate_cas3_primers(spacer_table: pd.DataFrame) -> pd.DataFrame:
     ----------
     spacer_table : pd.DataFrame
         DataFrame containing spacer sequences in the 'sgrna' column.
+    fwd_overhang : str, optional
+        Universal overhang sequence for the forward primer, default is 'GTCGCcCggCaaAaccGg'.
+    rev_overhang : str, optional
+        Universal overhang sequence for the reverse primer, default is 'GTTTCAATCCACGCGCCCGT'.
 
     Returns
     -------
@@ -24,15 +30,17 @@ def generate_cas3_primers(spacer_table: pd.DataFrame) -> pd.DataFrame:
         DataFrame with additional columns for forward and reverse primers.
     """
     spacer_table = spacer_table.copy()  # Create a copy to avoid the SettingWithCopyWarning
-    spacer_table.loc[:, "Fwd Primer"] = spacer_table["sgrna"] + "GTCGCcCggCaaAaccGg"
-    spacer_table.loc[:, "Rev Primer"] = spacer_table["sgrna"].map(lambda x: str(Seq(x).reverse_complement())) + "GTTTCAATCCACGCGCCCGT"
+    spacer_table.loc[:, "Fwd Primer"] = spacer_table["sgrna"] + fwd_overhang
+    spacer_table.loc[:, "Rev Primer"] = spacer_table["sgrna"].map(lambda x: str(Seq(x).reverse_complement())) + rev_overhang
     return spacer_table
+
 
 
 def cas3_plasmid_pcrs(plasmid: Dseqrecord, filtered_df: pd.DataFrame, universal_fwd_seq: str = "GAGCTCATAAGTTCCTATTCCGAAG", universal_rev_seq: str = "aagaagtgggtgtcggacgc") -> List[List[Dseqrecord]]:
     """
     Build a plasmid using the provided primers and filtered DataFrame of spacer sequences.
-
+     
+    Adds fixed primers binding up and downstream from the protospacer integration site
     Parameters
     ----------
     plasmid : Dseqrecord
@@ -62,7 +70,7 @@ def cas3_plasmid_pcrs(plasmid: Dseqrecord, filtered_df: pd.DataFrame, universal_
     >>>     print(amplicon_pair[0].name, amplicon_pair[1].name)
     """
     # Generate primers for the filtered DataFrame
-    filtered_df = generate_cas3_primers(filtered_df)
+    filtered_df = generate_cas3_protospacer_primers(filtered_df)
     
     amplicons_list: List[List[Dseqrecord]] = []
     

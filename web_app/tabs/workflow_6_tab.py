@@ -124,8 +124,8 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
     dbc.Row([
         dbc.Col([
             html.H4("4) Select overhangs", style=text_style),
-            html.P("Please enter the 5' and 3' overhangs below for the oligo nucleotide to be made.", className="lead", style=text_style),
-            html.P("Per default the overhangs work with pCRISPR–Cas9_plasmid_addgene.gbk", className="lead", style=text_style)
+            html.P("Please enter the 5' and 3' annealing below for the first gibson reaction.", className="lead", style=text_style),
+            html.P("Per default the overhangs work with pCRISPR–Cas3.gbk", className="lead", style=text_style)
         ], width=12),
     ], className="mb-3"),
 

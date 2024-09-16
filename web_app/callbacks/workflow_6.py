@@ -32,7 +32,7 @@ from streptocad.sequence_loading.sequence_loading import (
 from streptocad.utils import polymerase_dict, create_primer_df_from_dict,ProjectDirectory,extract_metadata_to_dataframe
 from streptocad.primers.primer_generation import create_idt_order_dataframe, make_primer_records, primers_to_IDT, find_best_check_primers_from_genome
 from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
-from streptocad.cloning.cas3_plasmid_cloning import generate_cas3_primers, cas3_plasmid_pcrs, assemble_cas3_plasmids
+from streptocad.cloning.cas3_plasmid_cloning import generate_cas3_protospacer_primers, cas3_plasmid_pcrs, assemble_cas3_plasmids
 from streptocad.cloning.gibson_cloning import (
     find_up_dw_repair_templates,
     assemble_multiple_plasmids_with_repair_templates_for_deletion,
@@ -165,7 +165,7 @@ def register_workflow_6_callbacks(app):
                 filtered_df = sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
 
                 logging.info("Generating CAS3 primers.")
-                filtered_df_w_primers = generate_cas3_primers(filtered_df)
+                filtered_df_w_primers = generate_cas3_protospacer_primers(filtered_df)
                 logging.info("CAS3 primers generated.")
                 
                 logging.info("Generating CAS3 plasmid PCR amplicons.")
