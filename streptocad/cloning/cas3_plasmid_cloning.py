@@ -30,8 +30,8 @@ def generate_cas3_protospacer_primers(spacer_table: pd.DataFrame, fwd_overhang: 
         DataFrame with additional columns for forward and reverse primers.
     """
     spacer_table = spacer_table.copy()  # Create a copy to avoid the SettingWithCopyWarning
-    spacer_table.loc[:, "Fwd Primer"] = spacer_table["sgrna"] + fwd_overhang
-    spacer_table.loc[:, "Rev Primer"] = spacer_table["sgrna"].map(lambda x: str(Seq(x).reverse_complement())) + rev_overhang
+    spacer_table.loc[:, "Fwd Primer"] = spacer_table["sgrna"] + fwd_overhang.upper()
+    spacer_table.loc[:, "Rev Primer"] = spacer_table["sgrna"].map(lambda x: str(Seq(x).reverse_complement())) + rev_overhang.upper()
     return spacer_table
 
 
