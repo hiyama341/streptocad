@@ -25,7 +25,7 @@ from teemi.build.PCR import primer_tm_neb, primer_ta_neb
 
 
 def find_up_dw_repair_templates(genome: SeqRecord, repair_templates: List[str], target_tm: int = 65, 
-                                primer_tm_kwargs= None) -> List[dict]:
+                                primer_tm_kwargs= None, repair_length= 1000) -> List[dict]:
     """
     Find repair templates upstream and downstream of coding sequences in a genome.
 
@@ -75,12 +75,12 @@ def find_up_dw_repair_templates(genome: SeqRecord, repair_templates: List[str], 
                 end_location = int(feature.location.end)
 
                 # Fetch 500 upstream to start + end to 500 downstream
-                repair_up = primer_design(Dseqrecord(str(genome.seq[start_location-1000:start_location]),
+                repair_up = primer_design(Dseqrecord(str(genome.seq[start_location-repair_length:start_location]),
                                                      name= f"Repair_Template_UPSTREAM{feature.qualifiers['locus_tag'][0]}"),
                                                      target_tm=target_tm, tm_func=primer_tm_neb, **primer_tm_kwargs)
 
                 # Fetch 500 downstream to start + end to 500 downstream
-                repair_dw = primer_design(Dseqrecord(str(genome.seq[end_location:end_location+1000]), 
+                repair_dw = primer_design(Dseqrecord(str(genome.seq[end_location:end_location+repair_length]), 
                                                      name= f"Repair_Template_Downstream{feature.qualifiers['locus_tag'][0]}"),
                                                      target_tm=target_tm, tm_func=primer_tm_neb, **primer_tm_kwargs)
                 # MAKE A DICT
@@ -92,8 +92,8 @@ def find_up_dw_repair_templates(genome: SeqRecord, repair_templates: List[str], 
                           'tm_up_forwar_p': primer_tm_neb(str(repair_up.forward_primer.seq), **primer_tm_kwargs), 
                           'tm_up_reverse_p': primer_tm_neb(str(repair_up.reverse_primer.seq), **primer_tm_kwargs),
                           'ta_up': primer_ta_neb(str(repair_up.forward_primer.seq), str(repair_up.reverse_primer.seq), **primer_tm_kwargs),
-                          'location_up_start':start_location-1000,
-                          'location_up_end':start_location ,
+                          'location_up_start':start_location-repair_length,
+                          'location_up_end':start_location,
                         
                           # dw repair
                           'dw_repair': repair_dw,
@@ -103,7 +103,7 @@ def find_up_dw_repair_templates(genome: SeqRecord, repair_templates: List[str], 
                           'tm_dw_reverse_p': primer_tm_neb(str(repair_dw.reverse_primer.seq), **primer_tm_kwargs), 
                           'ta_dw': primer_ta_neb(str(repair_dw.forward_primer.seq), str(repair_dw.reverse_primer.seq), **primer_tm_kwargs),
                           'location_dw_start': end_location, 
-                          'location_dw_end':end_location+1000}
+                          'location_dw_end':end_location+repair_length}
                 
                 repair_DNA_templates.append(record )
                 
@@ -208,21 +208,24 @@ def assemble_multiple_plasmids_with_repair_templates_for_deletion(
     Returns
     -------
     dict
-        A dictionary containing the assembled plasmids, primers and other information.
+        A dictionary containing the assembled plasmids, primers, and other information.
     """
     # initialize
     list_of_records = []
 
     # iterate through gene_names
     for gene_name in list_of_gene_names:
+        match_found = False  # Track if a match is found for the current gene_name
+
         # iterate through plasmids and find out if the gene name is in the name of the plasmid so we can assemble correctly
         for plasmid in list_of_digested_plasmids:
             plasmid_name = str(plasmid.name)
             x = plasmid_name.find(gene_name)
             if x != -1:
+                match_found = True  # Mark that a match is found
                 # we got a match - get repair templates
                 for repair_template_name in repair_DNA_templates:
-                    # double check that the names are working
+                    # double-check that the names are working
                     if repair_template_name["name"] == gene_name:
                         # making a list of the repair templates
                         repair_templates = [
@@ -260,7 +263,6 @@ def assemble_multiple_plasmids_with_repair_templates_for_deletion(
                         )
 
                         # Retrieve information
-                        # MAKE A DICT
                         record = {
                             "gene_name": gene_name,
                             "name": plasmid_name,
@@ -274,11 +276,9 @@ def assemble_multiple_plasmids_with_repair_templates_for_deletion(
                             "up_reverse_primer_str": str(assembled_vector[1].reverse_primer.seq),
                             "up_forwar_p_anneal": assembled_vector[1].forward_primer.footprint,
                             "up_reverse_p_anneal": assembled_vector[1].reverse_primer.footprint,
-                            
                             "tm_up_forwar_p": repair_template_name['tm_up_forwar_p'],
                             "tm_up_reverse_p": repair_template_name['tm_up_reverse_p'],
                             "ta_up": repair_template_name['ta_up'],
-                            
                             # dw repair
                             "dw_forwar_p_name": assembled_vector[2].forward_primer.id,
                             "dw_reverse_p_name": assembled_vector[2].reverse_primer.id,
@@ -295,10 +295,10 @@ def assemble_multiple_plasmids_with_repair_templates_for_deletion(
                             "tm_dw_forwar_p": repair_template_name['tm_dw_forwar_p'],
                             "tm_dw_reverse_p": repair_template_name['tm_dw_reverse_p'],
                             "ta_dw": repair_template_name['ta_dw'],
-
                         }
                         list_of_records.append(record)
-            else: 
-                print('We didnt find a match! Name you plasmid differently')
-                
+
+        if not match_found:
+            print(f'No match found for gene {gene_name}! Consider renaming your plasmid.')
+
     return list_of_records
