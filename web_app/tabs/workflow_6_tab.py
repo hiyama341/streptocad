@@ -131,27 +131,51 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
 
     dbc.Row([
         dbc.Col([
-            html.Label('5 prime Overhang:', style=text_style),
+            html.Label('Protospacer - 5 prime anneal:', style=text_style),
             dbc.Input(
                 id='forward-overhang-input_6',
                 type='text',
                 placeholder='Enter Forward Overhang',
-                value='CGGTTGGTAGGATCGACGGC'
+                value='GTCGCcCggCaaAaccGg'.upper()
             ),
         ], width=6, style={"marginRight": "10px", "marginLeft": "10px"}),
     ]),
 
     dbc.Row([
         dbc.Col([
-            html.Label('3 prime Overhang:', style=text_style),
+            html.Label('Protospacer - 3 prime anneal:', style=text_style),
             dbc.Input(
                 id='reverse-overhang-input_6',
                 type='text',
                 placeholder='Enter Reverse Overhang',
-                value='GTTTTAGAGCTAGAAATAGC'
+                value='GTTTCAATCCACGCGCCCGT'
             ),
         ], width=6, style={"marginRight": "10px", "marginLeft": "10px"}),
     ], className="mb-5"),
+
+    dbc.Row([
+            dbc.Col([
+                html.Label('Backbone - 5 prime anneal:', style=text_style),
+                dbc.Input(
+                    id='backbone-forward-overhang-input_6',
+                    type='text',
+                    placeholder='Enter Forward Overhang',
+                    value='GAGCTCATAAGTTCCTATTCCGAAG'
+                ),
+            ], width=6, style={"marginRight": "10px", "marginLeft": "10px"}),
+        ]),
+
+        dbc.Row([
+            dbc.Col([
+                html.Label('Backbone - 3 prime anneal:', style=text_style),
+                dbc.Input(
+                    id='backbone-reverse-overhang-input_6',
+                    type='text',
+                    placeholder='Enter Reverse Overhang',
+                    value='aagaagtgggtgtcggacgc'.upper()
+                ),
+            ], width=6, style={"marginRight": "10px", "marginLeft": "10px"}),
+        ], className="mb-5"),
 
     dbc.Row([
     dbc.Col([

@@ -102,15 +102,17 @@ def register_workflow_6_callbacks(app):
             State('restriction_enzyme_for_repair_templates_integration_6', 'value'),
             State('repair_templates_length_6', 'value'), 
             State('overlap_for_gibson_length_6', 'value'), 
+            State('backbone-forward-overhang-input_6', 'value'),
+            State('backbone-reverse-overhang-input_6', 'value'),
 
             
         ]
     )
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
-                                                      up_homology, dw_homology, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
+                                                      forward_protospacer_overhang, reverse_protospacer_overhang, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
                                                       number_of_sgRNAs_per_group, in_frame_deletion, chosen_polymerase, melting_temperature, 
                                                       primer_concentration, primer_number_increment, flanking_region_number, enzyme_for_repair_template_integration, 
-                                                      repair_templates_length, overlap_for_gibson_length):
+                                                      repair_templates_length, overlap_for_gibson_length, backbone_fwd_overhang, backbone_rev_overhang):
         if n_clicks is None:
             raise PreventUpdate
 
@@ -173,11 +175,11 @@ def register_workflow_6_callbacks(app):
                 filtered_df = sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
 
                 logging.info("Generating CAS3 primers.")
-                filtered_df_w_primers = generate_cas3_protospacer_primers(filtered_df)
+                filtered_df_w_primers = generate_cas3_protospacer_primers(filtered_df, fwd_overhang= forward_protospacer_overhang, rev_overhang=reverse_protospacer_overhang)
                 logging.info("CAS3 primers generated.")
                 
                 logging.info("Generating CAS3 plasmid PCR amplicons.")
-                amplicons = cas3_plasmid_pcrs(clean_plasmid, filtered_df)
+                amplicons = cas3_plasmid_pcrs(clean_plasmid, filtered_df, universal_fwd_seq=backbone_fwd_overhang, universal_rev_seq=backbone_rev_overhang)
 
                 logging.info("Assembling CAS3 plasmids.")
                 assembled_cas3_plasmids = assemble_cas3_plasmids(clean_plasmid, amplicons)
@@ -346,8 +348,11 @@ def register_workflow_6_callbacks(app):
                         "flanking_region": flanking_region_number
                     },
                     "overlapping_sequences": {
-                        "up_homology": str(up_homology),
-                        "dw_homology": str(dw_homology)
+                        "forward_protospacer_overhang": str(forward_protospacer_overhang),
+                        "reverse_protospacer_overhang": str(reverse_protospacer_overhang), 
+                        "backbone_fwd_overhang": str(backbone_fwd_overhang),
+                        "backbone_rev_overhang": str(backbone_rev_overhang), 
+
                     }
                 }
 
