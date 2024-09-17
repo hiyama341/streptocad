@@ -97,4 +97,4 @@ StreptoCAD is open-source and licensed under the MIT License.
 
 ## Contact
 
-For questions or contributions, please contact the development team at [info@streptocad.com](mailto:info@streptocad.com).
+For questions or contributions, please contact [luclev@dtu.dk](mailto:luclev@dtu.dk).
