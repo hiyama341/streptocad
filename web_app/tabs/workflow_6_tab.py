@@ -86,12 +86,12 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
             html.H4("2) Upload the plasmid of choice", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("CRISPR Vector", className="card-title", style=text_style),
+                    html.H5("CRISPR  Plasmid", className="card-title", style=text_style),
                     dcc.Upload(
                         id={'type': 'upload-component', 'index': 'single-vector-6'},  # Updated to use pattern matching ID
                         children=html.Div([
                             'Drag and Drop or ',
-                            html.A('Select CRISPR Vector File', style=link_style)
+                            html.A('Select CRISPR  Plasmid File', style=link_style)
                         ], style=text_style),
                         style=upload_button_style,
                         multiple=False
@@ -280,6 +280,34 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
                             id='flanking-region-number_6',
                             type='number',
                             value=500,
+                            style={'color': '#000'}  # Ensure text is black
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Restriction enzyme for integration of repair templates", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Input(
+                            id='restriction_enzyme_for_repair_templates_integration_6',
+                            type='text',
+                            value='EcoRI',
+                            style={'color': '#000'}  # Ensure text is black
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Length of repair templates", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Input(
+                            id='repair_templates_length_6',
+                            type='number',
+                            value=1000,
+                            style={'color': '#000'}  # Ensure text is black
+                        ),
+                    ], width=6),
+
+                    dbc.Col([
+                        dbc.Label("Overlap between templates for gibson cloning", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Input(
+                            id='overlap_for_gibson_length_6',
+                            type='number',
+                            value=40,
                             style={'color': '#000'}  # Ensure text is black
                         ),
                     ], width=6),

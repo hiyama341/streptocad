@@ -86,12 +86,12 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
             html.H4("2) Upload the plasmid of choice", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("CRISPR Vector", className="card-title", style=text_style),
+                    html.H5("CRISPR  Plasmid", className="card-title", style=text_style),
                     dcc.Upload(
                         id={'type': 'upload-component', 'index': 'single-vector-5'},  # Updated to use pattern matching ID
                         children=html.Div([
                             'Drag and Drop or ',
-                            html.A('Select CRISPR Vector File', style=link_style)
+                            html.A('Select CRISPR  Plasmid File', style=link_style)
                         ], style=text_style),
                         style=upload_button_style,
                         multiple=False
@@ -283,6 +283,25 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                             id='flanking-region-number_5',
                             type='number',
                             value=500,
+                            style={'color': '#000'}  # Ensure text is black
+                        ),
+                    ], width=6),
+                    dbc.Col([
+                        dbc.Label("Length of repair templates", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Input(
+                            id='repair_templates_length_5',
+                            type='number',
+                            value=1000,
+                            style={'color': '#000'}  # Ensure text is black
+                        ),
+                    ], width=6),
+
+                    dbc.Col([
+                        dbc.Label("Overlap between templates for gibson cloning", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Input(
+                            id='overlap_for_gibson_length_5',
+                            type='number',
+                            value=40,
                             style={'color': '#000'}  # Ensure text is black
                         ),
                     ], width=6),
