@@ -8,7 +8,9 @@ import logging
 import pandas as pd
 from datetime import datetime
 from Bio import SeqIO
-from Bio.Restriction import StuI
+from Bio.Restriction import * # we import all enzymes
+from Bio import Restriction
+
 from pydna.dseqrecord import Dseqrecord
 from dash import dcc, html, dash_table, exceptions
 from dash.dependencies import Input, Output, State
@@ -96,13 +98,19 @@ def register_workflow_6_callbacks(app):
             State('melting-temperature_6', 'value'),
             State('primer-concentration_6', 'value'),
             State('primer-number-increment_6', 'value'),
-            State('flanking-region-number_6', 'value')
+            State('flanking-region-number_6', 'value'), 
+            State('restriction_enzyme_for_repair_templates_integration_6', 'value'),
+            State('repair_templates_length_6', 'value'), 
+            State('overlap_for_gibson_length_6', 'value'), 
+
+            
         ]
     )
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
                                                       up_homology, dw_homology, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
                                                       number_of_sgRNAs_per_group, in_frame_deletion, chosen_polymerase, melting_temperature, 
-                                                      primer_concentration, primer_number_increment, flanking_region_number):
+                                                      primer_concentration, primer_number_increment, flanking_region_number, enzyme_for_repair_template_integration, 
+                                                      repair_templates_length, overlap_for_gibson_length):
         if n_clicks is None:
             raise PreventUpdate
 
@@ -195,14 +203,20 @@ def register_workflow_6_callbacks(app):
                 logging.info("Processing in-frame deletion if enabled.")
                 if in_frame_deletion == [1]: 
                     logging.info("Generating repair templates.")
+                        # Make repair templates
                     repair_templates_data = find_up_dw_repair_templates(genome, 
                                                                         genes_to_KO_list, 
                                                                         target_tm=melting_temperature, 
-                                                                        primer_tm_kwargs={'conc':primer_concentration, 'prodcode':chosen_polymerase} )
-                    
-                    logging.info("Digesting plasmids with StuI.")
-                    processed_records = [sorted(Dseqrecord(record, circular=True).cut(StuI), key=lambda x: len(x), reverse=True)[0] for record in assembled_cas3_plasmids]
+                                                                        primer_tm_kwargs={'conc':primer_concentration, 'prodcode':chosen_polymerase} , 
+                                                                        repair_length=repair_templates_length)
+                    # Convert the string to an enzyme object
+                    #enzyme_for_repair_template_integration = getattr(__import__('Bio.Restriction'), enzyme_for_repair_template_integration)
+                    enzyme = getattr(Restriction, str(enzyme_for_repair_template_integration))
 
+                    logging.info("Digesting plasmids with enzyme_for_repair_template_integration.")
+                    processed_records = [sorted(Dseqrecord(record, circular=True).cut(enzyme), key=lambda x: len(x), reverse=True)[0] for record in assembled_cas3_plasmids]
+
+                    print(processed_records)
                     logging.info("Renaming processed records.")
                     for i in range(len(processed_records)):
                         processed_records[i].name = assembled_cas3_plasmids[i].name
@@ -210,7 +224,7 @@ def register_workflow_6_callbacks(app):
                     logging.info("Assembling plasmids with repair templates for deletion.")
                     assembly_data = assemble_multiple_plasmids_with_repair_templates_for_deletion(genes_to_KO_list, processed_records, 
                                                                                                 repair_templates_data, 
-                                                                                                overlap=40)
+                                                                                                overlap=overlap_for_gibson_length)
                     logging.info("Updating primer names.")
                     update_primer_names(assembly_data)
 
@@ -238,7 +252,10 @@ def register_workflow_6_callbacks(app):
                     
                     workflow_df = determine_workflow_order_for_plasmids(assembled_cas3_plasmids, 
                                                                         assembled_contigs,
-                                                                        ["StuI"], ["NcoI", "BstBI"]) 
+                                                                        [enzyme_for_repair_template_integration], ["NcoI", "BstBI"]) 
+                    
+                    plasmid_metadata_df = pd.merge(plasmid_metadata_df, workflow_df, on='plasmid_name', how='inner') 
+
                     
                 else: 
                     logging.info("Extracting metadata for plasmid assembly without in-frame deletion.")

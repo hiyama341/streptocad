@@ -216,7 +216,7 @@ def determine_workflow_order_for_plasmids(
 
                 result_row = {
                     "sgRNA plasmid": sgRNA_plasmid.name,
-                    "repair template plasmid": repair_template_plasmid.name,
+                    "plasmid_name": repair_template_plasmid.name,
                     "which workflow to proceed with": workflow,
                 }
 

@@ -99,13 +99,16 @@ def register_workflow_5_callbacks(app):
             State('melting-temperature_5', 'value'),
             State('primer-concentration_5', 'value'),
             State('primer-number-increment_5', 'value'),
-            State('flanking-region-number_5', 'value')
+            State('flanking-region-number_5', 'value'), 
+            State('repair_templates_length_5', 'value'), 
+            State('overlap_for_gibson_length_5', 'value'), 
         ]
     )
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
                                                       up_homology, dw_homology, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
                                                       number_of_sgRNAs_per_group, in_frame_deletion, chosen_polymerase, melting_temperature, 
-                                                      primer_concentration, primer_number_increment, flanking_region_number):
+                                                      primer_concentration, primer_number_increment, flanking_region_number, 
+                                                      repair_templates_length, overlap_for_gibson_length):
         if n_clicks is None:
             raise PreventUpdate
 
@@ -115,7 +118,7 @@ def register_workflow_5_callbacks(app):
             
             # Initialize variables to avoid UnboundLocalError
             primer_df = pd.DataFrame()
-            idt_df_with_repair = pd.DataFrame()
+            idt_df = pd.DataFrame()
 
             # Create a temporary directory
             with tempfile.TemporaryDirectory() as tempdir:
@@ -181,47 +184,60 @@ def register_workflow_5_callbacks(app):
                     sgRNA_vectors[i].name = f'{targeting_info[i]}'
                     sgRNA_vectors[i].id = sgRNA_vectors[i].name  
                     sgRNA_vectors[i].description = f'CRISPR-Cas9 targeting {", ".join(genes_to_KO)} for single gene knockout, assembled using StreptoCAD.'
-
+                
                 logging.info("Processing idt primers")
                 idt_primers=primers_to_IDT(list_of_ssDNAs)
                 
-
-                # In-frame deletion logic
-                logging.info("Processing in-frame deletion")
                 # **Check if in-frame deletion is enabled**
-                if in_frame_deletion ==[1]: 
-                    logging.info("Processing repair-templates")
+                if in_frame_deletion ==[1]:
+
+                    # Make repair templates
                     repair_templates_data = find_up_dw_repair_templates(genome, 
-                                                                        genes_to_KO, 
+                                                                        genes_to_KO_list, 
                                                                         target_tm=melting_temperature, 
-                                                                        
-                                                                        primer_tm_kwargs={'conc':primer_concentration, 'prodcode':chosen_polymerase} )
+                                                                        primer_tm_kwargs={'conc':primer_concentration, 'prodcode':chosen_polymerase} , 
+                                                                        repair_length=repair_templates_length)
+                    logging.info(f"Repair templates data: {repair_templates_data}")
 
-
-                    logging.info(" Digest the plasmids")
+                    # Digest the plasmids
                     processed_records = [Dseqrecord(record, circular=True).cut(StuI)[0] for record in sgRNA_vectors]
+                    logging.info(f"processed_records: {processed_records}")
 
+                    # Rename them appropriately
                     for i in range(len(processed_records)):
                         processed_records[i].name = sgRNA_vectors[i].name
+                        logging.info(f"processed_records names: {processed_records[i].name}")
+                    
+                    logging.info(f"processed_records names: {processed_records}")
 
-                    logging.info("Assembly of the in-frame-plasmids")
-                    assembly_data = assemble_multiple_plasmids_with_repair_templates_for_deletion(genes_to_KO, processed_records, 
+                    # Assembly 
+                    logging.info(f"genes_to_KO: {genes_to_KO}")
+                    logging.info(f"processed_records: {processed_records}")
+                    logging.info(f"repair_templates_data: {repair_templates_data}")
+                    logging.info(f"overlap_for_gibson_length: {overlap_for_gibson_length}")
+
+
+                    # TODO ASSEMBLY DATA DOES NOT YIELD ANY DATA - IT OUTPUTS AND EMPTY list - fix soon
+                    # Assembly 
+                    assembly_data = assemble_multiple_plasmids_with_repair_templates_for_deletion(genes_to_KO_list, 
+                                                                                                  processed_records, 
                                                                                                 repair_templates_data, 
-                                                                                                overlap=40)
-                    logging.info("Updating the primer names")
+                                                                                                overlap=overlap_for_gibson_length)
+                    logging.info(f"assembly_data: {assembly_data}")
+
+                    # updating the primer names to something systematic.
                     update_primer_names(assembly_data)
 
-                    logging.info("Parse through the primer df")
+                    # Parse through the primer df
                     primer_df = create_primer_df_from_dict(assembly_data)
                     unique_df = primer_df.drop_duplicates(keep='first')
+                    logging.info(f"unique_df: {unique_df}")
+
 
                     # IDT df
-                    logging.info("IDT df")
-                    idt_df_with_repair = create_idt_order_dataframe(unique_df, concentration="25nm", purification="STD")
+                    idt_df = create_idt_order_dataframe(unique_df, concentration="25nm", purification="STD")
 
                     # Contigs
-                    logging.info("Contigs that have been assembled")
-
                     assembled_contigs = []
                     for data in assembly_data: 
                         contig_record = data['contig']
@@ -232,15 +248,18 @@ def register_workflow_5_callbacks(app):
 
                 # outside in-frame deletion condition
                 logging.info("Plasmid metadata df")
-                if in_frame_deletion ==[1]: 
+                if 1 in in_frame_deletion:
                     integration_names = filtered_df.apply(lambda row: f"sgRNA_{row['locus_tag']}({row['sgrna_loc']})", axis=1).tolist()
                     plasmid_metadata_df = extract_metadata_to_dataframe(assembled_contigs,
                                                                         clean_plasmid,
                                                                         integration_names)
+                    
                     workflow_df = determine_workflow_order_for_plasmids(sgRNA_vectors, 
                                                                             assembled_contigs,
-                                                                            ["StuI"], [ "NcoI"])
+                                                                            ["StuI",], [ "NcoI"])
                     
+                    plasmid_metadata_df = pd.merge(plasmid_metadata_df, workflow_df, on='plasmid_name', how='inner') 
+
                 else: 
                     integration_names = filtered_df.apply(lambda row: f"sgRNA_{row['locus_tag']}({row['sgrna_loc']})", axis=1).tolist()
                     plasmid_metadata_df = extract_metadata_to_dataframe(sgRNA_vectors,
@@ -261,8 +280,8 @@ def register_workflow_5_callbacks(app):
                 checking_primers_df_idt = create_idt_order_dataframe(checking_primers_df)
 
                 logging.info("Making final IDT order sheet")
-                if in_frame_deletion ==[1]: 
-                    full_idt = pd.concat([idt_primers, idt_df_with_repair, checking_primers_df_idt])
+                if 1 in in_frame_deletion:
+                    full_idt = pd.concat([idt_primers, idt_df, checking_primers_df_idt])
 
                     # Create a copy of checking_primers_df
                     checking_primers_df_copy = checking_primers_df.copy()
