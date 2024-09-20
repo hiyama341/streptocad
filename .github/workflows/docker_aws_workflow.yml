@@ -1,0 +1,45 @@
+name: Push Docker image on tag
+
+on:
+  push:
+    tags:
+      - "v*" # This triggers the workflow when a Git tag starting with 'v' is pushed
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Docker Buildx for multi-platform builds
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Log in to Amazon ECR using AWS credentials stored in GitHub secrets
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # Build the Docker image and push to Amazon ECR
+      - name: Build and push Docker image to Amazon ECR
+        run: |
+          # Extract the tag name (e.g., v1.0) from the Git reference and use it as the Docker image tag
+          IMAGE_TAG="${GITHUB_REF##*/}"
+
+          # Build the Docker image and tag it for ECR (replace with your ECR repository name)
+          docker build -t ${{ secrets.AWS_ECR_REPOSITORY }}:$IMAGE_TAG .
+
+          # Tag the Docker image with the full ECR repository URL
+          docker tag ${{ secrets.AWS_ECR_REPOSITORY }}:$IMAGE_TAG ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.AWS_ECR_REPOSITORY }}:$IMAGE_TAG
+
+          # Push the Docker image to Amazon ECR
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.AWS_ECR_REPOSITORY }}:$IMAGE_TAG
+
+    # Environment variables that are fetched from GitHub Secrets
+    env:
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      AWS_ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPOSITORY }}

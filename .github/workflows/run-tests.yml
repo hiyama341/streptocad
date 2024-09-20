@@ -1,0 +1,44 @@
+name: CI - Run Tests
+
+on:
+  push:
+    branches:
+      - main # Run this workflow when you push to the main branch
+  pull_request:
+    branches:
+      - main # Also run on pull requests to the main branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10" # You can adjust this version as needed
+
+      # Upgrade pip to the latest version
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # Run your tests (assuming you're using pytest)
+      - name: Run tests
+        run: |
+          pytest  # Adjust this command if you use a different testing framework
+
+      # Optionally, run linting (e.g., using flake8 or pylint)
+      - name: Run linter
+        run: |
+          pip install flake8
+          flake8 .  # Adjust to your linting tool and configuration
