@@ -1,14 +1,14 @@
 # Default requirements
-black
-flake8
-isort
-loguru
-mkdocs
-pip
-python-dotenv
-tqdm
-typer
--e .
+# black
+# flake8
+# isort
+# loguru
+# mkdocs
+# pip
+# python-dotenv
+# tqdm
+# typer
+# -e .
 
 # Workflow requirements
 ipykernel

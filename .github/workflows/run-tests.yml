@@ -36,9 +36,3 @@ jobs:
       - name: Run tests
         run: |
           pytest  # Adjust this command if you use a different testing framework
-
-      # Optionally, run linting (e.g., using flake8 or pylint)
-      - name: Run linter
-        run: |
-          pip install flake8
-          flake8 .  # Adjust to your linting tool and configuration
