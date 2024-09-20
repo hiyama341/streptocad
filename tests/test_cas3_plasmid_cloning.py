@@ -1,36 +1,3 @@
-# from Bio import SeqIO 
-# from pydna.dseqrecord import Dseqrecord
-# from src.utils import list_of_objects_in_a_dir
-# import pydna
-
-# # Local module imports
-# from src.teemi_functions.cloning.cas3_plasmid_cloning import (
-#     generate_cas3_protospacer_primers, 
-#     cas3_plasmid_pcrs,
-#     assemble_cas3_plasmids,
-# )
-
-# from teemi.design.fetch_sequences import read_genbank_files
-
-
-# pCRISPR_cas3 = read_genbank_files('tests/test_files/pCRISPR_cas3.gb')[0]
-# vector = Dseqrecord(pCRISPR_cas3, circular = True)
-# vector.name = 'pCRISPR-Cas3'
-
-
-# def test_generate_cas3_primers():
-#     # generate_cas3_protospacer_primers()
-#     pass
-
-
-# def test_cas3_plasmid_pcrs():
-#     # cas3_plasmid_pcrs()
-#     pass
-
-# def test_assemble_cas3_plasmids():
-#     # assemble_cas3_plasmids()
-#     pass
-
 import pytest
 import pandas as pd
 from pydna.dseqrecord import Dseqrecord
@@ -91,10 +58,10 @@ def test_generate_cas3_primers(sample_spacer_table):
 
     # Check the content of the generated primers
     expected_fwd_primers = [
-        'AATCCGAACAGCTCCTTCGATGCGTTCGTCCGGTGTCGCcCggCaaAaccGg',
-        'GGATTGAAGCGCAGAGTCGTCATCACGGGCGTCGGTCGCcCggCaaAaccGg',
-        'CGGATCTGGGCGCGCGTGGGCGGCCGGGTGAAGAGTCGCcCggCaaAaccGg',
-        'ACGTTCGAGGACACGCTCCGGGTGCCGTCCGGGGGTCGCcCggCaaAaccGg'
+        'AATCCGAACAGCTCCTTCGATGCGTTCGTCCGGTGTCGCCCGGCAAAACCGG',
+        'GGATTGAAGCGCAGAGTCGTCATCACGGGCGTCGGTCGCCCGGCAAAACCGG',
+        'CGGATCTGGGCGCGCGTGGGCGGCCGGGTGAAGAGTCGCCCGGCAAAACCGG',
+        'ACGTTCGAGGACACGCTCCGGGTGCCGTCCGGGGGTCGCCCGGCAAAACCGG'
     ]
     expected_rev_primers = [
         str(Seq('AATCCGAACAGCTCCTTCGATGCGTTCGTCCGGT').reverse_complement()) + "GTTTCAATCCACGCGCCCGT",
