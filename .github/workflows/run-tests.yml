@@ -21,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10" # You can adjust this version as needed
+          python-version: "3.11" # You can adjust this version as needed
 
       # Upgrade pip to the latest version
       - name: Upgrade pip
