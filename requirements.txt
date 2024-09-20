@@ -140,7 +140,6 @@ sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==2.0.0
 sphinxcontrib-serializinghtml==2.0.0
 stack-data==0.6.3
-#-e git+https://github.com/hiyama341/streptocad.git@8afd9a03fd42c58bab0ee87b1ddbde7535d6943e#egg=streptocad
 teemi==0.3.4
 tenacity==9.0.0
 tinycss2==1.3.0
@@ -155,3 +154,19 @@ wcwidth==0.2.13
 webencodings==0.5.1
 Werkzeug==3.0.4
 zipp==3.20.2
+
+# extra
+pytest
+pytest-cov
+pydna
+matplotlib-inline
+openpyxl
+scipy
+pandas
+nbclient
+nbconvert
+nbformat
+plotly
+proglog
+python-dateutil
+requests
