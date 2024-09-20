@@ -13,7 +13,7 @@ from teemi.design.fetch_sequences import read_genbank_files
 
 @pytest.fixture
 def pCRISPR_cas3_vector():
-    path_to_plasmid = 'tests/test_files/pCRISPR_Cas3.gbk'
+    path_to_plasmid = 'tests/test_files/pCRISPR_cas3.gbk'
     plasmid = read_genbank_files(path_to_plasmid)[0]
     return Dseqrecord(plasmid, circular=True)
 @pytest.fixture
