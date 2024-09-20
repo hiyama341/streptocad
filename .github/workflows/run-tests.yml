@@ -35,4 +35,4 @@ jobs:
       # Run your tests (assuming you're using pytest)
       - name: Run tests
         run: |
-          pytest  # Adjust this command if you use a different testing framework
+          pytest
