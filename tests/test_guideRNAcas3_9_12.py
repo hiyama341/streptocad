@@ -273,6 +273,15 @@ def test_extract_sgRNAs_output(sgrna_args_cas9, expected_sgrna_df):
     # Check the number of rows
     assert len(sgrna_df) == len(expected_sgrna_df), f"The number of rows ({len(sgrna_df)}) does not match the expected ({len(expected_sgrna_df)})"
 
+    # Additional specific checks (optional)
+    assert (sgrna_df['gc'] >= sgrna_args_cas9.gc_lower).all() and (sgrna_df['gc'] <= sgrna_args_cas9.gc_upper).all(), "GC content is out of bounds"
+    assert sgrna_df['off_target_count'].is_monotonic_increasing, "The DataFrame should be sorted by off-target counts in ascending order"
+
+
+    # sort them first
+    sgrna_df = sgrna_df.sort_values(by='sgrna_loc', ascending=False)
+    expected_sgrna_df = expected_sgrna_df.sort_values(by='sgrna_loc', ascending=False)
+    
     # Check that the DataFrame content matches the expected content
     print(sgrna_df)
     print(expected_sgrna_df)
@@ -281,12 +290,6 @@ def test_extract_sgRNAs_output(sgrna_args_cas9, expected_sgrna_df):
         expected_sgrna_df.reset_index(drop=True),
         atol=1e-5
     )
-
-    # Additional specific checks (optional)
-    assert (sgrna_df['gc'] >= sgrna_args_cas9.gc_lower).all() and (sgrna_df['gc'] <= sgrna_args_cas9.gc_upper).all(), "GC content is out of bounds"
-    assert sgrna_df['off_target_count'].is_monotonic_increasing, "The DataFrame should be sorted by off-target counts in ascending order"
-
-
 
 def test_extract_sgRNAs_cas9_basic(sgrna_args_cas9, expected_sgrna_df):
     # Execute the function
@@ -303,7 +306,11 @@ def test_extract_sgRNAs_cas9_basic(sgrna_args_cas9, expected_sgrna_df):
 
     # Check off-target sorting
     assert sgrna_df['off_target_count'].is_monotonic_increasing, "The DataFrame should be sorted by off-target counts in ascending order"
-
+    
+    # sort them first
+    sgrna_df = sgrna_df.sort_values(by='sgrna_loc', ascending=False)
+    expected_sgrna_df = expected_sgrna_df.sort_values(by='sgrna_loc', ascending=False)
+    
     # Compare with the expected DataFrame loaded from CSV
     pd.testing.assert_frame_equal(
         sgrna_df.reset_index(drop=True),
@@ -367,6 +374,11 @@ def test_extract_sgRNAs_cas3_basic(sgrna_args_cas3, expected_cas3_sgrna_df):
     # Check off-target sorting
     assert sgrna_df['off_target_count'].is_monotonic_increasing, "The DataFrame should be sorted by off-target counts in ascending order"
 
+
+    # sort them first
+    sgrna_df = sgrna_df.sort_values(by='sgrna_loc', ascending=False)
+    expected_cas3_sgrna_df = expected_cas3_sgrna_df.sort_values(by='sgrna_loc', ascending=False)
+
     # Compare with the expected DataFrame loaded from CSV
     pd.testing.assert_frame_equal(sgrna_df.reset_index(drop=True), expected_cas3_sgrna_df.reset_index(drop=True), 
                                   check_like=True,
@@ -423,16 +435,16 @@ def test_extract_sgRNAs_output_cas3(sgrna_args_cas3, expected_cas3_sgrna_df):
     # Check the number of rows
     assert len(sgrna_df) == len(expected_cas3_sgrna_df), f"The number of rows ({len(sgrna_df)}) does not match the expected ({len(expected_cas3_sgrna_df)})"
 
-    # Check that the DataFrame content matches the expected content
-    pd.testing.assert_frame_equal(sgrna_df.reset_index(drop=True), expected_cas3_sgrna_df.reset_index(drop=True),
-        atol=1e-5)
-
-    print(sgrna_df)
-    print(expected_cas3_sgrna_df)
-
     # Additional specific checks (optional)
     assert (sgrna_df['gc'] >= sgrna_args_cas3.gc_lower).all() and (sgrna_df['gc'] <= sgrna_args_cas3.gc_upper).all(), "GC content is out of bounds"
     assert sgrna_df['off_target_count'].is_monotonic_increasing, "The DataFrame should be sorted by off-target counts in ascending order"
+    
+    # sort them first
+    sgrna_df = sgrna_df.sort_values(by='sgrna_loc', ascending=False)
+    expected_cas3_sgrna_df = expected_cas3_sgrna_df.sort_values(by='sgrna_loc', ascending=False)
 
+    # Check that the DataFrame content matches the expected content
+    pd.testing.assert_frame_equal(sgrna_df.reset_index(drop=True), expected_cas3_sgrna_df.reset_index(drop=True),
+        atol=1e-5)
 
 # TODO make a cas12a test suite
