@@ -3,7 +3,7 @@ name: Push Docker image on tag
 on:
   push:
     tags:
-      - "v*" # This triggers the workflow when a Git tag starting with 'v' is pushed
+      - "*"
 
 jobs:
   build-and-push:
