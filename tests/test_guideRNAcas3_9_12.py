@@ -262,6 +262,7 @@ def test_find_off_target_hits_cas3(coelicolor_genbank_record):
 
 
 
+# THis fails
 def test_extract_sgRNAs_output(sgrna_args_cas9, expected_sgrna_df):
     # Run the extract_sgRNAs function
     sgrna_df = extract_sgRNAs(sgrna_args_cas9)
@@ -283,14 +284,13 @@ def test_extract_sgRNAs_output(sgrna_args_cas9, expected_sgrna_df):
     expected_sgrna_df = expected_sgrna_df.sort_values(by='sgrna_loc', ascending=False)
     
     # Check that the DataFrame content matches the expected content
-    print(sgrna_df)
-    print(expected_sgrna_df)
     pd.testing.assert_frame_equal(
         sgrna_df.reset_index(drop=True),
         expected_sgrna_df.reset_index(drop=True),
         atol=1e-5
     )
 
+# THIS FAILS
 def test_extract_sgRNAs_cas9_basic(sgrna_args_cas9, expected_sgrna_df):
     # Execute the function
     sgrna_df = extract_sgRNAs(sgrna_args_cas9)
@@ -317,8 +317,6 @@ def test_extract_sgRNAs_cas9_basic(sgrna_args_cas9, expected_sgrna_df):
         expected_sgrna_df.reset_index(drop=True),
         atol=1e-5
     )
-    print(sgrna_df)
-    print(expected_sgrna_df)
 
 
 def test_extract_sgRNAs_no_hits(sgrna_args_cas9):
@@ -384,8 +382,6 @@ def test_extract_sgRNAs_cas3_basic(sgrna_args_cas3, expected_cas3_sgrna_df):
                                   check_like=True,
         atol=1e-5)
     
-    print(sgrna_df)
-    print(expected_cas3_sgrna_df)
 
 
 def test_extract_sgRNAs_no_hits_cas3(sgrna_args_cas3):
