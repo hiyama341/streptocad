@@ -224,10 +224,11 @@ def register_workflow_3_callbacks(app):
                 logger.info("Golden Gate Cloning setup completed.")
 
 
-                # Primer generation, analysis, and gel electrophoresis simulation
+                # Primer generation, analysis
                 primer_df = golden_gate.generate_primer_dataframe()
                 logger.info(f"Primer dataframe generated: {primer_df.shape[0]} rows")
-
+                
+                # TODO maybe remove this redundancy.
                 analyze_primers_and_hairpins(primer_df)
                 logger.info("Primers analyzed for hairpins.")
 

@@ -161,9 +161,6 @@ def register_workflow_5_callbacks(app):
                 logging.info("Filtering sgRNAs ")
                 filtered_df = sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
 
-                # Filter the DataFrame to retain only up to 5 sgRNA sequences per locus_tag
-                filtered_df = sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
-
                 # MAke oligoes
                 list_of_ssDNAs = make_ssDNA_oligos(filtered_df, upstream_ovh = up_homology,
                                     downstream_ovh=dw_homology)
@@ -216,8 +213,6 @@ def register_workflow_5_callbacks(app):
                     logging.info(f"repair_templates_data: {repair_templates_data}")
                     logging.info(f"overlap_for_gibson_length: {overlap_for_gibson_length}")
 
-
-                    # TODO ASSEMBLY DATA DOES NOT YIELD ANY DATA - IT OUTPUTS AND EMPTY list - fix soon
                     # Assembly 
                     assembly_data = assemble_multiple_plasmids_with_repair_templates_for_deletion(genes_to_KO_list, 
                                                                                                   processed_records, 
@@ -302,7 +297,7 @@ def register_workflow_5_callbacks(app):
 
                 if in_frame_deletion: 
                     output_files = [
-                        {"name": "cBEST_w_sgRNAs.gb", "content": assembled_contigs}, # LIST OF Dseqrecords
+                        {"name": "Cas9_w_sgRNAs.gb", "content": assembled_contigs}, # LIST OF Dseqrecords
                         {"name": "primer_df.csv", "content": unique_df},
                         {"name": "full_idt.csv", "content": full_idt},
                         {"name": "sgrna_df.csv", "content": sgrna_df},
@@ -314,7 +309,7 @@ def register_workflow_5_callbacks(app):
                     ]
                 else: 
                     output_files = [
-                        {"name": "cBEST_w_sgRNAs.gb", "content": sgRNA_vectors}, # LIST OF Dseqrecords
+                        {"name": "Cas9_sgRNAs.gb", "content": sgRNA_vectors}, # LIST OF Dseqrecords
                         {"name": "full_idt.csv", "content": full_idt},
                         {"name": "sgrna_df.csv", "content": sgrna_df},
                         {"name": "filtered_df.csv", "content": filtered_df},

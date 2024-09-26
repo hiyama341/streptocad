@@ -122,7 +122,6 @@ def register_workflow_6_callbacks(app):
             # Initialize variables to avoid UnboundLocalError
             logging.info("Initializing variables.")
             primer_df = pd.DataFrame()
-            idt_df_with_repair = pd.DataFrame()
             unique_df = pd.DataFrame()
 
             # Create a temporary directory
@@ -211,7 +210,6 @@ def register_workflow_6_callbacks(app):
                                                                         primer_tm_kwargs={'conc':primer_concentration, 'prodcode':chosen_polymerase} , 
                                                                         repair_length=repair_templates_length)
                     # Convert the string to an enzyme object
-                    #enzyme_for_repair_template_integration = getattr(__import__('Bio.Restriction'), enzyme_for_repair_template_integration)
                     enzyme = getattr(Restriction, str(enzyme_for_repair_template_integration))
 
                     logging.info("Digesting plasmids with enzyme_for_repair_template_integration.")
@@ -307,7 +305,7 @@ def register_workflow_6_callbacks(app):
                 if in_frame_deletion: 
                     logging.info("Preparing output files for project directory with in-frame deletion.")
                     output_files = [
-                        {"name": "BEST_w_sgRNAs.gb", "content": assembled_contigs}, # LIST OF Dseqrecords
+                        {"name": "Cas3_w_sgRNAs.gb", "content": assembled_contigs}, # LIST OF Dseqrecords
                         {"name": "primer_df.csv", "content": primer_df},
                         {"name": "full_idt.csv", "content": full_idt},
                         {"name": "sgrna_df.csv", "content": sgrna_df},
@@ -319,7 +317,7 @@ def register_workflow_6_callbacks(app):
                 else: 
                     logging.info("Preparing output files for project directory without in-frame deletion.")
                     output_files = [
-                        {"name": "cBEST_w_sgRNAs.gb", "content": assembled_cas3_plasmids}, # LIST OF Dseqrecords
+                        {"name": "Cas3_sgRNAs.gb", "content": assembled_cas3_plasmids}, # LIST OF Dseqrecords
                         {"name": "full_idt.csv", "content": full_idt},
                         {"name": "sgrna_df.csv", "content": sgrna_df},
                         {"name": "filtered_df.csv", "content": filtered_df},

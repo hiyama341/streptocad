@@ -193,7 +193,7 @@ def register_workflow_4_callbacks(app):
                 ]
 
                 output_files = [
-                    {"name": "cBEST_w_sgRNAs.gb", "content": sgRNA_vectors},
+                    {"name": "CRISPRi_w_sgRNAs.gb", "content": sgRNA_vectors},
                     {"name": "full_idt.csv", "content": idt_primers},
                     {"name": "sgrna_df.csv", "content": sgrna_df},
                     {"name": "filtered_df.csv", "content": filtered_df}
