@@ -38,6 +38,7 @@ from header import header_content
 from introduction_page import introduction_page
 from welcome_message import welcome_message_content
 from footer import footer_content
+from intro_message import intro_message_content
 
 external_stylesheets = [
     dbc.themes.DARKLY,
