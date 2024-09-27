@@ -38,8 +38,8 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
     ], className="mb-4"),
     
-    html.Img(src='/assets/workflow_1_pic.webp', 
-             style={'width': '60%', 'margin': '20px auto'}),
+    html.Img(src='/assets/w1_pic.png', 
+             style={'width': '50%', 'margin': '20px auto'}),
 
     dbc.Row([
         dbc.Col(
