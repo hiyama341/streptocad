@@ -20,7 +20,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
     dbc.Row([
         dbc.Col([
             dcc.Markdown("""
-            ## **What is it?**
+            ## **What is multiplexing of CRISPR-BEST?**
             - A method that employs multiple single guide RNAs (sgRNAs) to target several genomic locations simultaneously.
 
             ## **Why use it?**

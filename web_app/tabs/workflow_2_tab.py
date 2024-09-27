@@ -22,7 +22,7 @@ crispr_cb_tab = html.Div(children=[
     dbc.Row([
         dbc.Col([
             dcc.Markdown("""
-            ## **What is it?**
+            ## **What is CRISPR-BEST?**
             - A precise method that uses a single sgRNA to target a specific genomic location for base-editing.
 
             ## **Why use it?**

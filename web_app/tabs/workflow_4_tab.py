@@ -21,7 +21,7 @@ crispri_tab = html.Div(children=[
     dbc.Row([
         dbc.Col([
             dcc.Markdown("""
-            ## **What is it?**
+            ## **What is CRISPRi?**
             - CRISPR interference (CRISPRi) is a method that uses a catalytically dead Cas9 (dCas9) to block transcription of target genes.
 
             ## **Why use it?**

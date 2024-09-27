@@ -20,7 +20,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
     dbc.Row([
         dbc.Col([
             dcc.Markdown("""
-            ## **What is it?**
+            ## **What is overexpression library construction?**
             - A method to overexpress specific genes within a host organism using plasmid vectors.
 
             ## **Why use it?**
@@ -28,8 +28,8 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
             - Enables the production of proteins at higher levels for research and industrial applications.
 
             ## **Getting Started**
-            - Select your plasmid vector that is suitable for the host organism.
-            - Prepare the gene sequences you want to overexpress.
+            - Find your plasmid of choice. We recommend that you use pOEx_PkasO.gbk.
+            - Prepare the gene sequences you want to overexpress into one GenBank file.
 
             ## **Instructions**
             Upload your gene sequences and plasmid files, then configure the settings to generate your constructs.

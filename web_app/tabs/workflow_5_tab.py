@@ -19,15 +19,15 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
         dbc.Col([
             # Introductory text using Markdown for styling
             dcc.Markdown("""
-            ## **What is it?**
-            - A method that retrieves repair regions up/downstream and generates primers and PCRs for the assembly.
+            ## **What is CRISPR-Cas9?**
+            - A method that can be used to perform random-sized mutations or full in-frame deletions with repair templates.
 
             ## **Why use it?**
             - When you aim to delete a specific gene.
 
             ## **Getting Started**
             - Find your plasmids (or download an example below).
-            - Fetch your organism's genome.
+            - Fetch your organism's genome (or download an example below).
             - Figure out what genes you want to target. For example, the actinorhodin cluster (SCO5087).
 
             ## **Instructions**

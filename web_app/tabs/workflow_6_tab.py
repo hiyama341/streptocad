@@ -19,8 +19,8 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
         dbc.Col([
             # Introductory text using Markdown for styling
             dcc.Markdown("""
-            ## **What is it?**
-            - A method that retrieves repair regions up/downstream and generates primers and PCRs for the assembly.
+            ## **What is CRISPR-Cas3?**
+            -  A method that can be used to perform random-sized mutations or full in-frame deletions with repair templates.
 
             ## **Why use it?**
             - When you aim to delete a specific gene.
@@ -28,6 +28,7 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
             ## **Getting Started**
             - Find your Cas3 plasmid (Or download an example genome below).
             - Fetch your organism's genome (Or download an example genome below).
+            - Figure out what genes you want to target. For example, the actinorhodin cluster (SCO5087).    
 
             ## **Instructions**
             Upload your files, then click 'Submit' to generate your assembly.
