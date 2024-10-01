@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>ADM46365.1</td>
+              <td>shikimate/quinate_dehydrogenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000106/1">BGC0000106</a></td>
+              <td>Polyketide</td>
+              <td>87.0</td>
+              <td>100.0</td>
+              <td>474.0</td>
+              <td>7.69e-171</td>
+          </tr>
+    
+          <tr>
+              <td>ASZ00155.1</td>
+              <td>shikimate_dehydrogenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001785/1">BGC0001785</a></td>
+              <td>Polyketide</td>
+              <td>73.0</td>
+              <td>96.1</td>
+              <td>384.0</td>
+              <td>1.55e-135</td>
+          </tr>
+    
+          <tr>
+              <td>WP_033261524.1</td>
+              <td>shikimate_dehydrogenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002009/1">BGC0002009</a></td>
+              <td>Polyketide</td>
+              <td>75.0</td>
+              <td>92.9</td>
+              <td>380.0</td>
+              <td>5.51e-134</td>
+          </tr>
+    
+          <tr>
+              <td>CQR60489.1</td>
+              <td>RifI_homologue,_Aminoquinate_dehydrogenase,_AHBA_biosynthesis</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001287/1">BGC0001287</a></td>
+              <td>Polyketide</td>
+              <td>74.0</td>
+              <td>92.9</td>
+              <td>373.0</td>
+              <td>2.63e-131</td>
+          </tr>
+    
+          <tr>
+              <td>AAC01719.1</td>
+              <td>RifI</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000136/1">BGC0000136</a></td>
+              <td>Polyketide</td>
+              <td>74.0</td>
+              <td>92.9</td>
+              <td>373.0</td>
+              <td>3.13e-131</td>
+          </tr>
+    
+          <tr>
+              <td>AWH12659.1</td>
+              <td>RmpI</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001759/1">BGC0001759</a></td>
+              <td>Polyketide</td>
+              <td>73.0</td>
+              <td>92.9</td>
+              <td>369.0</td>
+              <td>1.08e-129</td>
+          </tr>
+    
+          <tr>
+              <td>ABV97179.1</td>
+              <td>Shikimate_dehydrogenase_substrate_binding_domain_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000137/1">BGC0000137</a></td>
+              <td>Polyketide</td>
+              <td>64.0</td>
+              <td>92.9</td>
+              <td>317.0</td>
+              <td>3.09e-109</td>
+          </tr>
+    
+          <tr>
+              <td>MCB8905701.1</td>
+              <td>shikimate_dehydrogenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002340/1">BGC0002340</a></td>
+              <td>NRP+Other</td>
+              <td>61.0</td>
+              <td>94.3</td>
+              <td>312.0</td>
+              <td>7.73e-107</td>
+          </tr>
+    
+          <tr>
+              <td>AAD28452.1</td>
+              <td>MitT</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000915/1">BGC0000915</a></td>
+              <td>Other:Aminocoumarin</td>
+              <td>61.0</td>
+              <td>92.5</td>
+              <td>299.0</td>
+              <td>5.97e-102</td>
+          </tr>
+    
+          <tr>
+              <td>QES95492.1</td>
+              <td>shikimate/quinate_dehydrogenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002453/1">BGC0002453</a></td>
+              <td>Polyketide</td>
+              <td>61.0</td>
+              <td>93.2</td>
+              <td>296.0</td>
+              <td>9.48e-101</td>
+          </tr>
+    
+          <tr>
+              <td>ATY46583.1</td>
+              <td>shikimate_dehydrogenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001666/1">BGC0001666</a></td>
+              <td>Polyketide</td>
+              <td>58.0</td>
+              <td>93.6</td>
+              <td>285.0</td>
+              <td>2.25e-96</td>
+          </tr>
+    
+          <tr>
+              <td>CAH10096.1</td>
+              <td>putative_shikimate_5-dehydrogenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000268/1">BGC0000268</a></td>
+              <td>Polyketide</td>
+              <td>35.0</td>
+              <td>95.7</td>
+              <td>102.0</td>
+              <td>2.25e-25</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

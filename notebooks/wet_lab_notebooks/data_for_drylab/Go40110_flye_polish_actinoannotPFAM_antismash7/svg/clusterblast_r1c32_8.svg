@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="0,40 34,40 39,35 34,30 0,30 0,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07373&lt;/b&gt;&lt;br&gt;aldo/keto reductase&lt;br&gt;Location: 8589498 - 8590485" locus_tag="LLPMBPKK_07373" class="clusterblast-orf" id="dummy-32_q0_0_all"  />
+<polygon points="52,40 62,40 67,35 62,30 52,30 52,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07374&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 8590807 - 8591173" locus_tag="LLPMBPKK_07374" class="clusterblast-orf" id="dummy-32_q1_0_all"  />
+<polygon points="68,35 73,30 87,30 87,40 73,40 68,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07375&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 8591212 - 8591680" locus_tag="LLPMBPKK_07375" class="clusterblast-orf" id="dummy-32_q2_0_all"  />
+<polygon points="101,40 150,40 155,35 150,30 101,30 101,40 " style="fill:#56d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07376&lt;/b&gt;&lt;br&gt;aminotransferase class III-fold pyridoxal phosphate-dependent enzyme&lt;br&gt;Location: 8592020 - 8593370" locus_tag="LLPMBPKK_07376" class="clusterblast-orf" id="dummy-32_q3_0_all"  />
+<polygon points="158,40 171,40 176,35 171,30 158,30 158,40 " style="fill:#1597d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07377&lt;/b&gt;&lt;br&gt;Lrp/AsnC family transcriptional regulator&lt;br&gt;Location: 8593445 - 8593895" locus_tag="LLPMBPKK_07377" class="clusterblast-orf" id="dummy-32_q4_0_all"  />
+<polygon points="177,35 182,30 219,30 219,40 182,40 177,35 " style="fill:#9715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07378&lt;/b&gt;&lt;br&gt;serine/threonine-protein phosphatase&lt;br&gt;Location: 8593917 - 8594991" locus_tag="LLPMBPKK_07378" class="clusterblast-orf" id="dummy-32_q5_0_all"  />
+<polygon points="260,35 265,30 295,30 295,40 265,40 260,35 " style="fill:#d85615; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07379&lt;/b&gt;&lt;br&gt;Gfo/Idh/MocA family oxidoreductase&lt;br&gt;Location: 8595996 - 8596884" locus_tag="LLPMBPKK_07379" class="clusterblast-orf" id="dummy-32_q6_0_all"  />
+<polygon points="297,35 302,30 333,30 333,40 302,40 297,35 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07380&lt;/b&gt;&lt;br&gt;ATP-grasp ribosomal peptide maturase&lt;br&gt;Location: 8596919 - 8597828" locus_tag="LLPMBPKK_07380" class="clusterblast-orf" id="dummy-32_q7_0_all"  />
+<polygon points="337,35 342,30 344,30 344,40 342,40 337,35 " style="fill:#1556d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07381&lt;/b&gt;&lt;br&gt;putative ATP-grasp-modified RiPP&lt;br&gt;Location: 8597921 - 8598113" locus_tag="LLPMBPKK_07381" class="clusterblast-orf" id="dummy-32_q8_0_all"  />
+<polygon points="348,35 353,30 382,30 382,40 353,40 348,35 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07382&lt;/b&gt;&lt;br&gt;fructosamine kinase&lt;br&gt;Location: 8598212 - 8599049" locus_tag="LLPMBPKK_07382" class="clusterblast-orf" id="dummy-32_q9_0_all"  />
+<polygon points="390,40 414,40 419,35 414,30 390,30 390,40 " style="fill:#d89715; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07383&lt;/b&gt;&lt;br&gt;Cyclo(L-tyrosyl-L-tyrosyl) synthase&lt;br&gt;Location: 8599267 - 8599978" locus_tag="LLPMBPKK_07383" class="clusterblast-orf" id="dummy-32_q10_0_all"  />
+<polygon points="419,40 462,40 467,35 462,30 419,30 419,40 " style="fill:#15d856; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07384&lt;/b&gt;&lt;br&gt;cytochrome P450&lt;br&gt;Location: 8599974 - 8601186" locus_tag="LLPMBPKK_07384" class="clusterblast-orf" id="dummy-32_q11_0_all"  />
+<polygon points="476,35 481,30 511,30 511,40 481,40 476,35 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07385&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 8601404 - 8602283" locus_tag="LLPMBPKK_07385" class="clusterblast-orf" id="dummy-32_q12_0_all"  />
+<polygon points="525,40 545,40 550,35 545,30 525,30 525,40 " style="fill:#d81597; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07386&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 8602637 - 8603255" locus_tag="LLPMBPKK_07386" class="clusterblast-orf" id="dummy-32_q13_0_all"  />
+<polygon points="556,40 578,40 583,35 578,30 556,30 556,40 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07387&lt;/b&gt;&lt;br&gt;class F sortase&lt;br&gt;Location: 8603413 - 8604085" locus_tag="LLPMBPKK_07387" class="clusterblast-orf" id="dummy-32_q14_0_all"  />
+<polygon points="582,35 587,30 630,30 630,40 587,40 582,35 " style="fill:#15d897; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07388&lt;/b&gt;&lt;br&gt;lipase&lt;br&gt;Location: 8604072 - 8605269" locus_tag="LLPMBPKK_07388" class="clusterblast-orf" id="dummy-32_q15_0_all"  />
+<polygon points="631,35 636,30 654,30 654,40 636,40 631,35 " style="fill:#5615d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07389&lt;/b&gt;&lt;br&gt;TetR family transcriptional regulator&lt;br&gt;Location: 8605286 - 8605868" locus_tag="LLPMBPKK_07389" class="clusterblast-orf" id="dummy-32_q16_0_all"  />
+<polygon points="659,35 664,30 711,30 711,40 664,40 659,35 " style="fill:#d81556; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07390&lt;/b&gt;&lt;br&gt;carbohydrate-binding protein&lt;br&gt;Location: 8605994 - 8607296" locus_tag="LLPMBPKK_07390" class="clusterblast-orf" id="dummy-32_q17_0_all"  />
+<polygon points="728,35 733,30 742,30 742,40 733,40 728,35 " style="fill:#97d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07391&lt;/b&gt;&lt;br&gt;transcriptional regulator&lt;br&gt;Location: 8607707 - 8608058" locus_tag="LLPMBPKK_07391" class="clusterblast-orf" id="dummy-32_q18_0_all"  />
+<polygon points="744,40 775,40 780,35 775,30 744,30 744,40 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_07392&lt;/b&gt;&lt;br&gt;NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 8608125 - 8609013" locus_tag="LLPMBPKK_07392" class="clusterblast-orf" id="dummy-32_q19_0_all"  />
+</g>
+<g label="NZ_SOAR01000009" description="NZ_SOAR01000009 (315393-336083): Streptomyces sp. BK141 Ga0307717 109, whole ... (72% of genes show similarity), CDPS" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_SOAR01000009&amp;start=315393&amp;end=336083" target="_blank">NZ_SOAR01000009 (315393-336083)</a>: Streptomyces sp. BK141 Ga0307717 109, whole ... (72% of genes show similarity), CDPS</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a32_000"  >
+<polygon points="0,85 5,80 50,80 50,90 5,90 0,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29350&lt;/b&gt;&lt;br&gt;serine hydrolase&lt;br&gt;Location: 335071 - 333821" locus_tag="EV588_RS29350" class="clusterblast-orf" id="dummy-32_h32_8_0"  />
+</g>
+<g id="a32_001"  >
+<polygon points="68,85 73,80 87,80 87,90 73,90 68,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29345&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 333358 - 332891&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07375&lt;/b&gt;&lt;br&gt;Percentage identity: 88&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 301&lt;br&gt;E-value: 5.5e-105" locus_tag="EV588_RS29345" class="clusterblast-orf" id="dummy-32_h32_8_1"  />
+</g>
+<g id="a32_002"  >
+<polygon points="100,90 149,90 154,85 149,80 100,80 100,90 " style="fill:#56d815; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29340&lt;/b&gt;&lt;br&gt;aminotransferase class III-fold pyridoxal phosphate-dependent enzyme&lt;br&gt;Location: 332548 - 331199&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07376&lt;/b&gt;&lt;br&gt;Percentage identity: 90&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 820&lt;br&gt;E-value: 1.86e-300" locus_tag="EV588_RS29340" class="clusterblast-orf" id="dummy-32_h32_8_2"  />
+</g>
+<g id="a32_003"  >
+<polygon points="155,90 168,90 173,85 168,80 155,80 155,90 " style="fill:#1597d8; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29335&lt;/b&gt;&lt;br&gt;Lrp/AsnC family transcriptional regulator&lt;br&gt;Location: 331183 - 330743&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07377&lt;/b&gt;&lt;br&gt;Percentage identity: 91&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 272&lt;br&gt;E-value: 1.23e-93" locus_tag="EV588_RS29335" class="clusterblast-orf" id="dummy-32_h32_8_3"  />
+</g>
+<g id="a32_004"  >
+<polygon points="177,85 182,80 217,80 217,90 182,90 177,85 " style="fill:#9715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29330&lt;/b&gt;&lt;br&gt;serine/threonine-protein phosphatase&lt;br&gt;Location: 330642 - 329623&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07378&lt;/b&gt;&lt;br&gt;Percentage identity: 77&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 498&lt;br&gt;E-value: 1.69e-176" locus_tag="EV588_RS29330" class="clusterblast-orf" id="dummy-32_h32_8_4"  />
+</g>
+<g id="a32_005"  >
+<polygon points="225,85 230,80 261,80 261,90 230,90 225,85 " style="fill:#d85615; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29325&lt;/b&gt;&lt;br&gt;Gfo/Idh/MocA family oxidoreductase&lt;br&gt;Location: 329437 - 328541&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07379&lt;/b&gt;&lt;br&gt;Percentage identity: 80&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 436&lt;br&gt;E-value: 1.1e-153" locus_tag="EV588_RS29325" class="clusterblast-orf" id="dummy-32_h32_8_5"  />
+</g>
+<g id="a32_006"  >
+<polygon points="262,85 267,80 301,80 301,90 267,90 262,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29320&lt;/b&gt;&lt;br&gt;ATP-grasp ribosomal peptide maturase&lt;br&gt;Location: 328505 - 327522&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07380&lt;/b&gt;&lt;br&gt;Percentage identity: 85&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 520&lt;br&gt;E-value: 3.76e-186" locus_tag="EV588_RS29320" class="clusterblast-orf" id="dummy-32_h32_8_6"  />
+</g>
+<g id="a32_007"  >
+<polygon points="302,85 307,80 310,80 310,90 307,90 302,85 " style="fill:#1556d8; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29315&lt;/b&gt;&lt;br&gt;putative ATP-grasp-modified RiPP&lt;br&gt;Location: 327505 - 327314&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07381&lt;/b&gt;&lt;br&gt;Percentage identity: 95&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 123&lt;br&gt;E-value: 2.87e-37" locus_tag="EV588_RS29315" class="clusterblast-orf" id="dummy-32_h32_8_7"  />
+</g>
+<g id="a32_008"  >
+<polygon points="316,85 321,80 350,80 350,90 321,90 316,85 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29310&lt;/b&gt;&lt;br&gt;phosphotransferase&lt;br&gt;Location: 327159 - 326293&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07382&lt;/b&gt;&lt;br&gt;Percentage identity: 79&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 451&lt;br&gt;E-value: 4.54e-160" locus_tag="EV588_RS29310" class="clusterblast-orf" id="dummy-32_h32_8_8"  />
+</g>
+<g id="a32_009"  >
+<polygon points="359,90 381,90 386,85 381,80 359,80 359,90 " style="fill:#d89715; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29305&lt;/b&gt;&lt;br&gt;tRNA-dependent cyclodipeptide synthase&lt;br&gt;Location: 326083 - 325394&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07383&lt;/b&gt;&lt;br&gt;Percentage identity: 87&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 407&lt;br&gt;E-value: 3.37e-144" locus_tag="EV588_RS29305" class="clusterblast-orf" id="dummy-32_h32_8_9"  />
+</g>
+<g id="a32_0010"  >
+<polygon points="386,90 430,90 435,85 430,80 386,80 386,90 " style="fill:#15d856; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29300&lt;/b&gt;&lt;br&gt;cytochrome P450&lt;br&gt;Location: 325397 - 324171&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07384&lt;/b&gt;&lt;br&gt;Percentage identity: 86&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 704&lt;br&gt;E-value: 6.49e-256" locus_tag="EV588_RS29300" class="clusterblast-orf" id="dummy-32_h32_8_10"  />
+</g>
+<g id="a32_0011"  >
+<polygon points="439,85 444,80 474,80 474,90 444,90 439,85 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29295&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 324086 - 323211&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07385&lt;/b&gt;&lt;br&gt;Percentage identity: 68&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 364&lt;br&gt;E-value: 2.12e-125" locus_tag="EV588_RS29295" class="clusterblast-orf" id="dummy-32_h32_8_11"  />
+</g>
+<g id="a32_0012"  >
+<polygon points="503,90 517,90 522,85 517,80 503,80 503,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29290&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 322470 - 321991" locus_tag="EV588_RS29290" class="clusterblast-orf" id="dummy-32_h32_8_12"  />
+</g>
+<g id="a32_0013"  >
+<polygon points="528,85 533,80 568,80 568,90 533,90 528,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29285&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 321858 - 320851" locus_tag="EV588_RS29285" class="clusterblast-orf" id="dummy-32_h32_8_13"  />
+</g>
+<g id="a32_0014"  >
+<polygon points="589,90 612,90 617,85 612,80 589,80 589,90 " style="fill:#d81597; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29280&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 320314 - 319622&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07386&lt;/b&gt;&lt;br&gt;Percentage identity: 58&lt;br&gt;Percentage coverage: 112&lt;br&gt;BLAST bit score: 117&lt;br&gt;E-value: 1.48e-30" locus_tag="EV588_RS29280" class="clusterblast-orf" id="dummy-32_h32_8_14"  />
+</g>
+<g id="a32_0015"  >
+<polygon points="622,90 644,90 649,85 644,80 622,80 622,90 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29275&lt;/b&gt;&lt;br&gt;class F sortase&lt;br&gt;Location: 319509 - 318832&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_07387&lt;/b&gt;&lt;br&gt;Percentage identity: 73&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 313&lt;br&gt;E-value: 1.78e-107" locus_tag="EV588_RS29275" class="clusterblast-orf" id="dummy-32_h32_8_15"  />
+</g>
+<g id="a32_0016"  >
+<polygon points="658,90 691,90 696,85 691,80 658,80 658,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29270&lt;/b&gt;&lt;br&gt;LysR family transcriptional regulator&lt;br&gt;Location: 318604 - 317651" locus_tag="EV588_RS29270" class="clusterblast-orf" id="dummy-32_h32_8_16"  />
+</g>
+<g id="a32_0017"  >
+<polygon points="702,90 774,90 779,85 774,80 702,80 702,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;EV588_RS29265&lt;/b&gt;&lt;br&gt;collagenase&lt;br&gt;Location: 317498 - 315561" locus_tag="EV588_RS29265" class="clusterblast-orf" id="dummy-32_h32_8_17"  />
+</g>
+</svg>

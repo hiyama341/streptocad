@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>PVD00184.1</td>
+              <td>anthranilate_phosphoribosyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002100/1">BGC0002100</a></td>
+              <td>NRP+Other</td>
+              <td>71.0</td>
+              <td>96.0</td>
+              <td>445.0</td>
+              <td>3.42e-157</td>
+          </tr>
+    
+          <tr>
+              <td>ALV86861.1</td>
+              <td>Tlo15</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001406/1">BGC0001406</a></td>
+              <td>NRP</td>
+              <td>68.0</td>
+              <td>95.5</td>
+              <td>427.0</td>
+              <td>6.25e-150</td>
+          </tr>
+    
+          <tr>
+              <td>ATU31821.1</td>
+              <td>anthranilate_phosphoribosyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001814/1">BGC0001814</a></td>
+              <td>NRP</td>
+              <td>69.0</td>
+              <td>94.9</td>
+              <td>426.0</td>
+              <td>2.89e-149</td>
+          </tr>
+    
+          <tr>
+              <td>QUJ09152.1</td>
+              <td>Lon5</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002440/1">BGC0002440</a></td>
+              <td>NRP</td>
+              <td>65.0</td>
+              <td>95.5</td>
+              <td>399.0</td>
+              <td>3.77e-139</td>
+          </tr>
+    
+          <tr>
+              <td>ALL53315.1</td>
+              <td>anthranilate_phosphoribosyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001903/1">BGC0001903</a></td>
+              <td>Other</td>
+              <td>57.0</td>
+              <td>95.8</td>
+              <td>352.0</td>
+              <td>2.64e-120</td>
+          </tr>
+    
+          <tr>
+              <td>CAB38583.1</td>
+              <td>probable_anthranilate_phosphoribotransferase_(trpD2)</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000315/1">BGC0000315</a></td>
+              <td>NRP:Lipopeptide:Ca+-dependent lipopeptide</td>
+              <td>47.0</td>
+              <td>93.5</td>
+              <td>248.0</td>
+              <td>8.08e-80</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

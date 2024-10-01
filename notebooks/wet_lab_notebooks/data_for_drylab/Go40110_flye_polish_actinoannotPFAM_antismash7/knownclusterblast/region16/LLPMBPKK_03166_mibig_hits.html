@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>CAB87218.1</td>
+              <td>Ferric-siderophore_hydrolase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000940/1">BGC0000940</a></td>
+              <td>Other</td>
+              <td>77.0</td>
+              <td>91.5</td>
+              <td>405.0</td>
+              <td>1.14e-143</td>
+          </tr>
+    
+          <tr>
+              <td>QKS42876.1</td>
+              <td>siderophore_interacting_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002305/1">BGC0002305</a></td>
+              <td>Other</td>
+              <td>59.0</td>
+              <td>101.1</td>
+              <td>307.0</td>
+              <td>6.53e-105</td>
+          </tr>
+    
+          <tr>
+              <td>BAG21580.1</td>
+              <td>putative_siderophore-interacting_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000941/1">BGC0000941</a></td>
+              <td>Other</td>
+              <td>55.0</td>
+              <td>100.7</td>
+              <td>287.0</td>
+              <td>1.14e-96</td>
+          </tr>
+    
+          <tr>
+              <td>desaF</td>
+              <td>siderophore-interacting_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001453/1">BGC0001453</a></td>
+              <td>Other</td>
+              <td>65.0</td>
+              <td>70.1</td>
+              <td>236.0</td>
+              <td>2.1e-78</td>
+          </tr>
+    
+          <tr>
+              <td>ADG27348.1</td>
+              <td>siderophore-interacting_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000296/1">BGC0000296</a></td>
+              <td>NRP</td>
+              <td>41.0</td>
+              <td>98.2</td>
+              <td>182.0</td>
+              <td>8e-56</td>
+          </tr>
+    
+          <tr>
+              <td>ADG27367.1</td>
+              <td>siderophore-interacting_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000296/1">BGC0000296</a></td>
+              <td>NRP</td>
+              <td>41.0</td>
+              <td>100.0</td>
+              <td>177.0</td>
+              <td>7.85e-54</td>
+          </tr>
+    
+          <tr>
+              <td>NAO96328.1</td>
+              <td>siderophore-interacting_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002117/1">BGC0002117</a></td>
+              <td>NRP</td>
+              <td>35.0</td>
+              <td>79.6</td>
+              <td>118.0</td>
+              <td>4.28e-31</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

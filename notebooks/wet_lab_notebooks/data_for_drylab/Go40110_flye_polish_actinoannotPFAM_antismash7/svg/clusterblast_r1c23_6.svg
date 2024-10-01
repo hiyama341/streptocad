@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="322,40 336,40 341,35 336,30 322,30 322,40 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06021&lt;/b&gt;&lt;br&gt;3' terminal RNA ribose 2'-O-methyltransferaseHen1&lt;br&gt;Location: 6941527 - 6942991" locus_tag="LLPMBPKK_06021" class="clusterblast-orf" id="dummy-23_q0_0_all"  />
+<polygon points="341,40 368,40 373,35 368,30 341,30 341,40 " style="fill:#77d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06022&lt;/b&gt;&lt;br&gt;phosphatase&lt;br&gt;Location: 6942987 - 6945534" locus_tag="LLPMBPKK_06022" class="clusterblast-orf" id="dummy-23_q1_0_all"  />
+<polygon points="375,40 394,40 399,35 394,30 375,30 375,40 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06023&lt;/b&gt;&lt;br&gt;RiPP maturation radical SAM protein 1&lt;br&gt;Location: 6945736 - 6947584" locus_tag="LLPMBPKK_06023" class="clusterblast-orf" id="dummy-23_q2_0_all"  />
+<polygon points="399,40 400,40 405,35 400,30 399,30 399,40 " style="fill:#7715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06024&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6947580 - 6948120" locus_tag="LLPMBPKK_06024" class="clusterblast-orf" id="dummy-23_q3_0_all"  />
+<polygon points="407,40 410,40 415,35 410,30 407,30 407,40 " style="fill:#d8a715; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06025&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6948274 - 6948883" locus_tag="LLPMBPKK_06025" class="clusterblast-orf" id="dummy-23_q4_0_all"  />
+<polygon points="415,40 430,40 435,35 430,30 415,30 415,40 " style="fill:#15d846; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06026&lt;/b&gt;&lt;br&gt;large membrane protein&lt;br&gt;Location: 6948902 - 6950441" locus_tag="LLPMBPKK_06026" class="clusterblast-orf" id="dummy-23_q5_0_all"  />
+<polygon points="435,40 439,40 444,35 439,30 435,30 435,40 " style="fill:#1546d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06027&lt;/b&gt;&lt;br&gt;putative nucleotide-binding protein containingTIR-like domain protein&lt;br&gt;Location: 6950437 - 6951190" locus_tag="LLPMBPKK_06027" class="clusterblast-orf" id="dummy-23_q6_0_all"  />
+<polygon points="445,35 450,30 457,30 457,40 450,40 445,35 " style="fill:#d815a7; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06028&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6951282 - 6952197" locus_tag="LLPMBPKK_06028" class="clusterblast-orf" id="dummy-23_q7_0_all"  />
+</g>
+<g label="NZ_WWHG01000001" description="NZ_WWHG01000001 (5025151-5088113): Streptomyces sp. SID7810 SID7810.c1, whole... (15% of genes show similarity), NRPS,bacteriocin" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_WWHG01000001&amp;start=5025151&amp;end=5088113" target="_blank">NZ_WWHG01000001 (5025151-5088113)</a>: Streptomyces sp. SID7810 SID7810.c1, whole... (15% of genes show similarity), NRPS,bacteriocin</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a23_000"  >
+<polygon points="0,90 4,85 0,80 0,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22060&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5025152 - 5025475" locus_tag="GTW30_RS22060" class="clusterblast-orf" id="dummy-23_h23_6_0"  />
+</g>
+<g id="a23_001"  >
+<polygon points="4,90 6,85 4,80 4,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22065&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5025485 - 5025697" locus_tag="GTW30_RS22065" class="clusterblast-orf" id="dummy-23_h23_6_1"  />
+</g>
+<g id="a23_002"  >
+<polygon points="6,85 10,80 10,90 6,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22070&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5025685 - 5026020" locus_tag="GTW30_RS22070" class="clusterblast-orf" id="dummy-23_h23_6_2"  />
+</g>
+<g id="a23_003"  >
+<polygon points="12,90 15,85 12,80 12,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22075&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5026113 - 5026379" locus_tag="GTW30_RS22075" class="clusterblast-orf" id="dummy-23_h23_6_3"  />
+</g>
+<g id="a23_004"  >
+<polygon points="16,85 19,80 19,90 16,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22080&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5026472 - 5026675" locus_tag="GTW30_RS22080" class="clusterblast-orf" id="dummy-23_h23_6_4"  />
+</g>
+<g id="a23_005"  >
+<polygon points="23,85 26,80 26,90 23,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22085&lt;/b&gt;&lt;br&gt;helix-turn-helix transcriptional regulator&lt;br&gt;Location: 5027011 - 5027241" locus_tag="GTW30_RS22085" class="clusterblast-orf" id="dummy-23_h23_6_5"  />
+</g>
+<g id="a23_006"  >
+<polygon points="34,90 47,90 52,85 47,80 34,80 34,90 " style="fill:#77d815; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22090&lt;/b&gt;&lt;br&gt;polynucleotide kinase-phosphatase&lt;br&gt;Location: 5027901 - 5029310&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06022&lt;/b&gt;&lt;br&gt;Percentage identity: 95&lt;br&gt;Percentage coverage: 55&lt;br&gt;BLAST bit score: 891&lt;br&gt;E-value: 0.0" locus_tag="GTW30_RS22090" class="clusterblast-orf" id="dummy-23_h23_6_6"  />
+</g>
+<g id="a23_007"  >
+<polygon points="55,90 73,90 78,85 73,80 55,80 55,90 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22095&lt;/b&gt;&lt;br&gt;RiPP maturation radical SAM protein 1&lt;br&gt;Location: 5029519 - 5031366&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06023&lt;/b&gt;&lt;br&gt;Percentage identity: 92&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 1184&lt;br&gt;E-value: 0.0" locus_tag="GTW30_RS22095" class="clusterblast-orf" id="dummy-23_h23_6_7"  />
+</g>
+<g id="a23_008"  >
+<polygon points="78,90 80,90 85,85 80,80 78,80 78,90 " style="fill:#7715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22100&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5031363 - 5031902&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06024&lt;/b&gt;&lt;br&gt;Percentage identity: 83&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 306&lt;br&gt;E-value: 2.45e-106" locus_tag="GTW30_RS22100" class="clusterblast-orf" id="dummy-23_h23_6_8"  />
+</g>
+<g id="a23_009"  >
+<polygon points="87,90 90,90 95,85 90,80 87,80 87,90 " style="fill:#d8a715; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22105&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5032068 - 5032694&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06025&lt;/b&gt;&lt;br&gt;Percentage identity: 76&lt;br&gt;Percentage coverage: 103&lt;br&gt;BLAST bit score: 254&lt;br&gt;E-value: 1.18e-84" locus_tag="GTW30_RS22105" class="clusterblast-orf" id="dummy-23_h23_6_9"  />
+</g>
+<g id="a23_0010"  >
+<polygon points="95,90 109,90 114,85 109,80 95,80 95,90 " style="fill:#15d846; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22110&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5032714 - 5034249&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06026&lt;/b&gt;&lt;br&gt;Percentage identity: 88&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 872&lt;br&gt;E-value: 0.0" locus_tag="GTW30_RS22110" class="clusterblast-orf" id="dummy-23_h23_6_10"  />
+</g>
+<g id="a23_0011"  >
+<polygon points="114,90 119,90 124,85 119,80 114,80 114,90 " style="fill:#1546d8; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22115&lt;/b&gt;&lt;br&gt;nucleotide-binding protein&lt;br&gt;Location: 5034246 - 5034998&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06027&lt;/b&gt;&lt;br&gt;Percentage identity: 85&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 402&lt;br&gt;E-value: 1.19e-141" locus_tag="GTW30_RS22115" class="clusterblast-orf" id="dummy-23_h23_6_11"  />
+</g>
+<g id="a23_0012"  >
+<polygon points="125,85 130,80 135,80 135,90 130,90 125,85 " style="fill:#d815a7; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22120&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5035091 - 5035930&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06028&lt;/b&gt;&lt;br&gt;Percentage identity: 95&lt;br&gt;Percentage coverage: 91&lt;br&gt;BLAST bit score: 519&lt;br&gt;E-value: 1.42e-186" locus_tag="GTW30_RS22120" class="clusterblast-orf" id="dummy-23_h23_6_12"  />
+</g>
+<g id="a23_0013"  >
+<polygon points="138,90 150,90 155,85 150,80 138,80 138,90 " style="fill:#d815a7; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22125&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5036107 - 5037468&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06028&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 67&lt;br&gt;BLAST bit score: 167&lt;br&gt;E-value: 2.75e-46" locus_tag="GTW30_RS22125" class="clusterblast-orf" id="dummy-23_h23_6_13"  />
+</g>
+<g id="a23_0014"  >
+<polygon points="157,90 168,90 173,85 168,80 157,80 157,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22130&lt;/b&gt;&lt;br&gt;arginine deiminase&lt;br&gt;Location: 5037654 - 5038877" locus_tag="GTW30_RS22130" class="clusterblast-orf" id="dummy-23_h23_6_14"  />
+</g>
+<g id="a23_0015"  >
+<polygon points="173,90 181,90 186,85 181,80 173,80 173,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22135&lt;/b&gt;&lt;br&gt;ornithine carbamoyltransferase&lt;br&gt;Location: 5038940 - 5039962" locus_tag="GTW30_RS22135" class="clusterblast-orf" id="dummy-23_h23_6_15"  />
+</g>
+<g id="a23_0016"  >
+<polygon points="188,90 201,90 206,85 201,80 188,80 188,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22140&lt;/b&gt;&lt;br&gt;amino acid permease&lt;br&gt;Location: 5040073 - 5041518" locus_tag="GTW30_RS22140" class="clusterblast-orf" id="dummy-23_h23_6_16"  />
+</g>
+<g id="a23_0017"  >
+<polygon points="205,85 210,80 211,80 211,90 210,90 205,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22145&lt;/b&gt;&lt;br&gt;ATP-binding protein&lt;br&gt;Location: 5041478 - 5041930" locus_tag="GTW30_RS22145" class="clusterblast-orf" id="dummy-23_h23_6_17"  />
+</g>
+<g id="a23_0018"  >
+<polygon points="215,90 220,90 225,85 220,80 215,80 215,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22150&lt;/b&gt;&lt;br&gt;enoyl-CoA hydratase family protein&lt;br&gt;Location: 5042221 - 5043048" locus_tag="GTW30_RS22150" class="clusterblast-orf" id="dummy-23_h23_6_18"  />
+</g>
+<g id="a23_0019"  >
+<polygon points="226,90 249,90 254,85 249,80 226,80 226,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22155&lt;/b&gt;&lt;br&gt;bifunctional salicylyl-CoA 5-hydroxylase/oxidoreductase&lt;br&gt;Location: 5043087 - 5045354" locus_tag="GTW30_RS22155" class="clusterblast-orf" id="dummy-23_h23_6_19"  />
+</g>
+<g id="a23_0020"  >
+<polygon points="255,85 260,80 265,80 265,90 260,90 255,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22160&lt;/b&gt;&lt;br&gt;PaaX family transcriptional regulator&lt;br&gt;Location: 5045374 - 5046186" locus_tag="GTW30_RS22160" class="clusterblast-orf" id="dummy-23_h23_6_20"  />
+</g>
+<g id="a23_0021"  >
+<polygon points="265,85 270,80 285,80 285,90 270,90 265,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22165&lt;/b&gt;&lt;br&gt;AMP-binding protein&lt;br&gt;Location: 5046202 - 5047794" locus_tag="GTW30_RS22165" class="clusterblast-orf" id="dummy-23_h23_6_21"  />
+</g>
+<g id="a23_0022"  >
+<polygon points="287,90 297,90 302,85 297,80 287,80 287,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22170&lt;/b&gt;&lt;br&gt;acyl-CoA dehydrogenase family protein&lt;br&gt;Location: 5047980 - 5049110" locus_tag="GTW30_RS22170" class="clusterblast-orf" id="dummy-23_h23_6_22"  />
+</g>
+<g id="a23_0023"  >
+<polygon points="302,90 302,90 307,85 302,80 302,80 302,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22175&lt;/b&gt;&lt;br&gt;RidA family protein&lt;br&gt;Location: 5049107 - 5049505" locus_tag="GTW30_RS22175" class="clusterblast-orf" id="dummy-23_h23_6_23"  />
+</g>
+<g id="a23_0024"  >
+<polygon points="311,90 311,90 316,85 311,80 311,80 311,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22180&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5049856 - 5050281" locus_tag="GTW30_RS22180" class="clusterblast-orf" id="dummy-23_h23_6_24"  />
+</g>
+<g id="a23_0025"  >
+<polygon points="320,85 325,80 330,80 330,90 325,90 320,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22185&lt;/b&gt;&lt;br&gt;GntR family transcriptional regulator&lt;br&gt;Location: 5050574 - 5051392" locus_tag="GTW30_RS22185" class="clusterblast-orf" id="dummy-23_h23_6_25"  />
+</g>
+<g id="a23_0026"  >
+<polygon points="334,90 345,90 350,85 345,80 334,80 334,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22190&lt;/b&gt;&lt;br&gt;extracellular solute-binding protein&lt;br&gt;Location: 5051695 - 5052969" locus_tag="GTW30_RS22190" class="clusterblast-orf" id="dummy-23_h23_6_26"  />
+</g>
+<g id="a23_0027"  >
+<polygon points="351,90 359,90 364,85 359,80 351,80 351,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22195&lt;/b&gt;&lt;br&gt;sugar ABC transporter permease&lt;br&gt;Location: 5053054 - 5054046" locus_tag="GTW30_RS22195" class="clusterblast-orf" id="dummy-23_h23_6_27"  />
+</g>
+<g id="a23_0028"  >
+<polygon points="364,90 369,90 374,85 369,80 364,80 364,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22200&lt;/b&gt;&lt;br&gt;carbohydrate ABC transporter permease&lt;br&gt;Location: 5054043 - 5054873" locus_tag="GTW30_RS22200" class="clusterblast-orf" id="dummy-23_h23_6_28"  />
+</g>
+<g id="a23_0029"  >
+<polygon points="374,90 389,90 394,85 389,80 374,80 374,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22205&lt;/b&gt;&lt;br&gt;glycoside hydrolase family 3 protein&lt;br&gt;Location: 5054882 - 5056393" locus_tag="GTW30_RS22205" class="clusterblast-orf" id="dummy-23_h23_6_29"  />
+</g>
+<g id="a23_0030"  >
+<polygon points="395,90 403,90 408,85 403,80 395,80 395,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22210&lt;/b&gt;&lt;br&gt;DUF1479 family protein&lt;br&gt;Location: 5056490 - 5057521" locus_tag="GTW30_RS22210" class="clusterblast-orf" id="dummy-23_h23_6_30"  />
+</g>
+<g id="a23_0031"  >
+<polygon points="422,90 433,90 438,85 433,80 422,80 422,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22215&lt;/b&gt;&lt;br&gt;type III PLP-dependent enzyme&lt;br&gt;Location: 5058630 - 5059952" locus_tag="GTW30_RS22215" class="clusterblast-orf" id="dummy-23_h23_6_31"  />
+</g>
+<g id="a23_0032"  >
+<polygon points="438,90 440,90 445,85 440,80 438,80 438,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22220&lt;/b&gt;&lt;br&gt;GNAT family N-acetyltransferase&lt;br&gt;Location: 5059954 - 5060457" locus_tag="GTW30_RS22220" class="clusterblast-orf" id="dummy-23_h23_6_32"  />
+</g>
+<g id="a23_0033"  >
+<polygon points="445,90 455,90 460,85 455,80 445,80 445,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22225&lt;/b&gt;&lt;br&gt;MFS transporter&lt;br&gt;Location: 5060457 - 5061626" locus_tag="GTW30_RS22225" class="clusterblast-orf" id="dummy-23_h23_6_33"  />
+</g>
+<g id="a23_0034"  >
+<polygon points="460,85 465,80 473,80 473,90 465,90 460,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22230&lt;/b&gt;&lt;br&gt;2,3-diaminopropionate biosynthesis protein SbnA&lt;br&gt;Location: 5061685 - 5062707" locus_tag="GTW30_RS22230" class="clusterblast-orf" id="dummy-23_h23_6_34"  />
+</g>
+<g id="a23_0035"  >
+<polygon points="474,85 479,80 487,80 487,90 479,90 474,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22235&lt;/b&gt;&lt;br&gt;2,3-diaminopropionate biosynthesis protein SbnB&lt;br&gt;Location: 5062743 - 5063813" locus_tag="GTW30_RS22235" class="clusterblast-orf" id="dummy-23_h23_6_35"  />
+</g>
+<g id="a23_0036"  >
+<polygon points="487,85 492,80 500,80 500,90 492,90 487,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22240&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5063810 - 5064814" locus_tag="GTW30_RS22240" class="clusterblast-orf" id="dummy-23_h23_6_36"  />
+</g>
+<g id="a23_0037"  >
+<polygon points="500,85 505,80 541,80 541,90 505,90 500,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22245&lt;/b&gt;&lt;br&gt;amino acid adenylation domain-containing protein&lt;br&gt;Location: 5064859 - 5068113" locus_tag="GTW30_RS22245" class="clusterblast-orf" id="dummy-23_h23_6_37"  />
+</g>
+<g id="a23_0038"  >
+<polygon points="542,85 547,80 574,80 574,90 547,90 542,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22250&lt;/b&gt;&lt;br&gt;peptide synthetase&lt;br&gt;Location: 5068127 - 5070706" locus_tag="GTW30_RS22250" class="clusterblast-orf" id="dummy-23_h23_6_38"  />
+</g>
+<g id="a23_0039"  >
+<polygon points="580,85 585,80 591,80 591,90 585,90 580,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22255&lt;/b&gt;&lt;br&gt;LysR family transcriptional regulator&lt;br&gt;Location: 5071206 - 5072087" locus_tag="GTW30_RS22255" class="clusterblast-orf" id="dummy-23_h23_6_39"  />
+</g>
+<g id="a23_0040"  >
+<polygon points="593,90 605,90 610,85 605,80 593,80 593,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22260&lt;/b&gt;&lt;br&gt;MFS transporter&lt;br&gt;Location: 5072223 - 5073593" locus_tag="GTW30_RS22260" class="clusterblast-orf" id="dummy-23_h23_6_40"  />
+</g>
+<g id="a23_0041"  >
+<polygon points="617,90 621,85 617,80 617,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22265&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5074084 - 5074392" locus_tag="GTW30_RS22265" class="clusterblast-orf" id="dummy-23_h23_6_41"  />
+</g>
+<g id="a23_0042"  >
+<polygon points="622,85 627,80 630,80 630,90 627,90 622,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22270&lt;/b&gt;&lt;br&gt;hemerythrin domain-containing protein&lt;br&gt;Location: 5074468 - 5075106" locus_tag="GTW30_RS22270" class="clusterblast-orf" id="dummy-23_h23_6_42"  />
+</g>
+<g id="a23_0043"  >
+<polygon points="632,90 635,85 632,80 632,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22275&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5075273 - 5075575" locus_tag="GTW30_RS22275" class="clusterblast-orf" id="dummy-23_h23_6_43"  />
+</g>
+<g id="a23_0044"  >
+<polygon points="640,90 641,90 646,85 641,80 640,80 640,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22280&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5075899 - 5076372" locus_tag="GTW30_RS22280" class="clusterblast-orf" id="dummy-23_h23_6_44"  />
+</g>
+<g id="a23_0045"  >
+<polygon points="645,90 655,90 660,85 655,80 645,80 645,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22285&lt;/b&gt;&lt;br&gt;glutathione-dependent formaldehyde dehydrogenase&lt;br&gt;Location: 5076369 - 5077544" locus_tag="GTW30_RS22285" class="clusterblast-orf" id="dummy-23_h23_6_45"  />
+</g>
+<g id="a23_0046"  >
+<polygon points="661,90 668,90 673,85 668,80 661,80 661,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22290&lt;/b&gt;&lt;br&gt;Rieske (2Fe-2S) protein&lt;br&gt;Location: 5077610 - 5078578" locus_tag="GTW30_RS22290" class="clusterblast-orf" id="dummy-23_h23_6_46"  />
+</g>
+<g id="a23_0047"  >
+<polygon points="673,90 675,90 680,85 675,80 673,80 673,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22295&lt;/b&gt;&lt;br&gt;DUF1360 domain-containing protein&lt;br&gt;Location: 5078562 - 5079104" locus_tag="GTW30_RS22295" class="clusterblast-orf" id="dummy-23_h23_6_47"  />
+</g>
+<g id="a23_0048"  >
+<polygon points="682,90 684,90 689,85 684,80 682,80 682,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22300&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5079241 - 5079786" locus_tag="GTW30_RS22300" class="clusterblast-orf" id="dummy-23_h23_6_48"  />
+</g>
+<g id="a23_0049"  >
+<polygon points="694,85 699,80 701,80 701,90 699,90 694,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22305&lt;/b&gt;&lt;br&gt;hemerythrin domain-containing protein&lt;br&gt;Location: 5080205 - 5080795" locus_tag="GTW30_RS22305" class="clusterblast-orf" id="dummy-23_h23_6_49"  />
+</g>
+<g id="a23_0050"  >
+<polygon points="701,85 706,80 717,80 717,90 706,90 701,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22310&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5080807 - 5082006" locus_tag="GTW30_RS22310" class="clusterblast-orf" id="dummy-23_h23_6_50"  />
+</g>
+<g id="a23_0051"  >
+<polygon points="721,85 726,80 741,80 741,90 726,90 721,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22315&lt;/b&gt;&lt;br&gt;UDP-N-acetylglucosamine 1-carboxyvinyltransferase&lt;br&gt;Location: 5082379 - 5083908" locus_tag="GTW30_RS22315" class="clusterblast-orf" id="dummy-23_h23_6_51"  />
+</g>
+<g id="a23_0052"  >
+<polygon points="745,90 775,90 780,85 775,80 745,80 745,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GTW30_RS22320&lt;/b&gt;&lt;br&gt;aconitate hydratase AcnA&lt;br&gt;Location: 5084277 - 5086994" locus_tag="GTW30_RS22320" class="clusterblast-orf" id="dummy-23_h23_6_52"  />
+</g>
+</svg>

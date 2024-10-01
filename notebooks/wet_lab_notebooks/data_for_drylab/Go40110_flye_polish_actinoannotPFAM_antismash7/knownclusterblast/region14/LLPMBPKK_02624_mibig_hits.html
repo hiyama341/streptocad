@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>AAD28450.1</td>
+              <td>unknown</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000915/1">BGC0000915</a></td>
+              <td>Other:Aminocoumarin</td>
+              <td>26.0</td>
+              <td>95.9</td>
+              <td>82.0</td>
+              <td>7.4e-17</td>
+          </tr>
+    
+          <tr>
+              <td>ATY37604.1</td>
+              <td>BogQ</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001532/1">BGC0001532</a></td>
+              <td>NRP</td>
+              <td>29.0</td>
+              <td>55.0</td>
+              <td>69.0</td>
+              <td>4.12e-12</td>
+          </tr>
+    
+          <tr>
+              <td>AAD34555.1</td>
+              <td>transesterase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000088/1">BGC0000088</a></td>
+              <td>Polyketide</td>
+              <td>33.0</td>
+              <td>41.2</td>
+              <td>68.0</td>
+              <td>4.82e-12</td>
+          </tr>
+    
+          <tr>
+              <td>CAF05659.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001053/1">BGC0001053</a></td>
+              <td>NRP+Polyketide</td>
+              <td>29.0</td>
+              <td>83.7</td>
+              <td>64.0</td>
+              <td>7.47e-11</td>
+          </tr>
+    
+          <tr>
+              <td>CAJ76284.1</td>
+              <td>putative_penicillin_binding_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000972/1">BGC0000972</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide+Polyketide:Trans-AT type I polyketide</td>
+              <td>32.0</td>
+              <td>35.9</td>
+              <td>63.0</td>
+              <td>1.84e-10</td>
+          </tr>
+    
+          <tr>
+              <td>BBM05075.1</td>
+              <td>putative_acyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002170/1">BGC0002170</a></td>
+              <td>Polyketide</td>
+              <td>26.0</td>
+              <td>65.9</td>
+              <td>62.0</td>
+              <td>3.46e-10</td>
+          </tr>
+    
+          <tr>
+              <td>QQW45474.1</td>
+              <td>esterase_CalJ&#39;</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002168/1">BGC0002168</a></td>
+              <td>Polyketide</td>
+              <td>26.0</td>
+              <td>65.9</td>
+              <td>59.0</td>
+              <td>2.57e-09</td>
+          </tr>
+    
+          <tr>
+              <td>AAU34204.1</td>
+              <td>alpha/beta_hydrolase_MppK</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000388/1">BGC0000388</a></td>
+              <td>NRP</td>
+              <td>26.0</td>
+              <td>73.0</td>
+              <td>59.0</td>
+              <td>4.98e-09</td>
+          </tr>
+    
+          <tr>
+              <td>AID65220.1</td>
+              <td>beta-lactamase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000335/1">BGC0000335</a></td>
+              <td>NRP+Polyketide</td>
+              <td>32.0</td>
+              <td>33.1</td>
+              <td>51.0</td>
+              <td>1.42e-06</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

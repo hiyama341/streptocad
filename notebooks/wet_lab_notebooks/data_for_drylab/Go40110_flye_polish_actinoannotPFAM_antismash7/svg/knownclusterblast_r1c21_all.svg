@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="50" width="800" viewBox="0 0 800 50" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="0,35 5,30 98,30 98,40 5,40 0,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05897&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6739336 - 6740563" locus_tag="LLPMBPKK_05897" class="clusterblast-orf" id="knownclusterblast-21_q0_0_all"  />
+<polygon points="125,40 237,40 242,35 237,30 125,30 125,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05898&lt;/b&gt;&lt;br&gt;aminotransferase class III-fold pyridoxal phosphate-dependent enzyme&lt;br&gt;Location: 6740899 - 6742372" locus_tag="LLPMBPKK_05898" class="clusterblast-orf" id="knownclusterblast-21_q1_0_all"  />
+<polygon points="318,40 429,40 434,35 429,30 318,30 318,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05899&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 6743320 - 6744781" locus_tag="LLPMBPKK_05899" class="clusterblast-orf" id="knownclusterblast-21_q2_0_all"  />
+<polygon points="444,40 500,40 505,35 500,30 444,30 444,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05900&lt;/b&gt;&lt;br&gt;GNAT family N-acetyltransferase&lt;br&gt;Location: 6744903 - 6745674" locus_tag="LLPMBPKK_05900" class="clusterblast-orf" id="knownclusterblast-21_q3_0_all"  />
+<polygon points="545,40 699,40 704,35 699,30 545,30 545,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05901&lt;/b&gt;&lt;br&gt;ATP-dependent DNA helicase&lt;br&gt;Location: 6746176 - 6748168" locus_tag="LLPMBPKK_05901" class="clusterblast-orf" id="knownclusterblast-21_q4_0_all"  />
+<polygon points="718,35 723,30 780,30 780,40 723,40 718,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05902&lt;/b&gt;&lt;br&gt;transcriptional repressor LexA&lt;br&gt;Location: 6748352 - 6749132" locus_tag="LLPMBPKK_05902" class="clusterblast-orf" id="knownclusterblast-21_q5_0_all"  />
+</g>
+</svg>

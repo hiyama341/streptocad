@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>ADD82952.1</td>
+              <td>BatK</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001099/1">BGC0001099</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide+Polyketide:Trans-AT type I polyketide</td>
+              <td>56.0</td>
+              <td>60.1</td>
+              <td>510.0</td>
+              <td>2.79e-175</td>
+          </tr>
+    
+          <tr>
+              <td>SKB24628.1</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002455/1">BGC0002455</a></td>
+              <td>Polyketide</td>
+              <td>58.0</td>
+              <td>58.9</td>
+              <td>499.0</td>
+              <td>5.89e-171</td>
+          </tr>
+    
+          <tr>
+              <td>AQW44878.1</td>
+              <td>hypothetic_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001761/1">BGC0001761</a></td>
+              <td>Polyketide</td>
+              <td>59.0</td>
+              <td>57.6</td>
+              <td>483.0</td>
+              <td>1.43e-164</td>
+          </tr>
+    
+          <tr>
+              <td>ASA76636.1</td>
+              <td>malonyl-CoA_acyl_carrier_protein_transacylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001751/1">BGC0001751</a></td>
+              <td>NRP+Polyketide</td>
+              <td>58.0</td>
+              <td>60.7</td>
+              <td>506.0</td>
+              <td>3.4e-164</td>
+          </tr>
+    
+          <tr>
+              <td>ALD83685.1</td>
+              <td>tandem_AT-AT-ER_domain_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001300/1">BGC0001300</a></td>
+              <td>Polyketide</td>
+              <td>57.0</td>
+              <td>59.9</td>
+              <td>499.0</td>
+              <td>8.64e-163</td>
+          </tr>
+    
+          <tr>
+              <td>CAG23974.1</td>
+              <td>malonyl_CoA_[acyl-carrier-protein]_transacylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000176/1">BGC0000176</a></td>
+              <td>Polyketide</td>
+              <td>54.0</td>
+              <td>59.6</td>
+              <td>485.0</td>
+              <td>6.97e-161</td>
+          </tr>
+    
+          <tr>
+              <td>MCC5026008.1</td>
+              <td>PfaD_family_polyunsaturated_fatty_acid/polyketide_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002118/1">BGC0002118</a></td>
+              <td>NRP+Polyketide</td>
+              <td>55.0</td>
+              <td>59.1</td>
+              <td>471.0</td>
+              <td>1.31e-159</td>
+          </tr>
+    
+          <tr>
+              <td>MCC5025964.1</td>
+              <td>PfaD_family_polyunsaturated_fatty_acid/polyketide_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002119/1">BGC0002119</a></td>
+              <td>NRP+Polyketide</td>
+              <td>55.0</td>
+              <td>59.1</td>
+              <td>471.0</td>
+              <td>1.31e-159</td>
+          </tr>
+    
+          <tr>
+              <td>ADI59523.1</td>
+              <td>CorA</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001091/1">BGC0001091</a></td>
+              <td>NRP+Polyketide</td>
+              <td>54.0</td>
+              <td>66.0</td>
+              <td>480.0</td>
+              <td>2.68e-159</td>
+          </tr>
+    
+          <tr>
+              <td>AXA20095.1</td>
+              <td>enoylreductase_LgaF</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001646/1">BGC0001646</a></td>
+              <td>NRP+Polyketide</td>
+              <td>53.0</td>
+              <td>59.1</td>
+              <td>468.0</td>
+              <td>7.94e-159</td>
+          </tr>
+    
+          <tr>
+              <td>AFX60343.1</td>
+              <td>flavin-dependent_nitroreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001032/1">BGC0001032</a></td>
+              <td>NRP+Polyketide</td>
+              <td>53.0</td>
+              <td>59.3</td>
+              <td>469.0</td>
+              <td>1.15e-158</td>
+          </tr>
+    
+          <tr>
+              <td>AFX60320.1</td>
+              <td>flavin-dependent_nitroreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001031/1">BGC0001031</a></td>
+              <td>NRP+Polyketide</td>
+              <td>53.0</td>
+              <td>60.4</td>
+              <td>468.0</td>
+              <td>2.45e-158</td>
+          </tr>
+    
+          <tr>
+              <td>RAT98531.1</td>
+              <td>acyltransferase_acyltransferase_2-Nitropropane_dioxygenase_(NPD)-like_domain</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001470/1">BGC0001470</a></td>
+              <td>Polyketide:Trans-AT type I polyketide</td>
+              <td>54.0</td>
+              <td>60.1</td>
+              <td>486.0</td>
+              <td>8.61e-158</td>
+          </tr>
+    
+          <tr>
+              <td>CTQ34880.1</td>
+              <td>AtcC;_trans-AT;_acylhydrolase,_acyltransferase_(malonyl-CoA),_FMN-dependent_enoylreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001301/1">BGC0001301</a></td>
+              <td>Polyketide</td>
+              <td>58.0</td>
+              <td>58.0</td>
+              <td>486.0</td>
+              <td>1.07e-157</td>
+          </tr>
+    
+          <tr>
+              <td>ctg3_13</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001853/1">BGC0001853</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide</td>
+              <td>57.0</td>
+              <td>59.1</td>
+              <td>476.0</td>
+              <td>2.3e-157</td>
+          </tr>
+    
+          <tr>
+              <td>ADN68488.1</td>
+              <td>enoyl_reductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000184/1">BGC0000184</a></td>
+              <td>Polyketide:Trans-AT type I polyketide</td>
+              <td>54.0</td>
+              <td>60.8</td>
+              <td>464.0</td>
+              <td>6.63e-157</td>
+          </tr>
+    
+          <tr>
+              <td>AJQ95703.1</td>
+              <td>dioxygenases-like_2-nitropropane_dioxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001644/1">BGC0001644</a></td>
+              <td>Polyketide</td>
+              <td>51.0</td>
+              <td>59.1</td>
+              <td>456.0</td>
+              <td>3.62e-154</td>
+          </tr>
+    
+          <tr>
+              <td>AAY89048.1</td>
+              <td>acyltransferase/oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001069/1">BGC0001069</a></td>
+              <td>NRP+Polyketide:Trans-AT type I polyketide</td>
+              <td>54.0</td>
+              <td>58.9</td>
+              <td>457.0</td>
+              <td>5.69e-150</td>
+          </tr>
+    
+          <tr>
+              <td>ABF87992.1</td>
+              <td>PfaD_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001025/1">BGC0001025</a></td>
+              <td>NRP+Polyketide:Trans-AT type I polyketide</td>
+              <td>52.0</td>
+              <td>59.3</td>
+              <td>444.0</td>
+              <td>7.27e-149</td>
+          </tr>
+    
+          <tr>
+              <td>mycB</td>
+              <td>enoyl_reductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002055/1">BGC0002055</a></td>
+              <td>NRP+Polyketide:Trans-AT type I polyketide</td>
+              <td>50.0</td>
+              <td>58.7</td>
+              <td>441.0</td>
+              <td>1.91e-148</td>
+          </tr>
+    
+          <tr>
+              <td>AFN27484.1</td>
+              <td>enoyl-CoA_hydratase_BonH</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000173/1">BGC0000173</a></td>
+              <td>Polyketide:Modular type I polyketide</td>
+              <td>55.0</td>
+              <td>55.4</td>
+              <td>441.0</td>
+              <td>3.57e-148</td>
+          </tr>
+    
+          <tr>
+              <td>QZA73310.1</td>
+              <td>2-nitropropane_dioxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002385/1">BGC0002385</a></td>
+              <td>Polyketide</td>
+              <td>54.0</td>
+              <td>58.8</td>
+              <td>439.0</td>
+              <td>1.11e-147</td>
+          </tr>
+    
+          <tr>
+              <td>QGZ36669.1</td>
+              <td>ACP_S-malonyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002082/1">BGC0002082</a></td>
+              <td>NRP+Polyketide</td>
+              <td>52.0</td>
+              <td>60.8</td>
+              <td>449.0</td>
+              <td>8.78e-147</td>
+          </tr>
+    
+          <tr>
+              <td>ACR12981.1</td>
+              <td>PfaD_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000185/1">BGC0000185</a></td>
+              <td>Polyketide</td>
+              <td>52.0</td>
+              <td>57.7</td>
+              <td>436.0</td>
+              <td>2.67e-146</td>
+          </tr>
+    
+          <tr>
+              <td>AAM12912.1</td>
+              <td>MmpC</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000182/1">BGC0000182</a></td>
+              <td>Polyketide:Iterative type I polyketide+Polyketide:Trans-AT type I polyketide</td>
+              <td>54.0</td>
+              <td>59.7</td>
+              <td>456.0</td>
+              <td>3.27e-146</td>
+          </tr>
+    
+          <tr>
+              <td>ACY01403.1</td>
+              <td>trans-acting_acyl_transferase/oxidoreductase_fusion_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000083/1">BGC0000083</a></td>
+              <td>Polyketide:Modular type I polyketide+Polyketide:Trans-AT type I polyketide</td>
+              <td>52.0</td>
+              <td>63.5</td>
+              <td>446.0</td>
+              <td>7.96e-146</td>
+          </tr>
+    
+          <tr>
+              <td>CAG23952.1</td>
+              <td>malonyl-CoA-[acyl-carrier_protein]_transacylase_[AT]/oxidoreductase_[OR]</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001089/1">BGC0001089</a></td>
+              <td>Polyketide+NRP</td>
+              <td>50.0</td>
+              <td>59.6</td>
+              <td>444.0</td>
+              <td>2.36e-145</td>
+          </tr>
+    
+          <tr>
+              <td>bin5_1_edit_las_17</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002153/1">BGC0002153</a></td>
+              <td>Polyketide</td>
+              <td>52.0</td>
+              <td>59.5</td>
+              <td>433.0</td>
+              <td>1.06e-144</td>
+          </tr>
+    
+          <tr>
+              <td>ACY01393.1</td>
+              <td>trans-acting_acyl_transferase/oxidoreductase_fusion_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000177/1">BGC0000177</a></td>
+              <td>Polyketide:Modular type I polyketide+Polyketide:Trans-AT type I polyketide</td>
+              <td>54.0</td>
+              <td>56.8</td>
+              <td>441.0</td>
+              <td>4.22e-144</td>
+          </tr>
+    
+          <tr>
+              <td>WP_126241645.1</td>
+              <td>ACP_S-malonyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002087/1">BGC0002087</a></td>
+              <td>NRP+Polyketide</td>
+              <td>55.0</td>
+              <td>58.4</td>
+              <td>451.0</td>
+              <td>5.51e-144</td>
+          </tr>
+    
+          <tr>
+              <td>DAC80069.1</td>
+              <td>dioxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001836/1">BGC0001836</a></td>
+              <td>Polyketide:Trans-AT type I polyketide</td>
+              <td>52.0</td>
+              <td>57.6</td>
+              <td>429.0</td>
+              <td>8.54e-144</td>
+          </tr>
+    
+          <tr>
+              <td>KAF1058478.1</td>
+              <td>Polyketide_biosynthesis_protein_BaeE</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002083/1">BGC0002083</a></td>
+              <td>Polyketide:Trans-AT type I polyketide</td>
+              <td>55.0</td>
+              <td>58.4</td>
+              <td>450.0</td>
+              <td>8.8e-144</td>
+          </tr>
+    
+          <tr>
+              <td>AAN85520.1</td>
+              <td>trans-acting_acyltransferase/oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001101/1">BGC0001101</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide+Polyketide:Trans-AT type I polyketide</td>
+              <td>53.0</td>
+              <td>59.1</td>
+              <td>441.0</td>
+              <td>1.44e-143</td>
+          </tr>
+    
+          <tr>
+              <td>AAS47558.1</td>
+              <td>putative_FMN-dependent_oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001108/1">BGC0001108</a></td>
+              <td>NRP+Polyketide:Trans-AT type I polyketide</td>
+              <td>49.0</td>
+              <td>60.0</td>
+              <td>425.0</td>
+              <td>8.01e-142</td>
+          </tr>
+    
+          <tr>
+              <td>QDG75028.1</td>
+              <td>FMN-dependent_oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002068/1">BGC0002068</a></td>
+              <td>NRP+Polyketide</td>
+              <td>50.0</td>
+              <td>60.4</td>
+              <td>424.0</td>
+              <td>8.38e-142</td>
+          </tr>
+    
+          <tr>
+              <td>OEI73455.1</td>
+              <td>[acyl-carrier-protein]_S-malonyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001520/1">BGC0001520</a></td>
+              <td>Polyketide</td>
+              <td>50.0</td>
+              <td>58.9</td>
+              <td>434.0</td>
+              <td>2.42e-141</td>
+          </tr>
+    
+          <tr>
+              <td>CBK62732.1</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001115/1">BGC0001115</a></td>
+              <td>NRP+Polyketide</td>
+              <td>51.0</td>
+              <td>58.5</td>
+              <td>441.0</td>
+              <td>2.73e-140</td>
+          </tr>
+    
+          <tr>
+              <td>ATY69597.1</td>
+              <td>acyltransferase/oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001823/1">BGC0001823</a></td>
+              <td>NRP+Polyketide</td>
+              <td>53.0</td>
+              <td>61.9</td>
+              <td>431.0</td>
+              <td>4.04e-140</td>
+          </tr>
+    
+          <tr>
+              <td>ABC34740.1</td>
+              <td>trans_acyltransferase_(AT-AT-ER)</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000186/1">BGC0000186</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide</td>
+              <td>53.0</td>
+              <td>59.1</td>
+              <td>435.0</td>
+              <td>1.27e-137</td>
+          </tr>
+    
+          <tr>
+              <td>AAY32968.1</td>
+              <td>DszD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001093/1">BGC0001093</a></td>
+              <td>NRP+Polyketide</td>
+              <td>50.0</td>
+              <td>59.5</td>
+              <td>422.0</td>
+              <td>8.95e-136</td>
+          </tr>
+    
+          <tr>
+              <td>ERM18800.1</td>
+              <td>malonyl_CoA-acyl_carrier_protein_transacylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000172/1">BGC0000172</a></td>
+              <td>Polyketide</td>
+              <td>49.0</td>
+              <td>58.4</td>
+              <td>426.0</td>
+              <td>6.31e-135</td>
+          </tr>
+    
+          <tr>
+              <td>BAP05573.1</td>
+              <td>calY</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000967/1">BGC0000967</a></td>
+              <td>NRP+Polyketide:Trans-AT type I polyketide</td>
+              <td>49.0</td>
+              <td>59.3</td>
+              <td>415.0</td>
+              <td>7.04e-134</td>
+          </tr>
+    
+          <tr>
+              <td>ACI12951.1</td>
+              <td>PfaD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000861/1">BGC0000861</a></td>
+              <td>Other</td>
+              <td>43.0</td>
+              <td>69.5</td>
+              <td>384.0</td>
+              <td>5.56e-125</td>
+          </tr>
+    
+          <tr>
+              <td>CAG23963.1</td>
+              <td>malonyl_CoA_[acyl-carrier-protein]_transacylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000181/1">BGC0000181</a></td>
+              <td>Polyketide</td>
+              <td>44.0</td>
+              <td>58.9</td>
+              <td>391.0</td>
+              <td>8.62e-125</td>
+          </tr>
+    
+          <tr>
+              <td>AIJ04682.1</td>
+              <td>malonyl_CoA-ACP_transacylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001383/1">BGC0001383</a></td>
+              <td>Polyketide</td>
+              <td>44.0</td>
+              <td>58.9</td>
+              <td>390.0</td>
+              <td>1.7e-124</td>
+          </tr>
+    
+          <tr>
+              <td>MCI2961727.1</td>
+              <td>eicosapentaenoate_synthase_subunit_PfaD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002648/1">BGC0002648</a></td>
+              <td>Polyketide</td>
+              <td>43.0</td>
+              <td>69.5</td>
+              <td>383.0</td>
+              <td>2.19e-124</td>
+          </tr>
+    
+          <tr>
+              <td>AGJ76604.1</td>
+              <td>PfaD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000869/1">BGC0000869</a></td>
+              <td>Other</td>
+              <td>45.0</td>
+              <td>58.5</td>
+              <td>384.0</td>
+              <td>2.53e-124</td>
+          </tr>
+    
+          <tr>
+              <td>AAL01063.1</td>
+              <td>omega-3_polyunsaturated_fatty_acid_synthase_PfaD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000865/1">BGC0000865</a></td>
+              <td>Other</td>
+              <td>46.0</td>
+              <td>59.9</td>
+              <td>382.0</td>
+              <td>3.84e-124</td>
+          </tr>
+    
+          <tr>
+              <td>AAB81126.1</td>
+              <td>unknown</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000862/1">BGC0000862</a></td>
+              <td>Other</td>
+              <td>47.0</td>
+              <td>58.8</td>
+              <td>380.0</td>
+              <td>2.9e-123</td>
+          </tr>
+    
+          <tr>
+              <td>ATY69560.1</td>
+              <td>acyltransferase/oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001611/1">BGC0001611</a></td>
+              <td>NRP+Polyketide</td>
+              <td>49.0</td>
+              <td>59.6</td>
+              <td>387.0</td>
+              <td>4.49e-123</td>
+          </tr>
+    
+          <tr>
+              <td>BAA89385.1</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000864/1">BGC0000864</a></td>
+              <td>Other</td>
+              <td>46.0</td>
+              <td>58.7</td>
+              <td>371.0</td>
+              <td>4.63e-120</td>
+          </tr>
+    
+          <tr>
+              <td>ALD83701.1</td>
+              <td>tandem_AT-AT-ER_domain_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001299/1">BGC0001299</a></td>
+              <td>Polyketide</td>
+              <td>46.0</td>
+              <td>60.0</td>
+              <td>383.0</td>
+              <td>3.06e-118</td>
+          </tr>
+    
+          <tr>
+              <td>AEC04348.1</td>
+              <td>PfaD_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000178/1">BGC0000178</a></td>
+              <td>Polyketide:Trans-AT type I polyketide</td>
+              <td>47.0</td>
+              <td>59.3</td>
+              <td>373.0</td>
+              <td>1.21e-117</td>
+          </tr>
+    
+          <tr>
+              <td>CBJ82075.1</td>
+              <td>putative_Glutamate-1-semialdehyde_2,1-aminomutase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001872/1">BGC0001872</a></td>
+              <td>Polyketide</td>
+              <td>48.0</td>
+              <td>59.6</td>
+              <td>377.0</td>
+              <td>5.92e-117</td>
+          </tr>
+    
+          <tr>
+              <td>PHM26608.1</td>
+              <td>glutamate-1-semialdehyde-2,1-aminomutase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001130/1">BGC0001130</a></td>
+              <td>NRP+Polyketide</td>
+              <td>47.0</td>
+              <td>59.5</td>
+              <td>372.0</td>
+              <td>3.35e-115</td>
+          </tr>
+    
+          <tr>
+              <td>CCM44332.1</td>
+              <td>PfaD_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001056/1">BGC0001056</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide+Polyketide:PUFA synthase or related polyketide</td>
+              <td>48.0</td>
+              <td>59.5</td>
+              <td>369.0</td>
+              <td>4.71e-114</td>
+          </tr>
+    
+          <tr>
+              <td>DAC80102.1</td>
+              <td>PKS_(ACP-KS-KR-ACP-KS-ACP-ACP-ACP-KS-ACP-C)</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001837/1">BGC0001837</a></td>
+              <td>Polyketide</td>
+              <td>45.0</td>
+              <td>58.3</td>
+              <td>380.0</td>
+              <td>1.13e-113</td>
+          </tr>
+    
+          <tr>
+              <td>ABS90474.1</td>
+              <td>malonyl_CoA-ACP_transferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001106/1">BGC0001106</a></td>
+              <td>NRP+Polyketide</td>
+              <td>47.0</td>
+              <td>58.8</td>
+              <td>360.0</td>
+              <td>1.69e-110</td>
+          </tr>
+    
+          <tr>
+              <td>ARR97034.1</td>
+              <td>SphA</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001780/1">BGC0001780</a></td>
+              <td>NRP</td>
+              <td>43.0</td>
+              <td>59.5</td>
+              <td>352.0</td>
+              <td>3.66e-110</td>
+          </tr>
+    
+          <tr>
+              <td>DAC76737.1</td>
+              <td>malonyl_CoA-acyl_carrier_protein_transacylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001885/1">BGC0001885</a></td>
+              <td>NRP+Polyketide</td>
+              <td>45.0</td>
+              <td>60.7</td>
+              <td>354.0</td>
+              <td>1.81e-107</td>
+          </tr>
+    
+          <tr>
+              <td>CAN89639.1</td>
+              <td>putative_acyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001070/1">BGC0001070</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide+Polyketide:Trans-AT type I polyketide</td>
+              <td>44.0</td>
+              <td>58.7</td>
+              <td>341.0</td>
+              <td>4.7e-103</td>
+          </tr>
+    
+          <tr>
+              <td>OEI73460.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001520/1">BGC0001520</a></td>
+              <td>Polyketide</td>
+              <td>41.0</td>
+              <td>58.1</td>
+              <td>346.0</td>
+              <td>3.38e-102</td>
+          </tr>
+    
+          <tr>
+              <td>QGY73444.1</td>
+              <td>Itm12</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002451/1">BGC0002451</a></td>
+              <td>Polyketide</td>
+              <td>46.0</td>
+              <td>59.7</td>
+              <td>338.0</td>
+              <td>7.17e-102</td>
+          </tr>
+    
+          <tr>
+              <td>BBA21067.1</td>
+              <td>putative_di-domain_acyl_transferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001740/1">BGC0001740</a></td>
+              <td>NRP+Polyketide</td>
+              <td>45.0</td>
+              <td>57.7</td>
+              <td>319.0</td>
+              <td>3.33e-95</td>
+          </tr>
+    
+          <tr>
+              <td>SKB24624.1</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002455/1">BGC0002455</a></td>
+              <td>Polyketide</td>
+              <td>55.0</td>
+              <td>35.4</td>
+              <td>263.0</td>
+              <td>1.85e-82</td>
+          </tr>
+    
+          <tr>
+              <td>DAC80071.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001835/1">BGC0001835</a></td>
+              <td>Polyketide</td>
+              <td>54.0</td>
+              <td>33.8</td>
+              <td>257.0</td>
+              <td>5.34e-80</td>
+          </tr>
+    
+          <tr>
+              <td>AMH40438.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001350/1">BGC0001350</a></td>
+              <td>Polyketide</td>
+              <td>55.0</td>
+              <td>33.8</td>
+              <td>256.0</td>
+              <td>8.61e-80</td>
+          </tr>
+    
+          <tr>
+              <td>DAC80109.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001837/1">BGC0001837</a></td>
+              <td>Polyketide</td>
+              <td>54.0</td>
+              <td>33.8</td>
+              <td>253.0</td>
+              <td>9.08e-79</td>
+          </tr>
+    
+          <tr>
+              <td>ADD82945.1</td>
+              <td>BatD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001099/1">BGC0001099</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide+Polyketide:Trans-AT type I polyketide</td>
+              <td>55.0</td>
+              <td>34.5</td>
+              <td>253.0</td>
+              <td>1.4e-78</td>
+          </tr>
+    
+          <tr>
+              <td>DAD54492.1</td>
+              <td>enyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002059/1">BGC0002059</a></td>
+              <td>NRP+Polyketide:Trans-AT type I polyketide</td>
+              <td>53.0</td>
+              <td>34.2</td>
+              <td>245.0</td>
+              <td>1.28e-75</td>
+          </tr>
+    
+          <tr>
+              <td>AVR48541.1</td>
+              <td>CusJ</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001564/1">BGC0001564</a></td>
+              <td>NRP+Polyketide</td>
+              <td>51.0</td>
+              <td>35.3</td>
+              <td>243.0</td>
+              <td>9.87e-75</td>
+          </tr>
+    
+          <tr>
+              <td>ADA69246.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001071/1">BGC0001071</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide+Polyketide:Trans-AT type I polyketide</td>
+              <td>52.0</td>
+              <td>35.3</td>
+              <td>242.0</td>
+              <td>1.93e-74</td>
+          </tr>
+    
+          <tr>
+              <td>ADA82590.1</td>
+              <td>crotonase_superfamily</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001110/1">BGC0001110</a></td>
+              <td>NRP+Polyketide:Trans-AT type I polyketide</td>
+              <td>51.0</td>
+              <td>33.8</td>
+              <td>240.0</td>
+              <td>7.95e-74</td>
+          </tr>
+    
+          <tr>
+              <td>QZA73313.1</td>
+              <td>enoyl-CoA_hydratase/isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002385/1">BGC0002385</a></td>
+              <td>Polyketide</td>
+              <td>52.0</td>
+              <td>33.8</td>
+              <td>239.0</td>
+              <td>3.8e-73</td>
+          </tr>
+    
+          <tr>
+              <td>AFX60326.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001032/1">BGC0001032</a></td>
+              <td>NRP+Polyketide</td>
+              <td>51.0</td>
+              <td>34.9</td>
+              <td>236.0</td>
+              <td>5.01e-72</td>
+          </tr>
+    
+          <tr>
+              <td>CAG23955.1</td>
+              <td>polyketide_biosynthesis_enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001089/1">BGC0001089</a></td>
+              <td>Polyketide+NRP</td>
+              <td>52.0</td>
+              <td>34.2</td>
+              <td>234.0</td>
+              <td>1.45e-71</td>
+          </tr>
+    
+          <tr>
+              <td>BAP05579.1</td>
+              <td>calS</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000967/1">BGC0000967</a></td>
+              <td>NRP+Polyketide:Trans-AT type I polyketide</td>
+              <td>52.0</td>
+              <td>35.0</td>
+              <td>234.0</td>
+              <td>1.87e-71</td>
+          </tr>
+    
+          <tr>
+              <td>AAM12923.1</td>
+              <td>MupJ</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000182/1">BGC0000182</a></td>
+              <td>Polyketide:Iterative type I polyketide+Polyketide:Trans-AT type I polyketide</td>
+              <td>50.0</td>
+              <td>34.1</td>
+              <td>233.0</td>
+              <td>4.71e-71</td>
+          </tr>
+    
+          <tr>
+              <td>AGN11886.1</td>
+              <td>tstL</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001114/1">BGC0001114</a></td>
+              <td>NRP+Polyketide</td>
+              <td>50.0</td>
+              <td>34.2</td>
+              <td>233.0</td>
+              <td>5.7e-71</td>
+          </tr>
+    
+          <tr>
+              <td>AAW33971.1</td>
+              <td>PedL</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000255/1">BGC0000255</a></td>
+              <td>Polyketide</td>
+              <td>49.0</td>
+              <td>34.1</td>
+              <td>233.0</td>
+              <td>5.79e-71</td>
+          </tr>
+    
+          <tr>
+              <td>OEI73469.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001520/1">BGC0001520</a></td>
+              <td>Polyketide</td>
+              <td>50.0</td>
+              <td>34.1</td>
+              <td>233.0</td>
+              <td>6.17e-71</td>
+          </tr>
+    
+          <tr>
+              <td>ABF86745.1</td>
+              <td>enoyl-CoA_hydratase/isomerase_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001025/1">BGC0001025</a></td>
+              <td>NRP+Polyketide:Trans-AT type I polyketide</td>
+              <td>51.0</td>
+              <td>34.0</td>
+              <td>233.0</td>
+              <td>8.22e-71</td>
+          </tr>
+    
+          <tr>
+              <td>bin5_1_edit_las_18</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002153/1">BGC0002153</a></td>
+              <td>Polyketide</td>
+              <td>52.0</td>
+              <td>34.4</td>
+              <td>232.0</td>
+              <td>1.11e-70</td>
+          </tr>
+    
+          <tr>
+              <td>AFX60303.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001031/1">BGC0001031</a></td>
+              <td>NRP+Polyketide</td>
+              <td>50.0</td>
+              <td>35.0</td>
+              <td>231.0</td>
+              <td>4.36e-70</td>
+          </tr>
+    
+          <tr>
+              <td>RAT98521.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001470/1">BGC0001470</a></td>
+              <td>Polyketide:Trans-AT type I polyketide</td>
+              <td>48.0</td>
+              <td>34.1</td>
+              <td>229.0</td>
+              <td>9.18e-70</td>
+          </tr>
+    
+          <tr>
+              <td>ABC35267.1</td>
+              <td>polyketide_biosynthesis_enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000186/1">BGC0000186</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide</td>
+              <td>49.0</td>
+              <td>35.0</td>
+              <td>228.0</td>
+              <td>7.1e-69</td>
+          </tr>
+    
+          <tr>
+              <td>ADH01493.1</td>
+              <td>probable_enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000995/1">BGC0000995</a></td>
+              <td>NRP+Polyketide</td>
+              <td>50.0</td>
+              <td>31.9</td>
+              <td>224.0</td>
+              <td>6.32e-68</td>
+          </tr>
+    
+          <tr>
+              <td>AIC32698.1</td>
+              <td>FR9L</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001113/1">BGC0001113</a></td>
+              <td>NRP+Polyketide</td>
+              <td>50.0</td>
+              <td>31.9</td>
+              <td>224.0</td>
+              <td>6.32e-68</td>
+          </tr>
+    
+          <tr>
+              <td>QLG04872.1</td>
+              <td>PulK</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002374/1">BGC0002374</a></td>
+              <td>Polyketide</td>
+              <td>48.0</td>
+              <td>33.8</td>
+              <td>216.0</td>
+              <td>9.19e-65</td>
+          </tr>
+    
+          <tr>
+              <td>AEC04359.1</td>
+              <td>enoyl-CoA_hydratase/isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000178/1">BGC0000178</a></td>
+              <td>Polyketide:Trans-AT type I polyketide</td>
+              <td>46.0</td>
+              <td>34.5</td>
+              <td>214.0</td>
+              <td>9.9e-64</td>
+          </tr>
+    
+          <tr>
+              <td>mycL</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002055/1">BGC0002055</a></td>
+              <td>NRP+Polyketide:Trans-AT type I polyketide</td>
+              <td>43.0</td>
+              <td>35.0</td>
+              <td>203.0</td>
+              <td>9.16e-60</td>
+          </tr>
+    
+          <tr>
+              <td>AFV96141.1</td>
+              <td>enoyl-CoA_hydratase/isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001064/1">BGC0001064</a></td>
+              <td>Polyketide:Modular type I polyketide+Polyketide:Type III polyketide</td>
+              <td>42.0</td>
+              <td>34.8</td>
+              <td>192.0</td>
+              <td>7.3e-56</td>
+          </tr>
+    
+          <tr>
+              <td>ARU81121.1</td>
+              <td>CylG</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001566/1">BGC0001566</a></td>
+              <td>Polyketide</td>
+              <td>42.0</td>
+              <td>34.8</td>
+              <td>192.0</td>
+              <td>7.3e-56</td>
+          </tr>
+    
+          <tr>
+              <td>QGZ36664.1</td>
+              <td>enoyl-CoA_hydratase/isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002082/1">BGC0002082</a></td>
+              <td>NRP+Polyketide</td>
+              <td>45.0</td>
+              <td>34.6</td>
+              <td>192.0</td>
+              <td>1.11e-55</td>
+          </tr>
+    
+          <tr>
+              <td>AMB48451.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001357/1">BGC0001357</a></td>
+              <td>Polyketide</td>
+              <td>42.0</td>
+              <td>34.2</td>
+              <td>188.0</td>
+              <td>2.96e-54</td>
+          </tr>
+    
+          <tr>
+              <td>QBM78311.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002542/1">BGC0002542</a></td>
+              <td>Polyketide+NRP</td>
+              <td>41.0</td>
+              <td>34.4</td>
+              <td>187.0</td>
+              <td>7.84e-54</td>
+          </tr>
+    
+          <tr>
+              <td>QCP68987.1</td>
+              <td>VatJ</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002296/1">BGC0002296</a></td>
+              <td>NRP+Polyketide</td>
+              <td>41.0</td>
+              <td>34.1</td>
+              <td>184.0</td>
+              <td>4.88e-53</td>
+          </tr>
+    
+          <tr>
+              <td>AAS98780.1</td>
+              <td>enoyl_hydratase_family</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001001/1">BGC0001001</a></td>
+              <td>NRP+Polyketide</td>
+              <td>41.0</td>
+              <td>34.1</td>
+              <td>183.0</td>
+              <td>1.29e-52</td>
+          </tr>
+    
+          <tr>
+              <td>CBK62728.1</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001115/1">BGC0001115</a></td>
+              <td>NRP+Polyketide</td>
+              <td>39.0</td>
+              <td>34.1</td>
+              <td>182.0</td>
+              <td>4.85e-52</td>
+          </tr>
+    
+          <tr>
+              <td>AEE88285.1</td>
+              <td>CurE</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000976/1">BGC0000976</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide</td>
+              <td>40.0</td>
+              <td>34.0</td>
+              <td>177.0</td>
+              <td>3.14e-50</td>
+          </tr>
+    
+          <tr>
+              <td>AAT70100.1</td>
+              <td>CurE</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001165/1">BGC0001165</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide</td>
+              <td>40.0</td>
+              <td>34.0</td>
+              <td>177.0</td>
+              <td>3.14e-50</td>
+          </tr>
+    
+          <tr>
+              <td>AZH23833.1</td>
+              <td>MgiP</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001971/1">BGC0001971</a></td>
+              <td>NRP+Polyketide</td>
+              <td>38.0</td>
+              <td>34.4</td>
+              <td>176.0</td>
+              <td>5.98e-50</td>
+          </tr>
+    
+          <tr>
+              <td>AZH23806.1</td>
+              <td>MgcP</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001970/1">BGC0001970</a></td>
+              <td>NRP+Polyketide</td>
+              <td>39.0</td>
+              <td>34.6</td>
+              <td>175.0</td>
+              <td>1.17e-49</td>
+          </tr>
+    
+          <tr>
+              <td>QDG75031.1</td>
+              <td>enoyl-CoA_hydratase/isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002068/1">BGC0002068</a></td>
+              <td>NRP+Polyketide</td>
+              <td>41.0</td>
+              <td>33.7</td>
+              <td>169.0</td>
+              <td>1.08e-47</td>
+          </tr>
+    
+          <tr>
+              <td>ASA76640.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001751/1">BGC0001751</a></td>
+              <td>NRP+Polyketide</td>
+              <td>37.0</td>
+              <td>34.9</td>
+              <td>145.0</td>
+              <td>6.89e-39</td>
+          </tr>
+    
+          <tr>
+              <td>ATY69602.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001823/1">BGC0001823</a></td>
+              <td>NRP+Polyketide</td>
+              <td>39.0</td>
+              <td>32.1</td>
+              <td>141.0</td>
+              <td>2.91e-37</td>
+          </tr>
+    
+          <tr>
+              <td>ADI59528.1</td>
+              <td>CorF</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001091/1">BGC0001091</a></td>
+              <td>NRP+Polyketide</td>
+              <td>39.0</td>
+              <td>32.8</td>
+              <td>139.0</td>
+              <td>1.57e-36</td>
+          </tr>
+    
+          <tr>
+              <td>AQW44885.1</td>
+              <td>beta_branching_enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001761/1">BGC0001761</a></td>
+              <td>Polyketide</td>
+              <td>36.0</td>
+              <td>34.2</td>
+              <td>137.0</td>
+              <td>7.45e-36</td>
+          </tr>
+    
+          <tr>
+              <td>CBD77741.1</td>
+              <td>enoyl-coA-hydratase/isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000974/1">BGC0000974</a></td>
+              <td>NRP+Polyketide</td>
+              <td>39.0</td>
+              <td>34.0</td>
+              <td>135.0</td>
+              <td>3e-35</td>
+          </tr>
+    
+          <tr>
+              <td>MCC5026004.1</td>
+              <td>enoyl-CoA_hydratase/isomerase_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002118/1">BGC0002118</a></td>
+              <td>NRP+Polyketide</td>
+              <td>34.0</td>
+              <td>34.5</td>
+              <td>130.0</td>
+              <td>8.86e-34</td>
+          </tr>
+    
+          <tr>
+              <td>MCC5025960.1</td>
+              <td>enoyl-CoA_hydratase/isomerase_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002119/1">BGC0002119</a></td>
+              <td>NRP+Polyketide</td>
+              <td>34.0</td>
+              <td>34.5</td>
+              <td>130.0</td>
+              <td>8.86e-34</td>
+          </tr>
+    
+          <tr>
+              <td>BAF50724.1</td>
+              <td>enoyl-CoA_hydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001116/1">BGC0001116</a></td>
+              <td>NRP+Polyketide</td>
+              <td>36.0</td>
+              <td>32.2</td>
+              <td>111.0</td>
+              <td>4.74e-27</td>
+          </tr>
+    
+          <tr>
+              <td>BAL90257.1</td>
+              <td>putative_enoyl-CoA_hydratase/isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002021/1">BGC0002021</a></td>
+              <td>Polyketide</td>
+              <td>36.0</td>
+              <td>32.3</td>
+              <td>99.0</td>
+              <td>6.17e-23</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

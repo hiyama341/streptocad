@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="13,40 111,40 116,35 111,30 13,30 13,40 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06021&lt;/b&gt;&lt;br&gt;3' terminal RNA ribose 2'-O-methyltransferaseHen1&lt;br&gt;Location: 6941527 - 6942991" locus_tag="LLPMBPKK_06021" class="clusterblast-orf" id="dummy-23_q0_0_all"  />
+<polygon points="116,40 291,40 296,35 291,30 116,30 116,40 " style="fill:#77d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06022&lt;/b&gt;&lt;br&gt;phosphatase&lt;br&gt;Location: 6942987 - 6945534" locus_tag="LLPMBPKK_06022" class="clusterblast-orf" id="dummy-23_q1_0_all"  />
+<polygon points="311,40 436,40 441,35 436,30 311,30 311,40 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06023&lt;/b&gt;&lt;br&gt;RiPP maturation radical SAM protein 1&lt;br&gt;Location: 6945736 - 6947584" locus_tag="LLPMBPKK_06023" class="clusterblast-orf" id="dummy-23_q2_0_all"  />
+<polygon points="441,40 474,40 479,35 474,30 441,30 441,40 " style="fill:#7715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06024&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6947580 - 6948120" locus_tag="LLPMBPKK_06024" class="clusterblast-orf" id="dummy-23_q3_0_all"  />
+<polygon points="490,40 528,40 533,35 528,30 490,30 490,40 " style="fill:#d8a715; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06025&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6948274 - 6948883" locus_tag="LLPMBPKK_06025" class="clusterblast-orf" id="dummy-23_q4_0_all"  />
+<polygon points="534,40 638,40 643,35 638,30 534,30 534,40 " style="fill:#15d846; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06026&lt;/b&gt;&lt;br&gt;large membrane protein&lt;br&gt;Location: 6948902 - 6950441" locus_tag="LLPMBPKK_06026" class="clusterblast-orf" id="dummy-23_q5_0_all"  />
+<polygon points="643,40 691,40 696,35 691,30 643,30 643,40 " style="fill:#1546d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06027&lt;/b&gt;&lt;br&gt;putative nucleotide-binding protein containingTIR-like domain protein&lt;br&gt;Location: 6950437 - 6951190" locus_tag="LLPMBPKK_06027" class="clusterblast-orf" id="dummy-23_q6_0_all"  />
+<polygon points="703,35 708,30 767,30 767,40 708,40 703,35 " style="fill:#d815a7; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06028&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6951282 - 6952197" locus_tag="LLPMBPKK_06028" class="clusterblast-orf" id="dummy-23_q7_0_all"  />
+</g>
+<g label="NZ_CP017248" description="NZ_CP017248 (2865446-2877294): Streptomyces fodineus strain TW1S1 chromosome,... (50% of genes show similarity), bacteriocin" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_CP017248&amp;start=2865446&amp;end=2877294" target="_blank">NZ_CP017248 (2865446-2877294)</a>: Streptomyces fodineus strain TW1S1 chromosome,... (50% of genes show similarity), bacteriocin</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a23_000"  >
+<polygon points="0,90 98,90 103,85 98,80 0,80 0,90 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;BFF78_RS11575&lt;/b&gt;&lt;br&gt;3' terminal RNA ribose 2'-O-methyltransferase Hen1&lt;br&gt;Location: 2876539 - 2875076&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06021&lt;/b&gt;&lt;br&gt;Percentage identity: 87&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 835&lt;br&gt;E-value: 4.05e-305" locus_tag="BFF78_RS11575" class="clusterblast-orf" id="dummy-23_h23_8_0"  />
+</g>
+<g id="a23_001"  >
+<polygon points="103,90 280,90 285,85 280,80 103,80 103,90 " style="fill:#77d815; stroke-width:1; stroke:black; " description="&lt;b&gt;BFF78_RS11570&lt;/b&gt;&lt;br&gt;polynucleotide kinase-phosphatase&lt;br&gt;Location: 2875079 - 2872497&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06022&lt;/b&gt;&lt;br&gt;Percentage identity: 92&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 1572&lt;br&gt;E-value: 0.0" locus_tag="BFF78_RS11570" class="clusterblast-orf" id="dummy-23_h23_8_1"  />
+</g>
+<g id="a23_002"  >
+<polygon points="300,90 425,90 430,85 425,80 300,80 300,90 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;BFF78_RS11565&lt;/b&gt;&lt;br&gt;RiPP maturation radical SAM protein 1&lt;br&gt;Location: 2872294 - 2870447&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06023&lt;/b&gt;&lt;br&gt;Percentage identity: 88&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 1130&lt;br&gt;E-value: 0.0" locus_tag="BFF78_RS11565" class="clusterblast-orf" id="dummy-23_h23_8_2"  />
+</g>
+<g id="a23_003"  >
+<polygon points="430,90 463,90 468,85 463,80 430,80 430,90 " style="fill:#7715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;BFF78_RS11560&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 2870450 - 2869920&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06024&lt;/b&gt;&lt;br&gt;Percentage identity: 72&lt;br&gt;Percentage coverage: 96&lt;br&gt;BLAST bit score: 248&lt;br&gt;E-value: 3.16e-83" locus_tag="BFF78_RS11560" class="clusterblast-orf" id="dummy-23_h23_8_3"  />
+</g>
+<g id="a23_004"  >
+<polygon points="474,90 555,90 560,85 555,80 474,80 474,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BFF78_RS11555&lt;/b&gt;&lt;br&gt;arginine deiminase&lt;br&gt;Location: 2869830 - 2868607" locus_tag="BFF78_RS11555" class="clusterblast-orf" id="dummy-23_h23_8_4"  />
+</g>
+<g id="a23_005"  >
+<polygon points="567,90 635,90 640,85 635,80 567,80 567,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BFF78_RS11550&lt;/b&gt;&lt;br&gt;ornithine carbamoyltransferase&lt;br&gt;Location: 2868509 - 2867481" locus_tag="BFF78_RS11550" class="clusterblast-orf" id="dummy-23_h23_8_5"  />
+</g>
+<g id="a23_006"  >
+<polygon points="648,90 745,90 750,85 745,80 648,80 648,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BFF78_RS11545&lt;/b&gt;&lt;br&gt;amino acid permease&lt;br&gt;Location: 2867370 - 2865922" locus_tag="BFF78_RS11545" class="clusterblast-orf" id="dummy-23_h23_8_6"  />
+</g>
+<g id="a23_007"  >
+<polygon points="747,85 752,80 780,80 780,90 752,90 747,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BFF78_RS11540&lt;/b&gt;&lt;br&gt;ATP-binding protein&lt;br&gt;Location: 2865965 - 2865510" locus_tag="BFF78_RS11540" class="clusterblast-orf" id="dummy-23_h23_8_7"  />
+</g>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="16,35 21,30 56,30 56,40 21,40 16,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01150&lt;/b&gt;&lt;br&gt;two-component regulator&lt;br&gt;Location: 1403914 - 1404556" locus_tag="LLPMBPKK_01150" class="clusterblast-orf" id="dummy-8_q0_0_all"  />
+<polygon points="66,35 71,30 118,30 118,40 71,40 66,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01151&lt;/b&gt;&lt;br&gt;response regulator transcription factor&lt;br&gt;Location: 1404722 - 1405544" locus_tag="LLPMBPKK_01151" class="clusterblast-orf" id="dummy-8_q1_0_all"  />
+<polygon points="128,35 133,30 222,30 222,40 133,40 128,35 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01152&lt;/b&gt;&lt;br&gt;HAMP domain-containing protein&lt;br&gt;Location: 1405698 - 1407189" locus_tag="LLPMBPKK_01152" class="clusterblast-orf" id="dummy-8_q2_0_all"  />
+<polygon points="221,35 226,30 269,30 269,40 226,40 221,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01153&lt;/b&gt;&lt;br&gt;response regulator transcription factor&lt;br&gt;Location: 1407185 - 1407944" locus_tag="LLPMBPKK_01153" class="clusterblast-orf" id="dummy-8_q3_0_all"  />
+<polygon points="300,40 395,40 400,35 395,30 300,30 300,40 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01154&lt;/b&gt;&lt;br&gt;IucA/IucC family siderophore biosynthesisprotein&lt;br&gt;Location: 1408441 - 1410028" locus_tag="LLPMBPKK_01154" class="clusterblast-orf" id="dummy-8_q4_0_all"  />
+<polygon points="405,40 506,40 511,35 506,30 405,30 405,40 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01155&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 1410100 - 1411795" locus_tag="LLPMBPKK_01155" class="clusterblast-orf" id="dummy-8_q5_0_all"  />
+<polygon points="587,40 672,40 677,35 672,30 587,30 587,40 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01157&lt;/b&gt;&lt;br&gt;MFS transporter&lt;br&gt;Location: 1412994 - 1414431" locus_tag="LLPMBPKK_01157" class="clusterblast-orf" id="dummy-8_q6_0_all"  />
+<polygon points="691,35 696,30 765,30 765,40 696,40 691,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01158&lt;/b&gt;&lt;br&gt;LLM class flavin-dependent oxidoreductase&lt;br&gt;Location: 1414648 - 1415818" locus_tag="LLPMBPKK_01158" class="clusterblast-orf" id="dummy-8_q7_0_all"  />
+</g>
+<g label="NZ_LT907981" description="NZ_LT907981 (1589204-1601602): Streptomyces sp. 2323.1 chromosome I (54% of genes show similarity), siderophore" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_LT907981&amp;start=1589204&amp;end=1601602" target="_blank">NZ_LT907981 (1589204-1601602)</a>: Streptomyces sp. 2323.1 chromosome I (54% of genes show similarity), siderophore</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a8_000"  >
+<polygon points="0,90 47,90 52,85 47,80 0,80 0,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS06250&lt;/b&gt;&lt;br&gt;(2Fe-2S)-binding protein&lt;br&gt;Location: 1589205 - 1590044" locus_tag="CPH93_RS06250" class="clusterblast-orf" id="dummy-8_h8_1_0"  />
+</g>
+<g id="a8_001"  >
+<polygon points="58,85 63,80 105,80 105,90 63,90 58,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS06255&lt;/b&gt;&lt;br&gt;response regulator transcription factor&lt;br&gt;Location: 1590141 - 1590875&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01150&lt;/b&gt;&lt;br&gt;Percentage identity: 35&lt;br&gt;Percentage coverage: 111&lt;br&gt;BLAST bit score: 113&lt;br&gt;E-value: 5.69e-29&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01151&lt;/b&gt;&lt;br&gt;Percentage identity: 88&lt;br&gt;Percentage coverage: 90&lt;br&gt;BLAST bit score: 429&lt;br&gt;E-value: 2.58e-152&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01153&lt;/b&gt;&lt;br&gt;Percentage identity: 65&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 313&lt;br&gt;E-value: 1.05e-106" locus_tag="CPH93_RS06255" class="clusterblast-orf" id="dummy-8_h8_1_1"  />
+</g>
+<g id="a8_002"  >
+<polygon points="122,85 127,80 216,80 216,90 127,90 122,85 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS06260&lt;/b&gt;&lt;br&gt;HAMP domain-containing histidine kinase&lt;br&gt;Location: 1591152 - 1592642&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01152&lt;/b&gt;&lt;br&gt;Percentage identity: 86&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 809&lt;br&gt;E-value: 1.84e-294" locus_tag="CPH93_RS06260" class="clusterblast-orf" id="dummy-8_h8_1_2"  />
+</g>
+<g id="a8_003"  >
+<polygon points="216,85 221,80 263,80 263,90 221,90 216,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS06265&lt;/b&gt;&lt;br&gt;response regulator transcription factor&lt;br&gt;Location: 1592639 - 1593397&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01150&lt;/b&gt;&lt;br&gt;Percentage identity: 37&lt;br&gt;Percentage coverage: 110&lt;br&gt;BLAST bit score: 109&lt;br&gt;E-value: 2.04e-27&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01151&lt;/b&gt;&lt;br&gt;Percentage identity: 63&lt;br&gt;Percentage coverage: 90&lt;br&gt;BLAST bit score: 306&lt;br&gt;E-value: 1.18e-103&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01153&lt;/b&gt;&lt;br&gt;Percentage identity: 86&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 421&lt;br&gt;E-value: 3.36e-149" locus_tag="CPH93_RS06265" class="clusterblast-orf" id="dummy-8_h8_1_3"  />
+</g>
+<g id="a8_004"  >
+<polygon points="295,90 390,90 395,85 390,80 295,80 295,90 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS06270&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 1593898 - 1595484&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01154&lt;/b&gt;&lt;br&gt;Percentage identity: 89&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 929&lt;br&gt;E-value: 0.0" locus_tag="CPH93_RS06270" class="clusterblast-orf" id="dummy-8_h8_1_4"  />
+</g>
+<g id="a8_005"  >
+<polygon points="399,90 501,90 506,85 501,80 399,80 399,90 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS06275&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 1595557 - 1597251&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01155&lt;/b&gt;&lt;br&gt;Percentage identity: 88&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 1018&lt;br&gt;E-value: 0.0" locus_tag="CPH93_RS06275" class="clusterblast-orf" id="dummy-8_h8_1_5"  />
+</g>
+<g id="a8_006"  >
+<polygon points="506,90 576,90 581,85 576,80 506,80 506,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS06280&lt;/b&gt;&lt;br&gt;type III PLP-dependent enzyme&lt;br&gt;Location: 1597248 - 1598444" locus_tag="CPH93_RS06280" class="clusterblast-orf" id="dummy-8_h8_1_6"  />
+</g>
+<g id="a8_007"  >
+<polygon points="581,90 667,90 672,85 667,80 581,80 581,90 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS06285&lt;/b&gt;&lt;br&gt;MFS transporter&lt;br&gt;Location: 1598451 - 1599887&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01157&lt;/b&gt;&lt;br&gt;Percentage identity: 88&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 764&lt;br&gt;E-value: 2.12e-277" locus_tag="CPH93_RS06285" class="clusterblast-orf" id="dummy-8_h8_1_7"  />
+</g>
+<g id="a8_008"  >
+<polygon points="677,90 682,90 687,85 682,80 677,80 677,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS35690&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 1599978 - 1600124" locus_tag="CPH93_RS35690" class="clusterblast-orf" id="dummy-8_h8_1_8"  />
+</g>
+<g id="a8_009"  >
+<polygon points="687,85 692,80 746,80 746,90 692,90 687,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS06290&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 1600138 - 1601070" locus_tag="CPH93_RS06290" class="clusterblast-orf" id="dummy-8_h8_1_9"  />
+</g>
+<g id="a8_0010"  >
+<polygon points="747,85 752,80 780,80 780,90 752,90 747,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CPH93_RS06295&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 1601090 - 1601602" locus_tag="CPH93_RS06295" class="clusterblast-orf" id="dummy-8_h8_1_10"  />
+</g>
+</svg>

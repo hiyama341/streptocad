@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="107,40 147,40 152,35 147,30 107,30 107,40 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03166&lt;/b&gt;&lt;br&gt;siderophore-interacting protein&lt;br&gt;Location: 3676866 - 3677721" locus_tag="LLPMBPKK_03166" class="clusterblast-orf" id="dummy-16_q0_0_all"  />
+<polygon points="159,40 232,40 237,35 232,30 159,30 159,40 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03167&lt;/b&gt;&lt;br&gt;lysine decarboxylase DesA&lt;br&gt;Location: 3677843 - 3679310" locus_tag="LLPMBPKK_03167" class="clusterblast-orf" id="dummy-16_q1_0_all"  />
+<polygon points="236,40 299,40 304,35 299,30 236,30 236,40 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03168&lt;/b&gt;&lt;br&gt;alcaligin biosynthesis protein&lt;br&gt;Location: 3679293 - 3680571" locus_tag="LLPMBPKK_03168" class="clusterblast-orf" id="dummy-16_q2_0_all"  />
+<polygon points="304,40 327,40 332,35 327,30 304,30 304,40 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03169&lt;/b&gt;&lt;br&gt;N-acetyltransferase&lt;br&gt;Location: 3680567 - 3681095" locus_tag="LLPMBPKK_03169" class="clusterblast-orf" id="dummy-16_q3_0_all"  />
+<polygon points="332,40 421,40 426,35 421,30 332,30 332,40 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03170&lt;/b&gt;&lt;br&gt;desferrioxamine E synthetase monomer&lt;br&gt;Location: 3681091 - 3682864" locus_tag="LLPMBPKK_03170" class="clusterblast-orf" id="dummy-16_q4_0_all"  />
+<polygon points="429,35 434,30 515,30 515,40 434,40 429,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03171&lt;/b&gt;&lt;br&gt;beta-N-acetylhexosaminidase&lt;br&gt;Location: 3682928 - 3684527" locus_tag="LLPMBPKK_03171" class="clusterblast-orf" id="dummy-16_q5_0_all"  />
+<polygon points="520,40 561,40 566,35 561,30 520,30 520,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03172&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 3684625 - 3685498" locus_tag="LLPMBPKK_03172" class="clusterblast-orf" id="dummy-16_q6_0_all"  />
+<polygon points="567,35 572,30 651,30 651,40 572,40 567,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03173&lt;/b&gt;&lt;br&gt;metallophosphoesterase family protein&lt;br&gt;Location: 3685520 - 3687086" locus_tag="LLPMBPKK_03173" class="clusterblast-orf" id="dummy-16_q7_0_all"  />
+<polygon points="659,40 668,40 673,35 668,30 659,30 659,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03174&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 3687251 - 3687509" locus_tag="LLPMBPKK_03174" class="clusterblast-orf" id="dummy-16_q8_0_all"  />
+</g>
+<g label="BGC0001870" description="BGC0001870_c1: putrebactin/avaroferrin (40% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0001870/1" target="_blank">BGC0001870</a>:                                                          putrebactin/avaroferrin (40% of genes show similarity), Other</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a16_000"  >
+<polygon points="0,90 91,90 96,85 91,80 0,80 0,90 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;Xbud_00361&lt;/b&gt;&lt;br&gt;desferrioxamine siderophore biosynthesis protein dfoC&lt;br&gt;Location: 1 - 1812&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03170&lt;/b&gt;&lt;br&gt;Percentage identity: 46&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 548&lt;br&gt;E-value: 2.43e-190" locus_tag="Xbud_00361" class="clusterblast-orf" id="dummy-16_h16_7_0"  />
+</g>
+<g id="a16_001"  >
+<polygon points="100,90 213,90 218,85 213,80 100,80 100,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;Xbud_00362&lt;/b&gt;&lt;br&gt;ferric alcaligin siderophore receptor&lt;br&gt;Location: 1895 - 4108" locus_tag="Xbud_00362" class="clusterblast-orf" id="dummy-16_h16_7_1"  />
+</g>
+<g id="a16_002"  >
+<polygon points="222,90 273,90 278,85 273,80 222,80 222,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;Xbud_00363&lt;/b&gt;&lt;br&gt;putative lipoprotein&lt;br&gt;Location: 4176 - 5234" locus_tag="Xbud_00363" class="clusterblast-orf" id="dummy-16_h16_7_2"  />
+</g>
+<g id="a16_003"  >
+<polygon points="277,90 326,90 331,85 326,80 277,80 277,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;Xbud_00364&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 5221 - 6231" locus_tag="Xbud_00364" class="clusterblast-orf" id="dummy-16_h16_7_3"  />
+</g>
+<g id="a16_004"  >
+<polygon points="331,90 382,90 387,85 382,80 331,80 331,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;Xbud_00365&lt;/b&gt;&lt;br&gt;putative ferrichrome ABC transporter permease&lt;br&gt;Location: 6236 - 7288" locus_tag="Xbud_00365" class="clusterblast-orf" id="dummy-16_h16_7_4"  />
+</g>
+<g id="a16_005"  >
+<polygon points="387,90 426,90 431,85 426,80 387,80 387,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;Xbud_00366&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7288 - 8103" locus_tag="Xbud_00366" class="clusterblast-orf" id="dummy-16_h16_7_5"  />
+</g>
+<g id="a16_006"  >
+<polygon points="431,90 467,90 472,85 467,80 431,80 431,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;Xbud_00367&lt;/b&gt;&lt;br&gt;putative iron transport-related membrane protein&lt;br&gt;Location: 8105 - 8872" locus_tag="Xbud_00367" class="clusterblast-orf" id="dummy-16_h16_7_6"  />
+</g>
+<g id="a16_007"  >
+<polygon points="494,90 575,90 580,85 575,80 494,80 494,90 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;Xbud_00368&lt;/b&gt;&lt;br&gt;putative decarboxylase involved in desferrioxamine biosynthesis&lt;br&gt;Location: 9291 - 10907&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03167&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 508&lt;br&gt;E-value: 5.37e-177" locus_tag="Xbud_00368" class="clusterblast-orf" id="dummy-16_h16_7_7"  />
+</g>
+<g id="a16_008"  >
+<polygon points="581,90 647,90 652,85 647,80 581,80 581,90 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;Xbud_00369&lt;/b&gt;&lt;br&gt;L-lysine 6-monooxygenase involved in desferrioxamine biosynthesis&lt;br&gt;Location: 10934 - 12253&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03168&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 102&lt;br&gt;BLAST bit score: 463&lt;br&gt;E-value: 9.78e-162" locus_tag="Xbud_00369" class="clusterblast-orf" id="dummy-16_h16_7_8"  />
+</g>
+<g id="a16_009"  >
+<polygon points="652,90 775,90 780,85 775,80 652,80 652,90 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;Xbud_00370&lt;/b&gt;&lt;br&gt;desferrioxamine siderophore biosynthesis protein dfoC&lt;br&gt;Location: 12253 - 14658&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03170&lt;/b&gt;&lt;br&gt;Percentage identity: 47&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 572&lt;br&gt;E-value: 6.42e-197" locus_tag="Xbud_00370" class="clusterblast-orf" id="dummy-16_h16_7_9"  />
+</g>
+</svg>

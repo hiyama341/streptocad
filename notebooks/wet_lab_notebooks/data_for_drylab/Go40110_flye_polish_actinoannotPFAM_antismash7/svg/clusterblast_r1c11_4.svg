@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="27,35 32,30 95,30 95,40 32,40 27,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_02136&lt;/b&gt;&lt;br&gt;transporter substrate-binding domain-containingprotein&lt;br&gt;Location: 2469208 - 2470057" locus_tag="LLPMBPKK_02136" class="clusterblast-orf" id="dummy-11_q0_0_all"  />
+<polygon points="107,40 190,40 195,35 190,30 107,30 107,40 " style="fill:#3cd815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_02137&lt;/b&gt;&lt;br&gt;alanine--glyoxylate aminotransferase familyprotein&lt;br&gt;Location: 2470207 - 2471308" locus_tag="LLPMBPKK_02137" class="clusterblast-orf" id="dummy-11_q1_0_all"  />
+<polygon points="220,40 257,40 262,35 257,30 220,30 220,40 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_02138&lt;/b&gt;&lt;br&gt;diaminobutyrate acetyltransferase&lt;br&gt;Location: 2471624 - 2472143" locus_tag="LLPMBPKK_02138" class="clusterblast-orf" id="dummy-11_q2_0_all"  />
+<polygon points="263,40 359,40 364,35 359,30 263,30 263,40 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_02139&lt;/b&gt;&lt;br&gt;diaminobutyrate--2-oxoglutarate transaminase&lt;br&gt;Location: 2472156 - 2473428" locus_tag="LLPMBPKK_02139" class="clusterblast-orf" id="dummy-11_q3_0_all"  />
+<polygon points="366,40 393,40 398,35 393,30 366,30 366,40 " style="fill:#d88a15; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_02140&lt;/b&gt;&lt;br&gt;ectoine synthase&lt;br&gt;Location: 2473451 - 2473856" locus_tag="LLPMBPKK_02140" class="clusterblast-orf" id="dummy-11_q4_0_all"  />
+<polygon points="399,40 465,40 470,35 465,30 399,30 399,40 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_02141&lt;/b&gt;&lt;br&gt;ectoine hydroxylase&lt;br&gt;Location: 2473861 - 2474755" locus_tag="LLPMBPKK_02141" class="clusterblast-orf" id="dummy-11_q5_0_all"  />
+<polygon points="478,35 483,30 563,30 563,40 483,40 478,35 " style="fill:#3c15d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_02142&lt;/b&gt;&lt;br&gt;aminotransferase class V-fold PLP-dependentenzyme&lt;br&gt;Location: 2474859 - 2475921" locus_tag="LLPMBPKK_02142" class="clusterblast-orf" id="dummy-11_q6_0_all"  />
+<polygon points="571,35 576,30 629,30 629,40 576,40 571,35 " style="fill:#d8158a; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_02143&lt;/b&gt;&lt;br&gt;DsbA family oxidoreductase&lt;br&gt;Location: 2476018 - 2476744" locus_tag="LLPMBPKK_02143" class="clusterblast-orf" id="dummy-11_q7_0_all"  />
+<polygon points="635,35 640,30 675,30 675,40 640,40 635,35 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_02144&lt;/b&gt;&lt;br&gt;GNAT family N-acetyltransferase&lt;br&gt;Location: 2476819 - 2477326" locus_tag="LLPMBPKK_02144" class="clusterblast-orf" id="dummy-11_q8_0_all"  />
+<polygon points="675,35 680,30 753,30 753,40 680,40 675,35 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_02145&lt;/b&gt;&lt;br&gt;helix-turn-helix domain-containing protein&lt;br&gt;Location: 2477322 - 2478300" locus_tag="LLPMBPKK_02145" class="clusterblast-orf" id="dummy-11_q9_0_all"  />
+</g>
+<g label="NZ_WEGL01000001" description="NZ_WEGL01000001 (1426876-1437281): Streptomyces sp. RB17 SRB17 1, whole genom... (90% of genes show similarity), ectoine" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_WEGL01000001&amp;start=1426876&amp;end=1437281" target="_blank">NZ_WEGL01000001 (1426876-1437281)</a>: Streptomyces sp. RB17 SRB17 1, whole genom... (90% of genes show similarity), ectoine</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a11_000"  >
+<polygon points="0,85 5,80 67,80 67,90 5,90 0,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06600&lt;/b&gt;&lt;br&gt;transporter substrate-binding domain-containing protein&lt;br&gt;Location: 1437165 - 1436314&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_02136&lt;/b&gt;&lt;br&gt;Percentage identity: 91&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 499&lt;br&gt;E-value: 2.84e-179" locus_tag="SRB17_RS06600" class="clusterblast-orf" id="dummy-11_h11_4_0"  />
+</g>
+<g id="a11_001"  >
+<polygon points="81,90 158,90 163,85 158,80 81,80 81,90 " style="fill:#3cd815; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06595&lt;/b&gt;&lt;br&gt;aminotransferase class V-fold PLP-dependent enzyme&lt;br&gt;Location: 1436143 - 1435121&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_02137&lt;/b&gt;&lt;br&gt;Percentage identity: 90&lt;br&gt;Percentage coverage: 92&lt;br&gt;BLAST bit score: 587&lt;br&gt;E-value: 2.42e-211" locus_tag="SRB17_RS06595" class="clusterblast-orf" id="dummy-11_h11_4_1"  />
+</g>
+<g id="a11_002"  >
+<polygon points="173,90 213,90 218,85 213,80 173,80 173,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06590&lt;/b&gt;&lt;br&gt;DUF664 domain-containing protein&lt;br&gt;Location: 1434988 - 1434431" locus_tag="SRB17_RS06590" class="clusterblast-orf" id="dummy-11_h11_4_2"  />
+</g>
+<g id="a11_003"  >
+<polygon points="239,90 276,90 281,85 276,80 239,80 239,90 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06585&lt;/b&gt;&lt;br&gt;diaminobutyrate acetyltransferase&lt;br&gt;Location: 1434168 - 1433641&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_02138&lt;/b&gt;&lt;br&gt;Percentage identity: 85&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 299&lt;br&gt;E-value: 1.8e-103" locus_tag="SRB17_RS06585" class="clusterblast-orf" id="dummy-11_h11_4_3"  />
+</g>
+<g id="a11_004"  >
+<polygon points="279,90 378,90 383,85 378,80 279,80 279,90 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06580&lt;/b&gt;&lt;br&gt;diaminobutyrate--2-oxoglutarate transaminase&lt;br&gt;Location: 1433666 - 1432356&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_02139&lt;/b&gt;&lt;br&gt;Percentage identity: 95&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 819&lt;br&gt;E-value: 1.15e-300" locus_tag="SRB17_RS06580" class="clusterblast-orf" id="dummy-11_h11_4_4"  />
+</g>
+<g id="a11_005"  >
+<polygon points="389,90 417,90 422,85 417,80 389,80 389,90 " style="fill:#d88a15; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06575&lt;/b&gt;&lt;br&gt;L-ectoine synthase&lt;br&gt;Location: 1432281 - 1431877&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_02140&lt;/b&gt;&lt;br&gt;Percentage identity: 96&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 276&lt;br&gt;E-value: 1.32e-95" locus_tag="SRB17_RS06575" class="clusterblast-orf" id="dummy-11_h11_4_5"  />
+</g>
+<g id="a11_006"  >
+<polygon points="422,90 488,90 493,85 488,80 422,80 422,90 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06570&lt;/b&gt;&lt;br&gt;ectoine hydroxylase&lt;br&gt;Location: 1431870 - 1430977&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_02141&lt;/b&gt;&lt;br&gt;Percentage identity: 93&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 568&lt;br&gt;E-value: 9.18e-206" locus_tag="SRB17_RS06570" class="clusterblast-orf" id="dummy-11_h11_4_6"  />
+</g>
+<g id="a11_007"  >
+<polygon points="505,85 510,80 590,80 590,90 510,90 505,85 " style="fill:#3c15d8; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06565&lt;/b&gt;&lt;br&gt;aminotransferase class V-fold PLP-dependent enzyme&lt;br&gt;Location: 1430832 - 1429771&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_02142&lt;/b&gt;&lt;br&gt;Percentage identity: 88&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 609&lt;br&gt;E-value: 3.42e-220" locus_tag="SRB17_RS06565" class="clusterblast-orf" id="dummy-11_h11_4_7"  />
+</g>
+<g id="a11_008"  >
+<polygon points="597,85 602,80 655,80 655,90 602,90 597,85 " style="fill:#d8158a; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06560&lt;/b&gt;&lt;br&gt;thioredoxin domain-containing protein&lt;br&gt;Location: 1429673 - 1428948&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_02143&lt;/b&gt;&lt;br&gt;Percentage identity: 93&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 453&lt;br&gt;E-value: 3.26e-162" locus_tag="SRB17_RS06560" class="clusterblast-orf" id="dummy-11_h11_4_8"  />
+</g>
+<g id="a11_009"  >
+<polygon points="661,85 666,80 702,80 702,90 666,90 661,85 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06555&lt;/b&gt;&lt;br&gt;GNAT family N-acetyltransferase&lt;br&gt;Location: 1428872 - 1428369&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_02144&lt;/b&gt;&lt;br&gt;Percentage identity: 76&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 274&lt;br&gt;E-value: 9.39e-94" locus_tag="SRB17_RS06555" class="clusterblast-orf" id="dummy-11_h11_4_9"  />
+</g>
+<g id="a11_0010"  >
+<polygon points="701,85 706,80 780,80 780,90 706,90 701,85 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;SRB17_RS06550&lt;/b&gt;&lt;br&gt;helix-turn-helix domain-containing protein&lt;br&gt;Location: 1428372 - 1427392&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_02145&lt;/b&gt;&lt;br&gt;Percentage identity: 82&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 538&lt;br&gt;E-value: 3.12e-193" locus_tag="SRB17_RS06550" class="clusterblast-orf" id="dummy-11_h11_4_10"  />
+</g>
+</svg>

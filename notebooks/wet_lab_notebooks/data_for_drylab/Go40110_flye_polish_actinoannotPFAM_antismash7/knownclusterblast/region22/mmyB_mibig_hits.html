@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>CAC36754.1</td>
+              <td>putative_DNA-binding_protein,_MmyB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000914/1">BGC0000914</a></td>
+              <td>Other</td>
+              <td>37.0</td>
+              <td>93.0</td>
+              <td>152.0</td>
+              <td>4.18e-44</td>
+          </tr>
+    
+          <tr>
+              <td>CAG44631.1</td>
+              <td>SriL03.10c</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000712/1">BGC0000712</a></td>
+              <td>Saccharide</td>
+              <td>33.0</td>
+              <td>96.9</td>
+              <td>119.0</td>
+              <td>2.12e-31</td>
+          </tr>
+    
+          <tr>
+              <td>QIE07142.1</td>
+              <td>Ovm2</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001719/1">BGC0001719</a></td>
+              <td>Polyketide</td>
+              <td>35.0</td>
+              <td>91.6</td>
+              <td>118.0</td>
+              <td>5.18e-31</td>
+          </tr>
+    
+          <tr>
+              <td>CCH32739.1</td>
+              <td>Transcriptional_regulator,_XRE_family</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002070/1">BGC0002070</a></td>
+              <td>Polyketide</td>
+              <td>30.0</td>
+              <td>98.6</td>
+              <td>107.0</td>
+              <td>3.72e-27</td>
+          </tr>
+    
+          <tr>
+              <td>ARO49585.1</td>
+              <td>XRE_family_transcription_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001441/1">BGC0001441</a></td>
+              <td>Other</td>
+              <td>33.0</td>
+              <td>81.2</td>
+              <td>100.0</td>
+              <td>1.22e-24</td>
+          </tr>
+    
+          <tr>
+              <td>WP_033322849.1</td>
+              <td>helix-turn-helix_domain-containing_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001364/1">BGC0001364</a></td>
+              <td>RiPP</td>
+              <td>52.0</td>
+              <td>34.5</td>
+              <td>87.0</td>
+              <td>6.19e-21</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

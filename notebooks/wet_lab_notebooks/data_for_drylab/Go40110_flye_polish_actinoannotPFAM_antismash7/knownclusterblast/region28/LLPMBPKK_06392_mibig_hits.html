@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>ABD65942.1</td>
+              <td>StrR-like_regulatory_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000341/1">BGC0000341</a></td>
+              <td>NRP</td>
+              <td>53.0</td>
+              <td>86.0</td>
+              <td>285.0</td>
+              <td>4.14e-94</td>
+          </tr>
+    
+          <tr>
+              <td>AJI44174.1</td>
+              <td>streptomycin_biosynthesis_operon_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001193/1">BGC0001193</a></td>
+              <td>NRP</td>
+              <td>51.0</td>
+              <td>86.0</td>
+              <td>261.0</td>
+              <td>7.27e-85</td>
+          </tr>
+    
+          <tr>
+              <td>AAM80553.1</td>
+              <td>StaQ</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000290/1">BGC0000290</a></td>
+              <td>NRP:Glycopeptide</td>
+              <td>46.0</td>
+              <td>88.7</td>
+              <td>243.0</td>
+              <td>8.61e-78</td>
+          </tr>
+    
+          <tr>
+              <td>AAK81822.1</td>
+              <td>transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000326/1">BGC0000326</a></td>
+              <td>NRP</td>
+              <td>49.0</td>
+              <td>86.6</td>
+              <td>243.0</td>
+              <td>1.35e-77</td>
+          </tr>
+    
+          <tr>
+              <td>ASX95224.1</td>
+              <td>IlaB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001620/1">BGC0001620</a></td>
+              <td>NRP+Polyketide</td>
+              <td>49.0</td>
+              <td>87.6</td>
+              <td>242.0</td>
+              <td>4.42e-77</td>
+          </tr>
+    
+          <tr>
+              <td>AEP40926.1</td>
+              <td>operon_transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000021/1">BGC0000021</a></td>
+              <td>Polyketide</td>
+              <td>49.0</td>
+              <td>87.9</td>
+              <td>239.0</td>
+              <td>5.34e-76</td>
+          </tr>
+    
+          <tr>
+              <td>ALJ99870.1</td>
+              <td>FlsR2</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001904/1">BGC0001904</a></td>
+              <td>Polyketide</td>
+              <td>48.0</td>
+              <td>85.8</td>
+              <td>236.0</td>
+              <td>5.47e-75</td>
+          </tr>
+    
+          <tr>
+              <td>AEE65485.1</td>
+              <td>streptomycin_biosynthesis_operon_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000223/1">BGC0000223</a></td>
+              <td>Polyketide:Type II polyketide</td>
+              <td>46.0</td>
+              <td>89.0</td>
+              <td>234.0</td>
+              <td>3.12e-74</td>
+          </tr>
+    
+          <tr>
+              <td>BAG22760.1</td>
+              <td>streptomycin_biosynthesis_operon_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000724/1">BGC0000724</a></td>
+              <td>Saccharide</td>
+              <td>45.0</td>
+              <td>87.4</td>
+              <td>234.0</td>
+              <td>5.65e-74</td>
+          </tr>
+    
+          <tr>
+              <td>MCC5036781.1</td>
+              <td>ParB_N-terminal_domain-containing_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002638/1">BGC0002638</a></td>
+              <td>NRP</td>
+              <td>46.0</td>
+              <td>87.4</td>
+              <td>233.0</td>
+              <td>6.42e-74</td>
+          </tr>
+    
+          <tr>
+              <td>CAA07385.1</td>
+              <td>StrR</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000690/1">BGC0000690</a></td>
+              <td>Saccharide</td>
+              <td>47.0</td>
+              <td>89.5</td>
+              <td>235.0</td>
+              <td>1.61e-73</td>
+          </tr>
+    
+          <tr>
+              <td>RSO11558.1</td>
+              <td>streptomycin_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002637/1">BGC0002637</a></td>
+              <td>NRP</td>
+              <td>46.0</td>
+              <td>83.6</td>
+              <td>229.0</td>
+              <td>1.09e-72</td>
+          </tr>
+    
+          <tr>
+              <td>ABY65997.1</td>
+              <td>regulatory_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001008/1">BGC0001008</a></td>
+              <td>Polyketide:Iterative type I polyketide+Polyketide:Enediyne type I polyketide</td>
+              <td>47.0</td>
+              <td>87.6</td>
+              <td>227.0</td>
+              <td>1.9e-71</td>
+          </tr>
+    
+          <tr>
+              <td>ALK27899.1</td>
+              <td>putative_transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001233/1">BGC0001233</a></td>
+              <td>NRP</td>
+              <td>45.0</td>
+              <td>89.0</td>
+              <td>226.0</td>
+              <td>3.58e-71</td>
+          </tr>
+    
+          <tr>
+              <td>ACP19349.1</td>
+              <td>SaqI</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000267/1">BGC0000267</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Oligosaccharide</td>
+              <td>43.0</td>
+              <td>87.4</td>
+              <td>227.0</td>
+              <td>6.89e-71</td>
+          </tr>
+    
+          <tr>
+              <td>BAD20753.1</td>
+              <td>transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000702/1">BGC0000702</a></td>
+              <td>Saccharide</td>
+              <td>44.0</td>
+              <td>89.8</td>
+              <td>226.0</td>
+              <td>1.34e-70</td>
+          </tr>
+    
+          <tr>
+              <td>QEU90626.1</td>
+              <td>streptomycin_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000703/1">BGC0000703</a></td>
+              <td>Saccharide</td>
+              <td>44.0</td>
+              <td>89.8</td>
+              <td>226.0</td>
+              <td>1.34e-70</td>
+          </tr>
+    
+          <tr>
+              <td>CAF60529.1</td>
+              <td>putative_transcriptional_regulatory_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000704/1">BGC0000704</a></td>
+              <td>Saccharide</td>
+              <td>44.0</td>
+              <td>89.8</td>
+              <td>226.0</td>
+              <td>1.34e-70</td>
+          </tr>
+    
+          <tr>
+              <td>CAF31583.1</td>
+              <td>putative_regulator_of_gene_expression</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000705/1">BGC0000705</a></td>
+              <td>Saccharide</td>
+              <td>44.0</td>
+              <td>89.8</td>
+              <td>226.0</td>
+              <td>1.34e-70</td>
+          </tr>
+    
+          <tr>
+              <td>AMP46602.1</td>
+              <td>putative_StrR-like_transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001387/1">BGC0001387</a></td>
+              <td>Other</td>
+              <td>45.0</td>
+              <td>92.2</td>
+              <td>223.0</td>
+              <td>8.19e-70</td>
+          </tr>
+    
+          <tr>
+              <td>AAB66654.1</td>
+              <td>SpcR</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000716/1">BGC0000716</a></td>
+              <td>Saccharide</td>
+              <td>47.0</td>
+              <td>85.8</td>
+              <td>222.0</td>
+              <td>9.68e-70</td>
+          </tr>
+    
+          <tr>
+              <td>EWM63064.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000679/1">BGC0000679</a></td>
+              <td>Terpene</td>
+              <td>47.0</td>
+              <td>86.8</td>
+              <td>223.0</td>
+              <td>2.1e-69</td>
+          </tr>
+    
+          <tr>
+              <td>ALU98457.1</td>
+              <td>transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001397/1">BGC0001397</a></td>
+              <td>NRP+Polyketide</td>
+              <td>41.0</td>
+              <td>90.9</td>
+              <td>221.0</td>
+              <td>3.43e-69</td>
+          </tr>
+    
+          <tr>
+              <td>AAL06695.1</td>
+              <td>regulatory_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000965/1">BGC0000965</a></td>
+              <td>Polyketide:Iterative type I polyketide+Polyketide:Enediyne type I polyketide</td>
+              <td>41.0</td>
+              <td>90.9</td>
+              <td>221.0</td>
+              <td>4.43e-69</td>
+          </tr>
+    
+          <tr>
+              <td>ANY94466.1</td>
+              <td>regulatory_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001584/1">BGC0001584</a></td>
+              <td>Polyketide</td>
+              <td>41.0</td>
+              <td>88.7</td>
+              <td>221.0</td>
+              <td>6.25e-69</td>
+          </tr>
+    
+          <tr>
+              <td>AFB35624.1</td>
+              <td>Transcriptional_activation</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000935/1">BGC0000935</a></td>
+              <td>Polyketide+Other:Aminocoumarin</td>
+              <td>43.0</td>
+              <td>90.1</td>
+              <td>218.0</td>
+              <td>1.03e-67</td>
+          </tr>
+    
+          <tr>
+              <td>ABD65944.1</td>
+              <td>unknown</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000341/1">BGC0000341</a></td>
+              <td>NRP</td>
+              <td>46.0</td>
+              <td>82.8</td>
+              <td>214.0</td>
+              <td>5.41e-67</td>
+          </tr>
+    
+          <tr>
+              <td>AAF67500.1</td>
+              <td>regulatory_protein_CloG</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000834/1">BGC0000834</a></td>
+              <td>Saccharide:Hybrid/tailoring saccharide+Other:Aminocoumarin</td>
+              <td>43.0</td>
+              <td>87.1</td>
+              <td>208.0</td>
+              <td>2.3e-64</td>
+          </tr>
+    
+          <tr>
+              <td>CAE53369.1</td>
+              <td>transcriptional_regulator,_StrR_family</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000440/1">BGC0000440</a></td>
+              <td>NRP:Glycopeptide</td>
+              <td>44.0</td>
+              <td>82.3</td>
+              <td>206.0</td>
+              <td>1.24e-63</td>
+          </tr>
+    
+          <tr>
+              <td>CAG15027.1</td>
+              <td>transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000441/1">BGC0000441</a></td>
+              <td>NRP</td>
+              <td>44.0</td>
+              <td>82.3</td>
+              <td>206.0</td>
+              <td>1.24e-63</td>
+          </tr>
+    
+          <tr>
+              <td>ARM20266.1</td>
+              <td>SauR</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002591/1">BGC0002591</a></td>
+              <td>Polyketide+Terpene</td>
+              <td>44.0</td>
+              <td>84.9</td>
+              <td>207.0</td>
+              <td>1.65e-63</td>
+          </tr>
+    
+          <tr>
+              <td>AAN65222.1</td>
+              <td>regulatory_protein_CloG</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000832/1">BGC0000832</a></td>
+              <td>Saccharide:Hybrid/tailoring saccharide+Other:Aminocoumarin</td>
+              <td>42.0</td>
+              <td>86.8</td>
+              <td>206.0</td>
+              <td>1.86e-63</td>
+          </tr>
+    
+          <tr>
+              <td>OLZ52648.1</td>
+              <td>streptomycin_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001462/1">BGC0001462</a></td>
+              <td>NRP:Glycopeptide</td>
+              <td>42.0</td>
+              <td>85.8</td>
+              <td>205.0</td>
+              <td>3.58e-63</td>
+          </tr>
+    
+          <tr>
+              <td>AGS77330.1</td>
+              <td>StrR-like_transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001178/1">BGC0001178</a></td>
+              <td>NRP:Glycopeptide</td>
+              <td>44.0</td>
+              <td>82.5</td>
+              <td>204.0</td>
+              <td>1.37e-62</td>
+          </tr>
+    
+          <tr>
+              <td>AAG29778.1</td>
+              <td>regulatory_protein_CouG</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000833/1">BGC0000833</a></td>
+              <td>Saccharide:Hybrid/tailoring saccharide+Other:Aminocoumarin</td>
+              <td>43.0</td>
+              <td>87.4</td>
+              <td>201.0</td>
+              <td>8.08e-62</td>
+          </tr>
+    
+          <tr>
+              <td>OLZ50883.1</td>
+              <td>streptomycin_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001461/1">BGC0001461</a></td>
+              <td>NRP:Glycopeptide</td>
+              <td>42.0</td>
+              <td>86.8</td>
+              <td>201.0</td>
+              <td>8.56e-62</td>
+          </tr>
+    
+          <tr>
+              <td>QYC40303.1</td>
+              <td>StrR-like_transcriptional_regulator_NocRII</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002344/1">BGC0002344</a></td>
+              <td>NRP</td>
+              <td>41.0</td>
+              <td>84.7</td>
+              <td>201.0</td>
+              <td>1.21e-61</td>
+          </tr>
+    
+          <tr>
+              <td>CAD91199.1</td>
+              <td>putative_regulator_StrR_family</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000289/1">BGC0000289</a></td>
+              <td>NRP:Glycopeptide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>42.0</td>
+              <td>85.2</td>
+              <td>201.0</td>
+              <td>1.7e-61</td>
+          </tr>
+    
+          <tr>
+              <td>CAG25754.1</td>
+              <td>StrR_family_transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000311/1">BGC0000311</a></td>
+              <td>NRP</td>
+              <td>41.0</td>
+              <td>87.6</td>
+              <td>200.0</td>
+              <td>2.39e-61</td>
+          </tr>
+    
+          <tr>
+              <td>OKA09420.1</td>
+              <td>streptomycin_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001459/1">BGC0001459</a></td>
+              <td>NRP:Glycopeptide</td>
+              <td>42.0</td>
+              <td>85.5</td>
+              <td>198.0</td>
+              <td>1.87e-60</td>
+          </tr>
+    
+          <tr>
+              <td>AEI58862.1</td>
+              <td>StrR_family_transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000455/1">BGC0000455</a></td>
+              <td>NRP</td>
+              <td>41.0</td>
+              <td>85.2</td>
+              <td>198.0</td>
+              <td>2.03e-60</td>
+          </tr>
+    
+          <tr>
+              <td>EME52993.1</td>
+              <td>streptomycin_biosynthesis_operon_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001460/1">BGC0001460</a></td>
+              <td>NRP:Glycopeptide</td>
+              <td>41.0</td>
+              <td>84.7</td>
+              <td>196.0</td>
+              <td>8.01e-60</td>
+          </tr>
+    
+          <tr>
+              <td>AFW04588.1</td>
+              <td>transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001783/1">BGC0001783</a></td>
+              <td>Other</td>
+              <td>43.0</td>
+              <td>87.1</td>
+              <td>196.0</td>
+              <td>1.75e-59</td>
+          </tr>
+    
+          <tr>
+              <td>CCA54200.1</td>
+              <td>CmlR</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000893/1">BGC0000893</a></td>
+              <td>NRP</td>
+              <td>41.0</td>
+              <td>86.8</td>
+              <td>195.0</td>
+              <td>5.44e-59</td>
+          </tr>
+    
+          <tr>
+              <td>BBA20948.1</td>
+              <td>LacI-like_regulatory_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001763/1">BGC0001763</a></td>
+              <td>NRP+Polyketide</td>
+              <td>48.0</td>
+              <td>72.8</td>
+              <td>190.0</td>
+              <td>3.71e-58</td>
+          </tr>
+    
+          <tr>
+              <td>WP_159393028.1</td>
+              <td>ParB_N-terminal_domain-containing_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001596/1">BGC0001596</a></td>
+              <td>Polyketide</td>
+              <td>43.0</td>
+              <td>83.9</td>
+              <td>190.0</td>
+              <td>4.03e-57</td>
+          </tr>
+    
+          <tr>
+              <td>AQZ71349.1</td>
+              <td>streptomycin_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001635/1">BGC0001635</a></td>
+              <td>NRP+Polyketide</td>
+              <td>44.0</td>
+              <td>75.0</td>
+              <td>182.0</td>
+              <td>8.44e-55</td>
+          </tr>
+    
+          <tr>
+              <td>AAM78007.1</td>
+              <td>transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000112/1">BGC0000112</a></td>
+              <td>Polyketide:Iterative type I polyketide+Polyketide:Enediyne type I polyketide</td>
+              <td>40.0</td>
+              <td>89.2</td>
+              <td>184.0</td>
+              <td>1.39e-54</td>
+          </tr>
+    
+          <tr>
+              <td>ABW96549.1</td>
+              <td>predicted_transcriptional_regulator_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000159/1">BGC0000159</a></td>
+              <td>Polyketide:Modular type I polyketide</td>
+              <td>43.0</td>
+              <td>81.7</td>
+              <td>183.0</td>
+              <td>2.54e-54</td>
+          </tr>
+    
+          <tr>
+              <td>ABP54638.1</td>
+              <td>ParB_domain_protein_nuclease</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000241/1">BGC0000241</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>39.0</td>
+              <td>90.1</td>
+              <td>179.0</td>
+              <td>1.16e-52</td>
+          </tr>
+    
+          <tr>
+              <td>AIG79246.1</td>
+              <td>StrR-like_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000419/1">BGC0000419</a></td>
+              <td>Saccharide+NRP:Glycopeptide</td>
+              <td>41.0</td>
+              <td>77.7</td>
+              <td>174.0</td>
+              <td>8.81e-52</td>
+          </tr>
+    
+          <tr>
+              <td>ARD70863.1</td>
+              <td>Nuclease</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001693/1">BGC0001693</a></td>
+              <td>Polyketide</td>
+              <td>38.0</td>
+              <td>87.6</td>
+              <td>176.0</td>
+              <td>1.12e-51</td>
+          </tr>
+    
+          <tr>
+              <td>AIE77054.1</td>
+              <td>StrR_family_transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000418/1">BGC0000418</a></td>
+              <td>NRP</td>
+              <td>42.0</td>
+              <td>76.9</td>
+              <td>173.0</td>
+              <td>1.65e-51</td>
+          </tr>
+    
+          <tr>
+              <td>AHZ61849.1</td>
+              <td>nuclease,_transcriptional_regulation</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000240/1">BGC0000240</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>36.0</td>
+              <td>90.9</td>
+              <td>173.0</td>
+              <td>2.61e-50</td>
+          </tr>
+    
+          <tr>
+              <td>AJO72769.1</td>
+              <td>Transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001381/1">BGC0001381</a></td>
+              <td>Polyketide</td>
+              <td>37.0</td>
+              <td>86.0</td>
+              <td>169.0</td>
+              <td>9.33e-50</td>
+          </tr>
+    
+          <tr>
+              <td>QER91000.1</td>
+              <td>pyfL</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001985/1">BGC0001985</a></td>
+              <td>Other</td>
+              <td>37.0</td>
+              <td>86.3</td>
+              <td>163.0</td>
+              <td>7.22e-48</td>
+          </tr>
+    
+          <tr>
+              <td>AVW82900.1</td>
+              <td>transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002039/1">BGC0002039</a></td>
+              <td>Other</td>
+              <td>37.0</td>
+              <td>87.1</td>
+              <td>149.0</td>
+              <td>4.98e-42</td>
+          </tr>
+    
+          <tr>
+              <td>AYA22339.1</td>
+              <td>AjrR</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001955/1">BGC0001955</a></td>
+              <td>NRP</td>
+              <td>39.0</td>
+              <td>68.5</td>
+              <td>133.0</td>
+              <td>9.29e-37</td>
+          </tr>
+    
+          <tr>
+              <td>ALA99206.1</td>
+              <td>CreG</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001295/1">BGC0001295</a></td>
+              <td>Other</td>
+              <td>47.0</td>
+              <td>45.4</td>
+              <td>127.0</td>
+              <td>4.73e-34</td>
+          </tr>
+    
+          <tr>
+              <td>AFW04568.1</td>
+              <td>ISXo8_transposase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001783/1">BGC0001783</a></td>
+              <td>Other</td>
+              <td>41.0</td>
+              <td>53.2</td>
+              <td>127.0</td>
+              <td>7.45e-32</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>PVC99869.1</td>
+              <td>indole-3-glycerol_phosphate_synthase_TrpC</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002100/1">BGC0002100</a></td>
+              <td>NRP+Other</td>
+              <td>70.0</td>
+              <td>100.0</td>
+              <td>310.0</td>
+              <td>1.16e-106</td>
+          </tr>
+    
+          <tr>
+              <td>ATU31806.1</td>
+              <td>indole-3-glycerol_phosphate_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001814/1">BGC0001814</a></td>
+              <td>NRP</td>
+              <td>71.0</td>
+              <td>95.4</td>
+              <td>304.0</td>
+              <td>1.92e-104</td>
+          </tr>
+    
+          <tr>
+              <td>AJW76704.1</td>
+              <td>DsaB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001196/1">BGC0001196</a></td>
+              <td>NRP</td>
+              <td>68.0</td>
+              <td>98.5</td>
+              <td>303.0</td>
+              <td>8.9e-104</td>
+          </tr>
+    
+          <tr>
+              <td>QUJ09153.1</td>
+              <td>Lon6</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002440/1">BGC0002440</a></td>
+              <td>NRP</td>
+              <td>66.0</td>
+              <td>98.5</td>
+              <td>282.0</td>
+              <td>8.35e-96</td>
+          </tr>
+    
+          <tr>
+              <td>CAB38582.1</td>
+              <td>putative_indoleglycerol_phosphate_synthase_(trpC2)</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000315/1">BGC0000315</a></td>
+              <td>NRP:Lipopeptide:Ca+-dependent lipopeptide</td>
+              <td>49.0</td>
+              <td>94.6</td>
+              <td>173.0</td>
+              <td>3.85e-53</td>
+          </tr>
+    
+          <tr>
+              <td>APZ79569.1</td>
+              <td>FimI3</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001594/1">BGC0001594</a></td>
+              <td>Alkaloid</td>
+              <td>39.0</td>
+              <td>96.9</td>
+              <td>150.0</td>
+              <td>1.1e-43</td>
+          </tr>
+    
+          <tr>
+              <td>AHB62779.1</td>
+              <td>indole-3-glycerol_phosphate_synthase_(TrpC)</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001126/1">BGC0001126</a></td>
+              <td>Terpene+Alkaloid</td>
+              <td>38.0</td>
+              <td>96.9</td>
+              <td>149.0</td>
+              <td>1.97e-43</td>
+          </tr>
+    
+          <tr>
+              <td>APZ79602.1</td>
+              <td>FilI3</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001501/1">BGC0001501</a></td>
+              <td>Alkaloid</td>
+              <td>38.0</td>
+              <td>96.9</td>
+              <td>149.0</td>
+              <td>1.97e-43</td>
+          </tr>
+    
+          <tr>
+              <td>APB62265.1</td>
+              <td>indole-3-glycerol-phosphate_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001612/1">BGC0001612</a></td>
+              <td>Alkaloid</td>
+              <td>38.0</td>
+              <td>96.9</td>
+              <td>149.0</td>
+              <td>1.97e-43</td>
+          </tr>
+    
+          <tr>
+              <td>APZ79625.1</td>
+              <td>FisI3</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001595/1">BGC0001595</a></td>
+              <td>Alkaloid</td>
+              <td>39.0</td>
+              <td>96.9</td>
+              <td>149.0</td>
+              <td>2.77e-43</td>
+          </tr>
+    
+          <tr>
+              <td>AHI58833.1</td>
+              <td>indole-3-glycerol_phosphate_synthase_(TrpC)</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000668/1">BGC0000668</a></td>
+              <td>Terpene+Alkaloid</td>
+              <td>38.0</td>
+              <td>96.9</td>
+              <td>147.0</td>
+              <td>8.55e-43</td>
+          </tr>
+    
+          <tr>
+              <td>AGN11894.1</td>
+              <td>TrpC_indole-3-glycerol_phosphate_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001114/1">BGC0001114</a></td>
+              <td>NRP+Polyketide</td>
+              <td>41.0</td>
+              <td>93.9</td>
+              <td>146.0</td>
+              <td>1.22e-42</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

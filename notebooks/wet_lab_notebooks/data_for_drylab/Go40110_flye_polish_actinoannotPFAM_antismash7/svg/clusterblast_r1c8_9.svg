@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="9,35 14,30 50,30 50,40 14,40 9,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01150&lt;/b&gt;&lt;br&gt;two-component regulator&lt;br&gt;Location: 1403914 - 1404556" locus_tag="LLPMBPKK_01150" class="clusterblast-orf" id="dummy-8_q0_0_all"  />
+<polygon points="61,35 66,30 114,30 114,40 66,40 61,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01151&lt;/b&gt;&lt;br&gt;response regulator transcription factor&lt;br&gt;Location: 1404722 - 1405544" locus_tag="LLPMBPKK_01151" class="clusterblast-orf" id="dummy-8_q1_0_all"  />
+<polygon points="124,35 129,30 219,30 219,40 129,40 124,35 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01152&lt;/b&gt;&lt;br&gt;HAMP domain-containing protein&lt;br&gt;Location: 1405698 - 1407189" locus_tag="LLPMBPKK_01152" class="clusterblast-orf" id="dummy-8_q2_0_all"  />
+<polygon points="219,35 224,30 267,30 267,40 224,40 219,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01153&lt;/b&gt;&lt;br&gt;response regulator transcription factor&lt;br&gt;Location: 1407185 - 1407944" locus_tag="LLPMBPKK_01153" class="clusterblast-orf" id="dummy-8_q3_0_all"  />
+<polygon points="299,40 395,40 400,35 395,30 299,30 299,40 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01154&lt;/b&gt;&lt;br&gt;IucA/IucC family siderophore biosynthesisprotein&lt;br&gt;Location: 1408441 - 1410028" locus_tag="LLPMBPKK_01154" class="clusterblast-orf" id="dummy-8_q4_0_all"  />
+<polygon points="405,40 508,40 513,35 508,30 405,30 405,40 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01155&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 1410100 - 1411795" locus_tag="LLPMBPKK_01155" class="clusterblast-orf" id="dummy-8_q5_0_all"  />
+<polygon points="590,40 677,40 682,35 677,30 590,30 590,40 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01157&lt;/b&gt;&lt;br&gt;MFS transporter&lt;br&gt;Location: 1412994 - 1414431" locus_tag="LLPMBPKK_01157" class="clusterblast-orf" id="dummy-8_q6_0_all"  />
+<polygon points="696,35 701,30 771,30 771,40 701,40 696,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_01158&lt;/b&gt;&lt;br&gt;LLM class flavin-dependent oxidoreductase&lt;br&gt;Location: 1414648 - 1415818" locus_tag="LLPMBPKK_01158" class="clusterblast-orf" id="dummy-8_q7_0_all"  />
+</g>
+<g label="NZ_MQUS01000032" description="NZ_MQUS01000032 (38508-51853): Streptomyces sp. IMTB 2501 IMTB 2501 contig 31... (45% of genes show similarity), siderophore" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_MQUS01000032&amp;start=38508&amp;end=51853" target="_blank">NZ_MQUS01000032 (38508-51853)</a>: Streptomyces sp. IMTB 2501 IMTB 2501 contig 31... (45% of genes show similarity), siderophore</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a8_000"  >
+<polygon points="0,90 83,90 88,85 83,80 0,80 0,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37840&lt;/b&gt;&lt;br&gt;hydrogenase&lt;br&gt;Location: 38902 - 40291" locus_tag="AV521_RS37840" class="clusterblast-orf" id="dummy-8_h8_9_0"  />
+</g>
+<g id="a8_001"  >
+<polygon points="89,90 119,90 124,85 119,80 89,80 89,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37845&lt;/b&gt;&lt;br&gt;NADH-quinone oxidoreductase subunit C&lt;br&gt;Location: 40296 - 40851" locus_tag="AV521_RS37845" class="clusterblast-orf" id="dummy-8_h8_9_1"  />
+</g>
+<g id="a8_002"  >
+<polygon points="127,85 132,80 223,80 223,90 132,90 127,85 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37850&lt;/b&gt;&lt;br&gt;HAMP domain-containing histidine kinase&lt;br&gt;Location: 40899 - 42401&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01152&lt;/b&gt;&lt;br&gt;Percentage identity: 64&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 545&lt;br&gt;E-value: 2.85e-190" locus_tag="AV521_RS37850" class="clusterblast-orf" id="dummy-8_h8_9_2"  />
+</g>
+<g id="a8_003"  >
+<polygon points="223,85 228,80 271,80 271,90 228,90 223,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37855&lt;/b&gt;&lt;br&gt;response regulator transcription factor&lt;br&gt;Location: 42398 - 43144&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01150&lt;/b&gt;&lt;br&gt;Percentage identity: 37&lt;br&gt;Percentage coverage: 109&lt;br&gt;BLAST bit score: 113&lt;br&gt;E-value: 8.76e-29&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01151&lt;/b&gt;&lt;br&gt;Percentage identity: 65&lt;br&gt;Percentage coverage: 90&lt;br&gt;BLAST bit score: 311&lt;br&gt;E-value: 1.54e-105&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01153&lt;/b&gt;&lt;br&gt;Percentage identity: 75&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 339&lt;br&gt;E-value: 5.51e-117" locus_tag="AV521_RS37855" class="clusterblast-orf" id="dummy-8_h8_9_3"  />
+</g>
+<g id="a8_004"  >
+<polygon points="294,90 391,90 396,85 391,80 294,80 294,90 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37860&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 43509 - 45104&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01154&lt;/b&gt;&lt;br&gt;Percentage identity: 74&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 744&lt;br&gt;E-value: 1.22e-267" locus_tag="AV521_RS37860" class="clusterblast-orf" id="dummy-8_h8_9_4"  />
+</g>
+<g id="a8_005"  >
+<polygon points="400,90 503,90 508,85 503,80 400,80 400,90 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37865&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 45165 - 46853&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01155&lt;/b&gt;&lt;br&gt;Percentage identity: 74&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 836&lt;br&gt;E-value: 6.8e-303" locus_tag="AV521_RS37865" class="clusterblast-orf" id="dummy-8_h8_9_5"  />
+</g>
+<g id="a8_006"  >
+<polygon points="508,90 581,90 586,85 581,80 508,80 508,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37870&lt;/b&gt;&lt;br&gt;type III PLP-dependent enzyme&lt;br&gt;Location: 46850 - 48076" locus_tag="AV521_RS37870" class="clusterblast-orf" id="dummy-8_h8_9_6"  />
+</g>
+<g id="a8_007"  >
+<polygon points="586,90 668,90 673,85 668,80 586,80 586,90 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37875&lt;/b&gt;&lt;br&gt;MFS transporter&lt;br&gt;Location: 48073 - 49425&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_01157&lt;/b&gt;&lt;br&gt;Percentage identity: 69&lt;br&gt;Percentage coverage: 87&lt;br&gt;BLAST bit score: 515&lt;br&gt;E-value: 1.73e-179" locus_tag="AV521_RS37875" class="clusterblast-orf" id="dummy-8_h8_9_7"  />
+</g>
+<g id="a8_008"  >
+<polygon points="669,85 674,80 707,80 707,90 674,90 669,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37880&lt;/b&gt;&lt;br&gt;helix-turn-helix domain-containing protein&lt;br&gt;Location: 49364 - 49966" locus_tag="AV521_RS37880" class="clusterblast-orf" id="dummy-8_h8_9_8"  />
+</g>
+<g id="a8_009"  >
+<polygon points="707,90 718,90 723,85 718,80 707,80 707,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37885&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 49965 - 50219" locus_tag="AV521_RS37885" class="clusterblast-orf" id="dummy-8_h8_9_9"  />
+</g>
+<g id="a8_0010"  >
+<polygon points="743,85 748,80 779,80 779,90 748,90 743,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;AV521_RS37890&lt;/b&gt;&lt;br&gt;TetR family transcriptional regulator&lt;br&gt;Location: 50534 - 51097" locus_tag="AV521_RS37890" class="clusterblast-orf" id="dummy-8_h8_9_10"  />
+</g>
+</svg>

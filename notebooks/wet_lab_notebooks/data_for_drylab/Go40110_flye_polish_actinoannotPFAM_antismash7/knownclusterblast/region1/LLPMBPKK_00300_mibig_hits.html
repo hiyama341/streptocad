@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>ACC81291.1</td>
+              <td>cyclic_nucleotide-binding_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000661/1">BGC0000661</a></td>
+              <td>Terpene</td>
+              <td>63.0</td>
+              <td>96.0</td>
+              <td>567.0</td>
+              <td>1.17e-201</td>
+          </tr>
+    
+          <tr>
+              <td>AEK21531.1</td>
+              <td>cyclic_nucleotide-binding_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000657/1">BGC0000657</a></td>
+              <td>Terpene</td>
+              <td>60.0</td>
+              <td>96.0</td>
+              <td>550.0</td>
+              <td>5.03e-195</td>
+          </tr>
+    
+          <tr>
+              <td>ACC81292.1</td>
+              <td>cyclic_nucleotide-binding_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000661/1">BGC0000661</a></td>
+              <td>Terpene</td>
+              <td>62.0</td>
+              <td>96.0</td>
+              <td>542.0</td>
+              <td>8.61e-192</td>
+          </tr>
+    
+          <tr>
+              <td>AEK21534.1</td>
+              <td>cyclic_nucleotide-binding_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000657/1">BGC0000657</a></td>
+              <td>Terpene</td>
+              <td>58.0</td>
+              <td>96.2</td>
+              <td>525.0</td>
+              <td>3.55e-185</td>
+          </tr>
+    
+          <tr>
+              <td>AIZ66873.1</td>
+              <td>putative_cyclic_nucleotide-binding_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002666/1">BGC0002666</a></td>
+              <td>NRP+Alkaloid</td>
+              <td>60.0</td>
+              <td>95.5</td>
+              <td>522.0</td>
+              <td>8.53e-184</td>
+          </tr>
+    
+          <tr>
+              <td>AAK57521.2</td>
+              <td>putative_nucleotide-binding_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000262/1">BGC0000262</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>71.0</td>
+              <td>55.2</td>
+              <td>369.0</td>
+              <td>7.53e-127</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

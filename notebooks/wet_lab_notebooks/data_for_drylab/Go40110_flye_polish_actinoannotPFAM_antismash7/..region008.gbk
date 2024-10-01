@@ -1,0 +1,1223 @@
+LOCUS       Exported               11904 bp    DNA     linear   UNA 26-JUL-2021
+DEFINITION  Streptomyces reticuli_0.928 strain strain.
+ACCESSION   .
+VERSION     .
+KEYWORDS    .
+SOURCE      Streptomyces reticuli_0.928
+  ORGANISM  Streptomyces reticuli_0.928
+            .
+COMMENT     Annotated using prokka 1.14.0 from
+            https://github.com/tseemann/prokka.
+            ##antiSMASH-Data-START##
+            Version      :: 7.0.0beta1-67b538a9
+            Run date     :: 2022-12-22 19:00:05
+            NOTE: This is a single region extracted from a larger record!
+            Orig. start  :: 1403914
+            Orig. end    :: 1415818
+            ##antiSMASH-Data-END##
+FEATURES             Location/Qualifiers
+     CDS             complement(1..642)
+                     /codon_start=1
+                     /gene_functions="regulatory (smcogs) SMCOG1008:response
+                     regulator (Score: 167.5; E-value: 5.5e-51)"
+                     /gene_kind="regulatory"
+                     /inference="ab initio prediction:same species:2.6"
+                     /inference="similar to AA sequence:same
+                     species:NP_630446.1"
+                     /label="LLPMBPKK_01150"
+                     /locus_tag="LLPMBPKK_01150"
+                     /note="/gene_functions=regulatory (smcogs)
+                     SMCOG1008:responseregulator (Score: 167.5; E-value:
+                     5.5e-51)"
+                     /note="/gene_kind=regulatory"
+                     /product="two-component regulator"
+                     /transl_table=11
+                     /translation="MVCEDDAAVRDVLRRALEHDGHTVSVAATADSLLRQLAPAPHLVV
+                     LDLGLPDADGRDVCLALRARGVDAPVLMLTALDGLHHKVGGFEAGADDYMTKPFDIPEL
+                     LVRVRALLRRATVAPAPREVVLDPAKHVVTHDSVSRSLTPTEFRLLGRLIASQGDAVRR
+                     HALIAAGWPHGAQVSDNTLDSYVRRLRAKLSALGVAERLATVRGVGYRWQ"
+     misc_feature    1..11904
+                     /label="nonstandard type: protocluster"
+                     /note="/aStool=rule-based-clusters"
+                     /note="/contig_edge=False"
+                     /note="/core_location=[1408441:1411795]"
+                     /note="/cutoff=20000"
+                     /note="/detection_rule=IucA_IucC"
+                     /note="/neighbourhood=5000"
+                     /note="/protocluster_number=16"
+                     /note="/tool=antismash"
+                     /product="siderophore"
+     misc_feature    1..11904
+                     /label="nonstandard type: cand_cluster"
+                     /note="/candidate_cluster_number=12"
+                     /note="/contig_edge=False"
+                     /note="/detection_rules=IucA_IucC"
+                     /note="/kind=single"
+                     /note="/protoclusters=16"
+                     /note="/tool=antismash"
+                     /product="siderophore"
+     misc_feature    1..11904
+                     /label="nonstandard type: region"
+                     /note="/candidate_cluster_numbers=12"
+                     /note="/contig_edge=False"
+                     /note="/region_number=8"
+                     /note="/rules=IucA_IucC"
+                     /note="/tool=antismash"
+                     /product="siderophore"
+     protocluster    1..11904
+                     /aStool="rule-based-clusters"
+                     /category="other"
+                     /contig_edge="False"
+                     /core_location="[1408441:1411795]"
+                     /cutoff="20000"
+                     /detection_rule="IucA_IucC"
+                     /neighbourhood="5000"
+                     /product="NRPS-independent-siderophore"
+                     /protocluster_number="1"
+                     /tool="antismash"
+     proto_core      4528..7881
+                     /aStool="rule-based-clusters"
+                     /tool="antismash"
+                     /cutoff="20000"
+                     /detection_rule="IucA_IucC"
+                     /neighbourhood="5000"
+                     /product="NRPS-independent-siderophore"
+                     /protocluster_number="1"
+     cand_cluster    1..11904
+                     /candidate_cluster_number="1"
+                     /contig_edge="False"
+                     /detection_rules="IucA_IucC"
+                     /kind="single"
+                     /product="NRPS-independent-siderophore"
+                     /protoclusters="1"
+                     /tool="antismash"
+     region          1..11904
+                     /candidate_cluster_numbers="1"
+                     /contig_edge="False"
+                     /product="NRPS-independent-siderophore"
+                     /region_number="8"
+                     /rules="IucA_IucC"
+                     /tool="antismash"
+     misc_feature    complement(10..222)
+                     /db_xref="PF00486.27"
+                     /db_xref="GO:0000160"
+                     /db_xref="GO:0003677"
+                     /db_xref="GO:0006355"
+                     /label="LLPMBPKK_01150"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01150"
+                     /note="/aSDomain=Trans_reg_C"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Transcriptional regulatory protein,
+                     Cterminal"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01150_0542"
+                     /note="/evalue=7.20E-19"
+                     /note="/gene_ontologies=GO:0000160: phosphorelay
+                     signaltransduction system"
+                     /note="/gene_ontologies=GO:0003677: DNA binding"
+                     /note="/gene_ontologies=GO:0006355: regulation of
+                     transcription,DNA-templated"
+                     /note="/protein_end=211"
+                     /note="/protein_start=140"
+                     /note="/score=67.5"
+                     /note="/tool=antismash"
+                     /note="/translation=SLTPTEFRLLGRLIASQGDAVRRHALIAAGWPHGAQVSD
+                     NTLDSY VRRLRAKLSALGVAERLATVRGVGYRW"
+     PFAM_domain     complement(10..222)
+                     /aSDomain="Trans_reg_C"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF00486.30"
+                     /db_xref="GO:0000160"
+                     /db_xref="GO:0003677"
+                     /db_xref="GO:0006355"
+                     /description="Transcriptional regulatory protein, C
+                     terminal"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01150_0385"
+                     /evalue="1.90E-18"
+                     /gene_ontologies="GO:0000160: phosphorelay signal
+                     transduction system"
+                     /gene_ontologies="GO:0003677: DNA binding"
+                     /gene_ontologies="GO:0006355: regulation of transcription,
+                     DNA-templated"
+                     /label="LLPMBPKK_01150"
+                     /locus_tag="LLPMBPKK_01150"
+                     /protein_end="211"
+                     /protein_start="140"
+                     /score="66.4"
+                     /tool="antismash"
+                     /translation="SLTPTEFRLLGRLIASQGDAVRRHALIAAGWPHGAQVSDNTLDSY
+                     VRRLRAKLSALGVAERLATVRGVGYR"
+     misc_feature    complement(319..642)
+                     /db_xref="PF00072.23"
+                     /db_xref="GO:0000160"
+                     /label="LLPMBPKK_01150"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01150"
+                     /note="/aSDomain=Response_reg"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Response regulator receiver domain"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01150_0541"
+                     /note="/evalue=3.10E-20"
+                     /note="/gene_ontologies=GO:0000160: phosphorelay
+                     signaltransduction system"
+                     /note="/protein_end=108"
+                     /note="/protein_start=0"
+                     /note="/score=72.3"
+                     /note="/tool=antismash"
+                     /note="/translation=MVCEDDAAVRDVLRRALEHDGHTVSVAATADSLLRQLAP
+                     APHLVV
+                     LDLGLPDADGRDVCLALRARGVDAPVLMLTALDGLHHKVGGFEAGADDYMTKPFDIPEL
+                     LVRVR"
+     PFAM_domain     complement(319..642)
+                     /aSDomain="Response_reg"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF00072.26"
+                     /db_xref="GO:0000160"
+                     /description="Response regulator receiver domain"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01150_0384"
+                     /evalue="3.60E-20"
+                     /gene_ontologies="GO:0000160: phosphorelay signal
+                     transduction system"
+                     /label="LLPMBPKK_01150"
+                     /locus_tag="LLPMBPKK_01150"
+                     /protein_end="108"
+                     /protein_start="0"
+                     /score="72.3"
+                     /tool="antismash"
+                     /translation="MVCEDDAAVRDVLRRALEHDGHTVSVAATADSLLRQLAPAPHLVV
+                     LDLGLPDADGRDVCLALRARGVDAPVLMLTALDGLHHKVGGFEAGADDYMTKPFDIPEL
+                     LVRV"
+     CDS             complement(809..1630)
+                     /codon_start=1
+                     /gene_functions="regulatory (smcogs) SMCOG1008:response
+                     regulator (Score: 197.2; E-value: 4.5e-60)"
+                     /gene_kind="regulatory"
+                     /inference="ab initio prediction:same species:2.6"
+                     /inference="similar to AA sequence:same
+                     species:WP_020937684.1"
+                     /label="LLPMBPKK_01151"
+                     /locus_tag="LLPMBPKK_01151"
+                     /note="/gene_functions=regulatory (smcogs)
+                     SMCOG1008:responseregulator (Score: 197.2; E-value:
+                     4.5e-60)"
+                     /note="/gene_kind=regulatory"
+                     /product="response regulator transcription factor"
+                     /transl_table=11
+                     /translation="MTTHTDPSCTAGGEQVLPAEPTPETMRLLLVEDDDRIAGPVLEGL
+                     GRYCFAVDHVKSGASALSAPAADLVLLDLGLPDMDGIDVCRALRARSAVPIIMITARSE
+                     ETDRVVGLELGADDYLSKPFGVRELVARIRAVTRRTHPDRLAPLNTGTAMTGVPAHSSP
+                     HAGLPEERGVQRLGPLTVNRRTRGVSVDSRPLTLTPKEFDLLAQLASDPGAVHSRQQIL
+                     DTVWGPDYFGPTRTLDVHVSALRRKLGDPAWISTVRGIGFRLTVPGDSAYT"
+     misc_feature    complement(839..1054)
+                     /db_xref="PF00486.27"
+                     /db_xref="GO:0000160"
+                     /db_xref="GO:0003677"
+                     /db_xref="GO:0006355"
+                     /label="LLPMBPKK_01151"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01151"
+                     /note="/aSDomain=Trans_reg_C"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Transcriptional regulatory protein,
+                     Cterminal"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01151_0543"
+                     /note="/evalue=1.30E-24"
+                     /note="/gene_ontologies=GO:0000160: phosphorelay
+                     signaltransduction system"
+                     /note="/gene_ontologies=GO:0003677: DNA binding"
+                     /note="/gene_ontologies=GO:0006355: regulation of
+                     transcription,DNA-templated"
+                     /note="/protein_end=264"
+                     /note="/protein_start=192"
+                     /note="/score=85.9"
+                     /note="/tool=antismash"
+                     /note="/translation=RPLTLTPKEFDLLAQLASDPGAVHSRQQILDTVWGPDYF
+                     GPTRTL DVHVSALRRKLGDPAWISTVRGIGFRLT"
+     PFAM_domain     complement(839..1054)
+                     /aSDomain="Trans_reg_C"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF00486.30"
+                     /db_xref="GO:0000160"
+                     /db_xref="GO:0003677"
+                     /db_xref="GO:0006355"
+                     /description="Transcriptional regulatory protein, C
+                     terminal"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01151_0387"
+                     /evalue="2.10E-24"
+                     /gene_ontologies="GO:0000160: phosphorelay signal
+                     transduction system"
+                     /gene_ontologies="GO:0003677: DNA binding"
+                     /gene_ontologies="GO:0006355: regulation of transcription,
+                     DNA-templated"
+                     /label="LLPMBPKK_01151"
+                     /locus_tag="LLPMBPKK_01151"
+                     /protein_end="264"
+                     /protein_start="192"
+                     /score="85.5"
+                     /tool="antismash"
+                     /translation="RPLTLTPKEFDLLAQLASDPGAVHSRQQILDTVWGPDYFGPTRTL
+                     DVHVSALRRKLGDPAWISTVRGIGFRL"
+     misc_feature    complement(1229..1546)
+                     /db_xref="PF00072.23"
+                     /db_xref="GO:0000160"
+                     /label="LLPMBPKK_01151"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01151"
+                     /note="/aSDomain=Response_reg"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Response regulator receiver domain"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01151_0544"
+                     /note="/evalue=4.60E-21"
+                     /note="/gene_ontologies=GO:0000160: phosphorelay
+                     signaltransduction system"
+                     /note="/protein_end=134"
+                     /note="/protein_start=28"
+                     /note="/score=75.0"
+                     /note="/tool=antismash"
+                     /note="/translation=LLVEDDDRIAGPVLEGLGRYCFAVDHVKSGASALSAPAA
+                     DLVLLD
+                     LGLPDMDGIDVCRALRARSAVPIIMITARSEETDRVVGLELGADDYLSKPFGVRELVAR
+                     IRA"
+     PFAM_domain     complement(1229..1546)
+                     /aSDomain="Response_reg"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF00072.26"
+                     /db_xref="GO:0000160"
+                     /description="Response regulator receiver domain"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01151_0386"
+                     /evalue="5.30E-21"
+                     /gene_ontologies="GO:0000160: phosphorelay signal
+                     transduction system"
+                     /label="LLPMBPKK_01151"
+                     /locus_tag="LLPMBPKK_01151"
+                     /protein_end="134"
+                     /protein_start="28"
+                     /score="75.0"
+                     /tool="antismash"
+                     /translation="LLVEDDDRIAGPVLEGLGRYCFAVDHVKSGASALSAPAADLVLLD
+                     LGLPDMDGIDVCRALRARSAVPIIMITARSEETDRVVGLELGADDYLSKPFGVRELVAR
+                     IR"
+     CDS             complement(1785..3275)
+                     /codon_start=1
+                     /gene_functions="regulatory (smcogs) SMCOG1003:sensor
+                     histidine kinase (Score: 205.2; E-value: 4.1e-62)"
+                     /gene_kind="regulatory"
+                     /inference="ab initio prediction:same species:2.6"
+                     /inference="similar to AA sequence:same
+                     species:WP_020937685.1"
+                     /label="LLPMBPKK_01152"
+                     /locus_tag="LLPMBPKK_01152"
+                     /note="/gene_functions=regulatory (smcogs)
+                     SMCOG1003:sensorhistidine kinase (Score: 205.2; E-value:
+                     4.1e-62)"
+                     /note="/gene_kind=regulatory"
+                     /product="HAMP domain-containing protein"
+                     /transl_table=11
+                     /translation="MTRRLLLSYLSLTLLVLLCLEVPFGYVYARGERSRFTGNGQQAAG
+                     MLAEVLEEKVERRGASDVPEVVTGFARRTGSHVIVVDNKGKLIADSRNVVAAGTDLSAQ
+                     PDIATALANRSRSTTRQDPALDEDVFLVTVPGASGSTVRCVVRASFPLAAVTSKVHDAW
+                     LALAAVGLGVLAAVALIALALARWITRPVRALEHATTQLADGTLKDLPATDLGPPELRR
+                     LAASFVRTATRLQHLLKAQYAFASEASHQLKTPLTALRLRLENFEPYLDPQAQPSLDEA
+                     VGEVERLSRMVHGLLALARLENTATTPEATDLDSVIADRAAVWAAFAGEHHVDIVVAGP
+                     RIGQVWALPDALEQIIDNLLSNALRVSPPQTTITLATAWAHGAPATVELHVIDQGPGMS
+                     EEQRRRAFDRFWRAHDADHEGTGLGLPIVKQLARASRGEVTLQAAPGGGLDAVVRLRTA
+                     GTHRAAHPRRPRSVIRARQDEAPPLPTERPLAVSDWQQ"
+     misc_feature    complement(1911..2231)
+                     /db_xref="PF02518.25"
+                     /label="LLPMBPKK_01152"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01152"
+                     /note="/aSDomain=HATPase_c"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Histidine kinase-, DNA gyrase B-,
+                     andHSP90-like ATPase"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01152_0545"
+                     /note="/evalue=8.30E-17"
+                     /note="/protein_end=455"
+                     /note="/protein_start=348"
+                     /note="/score=61.7"
+                     /note="/tool=antismash"
+                     /note="/translation=PDALEQIIDNLLSNALRVSPPQTTITLATAWAHGAPATV
+                     ELHVID
+                     QGPGMSEEQRRRAFDRFWRAHDADHEGTGLGLPIVKQLARASRGEVTLQAAPGGGLDAV
+                     VRLR"
+     PFAM_domain     complement(1911..2231)
+                     /aSDomain="HATPase_c"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF02518.28"
+                     /description="Histidine kinase-, DNA gyrase B-, and
+                     HSP90-like ATPase"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01152_0390"
+                     /evalue="3.90E-17"
+                     /label="LLPMBPKK_01152"
+                     /locus_tag="LLPMBPKK_01152"
+                     /protein_end="455"
+                     /protein_start="348"
+                     /score="62.9"
+                     /tool="antismash"
+                     /translation="PDALEQIIDNLLSNALRVSPPQTTITLATAWAHGAPATVELHVID
+                     QGPGMSEEQRRRAFDRFWRAHDADHEGTGLGLPIVKQLARASRGEVTLQAAPGGGLDAV
+                     VRL"
+     misc_feature    complement(2367..2549)
+                     /db_xref="PF00512.24"
+                     /db_xref="GO:0000155"
+                     /db_xref="GO:0007165"
+                     /label="LLPMBPKK_01152"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01152"
+                     /note="/aSDomain=HisKA"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=His Kinase A (phospho-acceptor) domain"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01152_0546"
+                     /note="/evalue=1.30E-09"
+                     /note="/gene_ontologies=GO:0000155: phosphorelay sensor
+                     kinaseactivity"
+                     /note="/gene_ontologies=GO:0007165: signal transduction"
+                     /note="/protein_end=303"
+                     /note="/protein_start=242"
+                     /note="/score=37.8"
+                     /note="/tool=antismash"
+                     /note="/translation=AFASEASHQLKTPLTALRLRLENFEPYLDPQAQPSLDEA
+                     VGEVER LSRMVHGLLALARLENT"
+     PFAM_domain     complement(2367..2549)
+                     /aSDomain="HisKA"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF00512.27"
+                     /db_xref="GO:0000155"
+                     /db_xref="GO:0007165"
+                     /description="His Kinase A (phospho-acceptor) domain"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01152_0389"
+                     /evalue="2.10E-09"
+                     /gene_ontologies="GO:0000155: phosphorelay sensor kinase
+                     activity"
+                     /gene_ontologies="GO:0007165: signal transduction"
+                     /label="LLPMBPKK_01152"
+                     /locus_tag="LLPMBPKK_01152"
+                     /protein_end="303"
+                     /protein_start="242"
+                     /score="37.4"
+                     /tool="antismash"
+                     /translation="AFASEASHQLKTPLTALRLRLENFEPYLDPQAQPSLDEAVGEVER
+                     LSRMVHGLLALARLEN"
+     misc_feature    complement(2568..2720)
+                     /db_xref="PF00672.24"
+                     /db_xref="GO:0004871"
+                     /db_xref="GO:0007165"
+                     /db_xref="GO:0016021"
+                     /label="LLPMBPKK_01152"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01152"
+                     /note="/aSDomain=HAMP"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=HAMP domain"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01152_0547"
+                     /note="/evalue=2.50E-09"
+                     /note="/gene_ontologies=GO:0004871: signal transducer
+                     activity"
+                     /note="/gene_ontologies=GO:0007165: signal transduction"
+                     /note="/gene_ontologies=GO:0016021: integral component
+                     ofmembrane"
+                     /note="/protein_end=236"
+                     /note="/protein_start=185"
+                     /note="/score=37.3"
+                     /note="/tool=antismash"
+                     /note="/translation=RWITRPVRALEHATTQLADGTLKDLPATDLGPPELRRLA
+                     ASFVRTATRLQHL"
+     PFAM_domain     complement(2568..2726)
+                     /aSDomain="HAMP"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF00672.27"
+                     /db_xref="GO:0007165"
+                     /db_xref="GO:0016021"
+                     /description="HAMP domain"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01152_0388"
+                     /evalue="1.10E-09"
+                     /gene_ontologies="GO:0007165: signal transduction"
+                     /gene_ontologies="GO:0016021: integral component of
+                     membrane"
+                     /label="LLPMBPKK_01152"
+                     /locus_tag="LLPMBPKK_01152"
+                     /protein_end="236"
+                     /protein_start="183"
+                     /score="38.6"
+                     /tool="antismash"
+                     /translation="LARWITRPVRALEHATTQLADGTLKDLPATDLGPPELRRLAASFV
+                     RTATRLQH"
+     CDS             complement(3272..4030)
+                     /codon_start=1
+                     /gene_functions="regulatory (smcogs) SMCOG1008:response
+                     regulator (Score: 185.8; E-value: 1.4e-56)"
+                     /gene_kind="regulatory"
+                     /inference="ab initio prediction:same species:2.6"
+                     /inference="similar to AA sequence:same
+                     species:WP_020937684.1"
+                     /label="LLPMBPKK_01153"
+                     /locus_tag="LLPMBPKK_01153"
+                     /note="/gene_functions=regulatory (smcogs)
+                     SMCOG1008:responseregulator (Score: 185.8; E-value:
+                     1.4e-56)"
+                     /note="/gene_kind=regulatory"
+                     /product="response regulator transcription factor"
+                     /transl_table=11
+                     /translation="MRLLLIEDDDRVAGPLMEGLSRFGFTVEHARTGADGLAAAETEMV
+                     LLDLGLPDMDGIDVCRTLRLRSQVPIIMISARSDEVDRVLGLELGADDYLSKPFGVREL
+                     VARIRAVFRRAGTAAAEPVPARAASGGGRPDPAGRTQHIGPLAIDRRGRQVHLHRTSVA
+                     LAPKEFDLLAYLADDPGAVRTRQQILDAVWEPNYFGPTKTLDVHVAALRRKLGDPAWID
+                     NIRGVGFRLARPADTAAATQVEPHVRGDNR"
+     misc_feature    complement(3338..3550)
+                     /db_xref="PF00486.27"
+                     /db_xref="GO:0000160"
+                     /db_xref="GO:0003677"
+                     /db_xref="GO:0006355"
+                     /label="LLPMBPKK_01153"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01153"
+                     /note="/aSDomain=Trans_reg_C"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Transcriptional regulatory protein,
+                     Cterminal"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01153_0548"
+                     /note="/evalue=5.10E-22"
+                     /note="/gene_ontologies=GO:0000160: phosphorelay
+                     signaltransduction system"
+                     /note="/gene_ontologies=GO:0003677: DNA binding"
+                     /note="/gene_ontologies=GO:0006355: regulation of
+                     transcription,DNA-templated"
+                     /note="/protein_end=231"
+                     /note="/protein_start=160"
+                     /note="/score=77.6"
+                     /note="/tool=antismash"
+                     /note="/translation=SVALAPKEFDLLAYLADDPGAVRTRQQILDAVWEPNYFG
+                     PTKTLD VHVAALRRKLGDPAWIDNIRGVGFRLA"
+     PFAM_domain     complement(3338..3550)
+                     /aSDomain="Trans_reg_C"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF00486.30"
+                     /db_xref="GO:0000160"
+                     /db_xref="GO:0003677"
+                     /db_xref="GO:0006355"
+                     /description="Transcriptional regulatory protein, C
+                     terminal"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01153_0392"
+                     /evalue="9.50E-22"
+                     /gene_ontologies="GO:0000160: phosphorelay signal
+                     transduction system"
+                     /gene_ontologies="GO:0003677: DNA binding"
+                     /gene_ontologies="GO:0006355: regulation of transcription,
+                     DNA-templated"
+                     /label="LLPMBPKK_01153"
+                     /locus_tag="LLPMBPKK_01153"
+                     /protein_end="231"
+                     /protein_start="160"
+                     /score="77.0"
+                     /tool="antismash"
+                     /translation="SVALAPKEFDLLAYLADDPGAVRTRQQILDAVWEPNYFGPTKTLD
+                     VHVAALRRKLGDPAWIDNIRGVGFRL"
+     misc_feature    complement(3704..4021)
+                     /db_xref="PF00072.23"
+                     /db_xref="GO:0000160"
+                     /label="LLPMBPKK_01153"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01153"
+                     /note="/aSDomain=Response_reg"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Response regulator receiver domain"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01153_0549"
+                     /note="/evalue=2.70E-21"
+                     /note="/gene_ontologies=GO:0000160: phosphorelay
+                     signaltransduction system"
+                     /note="/protein_end=109"
+                     /note="/protein_start=3"
+                     /note="/score=75.7"
+                     /note="/tool=antismash"
+                     /note="/translation=LLIEDDDRVAGPLMEGLSRFGFTVEHARTGADGLAAAET
+                     EMVLLD
+                     LGLPDMDGIDVCRTLRLRSQVPIIMISARSDEVDRVLGLELGADDYLSKPFGVRELVAR
+                     IRA"
+     PFAM_domain     complement(3704..4021)
+                     /aSDomain="Response_reg"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF00072.26"
+                     /db_xref="GO:0000160"
+                     /description="Response regulator receiver domain"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01153_0391"
+                     /evalue="3.10E-21"
+                     /gene_ontologies="GO:0000160: phosphorelay signal
+                     transduction system"
+                     /label="LLPMBPKK_01153"
+                     /locus_tag="LLPMBPKK_01153"
+                     /protein_end="109"
+                     /protein_start="3"
+                     /score="75.7"
+                     /tool="antismash"
+                     /translation="LLIEDDDRVAGPLMEGLSRFGFTVEHARTGADGLAAAETEMVLLD
+                     LGLPDMDGIDVCRTLRLRSQVPIIMISARSDEVDRVLGLELGADDYLSKPFGVRELVAR
+                     IR"
+     misc_feature    complement(4019..4021)
+                     /note="/tool=antismash"
+                     /note="tta leucine codon, possible target for
+                     bldAregulation"
+     misc_feature    complement(4019..4021)
+                     /note="tta leucine codon, possible target for bldA
+                     regulation"
+                     /tool="antismash"
+     CDS             4528..6114
+                     /codon_start=1
+                     /gene_functions="biosynthetic (rule-based-clusters)
+                     NRPS-independent-siderophore: IucA_IucC"
+                     /gene_kind="biosynthetic"
+                     /inference="ab initio prediction:same species:2.6"
+                     /inference="similar to AA sequence:same
+                     species:WP_078234621.1"
+                     /label="LLPMBPKK_01154"
+                     /locus_tag="LLPMBPKK_01154"
+                     /note="/gene_functions=biosynthetic
+                     (rule-based-clusters)siderophore: IucA_IucC"
+                     /note="/gene_kind=biosynthetic"
+                     /note="/sec_met_domain=IucA_IucC (E-value: 4.8e-41,
+                     bitscore:139.8, seeds: 168, tool: rule-based-clusters)"
+                     /product="IucA/IucC family siderophore biosynthesisprotein"
+                     /sec_met_domain="IucA_IucC (E-value: 4.8e-41, bitscore:
+                     139.8, seeds: 250, tool: rule-based-clusters)"
+                     /transl_table=11
+                     /translation="MPHSSTTDELRHERPDLVEPFMAALPGARATVLGRLWGAFAREPL
+                     PGIADRDRDAGTLVVRLTGGGRLTGPAAAAERFAPVPADFAVQGPDGPVEEPARLLAAL
+                     GAHTEAASRLAVELDNSIANLALARAANHEPREVRDSADAEQAVVDGHPQHPCCRTRTG
+                     LSVAEVLAYAPEHHPVIELALVAVPADRWQATGDWPQELRDGDTVLMPVHPWQRDHVLA
+                     RQPDLPVVDRTIAARPLLSMRTVSPLDALPGCHIKTALDVQVTNYRRTISPAEVADGAP
+                     LSELVTAVVDKAGHGESLRILRELAGGAVRVNGKPSASLAAMIRESSERHLGPDEIAVP
+                     LTAVHATGARMVSGDPVTWLAEFAALVLPPALTLLSMGVALEAHGQNTLVALRGGRPVR
+                     VLYRDLDGVRIHPERLARHGFSLPPLSGTRAGNDERALRTKLFGGLLSGVFSELVSVLS
+                     RTRGAGPGQLWAAVAAVGRQVFADLPDASGDREVFFGDTLPLKATIAMRLAEASGAAQW
+                     TPVPNPLARHR"
+     misc_feature    4528..7881
+                     /label="nonstandard type: proto_core"
+                     /note="/aStool=rule-based-clusters"
+                     /note="/cutoff=20000"
+                     /note="/detection_rule=IucA_IucC"
+                     /note="/neighbourhood=5000"
+                     /note="/protocluster_number=16"
+                     /note="/tool=antismash"
+                     /product="siderophore"
+     misc_feature    4951..5559
+                     /db_xref="PF04183.11"
+                     /db_xref="GO:0019290"
+                     /label="LLPMBPKK_01154"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01154"
+                     /note="/aSDomain=IucA_IucC"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=IucA / IucC family"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01154_0550"
+                     /note="/evalue=1.30E-40"
+                     /note="/gene_ontologies=GO:0019290: siderophore
+                     biosyntheticprocess"
+                     /note="/protein_end=344"
+                     /note="/protein_start=141"
+                     /note="/score=139.4"
+                     /note="/tool=antismash"
+                     /note="/translation=ADAEQAVVDGHPQHPCCRTRTGLSVAEVLAYAPEHHPVI
+                     ELALVA
+                     VPADRWQATGDWPQELRDGDTVLMPVHPWQRDHVLARQPDLPVVDRTIAARPLLSMRTV
+                     SPLDALPGCHIKTALDVQVTNYRRTISPAEVADGAPLSELVTAVVDKAGHGESLRILRE
+                     LAGGAVRVNGKPSASLAAMIRESSERHLGPDEIAVPLTAVH"
+     PFAM_domain     4951..5559
+                     /aSDomain="IucA_IucC"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF04183.14"
+                     /db_xref="GO:0019290"
+                     /description="IucA / IucC family"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01154_0393"
+                     /evalue="2.60E-40"
+                     /gene_ontologies="GO:0019290: siderophore biosynthetic
+                     process"
+                     /label="LLPMBPKK_01154"
+                     /locus_tag="LLPMBPKK_01154"
+                     /protein_end="344"
+                     /protein_start="141"
+                     /score="138.6"
+                     /tool="antismash"
+                     /translation="ADAEQAVVDGHPQHPCCRTRTGLSVAEVLAYAPEHHPVIELALVA
+                     VPADRWQATGDWPQELRDGDTVLMPVHPWQRDHVLARQPDLPVVDRTIAARPLLSMRTV
+                     SPLDALPGCHIKTALDVQVTNYRRTISPAEVADGAPLSELVTAVVDKAGHGESLRILRE
+                     LAGGAVRVNGKPSASLAAMIRESSERHLGPDEIAVPLTAV"
+     misc_feature    5599..6063
+                     /db_xref="PF06276.11"
+                     /label="LLPMBPKK_01154"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01154"
+                     /note="/aSDomain=FhuF"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Ferric iron reductase FhuF-like
+                     transporter"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01154_0551"
+                     /note="/evalue=2.50E-26"
+                     /note="/protein_end=512"
+                     /note="/protein_start=357"
+                     /note="/score=92.9"
+                     /note="/tool=antismash"
+                     /note="/translation=TWLAEFAALVLPPALTLLSMGVALEAHGQNTLVALRGGR
+                     PVRVLY
+                     RDLDGVRIHPERLARHGFSLPPLSGTRAGNDERALRTKLFGGLLSGVFSELVSVLSRTR
+                     GAGPGQLWAAVAAVGRQVFADLPDASGDREVFFGDTLPLKATIAMRLAEASG"
+     PFAM_domain     5599..6063
+                     /aSDomain="FhuF"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF06276.14"
+                     /description="Ferric iron reductase FhuF-like transporter"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01154_0394"
+                     /evalue="2.90E-26"
+                     /label="LLPMBPKK_01154"
+                     /locus_tag="LLPMBPKK_01154"
+                     /protein_end="512"
+                     /protein_start="357"
+                     /score="92.9"
+                     /tool="antismash"
+                     /translation="TWLAEFAALVLPPALTLLSMGVALEAHGQNTLVALRGGRPVRVLY
+                     RDLDGVRIHPERLARHGFSLPPLSGTRAGNDERALRTKLFGGLLSGVFSELVSVLSRTR
+                     GAGPGQLWAAVAAVGRQVFADLPDASGDREVFFGDTLPLKATIAMRLAEAS"
+     CDS             6187..7881
+                     /codon_start=1
+                     /gene_functions="biosynthetic (rule-based-clusters)
+                     NRPS-independent-siderophore: IucA_IucC"
+                     /gene_kind="biosynthetic"
+                     /inference="ab initio prediction:same species:2.6"
+                     /inference="similar to AA sequence:same
+                     species:WP_037647107.1"
+                     /label="LLPMBPKK_01155"
+                     /locus_tag="LLPMBPKK_01155"
+                     /note="/gene_functions=biosynthetic
+                     (rule-based-clusters)siderophore: IucA_IucC"
+                     /note="/gene_kind=biosynthetic"
+                     /note="/sec_met_domain=IucA_IucC (E-value: 2.6e-56,
+                     bitscore:189.8, seeds: 168, tool: rule-based-clusters)"
+                     /product="iron transporter"
+                     /sec_met_domain="IucA_IucC (E-value: 2.6e-56, bitscore:
+                     189.8, seeds: 250, tool: rule-based-clusters)"
+                     /transl_table=11
+                     /translation="MTVPSTTGAVLATNDGPARVADAVTAHTLLNCLIREVSAPERQVT
+                     VDQDRLLLRLPRRDVLLRVLLRRISLIGAHRFDGPVERYDGGDWSAIGWHELAGYIQEE
+                     LELRTGVSNDEFLAQVSDSRDTIHTTLERRATAALPQDPYLESEQSLVFGHRFHPSPKS
+                     RTGDPEDWLDYGPETGTRFPLRYLAVHRSLVREEGDLSRLDALHPSGRRDYVTLPVHPW
+                     QYRMLGDHPALREALAAGSIVDTGVVGPAFVPTASVRTLYQPDADTFLKFSLNVRLTNC
+                     VRKNAAYELAGAVALNRLLGPVFGDIGHAHAGSALLAEPGYRTLALGDDLCLVEGFGVI
+                     VRTGLREHLRPGVTPLLAAAIADEHPTSPAHVSRLLALGDGDALTWWDAYLGLLLPPVL
+                     TAYFEHGIVLEPHLQNVVVGVSGDGTPAQVIFRDLEGTKLVPEHHRPFLAGLPEDVRTA
+                     MTHDAERGWNRVAYCLLVNHTAEVLAALADTDPALEPALWGLVRDHLDAYSRGAGEPPR
+                     LRALLSGVPLPAKANLLLRWSRQADRHAGYVPLPSPLGEGFPREVTR"
+     misc_feature    6616..7269
+                     /db_xref="PF04183.11"
+                     /db_xref="GO:0019290"
+                     /label="LLPMBPKK_01155"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01155"
+                     /note="/aSDomain=IucA_IucC"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=IucA / IucC family"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01155_0552"
+                     /note="/evalue=1.20E-49"
+                     /note="/gene_ontologies=GO:0019290: siderophore
+                     biosyntheticprocess"
+                     /note="/protein_end=361"
+                     /note="/protein_start=143"
+                     /note="/score=168.9"
+                     /note="/tool=antismash"
+                     /note="/translation=YLESEQSLVFGHRFHPSPKSRTGDPEDWLDYGPETGTRF
+                     PLRYLA
+                     VHRSLVREEGDLSRLDALHPSGRRDYVTLPVHPWQYRMLGDHPALREALAAGSIVDTGV
+                     VGPAFVPTASVRTLYQPDADTFLKFSLNVRLTNCVRKNAAYELAGAVALNRLLGPVFGD
+                     IGHAHAGSALLAEPGYRTLALGDDLCLVEGFGVIVRTGLREHLRPGVTPLLAAAIA"
+     PFAM_domain     6616..7269
+                     /aSDomain="IucA_IucC"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF04183.14"
+                     /db_xref="GO:0019290"
+                     /description="IucA / IucC family"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01155_0395"
+                     /evalue="9.90E-50"
+                     /gene_ontologies="GO:0019290: siderophore biosynthetic
+                     process"
+                     /label="LLPMBPKK_01155"
+                     /locus_tag="LLPMBPKK_01155"
+                     /protein_end="361"
+                     /protein_start="143"
+                     /score="169.4"
+                     /tool="antismash"
+                     /translation="YLESEQSLVFGHRFHPSPKSRTGDPEDWLDYGPETGTRFPLRYLA
+                     VHRSLVREEGDLSRLDALHPSGRRDYVTLPVHPWQYRMLGDHPALREALAAGSIVDTGV
+                     VGPAFVPTASVRTLYQPDADTFLKFSLNVRLTNCVRKNAAYELAGAVALNRLLGPVFGD
+                     IGHAHAGSALLAEPGYRTLALGDDLCLVEGFGVIVRTGLREHLRPGVTPLLAAAI"
+     misc_feature    7339..7815
+                     /db_xref="PF06276.11"
+                     /label="LLPMBPKK_01155"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01155"
+                     /note="/aSDomain=FhuF"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Ferric iron reductase FhuF-like
+                     transporter"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01155_0553"
+                     /note="/evalue=3.70E-36"
+                     /note="/protein_end=543"
+                     /note="/protein_start=384"
+                     /note="/score=124.9"
+                     /note="/tool=antismash"
+                     /note="/translation=TWWDAYLGLLLPPVLTAYFEHGIVLEPHLQNVVVGVSGD
+                     GTPAQV
+                     IFRDLEGTKLVPEHHRPFLAGLPEDVRTAMTHDAERGWNRVAYCLLVNHTAEVLAALAD
+                     TDPALEPALWGLVRDHLDAYSRGAGEPPRLRALLSGVPLPAKANLLLRWSRQADRH"
+     PFAM_domain     7339..7815
+                     /aSDomain="FhuF"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF06276.14"
+                     /description="Ferric iron reductase FhuF-like transporter"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01155_0396"
+                     /evalue="4.30E-36"
+                     /label="LLPMBPKK_01155"
+                     /locus_tag="LLPMBPKK_01155"
+                     /protein_end="543"
+                     /protein_start="384"
+                     /score="124.9"
+                     /tool="antismash"
+                     /translation="TWWDAYLGLLLPPVLTAYFEHGIVLEPHLQNVVVGVSGDGTPAQV
+                     IFRDLEGTKLVPEHHRPFLAGLPEDVRTAMTHDAERGWNRVAYCLLVNHTAEVLAALAD
+                     TDPALEPALWGLVRDHLDAYSRGAGEPPRLRALLSGVPLPAKANLLLRWSRQADR"
+     tRNA            complement(8157..8250)
+                     /inference="COORDINATES:same species:Aragorn"
+                     /label="LLPMBPKK_01156"
+                     /locus_tag="LLPMBPKK_01156"
+                     /note="tRNA-Glu(ctc)"
+                     /product="tRNA-Glu"
+     CDS             9081..10517
+                     /codon_start=1
+                     /gene_functions="transport (smcogs) SMCOG1020:major
+                     facilitator transporter (Score: 253.8; E-value: 4.5e-77)"
+                     /gene_kind="transport"
+                     /inference="ab initio prediction:same species:2.6"
+                     /inference="similar to AA sequence:same
+                     species:WP_010985325.1"
+                     /label="LLPMBPKK_01157"
+                     /locus_tag="LLPMBPKK_01157"
+                     /note="/gene_functions=transport (smcogs)
+                     SMCOG1020:majorfacilitator transporter (Score: 253.8;
+                     E-value: 4.5e-77)"
+                     /note="/gene_kind=transport"
+                     /product="MFS transporter"
+                     /transl_table=11
+                     /translation="MSKHRRVRSSDRTQALRARRAALDVSGRHRRARRGGKRRAPSEAL
+                     ATLGARDFRRYLIGQLVSNVGTWMQRAAQDLLVLQLTGNSGSAVGILTALQFLPQTLFG
+                     LSGGVFADRFAKRRLLIVTQSAMGVQSLVLGVLTVTGAVNLWAVYLLAFLLGTATALDS
+                     PARNAFVSELVGKERLANAVSLNSAQFNVARAIGPAVAGLTVAAAGTGPVFLANAASYL
+                     AVLYGLIAVRADELHAPQEKNRGNARLSDAFRAIRASPDLLLPITVIAFVGTFGFNFQV
+                     TISLIAITVFHAGSAAFGYLSAAYAIGSLVGALRGAGKRKPPTARRLVTATVVFGALEA
+                     LSGLVPGYATFLLVLVPTGFASVTVMTTANAMTQLNADPGMRGRIVSVYLLVLLGGTPV
+                     GAPLVGLVSDTLGARFSLILGGAISAVAAIGLSSVITARSPTTREGTPLAAVTSPPPIS
+                     LDGRFHREPTPQPAARRSAA"
+     PFAM_domain     9210..10367
+                     /aSDomain="MFS_3"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF05977.15"
+                     /description="Transmembrane secretion effector"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01157_0397"
+                     /evalue="1.40E-55"
+                     /label="LLPMBPKK_01157"
+                     /locus_tag="LLPMBPKK_01157"
+                     /protein_end="429"
+                     /protein_start="43"
+                     /score="188.8"
+                     /tool="antismash"
+                     /translation="ALATLGARDFRRYLIGQLVSNVGTWMQRAAQDLLVLQLTGNSGSA
+                     VGILTALQFLPQTLFGLSGGVFADRFAKRRLLIVTQSAMGVQSLVLGVLTVTGAVNLWA
+                     VYLLAFLLGTATALDSPARNAFVSELVGKERLANAVSLNSAQFNVARAIGPAVAGLTVA
+                     AAGTGPVFLANAASYLAVLYGLIAVRADELHAPQEKNRGNARLSDAFRAIRASPDLLLP
+                     ITVIAFVGTFGFNFQVTISLIAITVFHAGSAAFGYLSAAYAIGSLVGALRGAGKRKPPT
+                     ARRLVTATVVFGALEALSGLVPGYATFLLVLVPTGFASVTVMTTANAMTQLNADPGMRG
+                     RIVSVYLLVLLGGTPVGAPLVGLVSDTLGARFSLILGGAISAVAAI"
+     misc_feature    9210..10385
+                     /db_xref="PF05977.12"
+                     /label="LLPMBPKK_01157"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01157"
+                     /note="/aSDomain=MFS_3"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Transmembrane secretion effector"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01157_0554"
+                     /note="/evalue=1.70E-56"
+                     /note="/protein_end=435"
+                     /note="/protein_start=43"
+                     /note="/score=191.6"
+                     /note="/tool=antismash"
+                     /note="/translation=ALATLGARDFRRYLIGQLVSNVGTWMQRAAQDLLVLQLT
+                     GNSGSA
+                     VGILTALQFLPQTLFGLSGGVFADRFAKRRLLIVTQSAMGVQSLVLGVLTVTGAVNLWA
+                     VYLLAFLLGTATALDSPARNAFVSELVGKERLANAVSLNSAQFNVARAIGPAVAGLTVA
+                     AAGTGPVFLANAASYLAVLYGLIAVRADELHAPQEKNRGNARLSDAFRAIRASPDLLLP
+                     ITVIAFVGTFGFNFQVTISLIAITVFHAGSAAFGYLSAAYAIGSLVGALRGAGKRKPPT
+                     ARRLVTATVVFGALEALSGLVPGYATFLLVLVPTGFASVTVMTTANAMTQLNADPGMRG
+                     RIVSVYLLVLLGGTPVGAPLVGLVSDTLGARFSLILGGAISAVAAIGLSSVIT"
+     misc_feature    9282..10250
+                     /db_xref="PF07690.15"
+                     /db_xref="GO:0016021"
+                     /db_xref="GO:0055085"
+                     /label="LLPMBPKK_01157"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01157"
+                     /note="/aSDomain=MFS_1"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Major Facilitator Superfamily"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01157_0555"
+                     /note="/evalue=4.30E-29"
+                     /note="/gene_ontologies=GO:0016021: integral component
+                     ofmembrane"
+                     /note="/gene_ontologies=GO:0055085: transmembrane
+                     transport"
+                     /note="/protein_end=390"
+                     /note="/protein_start=67"
+                     /note="/score=101.4"
+                     /note="/tool=antismash"
+                     /note="/translation=WMQRAAQDLLVLQLTGNSGSAVGILTALQFLPQTLFGLS
+                     GGVFAD
+                     RFAKRRLLIVTQSAMGVQSLVLGVLTVTGAVNLWAVYLLAFLLGTATALDSPARNAFVS
+                     ELVGKERLANAVSLNSAQFNVARAIGPAVAGLTVAAAGTGPVFLANAASYLAVLYGLIA
+                     VRADELHAPQEKNRGNARLSDAFRAIRASPDLLLPITVIAFVGTFGFNFQVTISLIAIT
+                     VFHAGSAAFGYLSAAYAIGSLVGALRGAGKRKPPTARRLVTATVVFGALEALSGLVPGY
+                     ATFLLVLVPTGFASVTVMTTANAMTQLNADPGMRGRIVSVYLL"
+     CDS             complement(10735..11904)
+                     /codon_start=1
+                     /gene_functions="biosynthetic-additional (smcogs)
+                     SMCOG1083:oxidoreductase (Score: 133.8; E-value: 1.3e-40)"
+                     /gene_kind="biosynthetic-additional"
+                     /inference="ab initio prediction:same species:2.6"
+                     /inference="similar to AA sequence:same
+                     species:WP_020943557.1"
+                     /label="LLPMBPKK_01158"
+                     /locus_tag="LLPMBPKK_01158"
+                     /note="/gene_functions=biosynthetic-additional
+                     (smcogs)SMCOG1083:oxidoreductase (Score: 133.8; E-value:
+                     1.3e-40)"
+                     /note="/gene_kind=biosynthetic-additional"
+                     /product="LLM class flavin-dependent oxidoreductase"
+                     /transl_table=11
+                     /translation="MSLTFHWFLPTNGDSRHVVGGGHGTPATESGRDRPPTVAYLSQIA
+                     RAAEDLGFTGALTPTGAWCEDAWLTTAMVSQNTEHLKFLVAFRPGFVSPTLAAQMASTF
+                     QRQTGGRLLLNVVTGGESHEQRAYGDFLDKDARYRRTGEFLEIVRGLWEGKTVDLAGEH
+                     LRVEDARLARVPDPVPEVYFGGSSPIAGEVAARHADVYLTWGEPPAAVAEKIAWVRALA
+                     AKEGRSVRFGIRLHVITRDTSEQAWAEAERLLAGFDAETVRQVQAGLARSESEGQQRML
+                     ALHGGGSRDGLEIHPNLWAGIGLVRGGAGTALVGSHTEVAERIKEYAALGIEEFIFSGY
+                     PHLEEAYWLGEGVLPKLQAQGLWRHPYGQQVAPAAQVPFAGAGSARRPV"
+     misc_feature    complement(10906..11895)
+                     /db_xref="PF00296.19"
+                     /db_xref="GO:0016705"
+                     /db_xref="GO:0055114"
+                     /label="LLPMBPKK_01158"
+                     /label="nonstandard type: PFAM_domain"
+                     /locus_tag="LLPMBPKK_01158"
+                     /note="/aSDomain=Bac_luciferase"
+                     /note="/aSTool=clusterhmmer"
+                     /note="/database=31.0"
+                     /note="/description=Luciferase-like monooxygenase"
+                     /note="/detection=hmmscan"
+                     /note="/domain_id=clusterhmmer_LLPMBPKK_01158_0556"
+                     /note="/evalue=2.20E-86"
+                     /note="/gene_ontologies=GO:0016705: oxidoreductase
+                     activity,acting on paired donors, with incorporation or
+                     reduction of molecular oxygen"
+                     /note="/gene_ontologies=GO:0055114: oxidation-reduction
+                     process"
+                     /note="/protein_end=333"
+                     /note="/protein_start=3"
+                     /note="/score=290.1"
+                     /note="/tool=antismash"
+                     /note="/translation=TFHWFLPTNGDSRHVVGGGHGTPATESGRDRPPTVAYLS
+                     QIARAA
+                     EDLGFTGALTPTGAWCEDAWLTTAMVSQNTEHLKFLVAFRPGFVSPTLAAQMASTFQRQ
+                     TGGRLLLNVVTGGESHEQRAYGDFLDKDARYRRTGEFLEIVRGLWEGKTVDLAGEHLRV
+                     EDARLARVPDPVPEVYFGGSSPIAGEVAARHADVYLTWGEPPAAVAEKIAWVRALAAKE
+                     GRSVRFGIRLHVITRDTSEQAWAEAERLLAGFDAETVRQVQAGLARSESEGQQRMLALH
+                     GGGSRDGLEIHPNLWAGIGLVRGGAGTALVGSHTEVAERIKEYAALGIEE"
+     PFAM_domain     complement(10906..11895)
+                     /aSDomain="Bac_luciferase"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF00296.22"
+                     /db_xref="GO:0016705"
+                     /db_xref="GO:0055114"
+                     /description="Luciferase-like monooxygenase"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_LLPMBPKK_01158_0398"
+                     /evalue="4.80E-84"
+                     /gene_ontologies="GO:0016705: oxidoreductase activity,
+                     acting on paired donors, with incorporation or reduction of
+                     molecular oxygen"
+                     /gene_ontologies="GO:0055114: oxidation-reduction process"
+                     /label="LLPMBPKK_01158"
+                     /locus_tag="LLPMBPKK_01158"
+                     /protein_end="333"
+                     /protein_start="3"
+                     /score="282.5"
+                     /tool="antismash"
+                     /translation="TFHWFLPTNGDSRHVVGGGHGTPATESGRDRPPTVAYLSQIARAA
+                     EDLGFTGALTPTGAWCEDAWLTTAMVSQNTEHLKFLVAFRPGFVSPTLAAQMASTFQRQ
+                     TGGRLLLNVVTGGESHEQRAYGDFLDKDARYRRTGEFLEIVRGLWEGKTVDLAGEHLRV
+                     EDARLARVPDPVPEVYFGGSSPIAGEVAARHADVYLTWGEPPAAVAEKIAWVRALAAKE
+                     GRSVRFGIRLHVITRDTSEQAWAEAERLLAGFDAETVRQVQAGLARSESEGQQRMLALH
+                     GGGSRDGLEIHPNLWAGIGLVRGGAGTALVGSHTEVAERIKEYAALGIE"
+ORIGIN
+        1 tcactgccat cggtagccca cgccgcggac ggtcgccagc cgctcggcca cgcccagcgc
+       61 actcagcttg gcccgcagcc ggcgcacata ggagtcgagg gtgttgtcgc tgacctgcgc
+      121 cccgtgcggc cagccggcag cgatgagggc gtggcggcgt accgcgtcgc cctgcgaggc
+      181 gatcaggcgg cccagcagcc ggaactcggt cggggtgagg ctcctgctca ccgaatcgtg
+      241 ggtcaccacg tgcttcgccg gatcgaggac gacctcgcgc ggggcgggcg ccacggtggc
+      301 ccggcgcagc agcgcccgga cgcggacgag cagctccggg atgtcgaagg gtttggtcat
+      361 gtagtcgtcg gcgccggcct cgaagccgcc caccttgtga tgcaggccgt ccagggccgt
+      421 gagcatcagc accggcgcgt cgacgccgcg agcccgcagg gccaggcaga cgtcgcggcc
+      481 gtcggcgtcc gggagcccga gatccaggac gaccagatgg ggcgccggtg cgagctgccg
+      541 cagcaggctg tcggccgtgg cggcgacgga gacggtgtgg ccgtcgtgct ccagggcgcg
+      601 cctgaggacg tcgcggaccg ccgcgtcgtc ctcacacacc atgatgaaag ccacgcgccg
+      661 accctagaca ctcccgtccc agttctccat ctcccctggt cagccgcctg acgatcgggt
+      721 acagcccgct gcaccgagat ccacgatgcg agcgcccaag gcagccgcgg ccatcggtcg
+      781 actgcgcgat gaccgccggt gcgccgcctc aggtgtatgc actgtcgccg ggaacggtca
+      841 gccggaagcc gatgccgcgg acggtggaga tccaggccgg gtcgccgagt ttgcggcgca
+      901 gcgccgatac gtgcacgtcg agtgtgcggg tggggccgaa gtagtccggg ccccataccg
+      961 tgtcgaggat ctgttggcgg gagtgcaccg cgccgggatc gctggccagt tgggccagga
+     1021 gatcgaactc tttcggagtg agggtgagcg ggcggctgtc gacgctgaca ccccgagtcc
+     1081 gccggttgac ggtcagcggg cccaggcgct gcacgccgcg ctcctcgggg agtccggcat
+     1141 gtggggagct gtgggccggc acgccggtca tggcagtgcc ggtattcagc ggggcgagcc
+     1201 ggtcggggtg ggtgcggcgg gtgacggccc ggatccgcgc caccaactcg cgaacaccga
+     1261 aaggcttgga gagatagtcg tccgctccga gttccaagcc gaccacgcgg tccgtctcct
+     1321 cgctccgtgc ggtgatcatg atgatgggga cggcagaccg ggcgcgcagg gcccggcaga
+     1381 cgtcgatgcc gtccatgtcg ggtagtccga ggtccagaag cacgaggtcg gcggcggggg
+     1441 ccgacaaggc cgaagccccg gatttcacgt ggtcgacggc gaagcagtag cggcccagcc
+     1501 cttccaggac ggggccggcg atccggtcgt cgtcctcgac gaggaggagt cgcatggtct
+     1561 ccggtgtggg ttcggccggg aggacctgct cgccccccgc ggtacacgag ggatcggtgt
+     1621 gggtcgtcat ggatgtgtcc gtgatcgttc gtggtgcgtg cggaaatgcg gacttgtgag
+     1681 cctggtgtaa ggcgaacggc acgaccctgc ggcggcgcga ggcagctcgg gcccgaagac
+     1741 cctccggcac ggtgtcaggg gatggccggt cttcggcgca gcgctcactg ttgccagtcg
+     1801 gacacggcaa gcgggcgctc ggtgggcaag ggcggtgcct cgtcctgtct tgcgcgtatc
+     1861 accgaccgcg gccgtcgcgg atgggctgcg cggtgtgtgc cggcggtcct gaggcggacg
+     1921 acggcatcga gcccgccccc gggtgcggcc tgcagggtca cctcgccgcg cgaggcgcgg
+     1981 gcgagctgct tcacgatggg caggccgagc ccggtgcctt cgtggtcggc gtcgtgcgcc
+     2041 ctccagaagc ggtcgaaggc gcgtcgccgc tgttcctcgc tcatgcccgg gccctggtcg
+     2101 atcacatgca gttcgacggt tgcgggtgca ccgtgcgccc aggcagtggc caaggtgatc
+     2161 gtggtctggg gcggcgagac ccgcagcgcg ttggagagca ggttgtcgat gatctgctcc
+     2221 agcgcgtcgg ggagggccca cacctggccg atcctcggcc cggccacgac gatgtccacg
+     2281 tggtgctcac cggcgaaggc cgcccacaca gccgcgcggt cggcgatgac ggagtccagg
+     2341 tcggtggcct ccggtgtggt cgccgtgttc tccagccggg ccagggcgag caggccgtgc
+     2401 accattcggc tgagccgttc cacctcgccg accgcctcgt cgaggctggg ttgtgcctgt
+     2461 gggtcgaggt agggctcgaa gttctccagt cgcagccgca gcgcggtcag cggcgtcttc
+     2521 agctggtggg acgcctccga ggcgaaggcg tactgggcct tgagcagatg ctgcaaccgg
+     2581 gtcgcggtgc gaacgaagct ggcggccagg cgccgcagct cggggggccc gaggtcggtg
+     2641 gccggcaggt ccttcagggt gccgtcggcg agctgcgtcg tggcgtgctc cagcgcccgc
+     2701 accgggcggg tgatccagcg ggccagcgcg agagctatca gcgcgacggc cgccagcact
+     2761 cccagcccaa cggccgccag cgccagccag gcgtcgtgga ccttggacgt caccgcggcg
+     2821 agggggaagg acgctcgtac gacgcagcgg acggtgctgc ccgaggcgcc cggcacggtg
+     2881 acgaggaaga cgtcttcgtc cagggccgga tcctgccggg tggtggacct ggaccggttg
+     2941 gccagagcgg ttgcgatgtc cggctgcgcg gacaggtccg taccggcagc caccacgttg
+     3001 cgcgagtcgg cgatcagctt tcccttgttg tccacgacga tgacgtgact gccggtgcgc
+     3061 cgtgcgaagc ccgtcaccac ttcggggacg tcggaggcgc cccgccgctc gaccttctcc
+     3121 tccagcacct ctgcgagcat gccggcggcc tgctggccgt tgccggtgaa gcgggacctc
+     3181 tccccgcgcg cgtagacgta gccgaacggc acttccagac acaacagcac cagcagcgtg
+     3241 aggctgagat agctgagcag gaggcggcgg gtcaccggtt gtctcctcgg acgtgcggtt
+     3301 cgacctgcgt ggcggccgcg gtgtcggcgg gtcgcgcgag ccggaatccc acgccgcgga
+     3361 tgttgtcgat ccaggccggg tcacccagtt tgcggcgcag tgcggcgacg tggacgtcca
+     3421 gagtcttggt ggggccgaag tagttcggtt cccacacggc gtccaggatc tgctgtcgcg
+     3481 tgcggacggc gccgggatcg tcggcgagat aggcgagcag gtcgaactcc ttgggcgcga
+     3541 gggcgacgga ggtccggtgc aggtggactt ggcggccccg ccggtcgatg gccagcgggc
+     3601 cgatgtgctg ggtccggccc gccggatcgg gacggccgcc tcccgaagcg gcacgggccg
+     3661 gaacgggttc ggctgcagcg gttccggcac gccggaagac ggcgcggatc cgtgcgacca
+     3721 gttcccggac tccgaacggt ttggacaggt agtcgtcggc tcccagctcc agaccgagaa
+     3781 cccggtcgac ctcatcgctt ctcgcgctga tcatgatgat ggggacctgg gagcgcagtc
+     3841 ggagcgtccg gcagacgtcg atgccgtcca tgtcgggcag tcccagatcc agcagcacca
+     3901 tctccgtttc cgccgcggcg agtccgtcgg caccggtacg ggcgtgctcg acggtgaacc
+     3961 cgaaacggct caagccctcc atcagcggac cggcgacccg gtcatcatcc tcgatcagta
+     4021 agagacgcat gccgacagaa tcacaagctc tcggtccacg gcggcgggaa agccgccgaa
+     4081 tgtcgcgtta attactctcg gcgaacttga acaactgtat tcctttaccg tctcctgccc
+     4141 ggcaatcgac cctacggacc ctgctacagc agaacgtcaa cgtttgacag cgccaggcaa
+     4201 gcagacggtt aagaaagtac agcgcaggct tcatcgcccg gcaatcgcct ccgagtcggg
+     4261 cagcagcccg gcacagccgc ttcgttcgcc ggtgcgagca actccggaca tgccgccgat
+     4321 cagctgccga cagctccatt ttccggcaca gtggggcggg cggaatactg gatcgattct
+     4381 gatgccggcc ttccttctct ctggcgatca gttaaccaac gatcccgtaa cgttgtcggc
+     4441 ggctgatcgc ggacggcgtt cgcatgcgcg cttccattcg cctccgcagc ctctcccttg
+     4501 ctttcctacg cgacgggacg gtgaaacatg ccgcacagca gcacgaccga cgaactgcgc
+     4561 cacgagcgcc ccgatctggt cgaacccttc atggccgcgc tccccggtgc acgtgccacg
+     4621 gtgctcggcc ggctctgggg cgcgttcgcc cgcgaacccc tcccgggtat cgcggaccgc
+     4681 gaccgcgacg caggcacgct ggtcgtccgc ctcaccggtg gtgggcggct cacgggcccg
+     4741 gcggctgcgg ccgaacgatt cgccccggtc cccgccgact tcgccgtaca ggggcccgat
+     4801 ggtcccgtcg aggagccggc ccggctcctc gccgccctcg gagcccacac ggaggccgcg
+     4861 tcgcgtctgg ccgtcgagct cgacaacagc atcgccaacc tggccctggc ccgcgcggcc
+     4921 aaccacgagc cgcgcgaggt acgggactcc gccgacgccg aacaggctgt ggtcgacggc
+     4981 cacccccagc acccctgttg ccgtacccgc accggactgt ccgtcgccga ggtgctcgcc
+     5041 tacgcgcccg agcaccaccc cgtcatcgag ctggcgctcg tcgccgtacc ggccgaccgc
+     5101 tggcaggcca ccggcgactg gccgcaggaa ctgcgcgacg gcgacaccgt cctgatgccg
+     5161 gtccacccct ggcagcgcga ccacgtactc gcacgccagc ccgacctccc ggtcgtggac
+     5221 cgtacgatcg ccgcccgccc gctgctgtcg atgcggaccg tgtctcccct cgacgccctg
+     5281 cccggctgcc acatcaagac ggcactggac gtgcaggtca ccaactaccg gcgcaccatc
+     5341 tctccggccg aggtggccga cggagccccc ctgtccgagc tggtcaccgc cgtggtcgac
+     5401 aaggccggtc acggcgagag cctgcgcatc ctgcgcgaac tcgccggcgg tgccgtccgt
+     5461 gtgaacggca agccgtcggc gagcctggcg gcgatgatcc gcgagtcgag tgaacggcac
+     5521 ctcggcccgg acgagatcgc cgtcccgctc accgccgtcc acgccaccgg cgcccgcatg
+     5581 gtgagcggcg acccggtcac ctggctggcg gagttcgccg cactcgtcct gccgcccgcg
+     5641 ctgacgctgc tgtccatggg ggtggcgctg gaggcccacg gtcagaacac gctcgtcgcc
+     5701 ctgcgcggcg ggcgcccggt gcgggtgctc taccgggacc tggacggcgt gcgcatccac
+     5761 ccggagcggc tcgcccgcca cggcttctcg cttccgccgc tgtccgggac gcgggcgggg
+     5821 aacgacgaga gggcgctgcg gaccaagctg ttcgggggcc tgctcagcgg cgtcttcagc
+     5881 gagctggtct ccgtgctgtc acgaacgcgc ggcgccggcc ccgggcagct gtgggcggcg
+     5941 gtggccgccg tcggccgcca ggtcttcgcc gacctccctg atgcgagcgg ggaccgggag
+     6001 gtgttcttcg gcgacacgct gccgctgaag gcgaccatcg cgatgcgact ggccgaagcc
+     6061 tccggtgccg cccagtggac tcccgtcccc aaccccctgg cccgccaccg ctgacagccc
+     6121 gcttccgacc gccgggcccg gccggcctcc ccgcacatct ccttgcaccg actggagtcc
+     6181 ttccgcatga ccgtacccag caccaccggc gccgttctcg ccaccaacga cggtcccgcc
+     6241 cgggtcgccg acgccgtcac cgcccacacc ctgctcaact gcctgatccg tgaggtctcc
+     6301 gcgcccgagc gccaggtcac cgtcgaccag gaccgcctgc tgctgcggct gccccgccgc
+     6361 gacgtcctgc tccgcgtcct cctgcgccgc atctccctga tcggcgcgca ccgcttcgac
+     6421 ggtccggtcg agcggtacga cggcggggac tggtccgcga tcgggtggca cgagctcgcc
+     6481 ggctacatcc aggaggagct ggaactgcgt accggcgtgt ccaacgacga gttcctggcc
+     6541 caggtctccg acagccgtga caccatccac accaccctgg agcggcgcgc cacggcggct
+     6601 ctgccgcagg acccgtacct ggagtccgag cagtccctgg tcttcgggca ccgcttccac
+     6661 ccctcgccca agtcgcgcac cggcgacccc gaggactggc tggactacgg tccggagacc
+     6721 ggcacccgct tcccgctgcg ctacctcgcc gtccaccgga gtctggtgcg cgaggaaggt
+     6781 gacctgagca ggctcgacgc ccttcatccg tccgggcgca gggactacgt caccctgccg
+     6841 gtgcacccct ggcagtaccg gatgctcggc gaccatccgg cgctgcgcga ggccttggcc
+     6901 gccggctcga tcgtcgatac gggcgtcgtg ggcccggcct tcgtccccac cgcttcggtg
+     6961 cggaccttgt accagccgga cgccgacacg ttcctgaagt tcagcctgaa cgtccggctg
+     7021 accaactgtg tccgcaagaa cgccgcgtac gagctggcgg gtgccgtggc cctcaaccgg
+     7081 ctcctgggcc ccgtcttcgg cgacatcggc cacgcccacg ccggaagcgc gctgctcgcc
+     7141 gagccgggct accgcaccct cgccctcggc gacgacctct gccttgtgga gggcttcggc
+     7201 gtcatcgtcc gcaccggcct gcgcgaacac ctgcgtccgg gcgtgacccc gctgctggcc
+     7261 gccgcgatcg ccgacgagca ccccaccagc ccggctcacg tctcccgcct cctggccctc
+     7321 ggtgacggtg acgcgctcac ctggtgggac gcctacctcg gcttgctgct gccccccgtc
+     7381 ctgaccgcct acttcgagca cggcatcgtc ctcgaacccc atctgcagaa cgtcgtcgtc
+     7441 ggggtgagcg gcgacggcac ccccgcccag gtgatcttcc gcgacctgga gggaaccaag
+     7501 ctcgtccccg aacaccaccg cccgttcctc gccggcctgc ccgaggacgt gcgcactgcg
+     7561 atgacgcacg acgccgagcg cggctggaac cgggtggcct actgcctcct ggtcaaccac
+     7621 acagccgaag tcctcgccgc cctcgccgac accgaccccg ccctggaacc cgctctgtgg
+     7681 ggcctggtcc gcgaccacct cgacgcctac tcccgcggtg cgggcgagcc gccccggctg
+     7741 cgcgccctgc tctcgggcgt accactgccc gccaaggcca atctgctgct gcgctggtcg
+     7801 cggcaggccg accggcacgc cggctacgtc ccgttgccca gcccgctggg cgagggcttc
+     7861 ccccgcgagg tgacccggtg aggcagcgac ttttcccgta cgtcaccgag ctggccgcgg
+     7921 aagaactccc cgcctacgtc tacgacctgc gggacctgcg cgagcacgcg gccgccgtcc
+     7981 gtgccgccct gcccgaacgc gtccagctct tctacgccgc caaggccaac tccgaccccc
+     8041 tgctcctgga cgtcctgcgc gaccacgtcg acggcttcga ggtcgcttcc ggcggcgaac
+     8101 tccaccacat ccggaccacc tgccccggca cgccgatcgc cttcggcggc cccggcaaga
+     8161 cgccggccga actcgaacag gcactgcgcg ccggagtgga ccgcctgcac gtcgagagcg
+     8221 aacaagaact ccaccagctc accggcatgc tcggtgaacg cgccgtggac gtcctgctcc
+     8281 gggtcaacct cccgatcgcc ctcggcccgg tggccctcgc catgggcggc cggcccagcc
+     8341 ccttcggcct cgacccgagt cacctggacc gctgcttcgc cctcgtctcc ggcgaccccc
+     8401 gcatccggct gcgcggcatc cacgtgcacc tcgccagcgg gctggatgcc gccacccacc
+     8461 tcgacctcgc ccgccaggtc ctgacctggg cgaggggatg ggcggaccgg cacggcacgg
+     8521 agctgagcga ggtcaacctc ggcggtggca tggaggtcga ctacacccgt cccgaccggc
+     8581 gcttcgactg ggcggccttc ggcgccggcc tgcgccgcct gctggagggc cacccggacc
+     8641 tgaccctgcg catcgaaccg ggccgttcgg tcaccgcgta ctgcggctgg tacgtcaccg
+     8701 aggtcctcga catcaaacgc agccacggtc acgccttcgc cgtgctgcgc ggcggcaccc
+     8761 accacctgcg cacaccggcc gccaaacagc acgaccagcc gttcaccgtc atccccgacg
+     8821 acacctggga ccggccctgg gaacgccccc gggccgagga cgaacccgtc acactggtcg
+     8881 gtcagctgtg cacgcccaag gacgtcctgg ccgacggcgt gcgggcagag cggctgcgcg
+     8941 tcggcgacag gatcgccttc gccctggccg gggcgtacgc ctggaacatc tcccaccacg
+     9001 agttcctgat gcatcccgcg ccgcggttcc accacctcga ccacgtctcc gtacccgtcg
+     9061 gctcccaccc gtagaaggtc atgagcaagc accgccgtgt ccgcagcagc gacaggacgc
+     9121 aggccctccg cgccagacgt gccgccctcg acgtgagcgg ccggcaccgc agggcccgca
+     9181 ggggcggaaa gcgacgggct ccgagcgagg cactcgccac gctcggggcc cgcgacttcc
+     9241 gccgttacct gatcgggcag ctcgtctcca acgtcggtac ctggatgcag cgtgccgccc
+     9301 aggatctgct ggtcctccag ctcaccggca acagcggcag cgccgtcggc atactcaccg
+     9361 ccctgcagtt cctgccacag acactgttcg gtctctccgg gggcgtcttc gccgaccgct
+     9421 tcgccaagcg ccgcctgctg atcgtcaccc agtccgccat gggagtgcag tcgctggtcc
+     9481 tgggcgtcct gacggtcacc ggtgcggtga acctgtgggc cgtgtacctg ctggccttcc
+     9541 tgctgggcac cgccacggcg ctggacagcc cggcccgcaa cgccttcgta tccgagctcg
+     9601 tcggcaagga acgcctggcc aacgccgtca gcctgaactc cgcgcagttc aacgtcgccc
+     9661 gcgcgatcgg gccggcggtg gcgggcctga cggtcgcggc cgcgggcacc ggacccgtct
+     9721 tcctggccaa cgcggcctcg tacctcgccg tcctctacgg actgatcgcc gttcgcgccg
+     9781 acgaactcca cgcgccccag gagaagaacc gcgggaacgc ccgtctgtcg gacgccttcc
+     9841 gagccatccg cgccagtccc gacctcctgc tgccgatcac ggtcatcgcc ttcgtcggca
+     9901 ccttcggctt caacttccag gtgaccatct cgctgatcgc catcaccgtc ttccacgcgg
+     9961 gttccgccgc tttcggatac ctgtccgccg cctacgccat cggcagcctc gtcggtgcgc
+    10021 tcaggggagc cggcaagcga aaacctccca ccgcccgccg cctggtcacc gccacggtcg
+    10081 tcttcggagc cctggaggcg ctgtccggac tcgtgcccgg ctacgccacc ttcctgctcg
+    10141 tcctcgtgcc caccgggttc gcctccgtga ccgtgatgac cacggccaac gccatgactc
+    10201 agctgaacgc cgacccgggc atgcgcgggc gcatcgtctc cgtctacctt ctcgtcctgc
+    10261 tcggaggcac tccggtcggc gcccctctgg tcggcctggt ctccgacacc ctcggcgccc
+    10321 gcttcagcct catcctcggc ggcgcgatct ccgccgtggc cgccatcggc ctgtcgtccg
+    10381 tgatcaccgc ccgctccccc accacccgag agggaactcc gttggccgcg gtcacgtcac
+    10441 cgccccccat atccctcgac ggccgcttcc accgagaacc gaccccccaa cccgcggcac
+    10501 gccgatcggc ggcctgacgc acggcatgcg gcagggcggc cacccgggtc ccgatgccgg
+    10561 gcaacgctcc gcgatccgtg ctgtggtcac ccctgccgcg gctgcccggt tccgggacga
+    10621 cgaggtcggc gaagtcggcg aagtcggcga aggagccagg ggtggtgacg taggtgaggt
+    10681 cgaagccgtc gcacctcggc gcctccgtgg gagcggggcc ggtggcgtcg gcgatcacac
+    10741 gggtcgtcgc gcgctcccgg caccggcgaa cgggacctgg gcggccggag ccacctgctg
+    10801 cccgtacggg tgccgccaca gaccctgcgc ctgaagcttc ggcagcacgc cctcgcccaa
+    10861 ccagtacgcc tcctccagat gcggataccc ggagaagatg aactcctcga tccccaacgc
+    10921 ggcgtactcc ttgatccgct cggcgacctc ggtgtggctg ccgaccaggg cggtccccgc
+    10981 cccgccccgc accagaccga tgcccgccca caggttggga tggatctcca gcccgtcccg
+    11041 gctcccgccc ccgtgcaggg ccagcatccg ctgctgtccc tccgactcgc tgcgggcaag
+    11101 cccggcctga acctgccgca cggtctccgc gtcgaagccc gccagcagcc gctccgcctc
+    11161 ggcccaggcc tgctcggagg tgtcgcgggt gatgacgtgc aaccggattc cgaagcggac
+    11221 gctgcggccc tccttggcgg ccagcgccct gacccaggcg atcttctccg cgacggctgc
+    11281 gggcggctca ccccaggtga ggtagacgtc cgcatgcctg gcggcaactt ctccggcgat
+    11341 cggcgaggag cccccgaagt acacctcggg caccgggtcg ggcacccggg cgagcctggc
+    11401 gtcctcgacc cggaggtgct cgccggcgag gtcgacggtc ttgccctccc acaacccccg
+    11461 gacgatttcc aggaattcgc cggtacggcg gtaccgcgcg tccttgtcga ggaagtcccc
+    11521 gtaggcccgc tgctcgtggc tttcgccgcc ggtcacgacg ttgagcagga gccgtccgcc
+    11581 ggtctgccgc tggaaggtgg aggccatctg cgccgcgagc gtcggcgaga cgaagccggg
+    11641 gcggaaggcg acgaggaact tcaggtgctc ggtgttctgg ctgaccatgg cggtagtcag
+    11701 ccacgcgtcc tcgcaccacg cgccggtcgg ggtgagtgcc ccggtgaagc cgaggtcctc
+    11761 ggcggctcgg gcgatctggc tcaggtaggc gaccgtcggc ggccggtcgc gcccggactc
+    11821 cgtggcggga gtgccgtggc cgccgccgac gacgtggcgg ctgtcgccgt tggtgggcag
+    11881 gaaccagtgg aaggtgaggg acac
+//

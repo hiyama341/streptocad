@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>PVC99864.1</td>
+              <td>DsbA_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002100/1">BGC0002100</a></td>
+              <td>NRP+Other</td>
+              <td>53.0</td>
+              <td>99.6</td>
+              <td>260.0</td>
+              <td>4.68e-88</td>
+          </tr>
+    
+          <tr>
+              <td>ALG65309.1</td>
+              <td>Cal27</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001297/1">BGC0001297</a></td>
+              <td>NRP</td>
+              <td>53.0</td>
+              <td>101.3</td>
+              <td>260.0</td>
+              <td>8.38e-88</td>
+          </tr>
+    
+          <tr>
+              <td>AEA30270.1</td>
+              <td>putative_isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000429/1">BGC0000429</a></td>
+              <td>Polyketide+NRP:Cyclic depsipeptide</td>
+              <td>56.0</td>
+              <td>99.6</td>
+              <td>259.0</td>
+              <td>1.43e-87</td>
+          </tr>
+    
+          <tr>
+              <td>QYA95684.1</td>
+              <td>DsbA_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002676/1">BGC0002676</a></td>
+              <td>NRP</td>
+              <td>55.0</td>
+              <td>99.1</td>
+              <td>258.0</td>
+              <td>4.08e-87</td>
+          </tr>
+    
+          <tr>
+              <td>QBA57745.1</td>
+              <td>isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002377/1">BGC0002377</a></td>
+              <td>NRP</td>
+              <td>53.0</td>
+              <td>102.1</td>
+              <td>256.0</td>
+              <td>2.95e-86</td>
+          </tr>
+    
+          <tr>
+              <td>BCN28625.1</td>
+              <td>isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002441/1">BGC0002441</a></td>
+              <td>Polyketide+NRP</td>
+              <td>52.0</td>
+              <td>96.6</td>
+              <td>248.0</td>
+              <td>3.55e-83</td>
+          </tr>
+    
+          <tr>
+              <td>QNH67548.1</td>
+              <td>Cip20</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002108/1">BGC0002108</a></td>
+              <td>NRP</td>
+              <td>56.0</td>
+              <td>84.5</td>
+              <td>242.0</td>
+              <td>3.58e-81</td>
+          </tr>
+    
+          <tr>
+              <td>WP_054234635.1</td>
+              <td>DsbA_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002014/1">BGC0002014</a></td>
+              <td>NRP+Polyketide</td>
+              <td>50.0</td>
+              <td>101.7</td>
+              <td>238.0</td>
+              <td>4.79e-79</td>
+          </tr>
+    
+          <tr>
+              <td>QBG38777.1</td>
+              <td>Atr16</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001975/1">BGC0001975</a></td>
+              <td>NRP</td>
+              <td>54.0</td>
+              <td>86.3</td>
+              <td>236.0</td>
+              <td>6.78e-79</td>
+          </tr>
+    
+          <tr>
+              <td>QDJ74285.1</td>
+              <td>isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002109/1">BGC0002109</a></td>
+              <td>NRP</td>
+              <td>50.0</td>
+              <td>87.6</td>
+              <td>219.0</td>
+              <td>4.03e-72</td>
+          </tr>
+    
+          <tr>
+              <td>QDJ74267.1</td>
+              <td>isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002109/1">BGC0002109</a></td>
+              <td>NRP</td>
+              <td>51.0</td>
+              <td>83.7</td>
+              <td>215.0</td>
+              <td>1.12e-70</td>
+          </tr>
+    
+          <tr>
+              <td>AIL50164.1</td>
+              <td>DSBA_oxido/reductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000213/1">BGC0000213</a></td>
+              <td>Polyketide:Type II polyketide</td>
+              <td>49.0</td>
+              <td>88.0</td>
+              <td>209.0</td>
+              <td>9.34e-68</td>
+          </tr>
+    
+          <tr>
+              <td>QRG35029.1</td>
+              <td>disulfide_bond_formation_protein_DsbA</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002378/1">BGC0002378</a></td>
+              <td>NRP</td>
+              <td>45.0</td>
+              <td>100.9</td>
+              <td>207.0</td>
+              <td>6.45e-67</td>
+          </tr>
+    
+          <tr>
+              <td>QHB92594.1</td>
+              <td>YsfG</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002547/1">BGC0002547</a></td>
+              <td>Polyketide</td>
+              <td>47.0</td>
+              <td>88.8</td>
+              <td>204.0</td>
+              <td>3.26e-66</td>
+          </tr>
+    
+          <tr>
+              <td>QMX85621.1</td>
+              <td>SapN</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002510/1">BGC0002510</a></td>
+              <td>Polyketide</td>
+              <td>45.0</td>
+              <td>103.4</td>
+              <td>202.0</td>
+              <td>3.16e-65</td>
+          </tr>
+    
+          <tr>
+              <td>AFV52182.1</td>
+              <td>isomerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000081/1">BGC0000081</a></td>
+              <td>NRP+Polyketide:Iterative type I polyketide+Polyketide:Enediyne type I polyketide</td>
+              <td>49.0</td>
+              <td>83.7</td>
+              <td>187.0</td>
+              <td>9.79e-60</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

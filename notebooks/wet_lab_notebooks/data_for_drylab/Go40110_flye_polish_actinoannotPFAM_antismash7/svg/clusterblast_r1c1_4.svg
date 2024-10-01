@@ -1,0 +1,472 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="286,35 288,30 288,40 286,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00290&lt;/b&gt;&lt;br&gt;ABC transporter ATP-binding protein&lt;br&gt;Location: 323315 - 324008" locus_tag="LLPMBPKK_00290" class="clusterblast-orf" id="dummy-1_q0_0_all"  />
+<polygon points="288,40 290,35 288,30 288,40 " style="fill:#77d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00291&lt;/b&gt;&lt;br&gt;sensor histidine kinase&lt;br&gt;Location: 324191 - 325082" locus_tag="LLPMBPKK_00291" class="clusterblast-orf" id="dummy-1_q1_0_all"  />
+<polygon points="290,40 292,35 290,30 290,40 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00292&lt;/b&gt;&lt;br&gt;two-component system response regulator&lt;br&gt;Location: 325078 - 325891" locus_tag="LLPMBPKK_00292" class="clusterblast-orf" id="dummy-1_q2_0_all"  />
+<polygon points="292,35 293,30 293,40 292,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00293&lt;/b&gt;&lt;br&gt;MarR family transcriptional regulator&lt;br&gt;Location: 326166 - 326706" locus_tag="LLPMBPKK_00293" class="clusterblast-orf" id="dummy-1_q3_0_all"  />
+<polygon points="294,40 296,35 294,30 294,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00294&lt;/b&gt;&lt;br&gt;membrane spanning protein&lt;br&gt;Location: 326774 - 328067" locus_tag="LLPMBPKK_00294" class="clusterblast-orf" id="dummy-1_q4_0_all"  />
+<polygon points="297,40 299,35 297,30 297,40 " style="fill:#7715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00295&lt;/b&gt;&lt;br&gt;membrane protein&lt;br&gt;Location: 328560 - 329451" locus_tag="LLPMBPKK_00295" class="clusterblast-orf" id="dummy-1_q5_0_all"  />
+<polygon points="299,35 302,30 302,40 299,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00296&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 329495 - 330821" locus_tag="LLPMBPKK_00296" class="clusterblast-orf" id="dummy-1_q6_0_all"  />
+<polygon points="302,35 303,30 303,40 302,35 " style="fill:#d84615; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00297&lt;/b&gt;&lt;br&gt;response regulator transcription factor&lt;br&gt;Location: 330817 - 331480" locus_tag="LLPMBPKK_00297" class="clusterblast-orf" id="dummy-1_q7_0_all"  />
+<polygon points="305,35 306,30 306,40 305,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00298&lt;/b&gt;&lt;br&gt;hydrolase&lt;br&gt;Location: 332293 - 333001" locus_tag="LLPMBPKK_00298" class="clusterblast-orf" id="dummy-1_q8_0_all"  />
+<polygon points="310,35 311,30 311,40 310,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00299&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 334507 - 335224" locus_tag="LLPMBPKK_00299" class="clusterblast-orf" id="dummy-1_q9_0_all"  />
+<polygon points="312,40 315,35 312,30 312,40 " style="fill:#46d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00300&lt;/b&gt;&lt;br&gt;nucleotide-binding protein&lt;br&gt;Location: 335785 - 337201" locus_tag="LLPMBPKK_00300" class="clusterblast-orf" id="dummy-1_q10_0_all"  />
+<polygon points="316,40 318,35 316,30 316,40 " style="fill:#15a7d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00301&lt;/b&gt;&lt;br&gt;cyclase&lt;br&gt;Location: 337536 - 338730" locus_tag="LLPMBPKK_00301" class="clusterblast-orf" id="dummy-1_q11_0_all"  />
+<polygon points="318,40 320,35 318,30 318,40 " style="fill:#a715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00302&lt;/b&gt;&lt;br&gt;methyltransferase&lt;br&gt;Location: 338745 - 339621" locus_tag="LLPMBPKK_00302" class="clusterblast-orf" id="dummy-1_q12_0_all"  />
+<polygon points="320,40 321,35 320,30 320,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00303&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 339752 - 339935" locus_tag="LLPMBPKK_00303" class="clusterblast-orf" id="dummy-1_q13_0_all"  />
+<polygon points="321,35 323,30 323,40 321,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00304&lt;/b&gt;&lt;br&gt;PhzF family phenazine biosynthesis isomerase&lt;br&gt;Location: 339927 - 340803" locus_tag="LLPMBPKK_00304" class="clusterblast-orf" id="dummy-1_q14_0_all"  />
+<polygon points="323,35 326,30 326,40 323,35 " style="fill:#d87715; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00305&lt;/b&gt;&lt;br&gt;Tryptophan halogenase&lt;br&gt;Location: 340940 - 342413" locus_tag="LLPMBPKK_00305" class="clusterblast-orf" id="dummy-1_q15_0_all"  />
+<polygon points="326,35 331,30 342,30 342,40 331,40 326,35 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;polyketide synthase&lt;br&gt;Location: 342409 - 350239" locus_tag="LLPMBPKK_00306" class="clusterblast-orf" id="dummy-1_q16_0_all"  />
+<polygon points="342,35 344,30 344,40 342,35 " style="fill:#1577d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00307&lt;/b&gt;&lt;br&gt;class I SAM-dependent methyltransferase&lt;br&gt;Location: 350335 - 351286" locus_tag="LLPMBPKK_00307" class="clusterblast-orf" id="dummy-1_q17_0_all"  />
+<polygon points="344,35 348,30 348,40 344,35 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00308&lt;/b&gt;&lt;br&gt;3-(3-hydroxyphenyl)propionate hydroxylase&lt;br&gt;Location: 351361 - 352990" locus_tag="LLPMBPKK_00308" class="clusterblast-orf" id="dummy-1_q18_0_all"  />
+<polygon points="348,35 349,30 349,40 348,35 " style="fill:#d8a715; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00309&lt;/b&gt;&lt;br&gt;N-acetyltransferase/amide synthase&lt;br&gt;Location: 353013 - 353796" locus_tag="LLPMBPKK_00309" class="clusterblast-orf" id="dummy-1_q19_0_all"  />
+<polygon points="350,35 355,30 370,30 370,40 355,40 350,35 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 353800 - 363724" locus_tag="LLPMBPKK_00310" class="clusterblast-orf" id="dummy-1_q20_0_all"  />
+<polygon points="370,35 375,30 392,30 392,40 375,40 370,35 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;type I polyketide synthase&lt;br&gt;Location: 363754 - 374203" locus_tag="LLPMBPKK_00311" class="clusterblast-orf" id="dummy-1_q21_0_all"  />
+<polygon points="392,35 397,30 408,30 408,40 397,40 392,35 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;type I polyketide synthase&lt;br&gt;Location: 374249 - 382115" locus_tag="LLPMBPKK_00312" class="clusterblast-orf" id="dummy-1_q22_0_all"  />
+<polygon points="408,35 413,30 413,30 413,40 413,40 408,35 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;type I polyketide synthase&lt;br&gt;Location: 382111 - 384328" locus_tag="LLPMBPKK_00313" class="clusterblast-orf" id="dummy-1_q23_0_all"  />
+<polygon points="413,35 418,30 424,30 424,40 418,40 413,35 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;type I polyketide synthase&lt;br&gt;Location: 384422 - 390035" locus_tag="LLPMBPKK_00314" class="clusterblast-orf" id="dummy-1_q24_0_all"  />
+<polygon points="425,35 430,30 444,30 444,40 430,40 425,35 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;2-succinylbenzoate--CoA ligase&lt;br&gt;Location: 390069 - 399576" locus_tag="LLPMBPKK_00315" class="clusterblast-orf" id="dummy-1_q25_0_all"  />
+<polygon points="444,35 446,30 446,40 444,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00316&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 399691 - 400606" locus_tag="LLPMBPKK_00316" class="clusterblast-orf" id="dummy-1_q26_0_all"  />
+<polygon points="447,35 452,30 453,30 453,40 452,40 447,35 " style="fill:#15d846; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00317&lt;/b&gt;&lt;br&gt;non-ribosomal peptide synthetase&lt;br&gt;Location: 401116 - 403651" locus_tag="LLPMBPKK_00317" class="clusterblast-orf" id="dummy-1_q27_0_all"  />
+<polygon points="453,35 455,30 455,40 453,35 " style="fill:#1546d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00318&lt;/b&gt;&lt;br&gt;Acetyltransferase (GNAT) family protein&lt;br&gt;Location: 403696 - 404623" locus_tag="LLPMBPKK_00318" class="clusterblast-orf" id="dummy-1_q28_0_all"  />
+<polygon points="455,35 456,30 456,40 455,35 " style="fill:#d815a7; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00319&lt;/b&gt;&lt;br&gt;3-dehydroquinate dehydratase&lt;br&gt;Location: 404785 - 405202" locus_tag="LLPMBPKK_00319" class="clusterblast-orf" id="dummy-1_q29_0_all"  />
+<polygon points="456,40 459,35 456,30 456,40 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00320&lt;/b&gt;&lt;br&gt;3-amino-5-hydroxybenzoate synthase&lt;br&gt;Location: 405450 - 406614" locus_tag="LLPMBPKK_00320" class="clusterblast-orf" id="dummy-1_q30_0_all"  />
+<polygon points="459,40 461,35 459,30 459,40 " style="fill:#15d877; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00321&lt;/b&gt;&lt;br&gt;oxidoreductase RifL&lt;br&gt;Location: 406610 - 407741" locus_tag="LLPMBPKK_00321" class="clusterblast-orf" id="dummy-1_q31_0_all"  />
+<polygon points="461,40 463,35 461,30 461,40 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00322&lt;/b&gt;&lt;br&gt;phosphoglycolate phosphatase&lt;br&gt;Location: 407845 - 408544" locus_tag="LLPMBPKK_00322" class="clusterblast-orf" id="dummy-1_q32_0_all"  />
+<polygon points="463,40 466,35 463,30 463,40 " style="fill:#d81577; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00323&lt;/b&gt;&lt;br&gt;3-deoxy-7-phosphoheptulonate synthase&lt;br&gt;Location: 408817 - 410152" locus_tag="LLPMBPKK_00323" class="clusterblast-orf" id="dummy-1_q33_0_all"  />
+<polygon points="466,40 468,40 473,35 468,30 466,30 466,40 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00324&lt;/b&gt;&lt;br&gt;3-phosphoshikimate 1-carboxyvinyltransferase&lt;br&gt;Location: 410297 - 413303" locus_tag="LLPMBPKK_00324" class="clusterblast-orf" id="dummy-1_q34_0_all"  />
+<polygon points="473,40 475,35 473,30 473,40 " style="fill:#a7d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00325&lt;/b&gt;&lt;br&gt;acyl-CoA dehydrogenase&lt;br&gt;Location: 413383 - 414553" locus_tag="LLPMBPKK_00325" class="clusterblast-orf" id="dummy-1_q35_0_all"  />
+<polygon points="475,40 477,35 475,30 475,40 " style="fill:#15d8a7; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00326&lt;/b&gt;&lt;br&gt;SDR family oxidoreductase&lt;br&gt;Location: 414549 - 415392" locus_tag="LLPMBPKK_00326" class="clusterblast-orf" id="dummy-1_q36_0_all"  />
+<polygon points="477,40 481,35 477,30 477,40 " style="fill:#4615d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00327&lt;/b&gt;&lt;br&gt;NADPH-dependent 2,4-dienoyl-CoA reductase&lt;br&gt;Location: 415436 - 417518" locus_tag="LLPMBPKK_00327" class="clusterblast-orf" id="dummy-1_q37_0_all"  />
+<polygon points="481,35 486,30 487,30 487,40 486,40 481,35 " style="fill:#d81546; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00328&lt;/b&gt;&lt;br&gt;LuxR family transcriptional regulator&lt;br&gt;Location: 417593 - 420452" locus_tag="LLPMBPKK_00328" class="clusterblast-orf" id="dummy-1_q38_0_all"  />
+<polygon points="490,40 493,35 490,30 490,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00329&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 421519 - 422968" locus_tag="LLPMBPKK_00329" class="clusterblast-orf" id="dummy-1_q39_0_all"  />
+</g>
+<g label="NZ_CP042266" description="NZ_CP042266 (6918091-7295107): Streptomyces qinzhouensis strain SSL-25 chromo... (23% of genes show similarity), NRPS,NRPS-like,T1PKS,other,terpene,transAT-PKS" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_CP042266&amp;start=6918091&amp;end=7295107" target="_blank">NZ_CP042266 (6918091-7295107)</a>: Streptomyces qinzhouensis strain SSL-25 chromo... (23% of genes show similarity), NRPS,NRPS-like,T1PKS,other,terpene,transAT-PKS</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="0,90 2,85 0,80 0,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30695&lt;/b&gt;&lt;br&gt;2Fe-2S iron-sulfur cluster binding domain-containing protein&lt;br&gt;Location: 7295107 - 7294052" locus_tag="FQU76_RS30695" class="clusterblast-orf" id="dummy-1_h1_4_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="2,90 4,85 2,80 2,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30690&lt;/b&gt;&lt;br&gt;fatty acid desaturase&lt;br&gt;Location: 7294044 - 7292926" locus_tag="FQU76_RS30690" class="clusterblast-orf" id="dummy-1_h1_4_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="4,85 5,80 5,90 4,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30685&lt;/b&gt;&lt;br&gt;helix-turn-helix transcriptional regulator&lt;br&gt;Location: 7292868 - 7292293" locus_tag="FQU76_RS30685" class="clusterblast-orf" id="dummy-1_h1_4_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="6,85 11,80 12,80 12,90 11,90 6,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30680&lt;/b&gt;&lt;br&gt;AAA family ATPase&lt;br&gt;Location: 7291812 - 7289014" locus_tag="FQU76_RS30680" class="clusterblast-orf" id="dummy-1_h1_4_3"  />
+</g>
+<g id="a1_004"  >
+<polygon points="12,85 17,80 24,80 24,90 17,90 12,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30675&lt;/b&gt;&lt;br&gt;AAA family ATPase&lt;br&gt;Location: 7289009 - 7283304" locus_tag="FQU76_RS30675" class="clusterblast-orf" id="dummy-1_h1_4_4"  />
+</g>
+<g id="a1_005"  >
+<polygon points="25,90 27,85 25,80 25,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30670&lt;/b&gt;&lt;br&gt;glycosyltransferase family 1 protein&lt;br&gt;Location: 7283003 - 7281618" locus_tag="FQU76_RS30670" class="clusterblast-orf" id="dummy-1_h1_4_5"  />
+</g>
+<g id="a1_006"  >
+<polygon points="28,90 30,85 28,80 28,90 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30665&lt;/b&gt;&lt;br&gt;aminotransferase class V-fold PLP-dependent enzyme&lt;br&gt;Location: 7281564 - 7280506&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00320&lt;/b&gt;&lt;br&gt;Percentage identity: 38&lt;br&gt;Percentage coverage: 59&lt;br&gt;BLAST bit score: 130&lt;br&gt;E-value: 1.6e-32" locus_tag="FQU76_RS30665" class="clusterblast-orf" id="dummy-1_h1_4_6"  />
+</g>
+<g id="a1_007"  >
+<polygon points="30,90 32,85 30,80 30,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30660&lt;/b&gt;&lt;br&gt;cytochrome P450&lt;br&gt;Location: 7280480 - 7279275" locus_tag="FQU76_RS30660" class="clusterblast-orf" id="dummy-1_h1_4_7"  />
+</g>
+<g id="a1_008"  >
+<polygon points="32,90 33,85 32,80 32,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30655&lt;/b&gt;&lt;br&gt;ferredoxin&lt;br&gt;Location: 7279257 - 7279063" locus_tag="FQU76_RS30655" class="clusterblast-orf" id="dummy-1_h1_4_8"  />
+</g>
+<g id="a1_009"  >
+<polygon points="33,90 34,85 33,80 33,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30650&lt;/b&gt;&lt;br&gt;alpha/beta fold hydrolase&lt;br&gt;Location: 7278996 - 7278241" locus_tag="FQU76_RS30650" class="clusterblast-orf" id="dummy-1_h1_4_9"  />
+</g>
+<g id="a1_0010"  >
+<polygon points="34,90 34,90 39,85 34,80 34,80 34,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30645&lt;/b&gt;&lt;br&gt;aminodeoxychorismate synthase component I&lt;br&gt;Location: 7278241 - 7276175" locus_tag="FQU76_RS30645" class="clusterblast-orf" id="dummy-1_h1_4_10"  />
+</g>
+<g id="a1_0011"  >
+<polygon points="39,90 45,90 50,85 45,80 39,80 39,90 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30640&lt;/b&gt;&lt;br&gt;AMP-binding protein&lt;br&gt;Location: 7276053 - 7270939&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 46&lt;br&gt;Percentage coverage: 58&lt;br&gt;BLAST bit score: 1009&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 56&lt;br&gt;Percentage coverage: 30&lt;br&gt;BLAST bit score: 953&lt;br&gt;E-value: 2.8e-301&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 25&lt;br&gt;BLAST bit score: 893&lt;br&gt;E-value: 2.37e-278&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 38&lt;br&gt;BLAST bit score: 905&lt;br&gt;E-value: 3.07e-288&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 56&lt;br&gt;Percentage coverage: 93&lt;br&gt;BLAST bit score: 663&lt;br&gt;E-value: 9.18e-218&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 48&lt;br&gt;BLAST bit score: 786&lt;br&gt;E-value: 1.52e-250&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 31&lt;br&gt;BLAST bit score: 982&lt;br&gt;E-value: 7.8e-313" locus_tag="FQU76_RS30640" class="clusterblast-orf" id="dummy-1_h1_4_11"  />
+</g>
+<g id="a1_0012"  >
+<polygon points="50,90 52,85 50,80 50,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30635&lt;/b&gt;&lt;br&gt;ATP-binding cassette domain-containing protein&lt;br&gt;Location: 7270815 - 7269844" locus_tag="FQU76_RS30635" class="clusterblast-orf" id="dummy-1_h1_4_12"  />
+</g>
+<g id="a1_0013"  >
+<polygon points="52,90 53,85 52,80 52,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30630&lt;/b&gt;&lt;br&gt;ABC transporter permease&lt;br&gt;Location: 7269847 - 7269029" locus_tag="FQU76_RS30630" class="clusterblast-orf" id="dummy-1_h1_4_13"  />
+</g>
+<g id="a1_0014"  >
+<polygon points="54,85 59,80 117,80 117,90 59,90 54,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30625&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7268945 - 7238106&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 47&lt;br&gt;Percentage coverage: 69&lt;br&gt;BLAST bit score: 1307&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 108&lt;br&gt;BLAST bit score: 2748&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 3146&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 50&lt;br&gt;Percentage coverage: 86&lt;br&gt;BLAST bit score: 1847&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 93&lt;br&gt;BLAST bit score: 681&lt;br&gt;E-value: 3.83e-216&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 46&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 1289&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 47&lt;br&gt;Percentage coverage: 79&lt;br&gt;BLAST bit score: 1823&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30625" class="clusterblast-orf" id="dummy-1_h1_4_14"  />
+</g>
+<g id="a1_0015"  >
+<polygon points="118,85 123,80 151,80 151,90 123,90 118,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30620&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7238025 - 7221946&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 39&lt;br&gt;Percentage coverage: 86&lt;br&gt;BLAST bit score: 1170&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 40&lt;br&gt;Percentage coverage: 115&lt;br&gt;BLAST bit score: 2050&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 44&lt;br&gt;Percentage coverage: 113&lt;br&gt;BLAST bit score: 2469&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 43&lt;br&gt;Percentage coverage: 115&lt;br&gt;BLAST bit score: 1847&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 60&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 755&lt;br&gt;E-value: 5.45e-242&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 78&lt;br&gt;BLAST bit score: 1286&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 83&lt;br&gt;BLAST bit score: 2065&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30620" class="clusterblast-orf" id="dummy-1_h1_4_15"  />
+</g>
+<g id="a1_0016"  >
+<polygon points="151,85 156,80 185,80 185,90 156,90 151,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30615&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7221739 - 7205600&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 40&lt;br&gt;Percentage coverage: 89&lt;br&gt;BLAST bit score: 1244&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 102&lt;br&gt;BLAST bit score: 2742&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 2622&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 45&lt;br&gt;Percentage coverage: 108&lt;br&gt;BLAST bit score: 1932&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 634&lt;br&gt;E-value: 5.39e-200&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 44&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 1160&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 45&lt;br&gt;Percentage coverage: 86&lt;br&gt;BLAST bit score: 1743&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30615" class="clusterblast-orf" id="dummy-1_h1_4_16"  />
+</g>
+<g id="a1_0017"  >
+<polygon points="185,85 190,80 205,80 205,90 190,90 185,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30610&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7205542 - 7195616&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 46&lt;br&gt;Percentage coverage: 69&lt;br&gt;BLAST bit score: 1199&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 48&lt;br&gt;Percentage coverage: 105&lt;br&gt;BLAST bit score: 2605&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 2882&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 44&lt;br&gt;Percentage coverage: 107&lt;br&gt;BLAST bit score: 1769&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 56&lt;br&gt;Percentage coverage: 93&lt;br&gt;BLAST bit score: 649&lt;br&gt;E-value: 4.24e-205&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 43&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 1077&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 43&lt;br&gt;Percentage coverage: 83&lt;br&gt;BLAST bit score: 1576&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30610" class="clusterblast-orf" id="dummy-1_h1_4_17"  />
+</g>
+<g id="a1_0018"  >
+<polygon points="205,85 210,80 265,80 265,90 210,90 205,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30605&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7195586 - 7166808&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 43&lt;br&gt;Percentage coverage: 70&lt;br&gt;BLAST bit score: 1070&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 102&lt;br&gt;BLAST bit score: 2850&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 48&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 2649&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 47&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 1832&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 56&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 685&lt;br&gt;E-value: 1.76e-217&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 46&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 1254&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 47&lt;br&gt;Percentage coverage: 66&lt;br&gt;BLAST bit score: 1533&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30605" class="clusterblast-orf" id="dummy-1_h1_4_18"  />
+</g>
+<g id="a1_0019"  >
+<polygon points="265,90 266,85 265,80 265,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30600&lt;/b&gt;&lt;br&gt;chorismate mutase&lt;br&gt;Location: 7166645 - 7166373" locus_tag="FQU76_RS30600" class="clusterblast-orf" id="dummy-1_h1_4_19"  />
+</g>
+<g id="a1_0020"  >
+<polygon points="266,85 268,80 268,90 266,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30595&lt;/b&gt;&lt;br&gt;GDP-mannose 4,6-dehydratase&lt;br&gt;Location: 7166209 - 7165172" locus_tag="FQU76_RS30595" class="clusterblast-orf" id="dummy-1_h1_4_20"  />
+</g>
+<g id="a1_0021"  >
+<polygon points="270,90 280,90 285,85 280,80 270,80 270,90 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30590&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7164460 - 7157282&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 44&lt;br&gt;Percentage coverage: 53&lt;br&gt;BLAST bit score: 897&lt;br&gt;E-value: 3.21e-278&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 37&lt;br&gt;Percentage coverage: 63&lt;br&gt;BLAST bit score: 1121&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 39&lt;br&gt;Percentage coverage: 60&lt;br&gt;BLAST bit score: 1145&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 38&lt;br&gt;Percentage coverage: 80&lt;br&gt;BLAST bit score: 1089&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 93&lt;br&gt;BLAST bit score: 677&lt;br&gt;E-value: 6.32e-218&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 41&lt;br&gt;Percentage coverage: 113&lt;br&gt;BLAST bit score: 1193&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 66&lt;br&gt;BLAST bit score: 1697&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30590" class="clusterblast-orf" id="dummy-1_h1_4_21"  />
+</g>
+<g id="a1_0022"  >
+<polygon points="285,90 285,85 285,80 285,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30585&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7157253 - 7156981" locus_tag="FQU76_RS30585" class="clusterblast-orf" id="dummy-1_h1_4_22"  />
+</g>
+<g id="a1_0023"  >
+<polygon points="285,90 286,85 285,80 285,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30580&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7156887 - 7156420" locus_tag="FQU76_RS30580" class="clusterblast-orf" id="dummy-1_h1_4_23"  />
+</g>
+<g id="a1_0024"  >
+<polygon points="287,90 290,85 287,80 287,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30575&lt;/b&gt;&lt;br&gt;DEAD/DEAH box helicase&lt;br&gt;Location: 7155920 - 7154502" locus_tag="FQU76_RS30575" class="clusterblast-orf" id="dummy-1_h1_4_24"  />
+</g>
+<g id="a1_0025"  >
+<polygon points="290,90 291,85 290,80 290,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30570&lt;/b&gt;&lt;br&gt;thioredoxin&lt;br&gt;Location: 7154454 - 7154116" locus_tag="FQU76_RS30570" class="clusterblast-orf" id="dummy-1_h1_4_25"  />
+</g>
+<g id="a1_0026"  >
+<polygon points="293,90 294,85 293,80 293,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30560&lt;/b&gt;&lt;br&gt;DUF309 domain-containing protein&lt;br&gt;Location: 7153471 - 7152992" locus_tag="FQU76_RS30560" class="clusterblast-orf" id="dummy-1_h1_4_26"  />
+</g>
+<g id="a1_0027"  >
+<polygon points="294,90 296,85 294,80 294,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30555&lt;/b&gt;&lt;br&gt;ricin-type beta-trefoil lectin domain protein&lt;br&gt;Location: 7152683 - 7151586" locus_tag="FQU76_RS30555" class="clusterblast-orf" id="dummy-1_h1_4_27"  />
+</g>
+<g id="a1_0028"  >
+<polygon points="297,90 298,85 297,80 297,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30550&lt;/b&gt;&lt;br&gt;precorrin-6A synthase (deacetylating)&lt;br&gt;Location: 7151382 - 7150627" locus_tag="FQU76_RS30550" class="clusterblast-orf" id="dummy-1_h1_4_28"  />
+</g>
+<g id="a1_0029"  >
+<polygon points="298,85 300,80 300,90 298,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30545&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7150600 - 7149929" locus_tag="FQU76_RS30545" class="clusterblast-orf" id="dummy-1_h1_4_29"  />
+</g>
+<g id="a1_0030"  >
+<polygon points="300,90 301,90 306,85 301,80 300,80 300,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30540&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7149733 - 7146914" locus_tag="FQU76_RS30540" class="clusterblast-orf" id="dummy-1_h1_4_30"  />
+</g>
+<g id="a1_0031"  >
+<polygon points="307,85 308,80 308,90 307,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30535&lt;/b&gt;&lt;br&gt;phosphotransferase&lt;br&gt;Location: 7146661 - 7145756" locus_tag="FQU76_RS30535" class="clusterblast-orf" id="dummy-1_h1_4_31"  />
+</g>
+<g id="a1_0032"  >
+<polygon points="309,90 312,85 309,80 309,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30530&lt;/b&gt;&lt;br&gt;MFS transporter&lt;br&gt;Location: 7145594 - 7144197" locus_tag="FQU76_RS30530" class="clusterblast-orf" id="dummy-1_h1_4_32"  />
+</g>
+<g id="a1_0033"  >
+<polygon points="312,85 317,80 317,80 317,90 317,90 312,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30525&lt;/b&gt;&lt;br&gt;AAA family ATPase&lt;br&gt;Location: 7144193 - 7141692" locus_tag="FQU76_RS30525" class="clusterblast-orf" id="dummy-1_h1_4_33"  />
+</g>
+<g id="a1_0034"  >
+<polygon points="318,85 321,80 321,90 318,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30520&lt;/b&gt;&lt;br&gt;glyceraldehyde-3-phosphate dehydrogenase&lt;br&gt;Location: 7141356 - 7139911" locus_tag="FQU76_RS30520" class="clusterblast-orf" id="dummy-1_h1_4_34"  />
+</g>
+<g id="a1_0035"  >
+<polygon points="321,85 325,80 325,90 321,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30515&lt;/b&gt;&lt;br&gt;DUF4838 domain-containing protein&lt;br&gt;Location: 7139768 - 7137957" locus_tag="FQU76_RS30515" class="clusterblast-orf" id="dummy-1_h1_4_35"  />
+</g>
+<g id="a1_0036"  >
+<polygon points="325,85 329,80 329,90 325,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30510&lt;/b&gt;&lt;br&gt;sulfatase-like hydrolase/transferase&lt;br&gt;Location: 7137535 - 7135832" locus_tag="FQU76_RS30510" class="clusterblast-orf" id="dummy-1_h1_4_36"  />
+</g>
+<g id="a1_0037"  >
+<polygon points="329,85 331,80 331,90 329,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30505&lt;/b&gt;&lt;br&gt;aliphatic sulfonate ABC transporter substrate-binding protein&lt;br&gt;Location: 7135835 - 7134801" locus_tag="FQU76_RS30505" class="clusterblast-orf" id="dummy-1_h1_4_37"  />
+</g>
+<g id="a1_0038"  >
+<polygon points="331,85 333,80 333,90 331,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30500&lt;/b&gt;&lt;br&gt;ATP-binding cassette domain-containing protein&lt;br&gt;Location: 7134795 - 7134007&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00290&lt;/b&gt;&lt;br&gt;Percentage identity: 40&lt;br&gt;Percentage coverage: 90&lt;br&gt;BLAST bit score: 128&lt;br&gt;E-value: 3.42e-34" locus_tag="FQU76_RS30500" class="clusterblast-orf" id="dummy-1_h1_4_38"  />
+</g>
+<g id="a1_0039"  >
+<polygon points="333,85 335,80 335,90 333,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30495&lt;/b&gt;&lt;br&gt;ABC transporter permease subunit&lt;br&gt;Location: 7133827 - 7133015" locus_tag="FQU76_RS30495" class="clusterblast-orf" id="dummy-1_h1_4_39"  />
+</g>
+<g id="a1_0040"  >
+<polygon points="335,85 338,80 338,90 335,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30490&lt;/b&gt;&lt;br&gt;ROK family protein&lt;br&gt;Location: 7132749 - 7131610" locus_tag="FQU76_RS30490" class="clusterblast-orf" id="dummy-1_h1_4_40"  />
+</g>
+<g id="a1_0041"  >
+<polygon points="338,85 339,80 339,90 338,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30485&lt;/b&gt;&lt;br&gt;RidA family protein&lt;br&gt;Location: 7131411 - 7130983" locus_tag="FQU76_RS30485" class="clusterblast-orf" id="dummy-1_h1_4_41"  />
+</g>
+<g id="a1_0042"  >
+<polygon points="339,85 341,80 341,90 339,85 " style="fill:#a715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30480&lt;/b&gt;&lt;br&gt;methyltransferase domain-containing protein&lt;br&gt;Location: 7130869 - 7129985&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00302&lt;/b&gt;&lt;br&gt;Percentage identity: 81&lt;br&gt;Percentage coverage: 96&lt;br&gt;BLAST bit score: 468&lt;br&gt;E-value: 2.67e-166" locus_tag="FQU76_RS30480" class="clusterblast-orf" id="dummy-1_h1_4_42"  />
+</g>
+<g id="a1_0043"  >
+<polygon points="341,85 343,80 343,90 341,85 " style="fill:#15a7d8; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30475&lt;/b&gt;&lt;br&gt;2-methylisoborneol synthase&lt;br&gt;Location: 7129952 - 7128957&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00301&lt;/b&gt;&lt;br&gt;Percentage identity: 77&lt;br&gt;Percentage coverage: 85&lt;br&gt;BLAST bit score: 533&lt;br&gt;E-value: 5.93e-190" locus_tag="FQU76_RS30475" class="clusterblast-orf" id="dummy-1_h1_4_43"  />
+</g>
+<g id="a1_0044"  >
+<polygon points="344,85 347,80 347,90 344,85 " style="fill:#46d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30470&lt;/b&gt;&lt;br&gt;cyclic nucleotide-binding domain-containing protein&lt;br&gt;Location: 7128697 - 7127282&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00300&lt;/b&gt;&lt;br&gt;Percentage identity: 72&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 680&lt;br&gt;E-value: 2.65e-244" locus_tag="FQU76_RS30470" class="clusterblast-orf" id="dummy-1_h1_4_44"  />
+</g>
+<g id="a1_0045"  >
+<polygon points="347,85 349,80 349,90 347,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30465&lt;/b&gt;&lt;br&gt;helix-turn-helix domain-containing protein&lt;br&gt;Location: 7126941 - 7125979" locus_tag="FQU76_RS30465" class="clusterblast-orf" id="dummy-1_h1_4_45"  />
+</g>
+<g id="a1_0046"  >
+<polygon points="350,85 351,80 351,90 350,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30460&lt;/b&gt;&lt;br&gt;trypsin-like serine protease&lt;br&gt;Location: 7125909 - 7125070" locus_tag="FQU76_RS30460" class="clusterblast-orf" id="dummy-1_h1_4_46"  />
+</g>
+<g id="a1_0047"  >
+<polygon points="352,90 354,85 352,80 352,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30455&lt;/b&gt;&lt;br&gt;helix-turn-helix domain-containing protein&lt;br&gt;Location: 7124926 - 7123889" locus_tag="FQU76_RS30455" class="clusterblast-orf" id="dummy-1_h1_4_47"  />
+</g>
+<g id="a1_0048"  >
+<polygon points="354,85 357,80 357,90 354,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30450&lt;/b&gt;&lt;br&gt;cytochrome P450&lt;br&gt;Location: 7123840 - 7122521" locus_tag="FQU76_RS30450" class="clusterblast-orf" id="dummy-1_h1_4_48"  />
+</g>
+<g id="a1_0049"  >
+<polygon points="357,90 360,85 357,80 357,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30445&lt;/b&gt;&lt;br&gt;family 16 glycosylhydrolase&lt;br&gt;Location: 7122218 - 7120785" locus_tag="FQU76_RS30445" class="clusterblast-orf" id="dummy-1_h1_4_49"  />
+</g>
+<g id="a1_0050"  >
+<polygon points="360,85 362,80 362,90 360,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30440&lt;/b&gt;&lt;br&gt;LysR family transcriptional regulator&lt;br&gt;Location: 7120701 - 7119796" locus_tag="FQU76_RS30440" class="clusterblast-orf" id="dummy-1_h1_4_50"  />
+</g>
+<g id="a1_0051"  >
+<polygon points="362,90 364,85 362,80 362,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30435&lt;/b&gt;&lt;br&gt;reductase&lt;br&gt;Location: 7119725 - 7118784" locus_tag="FQU76_RS30435" class="clusterblast-orf" id="dummy-1_h1_4_51"  />
+</g>
+<g id="a1_0052"  >
+<polygon points="364,85 366,80 366,90 364,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30430&lt;/b&gt;&lt;br&gt;GNAT family N-acetyltransferase&lt;br&gt;Location: 7118694 - 7117819" locus_tag="FQU76_RS30430" class="clusterblast-orf" id="dummy-1_h1_4_52"  />
+</g>
+<g id="a1_0053"  >
+<polygon points="367,90 368,85 367,80 367,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30425&lt;/b&gt;&lt;br&gt;EF-hand domain-containing protein&lt;br&gt;Location: 7117654 - 7117088" locus_tag="FQU76_RS30425" class="clusterblast-orf" id="dummy-1_h1_4_53"  />
+</g>
+<g id="a1_0054"  >
+<polygon points="368,85 370,80 370,90 368,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30420&lt;/b&gt;&lt;br&gt;MFS transporter&lt;br&gt;Location: 7117151 - 7115877" locus_tag="FQU76_RS30420" class="clusterblast-orf" id="dummy-1_h1_4_54"  />
+</g>
+<g id="a1_0055"  >
+<polygon points="371,90 372,85 371,80 371,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30415&lt;/b&gt;&lt;br&gt;LysR family transcriptional regulator&lt;br&gt;Location: 7115776 - 7114853" locus_tag="FQU76_RS30415" class="clusterblast-orf" id="dummy-1_h1_4_55"  />
+</g>
+<g id="a1_0056"  >
+<polygon points="373,90 374,85 373,80 373,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30410&lt;/b&gt;&lt;br&gt;FMN-binding negative transcriptional regulator&lt;br&gt;Location: 7114533 - 7113889" locus_tag="FQU76_RS30410" class="clusterblast-orf" id="dummy-1_h1_4_56"  />
+</g>
+<g id="a1_0057"  >
+<polygon points="375,85 376,80 376,90 375,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30405&lt;/b&gt;&lt;br&gt;LmbU family transcriptional regulator&lt;br&gt;Location: 7113761 - 7113078" locus_tag="FQU76_RS30405" class="clusterblast-orf" id="dummy-1_h1_4_57"  />
+</g>
+<g id="a1_0058"  >
+<polygon points="377,90 380,85 377,80 377,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30400&lt;/b&gt;&lt;br&gt;transposase&lt;br&gt;Location: 7112423 - 7111254" locus_tag="FQU76_RS30400" class="clusterblast-orf" id="dummy-1_h1_4_58"  />
+</g>
+<g id="a1_0059"  >
+<polygon points="381,90 382,85 381,80 381,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30395&lt;/b&gt;&lt;br&gt;DUF4097 family beta strand repeat protein&lt;br&gt;Location: 7110896 - 7110054" locus_tag="FQU76_RS30395" class="clusterblast-orf" id="dummy-1_h1_4_59"  />
+</g>
+<g id="a1_0060"  >
+<polygon points="384,90 385,85 384,80 384,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30390&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7109448 - 7108936" locus_tag="FQU76_RS30390" class="clusterblast-orf" id="dummy-1_h1_4_60"  />
+</g>
+<g id="a1_0061"  >
+<polygon points="385,85 387,80 387,90 385,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30385&lt;/b&gt;&lt;br&gt;DUF4097 family beta strand repeat protein&lt;br&gt;Location: 7108779 - 7107937" locus_tag="FQU76_RS30385" class="clusterblast-orf" id="dummy-1_h1_4_61"  />
+</g>
+<g id="a1_0062"  >
+<polygon points="388,90 390,85 388,80 388,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30380&lt;/b&gt;&lt;br&gt;DUF4097 family beta strand repeat protein&lt;br&gt;Location: 7107366 - 7106527" locus_tag="FQU76_RS30380" class="clusterblast-orf" id="dummy-1_h1_4_62"  />
+</g>
+<g id="a1_0063"  >
+<polygon points="390,85 391,80 391,90 390,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30375&lt;/b&gt;&lt;br&gt;alpha/beta fold hydrolase&lt;br&gt;Location: 7106447 - 7105677" locus_tag="FQU76_RS30375" class="clusterblast-orf" id="dummy-1_h1_4_63"  />
+</g>
+<g id="a1_0064"  >
+<polygon points="391,85 394,80 394,90 391,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30370&lt;/b&gt;&lt;br&gt;SidA/IucD/PvdA family monooxygenase&lt;br&gt;Location: 7105637 - 7104315" locus_tag="FQU76_RS30370" class="clusterblast-orf" id="dummy-1_h1_4_64"  />
+</g>
+<g id="a1_0065"  >
+<polygon points="395,85 400,80 401,80 401,90 400,90 395,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30365&lt;/b&gt;&lt;br&gt;AMP-binding protein&lt;br&gt;Location: 7104133 - 7100855" locus_tag="FQU76_RS30365" class="clusterblast-orf" id="dummy-1_h1_4_65"  />
+</g>
+<g id="a1_0066"  >
+<polygon points="402,85 407,80 408,80 408,90 407,90 402,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30360&lt;/b&gt;&lt;br&gt;acyltransferase domain-containing protein&lt;br&gt;Location: 7100644 - 7097519&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 798&lt;br&gt;E-value: 7.38e-257&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 27&lt;br&gt;BLAST bit score: 811&lt;br&gt;E-value: 6.49e-258&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 27&lt;br&gt;BLAST bit score: 828&lt;br&gt;E-value: 1.43e-263&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 35&lt;br&gt;BLAST bit score: 810&lt;br&gt;E-value: 2.23e-261&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 62&lt;br&gt;Percentage coverage: 93&lt;br&gt;BLAST bit score: 764&lt;br&gt;E-value: 7.85e-265&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 60&lt;br&gt;Percentage coverage: 50&lt;br&gt;BLAST bit score: 955&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 29&lt;br&gt;BLAST bit score: 861&lt;br&gt;E-value: 5.8e-277" locus_tag="FQU76_RS30360" class="clusterblast-orf" id="dummy-1_h1_4_66"  />
+</g>
+<g id="a1_0067"  >
+<polygon points="408,85 413,80 422,80 422,90 413,90 408,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30355&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7097517 - 7090876&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 37&lt;br&gt;Percentage coverage: 81&lt;br&gt;BLAST bit score: 1004&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 40&lt;br&gt;Percentage coverage: 64&lt;br&gt;BLAST bit score: 1241&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 41&lt;br&gt;Percentage coverage: 61&lt;br&gt;BLAST bit score: 1256&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 40&lt;br&gt;Percentage coverage: 82&lt;br&gt;BLAST bit score: 1194&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 96&lt;br&gt;BLAST bit score: 653&lt;br&gt;E-value: 4.3e-210&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 40&lt;br&gt;Percentage coverage: 117&lt;br&gt;BLAST bit score: 1146&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 68&lt;br&gt;BLAST bit score: 1733&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30355" class="clusterblast-orf" id="dummy-1_h1_4_67"  />
+</g>
+<g id="a1_0068"  >
+<polygon points="422,85 427,80 434,80 434,90 427,90 422,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30350&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7090879 - 7085228&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 43&lt;br&gt;Percentage coverage: 67&lt;br&gt;BLAST bit score: 1076&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 45&lt;br&gt;Percentage coverage: 55&lt;br&gt;BLAST bit score: 1249&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 45&lt;br&gt;Percentage coverage: 52&lt;br&gt;BLAST bit score: 1277&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 44&lt;br&gt;Percentage coverage: 71&lt;br&gt;BLAST bit score: 1211&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 745&lt;br&gt;E-value: 1.31e-247&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 46&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 1288&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 39&lt;br&gt;Percentage coverage: 69&lt;br&gt;BLAST bit score: 1180&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30350" class="clusterblast-orf" id="dummy-1_h1_4_68"  />
+</g>
+<g id="a1_0069"  >
+<polygon points="434,85 439,80 440,80 440,90 439,90 434,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30345&lt;/b&gt;&lt;br&gt;acyltransferase domain-containing protein&lt;br&gt;Location: 7085175 - 7082029&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 40&lt;br&gt;Percentage coverage: 35&lt;br&gt;BLAST bit score: 531&lt;br&gt;E-value: 3.19e-160&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 44&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 452&lt;br&gt;E-value: 1.91e-143&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 45&lt;br&gt;Percentage coverage: 50&lt;br&gt;BLAST bit score: 648&lt;br&gt;E-value: 3.85e-206" locus_tag="FQU76_RS30345" class="clusterblast-orf" id="dummy-1_h1_4_69"  />
+</g>
+<g id="a1_0070"  >
+<polygon points="440,85 442,80 442,90 440,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30340&lt;/b&gt;&lt;br&gt;alpha/beta fold hydrolase&lt;br&gt;Location: 7081976 - 7081239" locus_tag="FQU76_RS30340" class="clusterblast-orf" id="dummy-1_h1_4_70"  />
+</g>
+<g id="a1_0071"  >
+<polygon points="442,85 445,80 445,90 442,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30335&lt;/b&gt;&lt;br&gt;cytochrome P450&lt;br&gt;Location: 7081242 - 7079992" locus_tag="FQU76_RS30335" class="clusterblast-orf" id="dummy-1_h1_4_71"  />
+</g>
+<g id="a1_0072"  >
+<polygon points="445,85 445,80 445,90 445,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30330&lt;/b&gt;&lt;br&gt;acyl carrier protein&lt;br&gt;Location: 7079995 - 7079624" locus_tag="FQU76_RS30330" class="clusterblast-orf" id="dummy-1_h1_4_72"  />
+</g>
+<g id="a1_0073"  >
+<polygon points="447,90 448,85 447,80 447,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30325&lt;/b&gt;&lt;br&gt;putative nonproteinogenic amino acid hydroxylase&lt;br&gt;Location: 7079037 - 7078198" locus_tag="FQU76_RS30325" class="clusterblast-orf" id="dummy-1_h1_4_73"  />
+</g>
+<g id="a1_0074"  >
+<polygon points="448,85 450,80 450,90 448,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30320&lt;/b&gt;&lt;br&gt;phytanoyl-CoA dioxygenase family protein&lt;br&gt;Location: 7078132 - 7077206" locus_tag="FQU76_RS30320" class="clusterblast-orf" id="dummy-1_h1_4_74"  />
+</g>
+<g id="a1_0075"  >
+<polygon points="452,85 453,80 453,90 452,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30315&lt;/b&gt;&lt;br&gt;alpha/beta fold hydrolase&lt;br&gt;Location: 7076494 - 7075808" locus_tag="FQU76_RS30315" class="clusterblast-orf" id="dummy-1_h1_4_75"  />
+</g>
+<g id="a1_0076"  >
+<polygon points="453,85 458,80 464,80 464,90 458,90 453,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30310&lt;/b&gt;&lt;br&gt;amino acid adenylation domain-containing protein&lt;br&gt;Location: 7075698 - 7070740" locus_tag="FQU76_RS30310" class="clusterblast-orf" id="dummy-1_h1_4_76"  />
+</g>
+<g id="a1_0077"  >
+<polygon points="464,85 469,80 480,80 480,90 469,90 464,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30305&lt;/b&gt;&lt;br&gt;amino acid adenylation domain-containing protein&lt;br&gt;Location: 7070734 - 7062761" locus_tag="FQU76_RS30305" class="clusterblast-orf" id="dummy-1_h1_4_77"  />
+</g>
+<g id="a1_0078"  >
+<polygon points="480,85 485,80 489,80 489,90 485,90 480,85 " style="fill:#15d846; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30300&lt;/b&gt;&lt;br&gt;amino acid adenylation domain-containing protein&lt;br&gt;Location: 7062749 - 7058553&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00317&lt;/b&gt;&lt;br&gt;Percentage identity: 45&lt;br&gt;Percentage coverage: 70&lt;br&gt;BLAST bit score: 416&lt;br&gt;E-value: 5.91e-126" locus_tag="FQU76_RS30300" class="clusterblast-orf" id="dummy-1_h1_4_78"  />
+</g>
+<g id="a1_0079"  >
+<polygon points="489,85 494,80 497,80 497,90 494,90 489,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30295&lt;/b&gt;&lt;br&gt;amino acid adenylation domain-containing protein&lt;br&gt;Location: 7058381 - 7054797" locus_tag="FQU76_RS30295" class="clusterblast-orf" id="dummy-1_h1_4_79"  />
+</g>
+<g id="a1_0080"  >
+<polygon points="497,85 499,80 499,90 497,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30290&lt;/b&gt;&lt;br&gt;FAD-dependent monooxygenase&lt;br&gt;Location: 7054754 - 7053567" locus_tag="FQU76_RS30290" class="clusterblast-orf" id="dummy-1_h1_4_80"  />
+</g>
+<g id="a1_0081"  >
+<polygon points="499,85 500,80 500,90 499,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30285&lt;/b&gt;&lt;br&gt;acyl carrier protein&lt;br&gt;Location: 7053493 - 7053263" locus_tag="FQU76_RS30285" class="clusterblast-orf" id="dummy-1_h1_4_81"  />
+</g>
+<g id="a1_0082"  >
+<polygon points="500,85 503,80 503,90 500,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30280&lt;/b&gt;&lt;br&gt;amino acid adenylation domain-containing protein&lt;br&gt;Location: 7053167 - 7051578" locus_tag="FQU76_RS30280" class="clusterblast-orf" id="dummy-1_h1_4_82"  />
+</g>
+<g id="a1_0083"  >
+<polygon points="503,85 504,80 504,90 503,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30275&lt;/b&gt;&lt;br&gt;MbtH family NRPS accessory protein&lt;br&gt;Location: 7051532 - 7051317" locus_tag="FQU76_RS30275" class="clusterblast-orf" id="dummy-1_h1_4_83"  />
+</g>
+<g id="a1_0084"  >
+<polygon points="505,90 507,85 505,80 505,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30270&lt;/b&gt;&lt;br&gt;pyruvate dehydrogenase&lt;br&gt;Location: 7050747 - 7049908" locus_tag="FQU76_RS30270" class="clusterblast-orf" id="dummy-1_h1_4_84"  />
+</g>
+<g id="a1_0085"  >
+<polygon points="507,90 509,85 507,80 507,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30265&lt;/b&gt;&lt;br&gt;pyruvate dehydrogenase&lt;br&gt;Location: 7049908 - 7048928" locus_tag="FQU76_RS30265" class="clusterblast-orf" id="dummy-1_h1_4_85"  />
+</g>
+<g id="a1_0086"  >
+<polygon points="509,90 509,85 509,80 509,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30260&lt;/b&gt;&lt;br&gt;dihydrolipoamide succinyltransferase&lt;br&gt;Location: 7048910 - 7048635" locus_tag="FQU76_RS30260" class="clusterblast-orf" id="dummy-1_h1_4_86"  />
+</g>
+<g id="a1_0087"  >
+<polygon points="509,90 510,85 509,80 509,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30255&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7048638 - 7048390" locus_tag="FQU76_RS30255" class="clusterblast-orf" id="dummy-1_h1_4_87"  />
+</g>
+<g id="a1_0088"  >
+<polygon points="510,90 512,85 510,80 510,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30250&lt;/b&gt;&lt;br&gt;ketoacyl-ACP synthase III&lt;br&gt;Location: 7048393 - 7047452" locus_tag="FQU76_RS30250" class="clusterblast-orf" id="dummy-1_h1_4_88"  />
+</g>
+<g id="a1_0089"  >
+<polygon points="512,90 514,85 512,80 512,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30245&lt;/b&gt;&lt;br&gt;zinc-binding alcohol dehydrogenase family protein&lt;br&gt;Location: 7047394 - 7046243" locus_tag="FQU76_RS30245" class="clusterblast-orf" id="dummy-1_h1_4_89"  />
+</g>
+<g id="a1_0090"  >
+<polygon points="514,90 518,85 514,80 514,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30240&lt;/b&gt;&lt;br&gt;FAD-dependent monooxygenase&lt;br&gt;Location: 7046195 - 7044657" locus_tag="FQU76_RS30240" class="clusterblast-orf" id="dummy-1_h1_4_90"  />
+</g>
+<g id="a1_0091"  >
+<polygon points="518,85 520,80 520,90 518,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30235&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7044644 - 7043574" locus_tag="FQU76_RS30235" class="clusterblast-orf" id="dummy-1_h1_4_91"  />
+</g>
+<g id="a1_0092"  >
+<polygon points="520,85 522,80 522,90 520,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30230&lt;/b&gt;&lt;br&gt;ABC transporter permease&lt;br&gt;Location: 7043359 - 7042529" locus_tag="FQU76_RS30230" class="clusterblast-orf" id="dummy-1_h1_4_92"  />
+</g>
+<g id="a1_0093"  >
+<polygon points="522,85 524,80 524,90 522,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30225&lt;/b&gt;&lt;br&gt;ATP-binding cassette domain-containing protein&lt;br&gt;Location: 7042532 - 7041591" locus_tag="FQU76_RS30225" class="clusterblast-orf" id="dummy-1_h1_4_93"  />
+</g>
+<g id="a1_0094"  >
+<polygon points="524,90 527,85 524,80 524,90 " style="fill:#77d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30220&lt;/b&gt;&lt;br&gt;two-component sensor histidine kinase&lt;br&gt;Location: 7041483 - 7040317&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00291&lt;/b&gt;&lt;br&gt;Percentage identity: 32&lt;br&gt;Percentage coverage: 81&lt;br&gt;BLAST bit score: 91&lt;br&gt;E-value: 1.47e-18" locus_tag="FQU76_RS30220" class="clusterblast-orf" id="dummy-1_h1_4_94"  />
+</g>
+<g id="a1_0095"  >
+<polygon points="527,90 529,85 527,80 527,90 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30215&lt;/b&gt;&lt;br&gt;response regulator&lt;br&gt;Location: 7039904 - 7039254&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00292&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 86&lt;br&gt;BLAST bit score: 177&lt;br&gt;E-value: 3.37e-53" locus_tag="FQU76_RS30215" class="clusterblast-orf" id="dummy-1_h1_4_95"  />
+</g>
+<g id="a1_0096"  >
+<polygon points="529,85 532,80 532,90 529,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30210&lt;/b&gt;&lt;br&gt;cytochrome P450&lt;br&gt;Location: 7039084 - 7037840" locus_tag="FQU76_RS30210" class="clusterblast-orf" id="dummy-1_h1_4_96"  />
+</g>
+<g id="a1_0097"  >
+<polygon points="532,85 534,80 534,90 532,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30205&lt;/b&gt;&lt;br&gt;cytochrome P450&lt;br&gt;Location: 7037843 - 7036629" locus_tag="FQU76_RS30205" class="clusterblast-orf" id="dummy-1_h1_4_97"  />
+</g>
+<g id="a1_0098"  >
+<polygon points="534,85 539,80 547,80 547,90 539,90 534,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30200&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7036577 - 7030263&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 42&lt;br&gt;Percentage coverage: 81&lt;br&gt;BLAST bit score: 1252&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 48&lt;br&gt;Percentage coverage: 56&lt;br&gt;BLAST bit score: 1466&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 53&lt;br&gt;BLAST bit score: 1481&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 68&lt;br&gt;BLAST bit score: 1429&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 61&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 779&lt;br&gt;E-value: 2.07e-258&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 102&lt;br&gt;BLAST bit score: 1479&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 44&lt;br&gt;Percentage coverage: 67&lt;br&gt;BLAST bit score: 1376&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30200" class="clusterblast-orf" id="dummy-1_h1_4_98"  />
+</g>
+<g id="a1_0099"  >
+<polygon points="548,85 549,80 549,90 548,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30195&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7030182 - 7029433" locus_tag="FQU76_RS30195" class="clusterblast-orf" id="dummy-1_h1_4_99"  />
+</g>
+<g id="a1_00100"  >
+<polygon points="549,85 552,80 552,90 549,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30190&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7029390 - 7027957" locus_tag="FQU76_RS30190" class="clusterblast-orf" id="dummy-1_h1_4_100"  />
+</g>
+<g id="a1_00101"  >
+<polygon points="553,85 558,80 561,80 561,90 558,90 553,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30185&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7027638 - 7023928&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 35&lt;br&gt;BLAST bit score: 796&lt;br&gt;E-value: 2.38e-253&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 56&lt;br&gt;Percentage coverage: 38&lt;br&gt;BLAST bit score: 1256&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 36&lt;br&gt;BLAST bit score: 1239&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 48&lt;br&gt;BLAST bit score: 1087&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 662&lt;br&gt;E-value: 2.23e-222&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 45&lt;br&gt;BLAST bit score: 722&lt;br&gt;E-value: 1.18e-231&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 39&lt;br&gt;BLAST bit score: 1099&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30185" class="clusterblast-orf" id="dummy-1_h1_4_101"  />
+</g>
+<g id="a1_00102"  >
+<polygon points="564,85 569,80 570,80 570,90 569,90 564,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30180&lt;/b&gt;&lt;br&gt;acyltransferase domain-containing protein&lt;br&gt;Location: 7022454 - 7019233&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 48&lt;br&gt;Percentage coverage: 38&lt;br&gt;BLAST bit score: 791&lt;br&gt;E-value: 1.13e-253&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 33&lt;br&gt;BLAST bit score: 1035&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 31&lt;br&gt;BLAST bit score: 1018&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 40&lt;br&gt;BLAST bit score: 954&lt;br&gt;E-value: 3.38e-315&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 62&lt;br&gt;Percentage coverage: 93&lt;br&gt;BLAST bit score: 771&lt;br&gt;E-value: 6.08e-267&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 61&lt;br&gt;Percentage coverage: 47&lt;br&gt;BLAST bit score: 982&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 34&lt;br&gt;BLAST bit score: 967&lt;br&gt;E-value: 6.24e-316" locus_tag="FQU76_RS30180" class="clusterblast-orf" id="dummy-1_h1_4_102"  />
+</g>
+<g id="a1_00103"  >
+<polygon points="570,85 573,80 573,90 570,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30175&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7019223 - 7018045" locus_tag="FQU76_RS30175" class="clusterblast-orf" id="dummy-1_h1_4_103"  />
+</g>
+<g id="a1_00104"  >
+<polygon points="574,85 579,80 580,80 580,90 579,90 574,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30170&lt;/b&gt;&lt;br&gt;type I polyketide synthase&lt;br&gt;Location: 7017264 - 7014331&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 48&lt;br&gt;Percentage coverage: 36&lt;br&gt;BLAST bit score: 760&lt;br&gt;E-value: 1.08e-243&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 30&lt;br&gt;BLAST bit score: 934&lt;br&gt;E-value: 6.96e-304&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 28&lt;br&gt;BLAST bit score: 951&lt;br&gt;E-value: 3.34e-309&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 889&lt;br&gt;E-value: 1.16e-291&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 61&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 801&lt;br&gt;E-value: 3.32e-280&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 53&lt;br&gt;BLAST bit score: 1071&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 30&lt;br&gt;BLAST bit score: 921&lt;br&gt;E-value: 4.03e-300" locus_tag="FQU76_RS30170" class="clusterblast-orf" id="dummy-1_h1_4_104"  />
+</g>
+<g id="a1_00105"  >
+<polygon points="580,85 582,80 582,90 580,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30165&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7014315 - 7013527" locus_tag="FQU76_RS30165" class="clusterblast-orf" id="dummy-1_h1_4_105"  />
+</g>
+<g id="a1_00106"  >
+<polygon points="582,85 584,80 584,90 582,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30160&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7013445 - 7012702" locus_tag="FQU76_RS30160" class="clusterblast-orf" id="dummy-1_h1_4_106"  />
+</g>
+<g id="a1_00107"  >
+<polygon points="585,85 590,80 594,80 594,90 590,90 585,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30155&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7012011 - 7007530&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 840&lt;br&gt;E-value: 1.02e-266&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 39&lt;br&gt;BLAST bit score: 1303&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 58&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 1280&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 49&lt;br&gt;BLAST bit score: 1158&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 58&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 684&lt;br&gt;E-value: 3.99e-228&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 48&lt;br&gt;BLAST bit score: 769&lt;br&gt;E-value: 1.73e-246&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 41&lt;br&gt;BLAST bit score: 1138&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30155" class="clusterblast-orf" id="dummy-1_h1_4_107"  />
+</g>
+<g id="a1_00108"  >
+<polygon points="596,85 601,80 604,80 604,90 601,90 596,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30150&lt;/b&gt;&lt;br&gt;type I polyketide synthase&lt;br&gt;Location: 7006602 - 7002988&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 46&lt;br&gt;Percentage coverage: 45&lt;br&gt;BLAST bit score: 897&lt;br&gt;E-value: 1.04e-291&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 1126&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 35&lt;br&gt;BLAST bit score: 1114&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 46&lt;br&gt;BLAST bit score: 1085&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 62&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 771&lt;br&gt;E-value: 4.78e-265&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 64&lt;br&gt;BLAST bit score: 1221&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 38&lt;br&gt;BLAST bit score: 1127&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30150" class="clusterblast-orf" id="dummy-1_h1_4_108"  />
+</g>
+<g id="a1_00109"  >
+<polygon points="604,85 606,80 606,90 604,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30145&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7002988 - 7002182" locus_tag="FQU76_RS30145" class="clusterblast-orf" id="dummy-1_h1_4_109"  />
+</g>
+<g id="a1_00110"  >
+<polygon points="606,85 608,80 608,90 606,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30140&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 7002175 - 7001210" locus_tag="FQU76_RS30140" class="clusterblast-orf" id="dummy-1_h1_4_110"  />
+</g>
+<g id="a1_00111"  >
+<polygon points="608,85 613,80 615,80 615,90 613,90 608,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30135&lt;/b&gt;&lt;br&gt;acyltransferase domain-containing protein&lt;br&gt;Location: 7000846 - 6997532&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 876&lt;br&gt;E-value: 3.96e-285&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 56&lt;br&gt;Percentage coverage: 34&lt;br&gt;BLAST bit score: 1099&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 29&lt;br&gt;BLAST bit score: 1042&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 58&lt;br&gt;Percentage coverage: 42&lt;br&gt;BLAST bit score: 1122&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 714&lt;br&gt;E-value: 2.11e-244&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 48&lt;br&gt;BLAST bit score: 815&lt;br&gt;E-value: 1.35e-268&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 61&lt;br&gt;Percentage coverage: 32&lt;br&gt;BLAST bit score: 1111&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30135" class="clusterblast-orf" id="dummy-1_h1_4_111"  />
+</g>
+<g id="a1_00112"  >
+<polygon points="615,85 617,80 617,90 615,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30130&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 6997456 - 6996638" locus_tag="FQU76_RS30130" class="clusterblast-orf" id="dummy-1_h1_4_112"  />
+</g>
+<g id="a1_00113"  >
+<polygon points="618,85 623,80 626,80 626,90 623,90 618,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30125&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 6996061 - 6992120&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 834&lt;br&gt;E-value: 1.51e-266&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 58&lt;br&gt;Percentage coverage: 39&lt;br&gt;BLAST bit score: 1299&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 58&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 1284&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 49&lt;br&gt;BLAST bit score: 1155&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 58&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 682&lt;br&gt;E-value: 2.19e-229&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 48&lt;br&gt;BLAST bit score: 792&lt;br&gt;E-value: 2.68e-257&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 40&lt;br&gt;BLAST bit score: 1140&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30125" class="clusterblast-orf" id="dummy-1_h1_4_113"  />
+</g>
+<g id="a1_00114"  >
+<polygon points="629,85 634,80 637,80 637,90 634,90 629,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30120&lt;/b&gt;&lt;br&gt;type I polyketide synthase&lt;br&gt;Location: 6990679 - 6986999&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 47&lt;br&gt;Percentage coverage: 45&lt;br&gt;BLAST bit score: 906&lt;br&gt;E-value: 6.81e-295&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 1136&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 35&lt;br&gt;BLAST bit score: 1144&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 46&lt;br&gt;BLAST bit score: 1094&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 60&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 789&lt;br&gt;E-value: 5.6e-272&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 65&lt;br&gt;BLAST bit score: 1239&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 39&lt;br&gt;BLAST bit score: 1142&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30120" class="clusterblast-orf" id="dummy-1_h1_4_114"  />
+</g>
+<g id="a1_00115"  >
+<polygon points="637,85 642,80 669,80 669,90 642,90 637,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30115&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 6986980 - 6971297&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 45&lt;br&gt;Percentage coverage: 71&lt;br&gt;BLAST bit score: 1276&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 48&lt;br&gt;Percentage coverage: 110&lt;br&gt;BLAST bit score: 2751&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 103&lt;br&gt;BLAST bit score: 3106&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 50&lt;br&gt;Percentage coverage: 102&lt;br&gt;BLAST bit score: 2140&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 61&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 787&lt;br&gt;E-value: 5.72e-253&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 47&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 1324&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 43&lt;br&gt;Percentage coverage: 88&lt;br&gt;BLAST bit score: 1746&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30115" class="clusterblast-orf" id="dummy-1_h1_4_115"  />
+</g>
+<g id="a1_00116"  >
+<polygon points="669,85 671,80 671,90 669,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30110&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6971297 - 6970485" locus_tag="FQU76_RS30110" class="clusterblast-orf" id="dummy-1_h1_4_116"  />
+</g>
+<g id="a1_00117"  >
+<polygon points="671,85 673,80 673,90 671,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30105&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 6970478 - 6969390" locus_tag="FQU76_RS30105" class="clusterblast-orf" id="dummy-1_h1_4_117"  />
+</g>
+<g id="a1_00118"  >
+<polygon points="674,85 679,80 682,80 682,90 679,90 674,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30100&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 6968990 - 6965064&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 828&lt;br&gt;E-value: 1.34e-264&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 39&lt;br&gt;BLAST bit score: 1302&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 1298&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 49&lt;br&gt;BLAST bit score: 1172&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 58&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 681&lt;br&gt;E-value: 1.07e-228&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 47&lt;br&gt;BLAST bit score: 788&lt;br&gt;E-value: 6.79e-256&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 40&lt;br&gt;BLAST bit score: 1145&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30100" class="clusterblast-orf" id="dummy-1_h1_4_118"  />
+</g>
+<g id="a1_00119"  >
+<polygon points="687,85 692,80 696,80 696,90 692,90 687,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30095&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 6962711 - 6958674&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 47&lt;br&gt;Percentage coverage: 37&lt;br&gt;BLAST bit score: 770&lt;br&gt;E-value: 1.49e-242&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 41&lt;br&gt;BLAST bit score: 1259&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 39&lt;br&gt;BLAST bit score: 1234&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 48&lt;br&gt;Percentage coverage: 53&lt;br&gt;BLAST bit score: 1077&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 63&lt;br&gt;Percentage coverage: 93&lt;br&gt;BLAST bit score: 775&lt;br&gt;E-value: 4.64e-265&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 62&lt;br&gt;Percentage coverage: 47&lt;br&gt;BLAST bit score: 1001&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 43&lt;br&gt;BLAST bit score: 1116&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30095" class="clusterblast-orf" id="dummy-1_h1_4_119"  />
+</g>
+<g id="a1_00120"  >
+<polygon points="696,85 698,80 698,90 696,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30090&lt;/b&gt;&lt;br&gt;polyketide synthase dehydratase domain-containing protein&lt;br&gt;Location: 6958304 - 6957474" locus_tag="FQU76_RS30090" class="clusterblast-orf" id="dummy-1_h1_4_120"  />
+</g>
+<g id="a1_00121"  >
+<polygon points="698,85 700,80 700,90 698,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30085&lt;/b&gt;&lt;br&gt;acyltransferase domain-containing protein&lt;br&gt;Location: 6957302 - 6956394" locus_tag="FQU76_RS30085" class="clusterblast-orf" id="dummy-1_h1_4_121"  />
+</g>
+<g id="a1_00122"  >
+<polygon points="701,85 701,80 701,90 701,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30080&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6956231 - 6955833" locus_tag="FQU76_RS30080" class="clusterblast-orf" id="dummy-1_h1_4_122"  />
+</g>
+<g id="a1_00123"  >
+<polygon points="702,85 705,80 705,90 702,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30075&lt;/b&gt;&lt;br&gt;6-deoxyerythronolide-B synthase&lt;br&gt;Location: 6955370 - 6954216" locus_tag="FQU76_RS30075" class="clusterblast-orf" id="dummy-1_h1_4_123"  />
+</g>
+<g id="a1_00124"  >
+<polygon points="705,85 708,80 708,90 705,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30070&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 6954155 - 6952803" locus_tag="FQU76_RS30070" class="clusterblast-orf" id="dummy-1_h1_4_124"  />
+</g>
+<g id="a1_00125"  >
+<polygon points="708,85 713,80 713,80 713,90 713,90 708,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30065&lt;/b&gt;&lt;br&gt;type I polyketide synthase&lt;br&gt;Location: 6952748 - 6950001&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 34&lt;br&gt;BLAST bit score: 829&lt;br&gt;E-value: 3.49e-270&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 27&lt;br&gt;BLAST bit score: 957&lt;br&gt;E-value: 1.09e-313&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 58&lt;br&gt;Percentage coverage: 26&lt;br&gt;BLAST bit score: 976&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 34&lt;br&gt;BLAST bit score: 949&lt;br&gt;E-value: 2.3e-315&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 56&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 693&lt;br&gt;E-value: 1.62e-238&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 49&lt;br&gt;BLAST bit score: 823&lt;br&gt;E-value: 1.1e-274&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 60&lt;br&gt;Percentage coverage: 28&lt;br&gt;BLAST bit score: 964&lt;br&gt;E-value: 7.03e-317" locus_tag="FQU76_RS30065" class="clusterblast-orf" id="dummy-1_h1_4_125"  />
+</g>
+<g id="a1_00126"  >
+<polygon points="714,85 719,80 740,80 740,90 719,90 714,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30060&lt;/b&gt;&lt;br&gt;SDR family NAD(P)-dependent oxidoreductase&lt;br&gt;Location: 6949919 - 6937224&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00306&lt;/b&gt;&lt;br&gt;Percentage identity: 41&lt;br&gt;Percentage coverage: 70&lt;br&gt;BLAST bit score: 992&lt;br&gt;E-value: 1.22e-301&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00310&lt;/b&gt;&lt;br&gt;Percentage identity: 48&lt;br&gt;Percentage coverage: 102&lt;br&gt;BLAST bit score: 2482&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00311&lt;/b&gt;&lt;br&gt;Percentage identity: 44&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 2202&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00312&lt;/b&gt;&lt;br&gt;Percentage identity: 45&lt;br&gt;Percentage coverage: 103&lt;br&gt;BLAST bit score: 1820&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00313&lt;/b&gt;&lt;br&gt;Percentage identity: 62&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 766&lt;br&gt;E-value: 6.66e-246&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00314&lt;/b&gt;&lt;br&gt;Percentage identity: 48&lt;br&gt;Percentage coverage: 96&lt;br&gt;BLAST bit score: 1347&lt;br&gt;E-value: 0.0&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00315&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 43&lt;br&gt;BLAST bit score: 1133&lt;br&gt;E-value: 0.0" locus_tag="FQU76_RS30060" class="clusterblast-orf" id="dummy-1_h1_4_126"  />
+</g>
+<g id="a1_00127"  >
+<polygon points="741,85 743,80 743,90 741,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30055&lt;/b&gt;&lt;br&gt;isopenicillin N synthase family oxygenase&lt;br&gt;Location: 6936642 - 6935665" locus_tag="FQU76_RS30055" class="clusterblast-orf" id="dummy-1_h1_4_127"  />
+</g>
+<g id="a1_00128"  >
+<polygon points="744,90 746,85 744,80 744,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30050&lt;/b&gt;&lt;br&gt;AsnC family transcriptional regulator&lt;br&gt;Location: 6935430 - 6934483" locus_tag="FQU76_RS30050" class="clusterblast-orf" id="dummy-1_h1_4_128"  />
+</g>
+<g id="a1_00129"  >
+<polygon points="746,85 747,80 747,90 746,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30045&lt;/b&gt;&lt;br&gt;methyltransferase domain-containing protein&lt;br&gt;Location: 6934430 - 6933660" locus_tag="FQU76_RS30045" class="clusterblast-orf" id="dummy-1_h1_4_129"  />
+</g>
+<g id="a1_00130"  >
+<polygon points="748,90 750,85 748,80 748,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30040&lt;/b&gt;&lt;br&gt;DJ-1/PfpI family protein&lt;br&gt;Location: 6933366 - 6932575" locus_tag="FQU76_RS30040" class="clusterblast-orf" id="dummy-1_h1_4_130"  />
+</g>
+<g id="a1_00131"  >
+<polygon points="750,90 754,85 750,80 750,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30035&lt;/b&gt;&lt;br&gt;acyl-CoA dehydrogenase&lt;br&gt;Location: 6932301 - 6930580" locus_tag="FQU76_RS30035" class="clusterblast-orf" id="dummy-1_h1_4_131"  />
+</g>
+<g id="a1_00132"  >
+<polygon points="754,90 755,85 754,80 754,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30030&lt;/b&gt;&lt;br&gt;methyltransferase domain-containing protein&lt;br&gt;Location: 6930498 - 6929704" locus_tag="FQU76_RS30030" class="clusterblast-orf" id="dummy-1_h1_4_132"  />
+</g>
+<g id="a1_00133"  >
+<polygon points="756,90 759,85 756,80 756,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30025&lt;/b&gt;&lt;br&gt;acyl-CoA dehydrogenase family protein&lt;br&gt;Location: 6929387 - 6928203" locus_tag="FQU76_RS30025" class="clusterblast-orf" id="dummy-1_h1_4_133"  />
+</g>
+<g id="a1_00134"  >
+<polygon points="759,85 761,80 761,90 759,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30020&lt;/b&gt;&lt;br&gt;helix-turn-helix domain-containing protein&lt;br&gt;Location: 6928193 - 6926952" locus_tag="FQU76_RS30020" class="clusterblast-orf" id="dummy-1_h1_4_134"  />
+</g>
+<g id="a1_00135"  >
+<polygon points="761,85 762,80 762,90 761,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS34135&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6926876 - 6926724" locus_tag="FQU76_RS34135" class="clusterblast-orf" id="dummy-1_h1_4_135"  />
+</g>
+<g id="a1_00136"  >
+<polygon points="762,90 764,85 762,80 762,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30015&lt;/b&gt;&lt;br&gt;DUF3068 domain-containing protein&lt;br&gt;Location: 6926406 - 6925408" locus_tag="FQU76_RS30015" class="clusterblast-orf" id="dummy-1_h1_4_136"  />
+</g>
+<g id="a1_00137"  >
+<polygon points="766,90 769,85 766,80 766,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30010&lt;/b&gt;&lt;br&gt;glycosyltransferase&lt;br&gt;Location: 6924849 - 6923263" locus_tag="FQU76_RS30010" class="clusterblast-orf" id="dummy-1_h1_4_137"  />
+</g>
+<g id="a1_00138"  >
+<polygon points="769,90 770,85 769,80 769,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30005&lt;/b&gt;&lt;br&gt;methyltransferase domain-containing protein&lt;br&gt;Location: 6923256 - 6922456" locus_tag="FQU76_RS30005" class="clusterblast-orf" id="dummy-1_h1_4_138"  />
+</g>
+<g id="a1_00139"  >
+<polygon points="770,90 775,90 780,85 775,80 770,80 770,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;FQU76_RS30000&lt;/b&gt;&lt;br&gt;DUF3367 domain-containing protein&lt;br&gt;Location: 6922459 - 6918092" locus_tag="FQU76_RS30000" class="clusterblast-orf" id="dummy-1_h1_4_139"  />
+</g>
+</svg>

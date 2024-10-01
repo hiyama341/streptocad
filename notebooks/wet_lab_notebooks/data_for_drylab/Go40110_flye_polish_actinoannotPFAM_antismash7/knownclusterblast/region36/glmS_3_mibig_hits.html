@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>BAD08365.1</td>
+              <td>glutamate_mutase_S-chain</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000167/1">BGC0000167</a></td>
+              <td>Polyketide</td>
+              <td>49.0</td>
+              <td>91.0</td>
+              <td>124.0</td>
+              <td>1.01e-36</td>
+          </tr>
+    
+          <tr>
+              <td>UHH90017.1</td>
+              <td>VicH</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002634/1">BGC0002634</a></td>
+              <td>Polyketide+NRP+Other</td>
+              <td>48.0</td>
+              <td>90.4</td>
+              <td>123.0</td>
+              <td>3.02e-36</td>
+          </tr>
+    
+          <tr>
+              <td>ANH11407.1</td>
+              <td>SceL</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001770/1">BGC0001770</a></td>
+              <td>Polyketide</td>
+              <td>50.0</td>
+              <td>84.0</td>
+              <td>119.0</td>
+              <td>8.73e-35</td>
+          </tr>
+    
+          <tr>
+              <td>QBL56193.1</td>
+              <td>glutamate_mutase_sigma_subunit_2</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002376/1">BGC0002376</a></td>
+              <td>Polyketide</td>
+              <td>53.0</td>
+              <td>74.4</td>
+              <td>119.0</td>
+              <td>1.9e-34</td>
+          </tr>
+    
+          <tr>
+              <td>QEO75088.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002079/1">BGC0002079</a></td>
+              <td>NRP:Cyclic depsipeptide</td>
+              <td>54.0</td>
+              <td>72.4</td>
+              <td>116.0</td>
+              <td>1.2e-33</td>
+          </tr>
+    
+          <tr>
+              <td>QRG35030.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002378/1">BGC0002378</a></td>
+              <td>NRP</td>
+              <td>52.0</td>
+              <td>74.4</td>
+              <td>116.0</td>
+              <td>1.68e-33</td>
+          </tr>
+    
+          <tr>
+              <td>CBA11574.1</td>
+              <td>glutamate_mutase_subunit</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001046/1">BGC0001046</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>50.0</td>
+              <td>82.7</td>
+              <td>115.0</td>
+              <td>2.13e-33</td>
+          </tr>
+    
+          <tr>
+              <td>QEO74994.1</td>
+              <td>omn19</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002078/1">BGC0002078</a></td>
+              <td>NRP:Cyclic depsipeptide</td>
+              <td>48.0</td>
+              <td>84.6</td>
+              <td>112.0</td>
+              <td>3.66e-32</td>
+          </tr>
+    
+          <tr>
+              <td>OAP25807.1</td>
+              <td>Methylaspartate_mutase_S_chain</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001658/1">BGC0001658</a></td>
+              <td>Polyketide</td>
+              <td>45.0</td>
+              <td>78.2</td>
+              <td>110.0</td>
+              <td>2.23e-31</td>
+          </tr>
+    
+          <tr>
+              <td>QGA70081.1</td>
+              <td>glutamate_mutase_S-chain</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002517/1">BGC0002517</a></td>
+              <td>Polyketide</td>
+              <td>50.0</td>
+              <td>80.1</td>
+              <td>110.0</td>
+              <td>3.58e-31</td>
+          </tr>
+    
+          <tr>
+              <td>CAC11143.1</td>
+              <td>NikU_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000876/1">BGC0000876</a></td>
+              <td>Other</td>
+              <td>51.0</td>
+              <td>71.2</td>
+              <td>105.0</td>
+              <td>2.64e-29</td>
+          </tr>
+    
+          <tr>
+              <td>ARU08068.1</td>
+              <td>mlcF</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001448/1">BGC0001448</a></td>
+              <td>NRP:Lipopeptide:Ca+-dependent lipopeptide</td>
+              <td>51.0</td>
+              <td>71.2</td>
+              <td>105.0</td>
+              <td>3.95e-29</td>
+          </tr>
+    
+          <tr>
+              <td>CAD32909.1</td>
+              <td>glutamate_mutase_subunit_A</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000354/1">BGC0000354</a></td>
+              <td>NRP</td>
+              <td>51.0</td>
+              <td>71.2</td>
+              <td>104.0</td>
+              <td>5.69e-29</td>
+          </tr>
+    
+          <tr>
+              <td>QYA99277.1</td>
+              <td>cobalamin-dependent_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002676/1">BGC0002676</a></td>
+              <td>NRP</td>
+              <td>44.0</td>
+              <td>78.8</td>
+              <td>96.0</td>
+              <td>1.29e-25</td>
+          </tr>
+    
+          <tr>
+              <td>AEA30285.1</td>
+              <td>glutamate_mutase_subunit_A</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000429/1">BGC0000429</a></td>
+              <td>Polyketide+NRP:Cyclic depsipeptide</td>
+              <td>44.0</td>
+              <td>78.8</td>
+              <td>96.0</td>
+              <td>1.55e-25</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

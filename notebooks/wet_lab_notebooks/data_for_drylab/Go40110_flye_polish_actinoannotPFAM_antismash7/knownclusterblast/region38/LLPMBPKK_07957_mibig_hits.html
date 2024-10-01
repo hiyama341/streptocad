@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>BAO57439.1</td>
+              <td>dehydrogenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000606/1">BGC0000606</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>64.0</td>
+              <td>96.8</td>
+              <td>652.0</td>
+              <td>5.91e-232</td>
+          </tr>
+    
+          <tr>
+              <td>ACR48333.1</td>
+              <td>NosD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000610/1">BGC0000610</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>31.0</td>
+              <td>55.4</td>
+              <td>85.0</td>
+              <td>2e-17</td>
+          </tr>
+    
+          <tr>
+              <td>ATG31921.1</td>
+              <td>KocC</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001640/1">BGC0001640</a></td>
+              <td>RiPP</td>
+              <td>31.0</td>
+              <td>54.6</td>
+              <td>81.0</td>
+              <td>2.61e-16</td>
+          </tr>
+    
+          <tr>
+              <td>ADR01080.1</td>
+              <td>NocD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000609/1">BGC0000609</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>27.0</td>
+              <td>52.7</td>
+              <td>78.0</td>
+              <td>3.4e-15</td>
+          </tr>
+    
+          <tr>
+              <td>AGY49589.1</td>
+              <td>dehydratase_(serine_dehydration)</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001155/1">BGC0001155</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>32.0</td>
+              <td>52.4</td>
+              <td>71.0</td>
+              <td>5.04e-13</td>
+          </tr>
+    
+          <tr>
+              <td>AQM75236.1</td>
+              <td>NosD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001707/1">BGC0001707</a></td>
+              <td>RiPP</td>
+              <td>27.0</td>
+              <td>53.2</td>
+              <td>69.0</td>
+              <td>3.49e-12</td>
+          </tr>
+    
+          <tr>
+              <td>BAE46922.2</td>
+              <td>goadsporin_biosynthetic_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000565/1">BGC0000565</a></td>
+              <td>RiPP:LAP</td>
+              <td>30.0</td>
+              <td>50.7</td>
+              <td>67.0</td>
+              <td>1.09e-11</td>
+          </tr>
+    
+          <tr>
+              <td>ADG87278.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001860/1">BGC0001860</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>32.0</td>
+              <td>54.6</td>
+              <td>67.0</td>
+              <td>1.22e-11</td>
+          </tr>
+    
+          <tr>
+              <td>AID54696.1</td>
+              <td>dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001146/1">BGC0001146</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>29.0</td>
+              <td>60.0</td>
+              <td>65.0</td>
+              <td>7.23e-11</td>
+          </tr>
+    
+          <tr>
+              <td>ADZ45315.1</td>
+              <td>dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001020/1">BGC0001020</a></td>
+              <td>NRP+Polyketide</td>
+              <td>28.0</td>
+              <td>53.2</td>
+              <td>64.0</td>
+              <td>8.21e-11</td>
+          </tr>
+    
+          <tr>
+              <td>ACS83768.1</td>
+              <td>dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000604/1">BGC0000604</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>30.0</td>
+              <td>52.4</td>
+              <td>61.0</td>
+              <td>7.39e-10</td>
+          </tr>
+    
+          <tr>
+              <td>AAP11952.1</td>
+              <td>Lantibiotic_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000612/1">BGC0000612</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>21.0</td>
+              <td>54.4</td>
+              <td>61.0</td>
+              <td>1.57e-09</td>
+          </tr>
+    
+          <tr>
+              <td>QVN25653.1</td>
+              <td>lantipeptide_dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002363/1">BGC0002363</a></td>
+              <td>RiPP</td>
+              <td>28.0</td>
+              <td>57.0</td>
+              <td>57.0</td>
+              <td>1.54e-08</td>
+          </tr>
+    
+          <tr>
+              <td>ACS50128.1</td>
+              <td>putative_lantibiotic_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000603/1">BGC0000603</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>30.0</td>
+              <td>56.3</td>
+              <td>56.0</td>
+              <td>5.42e-08</td>
+          </tr>
+    
+          <tr>
+              <td>QAZ52267.1</td>
+              <td>lanthionine_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002311/1">BGC0002311</a></td>
+              <td>RiPP</td>
+              <td>29.0</td>
+              <td>33.3</td>
+              <td>55.0</td>
+              <td>8.03e-08</td>
+          </tr>
+    
+          <tr>
+              <td>ACS83783.1</td>
+              <td>dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000613/1">BGC0000613</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>29.0</td>
+              <td>46.3</td>
+              <td>51.0</td>
+              <td>1.14e-06</td>
+          </tr>
+    
+          <tr>
+              <td>ACU62758.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001392/1">BGC0001392</a></td>
+              <td>RiPP</td>
+              <td>28.0</td>
+              <td>43.4</td>
+              <td>49.0</td>
+              <td>5.06e-06</td>
+          </tr>
+    
+          <tr>
+              <td>EMF00383.1</td>
+              <td>Lantibiotic_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001145/1">BGC0001145</a></td>
+              <td>RiPP:Thiopeptide</td>
+              <td>27.0</td>
+              <td>59.7</td>
+              <td>49.0</td>
+              <td>8.89e-06</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

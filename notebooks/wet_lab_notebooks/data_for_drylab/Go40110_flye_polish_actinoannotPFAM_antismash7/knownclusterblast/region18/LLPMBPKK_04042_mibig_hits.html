@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>ABW11820.1</td>
+              <td>transcriptional_regulator,_LuxR_family</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001197/1">BGC0001197</a></td>
+              <td>Polyketide</td>
+              <td>40.0</td>
+              <td>82.5</td>
+              <td>114.0</td>
+              <td>9.75e-30</td>
+          </tr>
+    
+          <tr>
+              <td>CBW54659.1</td>
+              <td>LuxR_like_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000971/1">BGC0000971</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide</td>
+              <td>36.0</td>
+              <td>77.6</td>
+              <td>97.0</td>
+              <td>2.27e-23</td>
+          </tr>
+    
+          <tr>
+              <td>AAX31566.1</td>
+              <td>probable_regulatory_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000336/1">BGC0000336</a></td>
+              <td>NRP</td>
+              <td>40.0</td>
+              <td>65.0</td>
+              <td>95.0</td>
+              <td>2.02e-22</td>
+          </tr>
+    
+          <tr>
+              <td>AYJ71724.1</td>
+              <td>LuxR_family_transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001942/1">BGC0001942</a></td>
+              <td>NRP+Polyketide</td>
+              <td>32.0</td>
+              <td>64.3</td>
+              <td>92.0</td>
+              <td>2.69e-21</td>
+          </tr>
+    
+          <tr>
+              <td>CAJ14055.1</td>
+              <td>regulatory_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000406/1">BGC0000406</a></td>
+              <td>NRP</td>
+              <td>31.0</td>
+              <td>58.9</td>
+              <td>72.0</td>
+              <td>1.83e-14</td>
+          </tr>
+    
+          <tr>
+              <td>UMM61376.1</td>
+              <td>Tsk15</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002661/1">BGC0002661</a></td>
+              <td>NRP</td>
+              <td>32.0</td>
+              <td>65.8</td>
+              <td>71.0</td>
+              <td>5.7e-14</td>
+          </tr>
+    
+          <tr>
+              <td>QLG04855.1</td>
+              <td>PulW</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002374/1">BGC0002374</a></td>
+              <td>Polyketide</td>
+              <td>39.0</td>
+              <td>49.4</td>
+              <td>67.0</td>
+              <td>5.46e-13</td>
+          </tr>
+    
+          <tr>
+              <td>QLG04854.1</td>
+              <td>Hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002374/1">BGC0002374</a></td>
+              <td>Polyketide</td>
+              <td>37.0</td>
+              <td>38.4</td>
+              <td>56.0</td>
+              <td>4.33e-09</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

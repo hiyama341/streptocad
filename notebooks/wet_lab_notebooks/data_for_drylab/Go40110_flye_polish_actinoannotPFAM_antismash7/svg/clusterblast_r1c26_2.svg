@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="0,35 5,30 52,30 52,40 5,40 0,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06266&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7240601 - 7241402" locus_tag="LLPMBPKK_06266" class="clusterblast-orf" id="dummy-26_q0_0_all"  />
+<polygon points="52,35 57,30 133,30 133,40 57,40 52,35 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06267&lt;/b&gt;&lt;br&gt;VWA domain-containing protein&lt;br&gt;Location: 7241401 - 7242664" locus_tag="LLPMBPKK_06267" class="clusterblast-orf" id="dummy-26_q1_0_all"  />
+<polygon points="138,35 143,30 185,30 185,40 143,40 138,35 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06268&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7242741 - 7243485" locus_tag="LLPMBPKK_06268" class="clusterblast-orf" id="dummy-26_q2_0_all"  />
+<polygon points="189,35 194,30 288,30 288,40 194,40 189,35 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06269&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7243533 - 7245075" locus_tag="LLPMBPKK_06269" class="clusterblast-orf" id="dummy-26_q3_0_all"  />
+<polygon points="294,35 299,30 393,30 393,40 299,40 294,35 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06270&lt;/b&gt;&lt;br&gt;IucA/IucC family siderophore biosynthesisprotein&lt;br&gt;Location: 7245181 - 7246720" locus_tag="LLPMBPKK_06270" class="clusterblast-orf" id="dummy-26_q4_0_all"  />
+<polygon points="402,40 495,40 500,35 495,30 402,30 402,40 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06271&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 7246849 - 7248373" locus_tag="LLPMBPKK_06271" class="clusterblast-orf" id="dummy-26_q5_0_all"  />
+<polygon points="507,40 564,40 569,35 564,30 507,30 507,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06272&lt;/b&gt;&lt;br&gt;luciferase family protein&lt;br&gt;Location: 7248485 - 7249451" locus_tag="LLPMBPKK_06272" class="clusterblast-orf" id="dummy-26_q6_0_all"  />
+<polygon points="578,35 583,30 610,30 610,40 583,40 578,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06273&lt;/b&gt;&lt;br&gt;MarR family transcriptional regulator&lt;br&gt;Location: 7249598 - 7250096" locus_tag="LLPMBPKK_06273" class="clusterblast-orf" id="dummy-26_q7_0_all"  />
+<polygon points="624,35 629,30 701,30 701,40 629,40 624,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06274&lt;/b&gt;&lt;br&gt;cytochrome P450&lt;br&gt;Location: 7250305 - 7251508" locus_tag="LLPMBPKK_06274" class="clusterblast-orf" id="dummy-26_q8_0_all"  />
+<polygon points="703,35 708,30 780,30 780,40 708,40 703,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06275&lt;/b&gt;&lt;br&gt;acyltransferase&lt;br&gt;Location: 7251545 - 7252739" locus_tag="LLPMBPKK_06275" class="clusterblast-orf" id="dummy-26_q9_0_all"  />
+</g>
+<g label="NZ_SLVZ01000001" description="NZ_SLVZ01000001 (664469-676529): Streptomyces sp. BK387 Ga0307671 101, whole ... (54% of genes show similarity), siderophore" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_SLVZ01000001&amp;start=664469&amp;end=676529" target="_blank">NZ_SLVZ01000001 (664469-676529)</a>: Streptomyces sp. BK387 Ga0307671 101, whole ... (54% of genes show similarity), siderophore</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a26_000"  >
+<polygon points="2,85 7,80 53,80 53,90 7,90 2,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03110&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 676529 - 675729&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06266&lt;/b&gt;&lt;br&gt;Percentage identity: 89&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 457&lt;br&gt;E-value: 4.64e-163" locus_tag="EV289_RS03110" class="clusterblast-orf" id="dummy-26_h26_2_0"  />
+</g>
+<g id="a26_001"  >
+<polygon points="53,85 58,80 135,80 135,90 58,90 53,85 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03105&lt;/b&gt;&lt;br&gt;VWA domain-containing protein&lt;br&gt;Location: 675729 - 674467&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06267&lt;/b&gt;&lt;br&gt;Percentage identity: 96&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 818&lt;br&gt;E-value: 7.87e-301" locus_tag="EV289_RS03105" class="clusterblast-orf" id="dummy-26_h26_2_1"  />
+</g>
+<g id="a26_002"  >
+<polygon points="139,85 144,80 187,80 187,90 144,90 139,85 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03100&lt;/b&gt;&lt;br&gt;NUDIX hydrolase&lt;br&gt;Location: 674399 - 673656&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06268&lt;/b&gt;&lt;br&gt;Percentage identity: 89&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 440&lt;br&gt;E-value: 7.85e-157" locus_tag="EV289_RS03100" class="clusterblast-orf" id="dummy-26_h26_2_2"  />
+</g>
+<g id="a26_003"  >
+<polygon points="190,85 195,80 289,80 289,90 195,90 190,85 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03095&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 673607 - 672066&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06269&lt;/b&gt;&lt;br&gt;Percentage identity: 95&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 961&lt;br&gt;E-value: 0.0" locus_tag="EV289_RS03095" class="clusterblast-orf" id="dummy-26_h26_2_3"  />
+</g>
+<g id="a26_004"  >
+<polygon points="296,85 301,80 394,80 394,90 301,90 296,85 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03090&lt;/b&gt;&lt;br&gt;IucA/IucC family siderophore biosynthesis protein&lt;br&gt;Location: 671959 - 670436&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06270&lt;/b&gt;&lt;br&gt;Percentage identity: 84&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 848&lt;br&gt;E-value: 1.53e-309" locus_tag="EV289_RS03090" class="clusterblast-orf" id="dummy-26_h26_2_4"  />
+</g>
+<g id="a26_005"  >
+<polygon points="402,90 493,90 498,85 493,80 402,80 402,90 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03085&lt;/b&gt;&lt;br&gt;IucA/IucC family siderophore biosynthesis protein&lt;br&gt;Location: 670304 - 668805&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06271&lt;/b&gt;&lt;br&gt;Percentage identity: 92&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 944&lt;br&gt;E-value: 0.0" locus_tag="EV289_RS03085" class="clusterblast-orf" id="dummy-26_h26_2_5"  />
+</g>
+<g id="a26_006"  >
+<polygon points="500,90 553,90 558,85 553,80 500,80 500,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03080&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 668784 - 667870" locus_tag="EV289_RS03080" class="clusterblast-orf" id="dummy-26_h26_2_6"  />
+</g>
+<g id="a26_007"  >
+<polygon points="562,85 567,80 666,80 666,90 567,90 562,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03075&lt;/b&gt;&lt;br&gt;malate synthase A&lt;br&gt;Location: 667818 - 666193" locus_tag="EV289_RS03075" class="clusterblast-orf" id="dummy-26_h26_2_7"  />
+</g>
+<g id="a26_008"  >
+<polygon points="678,85 683,80 717,80 717,90 683,90 678,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03070&lt;/b&gt;&lt;br&gt;nucleotidyltransferase family protein&lt;br&gt;Location: 666008 - 665400" locus_tag="EV289_RS03070" class="clusterblast-orf" id="dummy-26_h26_2_8"  />
+</g>
+<g id="a26_009"  >
+<polygon points="727,90 744,90 749,85 744,80 727,80 727,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03065&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 665253 - 664900" locus_tag="EV289_RS03065" class="clusterblast-orf" id="dummy-26_h26_2_9"  />
+</g>
+<g id="a26_0010"  >
+<polygon points="750,85 755,80 777,80 777,90 755,90 750,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;EV289_RS03060&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 664892 - 664470" locus_tag="EV289_RS03060" class="clusterblast-orf" id="dummy-26_h26_2_10"  />
+</g>
+</svg>

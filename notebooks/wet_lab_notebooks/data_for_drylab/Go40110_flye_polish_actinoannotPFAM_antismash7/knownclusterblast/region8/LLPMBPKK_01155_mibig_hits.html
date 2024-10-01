@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>ATW47214.1</td>
+              <td>iron_transporter</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002466/1">BGC0002466</a></td>
+              <td>NRP</td>
+              <td>61.0</td>
+              <td>98.2</td>
+              <td>632.0</td>
+              <td>1.01e-223</td>
+          </tr>
+    
+          <tr>
+              <td>AGK17155.1</td>
+              <td>siderophore_biosynthesis_protein,_IucA/IucC_family</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002527/1">BGC0002527</a></td>
+              <td>Other</td>
+              <td>39.0</td>
+              <td>100.2</td>
+              <td>321.0</td>
+              <td>3.12e-102</td>
+          </tr>
+    
+          <tr>
+              <td>AAW74609.1</td>
+              <td>iron_transporter</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001408/1">BGC0001408</a></td>
+              <td>Other</td>
+              <td>37.0</td>
+              <td>101.6</td>
+              <td>288.0</td>
+              <td>1.3e-89</td>
+          </tr>
+    
+          <tr>
+              <td>ABM30202.1</td>
+              <td>PvsD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000947/1">BGC0000947</a></td>
+              <td>Other</td>
+              <td>32.0</td>
+              <td>101.8</td>
+              <td>269.0</td>
+              <td>4.37e-82</td>
+          </tr>
+    
+          <tr>
+              <td>BAC16547.1</td>
+              <td>vibrioferrin_biosynthesis_protein_PvsD</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000946/1">BGC0000946</a></td>
+              <td>Other</td>
+              <td>32.0</td>
+              <td>101.8</td>
+              <td>266.0</td>
+              <td>6.45e-81</td>
+          </tr>
+    
+          <tr>
+              <td>BAB72352.1</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002683/1">BGC0002683</a></td>
+              <td>Other</td>
+              <td>29.0</td>
+              <td>105.5</td>
+              <td>199.0</td>
+              <td>3.38e-56</td>
+          </tr>
+    
+          <tr>
+              <td>AFO89685.1</td>
+              <td>putative_siderophore_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002694/1">BGC0002694</a></td>
+              <td>Other</td>
+              <td>30.0</td>
+              <td>103.2</td>
+              <td>182.0</td>
+              <td>7.14e-50</td>
+          </tr>
+    
+          <tr>
+              <td>AAP25873.1</td>
+              <td>petrobactin_biosynthesis_protein_AsbA</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000942/1">BGC0000942</a></td>
+              <td>Other</td>
+              <td>29.0</td>
+              <td>105.9</td>
+              <td>177.0</td>
+              <td>4.02e-48</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

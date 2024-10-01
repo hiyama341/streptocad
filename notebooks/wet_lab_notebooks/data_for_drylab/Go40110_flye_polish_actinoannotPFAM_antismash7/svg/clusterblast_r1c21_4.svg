@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="49,35 54,30 134,30 134,40 54,40 49,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05897&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6739336 - 6740563" locus_tag="LLPMBPKK_05897" class="clusterblast-orf" id="dummy-21_q0_0_all"  />
+<polygon points="158,40 255,40 260,35 255,30 158,30 158,40 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05898&lt;/b&gt;&lt;br&gt;aminotransferase class III-fold pyridoxal phosphate-dependent enzyme&lt;br&gt;Location: 6740899 - 6742372" locus_tag="LLPMBPKK_05898" class="clusterblast-orf" id="dummy-21_q1_0_all"  />
+<polygon points="327,40 423,40 428,35 423,30 327,30 327,40 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05899&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 6743320 - 6744781" locus_tag="LLPMBPKK_05899" class="clusterblast-orf" id="dummy-21_q2_0_all"  />
+<polygon points="437,40 486,40 491,35 486,30 437,30 437,40 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05900&lt;/b&gt;&lt;br&gt;GNAT family N-acetyltransferase&lt;br&gt;Location: 6744903 - 6745674" locus_tag="LLPMBPKK_05900" class="clusterblast-orf" id="dummy-21_q3_0_all"  />
+<polygon points="525,40 659,40 664,35 659,30 525,30 525,40 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05901&lt;/b&gt;&lt;br&gt;ATP-dependent DNA helicase&lt;br&gt;Location: 6746176 - 6748168" locus_tag="LLPMBPKK_05901" class="clusterblast-orf" id="dummy-21_q4_0_all"  />
+<polygon points="677,35 682,30 731,30 731,40 682,40 677,35 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05902&lt;/b&gt;&lt;br&gt;transcriptional repressor LexA&lt;br&gt;Location: 6748352 - 6749132" locus_tag="LLPMBPKK_05902" class="clusterblast-orf" id="dummy-21_q5_0_all"  />
+</g>
+<g label="NZ_CM002285" description="NZ_CM002285 (2361367-2372564): Streptomyces roseochromogenus subsp. oscitans ... (85% of genes show similarity), siderophore" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_CM002285&amp;start=2361367&amp;end=2372564" target="_blank">NZ_CM002285 (2361367-2372564)</a>: Streptomyces roseochromogenus subsp. oscitans ... (85% of genes show similarity), siderophore</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a21_000"  >
+<polygon points="0,90 99,90 104,85 99,80 0,80 0,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;M878_RS60165&lt;/b&gt;&lt;br&gt;GTPase HflX&lt;br&gt;Location: 2372564 - 2371071" locus_tag="M878_RS60165" class="clusterblast-orf" id="dummy-21_h21_4_0"  />
+</g>
+<g id="a21_001"  >
+<polygon points="119,85 124,80 198,80 198,90 124,90 119,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;M878_RS60160&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 2370849 - 2369719&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05897&lt;/b&gt;&lt;br&gt;Percentage identity: 84&lt;br&gt;Percentage coverage: 85&lt;br&gt;BLAST bit score: 633&lt;br&gt;E-value: 1.79e-228" locus_tag="M878_RS60160" class="clusterblast-orf" id="dummy-21_h21_4_1"  />
+</g>
+<g id="a21_002"  >
+<polygon points="237,90 331,90 336,85 331,80 237,80 237,90 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;M878_RS60155&lt;/b&gt;&lt;br&gt;diaminobutyrate--2-oxoglutarate transaminase family protein&lt;br&gt;Location: 2369162 - 2367738&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05898&lt;/b&gt;&lt;br&gt;Percentage identity: 86&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 789&lt;br&gt;E-value: 5.27e-287" locus_tag="M878_RS60155" class="clusterblast-orf" id="dummy-21_h21_4_2"  />
+</g>
+<g id="a21_003"  >
+<polygon points="348,90 487,90 492,85 487,80 348,80 348,90 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;M878_RS60150&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 2367566 - 2365497&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05899&lt;/b&gt;&lt;br&gt;Percentage identity: 84&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 814&lt;br&gt;E-value: 1.08e-293" locus_tag="M878_RS60150" class="clusterblast-orf" id="dummy-21_h21_4_3"  />
+</g>
+<g id="a21_004"  >
+<polygon points="497,90 548,90 553,85 548,80 497,80 497,90 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;M878_RS60145&lt;/b&gt;&lt;br&gt;acetyltransferase&lt;br&gt;Location: 2365428 - 2364619&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05900&lt;/b&gt;&lt;br&gt;Percentage identity: 73&lt;br&gt;Percentage coverage: 105&lt;br&gt;BLAST bit score: 390&lt;br&gt;E-value: 1.1e-136" locus_tag="M878_RS60145" class="clusterblast-orf" id="dummy-21_h21_4_4"  />
+</g>
+<g id="a21_005"  >
+<polygon points="572,90 708,90 713,85 708,80 572,80 572,90 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;M878_RS60140&lt;/b&gt;&lt;br&gt;ATP-dependent DNA helicase&lt;br&gt;Location: 2364344 - 2362326&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05901&lt;/b&gt;&lt;br&gt;Percentage identity: 95&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 1230&lt;br&gt;E-value: 0.0" locus_tag="M878_RS60140" class="clusterblast-orf" id="dummy-21_h21_4_5"  />
+</g>
+<g id="a21_006"  >
+<polygon points="725,85 730,80 779,80 779,90 730,90 725,85 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;M878_RS60135&lt;/b&gt;&lt;br&gt;transcriptional repressor LexA&lt;br&gt;Location: 2362147 - 2361368&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05902&lt;/b&gt;&lt;br&gt;Percentage identity: 99&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 508&lt;br&gt;E-value: 2.93e-183" locus_tag="M878_RS60135" class="clusterblast-orf" id="dummy-21_h21_4_6"  />
+</g>
+</svg>

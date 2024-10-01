@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>EHN79427.1</td>
+              <td>alpha-glucosidase_ScatE1</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000804/1">BGC0000804</a></td>
+              <td>Saccharide</td>
+              <td>70.0</td>
+              <td>97.6</td>
+              <td>803.0</td>
+              <td>2.4e-291</td>
+          </tr>
+    
+          <tr>
+              <td>ARE72420.1</td>
+              <td>alpha-glucosidase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001510/1">BGC0001510</a></td>
+              <td>Other</td>
+              <td>55.0</td>
+              <td>96.4</td>
+              <td>600.0</td>
+              <td>5.84e-211</td>
+          </tr>
+    
+          <tr>
+              <td>ABC87503.1</td>
+              <td>alpha-1,_4-glucosidase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001011/1">BGC0001011</a></td>
+              <td>NRP+Polyketide</td>
+              <td>53.0</td>
+              <td>94.9</td>
+              <td>555.0</td>
+              <td>4.54e-194</td>
+          </tr>
+    
+          <tr>
+              <td>RMI87910.1</td>
+              <td>alpha-glucosidase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002285/1">BGC0002285</a></td>
+              <td>RiPP</td>
+              <td>52.0</td>
+              <td>93.3</td>
+              <td>531.0</td>
+              <td>8.62e-185</td>
+          </tr>
+    
+          <tr>
+              <td>WP_013310331.1</td>
+              <td>alpha-amylase_family_glycosyl_hydrolase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001728/1">BGC0001728</a></td>
+              <td>NRP+Polyketide</td>
+              <td>30.0</td>
+              <td>87.8</td>
+              <td>192.0</td>
+              <td>6.35e-54</td>
+          </tr>
+    
+          <tr>
+              <td>WP_013310338.1</td>
+              <td>alpha-amylase_family_glycosyl_hydrolase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001728/1">BGC0001728</a></td>
+              <td>NRP+Polyketide</td>
+              <td>24.0</td>
+              <td>52.7</td>
+              <td>59.0</td>
+              <td>9.22e-09</td>
+          </tr>
+    
+          <tr>
+              <td>AAW03335.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000982/1">BGC0000982</a></td>
+              <td>NRP+Polyketide</td>
+              <td>24.0</td>
+              <td>43.6</td>
+              <td>59.0</td>
+              <td>1.23e-08</td>
+          </tr>
+    
+          <tr>
+              <td>ALJ01863.1</td>
+              <td>malto-oligosyltrehalose_trehalohydrolase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001285/1">BGC0001285</a></td>
+              <td>Other:Fatty acid</td>
+              <td>31.0</td>
+              <td>22.3</td>
+              <td>50.0</td>
+              <td>4.3e-06</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

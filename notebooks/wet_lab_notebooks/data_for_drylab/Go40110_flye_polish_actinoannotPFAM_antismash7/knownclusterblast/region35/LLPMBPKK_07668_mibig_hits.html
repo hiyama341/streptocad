@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>AFL48546.1</td>
+              <td>putative_magnesium/manganese-dependent_protein_phosphatase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000084/1">BGC0000084</a></td>
+              <td>Polyketide</td>
+              <td>56.0</td>
+              <td>99.7</td>
+              <td>428.0</td>
+              <td>1.88e-142</td>
+          </tr>
+    
+          <tr>
+              <td>AFV30259.1</td>
+              <td>putative_integral_membrane_sensor_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000075/1">BGC0000075</a></td>
+              <td>Polyketide</td>
+              <td>50.0</td>
+              <td>100.5</td>
+              <td>349.0</td>
+              <td>3.5e-112</td>
+          </tr>
+    
+          <tr>
+              <td>ADM46380.1</td>
+              <td>magnesium_or_manganese-dependent_protein_phosphatase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000106/1">BGC0000106</a></td>
+              <td>Polyketide</td>
+              <td>46.0</td>
+              <td>105.9</td>
+              <td>343.0</td>
+              <td>2.61e-110</td>
+          </tr>
+    
+          <tr>
+              <td>AFU82605.1</td>
+              <td>protein_phosphatase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000998/1">BGC0000998</a></td>
+              <td>NRP+Polyketide</td>
+              <td>45.0</td>
+              <td>99.5</td>
+              <td>303.0</td>
+              <td>5.77e-99</td>
+          </tr>
+    
+          <tr>
+              <td>BBA21053.1</td>
+              <td>putative_signal_transduction_histidine_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001740/1">BGC0001740</a></td>
+              <td>NRP+Polyketide</td>
+              <td>43.0</td>
+              <td>68.8</td>
+              <td>196.0</td>
+              <td>2.78e-56</td>
+          </tr>
+    
+          <tr>
+              <td>TXD00044.1</td>
+              <td>SpoIIE_family_protein_phosphatase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001877/1">BGC0001877</a></td>
+              <td>Polyketide</td>
+              <td>43.0</td>
+              <td>66.8</td>
+              <td>189.0</td>
+              <td>8.49e-54</td>
+          </tr>
+    
+          <tr>
+              <td>APR73645.1</td>
+              <td>PAS_sensor_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001625/1">BGC0001625</a></td>
+              <td>Polyketide</td>
+              <td>46.0</td>
+              <td>66.2</td>
+              <td>188.0</td>
+              <td>3.03e-53</td>
+          </tr>
+    
+          <tr>
+              <td>AAS79440.1</td>
+              <td>conserved_hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000035/1">BGC0000035</a></td>
+              <td>Polyketide</td>
+              <td>37.0</td>
+              <td>64.4</td>
+              <td>138.0</td>
+              <td>6.31e-38</td>
+          </tr>
+    
+          <tr>
+              <td>SCN11967.1</td>
+              <td>putative_serine_phosphatase_RsbU,_regulator_of_sigma_subunit</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001580/1">BGC0001580</a></td>
+              <td>Polyketide</td>
+              <td>38.0</td>
+              <td>66.8</td>
+              <td>139.0</td>
+              <td>1.19e-35</td>
+          </tr>
+    
+          <tr>
+              <td>WP_017947404.1</td>
+              <td>ATP-binding_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001558/1">BGC0001558</a></td>
+              <td>Polyketide</td>
+              <td>39.0</td>
+              <td>30.2</td>
+              <td>62.0</td>
+              <td>1.76e-11</td>
+          </tr>
+    
+          <tr>
+              <td>CAE45684.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000031/1">BGC0000031</a></td>
+              <td>Polyketide:Modular type I polyketide</td>
+              <td>34.0</td>
+              <td>34.3</td>
+              <td>54.0</td>
+              <td>1.89e-08</td>
+          </tr>
+    
+          <tr>
+              <td>ALV82325.1</td>
+              <td>putative_regulatory_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001533/1">BGC0001533</a></td>
+              <td>Polyketide</td>
+              <td>39.0</td>
+              <td>21.6</td>
+              <td>52.0</td>
+              <td>6.28e-08</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="38,35 43,30 126,30 126,40 43,40 38,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05897&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6739336 - 6740563" locus_tag="LLPMBPKK_05897" class="clusterblast-orf" id="dummy-21_q0_0_all"  />
+<polygon points="151,40 251,40 256,35 251,30 151,30 151,40 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05898&lt;/b&gt;&lt;br&gt;aminotransferase class III-fold pyridoxal phosphate-dependent enzyme&lt;br&gt;Location: 6740899 - 6742372" locus_tag="LLPMBPKK_05898" class="clusterblast-orf" id="dummy-21_q1_0_all"  />
+<polygon points="325,40 424,40 429,35 424,30 325,30 325,40 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05899&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 6743320 - 6744781" locus_tag="LLPMBPKK_05899" class="clusterblast-orf" id="dummy-21_q2_0_all"  />
+<polygon points="438,40 489,40 494,35 489,30 438,30 438,40 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05900&lt;/b&gt;&lt;br&gt;GNAT family N-acetyltransferase&lt;br&gt;Location: 6744903 - 6745674" locus_tag="LLPMBPKK_05900" class="clusterblast-orf" id="dummy-21_q3_0_all"  />
+<polygon points="530,40 668,40 673,35 668,30 530,30 530,40 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05901&lt;/b&gt;&lt;br&gt;ATP-dependent DNA helicase&lt;br&gt;Location: 6746176 - 6748168" locus_tag="LLPMBPKK_05901" class="clusterblast-orf" id="dummy-21_q4_0_all"  />
+<polygon points="686,35 691,30 742,30 742,40 691,40 686,35 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05902&lt;/b&gt;&lt;br&gt;transcriptional repressor LexA&lt;br&gt;Location: 6748352 - 6749132" locus_tag="LLPMBPKK_05902" class="clusterblast-orf" id="dummy-21_q5_0_all"  />
+</g>
+<g label="NZ_CP047020" description="NZ_CP047020 (6867989-6878847): Streptomyces sp. T44 chromosome (75% of genes show similarity), siderophore" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_CP047020&amp;start=6867989&amp;end=6878847" target="_blank">NZ_CP047020 (6867989-6878847)</a>: Streptomyces sp. T44 chromosome (75% of genes show similarity), siderophore</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a21_000"  >
+<polygon points="0,85 5,80 62,80 62,90 5,90 0,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GQF42_RS31700&lt;/b&gt;&lt;br&gt;NmrA family NAD(P)-binding protein&lt;br&gt;Location: 6867990 - 6868859" locus_tag="GQF42_RS31700" class="clusterblast-orf" id="dummy-21_h21_5_0"  />
+</g>
+<g id="a21_001"  >
+<polygon points="66,90 93,90 98,85 93,80 66,80 66,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;GQF42_RS31705&lt;/b&gt;&lt;br&gt;MarR family transcriptional regulator&lt;br&gt;Location: 6868914 - 6869363" locus_tag="GQF42_RS31705" class="clusterblast-orf" id="dummy-21_h21_5_1"  />
+</g>
+<g id="a21_002"  >
+<polygon points="116,85 121,80 204,80 204,90 121,90 116,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;GQF42_RS31710&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6869618 - 6870835&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05897&lt;/b&gt;&lt;br&gt;Percentage identity: 79&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 612&lt;br&gt;E-value: 8.65e-220" locus_tag="GQF42_RS31710" class="clusterblast-orf" id="dummy-21_h21_5_2"  />
+</g>
+<g id="a21_003"  >
+<polygon points="231,90 329,90 334,85 329,80 231,80 231,90 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;GQF42_RS31715&lt;/b&gt;&lt;br&gt;diaminobutyrate--2-oxoglutarate transaminase family protein&lt;br&gt;Location: 6871219 - 6872652&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05898&lt;/b&gt;&lt;br&gt;Percentage identity: 87&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 798&lt;br&gt;E-value: 1.31e-290" locus_tag="GQF42_RS31715" class="clusterblast-orf" id="dummy-21_h21_5_3"  />
+</g>
+<g id="a21_004"  >
+<polygon points="346,90 482,90 487,85 482,80 346,80 346,90 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;GQF42_RS31720&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 6872818 - 6874776&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05899&lt;/b&gt;&lt;br&gt;Percentage identity: 83&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 801&lt;br&gt;E-value: 2.98e-289" locus_tag="GQF42_RS31720" class="clusterblast-orf" id="dummy-21_h21_5_4"  />
+</g>
+<g id="a21_005"  >
+<polygon points="492,90 544,90 549,85 544,80 492,80 492,90 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;GQF42_RS31725&lt;/b&gt;&lt;br&gt;GNAT family N-acetyltransferase&lt;br&gt;Location: 6874844 - 6875632&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05900&lt;/b&gt;&lt;br&gt;Percentage identity: 74&lt;br&gt;Percentage coverage: 102&lt;br&gt;BLAST bit score: 398&lt;br&gt;E-value: 7.74e-140" locus_tag="GQF42_RS31725" class="clusterblast-orf" id="dummy-21_h21_5_5"  />
+</g>
+<g id="a21_006"  >
+<polygon points="567,90 703,90 708,85 703,80 567,80 567,90 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;GQF42_RS31730&lt;/b&gt;&lt;br&gt;ATP-dependent helicase&lt;br&gt;Location: 6875884 - 6877845&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05901&lt;/b&gt;&lt;br&gt;Percentage identity: 97&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 1233&lt;br&gt;E-value: 0.0" locus_tag="GQF42_RS31730" class="clusterblast-orf" id="dummy-21_h21_5_6"  />
+</g>
+<g id="a21_007"  >
+<polygon points="724,85 729,80 780,80 780,90 729,90 724,85 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;GQF42_RS31735&lt;/b&gt;&lt;br&gt;transcriptional repressor LexA&lt;br&gt;Location: 6878068 - 6878847&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05902&lt;/b&gt;&lt;br&gt;Percentage identity: 100&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 511&lt;br&gt;E-value: 1.77e-184" locus_tag="GQF42_RS31735" class="clusterblast-orf" id="dummy-21_h21_5_7"  />
+</g>
+</svg>

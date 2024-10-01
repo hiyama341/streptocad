@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>ADG86322.1</td>
+              <td>hydroxylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000190/1">BGC0000190</a></td>
+              <td>Polyketide</td>
+              <td>83.0</td>
+              <td>96.6</td>
+              <td>228.0</td>
+              <td>4.32e-78</td>
+          </tr>
+    
+          <tr>
+              <td>AAQ08923.1</td>
+              <td>putative_monooxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000224/1">BGC0000224</a></td>
+              <td>Polyketide:Type II polyketide</td>
+              <td>79.0</td>
+              <td>100.0</td>
+              <td>220.0</td>
+              <td>7.07e-75</td>
+          </tr>
+    
+          <tr>
+              <td>BAJ52672.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000222/1">BGC0000222</a></td>
+              <td>Polyketide</td>
+              <td>51.0</td>
+              <td>92.6</td>
+              <td>127.0</td>
+              <td>6.66e-38</td>
+          </tr>
+    
+          <tr>
+              <td>ADB23383.1</td>
+              <td>unknown_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001062/1">BGC0001062</a></td>
+              <td>Polyketide</td>
+              <td>53.0</td>
+              <td>86.6</td>
+              <td>125.0</td>
+              <td>4.15e-37</td>
+          </tr>
+    
+          <tr>
+              <td>ADE22319.1</td>
+              <td>putative_monooxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000279/1">BGC0000279</a></td>
+              <td>Polyketide</td>
+              <td>51.0</td>
+              <td>95.3</td>
+              <td>122.0</td>
+              <td>5.5e-36</td>
+          </tr>
+    
+          <tr>
+              <td>AMK51290.1</td>
+              <td>Hex33</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001376/1">BGC0001376</a></td>
+              <td>Polyketide</td>
+              <td>49.0</td>
+              <td>97.3</td>
+              <td>117.0</td>
+              <td>2.76e-34</td>
+          </tr>
+    
+          <tr>
+              <td>ACZ87044.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002732/1">BGC0002732</a></td>
+              <td>Polyketide</td>
+              <td>49.0</td>
+              <td>97.3</td>
+              <td>117.0</td>
+              <td>2.76e-34</td>
+          </tr>
+    
+          <tr>
+              <td>CAM34365.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000242/1">BGC0000242</a></td>
+              <td>Polyketide</td>
+              <td>46.0</td>
+              <td>95.3</td>
+              <td>110.0</td>
+              <td>1.37e-31</td>
+          </tr>
+    
+          <tr>
+              <td>AHX24710.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000200/1">BGC0000200</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>43.0</td>
+              <td>97.3</td>
+              <td>105.0</td>
+              <td>1.87e-29</td>
+          </tr>
+    
+          <tr>
+              <td>AAM33665.1</td>
+              <td>GrhM</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000230/1">BGC0000230</a></td>
+              <td>Polyketide:Type II polyketide</td>
+              <td>48.0</td>
+              <td>86.6</td>
+              <td>94.0</td>
+              <td>5.94e-25</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

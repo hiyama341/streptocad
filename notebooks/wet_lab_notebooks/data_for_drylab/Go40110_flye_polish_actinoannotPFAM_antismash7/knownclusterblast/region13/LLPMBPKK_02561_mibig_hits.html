@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>DAC74146.1</td>
+              <td>NAD-dependent_epimerase/dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002019/1">BGC0002019</a></td>
+              <td>Terpene</td>
+              <td>48.0</td>
+              <td>95.7</td>
+              <td>287.0</td>
+              <td>1.77e-95</td>
+          </tr>
+    
+          <tr>
+              <td>BBD17763.1</td>
+              <td>NAD-dependent_reductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001919/1">BGC0001919</a></td>
+              <td>NRP+Polyketide</td>
+              <td>45.0</td>
+              <td>96.8</td>
+              <td>237.0</td>
+              <td>9.3e-76</td>
+          </tr>
+    
+          <tr>
+              <td>ctg1_orf26</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000096/1">BGC0000096</a></td>
+              <td>Polyketide</td>
+              <td>44.0</td>
+              <td>98.6</td>
+              <td>229.0</td>
+              <td>2.21e-72</td>
+          </tr>
+    
+          <tr>
+              <td>BBM96642.1</td>
+              <td>ketoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002452/1">BGC0002452</a></td>
+              <td>Polyketide</td>
+              <td>45.0</td>
+              <td>88.5</td>
+              <td>226.0</td>
+              <td>3.91e-71</td>
+          </tr>
+    
+          <tr>
+              <td>AWX24485.1</td>
+              <td>NADPH_dependent_ketoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001695/1">BGC0001695</a></td>
+              <td>NRP</td>
+              <td>44.0</td>
+              <td>96.8</td>
+              <td>219.0</td>
+              <td>1.51e-68</td>
+          </tr>
+    
+          <tr>
+              <td>AYU66251.1</td>
+              <td>TjhD4</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002461/1">BGC0002461</a></td>
+              <td>Polyketide</td>
+              <td>41.0</td>
+              <td>97.7</td>
+              <td>213.0</td>
+              <td>3.37e-66</td>
+          </tr>
+    
+          <tr>
+              <td>AJD77040.1</td>
+              <td>NAD-dependent_epimerase/dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001435/1">BGC0001435</a></td>
+              <td>NRP+Polyketide:Iterative type I polyketide</td>
+              <td>44.0</td>
+              <td>96.6</td>
+              <td>213.0</td>
+              <td>6.76e-66</td>
+          </tr>
+    
+          <tr>
+              <td>WP_053138455.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002033/1">BGC0002033</a></td>
+              <td>Polyketide</td>
+              <td>39.0</td>
+              <td>98.3</td>
+              <td>187.0</td>
+              <td>2.73e-56</td>
+          </tr>
+    
+          <tr>
+              <td>ctg1_31</td>
+              <td></td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001931/1">BGC0001931</a></td>
+              <td>Polyketide</td>
+              <td>39.0</td>
+              <td>95.1</td>
+              <td>179.0</td>
+              <td>3.64e-53</td>
+          </tr>
+    
+          <tr>
+              <td>OWA01607.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001439/1">BGC0001439</a></td>
+              <td>Polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>27.0</td>
+              <td>97.1</td>
+              <td>56.0</td>
+              <td>2.13e-08</td>
+          </tr>
+    
+          <tr>
+              <td>CBA11562.1</td>
+              <td>NDP-4-keto-6-deoxyhexose_reductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001046/1">BGC0001046</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>26.0</td>
+              <td>98.0</td>
+              <td>52.0</td>
+              <td>3.88e-07</td>
+          </tr>
+    
+          <tr>
+              <td>BAC79033.1</td>
+              <td>NDP-4-keto-6-deoxyhexose_reductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000245/1">BGC0000245</a></td>
+              <td>Polyketide</td>
+              <td>26.0</td>
+              <td>88.5</td>
+              <td>52.0</td>
+              <td>4.92e-07</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

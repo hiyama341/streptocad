@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>WP_037636388.1</td>
+              <td>lasso_peptide_isopeptide_bond-forming_cyclase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001550/1">BGC0001550</a></td>
+              <td>RiPP</td>
+              <td>75.0</td>
+              <td>100.0</td>
+              <td>925.0</td>
+              <td>0.0</td>
+          </tr>
+    
+          <tr>
+              <td>BAC73401.1</td>
+              <td>putative_asparagine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001552/1">BGC0001552</a></td>
+              <td>RiPP</td>
+              <td>77.0</td>
+              <td>94.5</td>
+              <td>911.0</td>
+              <td>0.0</td>
+          </tr>
+    
+          <tr>
+              <td>A4V12_08815</td>
+              <td>asparagine_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001548/1">BGC0001548</a></td>
+              <td>RiPP</td>
+              <td>73.0</td>
+              <td>98.5</td>
+              <td>895.0</td>
+              <td>0.0</td>
+          </tr>
+    
+          <tr>
+              <td>WP_043505821.1</td>
+              <td>lasso_peptide_isopeptide_bond-forming_cyclase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001551/1">BGC0001551</a></td>
+              <td>RiPP</td>
+              <td>70.0</td>
+              <td>99.5</td>
+              <td>833.0</td>
+              <td>6.11e-302</td>
+          </tr>
+    
+          <tr>
+              <td>WP_037657108.1</td>
+              <td>lasso_peptide_isopeptide_bond-forming_cyclase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001549/1">BGC0001549</a></td>
+              <td>RiPP</td>
+              <td>67.0</td>
+              <td>99.5</td>
+              <td>829.0</td>
+              <td>2.67e-300</td>
+          </tr>
+    
+          <tr>
+              <td>QFU91024.1</td>
+              <td>Putative_asparagine_synthetase_[glutamine-hydrolyzing]</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002064/1">BGC0002064</a></td>
+              <td>RiPP</td>
+              <td>42.0</td>
+              <td>96.9</td>
+              <td>401.0</td>
+              <td>1.72e-132</td>
+          </tr>
+    
+          <tr>
+              <td>QOE83932.1</td>
+              <td>putative_asparagine_synthetase_/cyclase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002053/1">BGC0002053</a></td>
+              <td>RiPP:Lassopeptide</td>
+              <td>42.0</td>
+              <td>96.1</td>
+              <td>398.0</td>
+              <td>4.98e-131</td>
+          </tr>
+    
+          <tr>
+              <td>AAZ55183.1</td>
+              <td>asparagine_synthase_(glutamine-hydrolysing)</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001889/1">BGC0001889</a></td>
+              <td>RiPP</td>
+              <td>41.0</td>
+              <td>96.7</td>
+              <td>391.0</td>
+              <td>2.3e-128</td>
+          </tr>
+    
+          <tr>
+              <td>KDN73296.1</td>
+              <td>asparagine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001507/1">BGC0001507</a></td>
+              <td>RiPP</td>
+              <td>41.0</td>
+              <td>96.7</td>
+              <td>390.0</td>
+              <td>4.71e-128</td>
+          </tr>
+    
+          <tr>
+              <td>QYB25760.1</td>
+              <td>asparagine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002425/1">BGC0002425</a></td>
+              <td>RiPP</td>
+              <td>39.0</td>
+              <td>97.4</td>
+              <td>386.0</td>
+              <td>1.12e-126</td>
+          </tr>
+    
+          <tr>
+              <td>CQR60044.1</td>
+              <td>Asparagine_Synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002289/1">BGC0002289</a></td>
+              <td>RiPP</td>
+              <td>39.0</td>
+              <td>95.8</td>
+              <td>385.0</td>
+              <td>4.38e-126</td>
+          </tr>
+    
+          <tr>
+              <td>WP_234335044.1</td>
+              <td>asparagine_synthase-related_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001645/1">BGC0001645</a></td>
+              <td>RiPP</td>
+              <td>43.0</td>
+              <td>83.9</td>
+              <td>375.0</td>
+              <td>6.13e-123</td>
+          </tr>
+    
+          <tr>
+              <td>GAT69129.2</td>
+              <td>putative_lasso_peptide_modification_enzyme</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001781/1">BGC0001781</a></td>
+              <td>RiPP</td>
+              <td>39.0</td>
+              <td>92.5</td>
+              <td>372.0</td>
+              <td>3.62e-121</td>
+          </tr>
+    
+          <tr>
+              <td>ALT06553.1</td>
+              <td>lasso_peptide_cyclase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001307/1">BGC0001307</a></td>
+              <td>RiPP</td>
+              <td>38.0</td>
+              <td>92.5</td>
+              <td>365.0</td>
+              <td>1.35e-118</td>
+          </tr>
+    
+          <tr>
+              <td>WP_017534152.1</td>
+              <td>asparagine_synthase-related_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001655/1">BGC0001655</a></td>
+              <td>RiPP</td>
+              <td>37.0</td>
+              <td>98.5</td>
+              <td>360.0</td>
+              <td>2.17e-116</td>
+          </tr>
+    
+          <tr>
+              <td>QCY49167.1</td>
+              <td>lasso_peptide_cyclase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002074/1">BGC0002074</a></td>
+              <td>RiPP:Lassopeptide</td>
+              <td>41.0</td>
+              <td>92.8</td>
+              <td>354.0</td>
+              <td>3.58e-114</td>
+          </tr>
+    
+          <tr>
+              <td>KUN61410.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002318/1">BGC0002318</a></td>
+              <td>RiPP</td>
+              <td>39.0</td>
+              <td>98.7</td>
+              <td>347.0</td>
+              <td>4.65e-111</td>
+          </tr>
+    
+          <tr>
+              <td>CCB72813.1</td>
+              <td>putative_asparagine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001539/1">BGC0001539</a></td>
+              <td>RiPP</td>
+              <td>38.0</td>
+              <td>96.7</td>
+              <td>342.0</td>
+              <td>1.62e-109</td>
+          </tr>
+    
+          <tr>
+              <td>WP_051753637.1</td>
+              <td>asparagine_synthase-related_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001493/1">BGC0001493</a></td>
+              <td>RiPP</td>
+              <td>39.0</td>
+              <td>99.0</td>
+              <td>340.0</td>
+              <td>1.14e-108</td>
+          </tr>
+    
+          <tr>
+              <td>WP_122215940.1</td>
+              <td>lasso_peptide_isopeptide_bond-forming_cyclase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002015/1">BGC0002015</a></td>
+              <td>RiPP</td>
+              <td>39.0</td>
+              <td>97.2</td>
+              <td>329.0</td>
+              <td>1.19e-104</td>
+          </tr>
+    
+          <tr>
+              <td>QHZ32193.1</td>
+              <td>lasso_peptide_isopeptide_bond-forming_cyclase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002307/1">BGC0002307</a></td>
+              <td>RiPP</td>
+              <td>38.0</td>
+              <td>94.1</td>
+              <td>325.0</td>
+              <td>4e-103</td>
+          </tr>
+    
+          <tr>
+              <td>BBD82041.1</td>
+              <td>asparagine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001920/1">BGC0001920</a></td>
+              <td>RiPP</td>
+              <td>38.0</td>
+              <td>95.9</td>
+              <td>324.0</td>
+              <td>1.3e-102</td>
+          </tr>
+    
+          <tr>
+              <td>SFF02575.1</td>
+              <td>asparagine_synthase_(glutamine-hydrolysing)</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001674/1">BGC0001674</a></td>
+              <td>RiPP</td>
+              <td>38.0</td>
+              <td>93.5</td>
+              <td>321.0</td>
+              <td>1.98e-101</td>
+          </tr>
+    
+          <tr>
+              <td>WP_050495135.1</td>
+              <td>asparagine_synthase-related_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001634/1">BGC0001634</a></td>
+              <td>RiPP</td>
+              <td>35.0</td>
+              <td>103.3</td>
+              <td>309.0</td>
+              <td>7.28e-96</td>
+          </tr>
+    
+          <tr>
+              <td>BAL72547.1</td>
+              <td>lariatin_biosynthetic_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000575/1">BGC0000575</a></td>
+              <td>RiPP:Lassopeptide</td>
+              <td>31.0</td>
+              <td>90.2</td>
+              <td>265.0</td>
+              <td>5.75e-80</td>
+          </tr>
+    
+          <tr>
+              <td>IH29_RS50070</td>
+              <td>asparagine_synthase-related_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001506/1">BGC0001506</a></td>
+              <td>RiPP</td>
+              <td>41.0</td>
+              <td>59.2</td>
+              <td>238.0</td>
+              <td>6.51e-71</td>
+          </tr>
+    
+          <tr>
+              <td>WP_050789791.1</td>
+              <td>asparagine_synthase-related_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000579/1">BGC0000579</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>36.0</td>
+              <td>77.4</td>
+              <td>233.0</td>
+              <td>2.44e-69</td>
+          </tr>
+    
+          <tr>
+              <td>SSEG_09672</td>
+              <td>lactamase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000579/1">BGC0000579</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>37.0</td>
+              <td>69.1</td>
+              <td>217.0</td>
+              <td>7.58e-64</td>
+          </tr>
+    
+          <tr>
+              <td>SSGG_RS13910</td>
+              <td>asparagine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000578/1">BGC0000578</a></td>
+              <td>RiPP:Lassopeptide</td>
+              <td>40.0</td>
+              <td>52.2</td>
+              <td>205.0</td>
+              <td>2.22e-60</td>
+          </tr>
+    
+          <tr>
+              <td>WP_039847677.1</td>
+              <td>asparagine_synthase-related_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000578/1">BGC0000578</a></td>
+              <td>RiPP:Lassopeptide</td>
+              <td>40.0</td>
+              <td>50.4</td>
+              <td>200.0</td>
+              <td>1.55e-58</td>
+          </tr>
+    
+          <tr>
+              <td>EWC60871.1</td>
+              <td>putative_asparagine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001496/1">BGC0001496</a></td>
+              <td>RiPP</td>
+              <td>34.0</td>
+              <td>76.9</td>
+              <td>185.0</td>
+              <td>1.87e-51</td>
+          </tr>
+    
+          <tr>
+              <td>AJD77028.1</td>
+              <td>asparagine_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001435/1">BGC0001435</a></td>
+              <td>NRP+Polyketide:Iterative type I polyketide</td>
+              <td>30.0</td>
+              <td>91.5</td>
+              <td>154.0</td>
+              <td>8.62e-40</td>
+          </tr>
+    
+          <tr>
+              <td>SSGG_RS0132785</td>
+              <td>asparagine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000578/1">BGC0000578</a></td>
+              <td>RiPP:Lassopeptide</td>
+              <td>37.0</td>
+              <td>42.1</td>
+              <td>140.0</td>
+              <td>9.22e-37</td>
+          </tr>
+    
+          <tr>
+              <td>WP_040248810.1</td>
+              <td>asparagine_synthetase_B_family_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002006/1">BGC0002006</a></td>
+              <td>RiPP</td>
+              <td>30.0</td>
+              <td>95.0</td>
+              <td>144.0</td>
+              <td>2.4e-36</td>
+          </tr>
+    
+          <tr>
+              <td>WP_237523603.1</td>
+              <td>asparagine_synthase-related_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000578/1">BGC0000578</a></td>
+              <td>RiPP:Lassopeptide</td>
+              <td>37.0</td>
+              <td>42.1</td>
+              <td>140.0</td>
+              <td>2.59e-36</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

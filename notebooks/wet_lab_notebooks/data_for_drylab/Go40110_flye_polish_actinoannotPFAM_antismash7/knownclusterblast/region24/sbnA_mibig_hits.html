@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>PVD00182.1</td>
+              <td>2,3-diaminopropionate_biosynthesis_protein_SbnA</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002100/1">BGC0002100</a></td>
+              <td>NRP+Other</td>
+              <td>66.0</td>
+              <td>93.5</td>
+              <td>436.0</td>
+              <td>4.54e-154</td>
+          </tr>
+    
+          <tr>
+              <td>EFE73306.1</td>
+              <td>cysteine_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000431/1">BGC0000431</a></td>
+              <td>NRP:Cyclic depsipeptide</td>
+              <td>66.0</td>
+              <td>92.1</td>
+              <td>414.0</td>
+              <td>2.09e-145</td>
+          </tr>
+    
+          <tr>
+              <td>BAX64245.1</td>
+              <td>cysteine_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001623/1">BGC0001623</a></td>
+              <td>NRP+Polyketide</td>
+              <td>62.0</td>
+              <td>96.5</td>
+              <td>397.0</td>
+              <td>1.43e-138</td>
+          </tr>
+    
+          <tr>
+              <td>AYJ71717.1</td>
+              <td>cysteine_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001942/1">BGC0001942</a></td>
+              <td>NRP+Polyketide</td>
+              <td>55.0</td>
+              <td>92.1</td>
+              <td>349.0</td>
+              <td>8.33e-120</td>
+          </tr>
+    
+          <tr>
+              <td>AQX14447.1</td>
+              <td>SbnA</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001671/1">BGC0001671</a></td>
+              <td>NRP</td>
+              <td>49.0</td>
+              <td>89.4</td>
+              <td>305.0</td>
+              <td>8.11e-103</td>
+          </tr>
+    
+          <tr>
+              <td>QRG35018.1</td>
+              <td>2,3-diaminopropionate_biosynthesis_protein_SbnA</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002378/1">BGC0002378</a></td>
+              <td>NRP</td>
+              <td>51.0</td>
+              <td>86.8</td>
+              <td>274.0</td>
+              <td>2.82e-90</td>
+          </tr>
+    
+          <tr>
+              <td>QMX85610.1</td>
+              <td>SapC</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002510/1">BGC0002510</a></td>
+              <td>Polyketide</td>
+              <td>49.0</td>
+              <td>88.5</td>
+              <td>268.0</td>
+              <td>3.65e-88</td>
+          </tr>
+    
+          <tr>
+              <td>AOZ21315.1</td>
+              <td>SulH</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001790/1">BGC0001790</a></td>
+              <td>NRP</td>
+              <td>46.0</td>
+              <td>86.8</td>
+              <td>253.0</td>
+              <td>4.69e-82</td>
+          </tr>
+    
+          <tr>
+              <td>SQF72445.1</td>
+              <td>Siderophore_staphylobactin_biosynthesis_protein_SbnA</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000943/1">BGC0000943</a></td>
+              <td>Other</td>
+              <td>37.0</td>
+              <td>86.8</td>
+              <td>202.0</td>
+              <td>1.35e-62</td>
+          </tr>
+    
+          <tr>
+              <td>ACM79820.1</td>
+              <td>ZmaU</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001059/1">BGC0001059</a></td>
+              <td>NRP+Polyketide</td>
+              <td>36.0</td>
+              <td>83.5</td>
+              <td>189.0</td>
+              <td>5.5e-57</td>
+          </tr>
+    
+          <tr>
+              <td>AAP92492.1</td>
+              <td>2,3-diaminopropionate_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000458/1">BGC0000458</a></td>
+              <td>NRP</td>
+              <td>40.0</td>
+              <td>82.9</td>
+              <td>176.0</td>
+              <td>4.17e-52</td>
+          </tr>
+    
+          <tr>
+              <td>ABR67745.1</td>
+              <td>CmnB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000316/1">BGC0000316</a></td>
+              <td>NRP</td>
+              <td>43.0</td>
+              <td>84.7</td>
+              <td>175.0</td>
+              <td>1.23e-51</td>
+          </tr>
+    
+          <tr>
+              <td>BAC73327.1</td>
+              <td>putative_cysteine_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001587/1">BGC0001587</a></td>
+              <td>Other</td>
+              <td>35.0</td>
+              <td>88.5</td>
+              <td>151.0</td>
+              <td>1.38e-42</td>
+          </tr>
+    
+          <tr>
+              <td>AIG74590.1</td>
+              <td>cystathionine_beta-synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002566/1">BGC0002566</a></td>
+              <td>Other</td>
+              <td>34.0</td>
+              <td>85.0</td>
+              <td>149.0</td>
+              <td>6.61e-42</td>
+          </tr>
+    
+          <tr>
+              <td>CBG67729.1</td>
+              <td>putative_cystathionine_beta-synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002568/1">BGC0002568</a></td>
+              <td>Other</td>
+              <td>34.0</td>
+              <td>84.1</td>
+              <td>145.0</td>
+              <td>1.89e-40</td>
+          </tr>
+    
+          <tr>
+              <td>BAI70378.1</td>
+              <td>cysteine_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000896/1">BGC0000896</a></td>
+              <td>Other</td>
+              <td>35.0</td>
+              <td>83.2</td>
+              <td>141.0</td>
+              <td>5.71e-39</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

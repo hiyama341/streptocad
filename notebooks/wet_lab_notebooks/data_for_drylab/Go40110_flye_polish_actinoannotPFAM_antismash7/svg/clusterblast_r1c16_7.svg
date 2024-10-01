@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="0,40 58,40 63,35 58,30 0,30 0,40 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03166&lt;/b&gt;&lt;br&gt;siderophore-interacting protein&lt;br&gt;Location: 3676866 - 3677721" locus_tag="LLPMBPKK_03166" class="clusterblast-orf" id="dummy-16_q0_0_all"  />
+<polygon points="72,40 174,40 179,35 174,30 72,30 72,40 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03167&lt;/b&gt;&lt;br&gt;lysine decarboxylase DesA&lt;br&gt;Location: 3677843 - 3679310" locus_tag="LLPMBPKK_03167" class="clusterblast-orf" id="dummy-16_q1_0_all"  />
+<polygon points="178,40 267,40 272,35 267,30 178,30 178,40 " style="fill:#1597d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03168&lt;/b&gt;&lt;br&gt;alcaligin biosynthesis protein&lt;br&gt;Location: 3679293 - 3680571" locus_tag="LLPMBPKK_03168" class="clusterblast-orf" id="dummy-16_q2_0_all"  />
+<polygon points="271,40 305,40 310,35 305,30 271,30 271,40 " style="fill:#9715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03169&lt;/b&gt;&lt;br&gt;N-acetyltransferase&lt;br&gt;Location: 3680567 - 3681095" locus_tag="LLPMBPKK_03169" class="clusterblast-orf" id="dummy-16_q3_0_all"  />
+<polygon points="310,40 435,40 440,35 435,30 310,30 310,40 " style="fill:#d89715; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03170&lt;/b&gt;&lt;br&gt;desferrioxamine E synthetase monomer&lt;br&gt;Location: 3681091 - 3682864" locus_tag="LLPMBPKK_03170" class="clusterblast-orf" id="dummy-16_q4_0_all"  />
+<polygon points="445,35 450,30 562,30 562,40 450,40 445,35 " style="fill:#15d897; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03171&lt;/b&gt;&lt;br&gt;beta-N-acetylhexosaminidase&lt;br&gt;Location: 3682928 - 3684527" locus_tag="LLPMBPKK_03171" class="clusterblast-orf" id="dummy-16_q5_0_all"  />
+<polygon points="569,40 628,40 633,35 628,30 569,30 569,40 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03172&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 3684625 - 3685498" locus_tag="LLPMBPKK_03172" class="clusterblast-orf" id="dummy-16_q6_0_all"  />
+<polygon points="634,35 639,30 749,30 749,40 639,40 634,35 " style="fill:#d81597; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03173&lt;/b&gt;&lt;br&gt;metallophosphoesterase family protein&lt;br&gt;Location: 3685520 - 3687086" locus_tag="LLPMBPKK_03173" class="clusterblast-orf" id="dummy-16_q7_0_all"  />
+<polygon points="761,40 775,40 780,35 775,30 761,30 761,40 " style="fill:#97d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03174&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 3687251 - 3687509" locus_tag="LLPMBPKK_03174" class="clusterblast-orf" id="dummy-16_q8_0_all"  />
+</g>
+<g label="NZ_JACHJK010000001" description="NZ_JACHJK010000001 (245491-257261): Streptomyces echinatus strain CECT 3313 G... (100% of genes show similarity), siderophore" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_JACHJK010000001&amp;start=245491&amp;end=257261" target="_blank">NZ_JACHJK010000001 (245491-257261)</a>: Streptomyces echinatus strain CECT 3313 G... (100% of genes show similarity), siderophore</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a16_000"  >
+<polygon points="0,90 57,90 62,85 57,80 0,80 0,90 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS01145&lt;/b&gt;&lt;br&gt;siderophore-interacting protein&lt;br&gt;Location: 256456 - 255605&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03166&lt;/b&gt;&lt;br&gt;Percentage identity: 92&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 520&lt;br&gt;E-value: 2.58e-187" locus_tag="FHS34_RS01145" class="clusterblast-orf" id="dummy-16_h16_7_0"  />
+</g>
+<g id="a16_001"  >
+<polygon points="71,90 171,90 176,85 171,80 71,80 71,90 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS01140&lt;/b&gt;&lt;br&gt;lysine decarboxylase DesA&lt;br&gt;Location: 255491 - 254049&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03167&lt;/b&gt;&lt;br&gt;Percentage identity: 90&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 862&lt;br&gt;E-value: 6.98e-316" locus_tag="FHS34_RS01140" class="clusterblast-orf" id="dummy-16_h16_7_1"  />
+</g>
+<g id="a16_002"  >
+<polygon points="175,90 264,90 269,85 264,80 175,80 175,90 " style="fill:#1597d8; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS01135&lt;/b&gt;&lt;br&gt;lysine N(6)-hydroxylase/L-ornithine N(5)-oxygenase family protein&lt;br&gt;Location: 254065 - 252779&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03168&lt;/b&gt;&lt;br&gt;Percentage identity: 83&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 736&lt;br&gt;E-value: 5.27e-268" locus_tag="FHS34_RS01135" class="clusterblast-orf" id="dummy-16_h16_7_2"  />
+</g>
+<g id="a16_003"  >
+<polygon points="269,90 303,90 308,85 303,80 269,80 269,90 " style="fill:#9715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS01130&lt;/b&gt;&lt;br&gt;acetyltransferase&lt;br&gt;Location: 252782 - 252258&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03169&lt;/b&gt;&lt;br&gt;Percentage identity: 84&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 300&lt;br&gt;E-value: 4.82e-104" locus_tag="FHS34_RS01130" class="clusterblast-orf" id="dummy-16_h16_7_3"  />
+</g>
+<g id="a16_004"  >
+<polygon points="307,90 432,90 437,85 432,80 307,80 307,90 " style="fill:#d89715; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS01125&lt;/b&gt;&lt;br&gt;IucA/IucC family siderophore biosynthesis protein&lt;br&gt;Location: 252261 - 250492&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03170&lt;/b&gt;&lt;br&gt;Percentage identity: 90&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 1082&lt;br&gt;E-value: 0.0" locus_tag="FHS34_RS01125" class="clusterblast-orf" id="dummy-16_h16_7_4"  />
+</g>
+<g id="a16_005"  >
+<polygon points="441,85 446,80 564,80 564,90 446,90 441,85 " style="fill:#15d897; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS01120&lt;/b&gt;&lt;br&gt;beta-N-acetylhexosaminidase&lt;br&gt;Location: 250435 - 248753&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03171&lt;/b&gt;&lt;br&gt;Percentage identity: 87&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 951&lt;br&gt;E-value: 0.0" locus_tag="FHS34_RS01120" class="clusterblast-orf" id="dummy-16_h16_7_5"  />
+</g>
+<g id="a16_006"  >
+<polygon points="564,90 627,90 632,85 627,80 564,80 564,90 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS01115&lt;/b&gt;&lt;br&gt;DUF4429 domain-containing protein&lt;br&gt;Location: 248754 - 247837&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03172&lt;/b&gt;&lt;br&gt;Percentage identity: 78&lt;br&gt;Percentage coverage: 105&lt;br&gt;BLAST bit score: 474&lt;br&gt;E-value: 6.92e-169" locus_tag="FHS34_RS01115" class="clusterblast-orf" id="dummy-16_h16_7_6"  />
+</g>
+<g id="a16_007"  >
+<polygon points="633,85 638,80 748,80 748,90 638,90 633,85 " style="fill:#d81597; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS01110&lt;/b&gt;&lt;br&gt;metallophosphoesterase family protein&lt;br&gt;Location: 247814 - 246249&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03173&lt;/b&gt;&lt;br&gt;Percentage identity: 91&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 1005&lt;br&gt;E-value: 0.0" locus_tag="FHS34_RS01110" class="clusterblast-orf" id="dummy-16_h16_7_7"  />
+</g>
+<g id="a16_008"  >
+<polygon points="760,90 774,90 779,85 774,80 760,80 760,90 " style="fill:#97d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS01105&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 246083 - 245826&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03174&lt;/b&gt;&lt;br&gt;Percentage identity: 89&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 156&lt;br&gt;E-value: 7.11e-50" locus_tag="FHS34_RS01105" class="clusterblast-orf" id="dummy-16_h16_7_8"  />
+</g>
+</svg>

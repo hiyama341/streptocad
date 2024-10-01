@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>CCC55901.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000973/1">BGC0000973</a></td>
+              <td>NRP+Polyketide:Modular type I polyketide</td>
+              <td>61.0</td>
+              <td>90.9</td>
+              <td>336.0</td>
+              <td>9.75e-112</td>
+          </tr>
+    
+          <tr>
+              <td>ANA09437.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001483/1">BGC0001483</a></td>
+              <td>Other</td>
+              <td>43.0</td>
+              <td>98.5</td>
+              <td>202.0</td>
+              <td>1.68e-60</td>
+          </tr>
+    
+          <tr>
+              <td>BAU79596.1</td>
+              <td>serine/threonine_protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001810/1">BGC0001810</a></td>
+              <td>Polyketide</td>
+              <td>37.0</td>
+              <td>100.0</td>
+              <td>138.0</td>
+              <td>3.47e-38</td>
+          </tr>
+    
+          <tr>
+              <td>QNS30812.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002509/1">BGC0002509</a></td>
+              <td>NRP</td>
+              <td>35.0</td>
+              <td>96.0</td>
+              <td>130.0</td>
+              <td>1.99e-33</td>
+          </tr>
+    
+          <tr>
+              <td>ABX02675.1</td>
+              <td>serine/threonine_protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001521/1">BGC0001521</a></td>
+              <td>NRP</td>
+              <td>34.0</td>
+              <td>85.7</td>
+              <td>130.0</td>
+              <td>2.99e-33</td>
+          </tr>
+    
+          <tr>
+              <td>PVC99880.1</td>
+              <td>serine/threonine_protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002100/1">BGC0002100</a></td>
+              <td>NRP+Other</td>
+              <td>37.0</td>
+              <td>85.4</td>
+              <td>129.0</td>
+              <td>4.72e-33</td>
+          </tr>
+    
+          <tr>
+              <td>EFG07991.1</td>
+              <td>Putative_serine-threonine_protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000843/1">BGC0000843</a></td>
+              <td>Other:Non-NRP beta-lactam</td>
+              <td>33.0</td>
+              <td>96.0</td>
+              <td>120.0</td>
+              <td>3.52e-30</td>
+          </tr>
+    
+          <tr>
+              <td>CAA09628.1</td>
+              <td>putative_serine-threonine_protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000227/1">BGC0000227</a></td>
+              <td>Polyketide:Type II polyketide</td>
+              <td>35.0</td>
+              <td>96.0</td>
+              <td>118.0</td>
+              <td>1.07e-29</td>
+          </tr>
+    
+          <tr>
+              <td>CBL93711.1</td>
+              <td>Serine/threonine_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000360/1">BGC0000360</a></td>
+              <td>NRP</td>
+              <td>39.0</td>
+              <td>54.9</td>
+              <td>117.0</td>
+              <td>8.25e-29</td>
+          </tr>
+    
+          <tr>
+              <td>AAY32963.1</td>
+              <td>putative_Ser/Thr_protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001093/1">BGC0001093</a></td>
+              <td>NRP+Polyketide</td>
+              <td>38.0</td>
+              <td>64.9</td>
+              <td>113.0</td>
+              <td>6.65e-28</td>
+          </tr>
+    
+          <tr>
+              <td>AIL50161.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000213/1">BGC0000213</a></td>
+              <td>Polyketide:Type II polyketide</td>
+              <td>33.0</td>
+              <td>85.4</td>
+              <td>112.0</td>
+              <td>4.26e-27</td>
+          </tr>
+    
+          <tr>
+              <td>QBF29340.1</td>
+              <td>serine/threonine-protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002294/1">BGC0002294</a></td>
+              <td>Other</td>
+              <td>34.0</td>
+              <td>87.2</td>
+              <td>110.0</td>
+              <td>4.67e-27</td>
+          </tr>
+    
+          <tr>
+              <td>QDA77046.1</td>
+              <td>protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002025/1">BGC0002025</a></td>
+              <td>NRP+Polyketide</td>
+              <td>36.0</td>
+              <td>65.9</td>
+              <td>107.0</td>
+              <td>3e-25</td>
+          </tr>
+    
+          <tr>
+              <td>ABB90286.1</td>
+              <td>protein_kinase_Eg2-like_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001057/1">BGC0001057</a></td>
+              <td>NRP+Polyketide</td>
+              <td>29.0</td>
+              <td>68.9</td>
+              <td>83.0</td>
+              <td>1.18e-17</td>
+          </tr>
+    
+          <tr>
+              <td>AAZ23092.1</td>
+              <td>possible_protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000291/1">BGC0000291</a></td>
+              <td>NRP</td>
+              <td>33.0</td>
+              <td>64.6</td>
+              <td>80.0</td>
+              <td>3.5e-16</td>
+          </tr>
+    
+          <tr>
+              <td>ACR33082.1</td>
+              <td>putative_serine/threonine_protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000017/1">BGC0000017</a></td>
+              <td>Alkaloid+Polyketide:Modular type I polyketide</td>
+              <td>30.0</td>
+              <td>61.3</td>
+              <td>72.0</td>
+              <td>6.63e-14</td>
+          </tr>
+    
+          <tr>
+              <td>XP_011392657.1</td>
+              <td>serine/threonine_protein_kinase_ATG1</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001281/1">BGC0001281</a></td>
+              <td>Polyketide</td>
+              <td>26.0</td>
+              <td>85.4</td>
+              <td>71.0</td>
+              <td>4.45e-13</td>
+          </tr>
+    
+          <tr>
+              <td>QDA77053.1</td>
+              <td>protein_kinase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002025/1">BGC0002025</a></td>
+              <td>NRP+Polyketide</td>
+              <td>35.0</td>
+              <td>50.0</td>
+              <td>71.0</td>
+              <td>5.94e-13</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

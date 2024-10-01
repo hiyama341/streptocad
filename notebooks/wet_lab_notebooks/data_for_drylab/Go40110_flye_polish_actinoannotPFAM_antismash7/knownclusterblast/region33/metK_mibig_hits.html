@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>AKD43530.1</td>
+              <td>S-Adenosylmethionine_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001409/1">BGC0001409</a></td>
+              <td>Polyketide</td>
+              <td>49.0</td>
+              <td>99.0</td>
+              <td>326.0</td>
+              <td>3.29e-109</td>
+          </tr>
+    
+          <tr>
+              <td>QSI97713.1</td>
+              <td>S-adenosylmethionine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002499/1">BGC0002499</a></td>
+              <td>Polyketide+NRP</td>
+              <td>48.0</td>
+              <td>102.6</td>
+              <td>320.0</td>
+              <td>1e-106</td>
+          </tr>
+    
+          <tr>
+              <td>ADI71438.1</td>
+              <td>putative_methionine_adenosyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000203/1">BGC0000203</a></td>
+              <td>Polyketide</td>
+              <td>46.0</td>
+              <td>101.3</td>
+              <td>318.0</td>
+              <td>3.66e-106</td>
+          </tr>
+    
+          <tr>
+              <td>ARW71501.1</td>
+              <td>methionine_adenosyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001812/1">BGC0001812</a></td>
+              <td>Polyketide</td>
+              <td>49.0</td>
+              <td>101.3</td>
+              <td>311.0</td>
+              <td>2.22e-103</td>
+          </tr>
+    
+          <tr>
+              <td>ABI22144.1</td>
+              <td>putative_S-adenosylmethionine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000422/1">BGC0000422</a></td>
+              <td>NRP</td>
+              <td>47.0</td>
+              <td>102.6</td>
+              <td>310.0</td>
+              <td>7.81e-103</td>
+          </tr>
+    
+          <tr>
+              <td>OKI81369.1</td>
+              <td>S-adenosylmethionine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002478/1">BGC0002478</a></td>
+              <td>Polyketide</td>
+              <td>46.0</td>
+              <td>102.8</td>
+              <td>308.0</td>
+              <td>3.77e-102</td>
+          </tr>
+    
+          <tr>
+              <td>ADE34497.1</td>
+              <td>ssfQ</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000269/1">BGC0000269</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>47.0</td>
+              <td>102.6</td>
+              <td>307.0</td>
+              <td>1.29e-101</td>
+          </tr>
+    
+          <tr>
+              <td>ABX71135.1</td>
+              <td>Lct52</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000238/1">BGC0000238</a></td>
+              <td>Polyketide</td>
+              <td>47.0</td>
+              <td>103.4</td>
+              <td>305.0</td>
+              <td>1.14e-100</td>
+          </tr>
+    
+          <tr>
+              <td>BAC76509.1</td>
+              <td>probable_S-adenosylmethionine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000085/1">BGC0000085</a></td>
+              <td>Polyketide</td>
+              <td>45.0</td>
+              <td>103.1</td>
+              <td>304.0</td>
+              <td>2.34e-100</td>
+          </tr>
+    
+          <tr>
+              <td>UPA71917.1</td>
+              <td>s-adenosylmethionine_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002636/1">BGC0002636</a></td>
+              <td>Polyketide</td>
+              <td>46.0</td>
+              <td>103.9</td>
+              <td>301.0</td>
+              <td>1.93e-99</td>
+          </tr>
+    
+          <tr>
+              <td>QDG00817.1</td>
+              <td>putative_methyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002028/1">BGC0002028</a></td>
+              <td>Polyketide</td>
+              <td>45.0</td>
+              <td>104.1</td>
+              <td>301.0</td>
+              <td>2.73e-99</td>
+          </tr>
+    
+          <tr>
+              <td>AKC91620.1</td>
+              <td>S-adenosylmethionine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001302/1">BGC0001302</a></td>
+              <td>Other</td>
+              <td>46.0</td>
+              <td>101.3</td>
+              <td>299.0</td>
+              <td>1.14e-98</td>
+          </tr>
+    
+          <tr>
+              <td>AZF85906.1</td>
+              <td>methionine_adenosyltransferase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001963/1">BGC0001963</a></td>
+              <td>NRP+Polyketide</td>
+              <td>45.0</td>
+              <td>102.1</td>
+              <td>298.0</td>
+              <td>4.4e-98</td>
+          </tr>
+    
+          <tr>
+              <td>ADE22279.1</td>
+              <td>S-adenosylmethionine_synthetase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000279/1">BGC0000279</a></td>
+              <td>Polyketide</td>
+              <td>44.0</td>
+              <td>102.3</td>
+              <td>291.0</td>
+              <td>2.16e-95</td>
+          </tr>
+    
+          <tr>
+              <td>CAK50772.1</td>
+              <td>AdoMet_synthetase_and_MTHF_reductase_fusion</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000247/1">BGC0000247</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Oligosaccharide</td>
+              <td>38.0</td>
+              <td>43.2</td>
+              <td>102.0</td>
+              <td>2.04e-23</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

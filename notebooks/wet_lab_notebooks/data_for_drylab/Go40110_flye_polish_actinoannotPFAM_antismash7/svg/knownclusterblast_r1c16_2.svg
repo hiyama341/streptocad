@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="0,40 58,40 63,35 58,30 0,30 0,40 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03166&lt;/b&gt;&lt;br&gt;siderophore-interacting protein&lt;br&gt;Location: 3676866 - 3677721" locus_tag="LLPMBPKK_03166" class="clusterblast-orf" id="dummy-16_q0_0_all"  />
+<polygon points="72,40 174,40 179,35 174,30 72,30 72,40 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03167&lt;/b&gt;&lt;br&gt;lysine decarboxylase DesA&lt;br&gt;Location: 3677843 - 3679310" locus_tag="LLPMBPKK_03167" class="clusterblast-orf" id="dummy-16_q1_0_all"  />
+<polygon points="178,40 267,40 272,35 267,30 178,30 178,40 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03168&lt;/b&gt;&lt;br&gt;alcaligin biosynthesis protein&lt;br&gt;Location: 3679293 - 3680571" locus_tag="LLPMBPKK_03168" class="clusterblast-orf" id="dummy-16_q2_0_all"  />
+<polygon points="271,40 305,40 310,35 305,30 271,30 271,40 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03169&lt;/b&gt;&lt;br&gt;N-acetyltransferase&lt;br&gt;Location: 3680567 - 3681095" locus_tag="LLPMBPKK_03169" class="clusterblast-orf" id="dummy-16_q3_0_all"  />
+<polygon points="310,40 435,40 440,35 435,30 310,30 310,40 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03170&lt;/b&gt;&lt;br&gt;desferrioxamine E synthetase monomer&lt;br&gt;Location: 3681091 - 3682864" locus_tag="LLPMBPKK_03170" class="clusterblast-orf" id="dummy-16_q4_0_all"  />
+<polygon points="445,35 450,30 562,30 562,40 450,40 445,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03171&lt;/b&gt;&lt;br&gt;beta-N-acetylhexosaminidase&lt;br&gt;Location: 3682928 - 3684527" locus_tag="LLPMBPKK_03171" class="clusterblast-orf" id="dummy-16_q5_0_all"  />
+<polygon points="569,40 628,40 633,35 628,30 569,30 569,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03172&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 3684625 - 3685498" locus_tag="LLPMBPKK_03172" class="clusterblast-orf" id="dummy-16_q6_0_all"  />
+<polygon points="634,35 639,30 749,30 749,40 639,40 634,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03173&lt;/b&gt;&lt;br&gt;metallophosphoesterase family protein&lt;br&gt;Location: 3685520 - 3687086" locus_tag="LLPMBPKK_03173" class="clusterblast-orf" id="dummy-16_q7_0_all"  />
+<polygon points="761,40 775,40 780,35 775,30 761,30 761,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_03174&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 3687251 - 3687509" locus_tag="LLPMBPKK_03174" class="clusterblast-orf" id="dummy-16_q8_0_all"  />
+</g>
+<g label="BGC0001453" description="BGC0001453_c1: desferrioxamine (83% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0001453/1" target="_blank">BGC0001453</a>:                                                                  desferrioxamine (83% of genes show similarity), Other</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a16_000"  >
+<polygon points="124,90 196,90 201,85 196,80 124,80 124,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;desaE&lt;/b&gt;&lt;br&gt;ABC transporter substrate-binding protein&lt;br&gt;Location: 1 - 1050" locus_tag="desaE" class="clusterblast-orf" id="dummy-16_h16_2_0"  />
+</g>
+<g id="a16_001"  >
+<polygon points="230,90 266,90 271,85 266,80 230,80 230,90 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;desaF&lt;/b&gt;&lt;br&gt;siderophore-interacting protein&lt;br&gt;Location: 1440 - 1997&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03166&lt;/b&gt;&lt;br&gt;Percentage identity: 65&lt;br&gt;Percentage coverage: 70&lt;br&gt;BLAST bit score: 236&lt;br&gt;E-value: 2.1e-78" locus_tag="desaF" class="clusterblast-orf" id="dummy-16_h16_2_1"  />
+</g>
+<g id="a16_002"  >
+<polygon points="284,90 384,90 389,85 384,80 284,80 284,90 " style="fill:#15d863; stroke-width:1; stroke:black; " description="&lt;b&gt;desaA&lt;/b&gt;&lt;br&gt;pyridoxal 5-phosfate (PLP)-dependen lysine decarboxylase&lt;br&gt;Location: 2172 - 3614&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03167&lt;/b&gt;&lt;br&gt;Percentage identity: 89&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 853&lt;br&gt;E-value: 3.09e-314" locus_tag="desaA" class="clusterblast-orf" id="dummy-16_h16_2_2"  />
+</g>
+<g id="a16_003"  >
+<polygon points="388,90 478,90 483,85 478,80 388,80 388,90 " style="fill:#1563d8; stroke-width:1; stroke:black; " description="&lt;b&gt;desaB&lt;/b&gt;&lt;br&gt;FAD-dependent monooxygenase&lt;br&gt;Location: 3598 - 4890&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03168&lt;/b&gt;&lt;br&gt;Percentage identity: 77&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 675&lt;br&gt;E-value: 1.81e-245" locus_tag="desaB" class="clusterblast-orf" id="dummy-16_h16_2_3"  />
+</g>
+<g id="a16_004"  >
+<polygon points="483,90 518,90 523,85 518,80 483,80 483,90 " style="fill:#b115d8; stroke-width:1; stroke:black; " description="&lt;b&gt;desaC&lt;/b&gt;&lt;br&gt;N-acetyltransferase&lt;br&gt;Location: 4887 - 5438&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03169&lt;/b&gt;&lt;br&gt;Percentage identity: 79&lt;br&gt;Percentage coverage: 96&lt;br&gt;BLAST bit score: 271&lt;br&gt;E-value: 3.44e-94" locus_tag="desaC" class="clusterblast-orf" id="dummy-16_h16_2_4"  />
+</g>
+<g id="a16_005"  >
+<polygon points="523,90 650,90 655,85 650,80 523,80 523,90 " style="fill:#b1d815; stroke-width:1; stroke:black; " description="&lt;b&gt;desaD&lt;/b&gt;&lt;br&gt;NTP-dependent siderophore synthetase&lt;br&gt;Location: 5435 - 7234&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_03170&lt;/b&gt;&lt;br&gt;Percentage identity: 84&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 1023&lt;br&gt;E-value: 0.0" locus_tag="desaD" class="clusterblast-orf" id="dummy-16_h16_2_5"  />
+</g>
+</svg>

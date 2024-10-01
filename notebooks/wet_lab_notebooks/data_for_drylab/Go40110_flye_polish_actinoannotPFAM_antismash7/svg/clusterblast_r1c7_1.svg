@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="4,40 52,40 57,35 52,30 4,30 4,40 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00843&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 1055682 - 1056348" locus_tag="LLPMBPKK_00843" class="clusterblast-orf" id="dummy-7_q0_0_all"  />
+<polygon points="70,40 98,40 103,35 98,30 70,30 70,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00844&lt;/b&gt;&lt;br&gt;VOC family protein&lt;br&gt;Location: 1056519 - 1056945" locus_tag="LLPMBPKK_00844" class="clusterblast-orf" id="dummy-7_q1_0_all"  />
+<polygon points="109,35 114,30 151,30 151,40 114,40 109,35 " style="fill:#5cd815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00845&lt;/b&gt;&lt;br&gt;integral membrane protein&lt;br&gt;Location: 1057026 - 1057557" locus_tag="LLPMBPKK_00845" class="clusterblast-orf" id="dummy-7_q2_0_all"  />
+<polygon points="155,35 160,30 232,30 232,40 160,40 155,35 " style="fill:#15a3d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00846&lt;/b&gt;&lt;br&gt;aldo/keto reductase&lt;br&gt;Location: 1057609 - 1058593" locus_tag="LLPMBPKK_00846" class="clusterblast-orf" id="dummy-7_q3_0_all"  />
+<polygon points="250,35 255,30 344,30 344,40 255,40 250,35 " style="fill:#c715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00847&lt;/b&gt;&lt;br&gt;FAD-binding monooxygenase&lt;br&gt;Location: 1058831 - 1060028" locus_tag="LLPMBPKK_00847" class="clusterblast-orf" id="dummy-7_q4_0_all"  />
+<polygon points="370,40 395,40 400,35 395,30 370,30 370,40 " style="fill:#d88015; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00848&lt;/b&gt;&lt;br&gt;Tyrosinase co-factor MelC1&lt;br&gt;Location: 1060366 - 1060744" locus_tag="LLPMBPKK_00848" class="clusterblast-orf" id="dummy-7_q5_0_all"  />
+<polygon points="402,40 462,40 467,35 462,30 402,30 402,40 " style="fill:#15d839; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00849&lt;/b&gt;&lt;br&gt;tyrosinase family protein&lt;br&gt;Location: 1060778 - 1061600" locus_tag="LLPMBPKK_00849" class="clusterblast-orf" id="dummy-7_q6_0_all"  />
+<polygon points="467,35 472,30 523,30 523,40 472,40 467,35 " style="fill:#1539d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00850&lt;/b&gt;&lt;br&gt;ribonuclease HI&lt;br&gt;Location: 1061600 - 1062320" locus_tag="LLPMBPKK_00850" class="clusterblast-orf" id="dummy-7_q7_0_all"  />
+<polygon points="525,35 530,30 588,30 588,40 530,40 525,35 " style="fill:#d81580; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00851&lt;/b&gt;&lt;br&gt;VOC family protein&lt;br&gt;Location: 1062354 - 1063149" locus_tag="LLPMBPKK_00851" class="clusterblast-orf" id="dummy-7_q8_0_all"  />
+<polygon points="598,35 603,30 636,30 636,40 603,40 598,35 " style="fill:#c7d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00852&lt;/b&gt;&lt;br&gt;DNA-binding protein&lt;br&gt;Location: 1063287 - 1063770" locus_tag="LLPMBPKK_00852" class="clusterblast-orf" id="dummy-7_q9_0_all"  />
+<polygon points="655,35 660,30 686,30 686,40 660,40 655,35 " style="fill:#15d8a3; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00853&lt;/b&gt;&lt;br&gt;XRE family transcriptional regulator&lt;br&gt;Location: 1064011 - 1064404" locus_tag="LLPMBPKK_00853" class="clusterblast-orf" id="dummy-7_q10_0_all"  />
+<polygon points="706,40 771,40 776,35 771,30 706,30 706,40 " style="fill:#5c15d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_00854&lt;/b&gt;&lt;br&gt;RNA polymerase sigma factor SigF&lt;br&gt;Location: 1064671 - 1065562" locus_tag="LLPMBPKK_00854" class="clusterblast-orf" id="dummy-7_q11_0_all"  />
+</g>
+<g label="NZ_CP033073" description="NZ_CP033073 (7354564-7364951): Streptomyces sp. Z022 chromosome, complete genome (84% of genes show similarity), melanin" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_CP033073&amp;start=7354564&amp;end=7364951" target="_blank">NZ_CP033073 (7354564-7364951)</a>: Streptomyces sp. Z022 chromosome, complete genome (84% of genes show similarity), melanin</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a7_000"  >
+<polygon points="0,90 41,90 46,85 41,80 0,80 0,90 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33165&lt;/b&gt;&lt;br&gt;DUF2238 domain-containing protein&lt;br&gt;Location: 7364886 - 7364290&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00843&lt;/b&gt;&lt;br&gt;Percentage identity: 88&lt;br&gt;Percentage coverage: 90&lt;br&gt;BLAST bit score: 355&lt;br&gt;E-value: 1.61e-124" locus_tag="D9753_RS33165" class="clusterblast-orf" id="dummy-7_h7_1_0"  />
+</g>
+<g id="a7_001"  >
+<polygon points="49,90 88,90 93,85 88,80 49,80 49,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33160&lt;/b&gt;&lt;br&gt;DinB family protein&lt;br&gt;Location: 7364250 - 7363684" locus_tag="D9753_RS33160" class="clusterblast-orf" id="dummy-7_h7_1_1"  />
+</g>
+<g id="a7_002"  >
+<polygon points="95,85 100,80 133,80 133,90 100,90 95,85 " style="fill:#5cd815; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33155&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7363668 - 7363174&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00845&lt;/b&gt;&lt;br&gt;Percentage identity: 84&lt;br&gt;Percentage coverage: 93&lt;br&gt;BLAST bit score: 261&lt;br&gt;E-value: 1.77e-88" locus_tag="D9753_RS33155" class="clusterblast-orf" id="dummy-7_h7_1_2"  />
+</g>
+<g id="a7_003"  >
+<polygon points="137,85 142,80 214,80 214,90 142,90 137,85 " style="fill:#15a3d8; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33150&lt;/b&gt;&lt;br&gt;aldo/keto reductase&lt;br&gt;Location: 7363121 - 7362138&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00846&lt;/b&gt;&lt;br&gt;Percentage identity: 93&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 602&lt;br&gt;E-value: 1.79e-218" locus_tag="D9753_RS33150" class="clusterblast-orf" id="dummy-7_h7_1_3"  />
+</g>
+<g id="a7_004"  >
+<polygon points="227,85 232,80 255,80 255,90 232,90 227,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33145&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 7361972 - 7361610" locus_tag="D9753_RS33145" class="clusterblast-orf" id="dummy-7_h7_1_4"  />
+</g>
+<g id="a7_005"  >
+<polygon points="265,85 270,80 359,80 359,90 270,90 265,85 " style="fill:#c715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33140&lt;/b&gt;&lt;br&gt;FAD-binding monooxygenase&lt;br&gt;Location: 7361486 - 7360284&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00847&lt;/b&gt;&lt;br&gt;Percentage identity: 84&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 668&lt;br&gt;E-value: 5.78e-242" locus_tag="D9753_RS33140" class="clusterblast-orf" id="dummy-7_h7_1_5"  />
+</g>
+<g id="a7_006"  >
+<polygon points="385,90 410,90 415,85 410,80 385,80 385,90 " style="fill:#d88015; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33135&lt;/b&gt;&lt;br&gt;tyrosinase&lt;br&gt;Location: 7359951 - 7359565&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00848&lt;/b&gt;&lt;br&gt;Percentage identity: 83&lt;br&gt;Percentage coverage: 102&lt;br&gt;BLAST bit score: 146&lt;br&gt;E-value: 1.22e-44" locus_tag="D9753_RS33135" class="clusterblast-orf" id="dummy-7_h7_1_6"  />
+</g>
+<g id="a7_007"  >
+<polygon points="418,90 477,90 482,85 477,80 418,80 418,90 " style="fill:#15d839; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33130&lt;/b&gt;&lt;br&gt;tyrosinase family protein&lt;br&gt;Location: 7359529 - 7358708&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00849&lt;/b&gt;&lt;br&gt;Percentage identity: 91&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 534&lt;br&gt;E-value: 2.62e-193" locus_tag="D9753_RS33130" class="clusterblast-orf" id="dummy-7_h7_1_7"  />
+</g>
+<g id="a7_008"  >
+<polygon points="482,85 487,80 536,80 536,90 487,90 482,85 " style="fill:#1539d8; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33125&lt;/b&gt;&lt;br&gt;ribonuclease HI&lt;br&gt;Location: 7358707 - 7358009&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00850&lt;/b&gt;&lt;br&gt;Percentage identity: 88&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 405&lt;br&gt;E-value: 1.21e-143" locus_tag="D9753_RS33125" class="clusterblast-orf" id="dummy-7_h7_1_8"  />
+</g>
+<g id="a7_009"  >
+<polygon points="539,85 544,80 601,80 601,90 544,90 539,85 " style="fill:#d81580; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33120&lt;/b&gt;&lt;br&gt;VOC family protein&lt;br&gt;Location: 7357974 - 7357180&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00851&lt;/b&gt;&lt;br&gt;Percentage identity: 89&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 500&lt;br&gt;E-value: 3.4e-180" locus_tag="D9753_RS33120" class="clusterblast-orf" id="dummy-7_h7_1_9"  />
+</g>
+<g id="a7_0010"  >
+<polygon points="608,85 613,80 646,80 646,90 613,90 608,85 " style="fill:#c7d815; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33115&lt;/b&gt;&lt;br&gt;VOC family protein&lt;br&gt;Location: 7357090 - 7356608&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00852&lt;/b&gt;&lt;br&gt;Percentage identity: 79&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 269&lt;br&gt;E-value: 5.13e-92" locus_tag="D9753_RS33115" class="clusterblast-orf" id="dummy-7_h7_1_10"  />
+</g>
+<g id="a7_0011"  >
+<polygon points="652,85 657,80 688,80 688,90 657,90 652,85 " style="fill:#15d8a3; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33110&lt;/b&gt;&lt;br&gt;helix-turn-helix transcriptional regulator&lt;br&gt;Location: 7356534 - 7356067&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00853&lt;/b&gt;&lt;br&gt;Percentage identity: 63&lt;br&gt;Percentage coverage: 119&lt;br&gt;BLAST bit score: 155&lt;br&gt;E-value: 1.54e-47" locus_tag="D9753_RS33110" class="clusterblast-orf" id="dummy-7_h7_1_11"  />
+</g>
+<g id="a7_0012"  >
+<polygon points="710,90 775,90 780,85 775,80 710,80 710,90 " style="fill:#5c15d8; stroke-width:1; stroke:black; " description="&lt;b&gt;D9753_RS33105&lt;/b&gt;&lt;br&gt;RNA polymerase sigma factor SigF&lt;br&gt;Location: 7355787 - 7354897&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_00854&lt;/b&gt;&lt;br&gt;Percentage identity: 93&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 541&lt;br&gt;E-value: 3.97e-195" locus_tag="D9753_RS33105" class="clusterblast-orf" id="dummy-7_h7_1_12"  />
+</g>
+</svg>

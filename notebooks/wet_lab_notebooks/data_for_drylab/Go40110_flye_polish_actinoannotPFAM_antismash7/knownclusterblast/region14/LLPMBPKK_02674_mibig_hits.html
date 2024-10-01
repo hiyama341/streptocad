@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>QWT72299.1</td>
+              <td>tryptophan_2,3-dioxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002430/1">BGC0002430</a></td>
+              <td>NRP+Saccharide</td>
+              <td>71.0</td>
+              <td>98.3</td>
+              <td>311.0</td>
+              <td>3.35e-108</td>
+          </tr>
+    
+          <tr>
+              <td>AAX31563.1</td>
+              <td>putative_oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000336/1">BGC0000336</a></td>
+              <td>NRP</td>
+              <td>56.0</td>
+              <td>96.1</td>
+              <td>222.0</td>
+              <td>6.18e-73</td>
+          </tr>
+    
+          <tr>
+              <td>AHH53511.1</td>
+              <td>tryptophan_2,3-dioxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000439/1">BGC0000439</a></td>
+              <td>NRP:Lipopeptide:Ca+-dependent lipopeptide</td>
+              <td>52.0</td>
+              <td>97.8</td>
+              <td>209.0</td>
+              <td>4.61e-68</td>
+          </tr>
+    
+          <tr>
+              <td>AKA59428.1</td>
+              <td>tryptophan_2,3-dioxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001202/1">BGC0001202</a></td>
+              <td>NRP+Polyketide</td>
+              <td>34.0</td>
+              <td>62.2</td>
+              <td>86.0</td>
+              <td>5.68e-20</td>
+          </tr>
+    
+          <tr>
+              <td>AAL65288.1</td>
+              <td>QbsF</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000925/1">BGC0000925</a></td>
+              <td>Other</td>
+              <td>36.0</td>
+              <td>56.1</td>
+              <td>80.0</td>
+              <td>1.95e-17</td>
+          </tr>
+    
+          <tr>
+              <td>QVV57677.1</td>
+              <td>tryptophan_2,3-dioxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002338/1">BGC0002338</a></td>
+              <td>Polyketide</td>
+              <td>32.0</td>
+              <td>69.6</td>
+              <td>63.0</td>
+              <td>2.36e-11</td>
+          </tr>
+    
+          <tr>
+              <td>BBD17773.1</td>
+              <td>tryptophan_dioxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001919/1">BGC0001919</a></td>
+              <td>NRP+Polyketide</td>
+              <td>33.0</td>
+              <td>50.0</td>
+              <td>62.0</td>
+              <td>2.71e-11</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

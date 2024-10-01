@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>AAM78023.1</td>
+              <td>transcriptional_regulator</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000112/1">BGC0000112</a></td>
+              <td>Polyketide:Iterative type I polyketide+Polyketide:Enediyne type I polyketide</td>
+              <td>37.0</td>
+              <td>98.0</td>
+              <td>194.0</td>
+              <td>7.29e-60</td>
+          </tr>
+    
+          <tr>
+              <td>QEO75014.1</td>
+              <td>omn39</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002078/1">BGC0002078</a></td>
+              <td>NRP:Cyclic depsipeptide</td>
+              <td>38.0</td>
+              <td>89.9</td>
+              <td>167.0</td>
+              <td>2.11e-49</td>
+          </tr>
+    
+          <tr>
+              <td>QEO75108.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002079/1">BGC0002079</a></td>
+              <td>NRP:Cyclic depsipeptide</td>
+              <td>36.0</td>
+              <td>89.6</td>
+              <td>160.0</td>
+              <td>8.62e-47</td>
+          </tr>
+    
+          <tr>
+              <td>AGN74905.1</td>
+              <td>AfsA-like_gamma-butyrolactone_biosynthetic_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000459/1">BGC0000459</a></td>
+              <td>NRP:Cyclic depsipeptide+Polyketide:Trans-AT type I polyketide</td>
+              <td>37.0</td>
+              <td>97.4</td>
+              <td>158.0</td>
+              <td>5.63e-46</td>
+          </tr>
+    
+          <tr>
+              <td>CAB60185.1</td>
+              <td>ScbA_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000849/1">BGC0000849</a></td>
+              <td>Other:Butyrolactone</td>
+              <td>37.0</td>
+              <td>94.5</td>
+              <td>154.0</td>
+              <td>2.73e-44</td>
+          </tr>
+    
+          <tr>
+              <td>AHW57767.1</td>
+              <td>PgaW1</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000262/1">BGC0000262</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>35.0</td>
+              <td>96.4</td>
+              <td>154.0</td>
+              <td>3.33e-44</td>
+          </tr>
+    
+          <tr>
+              <td>BAG23718.1</td>
+              <td>A-factor_biosynthesis_enzyme</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000848/1">BGC0000848</a></td>
+              <td>Other</td>
+              <td>36.0</td>
+              <td>94.1</td>
+              <td>144.0</td>
+              <td>1.31e-40</td>
+          </tr>
+    
+          <tr>
+              <td>ACO51012.1</td>
+              <td>SabA</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000850/1">BGC0000850</a></td>
+              <td>Other</td>
+              <td>34.0</td>
+              <td>99.3</td>
+              <td>138.0</td>
+              <td>3.3e-38</td>
+          </tr>
+    
+          <tr>
+              <td>ABX71092.1</td>
+              <td>Lct9</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000238/1">BGC0000238</a></td>
+              <td>Polyketide</td>
+              <td>33.0</td>
+              <td>93.5</td>
+              <td>135.0</td>
+              <td>2.19e-37</td>
+          </tr>
+    
+          <tr>
+              <td>AEW98152.1</td>
+              <td>A-factor_biosynthesis_protein_AfsA-like_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002642/1">BGC0002642</a></td>
+              <td>Alkaloid</td>
+              <td>33.0</td>
+              <td>81.1</td>
+              <td>135.0</td>
+              <td>2.45e-35</td>
+          </tr>
+    
+          <tr>
+              <td>TXD00008.1</td>
+              <td>A-factor_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001877/1">BGC0001877</a></td>
+              <td>Polyketide</td>
+              <td>31.0</td>
+              <td>95.4</td>
+              <td>85.0</td>
+              <td>2.09e-18</td>
+          </tr>
+    
+          <tr>
+              <td>CCA57469.1</td>
+              <td>A-factor_biosynthesis_protein_AfsA</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002578/1">BGC0002578</a></td>
+              <td>Other</td>
+              <td>27.0</td>
+              <td>94.8</td>
+              <td>85.0</td>
+              <td>2.57e-18</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>WP_234334528.1</td>
+              <td>4-hydroxyphenylacetate_3-hydroxylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001607/1">BGC0001607</a></td>
+              <td>Other</td>
+              <td>46.0</td>
+              <td>94.8</td>
+              <td>399.0</td>
+              <td>1.1e-134</td>
+          </tr>
+    
+          <tr>
+              <td>ARK19484.1</td>
+              <td>4-hydroxyphenylacetate_3-monooxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001540/1">BGC0001540</a></td>
+              <td>Other</td>
+              <td>48.0</td>
+              <td>93.0</td>
+              <td>399.0</td>
+              <td>1.33e-134</td>
+          </tr>
+    
+          <tr>
+              <td>AFW04554.1</td>
+              <td>4-hydroxyphenylacetate-3-hydroxylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001783/1">BGC0001783</a></td>
+              <td>Other</td>
+              <td>38.0</td>
+              <td>99.0</td>
+              <td>288.0</td>
+              <td>3.52e-91</td>
+          </tr>
+    
+          <tr>
+              <td>AWF83807.1</td>
+              <td>Tropolone_3,7-monooxygenase_oxidase_component</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001487/1">BGC0001487</a></td>
+              <td>Other</td>
+              <td>31.0</td>
+              <td>93.0</td>
+              <td>207.0</td>
+              <td>2.09e-60</td>
+          </tr>
+    
+          <tr>
+              <td>AFV52156.1</td>
+              <td>aryl-ACP_hydroxylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000081/1">BGC0000081</a></td>
+              <td>NRP+Polyketide:Iterative type I polyketide+Polyketide:Enediyne type I polyketide</td>
+              <td>31.0</td>
+              <td>96.0</td>
+              <td>195.0</td>
+              <td>8.33e-56</td>
+          </tr>
+    
+          <tr>
+              <td>ANY94444.1</td>
+              <td>chlorophenol-4-monooxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001584/1">BGC0001584</a></td>
+              <td>Polyketide</td>
+              <td>31.0</td>
+              <td>97.4</td>
+              <td>192.0</td>
+              <td>1.11e-54</td>
+          </tr>
+    
+          <tr>
+              <td>ALU98531.1</td>
+              <td>Pyoverdin_chromophore_biosynthetic_protein_pvcC</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001397/1">BGC0001397</a></td>
+              <td>NRP+Polyketide</td>
+              <td>31.0</td>
+              <td>94.8</td>
+              <td>186.0</td>
+              <td>1.05e-52</td>
+          </tr>
+    
+          <tr>
+              <td>AAL06674.1</td>
+              <td>chlorophenol-4-monooxygenase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000965/1">BGC0000965</a></td>
+              <td>Polyketide:Iterative type I polyketide+Polyketide:Enediyne type I polyketide</td>
+              <td>31.0</td>
+              <td>97.0</td>
+              <td>187.0</td>
+              <td>1.1e-52</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

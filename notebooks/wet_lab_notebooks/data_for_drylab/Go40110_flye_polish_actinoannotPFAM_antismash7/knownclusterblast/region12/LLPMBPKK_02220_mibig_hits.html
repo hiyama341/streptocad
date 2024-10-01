@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>CAB60186.1</td>
+              <td>ScbB;_Reductase_involved_in_SCB1_biosynthesis</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000038/1">BGC0000038</a></td>
+              <td>Polyketide:Modular type I polyketide</td>
+              <td>47.0</td>
+              <td>96.3</td>
+              <td>229.0</td>
+              <td>2.71e-74</td>
+          </tr>
+    
+          <tr>
+              <td>QFS19035.1</td>
+              <td>NAD(P)-dependent_oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002506/1">BGC0002506</a></td>
+              <td>Polyketide</td>
+              <td>39.0</td>
+              <td>95.9</td>
+              <td>162.0</td>
+              <td>7.68e-48</td>
+          </tr>
+    
+          <tr>
+              <td>CAG14959.1</td>
+              <td>putative_nucleotide-diphosphate-sugar_epimerase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000253/1">BGC0000253</a></td>
+              <td>Polyketide:Type II polyketide</td>
+              <td>41.0</td>
+              <td>97.3</td>
+              <td>149.0</td>
+              <td>6.25e-43</td>
+          </tr>
+    
+          <tr>
+              <td>AFJ52694.1</td>
+              <td>Hydroxylase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001073/1">BGC0001073</a></td>
+              <td>NRP+Polyketide</td>
+              <td>37.0</td>
+              <td>98.3</td>
+              <td>140.0</td>
+              <td>1.15e-39</td>
+          </tr>
+    
+          <tr>
+              <td>BBA97261.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002383/1">BGC0002383</a></td>
+              <td>Polyketide</td>
+              <td>38.0</td>
+              <td>96.3</td>
+              <td>124.0</td>
+              <td>1.16e-33</td>
+          </tr>
+    
+          <tr>
+              <td>QLQ36605.1</td>
+              <td>NAD(P)H-binding_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002097/1">BGC0002097</a></td>
+              <td>NRP+Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>35.0</td>
+              <td>96.9</td>
+              <td>124.0</td>
+              <td>1.69e-33</td>
+          </tr>
+    
+          <tr>
+              <td>AAC18114.1</td>
+              <td>FrnS</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000225/1">BGC0000225</a></td>
+              <td>Polyketide</td>
+              <td>33.0</td>
+              <td>98.3</td>
+              <td>115.0</td>
+              <td>4.71e-30</td>
+          </tr>
+    
+          <tr>
+              <td>WP_020275086.1</td>
+              <td>NAD(P)H-binding_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002012/1">BGC0002012</a></td>
+              <td>Polyketide</td>
+              <td>33.0</td>
+              <td>95.9</td>
+              <td>107.0</td>
+              <td>3.31e-27</td>
+          </tr>
+    
+          <tr>
+              <td>ARO44669.1</td>
+              <td>NAD(P)-dependent_oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001769/1">BGC0001769</a></td>
+              <td>Polyketide</td>
+              <td>29.0</td>
+              <td>86.1</td>
+              <td>64.0</td>
+              <td>2.81e-11</td>
+          </tr>
+    
+          <tr>
+              <td>BAU50940.1</td>
+              <td>oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001379/1">BGC0001379</a></td>
+              <td>NRP</td>
+              <td>43.0</td>
+              <td>39.1</td>
+              <td>57.0</td>
+              <td>7.8e-09</td>
+          </tr>
+    
+          <tr>
+              <td>BAL15723.1</td>
+              <td>oxidoreductase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000432/1">BGC0000432</a></td>
+              <td>NRP</td>
+              <td>37.0</td>
+              <td>41.2</td>
+              <td>48.0</td>
+              <td>6.83e-06</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

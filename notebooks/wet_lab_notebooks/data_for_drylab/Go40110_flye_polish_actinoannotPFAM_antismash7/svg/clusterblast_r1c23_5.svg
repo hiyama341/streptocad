@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="2,40 104,40 109,35 104,30 2,30 2,40 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06021&lt;/b&gt;&lt;br&gt;3' terminal RNA ribose 2'-O-methyltransferaseHen1&lt;br&gt;Location: 6941527 - 6942991" locus_tag="LLPMBPKK_06021" class="clusterblast-orf" id="dummy-23_q0_0_all"  />
+<polygon points="108,40 289,40 294,35 289,30 108,30 108,40 " style="fill:#77d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06022&lt;/b&gt;&lt;br&gt;phosphatase&lt;br&gt;Location: 6942987 - 6945534" locus_tag="LLPMBPKK_06022" class="clusterblast-orf" id="dummy-23_q1_0_all"  />
+<polygon points="308,40 438,40 443,35 438,30 308,30 308,40 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06023&lt;/b&gt;&lt;br&gt;RiPP maturation radical SAM protein 1&lt;br&gt;Location: 6945736 - 6947584" locus_tag="LLPMBPKK_06023" class="clusterblast-orf" id="dummy-23_q2_0_all"  />
+<polygon points="442,40 477,40 482,35 477,30 442,30 442,40 " style="fill:#7715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06024&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6947580 - 6948120" locus_tag="LLPMBPKK_06024" class="clusterblast-orf" id="dummy-23_q3_0_all"  />
+<polygon points="493,40 532,40 537,35 532,30 493,30 493,40 " style="fill:#d8a715; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06025&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6948274 - 6948883" locus_tag="LLPMBPKK_06025" class="clusterblast-orf" id="dummy-23_q4_0_all"  />
+<polygon points="539,40 645,40 650,35 645,30 539,30 539,40 " style="fill:#15d846; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06026&lt;/b&gt;&lt;br&gt;large membrane protein&lt;br&gt;Location: 6948902 - 6950441" locus_tag="LLPMBPKK_06026" class="clusterblast-orf" id="dummy-23_q5_0_all"  />
+<polygon points="650,40 700,40 705,35 700,30 650,30 650,40 " style="fill:#1546d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06027&lt;/b&gt;&lt;br&gt;putative nucleotide-binding protein containingTIR-like domain protein&lt;br&gt;Location: 6950437 - 6951190" locus_tag="LLPMBPKK_06027" class="clusterblast-orf" id="dummy-23_q6_0_all"  />
+<polygon points="712,35 717,30 778,30 778,40 717,40 712,35 " style="fill:#d815a7; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_06028&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6951282 - 6952197" locus_tag="LLPMBPKK_06028" class="clusterblast-orf" id="dummy-23_q7_0_all"  />
+</g>
+<g label="NZ_CP053189" description="NZ_CP053189 (1794094-1805942): Streptomyces sp. jing01 chromosome, complete g... (88% of genes show similarity), bacteriocin" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_CP053189&amp;start=1794094&amp;end=1805942" target="_blank">NZ_CP053189 (1794094-1805942)</a>: Streptomyces sp. jing01 chromosome, complete g... (88% of genes show similarity), bacteriocin</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a23_000"  >
+<polygon points="0,90 101,90 106,85 101,80 0,80 0,90 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;HKX69_RS07815&lt;/b&gt;&lt;br&gt;3' terminal RNA ribose 2'-O-methyltransferase Hen1&lt;br&gt;Location: 1805188 - 1803722&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06021&lt;/b&gt;&lt;br&gt;Percentage identity: 87&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 833&lt;br&gt;E-value: 3.45e-304" locus_tag="HKX69_RS07815" class="clusterblast-orf" id="dummy-23_h23_5_0"  />
+</g>
+<g id="a23_001"  >
+<polygon points="106,90 286,90 291,85 286,80 106,80 106,90 " style="fill:#77d815; stroke-width:1; stroke:black; " description="&lt;b&gt;HKX69_RS07810&lt;/b&gt;&lt;br&gt;polynucleotide kinase-phosphatase&lt;br&gt;Location: 1803725 - 1801182&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06022&lt;/b&gt;&lt;br&gt;Percentage identity: 93&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 1584&lt;br&gt;E-value: 0.0" locus_tag="HKX69_RS07810" class="clusterblast-orf" id="dummy-23_h23_5_1"  />
+</g>
+<g id="a23_002"  >
+<polygon points="298,90 303,90 308,85 303,80 298,80 298,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;HKX69_RS07805&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 1801088 - 1800945" locus_tag="HKX69_RS07805" class="clusterblast-orf" id="dummy-23_h23_5_2"  />
+</g>
+<g id="a23_003"  >
+<polygon points="308,90 438,90 443,85 438,80 308,80 308,90 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;HKX69_RS07800&lt;/b&gt;&lt;br&gt;RiPP maturation radical SAM protein 1&lt;br&gt;Location: 1800942 - 1799095&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06023&lt;/b&gt;&lt;br&gt;Percentage identity: 90&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 1168&lt;br&gt;E-value: 0.0" locus_tag="HKX69_RS07800" class="clusterblast-orf" id="dummy-23_h23_5_3"  />
+</g>
+<g id="a23_004"  >
+<polygon points="442,90 480,90 485,85 480,80 442,80 442,90 " style="fill:#7715d8; stroke-width:1; stroke:black; " description="&lt;b&gt;HKX69_RS07795&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 1799098 - 1798505&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06024&lt;/b&gt;&lt;br&gt;Percentage identity: 78&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 283&lt;br&gt;E-value: 6.33e-97" locus_tag="HKX69_RS07795" class="clusterblast-orf" id="dummy-23_h23_5_4"  />
+</g>
+<g id="a23_005"  >
+<polygon points="497,90 538,90 543,85 538,80 497,80 497,90 " style="fill:#d8a715; stroke-width:1; stroke:black; " description="&lt;b&gt;HKX69_RS07790&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 1798352 - 1797717&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06025&lt;/b&gt;&lt;br&gt;Percentage identity: 56&lt;br&gt;Percentage coverage: 102&lt;br&gt;BLAST bit score: 176&lt;br&gt;E-value: 8.16e-54" locus_tag="HKX69_RS07790" class="clusterblast-orf" id="dummy-23_h23_5_5"  />
+</g>
+<g id="a23_006"  >
+<polygon points="544,90 654,90 659,85 654,80 544,80 544,90 " style="fill:#15d846; stroke-width:1; stroke:black; " description="&lt;b&gt;HKX69_RS07785&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 1797695 - 1796124&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06026&lt;/b&gt;&lt;br&gt;Percentage identity: 73&lt;br&gt;Percentage coverage: 103&lt;br&gt;BLAST bit score: 727&lt;br&gt;E-value: 2.41e-261" locus_tag="HKX69_RS07785" class="clusterblast-orf" id="dummy-23_h23_5_6"  />
+</g>
+<g id="a23_007"  >
+<polygon points="658,90 707,90 712,85 707,80 658,80 658,90 " style="fill:#1546d8; stroke-width:1; stroke:black; " description="&lt;b&gt;HKX69_RS07780&lt;/b&gt;&lt;br&gt;nucleotide-binding protein&lt;br&gt;Location: 1796127 - 1795390&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06027&lt;/b&gt;&lt;br&gt;Percentage identity: 84&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 383&lt;br&gt;E-value: 2.04e-134" locus_tag="HKX69_RS07780" class="clusterblast-orf" id="dummy-23_h23_5_7"  />
+</g>
+<g id="a23_008"  >
+<polygon points="718,85 723,80 780,80 780,90 723,90 718,85 " style="fill:#d815a7; stroke-width:1; stroke:black; " description="&lt;b&gt;HKX69_RS07775&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 1795299 - 1794460&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_06028&lt;/b&gt;&lt;br&gt;Percentage identity: 91&lt;br&gt;Percentage coverage: 91&lt;br&gt;BLAST bit score: 496&lt;br&gt;E-value: 1.39e-177" locus_tag="HKX69_RS07775" class="clusterblast-orf" id="dummy-23_h23_5_8"  />
+</g>
+</svg>

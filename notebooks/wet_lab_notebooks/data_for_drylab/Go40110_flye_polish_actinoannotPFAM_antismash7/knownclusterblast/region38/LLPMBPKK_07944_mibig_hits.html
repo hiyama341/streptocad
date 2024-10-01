@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>ACY06296.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001042/1">BGC0001042</a></td>
+              <td>NRP+Polyketide</td>
+              <td>95.0</td>
+              <td>100.0</td>
+              <td>157.0</td>
+              <td>4.26e-51</td>
+          </tr>
+    
+          <tr>
+              <td>AFU65908.1</td>
+              <td>DacC</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000216/1">BGC0000216</a></td>
+              <td>Polyketide</td>
+              <td>48.0</td>
+              <td>96.4</td>
+              <td>78.0</td>
+              <td>1.79e-20</td>
+          </tr>
+    
+          <tr>
+              <td>QFS19046.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002506/1">BGC0002506</a></td>
+              <td>Polyketide</td>
+              <td>44.0</td>
+              <td>100.0</td>
+              <td>75.0</td>
+              <td>3.18e-19</td>
+          </tr>
+    
+          <tr>
+              <td>MCG7203818.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000248/1">BGC0000248</a></td>
+              <td>Polyketide</td>
+              <td>46.0</td>
+              <td>98.8</td>
+              <td>74.0</td>
+              <td>1.13e-18</td>
+          </tr>
+    
+          <tr>
+              <td>ADE34520.1</td>
+              <td>ssfC</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000269/1">BGC0000269</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>43.0</td>
+              <td>97.6</td>
+              <td>72.0</td>
+              <td>4.45e-18</td>
+          </tr>
+    
+          <tr>
+              <td>BAV17001.1</td>
+              <td>putative_acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001384/1">BGC0001384</a></td>
+              <td>Polyketide</td>
+              <td>42.0</td>
+              <td>94.0</td>
+              <td>67.0</td>
+              <td>1.09e-15</td>
+          </tr>
+    
+          <tr>
+              <td>QVQ68797.1</td>
+              <td>mmyS</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002129/1">BGC0002129</a></td>
+              <td>Polyketide</td>
+              <td>41.0</td>
+              <td>95.2</td>
+              <td>65.0</td>
+              <td>2.29e-15</td>
+          </tr>
+    
+          <tr>
+              <td>QLQ36625.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002097/1">BGC0002097</a></td>
+              <td>NRP+Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>40.0</td>
+              <td>98.8</td>
+              <td>65.0</td>
+              <td>3.41e-15</td>
+          </tr>
+    
+          <tr>
+              <td>WP_040253447.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001596/1">BGC0001596</a></td>
+              <td>Polyketide</td>
+              <td>41.0</td>
+              <td>98.8</td>
+              <td>64.0</td>
+              <td>7.57e-15</td>
+          </tr>
+    
+          <tr>
+              <td>AAM33655.1</td>
+              <td>putative_acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000230/1">BGC0000230</a></td>
+              <td>Polyketide:Type II polyketide</td>
+              <td>46.0</td>
+              <td>97.6</td>
+              <td>63.0</td>
+              <td>1.41e-14</td>
+          </tr>
+    
+          <tr>
+              <td>ARO44684.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001769/1">BGC0001769</a></td>
+              <td>Polyketide</td>
+              <td>41.0</td>
+              <td>94.0</td>
+              <td>63.0</td>
+              <td>1.52e-14</td>
+          </tr>
+    
+          <tr>
+              <td>BBA97252.1</td>
+              <td>putative_acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002383/1">BGC0002383</a></td>
+              <td>Polyketide</td>
+              <td>42.0</td>
+              <td>90.5</td>
+              <td>63.0</td>
+              <td>1.52e-14</td>
+          </tr>
+    
+          <tr>
+              <td>ARD70903.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001693/1">BGC0001693</a></td>
+              <td>Polyketide</td>
+              <td>41.0</td>
+              <td>100.0</td>
+              <td>63.0</td>
+              <td>1.9e-14</td>
+          </tr>
+    
+          <tr>
+              <td>AGO50612.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000229/1">BGC0000229</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>39.0</td>
+              <td>94.0</td>
+              <td>63.0</td>
+              <td>2.16e-14</td>
+          </tr>
+    
+          <tr>
+              <td>AAK57527.1</td>
+              <td>PgaC</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000262/1">BGC0000262</a></td>
+              <td>Polyketide:Type II polyketide+Saccharide:Hybrid/tailoring saccharide</td>
+              <td>39.0</td>
+              <td>94.0</td>
+              <td>62.0</td>
+              <td>3.05e-14</td>
+          </tr>
+    
+          <tr>
+              <td>AAB36564.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000234/1">BGC0000234</a></td>
+              <td>Polyketide</td>
+              <td>41.0</td>
+              <td>94.0</td>
+              <td>62.0</td>
+              <td>4.33e-14</td>
+          </tr>
+    
+          <tr>
+              <td>MBW8699685.1</td>
+              <td>Oxytetracycline_polyketide_synthase_acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0002140/1">BGC0002140</a></td>
+              <td>Polyketide</td>
+              <td>39.0</td>
+              <td>94.0</td>
+              <td>62.0</td>
+              <td>4.33e-14</td>
+          </tr>
+    
+          <tr>
+              <td>AFJ52676.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001073/1">BGC0001073</a></td>
+              <td>NRP+Polyketide</td>
+              <td>38.0</td>
+              <td>97.6</td>
+              <td>61.0</td>
+              <td>7.88e-14</td>
+          </tr>
+    
+          <tr>
+              <td>AAO65348.1</td>
+              <td>putative_acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000236/1">BGC0000236</a></td>
+              <td>Polyketide</td>
+              <td>40.0</td>
+              <td>95.2</td>
+              <td>62.0</td>
+              <td>1.01e-13</td>
+          </tr>
+    
+          <tr>
+              <td>APR73625.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001625/1">BGC0001625</a></td>
+              <td>Polyketide</td>
+              <td>38.0</td>
+              <td>96.4</td>
+              <td>60.0</td>
+              <td>4.89e-13</td>
+          </tr>
+    
+          <tr>
+              <td>BAU98028.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001386/1">BGC0001386</a></td>
+              <td>Polyketide</td>
+              <td>37.0</td>
+              <td>96.4</td>
+              <td>59.0</td>
+              <td>1.18e-12</td>
+          </tr>
+    
+          <tr>
+              <td>CAG14967.1</td>
+              <td>acyl_carrier_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000253/1">BGC0000253</a></td>
+              <td>Polyketide:Type II polyketide</td>
+              <td>37.0</td>
+              <td>92.9</td>
+              <td>51.0</td>
+              <td>7.53e-10</td>
+          </tr>
+    
+          <tr>
+              <td>ARK36157.1</td>
+              <td>actinorhodin_polyketide_synthase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001723/1">BGC0001723</a></td>
+              <td>Polyketide</td>
+              <td>37.0</td>
+              <td>92.9</td>
+              <td>51.0</td>
+              <td>7.53e-10</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

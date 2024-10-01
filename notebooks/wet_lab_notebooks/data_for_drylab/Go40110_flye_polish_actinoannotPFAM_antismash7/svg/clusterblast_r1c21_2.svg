@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="19,35 24,30 112,30 112,40 24,40 19,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05897&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 6739336 - 6740563" locus_tag="LLPMBPKK_05897" class="clusterblast-orf" id="dummy-21_q0_0_all"  />
+<polygon points="137,40 244,40 249,35 244,30 137,30 137,40 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05898&lt;/b&gt;&lt;br&gt;aminotransferase class III-fold pyridoxal phosphate-dependent enzyme&lt;br&gt;Location: 6740899 - 6742372" locus_tag="LLPMBPKK_05898" class="clusterblast-orf" id="dummy-21_q1_0_all"  />
+<polygon points="321,40 427,40 432,35 427,30 321,30 321,40 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05899&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 6743320 - 6744781" locus_tag="LLPMBPKK_05899" class="clusterblast-orf" id="dummy-21_q2_0_all"  />
+<polygon points="441,40 494,40 499,35 494,30 441,30 441,40 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05900&lt;/b&gt;&lt;br&gt;GNAT family N-acetyltransferase&lt;br&gt;Location: 6744903 - 6745674" locus_tag="LLPMBPKK_05900" class="clusterblast-orf" id="dummy-21_q3_0_all"  />
+<polygon points="537,40 683,40 688,35 683,30 537,30 537,40 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05901&lt;/b&gt;&lt;br&gt;ATP-dependent DNA helicase&lt;br&gt;Location: 6746176 - 6748168" locus_tag="LLPMBPKK_05901" class="clusterblast-orf" id="dummy-21_q4_0_all"  />
+<polygon points="702,35 707,30 762,30 762,40 707,40 702,35 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;LLPMBPKK_05902&lt;/b&gt;&lt;br&gt;transcriptional repressor LexA&lt;br&gt;Location: 6748352 - 6749132" locus_tag="LLPMBPKK_05902" class="clusterblast-orf" id="dummy-21_q5_0_all"  />
+</g>
+<g label="NZ_JACHJK010000010" description="NZ_JACHJK010000010 (267634-279704): Streptomyces echinatus strain CECT 3313 G... (100% of genes show similarity), siderophore" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://antismash-db.secondarymetabolites.org/area.html?record=NZ_JACHJK010000010&amp;start=267634&amp;end=279704" target="_blank">NZ_JACHJK010000010 (267634-279704)</a>: Streptomyces echinatus strain CECT 3313 G... (100% of genes show similarity), siderophore</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a21_000"  >
+<polygon points="0,85 5,80 93,80 93,90 5,90 0,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS27070&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 278743 - 277514&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05897&lt;/b&gt;&lt;br&gt;Percentage identity: 90&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 676&lt;br&gt;E-value: 5.36e-245" locus_tag="FHS34_RS27070" class="clusterblast-orf" id="dummy-21_h21_2_0"  />
+</g>
+<g id="a21_001"  >
+<polygon points="138,90 257,90 262,85 257,80 138,80 138,90 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS27065&lt;/b&gt;&lt;br&gt;diaminobutyrate--2-oxoglutarate transaminase family protein&lt;br&gt;Location: 276920 - 275277&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05898&lt;/b&gt;&lt;br&gt;Percentage identity: 77&lt;br&gt;Percentage coverage: 112&lt;br&gt;BLAST bit score: 793&lt;br&gt;E-value: 2.38e-287" locus_tag="FHS34_RS27065" class="clusterblast-orf" id="dummy-21_h21_2_1"  />
+</g>
+<g id="a21_002"  >
+<polygon points="306,90 458,90 463,85 458,80 306,80 306,90 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS27060&lt;/b&gt;&lt;br&gt;iron transporter&lt;br&gt;Location: 274704 - 272635&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05899&lt;/b&gt;&lt;br&gt;Percentage identity: 86&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 829&lt;br&gt;E-value: 1.8e-299" locus_tag="FHS34_RS27060" class="clusterblast-orf" id="dummy-21_h21_2_2"  />
+</g>
+<g id="a21_003"  >
+<polygon points="471,90 524,90 529,85 524,80 471,80 471,90 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS27055&lt;/b&gt;&lt;br&gt;acetyltransferase&lt;br&gt;Location: 272524 - 271754&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05900&lt;/b&gt;&lt;br&gt;Percentage identity: 82&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 430&lt;br&gt;E-value: 1.42e-152" locus_tag="FHS34_RS27055" class="clusterblast-orf" id="dummy-21_h21_2_3"  />
+</g>
+<g id="a21_004"  >
+<polygon points="560,90 705,90 710,85 705,80 560,80 560,90 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS27050&lt;/b&gt;&lt;br&gt;ATP-dependent DNA helicase&lt;br&gt;Location: 271353 - 269377&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05901&lt;/b&gt;&lt;br&gt;Percentage identity: 98&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 1242&lt;br&gt;E-value: 0.0" locus_tag="FHS34_RS27050" class="clusterblast-orf" id="dummy-21_h21_2_4"  />
+</g>
+<g id="a21_005"  >
+<polygon points="720,85 725,80 780,80 780,90 725,90 720,85 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;FHS34_RS27045&lt;/b&gt;&lt;br&gt;transcriptional repressor LexA&lt;br&gt;Location: 269233 - 268454&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with LLPMBPKK_05902&lt;/b&gt;&lt;br&gt;Percentage identity: 99&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 508&lt;br&gt;E-value: 1.45e-183" locus_tag="FHS34_RS27045" class="clusterblast-orf" id="dummy-21_h21_2_5"  />
+</g>
+</svg>
