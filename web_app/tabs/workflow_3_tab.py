@@ -37,7 +37,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
     ], className="mb-4"),
 
-    html.Img(src='/assets/workflow_3_pic.webp', 
+    html.Img(src='/assets/w3_pic.png', 
              style={'width': '60%', 'margin': '20px auto'}),
 
     dbc.Row([
