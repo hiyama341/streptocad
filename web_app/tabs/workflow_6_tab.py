@@ -37,7 +37,7 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
     ], className="mb-4"),
     
-    html.Img(src='/assets/w5_pic.png', 
+    html.Img(src='/assets/w6_pic.png', 
              style={'width': '60%', 'margin': '20px auto'}),  # Adjust the width as needed
     
     dbc.Row([
