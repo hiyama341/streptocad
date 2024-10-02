@@ -357,6 +357,16 @@ import io
 import zipfile
 
 
+import os
+import io
+import zipfile
+import json
+import pandas as pd
+from Bio import SeqIO
+from Bio.SeqRecord import SeqRecord
+import nbformat
+from nbconvert import HTMLExporter
+
 class ProjectDirectory:
     def __init__(self, project_name, input_files, output_files, input_values, markdown_file_paths=None):
         self.project_name = project_name
@@ -375,16 +385,17 @@ class ProjectDirectory:
         inputs_dir = os.path.join(project_dir, "inputs")
         outputs_dir = os.path.join(project_dir, "outputs")
         
+        # Open the zip file in the buffer
         with zipfile.ZipFile(self.zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
             # Create directories if specified
             if create_directories:
                 zip_file.writestr(inputs_dir + "/", "")
                 zip_file.writestr(outputs_dir + "/", "")
-            
+
             # Process and save input files
             for input_file in self.input_files:
                 file_save_path = os.path.join(inputs_dir, input_file['name'])
-                if isinstance(input_file['content'], list) and all(isinstance(seq, Dseqrecord) for seq in input_file['content']):
+                if isinstance(input_file['content'], list) and all(isinstance(seq, SeqRecord) for seq in input_file['content']):
                     for i, seq in enumerate(input_file['content']):
                         seq_file_save_path = os.path.join(inputs_dir, f"{input_file['name'].split('.')[0]}_{i}.gb")
                         with io.StringIO() as seq_buffer:
@@ -399,7 +410,7 @@ class ProjectDirectory:
                 else:
                     zip_file.writestr(file_save_path, input_file['content'])
                     self.project_dir_structure[file_save_path] = input_file['content']
-            
+
             # Save the input values as a JSON file
             input_values_path = os.path.join(inputs_dir, "input_values.json")
             input_values_content = json.dumps(self.input_values, indent=4)
@@ -433,21 +444,41 @@ class ProjectDirectory:
                     zip_file.writestr(file_save_path, output_file['content'])
                     self.project_dir_structure[file_save_path] = output_file['content']
 
-            # Process and save markdown files from paths
+            # Process and convert markdown files
             if self.markdown_file_paths:
                 for md_file_path in self.markdown_file_paths:
                     md_file_name = os.path.basename(md_file_path)
                     md_file_save_path = os.path.join(outputs_dir, md_file_name)
-                    with open(md_file_path, 'r') as file:
+                    
+                    with open(md_file_path, 'r', encoding='utf-8') as file:
                         md_content = file.read()
                     zip_file.writestr(md_file_save_path, md_content)
                     self.project_dir_structure[md_file_save_path] = md_content
-        
+
+                    # Create a new notebook node
+                    notebook = nbformat.v4.new_notebook()
+                    notebook.cells.append(nbformat.v4.new_markdown_cell(md_content))
+
+                    # Convert the notebook to HTML
+                    html_exporter = HTMLExporter()
+                    (html_content, _) = html_exporter.from_notebook_node(notebook)
+                    
+                    # Save HTML to file
+                    html_file_name = md_file_name.replace('.md', '.html')
+                    html_file_save_path = os.path.join(outputs_dir, html_file_name)
+                    
+                    zip_file.writestr(html_file_save_path, html_content)
+                    self.project_dir_structure[html_file_save_path] = f"HTML created from {md_file_name}"
+
+        # Seek to the beginning of the buffer
         self.zip_buffer.seek(0)
+
         return self.zip_buffer.getvalue()
 
     def get_zip_file(self):
-        return self.zip_buffer.getvalue()
+        self.zip_buffer.seek(0)
+        return self.zip_buffer
+
 
 
 def extract_metadata_to_dataframe(seqrecords:Dseqrecord, previous_plasmid:Dseqrecord, integration_list):
