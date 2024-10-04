@@ -1,6 +1,6 @@
 # Integration and Validation of genes of interest into the overexpression pOEX_PkasO Plasmid
 
-**Timing: 14–21 days**
+**Timing: 10-14 days**
 
 ## Amplification of Genes of Interest
 
@@ -107,13 +107,13 @@
 
 - **PCR Cycling Conditions:**
 
-| Step  | Temperature | Time      |
-| ----- | ----------- | --------- |
-| 1     | 98°C        | 30 sec    |
-| 2–30  | 98°C        | 10 sec    |
-|       | 64°C        | 30 sec    |
-|       | 72°C        | 60 sec/kb |
-| Final | 72°C        | 5 min     |
+| Step    | Temperature        | Time      |
+| ------- | ------------------ | --------- |
+| Initial | 98°C               | 30 sec    |
+| 2-30    | 98°C               | 10 sec    |
+|         | Refer to primer_df | 30 sec    |
+|         | 72°C               | 60 sec/kb |
+| Final   | 72°C               | 5 min     |
 
 4. **Analyze PCR Products:**
    - Run 5 µL of PCR products on a 1% agarose gel.
