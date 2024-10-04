@@ -45,7 +45,8 @@
 
 2. **Day 2: Scale-up Culture**
    - Inoculate a 500 mL flask containing 2×YT medium with the pre-culture to reach an OD600 of approximately 0.075.
-   - Supplement with Kanamycin (50 µg/mL) and Chloramphenicol (25 µg/mL). Incubate at 37°C with shaking until the culture reaches an OD600 of 0.45–0.5.
+   - Supplement with Kanamycin (50 µg/mL) and Chloramphenicol (25 µg/mL).
+   - Incubate at 37°C with shaking until the culture reaches an OD600 of 0.45–0.5.
 
 ## Harvest and Wash Cells for Electroporation
 
