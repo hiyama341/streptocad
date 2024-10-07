@@ -41,7 +41,7 @@
 
 1. **Day 1: Start Pre-culture**
 
-   - Inoculate E. coli ET122567 from a cryotube into 5 mL of YT medium supplemented with 50 µg/mL Kanamycin and 25 µg/mL Chloramphenicol. Incubate overnight at 37°C with shaking.
+   - Inoculate E. coli ET12567 from a cryotube into 5 mL of YT medium supplemented with 50 µg/mL Kanamycin and 25 µg/mL Chloramphenicol. Incubate overnight at 37°C with shaking.
 
 2. **Day 2: Scale-up Culture**
    - Inoculate a 500 mL flask containing 2×YT medium with the pre-culture to reach an OD600 of approximately 0.075.
@@ -52,7 +52,7 @@
 
 1. **Harvest Cells:**
 
-   - Aliquot 1.4 mL of the culture into microcentrifuge tubes and centrifuge at 4000×g for 1 min.
+   - Aliquot 2 mL of the culture for each transformation into microcentrifuge tubes and centrifuge at 4000×g for 1 min.
    - Discard the supernatant and wash the cell pellet twice with 500 µL of ddH₂O, centrifuging at the same speed each time.
 
 2. **Resuspend Cells:**
@@ -73,27 +73,50 @@
 3. **Incubate:**
    - Incubate the cells for 1–1.5 hours at 37°C with shaking.
 
-**PAUSE POINT**: Electroporated cells can be stored at 4°C for up to 24 hours before plating.
-
-## Plate Cells and Select Transformants
+## Plate Cells and Harvest Transformants
 
 1. **Plate Cells:**
 
-   - Plate 100 µL of the electroporated cells onto LB agar supplemented with Kanamycin (50 µg/mL), Chloramphenicol (25 µg/mL), and Apramycin (12.5 µg/mL).
+   -Spin down the cells at 4000xg for 2 min and decant the supernatant. Resuspend the cells in the flowback. 
+   - Plate the electroporated cells onto LB agar supplemented with Kanamycin (50 µg/mL), Chloramphenicol (25 µg/mL), and Apramycin (12.5 µg/mL).
    - Incubate overnight at 37°C.
 
-2. **Pick Colonies:**
-   - Pick 6–12 colonies from each transformation and inoculate in 5 mL of LB with the same antibiotics. Incubate overnight at 37°C with shaking.
+2. **Cell Harvesting:**
+   - Wash all transformants off the plate using an L-spreader and 2-4 ml of 2xYT medium. Use some of the cell suspension to prepare a glycerol stock, and use the left over to inoculate an overnight culture in 5 ml of 2xYT supplemented with Kanamycin (50 µg/mL), Chloramphenicol (25 µg/mL), and Apramycin (12.5 µg/mL). Incubate overnight at 37°C with shaking.
+
+## Conjugations##
+
+To be performed in a LAF bench. 
+1. **ET cell preparation**
+
+   - Harvest 2 ml of the ET + plasmid overnight cultures and spin down at 2000xg for 2 min. Gently remove the supernatant and wash once with 1ml of 2xYT medium.
+   - Resuspend in 500 ul of 2xYT medium
+  
+2. **Mixing Spores and ETs**
+   - Mix 500 ul of resuspended ET+plasmid cells with 500 ul of spores of the Streptomyces strain of interest.
+   - Plate on the appropriate medium for conjugation (default for us: Mannitol Soy Flour medium supplemented with 10 mM MgCl2)
+   - Let the plates dry in the airflow of the LAF bench. Once dried, incubate facing upwards at 30 C.
+
+4. **Overlay with Antibiotics**
+   - After 18-24 h, overlay the plates with 1ml of ddH2O supplemented with 5 ul of 50 mg/ml of Apramycin. Spread without using a spreader by just carefully tilting the plate.
+   - Let the plate dry fully in the airflow of the LAF bench, and rotate occasionally.
+   - Once fully dried, return the plates into the incubator and continue incubation at 30 C. Turn the plates upside down now.
+     
+3. **Colony Picking**
+   - After 7-10 days (depening on the strain), pick exconjugants using sterile wooden toothpicks and transfer to ISP2 plates supplemented with 50 ug/ml of Apramycin and 25 ug/ml Nalidixic Acid.
+   - Incubate the plates until fully grown at 30 C. 
 
 ## Colony PCR to Verify Integration
 
 1. **Prepare Colonies:**
 
-   - Transfer a small amount of each colony into 50 µL of 10% DMSO for lysis.
+   - Transfer a small amount of each colony into 50 µL of 10% DMSO for lysis in an eppendorf tube.
 
 2. **Cell Lysis:**
 
-   - Freeze cells on dry ice for 10 min, microwave for 2 min, and incubate at 99°C for 10 min. Repeat the freezing and heating cycle once more.
+   - Microwave the eppendorf tubes with closed lids for 5 min at 300W. If many colonies are lysed at the same time, arrange the tubes in a circle to ensure even microwaving of all samples.
+   - Spin down the tubes at max. speed for 5 min.
+   - Use 1.5 ul of the supernatant as PCR template. 
 
 3. **Colony PCR Setup:**
 
