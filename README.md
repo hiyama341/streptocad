@@ -21,7 +21,7 @@ StreptoCAD offers six distinct workflows for various genetic engineering tasks:
 1. **[Overexpression Plasmid Library Construction](#workflow-1-overexpression-plasmid-library-construction):**
 
    - Can be used to overexpress target proteins - we experimentally validated this by overexprssing regulators.
-     [![w1](https://figshare.com/ndownloader/files/49636524/preview/49636524/preview.gif)](https://figshare.com/ndownloader/files/49636524/preview/49636524/preview.gif)
+     ![w2](https://figshare.com/ndownloader/files/49636575/preview/49636575/preview.gif)
 
 2. **[Single CRISPR-BEST Plasmid Generation](#workflow-2-single-crispr-best-plasmid-generation):**
 
