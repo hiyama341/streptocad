@@ -21,25 +21,31 @@ StreptoCAD offers six distinct workflows for various genetic engineering tasks:
 1. **[Overexpression Plasmid Library Construction](#workflow-1-overexpression-plasmid-library-construction):**
 
    - Can be used to overexpress target proteins - we experimentally validated this by overexprssing regulators.
+     [![w1](https://figshare.com/ndownloader/files/49636524/preview/49636524/preview.gif)](https://figshare.com/ndownloader/files/49636524/preview/49636524/preview.gif)
 
 2. **[Single CRISPR-BEST Plasmid Generation](#workflow-2-single-crispr-best-plasmid-generation):**
 
    - Base editing system in the genome of Streptomyces using single sgRNA for targeting.
+     [![w2](https://figshare.com/ndownloader/files/49636575/preview/49636575/preview.gif)](https://figshare.com/ndownloader/files/49636575/preview/49636575/preview.gif)
 
 3. **[Multiplexed CRISPR-BEST Plasmid Generation](#workflow-3-multiplexed-crispr-best-plasmid-generation):**
 
    - Multiplexed base-editing in the genome for high-throughput genetic studies.
+     [![w3](https://figshare.com/ndownloader/files/49636578/preview/49636578/preview.gif)](https://figshare.com/ndownloader/files/49636578/preview/49636578/preview.gif)
 
 4. **[CRISPRi Plasmid Generation](#workflow-4-crispri-plasmid-generation):**
 
    - Uses transcriptional interference to reversibly inactivate genes for functional studies.
+     [![w4](https://figshare.com/ndownloader/files/49636581/preview/49636581/preview.gif)](https://figshare.com/ndownloader/files/49636581/preview/49636581/preview.gif)
 
 5. **[CRISPR-Cas9](#workflow-5-in-frame-deletion-with-crispr-cas9):**
 
    - Can be used for random-sized or in-frame deletions with Cas9
+     [![w5](https://figshare.com/ndownloader/files/49636587/preview/49636587/preview.gif)](https://figshare.com/ndownloader/files/49636587/preview/49636587/preview.gif)
 
 6. **[CRISPR-Cas3](#workflow-6-in-frame-deletion-with-crispr-cas3):**
    - Can be used for random-sized or in-frame deletions with Cas3
+     [![w6](https://figshare.com/ndownloader/files/49636596/preview/49636596/preview.gif)](https://figshare.com/ndownloader/files/49636596/preview/49636596/preview.gif)
 
 ## Experimental Validation
 
