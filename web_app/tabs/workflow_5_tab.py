@@ -392,6 +392,6 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                     ], style=card_style),
                 ]
             )
-        ], width=6),
+        ], width=10),
     ]),
 ])

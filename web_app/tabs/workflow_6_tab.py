@@ -423,7 +423,7 @@ dbc.Row([
                 ], style=card_style),
             ]
         )
-    ], width=6),
+    ], width=10),
 ]),
 
 ])
