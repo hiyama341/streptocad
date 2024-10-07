@@ -37,6 +37,58 @@
 
 **PAUSE POINT**: Amplified PCR products can be stored at −20°C for up to 1 week.
 
+## Gel extractions##
+
+1. If the band size is correct, run a gel for gel extractions.
+2. Purify the correct band from the gel using your preferred kit. For Macherey-Nagel kits, incubate the colum with elution buffer in a thermoblock for 5 min at 70 C prior to elution to increase the recovery.
+3. Measure the fragment concentration on a Nanodrop.
+
+## Plasmid Assembly##
+
+1. **Digestion of pOEX-kasOP**
+   - Digest 1 ug of pOEX-kasOP using StuI and FastAP.
+   - Incubate for 2 h at 37 C, followed by inactivation for 10 min at 75 C. 
+  
+| Component                       | Volume (µL) | Final Concentration |
+| ------------------------------- | ----------- | ------------------- |
+| pEOX-kasOP                      | Calculate   | 1 ug                |
+| 10x FastDigest buffer           | 6           | 1x                  |
+| StuI                            | 2           | 20 U                |
+| FastAP                          | 2           | 2 U                 |
+| ddH2O                           | to 60 ul    | -                   |
+
+
+3. **Gibson Assembly**
+   - Set up a Gibson Assembly using the digested pOEX-kasOP and the gel extracted fragment.
+   - Incubate at 50 C for 1h. 
+
+| Component                       | Volume (µL) | Final Concentration |
+| ------------------------------- | ----------- | ------------------- |
+| pEOX-kasOP*StuI*FastAP          | Calculate   |100 ng               |
+| Gene Fragment                   | Calculate   | 3x equimolar mass   |
+| 2x Hifi DNA Assembly Mastermix  | 5           | 1x                  |
+| ddH2O                           | to 10 ul    | -                   |
+
+4. **Transformations into E. coli Mach1**
+   - Transform 4 ul of the assembly mix into E. coli Mach1 or equivalent cloning strains using chemical transformation, following the manufacturers protocol.
+   - Plate the transformation on LB plates supplemented with 50 ug/ml Apramycin.
+   - Incubate at 37 C overnight. 
+5. **Colony PCRs**
+   - Pick transformants on a fresh LB+Apr plate using wooden toothpicks. After picking, add the toothpicks to PCR tube with 20 ul of ddH20. Twist the toothpicks to dispense remaining biomass into the ddH2O.
+   - Use 1 ul of the ddH2O cell suspension as template for colony PCRs.
+
+     PCR Protocol: 
+     
+6. **Overnight cultures**
+   - Prepare overnight cultures of the positive colonies using the plate with picked colonies. Use culture tubes. Inoculate 4 ml of 2x YT supplemented with 50 ug/ml of apramycin directly from the plate.
+   - Incubate overnight at 37 C while shaking. 
+7. **Minipreps and glycerol stocks**
+   - Perform minipreps using 2 ml of overnight culture using your preferred kit. Follow the manufacturers instructions.
+   - Keep the remaining culture in the cold room until the next day to prepare glycerol stocks of the sequence verified clones.
+   - Glycerol stocks are prepared using equal volume of culture and 50 % sterile glycerol.
+8. **Sanger sequencing**
+   - For sequence verification, submit the miniprepped plasmid using your preferred sequencing kit. Follow the manufacturers instructions. Submit 2 samples for each plasmid, one with CW1026 and one with CW1027. 
+
 ## Pre-culture Preparation of E. coli ET122567
 
 1. **Day 1: Start Pre-culture**
