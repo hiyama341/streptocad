@@ -1,6 +1,6 @@
 <img src="web_app/assets/StreptoCAD_logo Medium.jpeg" alt="StreptoCAD" width="200">
 
-**StreptoCAD** is an open-source software toolbox designed to automate and streamline genome engineering in Streptomyces. This tool supports various CRISPR-based techniques and gene overexpression methods, significantly simplifying the genetic engineering process.
+**StreptoCAD** is an open-source software toolbox designed to automate and streamline genome engineering in Streptomyces. This tool supports various CRISPR-based techniques and gene overexpression methods, simplifying the genetic engineering process.
 
 ## Features
 
@@ -18,34 +18,28 @@ Streptomyces is a prolific source of novel bioactive molecules, but current gene
 
 StreptoCAD offers six distinct workflows for various genetic engineering tasks:
 
-1. **[Overexpression Plasmid Library Construction](#workflow-1-overexpression-plasmid-library-construction):**
+1. **[Overexpression Plasmid Library Construction](notebooks/app_workflows/W1_overexpression_workflow.ipynb):**
 
    - Can be used to overexpress target proteins - we experimentally validated this by overexpressing regulators.
-     [![w1](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHA3NGZyOGdmM2M0Z2hkNGYxM2VtNTZ5bDJtMDAydW4wbnUyMzM0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yJy560f6e33Eezeswg/giphy.gif)](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHA3NGZyOGdmM2M0Z2hkNGYxM2VtNTZ5bDJtMDAydW4wbnUyMzM0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yJy560f6e33Eezeswg/giphy.gif)
 
-2. **[Single CRISPR-BEST Plasmid Generation](#workflow-2-single-crispr-best-plasmid-generation):**
+2. **[Single CRISPR-BEST Plasmid Generation](notebooks/app_workflows/W2_CRISPR-BEST-single.ipynb):**
 
    - Base editing system in the genome of Streptomyces using single sgRNA for targeting.
-     [![w2](https://figshare.com/ndownloader/files/49636575/preview/49636575/preview.gif)](https://figshare.com/ndownloader/files/49636575/preview/49636575/preview.gif)
 
-3. **[Multiplexed CRISPR-BEST Plasmid Generation](#workflow-3-multiplexed-crispr-best-plasmid-generation):**
+3. **[Multiplexed CRISPR-BEST Plasmid Generation](notebooks/app_workflows/W3_multiplexed_CRISPR-BEST.ipynb):**
 
    - Multiplexed base-editing in the genome for high-throughput genetic studies.
-     [![w3](https://figshare.com/ndownloader/files/49636578/preview/49636578/preview.gif)](https://figshare.com/ndownloader/files/49636578/preview/49636578/preview.gif)
 
-4. **[CRISPRi Plasmid Generation](#workflow-4-crispri-plasmid-generation):**
+4. **[CRISPRi Plasmid Generation](notebooks/app_workflows/W4_CRISPRi.ipynb):**
 
    - Uses transcriptional interference to reversibly inactivate genes for functional studies.
-     [![w4](https://figshare.com/ndownloader/files/49636581/preview/49636581/preview.gif)](https://figshare.com/ndownloader/files/49636581/preview/49636581/preview.gif)
 
-5. **[CRISPR-Cas9](#workflow-5-in-frame-deletion-with-crispr-cas9):**
+5. **[CRISPR-Cas9](notebooks/app_workflows/W5_CRISPR-cas9-inframe-deletion_random_sized_deletion.ipynb):**
 
    - Can be used for random-sized or in-frame deletions with Cas9
-     [![w5](https://figshare.com/ndownloader/files/49636587/preview/49636587/preview.gif)](https://figshare.com/ndownloader/files/49636587/preview/49636587/preview.gif)
 
-6. **[CRISPR-Cas3](#workflow-6-in-frame-deletion-with-crispr-cas3):**
+6. **[CRISPR-Cas3](notebooks/app_workflows/W6_CRISPR-cas3-inframe-deletion_random_sized_deletion.ipynb):**
    - Can be used for random-sized or in-frame deletions with Cas3
-     [![w6](https://figshare.com/ndownloader/files/49636596/preview/49636596/preview.gif)](https://figshare.com/ndownloader/files/49636596/preview/49636596/preview.gif)
 
 ## Experimental Validation
 
