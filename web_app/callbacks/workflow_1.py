@@ -49,7 +49,7 @@ from streptocad.cloning.plasmid_processing import assemble_and_process_plasmids
 from streptocad.cloning.pcr_simulation import perform_pcr_on_sequences
 from streptocad.sequence_loading.sequence_loading import load_and_process_plasmid, load_and_process_genome_sequences
 from streptocad.primers.primer_generation import generate_primer_dataframe, create_idt_order_dataframe
-from streptocad.utils import ProjectDirectory
+from streptocad.utils import ProjectDirectory, extract_metadata_to_dataframe
 
 def register_workflow_1_callbacks(app):
     @app.callback(
@@ -63,6 +63,9 @@ def register_workflow_1_callbacks(app):
             Output('download-data-and-protocols-link_1', 'href'),
             Output('error-dialog_1', 'message'),
             Output('error-dialog_1', 'displayed'),
+            Output('plasmid-metadata-table_1', 'data'),  # Output for plasmid metadata DataTable
+            Output('plasmid-metadata-table_1', 'columns') # Output for plasmid metadata DataTable columns
+
         ],
         [
             Input('submit-settings-button_1', 'n_clicks')
@@ -148,6 +151,11 @@ def register_workflow_1_callbacks(app):
                                                                                     save_plasmids=False, 
                                                                                     save_path="../../data/plasmids/pOEX_overexpression_plasmids")
                 logging.info(f"Assembly results: {assembly_results}")
+                                
+                                
+                integration_names = [names.name for names in list_of_amplicons]
+                plasmid_metadata_df = extract_metadata_to_dataframe(assembled_plasmids, plasmid, integration_names)
+
                 # Prepare outputs for the DataTable
                 primers_columns = [{"name": col, "id": col} for col in idt_df.columns]
                 primers_data = idt_df.to_dict('records')
@@ -157,6 +165,10 @@ def register_workflow_1_callbacks(app):
 
                 analyzed_primers_columns = [{"name": col, "id": col} for col in analyzed_primers_df.columns]
                 analyzed_primers_data = analyzed_primers_df.to_dict('records')
+
+                # Prepare columns and data for the plasmid metadata DataTable
+                plasmid_metadata_columns = [{"name": col, "id": col} for col in plasmid_metadata_df.columns]
+                plasmid_metadata_data = plasmid_metadata_df.to_dict('records')
 
                 # Create download link for GenBank files
                 zip_buffer = io.BytesIO()
@@ -177,9 +189,9 @@ def register_workflow_1_callbacks(app):
 
                 output_files = [
                     {"name": "pOEX-PKasO.gb", "content": assembled_plasmids}, # LIST OF Dseqrecords
-                    {"name": "primer_df.csv", "content": primer_df},
-                    {"name": "full_idt.csv", "content": idt_df},
-                    {"name": "primers_analyzed.csv", "content": analyzed_primers_df},
+                    {"name": "00_primer_df.csv", "content": primer_df},
+                    {"name": "01_full_idt.csv", "content": idt_df},
+                    {"name": "02_primers_analyzed.csv", "content": analyzed_primers_df},
                 ]
 
                 input_values = {
@@ -229,9 +241,9 @@ def register_workflow_1_callbacks(app):
             log_stream.seek(0)
 
 
-            return primers_data, primers_columns, pcr_data, pcr_columns, analyzed_primers_data, analyzed_primers_columns, data_package_download_link, "", False,
+            return primers_data, primers_columns, pcr_data, pcr_columns, analyzed_primers_data, analyzed_primers_columns, data_package_download_link, "", False, plasmid_metadata_data, plasmid_metadata_columns
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
             error_message = f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            return [], [], [], [], [], [], "", error_message, True
+            return [], [], [], [], [], [], "", error_message, True,[],[]

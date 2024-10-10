@@ -204,6 +204,7 @@ dbc.Row([
                 dbc.Card([
                     dbc.CardBody([
                         html.H5("Overview of plasmids generated", className="card-title", style=text_style),
+                        DataTable(id='plasmid-metadata-table_1', **table_style),
                     ])
                 ], style=card_style),
 
