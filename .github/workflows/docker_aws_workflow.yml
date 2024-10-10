@@ -1,52 +1,76 @@
-name: Push Docker image to ECR
+## CI/CD pipeline for App Runner application using docker containers ##
+# This file contains code to build and push a docker container to ECR
+# and then deploys it to App Runner, when there is a push
+# to the "main" branch
+
+# To use this workflow, you will need to complete the following set-up steps:
+#
+# 1. Create an ECR repository to store your images.
+#    For example: `aws ecr create-repository --repository-name my-ecr-repo --region us-east-2`.
+#    Replace the value of the `ECR_REPOSITORY` environment variable in the workflow below with your repository's name.
+#    Replace the value of the `AWS_REGION` environment variable in the workflow below with your repository's region.
+#
+# 2. Create an App Runner service.
+#    For example, follow this guide https://aws.amazon.com/getting-started/guides/deploy-webapp-apprunner/
+#
+# 3. Store an IAM user access key in GitHub Actions secrets named `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+#    See the documentation for each action used below for the recommended IAM policies for this IAM user,
+#    and best practices on handling the access key credentials.
+
+name: Deploy to Amazon ECR and Update App Runner
 
 on:
   push:
     tags:
       - "v*" # Triggers the workflow when a Git tag starting with 'v' is pushed
 
+env:
+  AWS_REGION: eu-west-1 # App Runner service region
+  ECR_REPOSITORY: streptocad # ECR repository name
+  APP_RUNNER_SERVICE_ARN: arn:aws:apprunner:eu-west-1:588738587747:service/streptocad/0d857f6afdda48f6a2d0e7e2657ea19a
+
+permissions:
+  contents: read
+
 jobs:
-  build-and-push:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository code
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      # Configure AWS credentials using access keys
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # Authenticate Docker with Amazon ECR
-      - name: Authenticate Docker to Amazon ECR
-        run: |
-          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-      # Build and tag the Docker image
-      - name: Build Docker image
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          IMAGE_TAG="${GITHUB_REF##*/}"
-          docker build -t ${{ secrets.AWS_ECR_REPOSITORY }}:$IMAGE_TAG .
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-      # Tag the Docker image with the full ECR repository URL
-      - name: Tag Docker image
+      - name: Update App Runner service
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          IMAGE_TAG="${GITHUB_REF##*/}"
-          docker tag ${{ secrets.AWS_ECR_REPOSITORY }}:$IMAGE_TAG ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.AWS_ECR_REPOSITORY }}:$IMAGE_TAG
+          aws apprunner update-service \
+            --service-arn ${{ env.APP_RUNNER_SERVICE_ARN }} \
+            --source-configuration "{\"ImageRepository\": {\"ImageIdentifier\": \"$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\", \"ImageRepositoryType\": \"ECR\"}}"
 
-      # Push the Docker image to Amazon ECR
-      - name: Push Docker image to Amazon ECR
-        run: |
-          IMAGE_TAG="${GITHUB_REF##*/}"
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.AWS_ECR_REPOSITORY }}:$IMAGE_TAG
-
-    # Environment variables that are fetched from GitHub Secrets
-    env:
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      AWS_ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPOSITORY }}
+        # aws apprunner update-service \
+        #   --service-arn arn:aws:apprunner:${{ env.AWS_REGION }}:${{ env.AWS_ACCOUNT_ID }}:service/${{ env.APP_RUNNER_SERVICE_NAME }}/${{ env.APP_RUNNER_SERVICE_ID }} \
+        #   --source-configuration "{\"ImageRepository\": {\"ImageIdentifier\": \"$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\", \"ImageRepositoryType\": \"ECR\"}}"
