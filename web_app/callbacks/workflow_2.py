@@ -223,11 +223,11 @@ def register_workflow_2_callbacks(app):
                 ]
                 output_files = [
                     {"name": "cBEST_w_sgRNAs.gb", "content": sgRNA_vectors},
-                    {"name": "primer_df.csv", "content": checking_primers_df},
-                    {"name": "full_idt.csv", "content": full_idt},
-                    {"name": "mutated_sgrna_df.csv", "content": mutated_sgrna_df},
-                    {"name": "filtered_df.csv", "content": filtered_df},
-                    {"name": "plasmid_metadata_df.csv", "content": plasmid_metadata_df},
+                    {"name": "00_primer_df.csv", "content": checking_primers_df},
+                    {"name": "01_full_idt.csv", "content": full_idt},
+                    {"name": "02_mutated_sgrna_df.csv", "content": mutated_sgrna_df},
+                    {"name": "03_filtered_df.csv", "content": filtered_df},
+                    {"name": "04_plasmid_metadata_df.csv", "content": plasmid_metadata_df},
                 ]
                 input_values = {
                     "genes_to_knockout": genes_to_KO_list,
