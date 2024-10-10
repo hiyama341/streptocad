@@ -5,6 +5,8 @@ from dash.dash_table import DataTable
 from styling import text_style, upload_button_style, card_style, link_style, table_style, table_header_style, table_row_style
 from streptocad.utils import polymerase_dict
 from components import upload_component
+from dash import dcc, html
+import dash_bootstrap_components as dbc
 
 # Dropdown options for polymerases
 dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_dict.items()]
@@ -86,7 +88,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
             html.H4("2) Upload your plasmid", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("Plasmid File", className="card-title", style=text_style),
+                    html.H5("Plasmid File (GenBank file)", className="card-title", style=text_style),
                     dcc.Upload(
                         id={'type': 'upload-component', 'index': 'plasmid'},  # Updated to use pattern matching ID
                         children=html.Div([
@@ -104,11 +106,27 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
     
     dbc.Row([
         dbc.Col([
-            html.H4("3) Choose overlapping sequences", style=text_style),
-            html.P("Please enter the 5' and 3' overhangs below for the oligo nucleotide to be made.", className="lead", style=text_style),
-            html.P("Per default the overhangs work with pOEX-PkasO", className="lead", style=text_style)
+            # Main heading with consolidated tooltip
+            html.H4([
+                "3) Choose overlapping sequences ",
+                html.Span("ⓘ", id="overlapping-sequences-info-icon", style=link_style)
+            ], style=text_style),
+            
+            # Consolidated tooltip with all the details
+            dbc.Tooltip(
+                """
+                - Please enter the 5' and 3' overhangs below for the oligo nucleotide to be made.
+
+                - These overhangs are added as 5' and 3' overhangs to the primers being generated.
+
+                - By default, these overhangs are compatible with the pOEX-PkasO plasmid.
+                """,
+                target="overlapping-sequences-info-icon",
+                placement="top",
+            ),
         ], width=5),
     ], className="mb-3"),
+
 
     dbc.Row([
         dbc.Col([
@@ -136,41 +154,85 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
 
     dbc.Col([
         html.H4("4) Customizable Settings", style=text_style),
-        dbc.Label("Choose Polymerase", style={'color': '#ddd'}),  
+        
+        # Choose Polymerase with tooltip
+        dbc.Label([
+            "Choose Polymerase ",
+            html.Span("ⓘ", id="polymerase-tooltip-icon", style=link_style)
+        ], style={'color': '#ddd'}),
+        dbc.Tooltip(
+            "Select the polymerase type. The default is optimized for high fidelity.",
+            target="polymerase-tooltip-icon",
+            placement="top",
+        ),
         dcc.Dropdown(
             id='chosen-polymerase_1',
             options=dropdown_options,
-            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],  # Set default value
-            style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
+            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],
+            style={'color': '#000', 'width': '100%'}
         ),
-        dbc.Label("Target Melting Temperature (°C)", style={'color': '#ddd'}),  
+        
+        # Target Melting Temperature with tooltip
+        dbc.Label([
+            "Target Melting Temperature (°C) ",
+            html.Span("ⓘ", id="melting-temp-tooltip-icon", style=link_style)
+        ], style={'color': '#ddd'}),
+        dbc.Tooltip(
+            "Set the desired melting temperature for the PCR reactions.",
+            target="melting-temp-tooltip-icon",
+            placement="top",
+        ),
         dbc.Input(
             id='melting-temperature_1',
             type='number',
             value=65,
-            style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
+            style={'color': '#000', 'width': '100%'}
         ),
-        dbc.Label("Primer Concentration (μM)", style={'color': '#ddd'}),  
+        
+        # Primer Concentration with tooltip
+        dbc.Label([
+            "Primer Concentration (μM) ",
+            html.Span("ⓘ", id="primer-concentration-tooltip-icon", style=link_style)
+        ], style={'color': '#ddd'}),
+        dbc.Tooltip(
+            "Specify the concentration of primers used in the PCR reaction.",
+            target="primer-concentration-tooltip-icon",
+            placement="top",
+        ),
         dbc.Input(
             id='primer-concentration_1',
             type='number',
             value=0.4,
-            style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
+            style={'color': '#000', 'width': '100%'}
         ),
-        dbc.Label("Primer Number Increment", style={'color': '#ddd'}),  
+        
+        # Primer Number Increment with tooltip
+        dbc.Label([
+            "Primer Number Increment ",
+            html.Span("ⓘ", id="primer-increment-tooltip-icon", style=link_style)
+        ], style={'color': '#ddd'}),
+        dbc.Tooltip(
+            """Choose the increment for primer numbering in the workflow. 
+            This is just for your convenience. 
+            If you choose 1, the first primer is called primer 1, the second primer 2 and so on.""",
+            target="primer-increment-tooltip-icon",
+            placement="top",
+        ),
         dbc.Input(
             id='primer-number-increment_1',
             type='number',
             value=1,
-            style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
+            style={'color': '#000', 'width': '100%'}
         ),
     ], width=6, className="mb-3"),
+
 
     dbc.Row([
         dbc.Col([
             dbc.Button('Submit', id='submit-settings-button_1', color="primary", className="mt-3"),
         ], width=12),
     ], className="mb-4"),
+
     
 # Placeholder for the output
 dbc.Row([
