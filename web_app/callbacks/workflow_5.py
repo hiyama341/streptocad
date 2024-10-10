@@ -344,8 +344,8 @@ def register_workflow_5_callbacks(app):
 
                 # Paths to Markdown files
                 markdown_file_paths = [
-                    "../protocols/conjugation_protcol.md",
-                    "../protocols/single_target_crispr_plasmid_protcol.md"
+                    "protocols/conjugation_protcol.md",
+                    "protocols/single_target_crispr_plasmid_protcol.md"
 
                 ]
 

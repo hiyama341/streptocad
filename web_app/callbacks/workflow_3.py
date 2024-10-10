@@ -309,8 +309,8 @@ def register_workflow_3_callbacks(app):
                                                         "backbone_overhang_r": backbone_overhang_r,
                                                         "cys4": cys4_sequence,
                                                         "sgRNA_handle_cys4_site": str(sgRNA_handle_cys4_sites[0].seq)}}
-                markdown_file_paths = ["../protocols/conjugation_protcol.md",
-                                    "../protocols/multi_target_crispr_plasmid_protcol.md"]
+                markdown_file_paths = ["protocols/conjugation_protcol.md",
+                                    "protocols/multi_target_crispr_plasmid_protcol.md"]
                 
                 
                 project_directory = ProjectDirectory(

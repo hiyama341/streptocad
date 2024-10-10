@@ -355,8 +355,8 @@ def register_workflow_6_callbacks(app):
 
                 logging.info("Preparing Markdown file paths for project directory.")
                 markdown_file_paths = [
-                    "../protocols/conjugation_protcol.md",
-                    "../protocols/single_target_crispr_plasmid_protcol.md"
+                    "protocols/conjugation_protcol.md",
+                    "protocols/single_target_crispr_plasmid_protcol.md"
                 ]
 
                 logging.info("Creating project directory structure.")

@@ -251,7 +251,7 @@ def register_workflow_2_callbacks(app):
                         "dw_homology": str(dw_homology)
                     }
                 }
-                markdown_file_paths = ["../protocols/conjugation_protcol.md", "../protocols/single_target_crispr_plasmid_protcol.md"]
+                markdown_file_paths = ["protocols/conjugation_protcol.md", "protocols/single_target_crispr_plasmid_protcol.md"]
                 timestamp = datetime.utcnow().isoformat()
 
                 project_directory = ProjectDirectory(
