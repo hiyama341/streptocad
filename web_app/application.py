@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # MIT License
 
+import os
 # DASH imports
 import dash
 from dash import dcc, html, no_update
@@ -177,8 +178,17 @@ register_workflow_5_callbacks(app)
 register_workflow_6_callbacks(app)
 register_interactivity_callbacks(app)  # Register the interactivity callbacks
 
+# Health check endpoint for Docker
+@app.server.route('/health-check')
+def health_check():
+    return 'Health Check OK', 200
+
+
 if __name__ == '__main__':
-    # for standard running
-    app.run_server(debug=True)
-    # for AWS
-    #application.run(host='0.0.0.0', port='8080')
+    # Check if running in Docker
+    if os.environ.get('DOCKER_CONTAINER'):
+        # Docker environment
+        app.run_server(host='0.0.0.0', port=8050, debug=False)
+    else:
+        # Local development
+        app.run_server(debug=True)
