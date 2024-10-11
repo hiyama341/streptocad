@@ -111,7 +111,7 @@ def find_up_dw_repair_templates(genome: SeqRecord, repair_templates: List[str], 
 
 
 
-def update_primer_names(list_of_records: list, start_number: int = 1) -> list:
+def update_primer_names(list_of_records: list) -> list:
     """Update primer names from dict with a starting number.
 
     Parameters
@@ -128,7 +128,6 @@ def update_primer_names(list_of_records: list, start_number: int = 1) -> list:
     """
     # Initialize for tracking unique sequences
     unique_primer_seqs = set()
-    primer_number = start_number
 
     # changing names
     for record in list_of_records:
@@ -140,12 +139,10 @@ def update_primer_names(list_of_records: list, start_number: int = 1) -> list:
                 unique_primer_seqs.add(record[primer_key].seq)
 
                 # Update name and id with new naming convention
-                new_name = f"primer_{primer_number}"
+                new_name = f"{record['gene_name']}_repair_{primer_key}"
                 record[primer_key].name = new_name
                 record[primer_key].id = new_name
                 record[primer_name_key] = new_name
-
-                primer_number += 1
             else:
                 # Find and assign the existing name/id to this primer
                 for existing_record in list_of_records:
@@ -186,122 +183,7 @@ def assemble_single_plasmid_with_repair_templates(
     return new_vector
 
 
-# def assemble_multiple_plasmids_with_repair_templates_for_deletion(
-#     list_of_gene_names: list,
-#     list_of_digested_plasmids: list,
-#     repair_DNA_templates: list,
-#     overlap=30,
-# ) -> dict:
-#     """Assemble plasmids with repair templates via Gibson cloning.
 
-#     Parameters
-#     ----------
-#     list_of_gene_names : list
-#         A list of gene names.
-#     list_of_digested_plasmids : list
-#         A list of digested plasmids.
-#     repair_DNA_templates : list
-#         A list of templates to repair the plasmids
-#     overlap : int, optional
-#         The overlap between the repair templates and the digested plasmids. Default is 30.
-
-#     Returns
-#     -------
-#     dict
-#         A dictionary containing the assembled plasmids, primers, and other information.
-#     """
-#     # initialize
-#     list_of_records = []
-
-#     # iterate through gene_names
-#     for gene_name in list_of_gene_names:
-#         match_found = False  # Track if a match is found for the current gene_name
-
-#         # iterate through plasmids and find out if the gene name is in the name of the plasmid so we can assemble correctly
-#         for plasmid in list_of_digested_plasmids:
-#             plasmid_name = str(plasmid.name)
-#             x = plasmid_name.find(gene_name)
-#             if x != -1:
-#                 match_found = True  # Mark that a match is found
-#                 # we got a match - get repair templates
-#                 for repair_template_name in repair_DNA_templates:
-#                     # double-check that the names are working
-#                     if repair_template_name["name"] == gene_name:
-#                         # making a list of the repair templates
-#                         repair_templates = [
-#                             repair_template_name["up_repair"],
-#                             repair_template_name["dw_repair"],
-#                         ]
-
-#                         # Assemble vector with the
-#                         assembled_vector = (
-#                             assemble_single_plasmid_with_repair_templates(
-#                                 repair_templates, plasmid, overlap=overlap
-#                             )
-#                         )
-
-#                         # Make this to a contig and make genbank files of them
-#                         assemblyobj = Assembly(assembled_vector)
-#                         contig = Dseqrecord(assemblyobj.assemble_circular()[0])
-
-#                         ## change features
-#                         contig.features.append(
-#                             SeqFeature(
-#                                 FeatureLocation(len(plasmid), len(plasmid) + 1000),
-#                                 type="CDS",
-#                                 qualifiers={"label": f"UP_repair{gene_name}"},
-#                             )
-#                         )
-#                         contig.features.append(
-#                             SeqFeature(
-#                                 FeatureLocation(
-#                                     len(plasmid) + 1000, len(plasmid) + 2000
-#                                 ),
-#                                 type="CDS",
-#                                 qualifiers={"label": f"DW_repair{gene_name}"},
-#                             )
-#                         )
-
-#                         # Retrieve information
-#                         record = {
-#                             "gene_name": gene_name,
-#                             "name": plasmid_name,
-#                             "contig": contig,
-#                             # up repair
-#                             "up_forwar_p_name": assembled_vector[1].forward_primer.id,
-#                             "up_reverse_p_name": assembled_vector[1].reverse_primer.id,
-#                             "up_forwar_p": assembled_vector[1].forward_primer,
-#                             "up_reverse_p": assembled_vector[1].reverse_primer,
-#                             "up_forwar_primer_str": str(assembled_vector[1].forward_primer.seq),
-#                             "up_reverse_primer_str": str(assembled_vector[1].reverse_primer.seq),
-#                             "up_forwar_p_anneal": assembled_vector[1].forward_primer.footprint,
-#                             "up_reverse_p_anneal": assembled_vector[1].reverse_primer.footprint,
-#                             "tm_up_forwar_p": repair_template_name['tm_up_forwar_p'],
-#                             "tm_up_reverse_p": repair_template_name['tm_up_reverse_p'],
-#                             "ta_up": repair_template_name['ta_up'],
-#                             # dw repair
-#                             "dw_forwar_p_name": assembled_vector[2].forward_primer.id,
-#                             "dw_reverse_p_name": assembled_vector[2].reverse_primer.id,
-#                             "dw_forwar_p": assembled_vector[2].forward_primer,
-#                             "dw_reverse_p": assembled_vector[2].reverse_primer,
-#                             "dw_forwar_primer_str": str(assembled_vector[2].forward_primer.seq),
-#                             "dw_reverse_primer_str": str(assembled_vector[2].reverse_primer.seq),
-#                             "dw_forwar_p_anneal": assembled_vector[
-#                                 2
-#                             ].forward_primer.footprint,
-#                             "dw_reverse_p_anneal": assembled_vector[
-#                                 2
-#                             ].reverse_primer.footprint,
-#                             "tm_dw_forwar_p": repair_template_name['tm_dw_forwar_p'],
-#                             "tm_dw_reverse_p": repair_template_name['tm_dw_reverse_p'],
-#                             "ta_dw": repair_template_name['ta_dw'],
-#                         }
-#                         list_of_records.append(record)
-
-#         if not match_found:
-#             print(f'No match found for gene {gene_name}! Consider renaming your plasmid.')
-
-#     return list_of_records
 
 def assemble_multiple_plasmids_with_repair_templates_for_deletion(
     list_of_gene_names: list,
