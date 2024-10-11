@@ -8,13 +8,13 @@ def create_tooltip(content, target_id, placement="top", style=None):
 tooltips = [
     # Polymerase
     create_tooltip(
-        "The selected polymerase is used for high-fidelity DNA synthesis.",
+        "The selected polymerase is used to calculate primer melting temperature with NEB's api",
         target_id="polymerase-tooltip"
     ),
     
     # Melting Temperature
     create_tooltip(
-        "Set the desired melting temperature for PCR reactions.",
+        "Set the desired melting temperature for PCR reactions. The melting temperature is used to calculate the Tm of primers.",
         target_id="melting-temp-tooltip"
     ),
 
@@ -24,15 +24,10 @@ tooltips = [
         target_id="primer-concentration-tooltip"
     ),
 
-    # Primer Number Increment
-    create_tooltip(
-        "Adjust the numbering increment for primer sets.",
-        target_id="primer-increment-tooltip"
-    ),
 
     # Flanking Region
     create_tooltip(
-        "Define the size (in bp) of flanking regions for PCR reactions.",
+        "Define the size (in bp) of flanking regions for checking primers. For example, if you are checking primers for a 1000 bp gene, you and you set flanking region to 100 bp, then the primers will be checked for 100 bp upstream and downstream of the gene.",
         target_id="flanking-region-tooltip"
     ),
 
@@ -48,55 +43,55 @@ tooltips = [
 
     # Off-Target Seed Length and Upper Bound
     create_tooltip(
-        "Specify the length of the seed sequence for off-target filtering.",
+        "Specify the length of the seed sequence for off-target filtering. The seed sequence is used to filter off-target sgRNAs. It is defined as the seed_length upstream and downstream of the target site upstream of the PAM site (Cas9).",
         target_id="off-target-seed-tooltip"
     ),
     create_tooltip(
-        "Specify the maximum allowed off-target score for sgRNA filtering.",
+        "Specify the maximum allowed off-target score for sgRNA filtering. For example if you dont want any off-targets set this to 0.",
         target_id="off-target-upper-tooltip"
     ),
 
     # Cas Type
     create_tooltip(
-        "Select the Cas protein type for the genome editing workflow.",
+        "Cas9 has a PAM sequence that is NGG and Cas3 has TTC. Cas12a has a PAM sequence that is TTT[ACG].",
         target_id="cas-type-tooltip"
     ),
 
     # Number of sgRNAs per Region
     create_tooltip(
-        "Define the number of sgRNAs for each targeted region or locus.",
+        "Define the number of sgRNAs for each targeted region or locus. For example, if you have added 10 genes to to be deleted, and you want to test 5 sgRNAs per gene, set this to 5. This will produce 50 sgRNAs.",
         target_id="number-sgrnas-tooltip"
     ),
 
     # Only Stop Codons
     create_tooltip(
-        "Filter to include only stop codons in the sgRNA analysis.",
+        "Filter to include only stop codons when base editing.",
         target_id="only-stop-codons-tooltip"
     ),
 
     # Editing Context
     create_tooltip(
-        "Enable sequence context editing for greater precision in targeting.",
+        "Enable sequence context editing to increase success rate of base editing. It refines sgRNA selection by excluding sgRNAs with an upstream “G” adjacent to the editable “C,” ensuring higher editing efficiency.",
         target_id="editing-context-tooltip"
     ),
 
     # Repair Template and Overlap for Gibson Cloning
     create_tooltip(
-        "Specify the length of repair templates for precise deletions.",
+        "Specify the length of repair templates. If you select 1000 bp, the algorithm will produce 1000 bp repair templates with overlaps to your plasmid backbone.",
         target_id="repair-templates-length-tooltip"
     ),
     create_tooltip(
-        "Define the overlap length between templates for Gibson assembly.",
+        "Define the overlap length between templates for Gibson assembly. Typically, 30-40 bp produces good results experimentally.",
         target_id="overlap-gibson-tooltip"
     ),
 
     # Overhangs (Forward and Reverse)
     create_tooltip(
-        "Enter the 5' overhang sequence for Golden Gate or Gibson assembly.",
+        "Enter the 5' overhang sequence for ssDNA bridging. This DNA will be added upstream to the sgRNA that is found and made into an oligo.",
         target_id="forward-overhang-tooltip"
     ),
     create_tooltip(
-        "Enter the 3' overhang sequence for Golden Gate or Gibson assembly.",
+        "Enter the 3' overhang sequence for ssDNA bridging. This DNA will be added downstream to the sgRNA that is found and made into an oligo.",
         target_id="reverse-overhang-tooltip"
     ),
 
