@@ -1,7 +1,7 @@
 /* Custom CSS to adjust the size and center the cube loading spinner */
 .dash-spinner {
-    width: 150px !important; /* Increase the spinner's size */
-    height: 150px !important; /* Increase the spinner's size */
+    width: 120px !important; /* Increase the spinner's size */
+    height: 120px !important; /* Increase the spinner's size */
     position: fixed;
     top: 50%;
     left: 50%;
