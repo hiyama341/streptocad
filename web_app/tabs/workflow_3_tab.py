@@ -5,10 +5,11 @@ from dash.dash_table import DataTable
 from styling import text_style, upload_button_style, card_style, link_style, table_style
 from streptocad.utils import polymerase_dict
 from components import upload_component_with_display
+from tooltip import create_tooltip, tooltips  # Import the tooltips
 
 # Reference content used in multiple tabs
 reference_content = html.Div([
-    html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below (the figure and protocol is from there)."),
+    html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below."),
     html.A("CRISPR–Cas9, CRISPRi and CRISPR-BEST-mediated genetic manipulation in streptomycetes", href="https://www.nature.com/articles/s41596-020-0339-z", target="_blank"),
 ], style=text_style)
 
@@ -59,7 +60,6 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         )
     ], className="mb-4", justify="start"),
 
-    
     # UPLOAD genome
     dbc.Row([
         dbc.Col([
@@ -68,7 +68,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                 dbc.CardBody([
                     html.H5("Genome File (GenBank format)", className="card-title", style=text_style),
                     upload_component_with_display(
-                        {'type': 'upload-component', 'index': 'genome-file-3'},  # Corrected: Directly use the dictionary
+                        {'type': 'upload-component', 'index': 'genome-file-3'},
                         text_style, 
                         link_style, 
                         upload_button_style
@@ -85,7 +85,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                 dbc.CardBody([
                     html.H5("CRISPR-mcBEST plasmid (GenBank format)", className="card-title", style=text_style),
                     upload_component_with_display(
-                        {'type': 'upload-component', 'index': 'single-vector-3'},  # Corrected: Directly use the dictionary
+                        {'type': 'upload-component', 'index': 'single-vector-3'},
                         text_style, 
                         link_style, 
                         upload_button_style
@@ -95,7 +95,6 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         ], width=6),
     ], className="mb-5"),
 
-        
     dbc.Row([
         dbc.Col([
             html.H4("3) Choose genes/regions to edit", style=text_style),
@@ -116,8 +115,12 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
 
     dbc.Row([
         dbc.Col([
-            html.H4("4) Enter sgRNA handle", className="mb-3", style=text_style),
-            html.P('As a default we use the sgRNA handle with cys4 (see figure above)', style=text_style),
+            html.H4([
+                "4) Enter sgRNA handle ",
+                html.Span("ⓘ", id="sgRNA-handle-tooltip", style=link_style)  # Tooltip icon
+            ], style=text_style),
+            
+            html.P('As a default, we use the sgRNA handle with Csy4 (see figure above)', style=text_style),
             dbc.Input(
                 id='sgRNA-handle-input_3',
                 type='text',
@@ -127,113 +130,119 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         ], width=6),
     ], className="mb-5"),
 
+dbc.Row([
+    dbc.Col([
+        html.H4([
+            "5) Enter Target Melting Temperature ",
+            html.Span("ⓘ", id="melting-temp-tooltip", style=link_style)  # Tooltip icon
+        ], className="mb-3", style=text_style),
+
+        dbc.Input(
+            id='input-tm_3', 
+            type='number', 
+            placeholder='Enter Melting Temperature', 
+            value=60
+        ),
+        html.Br(),
+    ], width=6),
+], className="mb-5"),
+
+
     dbc.Row([
         dbc.Col([
-            html.H4("5) Enter Target Melting Temperature", className="mb-3", style=text_style),
-            dbc.Input(id='input-tm_3', type='number', placeholder='Enter Melting Temperature', value=55),
-            html.Br(),
-        ], width=6),
-    ], className="mb-5"),
+            html.H4("6) Filtering metrics for sgRNAs", style=text_style),
+            dbc.Row([
+                dbc.Col([
+                    dbc.Label(["GC Content Upper Bound", html.Span("ⓘ", id="gc-upper-tooltip", style=link_style)], style={'color': '#ddd'}),
+                    dbc.Input(
+                        id='gc-upper_3',
+                        type='number',
+                        value=0.99,
+                        style={'color': '#000', 'width': '100%'}
+                    ),
+                ], width=12, className="mb-3"),
+                
+                dbc.Col([
+                    dbc.Label(["GC Content Lower Bound", html.Span("ⓘ", id="gc-lower-tooltip", style=link_style)], style={'color': '#ddd'}),
+                    dbc.Input(
+                        id='gc-lower_3',
+                        type='number',
+                        value=0.01,
+                        style={'color': '#000', 'width': '100%'}
+                    ),
+                ], width=12, className="mb-3"),
+                
+                dbc.Col([
+                    dbc.Label(["Off-Target Seed Length", html.Span("ⓘ", id="off-target-seed-tooltip", style=link_style)], style={'color': '#ddd'}),
+                    dbc.Input(
+                        id='off-target-seed_3',
+                        type='number',
+                        value=13,
+                        style={'color': '#000', 'width': '100%'}
+                    ),
+                ], width=12, className="mb-3"),
+                
+                dbc.Col([
+                    dbc.Label(["Off-Target Upper Bound", html.Span("ⓘ", id="off-target-upper-tooltip", style=link_style)], style={'color': '#ddd'}),
+                    dbc.Input(
+                        id='off-target-upper_3',
+                        type='number',
+                        value=10,
+                        style={'color': '#000', 'width': '100%'}
+                    ),
+                ], width=12, className="mb-3"),
+                
+                dbc.Col([
+                    dbc.Label(["Cas Type", html.Span("ⓘ", id="cas-type-tooltip", style=link_style)], style={'color': '#ddd'}),
+                    dcc.Dropdown(
+                        id='cas-type_3',
+                        options=[{'label': 'Cas9', 'value': 'cas9'}],
+                        value='cas9',
+                        style={'color': '#000', 'width': '100%'}
+                    ),
+                ], width=12, className="mb-3"),
+                
+                dbc.Col([
+                    dbc.Label(["Number of sgRNAs per region/locus tag", html.Span("ⓘ", id="number-sgrnas-tooltip", style=link_style)], style={'color': '#ddd'}),
+                    dbc.Input(
+                        id='number-of-sgRNAs-per-group_3',
+                        type='number',
+                        value=5,
+                        style={'color': '#000', 'width': '100%'}
+                    ),
+                ], width=12, className="mb-3"),
 
-    dbc.Row([
-    dbc.Col([
-        html.H4("6) Filtering metrics for sgRNAs", style=text_style),
-        dbc.Row([
-            dbc.Col([
-                dbc.Label("GC Content Upper Bound", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
-                dbc.Input(
-                    id='gc-upper_3',
-                    type='number',
-                    value=0.99,
-                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
-                ),
-            ], width=12, className="mb-3"),
-            dbc.Col([
-                dbc.Label("GC Content Lower Bound", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
-                dbc.Input(
-                    id='gc-lower_3',
-                    type='number',
-                    value=0.01,
-                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
-                ),
-            ], width=12, className="mb-3"),
-            dbc.Col([
-                dbc.Label("Off-Target Seed Length", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
-                dbc.Input(
-                    id='off-target-seed_3',
-                    type='number',
-                    value=13,
-                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
-                ),
-            ], width=12, className="mb-3"),
-            dbc.Col([
-                dbc.Label("Off-Target Upper Bound", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
-                dbc.Input(
-                    id='off-target-upper_3',
-                    type='number',
-                    value=10,
-                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
-                ),
-            ], width=12, className="mb-3"),
-            dbc.Col([
-                dbc.Label("Cas Type", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
-                dcc.Dropdown(
-                    id='cas-type_3',
-                    options=[
-                        {'label': 'Cas9', 'value': 'cas9'},
-                    ],
-                    value='cas9',
-                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
-                ),
-            ], width=12, className="mb-3"),
-            dbc.Col([
-                dbc.Label("Number of sgRNAs per region/locus tag", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
-                dbc.Input(
-                    id='number-of-sgRNAs-per-group_3',
-                    type='number',
-                    value=5,
-                    style={'color': '#000', 'width': '100%'}  # Ensure text is black and set width
-                ),
-            ], width=12, className="mb-3"),
-            
-            dbc.Col([
-                dbc.Checklist(
-                    options=[
-                        {"label": "Only Stop Codons", "value": 1},
-                    ],
-                    value=[1] if True else [],  # default value
-                    id="only-stop-codons-checkbox_3",
-                    inline=True,
-                    switch=True,
-                    className="big-switch"
-                ),
-            ], width=12, className="mb-3"),
+                dbc.Col([
+                    dbc.Checklist(
+                        options=[{"label": "Only Stop Codons", "value": 1}],
+                        value=[1],
+                        id="only-stop-codons-checkbox_3",
+                        inline=True,
+                        switch=True,
+                        className="big-switch"
+                    ),
+                ], width=12, className="mb-3"),
 
-            dbc.Col([
-                dbc.Checklist(
-                    options=[
-                        {"label": "Editing Sequence Context", "value": 1},
-                    ],
-                    value=[1] if True else [],  # default value
-                    id="editing_context_3",
-                    inline=True,
-                    switch=True,
-                    className="big-switch"
-                ),
-            ], width=12, className="mb-3"),
+                dbc.Col([
+                    dbc.Checklist(
+                        options=[{"label": "Editing Sequence Context", "value": 1}],
+                        value=[1],
+                        id="editing_context_3",
+                        inline=True,
+                        switch=True,
+                        className="big-switch"
+                    ),
+                ], width=12, className="mb-3"),
             ]),
         ], width=6),
     ], className="mb-4"),
-
 
     # Advanced settings section with one button to toggle visibility
     dbc.Row([
         dbc.Col([
             html.H4("7) Show advanced settings for checking primers and Golden Gate Cloning", style=text_style),
             dbc.Checklist(
-                options=[
-                    {"label": "", "value": 1},
-                ],
+                options=[{"label": "", "value": 1}],
                 value=[],
                 id="show-advanced-settings-checkbox",
                 inline=True,
@@ -248,7 +257,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             html.Div(id='advanced-settings-container', children=[
                 dbc.Row([
                     dbc.Col([
-                        dbc.Label("Choose Polymerase", style={'color': '#ddd'}),
+                        dbc.Label(["Choose Polymerase", html.Span("ⓘ", id="polymerase-tooltip", style=link_style)], style={'color': '#ddd'}),
                         dcc.Dropdown(
                             id='chosen-polymerase_3',
                             options=dropdown_options,
@@ -256,8 +265,9 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                             style={'color': '#000'}
                         ),
                     ], width=6),
+
                     dbc.Col([
-                        dbc.Label("Target Melting Temperature (°C)", style={'color': '#ddd'}),
+                        dbc.Label(["Target Melting Temperature (°C)", html.Span("ⓘ", id="checking-melting-temp-tooltip", style=link_style)], style={'color': '#ddd'}),
                         dbc.Input(
                             id='melting-temperature_3',
                             type='number',
@@ -265,8 +275,9 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                             style={'color': '#000'}
                         ),
                     ], width=6),
+
                     dbc.Col([
-                        dbc.Label("Primer Concentration (μM)", style={'color': '#ddd'}),
+                        dbc.Label(["Primer Concentration (μM)", html.Span("ⓘ", id="primer-concentration-tooltip", style=link_style)], style={'color': '#ddd'}),
                         dbc.Input(
                             id='primer-concentration_3',
                             type='number',
@@ -274,18 +285,9 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                             style={'color': '#000'}
                         ),
                     ], width=6),
-                    dbc.Col([
-                        dbc.Label("Primer Number Increment", style={'color': '#ddd'}),
-                        dbc.Input(
-                            id='primer-number-increment_3',
-                            type='number',
-                            value=1,
-                            style={'color': '#000'}
-                        ),
-                    ], width=6),
 
                     dbc.Col([
-                        dbc.Label("Flanking Region Number", style={'color': '#ddd'}),
+                        dbc.Label(["Flanking Region Number", html.Span("ⓘ", id="flanking-region-tooltip", style=link_style)], style={'color': '#ddd'}),
                         dbc.Input(
                             id='flanking-region-number_3',
                             type='number',
@@ -293,54 +295,80 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                             style={'color': '#000'}
                         ),
                     ], width=6),
+                    
+                    dbc.Col([
+                
+                
+                dbc.Label([
+                    "Restriction Overhang Forward ",
+                    html.Span("ⓘ", id="restriction-overhang-f-tooltip", style=link_style)
+                ], style={'color': '#ddd'}),
 
-                    dbc.Col([
-                        dbc.Label("Restriction Overhang Forward", style={'color': '#ddd'}),
-                        dbc.Input(
-                            id='restriction-overhang-f',
-                            type='text',
-                            value="GATCGggtctcc",
-                            style={'color': '#000'}
-                        ),
-                    ], width=6),
-                    dbc.Col([
-                        dbc.Label("Restriction Overhang Reverse", style={'color': '#ddd'}),
-                        dbc.Input(
-                            id='restriction-overhang-r',
-                            type='text',
-                            value="GATCAGGTCTCg",
-                            style={'color': '#000'}
-                        ),
-                    ], width=6),
-                    dbc.Col([
-                        dbc.Label("Backbone Overhang Forward", style={'color': '#ddd'}),
-                        dbc.Input(
-                            id='backbone-overhang-f',
-                            type='text',
-                            value="cATG",
-                            style={'color': '#000'}
-                        ),
-                    ], width=6),
-                    dbc.Col([
-                        dbc.Label("Backbone Overhang Reverse", style={'color': '#ddd'}),
-                        dbc.Input(
-                            id='backbone-overhang-r',
-                            type='text',
-                            value="cTAG",
-                            style={'color': '#000'}
-                        ),
-                    ], width=6),
-                    dbc.Col([
-                        dbc.Label("Cys4 Sequence", style={'color': '#ddd'}),
-                        dbc.Input(
-                            id='cys4-sequence',
-                            type='text',
-                            value="gTTCACTGCCGTATAGGCAGCTAAGAAA",
-                            style={'color': '#000'}
-                        ),
-                    ], width=6),
+                dbc.Input(
+                    id='restriction-overhang-f',
+                    type='text',
+                    value="GATCGggtctcc",
+                    style={'color': '#000'}
+                ),
+            ], width=6),
+
+            dbc.Col([
+                dbc.Label([
+                    "Restriction Overhang Reverse ",
+                    html.Span("ⓘ", id="restriction-overhang-r-tooltip", style=link_style)
+                ], style={'color': '#ddd'}),
+
+                dbc.Input(
+                    id='restriction-overhang-r',
+                    type='text',
+                    value="GATCAGGTCTCg",
+                    style={'color': '#000'}
+                ),
+            ], width=6),
+
+            dbc.Col([
+                dbc.Label([
+                    "Backbone Overhang Forward ",
+                    html.Span("ⓘ", id="backbone-overhang-f-tooltip", style=link_style)
+                ], style={'color': '#ddd'}),
+
+                dbc.Input(
+                    id='backbone-overhang-f',
+                    type='text',
+                    value="cATG",
+                    style={'color': '#000'}
+                ),
+            ], width=6),
+
+            dbc.Col([
+                dbc.Label([
+                    "Backbone Overhang Reverse ",
+                    html.Span("ⓘ", id="backbone-overhang-r-tooltip", style=link_style)
+                ], style={'color': '#ddd'}),
+
+                dbc.Input(
+                    id='backbone-overhang-r',
+                    type='text',
+                    value="cTAG",
+                    style={'color': '#000'}
+                ),
+            ], width=6),
+
+            dbc.Col([
+                dbc.Label([
+                    "Csy4 Sequence ",
+                    html.Span("ⓘ", id="cys4-sequence-tooltip", style=link_style)
+                ], style={'color': '#ddd'}),
+                dbc.Input(
+                    id='cys4-sequence',
+                    type='text',
+                    value="gTTCACTGCCGTATAGGCAGCTAAGAAA",
+                    style={'color': '#000'}
+                ),
+            ], width=6),
+
                 ])
-            ], style={"display": "none"})  # Hidden by default
+            ], style={"display": "none"})
         ], width=6),
     ], className="mb-4"),
 
@@ -350,8 +378,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         ], width=12),
     ], className="mb-4"),
     
-
-   ### Output
+    # Placeholder for the output
     dbc.Row([
         dbc.Col([
             dcc.Loading(
@@ -383,7 +410,6 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                         dbc.CardBody([
                             html.H5("PCR", className="card-title", style=text_style),
                             DataTable(id='pcr-table_3', **table_style),
-                            # Removed the download button
                         ])
                     ], style=card_style),
 
@@ -413,4 +439,6 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         ], width=10),
     ]),
 
+    # Include the tooltips at the end of the layout
+    *tooltips
 ])
