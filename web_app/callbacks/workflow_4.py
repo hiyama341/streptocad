@@ -194,9 +194,9 @@ def register_workflow_4_callbacks(app):
 
                 output_files = [
                     {"name": "CRISPRi_w_sgRNAs.gb", "content": sgRNA_vectors},
-                    {"name": "full_idt.csv", "content": idt_primers},
-                    {"name": "sgrna_df.csv", "content": sgrna_df},
-                    {"name": "filtered_df.csv", "content": filtered_df}
+                    {"name": "01_full_idt.csv", "content": idt_primers},
+                    {"name": "02_sgrna_df.csv", "content": sgrna_df},
+                    {"name": "03_filtered_sgrna_df.csv", "content": filtered_df}
                 ]
 
                 input_values = {

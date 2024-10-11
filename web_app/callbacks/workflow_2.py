@@ -226,7 +226,7 @@ def register_workflow_2_callbacks(app):
                     {"name": "00_primer_df.csv", "content": checking_primers_df},
                     {"name": "01_full_idt.csv", "content": full_idt},
                     {"name": "02_mutated_sgrna_df.csv", "content": mutated_sgrna_df},
-                    {"name": "03_filtered_df.csv", "content": filtered_df},
+                    {"name": "03_filtered_sgrna_df.csv", "content": filtered_sgrna_df_for_base_editing},
                     {"name": "04_plasmid_metadata_df.csv", "content": plasmid_metadata_df},
                 ]
                 input_values = {

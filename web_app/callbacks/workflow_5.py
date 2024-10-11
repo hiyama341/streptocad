@@ -298,22 +298,22 @@ def register_workflow_5_callbacks(app):
                 if in_frame_deletion: 
                     output_files = [
                         {"name": "Cas9_w_sgRNAs.gb", "content": assembled_contigs}, # LIST OF Dseqrecords
-                        {"name": "primer_df.csv", "content": unique_df},
-                        {"name": "full_idt.csv", "content": full_idt},
-                        {"name": "sgrna_df.csv", "content": sgrna_df},
-                        {"name": "filtered_df.csv", "content": filtered_df},
-                        {"name": "plasmid_metadata_df.csv", "content": plasmid_metadata_df},
-                        {"name": "workflow_order_df.csv", "content": workflow_df},
+                        {"name": "01_primer_df.csv", "content": unique_df},
+                        {"name": "02_full_idt.csv", "content": full_idt},
+                        {"name": "03_sgrna_df.csv", "content": sgrna_df},
+                        {"name": "04_filtered_sgrna_df.csv", "content": filtered_df},
+                        {"name": "05_plasmid_metadata_df.csv", "content": plasmid_metadata_df},
+                        {"name": "06_workflow_order_df.csv", "content": workflow_df},
 
 
                     ]
                 else: 
                     output_files = [
                         {"name": "Cas9_sgRNAs.gb", "content": sgRNA_vectors}, # LIST OF Dseqrecords
-                        {"name": "full_idt.csv", "content": full_idt},
-                        {"name": "sgrna_df.csv", "content": sgrna_df},
-                        {"name": "filtered_df.csv", "content": filtered_df},
-                        {"name": "plasmid_metadata_df.csv", "content": plasmid_metadata_df},
+                        {"name": "01_full_idt.csv", "content": full_idt},
+                        {"name": "02_sgrna_df.csv", "content": sgrna_df},
+                        {"name": "03_filtered_sgrna_df.csv", "content": filtered_df},
+                        {"name": "04_plasmid_metadata_df.csv", "content": plasmid_metadata_df},
                     ]
 
                 input_values = {

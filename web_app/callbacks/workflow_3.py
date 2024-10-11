@@ -286,12 +286,13 @@ def register_workflow_3_callbacks(app):
                 input_files = [{"name": "input_genome.gb", "content": genome},
                             {"name": "input_plasmid.gb", "content": clean_plasmid}]
                 output_files = [{"name": "mcBEST_w_sgRNAs.gb", "content": rec_vec},
-                                {"name": "overhang_df.csv", "content": overhangs},
-                                {"name": "pcr_df.csv", "content": primer_df},
-                                {"name": "full_idt.csv", "content": idt_df},
-                                {"name": "mutated_sgrna_df.csv", "content": mutated_sgrna_df},
-                                {"name": "filtered_df.csv", "content": filtered_df},
-                                {"name": "plasmid_metadata_df.csv", "content": plasmid_metadata_df}]
+                                {"name": "01_pcr_df.csv", "content": primer_df},
+                                {"name": "02_full_idt.csv", "content": idt_df},
+                                {"name": "03_mutated_sgrna_df.csv", "content": mutated_sgrna_df},
+                                {"name": "04_filtered_sgrna_df.csv", "content": filtered_df},
+                                {"name": "05_plasmid_metadata_df.csv", "content": plasmid_metadata_df},
+                                {"name": "06_overhang_df.csv", "content": overhangs},
+                                ]
                 input_values = {"genes_to_knockout": genes_to_KO_list,
                                 "filtering_metrics": {"gc_upper": gc_upper, "gc_lower": gc_lower,
                                                     "off_target_seed": off_target_seed,
