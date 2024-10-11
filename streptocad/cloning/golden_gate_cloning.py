@@ -133,7 +133,7 @@ class GoldenGateCloning:
             backbone_overhang_r=self.backbone_overhang_r,
             restriction_overhang_r=self.restriction_overhang_r,
         )
-        # Updating primer names
+        # Updating primer names # TODO: make the naming more suited for the workflow
         primer_counter = self.primer_incrementation # Initialize primer counter
         for amplicon in self.amplicons_w_f_r_primer_overhang:
             amplicon.forward_primer.id  = f"primer_{primer_counter}"  # Assuming a primer_counter is defined somewhere
