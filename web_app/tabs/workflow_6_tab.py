@@ -66,7 +66,7 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
             html.H4("1) Upload your genome file", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("Genome File", className="card-title", style=text_style),
+                    html.H5("Genome File (GenBank format)", className="card-title", style=text_style),
                     dcc.Upload(
                         id={'type': 'upload-component', 'index': 'genome-file-6'},  # Updated to use pattern matching ID
                         children=html.Div([
@@ -87,7 +87,7 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
             html.H4("2) Upload the plasmid of choice", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("CRISPR  Plasmid", className="card-title", style=text_style),
+                    html.H5("CRISPR  Plasmid (GenBank format)", className="card-title", style=text_style),
                     dcc.Upload(
                         id={'type': 'upload-component', 'index': 'single-vector-6'},  # Updated to use pattern matching ID
                         children=html.Div([
@@ -106,7 +106,7 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
         
     dbc.Row([
         dbc.Col([
-            html.H4("3) Choose genes/regions to knock out", style=text_style),
+            html.H4("3) Choose genes/regions to delete", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Example for genes: SCO5087, SCO5087,... (comma-separated)", className="card-title", style=text_style),

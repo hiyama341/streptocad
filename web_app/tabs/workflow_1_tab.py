@@ -67,7 +67,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
             html.H4("1) Upload your gene sequences", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("Sequences (GenBank file)", className="card-title", style=text_style),
+                    html.H5("Sequences (GenBank format)", className="card-title", style=text_style),
                     dcc.Upload(
                         id={'type': 'upload-component', 'index': 'sequences'},  # Updated to use pattern matching ID
                         children=html.Div([
@@ -88,7 +88,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
             html.H4("2) Upload your plasmid", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("Plasmid File (GenBank file)", className="card-title", style=text_style),
+                    html.H5("Plasmid File (GenBank format)", className="card-title", style=text_style),
                     dcc.Upload(
                         id={'type': 'upload-component', 'index': 'plasmid'},  # Updated to use pattern matching ID
                         children=html.Div([

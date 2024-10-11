@@ -70,7 +70,7 @@ crispr_cb_tab = html.Div(children=[
             html.H4("1) Upload your genome file", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("Genome File", className="card-title", style=text_style),
+                    html.H5("Genome File (GenBank format)", className="card-title", style=text_style),
                     dcc.Upload(
                         id={'type': 'upload-component', 'index': 'genome-file-2'},  # Updated to use pattern matching ID
                         children=html.Div([
@@ -91,7 +91,7 @@ crispr_cb_tab = html.Div(children=[
             html.H4("2) Upload the plasmid of choice", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("CRISPR-BEST plasmid", className="card-title", style=text_style),
+                    html.H5("CRISPR-BEST plasmid (GenBank format)", className="card-title", style=text_style),
                     dcc.Upload(
                         id={'type': 'upload-component', 'index': 'single-vector-2'},  # Updated to use pattern matching ID
                         children=html.Div([
@@ -110,7 +110,7 @@ crispr_cb_tab = html.Div(children=[
         
     dbc.Row([
         dbc.Col([
-            html.H4("3) Choose genes/regions to knock out", style=text_style),
+            html.H4("3) Choose genes/regions to edit", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Example for genes: SCO5087, SCO5087,... (comma-separated)", className="card-title", style=text_style),
@@ -282,50 +282,95 @@ crispr_cb_tab = html.Div(children=[
             html.Div(id='advanced-settings-container', children=[
                 dbc.Row([
                     dbc.Col([
-                        dbc.Label("Choose Polymerase", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label([
+                            "Choose Polymerase ",
+                            html.Span("ⓘ", id="polymerase-tooltip-icon-2", style=link_style)
+                        ], style={'color': '#ddd'}),
+                        dbc.Tooltip(
+                            "Select the polymerase type. The default is optimized for high fidelity.",
+                            target="polymerase-tooltip-icon-2",
+                            placement="top",
+                        ),
                         dcc.Dropdown(
                             id='chosen-polymerase_2',
                             options=dropdown_options,
-                            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],  # Set default value
-                            style={'color': '#000'}  # Ensure text is black
+                            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],
+                            style={'color': '#000'}
                         ),
                     ], width=6),
+                    
                     dbc.Col([
-                        dbc.Label("Target Melting Temperature (°C)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label([
+                            "Target Melting Temperature (°C) ",
+                            html.Span("ⓘ", id="melting-temp-tooltip-icon-2", style=link_style)
+                        ], style={'color': '#ddd'}),
+                        dbc.Tooltip(
+                            "Set the desired melting temperature for the PCR reactions.",
+                            target="melting-temp-tooltip-icon-2",
+                            placement="top",
+                        ),
                         dbc.Input(
                             id='melting-temperature_2',
                             type='number',
                             value=65,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
                     ], width=6),
+
                     dbc.Col([
-                        dbc.Label("Primer Concentration (μM)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label([
+                            "Primer Concentration (μM) ",
+                            html.Span("ⓘ", id="primer-concentration-tooltip-icon-2", style=link_style)
+                        ], style={'color': '#ddd'}),
+                        dbc.Tooltip(
+                            "Specify the concentration of primers used in the PCR reaction.",
+                            target="primer-concentration-tooltip-icon-2",
+                            placement="top",
+                        ),
                         dbc.Input(
                             id='primer-concentration_2',
                             type='number',
                             value=0.4,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
                     ], width=6),
+
                     dbc.Col([
-                        dbc.Label("Primer Number Increment", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label([
+                            "Primer Number Increment ",
+                            html.Span("ⓘ", id="primer-increment-tooltip-icon-2", style=link_style)
+                        ], style={'color': '#ddd'}),
+                        dbc.Tooltip(
+                            "Choose the increment for primer numbering in the workflow.",
+                            target="primer-increment-tooltip-icon-2",
+                            placement="top",
+                        ),
                         dbc.Input(
                             id='primer-number-increment_2',
                             type='number',
                             value=1,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
                     ], width=6),
+
                     dbc.Col([
-                        dbc.Label("Flanking Region Number", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label([
+                            "Flanking Region Number ",
+                            html.Span("ⓘ", id="flanking-region-tooltip-icon-2", style=link_style)
+                        ], style={'color': '#ddd'}),
+                        dbc.Tooltip(
+                            "Set the size of the flanking regions for your PCR reactions.",
+                            target="flanking-region-tooltip-icon-2",
+                            placement="top",
+                        ),
                         dbc.Input(
                             id='flanking-region-number_2',
                             type='number',
                             value=500,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
                     ], width=6),
+                    
                 ])
             ], style={"display": "none"})  # Hidden by default
         ], width=6),

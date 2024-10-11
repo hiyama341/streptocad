@@ -66,7 +66,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             html.H4("1) Upload your genome file", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("Genome File", className="card-title", style=text_style),
+                    html.H5("Genome File (GenBank format)", className="card-title", style=text_style),
                     upload_component_with_display(
                         {'type': 'upload-component', 'index': 'genome-file-3'},  # Corrected: Directly use the dictionary
                         text_style, 
@@ -83,7 +83,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
             html.H4("2) Upload the plasmid of choice", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("CRISPR-mcBEST plasmid", className="card-title", style=text_style),
+                    html.H5("CRISPR-mcBEST plasmid (GenBank format)", className="card-title", style=text_style),
                     upload_component_with_display(
                         {'type': 'upload-component', 'index': 'single-vector-3'},  # Corrected: Directly use the dictionary
                         text_style, 
@@ -98,7 +98,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
         
     dbc.Row([
         dbc.Col([
-            html.H4("3) Choose genes/regions to knock out", style=text_style),
+            html.H4("3) Choose genes/regions to edit", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Example for genes: SCO5087, SCO5087,... (comma-separated)", className="card-title", style=text_style),
