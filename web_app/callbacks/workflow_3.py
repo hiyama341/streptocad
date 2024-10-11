@@ -125,7 +125,6 @@ def register_workflow_3_callbacks(app):
         State('chosen-polymerase_3', 'value'),
         State('melting-temperature_3', 'value'),
         State('primer-concentration_3', 'value'),
-        State('primer-number-increment_3', 'value'),
         State('flanking-region-number_3', 'value'),
         State('restriction-overhang-f', 'value'),
         State('restriction-overhang-r', 'value'),
@@ -140,7 +139,7 @@ def register_workflow_3_callbacks(app):
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO,
                     sgRNA_handle_input, input_tm, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type,
                     number_of_sgRNAs_per_group, only_stop_codons, chosen_polymerase, melting_temperature,
-                    primer_concentration, primer_number_increment, flanking_region_number,
+                    primer_concentration, flanking_region_number,
                     restriction_overhang_f, restriction_overhang_r, backbone_overhang_f, backbone_overhang_r, cys4_sequence, 
                     editing_context):
 
@@ -220,7 +219,7 @@ def register_workflow_3_callbacks(app):
                                                 restriction_overhang_f=restriction_overhang_f, restriction_overhang_r=restriction_overhang_r,
                                                 backbone_overhang_f=backbone_overhang_f, backbone_overhang_r=backbone_overhang_r,
                                                 cys4=cys4_sequence, tm_function=primer_tm_neb,
-                                                primer_incrementation=primer_number_increment, polymerase=chosen_polymerase)
+                                                polymerase=chosen_polymerase)
                 logger.info("Golden Gate Cloning setup completed.")
 
 
@@ -302,7 +301,6 @@ def register_workflow_3_callbacks(app):
                                 "polymerase_settings": {"chosen_polymerase": chosen_polymerase,
                                                         "melting_temperature": melting_temperature,
                                                         "primer_concentration": primer_concentration,
-                                                        "primer_number_increment": primer_number_increment,
                                                         "flanking_region": flanking_region_number},
                                 "overlapping_sequences": {"restriction_overhang_f": restriction_overhang_f,
                                                         "restriction_overhang_r": restriction_overhang_r,
