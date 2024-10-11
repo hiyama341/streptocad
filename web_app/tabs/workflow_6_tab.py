@@ -290,15 +290,7 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
                             style={'color': '#000'}
                         ),
                     ], width=6),
-                    dbc.Col([
-                        dbc.Label(["Primer Number Increment", html.Span("ⓘ", id="primer-increment-tooltip", style=link_style)], style={'color': '#ddd'}),
-                        dbc.Input(
-                            id='primer-number-increment_6',
-                            type='number',
-                            value=1,
-                            style={'color': '#000'}
-                        ),
-                    ], width=6),
+
                     dbc.Col([
                         dbc.Label(["Flanking Region Number", html.Span("ⓘ", id="flanking-region-tooltip", style=link_style)], style={'color': '#ddd'}),
                         dbc.Input(

@@ -98,7 +98,6 @@ def register_workflow_5_callbacks(app):
             State('chosen-polymerase_5', 'value'),
             State('melting-temperature_5', 'value'),
             State('primer-concentration_5', 'value'),
-            State('primer-number-increment_5', 'value'),
             State('flanking-region-number_5', 'value'), 
             State('repair_templates_length_5', 'value'), 
             State('overlap_for_gibson_length_5', 'value'), 
@@ -107,7 +106,7 @@ def register_workflow_5_callbacks(app):
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
                                                       up_homology, dw_homology, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
                                                       number_of_sgRNAs_per_group, in_frame_deletion, chosen_polymerase, melting_temperature, 
-                                                      primer_concentration, primer_number_increment, flanking_region_number, 
+                                                      primer_concentration, flanking_region_number, 
                                                       repair_templates_length, overlap_for_gibson_length):
         if n_clicks is None:
             raise PreventUpdate
@@ -332,7 +331,6 @@ def register_workflow_5_callbacks(app):
                         "chosen_polymerase": chosen_polymerase,
                         "melting_temperature": melting_temperature,
                         "primer_concentration": primer_concentration,
-                        "primer_number_increment": primer_number_increment,
                         "flanking_region": flanking_region_number
                     },
                     "overlapping_sequences": {

@@ -256,7 +256,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                             style={'color': '#000'}
                         ),
                         create_tooltip("Select the polymerase type for high-fidelity DNA synthesis.", "polymerase-tooltip-5")
-                    ], width=6),
+                    ], width=12),
 
                     dbc.Col([
                         dbc.Label(["Target Melting Temperature (°C) ", html.Span("ⓘ", id="melting-temp-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
@@ -280,16 +280,6 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                         create_tooltip("Specify the concentration of primers used in the PCR reaction.", "primer-concentration-tooltip-5")
                     ], width=6),
 
-                    dbc.Col([
-                        dbc.Label(["Primer Number Increment ", html.Span("ⓘ", id="primer-increment-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
-                        dbc.Input(
-                            id='primer-number-increment_5',
-                            type='number',
-                            value=1,
-                            style={'color': '#000'}
-                        ),
-                        create_tooltip("Adjust the numbering increment for primer sets.", "primer-increment-tooltip-5")
-                    ], width=6),
 
                     dbc.Col([
                         dbc.Label(["Flanking Region Number ", html.Span("ⓘ", id="flanking-region-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
