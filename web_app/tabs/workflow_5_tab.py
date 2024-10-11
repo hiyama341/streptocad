@@ -4,6 +4,8 @@ from dash.dash_table import DataTable
 
 from styling import text_style, upload_button_style, card_style, link_style, table_style, table_header_style, table_row_style
 from streptocad.utils import polymerase_dict
+from tooltip import create_tooltip, tooltips  # Import tooltips
+
 # Reference content used in multiple tabs
 reference_content = html.Div([
     html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below (the figure and protocol is from there).", style=text_style),
@@ -17,7 +19,6 @@ dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_
 gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
     dbc.Row([
         dbc.Col([
-            # Introductory text using Markdown for styling
             dcc.Markdown("""
             ## **What is CRISPR-Cas9?**
             - A method that can be used to perform random-sized mutations or full in-frame deletions with repair templates.
@@ -37,8 +38,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
     ], className="mb-4"),
     
-    html.Img(src='/assets/w5_pic.png', 
-             style={'width': '60%', 'margin': '20px auto'}),  # Adjust the width as needed
+    html.Img(src='/assets/w5_pic.png', style={'width': '60%', 'margin': '20px auto'}),
     
     dbc.Row([
         dbc.Col(
@@ -59,7 +59,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
         )
     ], className="mb-4", justify="start"),
     
-    # uPload
+    # UPLOAD genome
     dbc.Row([
         dbc.Col([
             html.H4("1) Upload your genome file", style=text_style),
@@ -67,7 +67,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 dbc.CardBody([
                     html.H5("Genome File (GenBank format)", className="card-title", style=text_style),
                     dcc.Upload(
-                        id={'type': 'upload-component', 'index': 'genome-file-5'},  # Updated to use pattern matching ID
+                        id={'type': 'upload-component', 'index': 'genome-file-5'},
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select Genome File', style=link_style)
@@ -75,7 +75,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id={'type': 'filename-display', 'index': 'genome-file-5'}, children=[], style=text_style),  # Updated to use pattern matching ID
+                    html.Div(id={'type': 'filename-display', 'index': 'genome-file-5'}, children=[], style=text_style),
                 ])
             ], style=card_style),
         ], width=6),
@@ -86,17 +86,17 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
             html.H4("2) Upload the plasmid of choice", style=text_style),
             dbc.Card([
                 dbc.CardBody([
-                    html.H5("CRISPR  Plasmid (GenBank format)", className="card-title", style=text_style),
+                    html.H5("CRISPR Plasmid (GenBank format)", className="card-title", style=text_style),
                     dcc.Upload(
-                        id={'type': 'upload-component', 'index': 'single-vector-5'},  # Updated to use pattern matching ID
+                        id={'type': 'upload-component', 'index': 'single-vector-5'},
                         children=html.Div([
                             'Drag and Drop or ',
-                            html.A('Select CRISPR  Plasmid File', style=link_style)
+                            html.A('Select CRISPR Plasmid File', style=link_style)
                         ], style=text_style),
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id={'type': 'filename-display', 'index': 'single-vector-5'}, children=[], style=text_style),  # Updated to use pattern matching ID
+                    html.Div(id={'type': 'filename-display', 'index': 'single-vector-5'}, children=[], style=text_style),
                 ])
             ], style=card_style),
         ], width=6),
@@ -130,7 +130,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
 
     dbc.Row([
         dbc.Col([
-            html.Label('5 prime Overhang:', style=text_style),
+            html.Label(["5 prime Overhang: ", html.Span("ⓘ", id="forward-overhang-tooltip-5", style=link_style)], style=text_style),
             dbc.Input(
                 id='forward-overhang-input_5',
                 type='text',
@@ -138,11 +138,12 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 value='CGGTTGGTAGGATCGACGGC'
             ),
         ], width=6, style={"marginRight": "10px", "marginLeft": "10px"}),
+        create_tooltip("Enter the 5' overhang sequence for oligo nucleotide synthesis.", "forward-overhang-tooltip-5"),
     ]),
 
     dbc.Row([
         dbc.Col([
-            html.Label('3 prime Overhang:', style=text_style),
+            html.Label(["3 prime Overhang: ", html.Span("ⓘ", id="reverse-overhang-tooltip-5", style=link_style)], style=text_style),
             dbc.Input(
                 id='reverse-overhang-input_5',
                 type='text',
@@ -150,6 +151,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                 value='GTTTTAGAGCTAGAAATAGC'
             ),
         ], width=6, style={"marginRight": "10px", "marginLeft": "10px"}),
+        create_tooltip("Enter the 3' overhang sequence for oligo nucleotide synthesis.", "reverse-overhang-tooltip-5"),
     ], className="mb-5"),
 
     dbc.Row([
@@ -157,44 +159,51 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
             html.H4("5) Filtering metrics for sgRNAs", style=text_style),
             dbc.Row([
                 dbc.Col([
-                    dbc.Label("GC Content Upper Bound", style={'color': '#ddd'}),  
+                    dbc.Label(["GC Content Upper Bound ", html.Span("ⓘ", id="gc-upper-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                     dbc.Input(
                         id='gc-upper_5',
                         type='number',
                         value=0.99,
                         style={'color': '#000', 'width': '100%'}
                     ),
+                    create_tooltip("Set the upper bound for GC content in sgRNA sequences.", "gc-upper-tooltip-5")
                 ], width=12, className="mb-3"),
+
                 dbc.Col([
-                    dbc.Label("GC Content Lower Bound", style={'color': '#ddd'}),  
+                    dbc.Label(["GC Content Lower Bound ", html.Span("ⓘ", id="gc-lower-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                     dbc.Input(
                         id='gc-lower_5',
                         type='number',
                         value=0.01,
                         style={'color': '#000', 'width': '100%'}
                     ),
+                    create_tooltip("Set the lower bound for GC content in sgRNA sequences.", "gc-lower-tooltip-5")
                 ], width=12, className="mb-3"),
 
                 dbc.Col([
-                    dbc.Label("Off-Target Seed Length", style={'color': '#ddd'}),  
+                    dbc.Label(["Off-Target Seed Length ", html.Span("ⓘ", id="off-target-seed-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                     dbc.Input(
                         id='off-target-seed_5',
                         type='number',
                         value=13,
                         style={'color': '#000', 'width': '100%'}
                     ),
+                    create_tooltip("Specify the length of the seed sequence for off-target filtering.", "off-target-seed-tooltip-5")
                 ], width=12, className="mb-3"),
+
                 dbc.Col([
-                    dbc.Label("Off-Target Upper Bound", style={'color': '#ddd'}),  
+                    dbc.Label(["Off-Target Upper Bound ", html.Span("ⓘ", id="off-target-upper-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                     dbc.Input(
                         id='off-target-upper_5',
                         type='number',
                         value=10,
                         style={'color': '#000', 'width': '100%'}
                     ),
+                    create_tooltip("Specify the maximum allowed off-target score for sgRNA filtering.", "off-target-upper-tooltip-5")
                 ], width=12, className="mb-3"),
+
                 dbc.Col([
-                    dbc.Label("Cas Type", style={'color': '#ddd'}),  
+                    dbc.Label(["Cas Type ", html.Span("ⓘ", id="cas-type-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                     dcc.Dropdown(
                         id='cas-type_5',
                         options=[
@@ -203,29 +212,28 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                         value='cas9',
                         style={'color': '#000', 'width': '100%'}
                     ),
+                    create_tooltip("Select the Cas protein type for the genome editing workflow.", "cas-type-tooltip-5")
                 ], width=12, className="mb-3"),
+
                 dbc.Col([
-                    dbc.Label("Number of sgRNAs per region/locus tag", style={'color': '#ddd'}),  
+                    dbc.Label(["Number of sgRNAs per region/locus tag ", html.Span("ⓘ", id="number-sgrnas-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                     dbc.Input(
                         id='number-of-sgRNAs-per-group_5',
                         type='number',
                         value=5,
                         style={'color': '#000', 'width': '100%'}
                     ),
+                    create_tooltip("Define the number of sgRNAs for each targeted region or locus.", "number-sgrnas-tooltip-5")
                 ], width=12, className="mb-3"),
             ]),
         ], width=6, className="mb-4"),
     ], className="mb-3"),
 
-
-
     dbc.Row([
         dbc.Col([
             html.H4("6) Show advanced settings for checking primers and repair templates", style=text_style),
             dbc.Checklist(
-                options=[
-                    {"label": "", "value": 1},
-                ],
+                options=[{"label": "", "value": 1}],
                 value=[],
                 id="show-advanced-settings-checkbox",
                 inline=True,
@@ -234,79 +242,89 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
             ),
         ], width=6),
     ], className="mb-3"),
-    
-
 
     dbc.Row([
         dbc.Col([
             html.Div(id='advanced-settings-container', children=[
                 dbc.Row([
                     dbc.Col([
-                        dbc.Label("Choose Polymerase", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label(["Choose Polymerase ", html.Span("ⓘ", id="polymerase-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                         dcc.Dropdown(
                             id='chosen-polymerase_5',
                             options=dropdown_options,
-                            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],  # Set default value
-                            style={'color': '#000'}  # Ensure text is black
+                            value=polymerase_dict['Q5 High-Fidelity 2X Master Mix'],
+                            style={'color': '#000'}
                         ),
+                        create_tooltip("Select the polymerase type for high-fidelity DNA synthesis.", "polymerase-tooltip-5")
                     ], width=6),
+
                     dbc.Col([
-                        dbc.Label("Target Melting Temperature (°C)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label(["Target Melting Temperature (°C) ", html.Span("ⓘ", id="melting-temp-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                         dbc.Input(
                             id='melting-temperature_5',
                             type='number',
                             value=65,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
+                        create_tooltip("Set the desired melting temperature for the PCR reactions.", "melting-temp-tooltip-5")
                     ], width=6),
+
                     dbc.Col([
-                        dbc.Label("Primer Concentration (μM)", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label(["Primer Concentration (μM) ", html.Span("ⓘ", id="primer-concentration-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                         dbc.Input(
                             id='primer-concentration_5',
                             type='number',
                             value=0.4,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
+                        create_tooltip("Specify the concentration of primers used in the PCR reaction.", "primer-concentration-tooltip-5")
                     ], width=6),
+
                     dbc.Col([
-                        dbc.Label("Primer Number Increment", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label(["Primer Number Increment ", html.Span("ⓘ", id="primer-increment-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                         dbc.Input(
                             id='primer-number-increment_5',
                             type='number',
                             value=1,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
+                        create_tooltip("Adjust the numbering increment for primer sets.", "primer-increment-tooltip-5")
                     ], width=6),
+
                     dbc.Col([
-                        dbc.Label("Flanking Region Number", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label(["Flanking Region Number ", html.Span("ⓘ", id="flanking-region-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                         dbc.Input(
                             id='flanking-region-number_5',
                             type='number',
                             value=500,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
+                        create_tooltip("Define the size (in bp) of flanking regions for PCR reactions.", "flanking-region-tooltip-5")
                     ], width=6),
+
                     dbc.Col([
-                        dbc.Label("Length of repair templates", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label(["Length of repair templates ", html.Span("ⓘ", id="repair-templates-length-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                         dbc.Input(
                             id='repair_templates_length_5',
                             type='number',
                             value=1000,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
+                        create_tooltip("Specify the length of repair templates for precise deletions.", "repair-templates-length-tooltip-5")
                     ], width=6),
 
                     dbc.Col([
-                        dbc.Label("Overlap between templates for gibson cloning", style={'color': '#ddd'}),  # Explicitly set color to ensure visibility
+                        dbc.Label(["Overlap between templates for Gibson Cloning ", html.Span("ⓘ", id="overlap-gibson-tooltip-5", style=link_style)], style={'color': '#ddd'}),  
                         dbc.Input(
                             id='overlap_for_gibson_length_5',
                             type='number',
                             value=40,
-                            style={'color': '#000'}  # Ensure text is black
+                            style={'color': '#000'}
                         ),
+                        create_tooltip("Define the overlap length between templates for Gibson assembly.", "overlap-gibson-tooltip-5")
                     ], width=6),
                 ])
-            ], style={"display": "none"})  # Hidden by default
+            ], style={"display": "none"})
         ], width=6),
     ], className="mb-3"),
 
@@ -315,19 +333,15 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
             html.H4("7) Generate in-frame deletions", style=text_style),
             html.P("Note: adding repair templates to your plasmids (default 1000 bp)", style={'color': '#ddd', 'fontSize': '1rem'}),
             dbc.Checklist(
-                options=[
-                    {"label": "", "value": 1},
-                ],
+                options=[{"label": "", "value": 1}],
                 value=[],
                 id="show-inframe-deletions-settings-checkbox_5",
                 inline=True,
-                switch=True,  # This creates a regular checkbox
+                switch=True,
                 className="big-switch"
-
             ),
         ], width=10),
     ], className="mb-3"),
-
 
     dbc.Row([
         dbc.Col([
@@ -341,6 +355,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
             dcc.Loading(
                 id="loading-overlay",
                 type="circle",
+                style={'height': '80px', 'width': '80px', 'margin': 'auto'},  # Adjust size as needed
                 children=[
                     dbc.Card([
                         dbc.CardBody([
@@ -348,9 +363,6 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                             DataTable(id='filtered-df-table_5', **table_style),
                         ])
                     ], style=card_style),
-
-
-
 
                     dbc.Card([
                         dbc.CardBody([
@@ -366,15 +378,12 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                         ])
                     ], style=card_style),
 
-
                     dbc.Card([
                         dbc.CardBody([
                             html.H5("Overview of plasmids", className="card-title", style=text_style),
                             DataTable(id='plasmid-metadata-table_5', **table_style),
-
                         ])
                     ], style=card_style),
-
 
                     dbc.Card([
                         dbc.CardBody([
@@ -394,4 +403,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
             )
         ], width=10),
     ]),
+
+    # Include all tooltips
+    *tooltips
 ])
