@@ -21,7 +21,7 @@ def generate_primer_dataframe(clean_seq: List[SeqRecord],
                               primer_concentration: float, 
                               up_homology: str, 
                               dw_homology: str, 
-                              primer_number_increment: int) -> pd.DataFrame:
+                              ) -> pd.DataFrame:
     """
     Generates a DataFrame containing primer sequences, melting temperatures,
     annealing temperature, and incremental primer names, appending specified homology
@@ -41,8 +41,7 @@ def generate_primer_dataframe(clean_seq: List[SeqRecord],
         Upstream homology sequence to append to forward primers.
     dw_homology : str
         Downstream homology sequence to append to reverse primers.
-    primer_number_increment : int
-        Starting number for incremental primer naming.
+
 
     Returns
     -------
