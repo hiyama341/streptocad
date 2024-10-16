@@ -83,8 +83,8 @@ def generate_primer_dataframe(clean_seq: List[SeqRecord],
     df['f_primer_sequences(5-3)'] = up_homology + df['f_primer_anneal(5-3)']
     df['r_primer_sequences(5-3)'] = dw_homology + df['r_primer_anneal(5-3)'] 
 
-    f_primer_names = [f'primer_{i}' for i in range(primer_number_increment, primer_number_increment + len(df) * 2, 2)]
-    r_primer_names = [f'primer_{i}' for i in range(primer_number_increment + 1, primer_number_increment + 1 + len(df) * 2, 2)]
+    f_primer_names = [f'primer_fwd_{df.loc[i, "template"]}' for i in range(len(df))]
+    r_primer_names = [f'primer_rev_{df.loc[i, "template"]}' for i in range(len(df))]
 
     df['f_primer_name'] = f_primer_names
     df['r_primer_name'] = r_primer_names
