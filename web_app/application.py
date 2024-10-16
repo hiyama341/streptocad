@@ -39,7 +39,7 @@ from header import header_content
 from introduction_page import introduction_page
 from welcome_message import welcome_message_content
 from footer import footer_content
-from intro_message import intro_message_content
+from about_and_misson_statement import about_streptocad_and_mission_statement
 
 external_stylesheets = [
     dbc.themes.DARKLY,
@@ -66,7 +66,7 @@ main_layout = dbc.Container([
                 dcc.Tab(label="Workflow 4: CRISPRi plasmid generation", value="workflow_4", style=vertical_tab_style, selected_style=active_tab_style),
                 dcc.Tab(label="Workflow 5: CRISPR-Cas9 plasmid generation", value="workflow_5", style=vertical_tab_style, selected_style=active_tab_style),
                 dcc.Tab(label="Workflow 6: CRISPR-Cas3 plasmid generation", value="workflow_6", style=vertical_tab_style, selected_style=active_tab_style),
-                dcc.Tab(label="About StreptoCAD", value="about", style=vertical_tab_style, selected_style=active_tab_style)
+                dcc.Tab(label="About StreptoCAD & Mission Statement", value="about", style=vertical_tab_style, selected_style=active_tab_style)
             ])
         ], width=3),
         dbc.Col([
@@ -122,7 +122,7 @@ def display_main_page(n_clicks, children):
 )
 def render_tab_content(tab):
     if tab == "about":
-        return welcome_message_content
+        return about_streptocad_and_mission_statement
     elif tab == "workflow_1":
         return workflow_1_tab
     elif tab == "workflow_2":
