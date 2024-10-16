@@ -11,7 +11,9 @@ from Bio.Restriction import RestrictionBatch
 
 
 
-def assemble_and_process_plasmids(clean_plasmid: Dseq, list_of_amplicons: List[Amplicon], enzyme: Optional[object] = StuI, save_plasmids: bool = False, save_path: str = "data_for_tf_activation_project/plasmids/") -> List[Dseqrecord]:
+def assemble_and_process_plasmids(clean_plasmid: Dseq, list_of_amplicons: List[Amplicon], 
+                                  enzymes: Optional[object] = ['StuI'], 
+                                  save_plasmids: bool = False, save_path: str = "data_for_tf_activation_project/plasmids/") -> List[Dseqrecord]:
     """
     Digests a vector with a specified restriction enzyme, assembles it with a list of amplicons,
     and processes and names the assembled plasmids. Optionally saves the assembled plasmids to disk.
@@ -22,7 +24,7 @@ def assemble_and_process_plasmids(clean_plasmid: Dseq, list_of_amplicons: List[A
         The clean plasmid sequence to be digested and used as a vector.
     list_of_amplicons : List[Amplicon]
         A list of amplicons to be assembled into the digested vector.
-    enzyme : object, optional
+    enzymes : [object, optional]
         The restriction enzyme used for digesting the vector, by default StuI.
     save_plasmids : bool, optional
         Whether to save the assembled plasmids to disk, by default False.
@@ -42,7 +44,10 @@ def assemble_and_process_plasmids(clean_plasmid: Dseq, list_of_amplicons: List[A
     >>> for plasmid in plasmids:
     >>>     print(plasmid.name)
     """
-    digested_vector = Dseqrecord(clean_plasmid, circular=True).cut(enzyme)[0]
+    print('########### ENZYMMMMMEEES',enzymes)
+    digested_vector = sorted(Dseqrecord(clean_plasmid, circular=True).cut(enzymes), key=lambda x: len(x), reverse=True)[0]
+    print('########### ENZYMMMMMEEES',enzymes)
+
     list_of_assemblies = [(digested_vector, genetic_part) for genetic_part in list_of_amplicons]
     assembled_plasmids = [Assembly(parts, limit=20) for parts in list_of_assemblies]
     
