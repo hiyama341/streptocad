@@ -28,6 +28,6 @@ about_streptocad_and_mission_statement = html.Div([
     ),
     html.Img(
         src="assets/intro_fig.png",  
-        style={"width": "30%", "height": "auto", "display": "block", "marginLeft": "0", "marginRight": "auto"}  
+        style={"width": "50%", "height": "auto", "display": "block", "marginLeft": "0", "marginRight": "auto"}  
     )
 ])
