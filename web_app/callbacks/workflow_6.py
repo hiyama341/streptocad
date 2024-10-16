@@ -208,11 +208,11 @@ def register_workflow_6_callbacks(app):
                                                                         target_tm=melting_temperature, 
                                                                         primer_tm_kwargs={'conc':primer_concentration, 'prodcode':chosen_polymerase} , 
                                                                         repair_length=repair_templates_length)
-                    # Convert the string to an enzyme object
-                    enzyme = getattr(Restriction, str(enzyme_for_repair_template_integration))
+                    # Convert the lists to a list of enzyme object
+                    enzymes_for_repair_template_integration = [getattr(Restriction, str(enzyme)) for enzyme in enzymes_for_repair_template_integration]
 
                     logging.info("Digesting plasmids with enzyme_for_repair_template_integration.")
-                    processed_records = [sorted(Dseqrecord(record, circular=True).cut(enzyme), key=lambda x: len(x), reverse=True)[0] for record in assembled_cas3_plasmids]
+                    processed_records = [sorted(Dseqrecord(record, circular=True).cut(enzymes_for_repair_template_integration), key=lambda x: len(x), reverse=True)[0] for record in assembled_cas3_plasmids]
 
                     print(processed_records)
                     logging.info("Renaming processed records.")

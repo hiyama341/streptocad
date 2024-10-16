@@ -313,6 +313,28 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
                         ),
                         create_tooltip("Define the overlap length between templates for Gibson assembly.", "overlap-gibson-tooltip-5")
                     ], width=6),
+
+
+
+                dbc.Col([
+                dbc.Label(["First digestion with restriction enzyme(s)", html.Span("ⓘ", id="restriction-enzymes-tooltip-5", style=link_style)], style={'color': '#ddd'}),
+                dbc.Input(
+                    id='restriction-enzymes_5',
+                    type='text',
+                    value='NcoI',
+                    style={'color': '#000', 'width': '100%'}
+                ),
+            ], width=6),
+            
+            dbc.Col([
+                dbc.Label(["Second digestion with restriction enzyme(s) for integration of repair templates", html.Span("ⓘ", id="restriction-enzymes-tooltip-5-2", style=link_style)], style={'color': '#ddd'}),
+                dbc.Input(
+                    id='restriction-enzymes_5-2',
+                    type='text',
+                    value='StuI',
+                    style={'color': '#000', 'width': '100%'}
+                ),
+            ], width=6),
                 ])
             ], style={"display": "none"})
         ], width=6),

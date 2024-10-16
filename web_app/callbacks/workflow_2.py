@@ -26,6 +26,8 @@ from dash.exceptions import PreventUpdate
 from urllib.parse import quote
 import logging
 import tempfile
+from Bio.Restriction import * 
+from Bio import Restriction
 
 # Create a StringIO object to capture logs in memory
 log_stream = io.StringIO()
@@ -103,14 +105,16 @@ def register_workflow_2_callbacks(app):
             State('melting-temperature_2', 'value'),
             State('primer-concentration_2', 'value'),
             State('flanking-region-number_2', 'value'), 
-            State('editing_context_2', 'value')
+            State('editing_context_2', 'value'),
+            State('restriction-enzymes_2', 'value')
+
 
         ]
     )
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
                      up_homology, dw_homology, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
                      number_of_sgRNAs_per_group, only_stop_codons, chosen_polymerase, melting_temperature, 
-                     primer_concentration, flanking_region_number, editing_context):
+                     primer_concentration, flanking_region_number, editing_context, restriction_enzymes):
         if n_clicks is None:
             raise PreventUpdate
 
@@ -178,7 +182,9 @@ def register_workflow_2_callbacks(app):
                 list_of_ssDNAs = make_ssDNA_oligos(filtered_df, upstream_ovh=up_homology, downstream_ovh=dw_homology)
 
                 # Cut plasmid
-                linearized_plasmid = sorted(clean_plasmid.cut(NcoI), key=lambda x: len(x), reverse=True)[0]
+                restriction_enzymes = restriction_enzymes.split(',')
+                enzymes_for_repair_template_integration = [getattr(Restriction, str(enzyme)) for enzyme in restriction_enzymes]
+                linearized_plasmid = sorted(clean_plasmid.cut(enzymes_for_repair_template_integration), key=lambda x: len(x), reverse=True)[0]
 
                 # Assemble plasmid
                 sgRNA_vectors = assemble_plasmids_by_ssDNA_bridging(list_of_ssDNAs, linearized_plasmid)

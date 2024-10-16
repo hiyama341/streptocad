@@ -141,11 +141,7 @@ tooltips = [
         target_id="checking-melting-temp-tooltip"
     ),
 
-    # second restriction enzyme
-    create_tooltip(
-    "Specify the restriction enzyme used for integrating repair templates during cloning.",
-    target_id="restriction-enzyme-tooltip"
-    ),
+
     # Protospacer 5' Anneal
     create_tooltip(
         "Enter the forward 5' annealing sequence for the protospacer, used in Gibson assembly.",
@@ -170,6 +166,77 @@ tooltips = [
         target_id="backbone-reverse-overhang-tooltip-6"
     ),
 
-]
+    # Restriction Enzymes
+    create_tooltip(
+        """Choose the restriction enzyme(s) for the plasmid digestion.
+            This is just for your convenience. 
+            By default, we use NcoI for the digestion of  pCRISPR-cBEST.
+            If you would like to use a different enzyme, please enter the name of the enzyme(s) in the following format:
+            enzyme1,enzyme2,enzyme3,...
+            Tip: Remember to update overlapping sequences for the assembly if you change the enzymes.
+            """,
+        target_id="restriction-enzymes-tooltip-2"
+    ),
 
+        create_tooltip(
+        """Choose the restriction enzyme(s) for the plasmid digestion.
+            This is just for your convenience. 
+            By default, we use NcoI and NheI for the digestion of  pCRISPR-MCBE_Csy4_kasopGFP.
+            If you would like to use a different enzyme, please enter the name of the enzyme(s) in the following format:
+            enzyme1,enzyme2,enzyme3,...
+            Tip: Remember to update overlapping sequences for the assembly if you change the enzymes.
+            """,
+        target_id="restriction-enzymes-tooltip-3"
+    ),
+
+    create_tooltip(
+        """Choose the restriction enzyme(s) for the plasmid digestion.
+            This is just for your convenience. 
+            By default, we use NcoI  the digestion of  pCRISPR-dCas9.
+            If you would like to use a different enzyme, please enter the name of the enzyme(s) in the following format:
+            enzyme1,enzyme2,enzyme3,...
+            Tip: Remember to update overlapping sequences for the assembly if you change the enzymes.
+            """,
+        target_id="restriction-enzymes-tooltip-4"
+    ),
+
+
+    create_tooltip(
+        """Choose the restriction enzyme(s) for the plasmid digestion.
+            This is just for your convenience. 
+            By default, we use NcoI  the digestion of  CRISPR-Cas9.
+            If you would like to use a different enzyme, please enter the name of the enzyme(s) in the following format:
+            enzyme1,enzyme2,enzyme3,...
+            Tip: Remember to update overlapping sequences for the assembly if you change the enzymes.
+            """,
+        target_id="restriction-enzymes-tooltip-5"
+    ),
+
+        create_tooltip(
+        """Choose the restriction enzyme(s) for the plasmid digestion.
+            This is just for your convenience. 
+            
+            By default, we use EcoRI for the digestion of  CRISPR-Cas9 for the integration of repair templates. But you can use any enzyme from the MCS.
+            If you would like to use a different enzyme, please enter the name of the enzyme(s) in the following format:
+            enzyme1,enzyme2,enzyme3,...
+            Tip: Remember to update overlapping sequences for the assembly if you change the enzymes.
+            """,
+        target_id="restriction-enzymes-tooltip-5-2"
+    ),
+
+
+
+    create_tooltip(
+        """Choose the restriction enzyme(s) for the plasmid digestion.
+            This is just for your convenience. 
+            By default, we use EcoRI for the digestion of  CRISPR-Cas3. But you can use any enzyme from the MCS e.g. HindIII etc
+            If you would like to use a different enzyme, please enter the name of the enzyme(s) in the following format:
+            enzyme1,enzyme2,enzyme3,...
+            Tip: Remember to update overlapping sequences for the assembly if you change the enzymes.
+            """,
+        target_id="restriction-enzymes-tooltip-6"
+    ),
+
+
+]
 

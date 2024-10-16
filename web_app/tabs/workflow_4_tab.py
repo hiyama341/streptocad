@@ -231,6 +231,16 @@ crispri_tab = html.Div(children=[
             ]),
         ], width=6, className="mb-4"),
     ], className="mb-3"),
+    
+    dbc.Col([
+            dbc.Label(["Restriction enzyme(s)", html.Span("ⓘ", id="restriction-enzymes-tooltip-4", style=link_style)], style={'color': '#ddd'}),
+            dbc.Input(
+                id='restriction-enzymes_4',
+                type='text',
+                value='NcoI',
+                style={'color': '#000', 'width': '100%'}
+            ),
+        ], width=6),
 
     dbc.Row([
         dbc.Col([

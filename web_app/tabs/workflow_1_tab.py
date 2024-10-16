@@ -206,7 +206,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
             style={'color': '#000', 'width': '100%'}
         ),
         
-        # Primer Number Increment with tooltip
+        # restriction enzymes with tooltip
         dbc.Label([
             "Choose restriction enzymes for the plasmid digestion",
             html.Span("ⓘ", id="restriction-enzymes-tooltip-icon", style=link_style)
@@ -217,7 +217,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
             By default, we use StuI for the digestion of pOEX-PkasO.
             If you would like to use a different enzyme, please enter the name of the enzyme(s) in the following format:
             enzyme1,enzyme2,enzyme3,...
-            Tip: Remember to update overlapping sequences for the assembly
+            Tip: Remember to update overlapping sequences for the assembly if you change the enzymes.
             """,
             target="restriction-enzymes-tooltip-icon",
             placement="top",

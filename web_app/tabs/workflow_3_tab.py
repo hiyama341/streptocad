@@ -366,6 +366,16 @@ dbc.Row([
                     style={'color': '#000'}
                 ),
             ], width=6),
+            
+            dbc.Col([
+                dbc.Label(["Restriction enzyme(s)", html.Span("ⓘ", id="restriction-enzymes-tooltip-3", style=link_style)], style={'color': '#ddd'}),
+                dbc.Input(
+                    id='restriction-enzymes_3',
+                    type='text',
+                    value='NcoI,NheI',
+                    style={'color': '#000', 'width': '100%'}
+                ),
+            ], width=6),
 
                 ])
             ], style={"display": "none"})

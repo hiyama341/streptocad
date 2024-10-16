@@ -319,7 +319,7 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
                         ),
                     ], width=6),
                     dbc.Col([
-                        dbc.Label(["Restriction enzyme for integration of repair templates", html.Span("ⓘ", id="restriction-enzyme-tooltip", style=link_style)], style={'color': '#ddd'}),
+                        dbc.Label(["Restriction enzyme for integration of repair templates", html.Span("ⓘ", id="restriction-enzymes-tooltip-6", style=link_style)], style={'color': '#ddd'}),
                         dbc.Input(
                             id='restriction_enzyme_for_repair_templates_integration_6',
                             type='text',

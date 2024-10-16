@@ -308,6 +308,16 @@ crispr_cb_tab = html.Div(children=[
                             style={'color': '#000'}
                         ),
                     ], width=6),
+                    
+                    dbc.Col([
+                        dbc.Label(["Restriction enzyme(s)", html.Span("ⓘ", id="restriction-enzymes-tooltip-2", style=link_style)], style={'color': '#ddd'}),
+                        dbc.Input(
+                            id='restriction-enzymes_2',
+                            type='text',
+                            value='NcoI',
+                            style={'color': '#000', 'width': '100%'}
+                        ),
+                    ], width=6),
                 ])
             ], style={"display": "none"})
         ], width=6),
