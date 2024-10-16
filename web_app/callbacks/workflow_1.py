@@ -17,6 +17,8 @@ from urllib.parse import quote
 from datetime import datetime
 import tempfile
 import logging
+from Bio.Restriction import * 
+from Bio import Restriction
 
 # Create a StringIO object to capture logs in memory
 log_stream = io.StringIO()
@@ -80,11 +82,11 @@ def register_workflow_1_callbacks(app):
             State('chosen-polymerase_1', 'value'),
             State('melting-temperature_1', 'value'),
             State('primer-concentration_1', 'value'),
-            State('primer-number-increment_1', 'value'),
+            State('restriction-enzymes_1', 'value'),
         ]
     )
     def run_workflow(n_clicks, sequences_content, plasmid_content, sequences_filename, plasmid_filename, up_homology, dw_homology, 
-                     chosen_polymerase, melting_temperature, primer_concentration, primer_number_increment):
+                     chosen_polymerase, melting_temperature, primer_concentration, restriction_enzymes):
         if n_clicks is None:
             raise PreventUpdate
 
@@ -126,7 +128,7 @@ def register_workflow_1_callbacks(app):
                                                     chosen_polymerase, 
                                                     primer_concentration,
                                                     up_homology, dw_homology, 
-                                                    primer_number_increment)
+                                                    )
                 logging.info(f"Primer DataFrame: {primer_df}")
 
                 # Perform PCR
@@ -143,11 +145,16 @@ def register_workflow_1_callbacks(app):
                 logging.info("Analyzing primers and hairpins")
                 analyzed_primers_df = analyze_primers_and_hairpins(primer_df)
                 logging.info(f"Analyzed primers DataFrame: {analyzed_primers_df}")
+                                    
+                restriction_enzymes = restriction_enzymes.split(',')
+                enzymes_for_repair_template_integration = [getattr(Restriction, str(enzyme)) for enzyme in restriction_enzymes]
+
 
                 # Assemble plasmids
                 logging.info("Assembling plasmids")
-                assembled_plasmids, assembly_results = assemble_and_process_plasmids(plasmid, list_of_amplicons, 
-                                                                                    enzyme=StuI, 
+                assembled_plasmids, assembly_results = assemble_and_process_plasmids(plasmid, 
+                                                                                     list_of_amplicons, 
+                                                                                    enzymes=enzymes_for_repair_template_integration, 
                                                                                     save_plasmids=False, 
                                                                                     save_path="../../data/plasmids/pOEX_overexpression_plasmids")
                 logging.info(f"Assembly results: {assembly_results}")
@@ -199,7 +206,7 @@ def register_workflow_1_callbacks(app):
                         "chosen_polymerase": chosen_polymerase,
                         "melting_temperature": melting_temperature,
                         "primer_concentration": primer_concentration,
-                        "primer_number_increment": primer_number_increment,
+                        "restriction_enzymes": restriction_enzymes,
                     },
 
                     "overlapping_sequences": {

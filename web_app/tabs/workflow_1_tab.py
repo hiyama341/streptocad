@@ -208,20 +208,24 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
         
         # Primer Number Increment with tooltip
         dbc.Label([
-            "Primer Number Increment ",
-            html.Span("ⓘ", id="primer-increment-tooltip-icon", style=link_style)
+            "Choose restriction enzymes for the plasmid digestion",
+            html.Span("ⓘ", id="restriction-enzymes-tooltip-icon", style=link_style)
         ], style={'color': '#ddd'}),
         dbc.Tooltip(
-            """Choose the increment for primer numbering in the workflow. 
+            """Choose the restriction enzyme(s) for the plasmid digestion.
             This is just for your convenience. 
-            If you choose 1, the first primer is called primer 1, the second primer 2 and so on.""",
-            target="primer-increment-tooltip-icon",
+            By default, we use StuI for the digestion of pOEX-PkasO.
+            If you would like to use a different enzyme, please enter the name of the enzyme(s) in the following format:
+            enzyme1,enzyme2,enzyme3,...
+            Tip: Remember to update overlapping sequences for the assembly
+            """,
+            target="restriction-enzymes-tooltip-icon",
             placement="top",
         ),
         dbc.Input(
-            id='primer-number-increment_1',
-            type='number',
-            value=1,
+            id='restriction-enzymes_1',
+            type='text',
+            value='StuI',
             style={'color': '#000', 'width': '100%'}
         ),
     ], width=6, className="mb-3"),
