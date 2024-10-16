@@ -27,6 +27,8 @@ from teemi.build.PCR import primer_tm_neb
 import logging
 import sys
 import io
+from Bio.Restriction import * 
+from Bio import Restriction
 
 
 # Create a StringIO object to capture logs in memory
@@ -131,7 +133,9 @@ def register_workflow_3_callbacks(app):
         State('backbone-overhang-f', 'value'),
         State('backbone-overhang-r', 'value'),
         State('cys4-sequence', 'value'),
-        State('editing_context_3', 'value')
+        State('editing_context_3', 'value'),
+        State('restriction-enzymes_3', 'value')
+
 
         ]
     )
@@ -141,7 +145,7 @@ def register_workflow_3_callbacks(app):
                     number_of_sgRNAs_per_group, only_stop_codons, chosen_polymerase, melting_temperature,
                     primer_concentration, flanking_region_number,
                     restriction_overhang_f, restriction_overhang_r, backbone_overhang_f, backbone_overhang_r, cys4_sequence, 
-                    editing_context):
+                    editing_context, restriction_enzymes):
 
         if n_clicks is None:
             raise PreventUpdate
@@ -215,10 +219,15 @@ def register_workflow_3_callbacks(app):
                 logger.info(f"sgRNA list prepared: {len(sgRNA_list)} sequences")
 
                 sgRNA_handle_cys4_sites = [Dseqrecord(sgRNA_handle_input, name='sgRNA_handle_cys4')] * len(sgRNA_list)
-                golden_gate = GoldenGateCloning(sgRNA_list, sgRNA_handle_cys4_sites, target_tm=input_tm,
-                                                restriction_overhang_f=restriction_overhang_f, restriction_overhang_r=restriction_overhang_r,
-                                                backbone_overhang_f=backbone_overhang_f, backbone_overhang_r=backbone_overhang_r,
-                                                cys4=cys4_sequence, tm_function=primer_tm_neb,
+                golden_gate = GoldenGateCloning(sgRNA_list, 
+                                                sgRNA_handle_cys4_sites, 
+                                                target_tm=input_tm,
+                                                restriction_overhang_f=restriction_overhang_f, 
+                                                restriction_overhang_r=restriction_overhang_r,
+                                                backbone_overhang_f=backbone_overhang_f, 
+                                                backbone_overhang_r=backbone_overhang_r,
+                                                cys4=cys4_sequence, 
+                                                tm_function=primer_tm_neb,
                                                 polymerase=chosen_polymerase)
                 logger.info("Golden Gate Cloning setup completed.")
 
@@ -242,8 +251,11 @@ def register_workflow_3_callbacks(app):
 
                 digest_amplicons = digest_amplicons_w_BsaI(list_of_amplicons)
                 logger.info(f"Amplicons digested: {len(digest_amplicons)} fragments")
+                # Cut plasmid
+                restriction_enzymes = restriction_enzymes.split(',')
+                enzymes_for_repair_template_integration = [getattr(Restriction, str(enzyme)) for enzyme in restriction_enzymes]
 
-                linear_plasmid, _ = sorted(clean_plasmid.cut(NcoI, NheI), key=lambda x: len(x), reverse=True)
+                linear_plasmid = sorted(clean_plasmid.cut(enzymes_for_repair_template_integration), key=lambda x: len(x), reverse=True)[0]
                 logger.info("Plasmid linearized.")
                 
                 for amplicon in digest_amplicons:

@@ -109,7 +109,7 @@ def register_workflow_6_callbacks(app):
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
                                                       forward_protospacer_overhang, reverse_protospacer_overhang, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
                                                       number_of_sgRNAs_per_group, in_frame_deletion, chosen_polymerase, melting_temperature, 
-                                                      primer_concentration, flanking_region_number, enzyme_for_repair_template_integration, 
+                                                      primer_concentration, flanking_region_number, restriction_enzymes_2, 
                                                       repair_templates_length, overlap_for_gibson_length, backbone_fwd_overhang, backbone_rev_overhang):
         if n_clicks is None:
             raise PreventUpdate
@@ -209,7 +209,8 @@ def register_workflow_6_callbacks(app):
                                                                         primer_tm_kwargs={'conc':primer_concentration, 'prodcode':chosen_polymerase} , 
                                                                         repair_length=repair_templates_length)
                     # Convert the lists to a list of enzyme object
-                    enzymes_for_repair_template_integration = [getattr(Restriction, str(enzyme)) for enzyme in enzymes_for_repair_template_integration]
+                    restriction_enzymes_2 = restriction_enzymes_2.split(',')
+                    enzymes_for_repair_template_integration = [getattr(Restriction, str(enzyme)) for enzyme in restriction_enzymes_2]
 
                     logging.info("Digesting plasmids with enzyme_for_repair_template_integration.")
                     processed_records = [sorted(Dseqrecord(record, circular=True).cut(enzymes_for_repair_template_integration), key=lambda x: len(x), reverse=True)[0] for record in assembled_cas3_plasmids]
@@ -250,7 +251,7 @@ def register_workflow_6_callbacks(app):
                     
                     workflow_df = determine_workflow_order_for_plasmids(assembled_cas3_plasmids, 
                                                                         assembled_contigs,
-                                                                        [enzyme_for_repair_template_integration], ["NcoI", "BstBI"]) 
+                                                                        restriction_enzymes_2, ["NcoI", "BstBI"]) 
                     
                     plasmid_metadata_df = pd.merge(plasmid_metadata_df, workflow_df, on='plasmid_name', how='inner') 
 

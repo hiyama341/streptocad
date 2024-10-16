@@ -15,7 +15,8 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
 from dash.exceptions import PreventUpdate
-from Bio.Restriction import NcoI
+from Bio.Restriction import * 
+from Bio import Restriction
 
 
 # Local module imports
@@ -101,13 +102,17 @@ def register_workflow_5_callbacks(app):
             State('flanking-region-number_5', 'value'), 
             State('repair_templates_length_5', 'value'), 
             State('overlap_for_gibson_length_5', 'value'), 
+            State('restriction-enzymes_5', 'value'),
+            State('restriction-enzymes_5-2', 'value')
+
+
         ]
     )
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
                                                       up_homology, dw_homology, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
                                                       number_of_sgRNAs_per_group, in_frame_deletion, chosen_polymerase, melting_temperature, 
                                                       primer_concentration, flanking_region_number, 
-                                                      repair_templates_length, overlap_for_gibson_length):
+                                                      repair_templates_length, overlap_for_gibson_length, restriction_enzymes, restriction_enzymes_2):
         if n_clicks is None:
             raise PreventUpdate
 
@@ -165,7 +170,9 @@ def register_workflow_5_callbacks(app):
                                     downstream_ovh=dw_homology)
 
                 # cut plasmid
-                linearized_plasmid = sorted(clean_plasmid.cut(NcoI), key=lambda x: len(x), reverse=True)[0]
+                restriction_enzymes = restriction_enzymes.split(',')
+                enzymes_for_repair_template_integration = [getattr(Restriction, str(enzyme)) for enzyme in restriction_enzymes]
+                linearized_plasmid = sorted(clean_plasmid.cut(enzymes_for_repair_template_integration), key=lambda x: len(x), reverse=True)[0]
                 #print(linearized_plasmid)
 
                 sgRNA_vectors = assemble_plasmids_by_ssDNA_bridging(list_of_ssDNAs,linearized_plasmid)
@@ -196,7 +203,9 @@ def register_workflow_5_callbacks(app):
                     logging.info(f"Repair templates data: {repair_templates_data}")
 
                     # Digest the plasmids
-                    processed_records = [Dseqrecord(record, circular=True).cut(StuI)[0] for record in sgRNA_vectors]
+                    restriction_enzymes_2 = restriction_enzymes_2.split(',')
+                    enzymes_for_repair_template_integration_2 = [getattr(Restriction, str(enzyme)) for enzyme in restriction_enzymes_2]
+                    processed_records = [Dseqrecord(record, circular=True).cut(enzymes_for_repair_template_integration_2)[0] for record in sgRNA_vectors]
                     logging.info(f"processed_records: {processed_records}")
 
                     # Rename them appropriately
@@ -250,7 +259,7 @@ def register_workflow_5_callbacks(app):
                     
                     workflow_df = determine_workflow_order_for_plasmids(sgRNA_vectors, 
                                                                             assembled_contigs,
-                                                                            ["StuI",], [ "NcoI"])
+                                                                            restriction_enzymes_2, restriction_enzymes)
                     
                     plasmid_metadata_df = pd.merge(plasmid_metadata_df, workflow_df, on='plasmid_name', how='inner') 
 

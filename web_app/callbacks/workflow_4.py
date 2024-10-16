@@ -12,6 +12,8 @@ from Bio import SeqIO
 from Bio.Restriction import NcoI
 from pydna.dseqrecord import Dseqrecord
 from teemi.design.fetch_sequences import read_genbank_files
+from Bio.Restriction import * 
+from Bio import Restriction
 
 from dash import dcc, html, dash_table, exceptions
 from dash.dependencies import Input, Output, State
@@ -95,12 +97,14 @@ def register_workflow_4_callbacks(app):
             State('off-target-upper_4', 'value'),
             State('cas-type_4', 'value'),
             State('number-of-sgRNAs-per-group_4', 'value'),
-            State('extension-to-promoter-region_4', 'value')
+            State('extension-to-promoter-region_4', 'value'),
+            State('restriction-enzymes_4', 'value')
+
         ]
     )
     def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
                      up_homology, dw_homology, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
-                     number_of_sgRNAs_per_group, extension_to_promoter_region):
+                     number_of_sgRNAs_per_group, extension_to_promoter_region, restriction_enzymes):
         if n_clicks is None:
             raise PreventUpdate
 
@@ -155,7 +159,10 @@ def register_workflow_4_callbacks(app):
                 logging.debug(f"List of ssDNAs: {list_of_ssDNAs}")
 
                 logging.info("Cutting plasmid")
-                linearized_plasmid = sorted(clean_plasmid.cut(NcoI), key=lambda x: len(x), reverse=True)[0]
+                restriction_enzymes = restriction_enzymes.split(',')
+                enzymes_for_repair_template_integration = [getattr(Restriction, str(enzyme)) for enzyme in restriction_enzymes]
+
+                linearized_plasmid = sorted(clean_plasmid.cut(enzymes_for_repair_template_integration), key=lambda x: len(x), reverse=True)[0]
                 logging.debug(f"Linearized plasmid: {linearized_plasmid}")
 
                 logging.info("Assembling plasmid")
