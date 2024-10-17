@@ -1,3 +1,6 @@
+# To run a build that works on AWS us the following command: 
+#docker build --platform linux/amd64 -t streptocad .
+
 # Use Python 3.11 as the base image
 FROM python:3.11-slim
 
