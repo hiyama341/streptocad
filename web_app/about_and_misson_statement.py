@@ -17,9 +17,15 @@ about_streptocad_and_mission_statement = html.Div([
 
 
         ### **Join the Community**
-
         
         - Become a part of the StreptoCAD community and collaborate with fellow innovators. Share your workflows, gain insights from others, and contribute to a collective effort in advancing synthetic biology. Create and customize your own workflows to fit your unique research needs, and help shape the future of biological engineering.
+        
+        You can join the community in several ways:
+        
+        1. Start by suggesting new features through our [GitHub Issues Page](https://github.com/hiyama341/streptocad/issues).
+        2. Fork the repository and submit pull requests (PRs) to the development branch to enhance StreptoCAD.
+        3. Write us an email for some cool discussions and collaborations at [luclev@dtu.dk](mailto:luclev@dtu.dk).
+
 
 
         ### **Happy bioengineering!**
