@@ -41,7 +41,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
     ], className="mb-4"),
     
     html.Img(src='/assets/w1_pic.png', 
-             style={'width': '50%', 'margin': '20px auto'}),
+             style={'width': '60%', 'margin': '20px auto'}),
 
     dbc.Row([
         dbc.Col(
@@ -156,15 +156,8 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
         html.H4("4) Customizable Settings", style=text_style),
         
         # Choose Polymerase with tooltip
-        dbc.Label([
-            "Choose Polymerase ",
-            html.Span("ⓘ", id="polymerase-tooltip-icon", style=link_style)
-        ], style={'color': '#ddd'}),
-        dbc.Tooltip(
-            "Select the polymerase type. The default is optimized for high fidelity.",
-            target="polymerase-tooltip-icon",
-            placement="top",
-        ),
+        dbc.Label(["Choose Polymerase", html.Span("ⓘ", id="polymerase-tooltip", style=link_style)], style={'color': '#ddd'}),
+
         dcc.Dropdown(
             id='chosen-polymerase_1',
             options=dropdown_options,
@@ -173,15 +166,8 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
         ),
         
         # Target Melting Temperature with tooltip
-        dbc.Label([
-            "Target Melting Temperature (°C) ",
-            html.Span("ⓘ", id="melting-temp-tooltip-icon", style=link_style)
-        ], style={'color': '#ddd'}),
-        dbc.Tooltip(
-            "Set the desired melting temperature for the PCR reactions.",
-            target="melting-temp-tooltip-icon",
-            placement="top",
-        ),
+
+        dbc.Label(["Target Melting Temperature (°C)", html.Span("ⓘ", id="checking-melting-temp-tooltip", style=link_style)], style={'color': '#ddd'}),
         dbc.Input(
             id='melting-temperature_1',
             type='number',
@@ -190,15 +176,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
         ),
         
         # Primer Concentration with tooltip
-        dbc.Label([
-            "Primer Concentration (μM) ",
-            html.Span("ⓘ", id="primer-concentration-tooltip-icon", style=link_style)
-        ], style={'color': '#ddd'}),
-        dbc.Tooltip(
-            "Specify the concentration of primers used in the PCR reaction.",
-            target="primer-concentration-tooltip-icon",
-            placement="top",
-        ),
+        dbc.Label(["Primer Concentration (μM)", html.Span("ⓘ", id="primer-concentration-tooltip", style=link_style)], style={'color': '#ddd'}),
         dbc.Input(
             id='primer-concentration_1',
             type='number',

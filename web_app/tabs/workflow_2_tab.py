@@ -40,7 +40,7 @@ crispr_cb_tab = html.Div(children=[
     ], className="mb-4"),
 
     html.Img(src='/assets/w2_pic.png', 
-             style={'width': '50%', 'margin': '20px auto'}),
+             style={'width': '60%', 'margin': '20px auto'}),
 
     dbc.Row([
         dbc.Col(

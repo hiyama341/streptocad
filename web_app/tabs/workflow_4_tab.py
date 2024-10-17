@@ -38,7 +38,7 @@ crispri_tab = html.Div(children=[
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
     ], className="mb-4"),
 
-    html.Img(src='/assets/w4_pic.png', style={'width': '50%', 'margin': '20px auto'}),
+    html.Img(src='/assets/w4_pic.png', style={'width': '60%', 'margin': '20px auto'}),
 
     dbc.Row([
         dbc.Col(
