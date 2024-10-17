@@ -14,40 +14,40 @@ tooltips = [
     
     # Melting Temperature
     create_tooltip(
-        "Set the desired melting temperature for PCR reactions. The melting temperature is used to calculate the Tm of primers.",
+        "Set the desired melting temperature for PCR reactions. The melting temperature is used to calculate the Tm/Ta of primers (with NEBs api).",
         target_id="melting-temp-tooltip"
     ),
 
     # Primer Concentration
     create_tooltip(
-        "Specify the concentration of primers (in μM) for PCR reactions.",
+        "Specify the concentration of primers (in μM) for PCR reactions. A normal range is between 0.1-0.5 μM.",
         target_id="primer-concentration-tooltip"
     ),
 
 
     # Flanking Region
     create_tooltip(
-        "Define the size (in bp) of flanking regions for checking primers. For example, if you are checking primers for a 1000 bp gene, you and you set flanking region to 100 bp, then the primers will be checked for 100 bp upstream and downstream of the gene.",
+        "Define the size (in bp) of flanking regions for checking primers. For example, if you are checking primers for a 1000 bp gene, you and you set flanking region to 100 bp, then the primers will be made 100 bp upstream and downstream of the gene. It the algorithm actually checks for secondary structure, primer dimers etc. so the final flanking region migt be higer than specified.",
         target_id="flanking-region-tooltip"
     ),
 
     # GC Content Boundaries
     create_tooltip(
-        "Set the upper bound for GC content in sgRNA sequences.",
+        "Set the upper bound for GC content in sgRNA sequences. This means that sequences with GC content above this will be excluded. ",
         target_id="gc-upper-tooltip"
     ),
     create_tooltip(
-        "Set the lower bound for GC content in sgRNA sequences.",
+        "Set the lower bound for GC content in sgRNA sequences. This means that sequences with GC content below this will be excluded.",
         target_id="gc-lower-tooltip"
     ),
 
     # Off-Target Seed Length and Upper Bound
     create_tooltip(
-        "Specify the length of the seed sequence for off-target filtering. The seed sequence is used to filter off-target sgRNAs. It is defined as the seed_length upstream and downstream of the target site upstream of the PAM site (Cas9).",
+        "Specify the length of the seed sequence for off-target filtering. The seed sequence is used to filter off-target sgRNAs. It is defined as the seed_length upstream and downstream of the target site upstream of the PAM site (Cas9). For other Cas-systems like Cas3 it is the upstream. If you want have hard criteria on you set this lower and if more laxed criterias are wanted, set it high.",
         target_id="off-target-seed-tooltip"
     ),
     create_tooltip(
-        "Specify the maximum allowed off-target score for sgRNA filtering. For example if you dont want any off-targets set this to 0.",
+        "Specify the maximum allowed off-target score for sgRNA filtering. For example if you dont want any off-targets set this to 0. If you dont care so much u can use the default setting.",
         target_id="off-target-upper-tooltip"
     ),
 
@@ -97,7 +97,7 @@ tooltips = [
 
     # sgRNA Handle
     create_tooltip(
-        "Specify the sgRNA handle sequence for the CRISPR system.",
+        "Specify the sgRNA handle sequence for the CRISPR system. Primers will be made annealing to this sequence.",
         target_id="sgRNA-handle-tooltip"
     ),
 
@@ -116,41 +116,41 @@ tooltips = [
     
     # Golden Gate 
     create_tooltip(
-        "Specify the forward overhang for restriction-based cloning.",
+        "Specify the forward overhang for restriction-based cloning. This overhang will be integrated into the fwd-primers that BsaI will recognize cut so it is compatible with Golden Gate cloning.",
         target_id="restriction-overhang-f-tooltip"
     ),
     create_tooltip(
-        "Specify the reverse overhang for restriction-based cloning.",
+        "Specify the reverse overhang for restriction-based cloning. This overhang will be integrated into the rev-primers that BsaI will recognize cut so it is compatible with Golden Gate cloning.",
         target_id="restriction-overhang-r-tooltip"
     ),
     create_tooltip(
-        "Define the forward overhang sequence for the plasmid backbone.",
+        "Define the forward overhang sequence for the plasmid backbone when it has been digested. Depending on the plasmid this can change (the default works with the plasmid you can download above)",
         target_id="backbone-overhang-f-tooltip"
     ),
     create_tooltip(
-        "Define the reverse overhang sequence for the plasmid backbone.",
+        "Define the reverse overhang sequence for the plasmid backbone when it has been digested. Depending on the plasmid this can change (the default works with the plasmid you can download above)",
         target_id="backbone-overhang-r-tooltip"
     ),
     create_tooltip(
-        "Enter the Csy4 sequence for multiplexing in CRISPR-BEST.",
+        "Enter the Csy4 sequence for multiplexing in CRISPR-BEST. This sequence is important for the processing of all sgRNAs and will be integrated in between the sgRNA array.",
         target_id="cys4-sequence-tooltip"
     ),
         # Melting Temperature
     create_tooltip(
-        "Set the desired melting temperature for your checking primers PCR reactions.",
+        "Set the desired melting temperature for your checking primers PCR reactions. The algorithms will match the primers within a few degrees. ",
         target_id="checking-melting-temp-tooltip"
     ),
 
 
     # Protospacer 5' Anneal
     create_tooltip(
-        "Enter the forward 5' annealing sequence for the protospacer, used in Gibson assembly.",
+        "Enter the forward 5' annealing sequence for the protospacer, used in Gibson assembly. This is the primer that has to overlap with the plasmid and where half of the sgRNA is integrated.",
         target_id="forward-overhang-tooltip-6"
     ),
 
     # Protospacer 3' Anneal
     create_tooltip(
-        "Enter the reverse 3' annealing sequence for the protospacer, used in Gibson assembly.",
+        "Enter the reverse 3' annealing sequence for the protospacer, used in Gibson assembly. This is the primer that has to overlap with the plasmid and where half of the sgRNA is integrated.",
         target_id="reverse-overhang-tooltip-6"
     ),
 
