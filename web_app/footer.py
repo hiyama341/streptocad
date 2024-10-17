@@ -16,8 +16,17 @@ footer_content = html.Footer([
         ),
         html.Img(src="/assets/cfb_logo.png", style={"height": "100px", "marginLeft": "20px"})  # CRB logo
     ], style={"textAlign": "center", "padding": "20px 0", "backgroundColor": "#1A242F", "color": "#ddd", "fontSize": "30px"}),  # Center-align text, add padding, set background and text colors, and increase font size
+    
     html.Div([
-        html.A("Contact Us", href="luclev@dtu.dk", style={"marginRight": "20px", "fontSize": "18px", "color": "#ddd"}),  # Email link
+        html.A(
+        "Contact Us",
+        href="mailto:luclev@dtu.dk",
+        style={
+            "marginRight": "20px",
+            "fontSize": "22px",
+            "color": "#ddd",
+            "textDecoration": "none"}),
+
         html.A([html.I(className="fab fa-github", style={"fontSize": "30px", "color": "#ddd"})], href="https://github.com/hiyama341", style={"marginRight": "20px"}),  # GitHub link
     ], style={"textAlign": "center", "padding": "10px 0", "backgroundColor": "#1A242F", "color": "#ddd", "fontSize": "18px"})  # Center-align text, add padding, set background and text colors, and set font size
 ])
