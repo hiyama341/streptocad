@@ -54,7 +54,10 @@ def list_of_amplicons(goe_regulators_path, ):
 
 
 def test_assemble_and_process_plasmids(clean_plasmid, list_of_amplicons):
-    plasmids, assembly_results = assemble_and_process_plasmids(clean_plasmid, list_of_amplicons, enzyme=StuI, save_plasmids=False)
+    plasmids, assembly_results = assemble_and_process_plasmids(clean_plasmid, 
+                                                               list_of_amplicons, 
+                                                               enzymes=[StuI], 
+                                                               save_plasmids=False)
     print(plasmids)
     # Check if the output is as expected
     assert len(plasmids) == len(list_of_amplicons)

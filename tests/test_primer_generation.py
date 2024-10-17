@@ -141,7 +141,6 @@ def test_generate_primer_dataframe_with_fixture(primer_df, clean_sequences):
 
     melting_temperature = 60
     primer_concentration = 0.4 
-    primer_number_increment = 1
     # Call the function using the clean_sequences fixture
     result_df = generate_primer_dataframe(
         clean_seq=clean_sequences,
@@ -150,7 +149,6 @@ def test_generate_primer_dataframe_with_fixture(primer_df, clean_sequences):
         primer_concentration=primer_concentration,
         up_homology=up_homology,
         dw_homology=dw_homology,
-        primer_number_increment=primer_number_increment
     )
 
     # Prepare primer_df to match expected columns for comparison

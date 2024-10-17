@@ -114,10 +114,10 @@ def test_update_primer_names(assembled_records):
     update_primer_names(assembled_records)
     # Check the details of the gene in the first record
     record = assembled_records[0]
-    assert record['up_forwar_p_name'] == 'primer_1'
-    assert record['up_reverse_p_name'] == 'primer_2'
-    assert record['dw_forwar_p_name'] == 'primer_3'
-    assert record['dw_reverse_p_name'] == 'primer_4'
+    assert record['up_forwar_p_name'] == 'SCO5892_repair_up_forwar_p'
+    assert record['up_reverse_p_name'] == 'SCO5892_repair_up_reverse_p'
+    assert record['dw_forwar_p_name'] == 'SCO5892_repair_dw_forwar_p'
+    assert record['dw_reverse_p_name'] == 'SCO5892_repair_dw_reverse_p'
 
 def test_assemble_single_plasmid_with_repair_templates(CRISPR_plasmids_wo_repair, repair_DNA_templates):
     # to simulate that it will use the correct repair
