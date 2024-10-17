@@ -384,7 +384,7 @@ dbc.Row([
 
     dbc.Row([
         dbc.Col([
-            dbc.Button('Submit', id='submit-button_3', color="primary", className="mt-3"),
+            dbc.Button('Submit', id='submit-button_3', color="primary", className="mt-3",size="lg"),
         ], width=12),
     ], className="mb-4"),
     

@@ -357,7 +357,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
 
     dbc.Row([
         dbc.Col([
-            dbc.Button('Submit', id='submit-settings-button_5', color="primary", className="mt-3"),
+            dbc.Button('Submit', id='submit-settings-button_5', color="primary", className="mt-3",size="lg"),
         ], width=12),
     ], className="mb-4"),
     

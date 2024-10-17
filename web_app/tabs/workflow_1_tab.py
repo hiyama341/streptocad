@@ -211,7 +211,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
 
     dbc.Row([
         dbc.Col([
-            dbc.Button('Submit', id='submit-settings-button_1', color="primary", className="mt-3"),
+            dbc.Button('Submit', id='submit-settings-button_1', color="primary", className="mt-3",size="lg" ),
         ], width=12),
     ], className="mb-4"),
 

@@ -326,7 +326,7 @@ crispr_cb_tab = html.Div(children=[
     # Submit Button
     dbc.Row([
         dbc.Col([
-            dbc.Button('Submit', id='submit-settings-button_2', color="primary", className="mt-3"),
+            dbc.Button('Submit', id='submit-settings-button_2', color="primary", className="mt-3",size="lg"),
         ], width=12),
     ], className="mb-4"),
     
