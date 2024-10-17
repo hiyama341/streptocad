@@ -8,8 +8,8 @@ from tooltip import create_tooltip, tooltips  # Import tooltips
 
 # Reference content used in multiple tabs
 reference_content = html.Div([
-    html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below (the figure and protocol is from there).", style=text_style),
-    html.A("CRISPR–Cas9, CRISPRi and CRISPR-BEST-mediated genetic manipulation in streptomycetes", href="https://www.nature.com/articles/s41596-020-0339-z", target="_blank", style=text_style),
+    html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below."),
+    html.A("CRISPR–Cas9, CRISPRi and CRISPR-BEST-mediated genetic manipulation in streptomycetes", href="https://www.nature.com/articles/s41596-020-0339-z",  target="_blank", style=link_style),
 ], style=text_style)
 
 # Dropdown options for polymerases
@@ -32,7 +32,8 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
             - Figure out what genes you want to target. For example, the actinorhodin cluster (SCO5087).
 
             ## **Instructions**
-            Upload your files, then click 'Submit' to generate your assembly.
+            - Upload your genome file and CRISPR plasmid files
+            - Click 'Submit' to generate your assembly.
             """, style=text_style),
             reference_content
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
@@ -231,7 +232,7 @@ gibson_tab = dcc.Tab(label="CRISPR–Cas9 plasmid construction", children=[
 
     dbc.Row([
         dbc.Col([
-            html.H4("6) Show advanced settings for checking primers and repair templates", style=text_style),
+            html.H4("6) Show advanced settings", style=text_style),
             dbc.Checklist(
                 options=[{"label": "", "value": 1}],
                 value=[],

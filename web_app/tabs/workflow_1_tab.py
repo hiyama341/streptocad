@@ -7,6 +7,8 @@ from streptocad.utils import polymerase_dict
 from components import upload_component
 from dash import dcc, html
 import dash_bootstrap_components as dbc
+from tooltip import create_tooltip, tooltips  # Import the tooltips
+
 
 # Dropdown options for polymerases
 dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_dict.items()]
@@ -14,7 +16,7 @@ dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_
 # Reference content used in multiple tabs
 reference_content = html.Div([
     html.P("Note: For more information on overexpression workflows and details, please visit our paper.", style=text_style),
-    html.A("StreptoCAD: An open-source software toolbox supporting genome engineering workflows in Streptomyces", href="https://example.com/overexpression-protocol", target="_blank", style=link_style),
+    html.A("StreptoCAD: An open-source software toolbox automating genome engineering workflows in streptomycetes", href="https://github.com/hiyama341/streptocad", target="_blank", style=link_style),
 ], style=text_style)  
 
 # Workflow 1 Tab content
@@ -34,7 +36,8 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
             - Prepare the gene sequences you want to overexpress into one GenBank file.
 
             ## **Instructions**
-            Upload your gene sequences and plasmid files, then configure the settings to generate your constructs.
+            - Upload your gene sequences file and your plasmid file. You can download examples below.
+            - Click 'Submit' to generate your assembly.
             """, style=text_style),
             reference_content
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
@@ -156,7 +159,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
         html.H4("4) Customizable Settings", style=text_style),
         
         # Choose Polymerase with tooltip
-        dbc.Label(["Choose Polymerase", html.Span("ⓘ", id="polymerase-tooltip", style=link_style)], style={'color': '#ddd'}),
+        dbc.Label(["Choose Polymerase", html.Span("ⓘ", id="polymerase-tooltip-1", style=link_style)], style={'color': '#ddd'}),
 
         dcc.Dropdown(
             id='chosen-polymerase_1',
@@ -270,5 +273,6 @@ dbc.Row([
         )
     ], width=10),
 ]),
+    *tooltips
 
 ])

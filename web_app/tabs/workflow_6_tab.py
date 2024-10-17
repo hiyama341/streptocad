@@ -6,10 +6,12 @@ from streptocad.utils import polymerase_dict
 from tooltip import create_tooltip, tooltips
 
 # Reference content
+
 reference_content = html.Div([
-    html.P("Note: For more information on CRISPR techniques and details, please visit the article below (the figure and protocol is from there).", style=text_style),
-    html.A("CASCADE-Cas3 Enables Highly Efficient Genome Engineering in Streptomyces Species", href="https://www.biorxiv.org/content/10.1101/2023.05.09.539971v1.full", target="_blank", style=text_style),
+    html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below."),
+    html.A("CASCADE-Cas3 Enables Highly Efficient Genome Engineering in Streptomyces Species", href="https://www.biorxiv.org/content/10.1101/2023.05.09.539971v1.ful",  target="_blank", style=link_style),
 ], style=text_style)
+
 
 # Dropdown options for polymerases
 dropdown_options = [{'label': key, 'value': value} for key, value in polymerase_dict.items()]
@@ -31,7 +33,8 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
             - Figure out what genes you want to target. For example, the actinorhodin cluster (SCO5087).    
 
             ## **Instructions**
-            Upload your files, then click 'Submit' to generate your assembly.
+            - Upload your genome file and CRISPR plasmid files
+            - Click 'Submit' to generate your assembly.
             """, style=text_style),
             reference_content
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
@@ -246,7 +249,7 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
     # Switch for Advanced Settings
     dbc.Row([
         dbc.Col([
-            html.H4("6) Show advanced settings for checking primers and repair templates", style=text_style),
+            html.H4("6) Show advanced settings", style=text_style),
             dbc.Checklist(
                 options=[{"label": "", "value": 1}],
                 value=[],

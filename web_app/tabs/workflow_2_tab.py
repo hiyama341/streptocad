@@ -9,8 +9,8 @@ from streptocad.utils import polymerase_dict
 
 # Reference content used in multiple tabs
 reference_content = html.Div([
-    html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below (the figure and protocol is from there).", style=text_style),
-    html.A("CRISPR–Cas9, CRISPRi and CRISPR-BEST-mediated genetic manipulation in streptomycetes", href="https://www.nature.com/articles/s41596-020-0339-z", target="_blank", style=text_style),
+    html.P("Note: For more information on CRISPR techniques and details, please visit the Nature protocols article below."),
+    html.A("CRISPR–Cas9, CRISPRi and CRISPR-BEST-mediated genetic manipulation in streptomycetes", href="https://www.nature.com/articles/s41596-020-0339-z", target="_blank", style=link_style),
 ], style=text_style)
 
 # Dropdown options for polymerases
@@ -33,7 +33,8 @@ crispr_cb_tab = html.Div(children=[
             - Figure out what genes you want to target. For example, the actinorhodin cluster (SCO5087).
 
             ## **Instructions**
-            Upload your genome file and CRISPR plasmid files, then click 'Submit' to generate your assembly.
+            - Upload your genome file and CRISPR plasmid files
+            - Click 'Submit' to generate your assembly.
             """, style=text_style),
             reference_content
         ], style={'padding': '20px', 'backgroundColor': '#2C3E50'}),
@@ -238,7 +239,9 @@ crispr_cb_tab = html.Div(children=[
         dbc.Row([
             dbc.Col([
                 dbc.Checklist(
-                    options=[{"label": "Editing Sequence Context", "value": 1}],
+                        options=[{"label": html.Span(["Editing Sequence Context ",html.Span("ⓘ", 
+                        id="editing-context-tooltip", 
+                        style=link_style)]),"value": 1}],
                     value=[1],
                     id="editing_context_2",
                     inline=True,
@@ -252,7 +255,7 @@ crispr_cb_tab = html.Div(children=[
     # Advanced settings
     dbc.Row([
         dbc.Col([
-            html.H4("7) Show advanced settings for checking primers", style=text_style),
+            html.H4("7) Show advanced settings", style=text_style),
             dbc.Checklist(
                 options=[{"label": "", "value": 1}],
                 value=[],
