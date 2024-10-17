@@ -16,7 +16,7 @@ introduction_page = html.Div(
     [
         # Logo at the top center
         html.Img(
-            src="/assets/StreptoCAD_logo_round.png",
+            src="/assets/StreptoCAD_logo_round1.png",
             style={
                 'width': '150px',
                 'marginBottom': '20px',
