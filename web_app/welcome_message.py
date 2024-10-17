@@ -17,6 +17,8 @@ welcome_message_content = html.Div([
         
         - 👈 To get started, please select a workflow from the tabs on the left.
 
+        - If you need help in any way, you are welcome to contact us. You can find contact details in the bottom the page.
+
         ### **Happy bioengineering!**
 
         """,
