@@ -11,6 +11,10 @@ tooltips = [
         "The selected polymerase is used to calculate primer melting temperature with NEB's api",
         target_id="polymerase-tooltip"
     ),
+        create_tooltip(
+        "The selected polymerase is used to calculate primer melting temperature with NEB's api",
+        target_id="polymerase-tooltip-1"
+    ),
     
     # Melting Temperature
     create_tooltip(
@@ -103,17 +107,10 @@ tooltips = [
 
     # Advanced Settings
     create_tooltip(
-        "Show advanced settings for checking primers and repair templates.",
+        "Show advanced settings for more functionalities.",
         target_id="show-advanced-settings-tooltip"
     ),
 
-
-        # Advanced Settings
-    create_tooltip(
-        "Show advanced settings for checking primers and repair templates.",
-        target_id="show-advanced-settings-tooltip"
-    ),
-    
     # Golden Gate 
     create_tooltip(
         "Specify the forward overhang for restriction-based cloning. This overhang will be integrated into the fwd-primers that BsaI will recognize cut so it is compatible with Golden Gate cloning.",
