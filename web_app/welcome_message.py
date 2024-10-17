@@ -21,7 +21,7 @@ welcome_message_content = html.Div([
         
         ### **Bugs and new features**
         
-        - If you encounter any bugs or have ideas for new features, please [contact us](mailto:luclev@dtu.dk) or visit our [GitHub Issues Page](https://github.com/your-repo/issues).
+        - If you encounter any bugs or have ideas for new features, please [contact us](mailto:luclev@dtu.dk) or visit our [GitHub Issues Page](https://github.com/hiyama341/streptocad/issues).
         
         - Your feedback is invaluable in helping us improve StreptoCAD. Thank you for contributing to our community!
 
