@@ -17,9 +17,18 @@ welcome_message_content = html.Div([
         
         - 👈 To get started, please select a workflow from the tabs on the left.
 
-        - If you need help in any way, you are welcome to contact us. You can find contact details in the bottom the page.
+        - If you need help in any way, you are welcome to [contact us](mailto:luclev@dtu.dk). More details in the bottom the page.
+        
+        ### **Bugs and new features**
+        
+        - If you encounter any bugs or have ideas for new features, please [contact us](mailto:luclev@dtu.dk) or visit our [GitHub Issues Page](https://github.com/your-repo/issues).
+        
+        - Your feedback is invaluable in helping us improve StreptoCAD. Thank you for contributing to our community!
 
-        ### **Happy bioengineering!**
+
+
+
+        ### **Happy bioengineering!** 🧬🧬🧬
 
         """,
         style={**text_style, "marginBottom": "200px", "lineHeight": "2", "marginTop": "30px"}
