@@ -42,29 +42,35 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
     html.Img(src='/assets/w3_pic.png', 
              style={'width': '60%', 'margin': '20px auto'}),
 
+    # Section 1: Upload Genome File with Download Button
     dbc.Row([
         dbc.Col(
-            html.A(
-                dbc.Button("Download Example Genome File", color="primary"),
-                href="/assets/Streptomyces_coelicolor_A3_chromosome.gb",
-                download="Streptomyces_coelicolor_A3_chromosome.gb"
-            ),
-            width={"size": 3, "order": 1}
+            dbc.Row([
+                # Header Text
+                dbc.Col(
+                    html.H4("1) Upload your genome file", style=text_style),
+                    width="auto",
+                    className="align-self-center"
+                ),
+                # Download Button
+                dbc.Col(
+                    html.A(
+                        dbc.Button("Download Example Genome File", color="primary"),
+                        href="/assets/Streptomyces_coelicolor_A3_chromosome.gb",
+                        download="Streptomyces_coelicolor_A3_chromosome.gb"
+                    ),
+                    width="auto",
+                    className="align-self-center ml-3"
+                ),
+            ]),
+            width=6,
+            className="d-flex align-items-center"
         ),
-        dbc.Col(
-            html.A(
-                dbc.Button("Download Example CRISPR Plasmid File", color="primary", className="mb-4"),
-                href="/assets/pCRISPR-MCBE_Csy4_kasopGFP.gb",
-                download="pCRISPR-MCBE_Csy4_kasopGFP.gb"
-            ),
-            width={"size": 3, "order": 2}
-        )
-    ], className="mb-4", justify="start"),
+    ], className="mb-4"),  # Margin bottom for spacing
 
-    # UPLOAD genome
+    # Upload Component for Genome File
     dbc.Row([
         dbc.Col([
-            html.H4("1) Upload your genome file", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Genome File (GenBank format)", className="card-title", style=text_style),
@@ -77,11 +83,37 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                 ])
             ], style=card_style),
         ], width=6),
-    ], className="mb-3"),
+    ], className="mb-5"),  # Margin bottom for spacing
 
+    # Section 2: Upload Plasmid with Download Button
+    dbc.Row([
+        dbc.Col(
+            dbc.Row([
+                # Header Text
+                dbc.Col(
+                    html.H4("2) Upload the plasmid of choice", style=text_style),
+                    width="auto",
+                    className="align-self-center"
+                ),
+                # Download Button
+                dbc.Col(
+                    html.A(
+                        dbc.Button("Download Example CRISPR Plasmid File", color="primary"),
+                        href="/assets/pCRISPR-MCBE_Csy4_kasopGFP.gb",
+                        download="pCRISPR-MCBE_Csy4_kasopGFP.gb"
+                    ),
+                    width="auto",
+                    className="align-self-center ml-3"
+                ),
+            ]),
+            width=6,
+            className="d-flex align-items-center"
+        ),
+    ], className="mb-4"),  # Margin bottom for spacing
+
+    # Upload Component for Plasmid
     dbc.Row([
         dbc.Col([
-            html.H4("2) Upload the plasmid of choice", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("CRISPR-mcBEST plasmid (GenBank format)", className="card-title", style=text_style),
@@ -94,7 +126,7 @@ golden_gate_tab = dcc.Tab(label="Multiple sgRNA-integration", children=[
                 ])
             ], style=card_style),
         ], width=6),
-    ], className="mb-5"),
+    ], className="mb-5"),  # Margin bottom for spacing
 
     dbc.Row([
         dbc.Col([

@@ -45,34 +45,39 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
     
     html.Img(src='/assets/w1_pic.png', 
              style={'width': '60%', 'margin': '20px auto'}),
-
+    # Section 1: Upload Gene Sequences
     dbc.Row([
+        # Header and Download Button Row
         dbc.Col(
-            html.A(
-                dbc.Button("Download Example Sequence File", color="primary"),
-                href="/assets/GOE_regulators.gb", 
-                download="example_sequence_file(LuxR_&_SARPs).csv"
-            ),
-            width={"size": 3, "order": 1}
+            dbc.Row([
+                dbc.Col(
+                    html.H4("1) Upload your gene sequences", style=text_style),
+                    width="auto",
+                    className="align-self-center"  # Vertically center the text
+                ),
+                dbc.Col(
+                    html.A(
+                        dbc.Button("Download Example Sequence File", color="primary"),
+                        href="/assets/GOE_regulators.gb", 
+                        download="example_sequence_file(LuxR_&_SARPs).csv"
+                    ),
+                    width="auto",
+                    className="align-self-center ml-3"  # Vertically center and add left margin
+                ),
+            ]),
+            width=6,
+            className="d-flex align-items-center"
         ),
-        dbc.Col(
-            html.A(
-                dbc.Button("Download Example Plasmid File", color="primary", className="mb-4"),
-                href="/assets/pOEX-PkasO.gb", 
-                download="pOEX-PkasO.gb"
-            ),
-            width={"size": 3, "order": 2}
-        )
-    ], className="mb-4", justify="start"),
+    ], className="mb-4"),  # Add some margin at the bottom
 
+    # Upload Component for Gene Sequences
     dbc.Row([
         dbc.Col([
-            html.H4("1) Upload your gene sequences", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Sequences (GenBank format)", className="card-title", style=text_style),
                     dcc.Upload(
-                        id={'type': 'upload-component', 'index': 'sequences'},  # Updated to use pattern matching ID
+                        id={'type': 'upload-component', 'index': 'sequences'},  # Pattern matching ID
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select Sequences File', style=link_style)
@@ -80,20 +85,45 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id={'type': 'filename-display', 'index': 'sequences'}, children=[], style=text_style),  # Updated to use pattern matching ID
+                    html.Div(id={'type': 'filename-display', 'index': 'sequences'}, children=[], style=text_style),  # Pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),
-    ], className="mb-3"),
+    ], className="mb-5"),  # Add more margin to separate sections
 
+    # Section 2: Upload Plasmid
+    dbc.Row([
+        # Header and Download Button Row
+        dbc.Col(
+            dbc.Row([
+                dbc.Col(
+                    html.H4("2) Upload your plasmid", style=text_style),
+                    width="auto",
+                    className="align-self-center"  # Vertically center the text
+                ),
+                dbc.Col(
+                    html.A(
+                        dbc.Button("Download Example Plasmid File", color="primary"),
+                        href="/assets/pOEX-PkasO.gb", 
+                        download="pOEX-PkasO.gb"
+                    ),
+                    width="auto",
+                    className="align-self-center ml-3"  # Vertically center and add left margin
+                ),
+            ]),
+            width=6,
+            className="d-flex align-items-center"
+        ),
+    ], className="mb-4"),  # Add some margin at the bottom
+
+    # Upload Component for Plasmid
     dbc.Row([
         dbc.Col([
-            html.H4("2) Upload your plasmid", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Plasmid File (GenBank format)", className="card-title", style=text_style),
                     dcc.Upload(
-                        id={'type': 'upload-component', 'index': 'plasmid'},  # Updated to use pattern matching ID
+                        id={'type': 'upload-component', 'index': 'plasmid'},  # Pattern matching ID
                         children=html.Div([
                             'Drag and Drop or ',
                             html.A('Select Plasmid File', style=link_style)
@@ -101,7 +131,7 @@ workflow_1_tab = dcc.Tab(label="Workflow 1: Overexpression library construction"
                         style=upload_button_style,
                         multiple=False
                     ),
-                    html.Div(id={'type': 'filename-display', 'index': 'plasmid'}, children=[], style=text_style),  # Updated to use pattern matching ID
+                    html.Div(id={'type': 'filename-display', 'index': 'plasmid'}, children=[], style=text_style),  # Pattern matching ID
                 ])
             ], style=card_style),
         ], width=6),

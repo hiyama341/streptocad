@@ -4,6 +4,8 @@ from dash.dash_table import DataTable
 from styling import text_style, upload_button_style, card_style, link_style, table_style
 from streptocad.utils import polymerase_dict
 from tooltip import create_tooltip, tooltips
+from components import upload_component_with_display
+
 
 # Reference content
 
@@ -42,52 +44,78 @@ cas3_tab = dcc.Tab(label="CRISPR–Cas3 plasmid construction", children=[
     
     html.Img(src='/assets/w6_pic.png', style={'width': '60%', 'margin': '20px auto'}),
 
-    # Download example files
+    # Section 1: Upload Genome File with Download Button
     dbc.Row([
         dbc.Col(
-            html.A(
-                dbc.Button("Download Example Genome File", color="primary"),
-                href="/assets/Streptomyces_coelicolor_A3_chromosome.gb",
-                download="Streptomyces_coelicolor_A3_chromosome.gb"
-            ),
-            width={"size": 3, "order": 1}
+            dbc.Row([
+                # Header Text
+                dbc.Col(
+                    html.H4("1) Upload your genome file", style=text_style),
+                    width="auto",
+                    className="align-self-center"
+                ),
+                # Download Button
+                dbc.Col(
+                    html.A(
+                        dbc.Button("Download Example Genome File", color="primary"),
+                        href="/assets/Streptomyces_coelicolor_A3_chromosome.gb",
+                        download="Streptomyces_coelicolor_A3_chromosome.gb"
+                    ),
+                    width="auto",
+                    className="align-self-center ml-3"
+                ),
+            ]),
+            width=6,
+            className="d-flex align-items-center"
         ),
-        dbc.Col(
-            html.A(
-                dbc.Button("Download Example Plasmid File", color="primary", className="mb-4"),
-                href="/assets/pCRISPR_cas3.gbk",
-                download="pCRISPR_cas3.gbk"
-            ),
-            width={"size": 3, "order": 2}
-        )
-    ], className="mb-4", justify="start"),
+    ], className="mb-4"),  # Margin bottom for spacing
 
-    # Genome file upload
+    # Upload Component for Genome File
     dbc.Row([
         dbc.Col([
-            html.H4("1) Upload your genome file", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("Genome File (GenBank format)", className="card-title", style=text_style),
-                    dcc.Upload(
-                        id={'type': 'upload-component', 'index': 'genome-file-6'},
-                        children=html.Div([
-                            'Drag and Drop or ',
-                            html.A('Select Genome File', style=link_style)
-                        ], style=text_style),
-                        style=upload_button_style,
-                        multiple=False
-                    ),
-                    html.Div(id={'type': 'filename-display', 'index': 'genome-file-6'}, children=[], style=text_style),
+                    upload_component_with_display(
+                        {'type': 'upload-component', 'index': 'genome-file-6'},
+                        text_style, 
+                        link_style, 
+                        upload_button_style
+                    )
                 ])
             ], style=card_style),
         ], width=6),
-    ], className="mb-3"),
+    ], className="mb-5"),  # Margin bottom for spacing
 
-    # Plasmid file upload
+    # Section 2: Upload Plasmid with Download Button
+    dbc.Row([
+        dbc.Col(
+            dbc.Row([
+                # Header Text
+                dbc.Col(
+                    html.H4("2) Upload the plasmid of choice", style=text_style),
+                    width="auto",
+                    className="align-self-center"
+                ),
+                # Download Button
+                dbc.Col(
+                    html.A(
+                        dbc.Button("Download Example Plasmid File", color="primary"),
+                        href="/assets/pCRISPR-Cas3.gbk",
+                        download="pCRISPR-Cas3.gbk"
+                    ),
+                    width="auto",
+                    className="align-self-center ml-3"
+                ),
+            ]),
+            width=6,
+            className="d-flex align-items-center"
+        ),
+    ], className="mb-4"),  # Margin bottom for spacing
+
+    # Upload Component for Plasmid
     dbc.Row([
         dbc.Col([
-            html.H4("2) Upload the plasmid of choice", style=text_style),
             dbc.Card([
                 dbc.CardBody([
                     html.H5("CRISPR Plasmid (GenBank format)", className="card-title", style=text_style),
