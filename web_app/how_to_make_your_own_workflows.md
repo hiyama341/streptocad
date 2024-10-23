@@ -1,6 +1,6 @@
-# Integrating New Workflows into the Application
+# Integrating New Workflows into the StreptoCAD
 
-Users can extend the application by creating frontend components (tabs), developing backend callback functions, and writing tests. These contributions can be incorporated into the main application via GitHub. Comprehensive documentation and user guides are available on GitHub ([LINK](https://github.com/hiyama341/streptocad/tree/main/docs)), making it easier for users to contribute and enhance the platform.
+Users can extend the application by creating frontend components (tabs), developing backend callback functions, and writing tests. These contributions can be incorporated into the main application via GitHub. Comprehensive documentation is available on GitHub ([LINK](https://github.com/hiyama341/streptocad/tree/main/docs)), making it easier for users to contribute and enhance the platform.
 
 ---
 
@@ -44,13 +44,16 @@ Develop the backend logic for your new workflow by creating a callback module.
 - **Content:**
 
 ```python
-  def your_callback_function(...): # Your callback implementation here
+  def your_callback_function(...):
+     # Your callback implementation here
 ```
 
 - **Import the Callback in `application.py`:**
 
 ```python
+
   from callbacks.workflow_6 import register_workflow_6_callbacks
+
 ```
 
 ### 2. Create a New Tab Component
