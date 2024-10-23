@@ -160,7 +160,6 @@ def toggle_advanced_settings(checkbox_value):
     else:
         return {'display': 'none'}
     
-
 @app.callback(
     Output({'type': 'filename-display', 'index': MATCH}, 'children'),
     Input({'type': 'upload-component', 'index': MATCH}, 'filename')
