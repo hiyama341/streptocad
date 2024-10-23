@@ -93,6 +93,38 @@ python3 application.py
 
 This will launch the application locally, and you're ready to go! Follow the url that your terminal shows.
 
+## Running the StreptoCAD App via Docker
+
+To run the StreptoCAD application using Docker, follow these steps:
+
+### 1. Build the Docker Image
+
+First, build the Docker image from the `Dockerfile` located in the root of the project:
+
+```bash
+docker build -t streptocad .
+```
+
+### 2. Run the Docker Container
+
+Once the image is built, run the container:
+
+```bash
+docker run -d -p 8050:8050 streptocad
+```
+
+This will start the StreptoCAD application, exposing it on port 8050 of your local machine.
+
+### 3. Run the application
+
+Finally, to run the StreptoCAD application, execute the following command:
+
+```bash
+python3 application.py
+```
+
+This will launch the application locally, and you're ready to go! Follow the URL that your terminal shows.
+
 ## License
 
 StreptoCAD is open-source and licensed under the MIT License.
