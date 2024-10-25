@@ -270,6 +270,7 @@ def register_workflow_3_callbacks(app):
 
                 integration_names = filtered_df.apply(lambda row: f"sgRNA_{row['locus_tag']}({row['sgrna_loc']})", axis=1).tolist()
                 integration_names = [';'.join(integration_names)]
+                rec_vec.name = f"{clean_plasmid.name}_{integration_names}"
 
                 plasmid_metadata_df = extract_metadata_to_dataframe([rec_vec],
                                                                     clean_plasmid,
