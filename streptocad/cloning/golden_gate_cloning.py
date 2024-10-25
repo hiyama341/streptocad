@@ -79,7 +79,6 @@ class GoldenGateCloning:
     tm_function: Callable = _tm_default  # u can use your own
     polymerase:str = 'onetaq-3'
     primer_concentration:float = 0.4
-    primer_incrementation:int = 1
 
     restriction_overhang_f: str = "GATCGggtctcc"
     restriction_overhang_r: str = "GATCAGGTCTCg"
@@ -134,14 +133,11 @@ class GoldenGateCloning:
             restriction_overhang_r=self.restriction_overhang_r,
         )
         # Updating primer names # TODO: make the naming more suited for the workflow
-        primer_counter = self.primer_incrementation # Initialize primer counter
         for amplicon in self.amplicons_w_f_r_primer_overhang:
-            amplicon.forward_primer.id  = f"primer_{primer_counter}"  # Assuming a primer_counter is defined somewhere
+            amplicon.forward_primer.id  = f"fwd_primer_{amplicon.name}"  # Assuming a primer_counter is defined somewhere
             amplicon.forward_primer.name = f"{amplicon.forward_primer.id}"
-            primer_counter += 1  # Increment the counter for the next primer
-            amplicon.reverse_primer.id = f"primer_{primer_counter}"
+            amplicon.reverse_primer.id = f"rev_primer_{amplicon.name}"
             amplicon.reverse_primer.name = f"{amplicon.reverse_primer.id}"
-            primer_counter += 1
 
     def simulate_pcrs(self):
         '''Simulates PCR reactions and returns list of PCR products'''
