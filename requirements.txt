@@ -152,7 +152,7 @@ urllib3==2.2.3
 urlopen==1.0.0
 wcwidth==0.2.13
 webencodings==0.5.1
-Werkzeug==3.0.4
+Werkzeug==3.0.6 # dependabot wants <= 3.0.5 --> ~> 3.0.6
 zipp==3.20.2
 
 # extra
