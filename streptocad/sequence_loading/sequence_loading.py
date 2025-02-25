@@ -201,10 +201,10 @@ def annotate_dseqrecord(dseqrecord, target_dict):
     if not isinstance(dseqrecord, Dseqrecord):
         raise ValueError("dseqrecord must be an instance of SeqRecord.")
     
-    print('this is the target dict',target_dict)
+    #print('this is the target dict',target_dict)
     for annotation in target_dict:
         for region, positions in annotation.items():
-            print(region, positions)
+            #print(region, positions)
             start, end = positions
             
             # Ensure start and end are within the bounds of the sequence
