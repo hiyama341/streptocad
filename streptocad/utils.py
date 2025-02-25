@@ -520,29 +520,30 @@ class ProjectDirectory:
                     zip_file.writestr(file_save_path, output_file["content"])
                     self.project_dir_structure[file_save_path] = output_file["content"]
 
-            # Process and convert markdown files
+            # Process and convert markdown files (only generate HTML, not include .md files)
             if self.markdown_file_paths:
                 for md_file_path in self.markdown_file_paths:
                     md_file_name = os.path.basename(md_file_path)
-                    md_file_save_path = os.path.join(outputs_dir, md_file_name)
-
+                    # Read the markdown file, convert it to HTML, and save the HTML file.
                     with open(md_file_path, "r", encoding="utf-8") as file:
                         md_content = file.read()
-                    zip_file.writestr(md_file_save_path, md_content)
-                    self.project_dir_structure[md_file_save_path] = md_content
 
-                    # Create a new notebook node
+                    # Create a new notebook node from the markdown content.
+                    import nbformat
+                    from nbconvert import HTMLExporter
+
                     notebook = nbformat.v4.new_notebook()
                     notebook.cells.append(nbformat.v4.new_markdown_cell(md_content))
 
-                    # Convert the notebook to HTML
+                    # Convert the notebook to HTML.
                     html_exporter = HTMLExporter()
                     (html_content, _) = html_exporter.from_notebook_node(notebook)
 
-                    # Save HTML to file
+                    # Define HTML file path.
                     html_file_name = md_file_name.replace(".md", ".html")
                     html_file_save_path = os.path.join(outputs_dir, html_file_name)
 
+                    # Write the HTML content into the zip file.
                     zip_file.writestr(html_file_save_path, html_content)
                     self.project_dir_structure[html_file_save_path] = (
                         f"HTML created from {md_file_name}"
@@ -591,3 +592,36 @@ def extract_metadata_to_dataframe(
     }
     df = pd.DataFrame(data)
     return df
+
+
+import sys
+
+
+def generate_header(
+    assembled_plasmids, sequences, idt_df, captured_output, original_stdout
+):
+    """
+    Restores stdout, captures the printed output from captured_output, and generates a header string.
+
+    Parameters:
+        assembled_plasmids (list): A list of assembled plasmid objects.
+        sequences (list): A list of input sequence objects.
+        idt_df (pandas.DataFrame): The DataFrame containing primer information.
+        captured_output (io.StringIO): A StringIO object capturing printed output.
+        original_stdout: The original sys.stdout object before redirection.
+
+    Returns:
+        str: A string combining the header and all captured print output.
+    """
+    # Restore the original stdout
+    sys.stdout = original_stdout
+    all_printouts = captured_output.getvalue()
+
+    header = (
+        f"StreptoCAD generated {len(assembled_plasmids)} plasmids from {len(sequences)} sequences "
+        f"(beware if there is a discrepancy and check the full log file), and generated {len(idt_df)} primers.\n"
+        "\nRest of the output...\n\n\n"
+    )
+
+    # You can choose to combine the header with the captured output
+    return header + all_printouts
