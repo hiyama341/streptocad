@@ -53,9 +53,9 @@ def perform_pcr_on_sequences(
         Primer(seq, id=template)
         for seq, template in zip(df["r_primer_sequences(5-3)"], df["template"])
     ]
-
     list_of_amplicons: List[Amplicon] = []
     no_pcr_product_count: int = 0
+    questionable_pcr_product = []
 
     for i, template_seq in enumerate(clean_seq):
         try:
@@ -69,17 +69,17 @@ def perform_pcr_on_sequences(
             print(
                 f"\n######## No PCR product for {template_seq.id}! Count of ZERO PRODUCTS: {no_pcr_product_count} ########"
             )
-            print(f"\n######## TRY INCREMENTING THE MELTING TEMPERATURE")
-
+            print(
+                "\n######## TRY INCREMENTING THE MELTING TEMPERATURE - to make primers more specific to your product"
+            )
+            questionable_pcr_product.append(template_seq.id)
             print(template_seq)
-            print("###############################")
+            print("\n###############################\n")
 
     return list_of_amplicons
 
 
 # TODO delete this function?
-
-
 def make_amplicons(
     list_of_amplicons: List[SeqRecord],
     target_tm: int = 58,
