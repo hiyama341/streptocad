@@ -1,4 +1,3 @@
-
 from typing import List, Dict, Any
 import pandas as pd
 from typing import List
@@ -11,7 +10,9 @@ from teemi.build.PCR import primer_tm_neb, primer_ta_neb
 from Bio.SeqRecord import SeqRecord
 
 
-def perform_pcr_on_sequences(df: pd.DataFrame, clean_seq: List[Dseqrecord]) -> List[Amplicon]:
+def perform_pcr_on_sequences(
+    df: pd.DataFrame, clean_seq: List[Dseqrecord]
+) -> List[Amplicon]:
     """
     Performs PCR amplification on a list of sequences using primers generated from a DataFrame.
 
@@ -44,8 +45,14 @@ def perform_pcr_on_sequences(df: pd.DataFrame, clean_seq: List[Dseqrecord]) -> L
     >>> for amplicon in amplicons:
     >>>     print(amplicon.name)
     """
-    f_primers_list: List[Primer] = [Primer(seq, id=template) for seq, template in zip(df['f_primer_sequences(5-3)'], df['template'])]
-    r_primers_list: List[Primer] = [Primer(seq, id=template) for seq, template in zip(df['r_primer_sequences(5-3)'], df['template'])]
+    f_primers_list: List[Primer] = [
+        Primer(seq, id=template)
+        for seq, template in zip(df["f_primer_sequences(5-3)"], df["template"])
+    ]
+    r_primers_list: List[Primer] = [
+        Primer(seq, id=template)
+        for seq, template in zip(df["r_primer_sequences(5-3)"], df["template"])
+    ]
 
     list_of_amplicons: List[Amplicon] = []
     no_pcr_product_count: int = 0
@@ -55,25 +62,32 @@ def perform_pcr_on_sequences(df: pd.DataFrame, clean_seq: List[Dseqrecord]) -> L
             amplicon: Amplicon = pcr(f_primers_list[i], r_primers_list[i], template_seq)
             amplicon.name = template_seq.id + "_amplicon"
             print(f"{amplicon.name} , Length: {len(amplicon)}")
-            print(amplicon.figure() + '\n')
+            print(amplicon.figure() + "\n")
             list_of_amplicons.append(amplicon)
         except ValueError:
             no_pcr_product_count += 1
-            print(f"\n######## No PCR product for {template_seq.id}! Count: {no_pcr_product_count} ########")
+            print(
+                f"\n######## No PCR product for {template_seq.id}! Count of ZERO PRODUCTS: {no_pcr_product_count} ########"
+            )
+            print(f"\n######## TRY INCREMENTING THE MELTING TEMPERATURE")
+
             print(template_seq)
-            print('###############################')
+            print("###############################")
 
     return list_of_amplicons
 
 
 # TODO delete this function?
 
-def make_amplicons(list_of_amplicons: List[SeqRecord], 
-                   target_tm: int = 58, 
-                   limit: int = 10, 
-                   primer_concentration: float = 0.4, 
-                   polymerase: str = 'onetaq-3', 
-                   **primer_kwargs: Dict[str, Any]) -> List[Any]:
+
+def make_amplicons(
+    list_of_amplicons: List[SeqRecord],
+    target_tm: int = 58,
+    limit: int = 10,
+    primer_concentration: float = 0.4,
+    polymerase: str = "onetaq-3",
+    **primer_kwargs: Dict[str, Any],
+) -> List[Any]:
     """
     Generates pydna.amplicons which contains primers with a target temperature.
 
@@ -99,7 +113,7 @@ def make_amplicons(list_of_amplicons: List[SeqRecord],
     """
     # Set default values for primer_kwargs if not provided
     if not primer_kwargs:
-        primer_kwargs = {'conc': primer_concentration, 'prodcode': polymerase}
+        primer_kwargs = {"conc": primer_concentration, "prodcode": polymerase}
 
     amplicons = []
     for i in range(len(list_of_amplicons)):
@@ -108,7 +122,7 @@ def make_amplicons(list_of_amplicons: List[SeqRecord],
             target_tm=target_tm,
             limit=limit,
             tm_function=primer_tm_neb,
-            **primer_kwargs
+            **primer_kwargs,
         )
         amplicon.name = list_of_amplicons[i].name + "_amplicon"
         amplicon.id = list_of_amplicons[i].id
