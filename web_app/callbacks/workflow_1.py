@@ -20,6 +20,16 @@ import logging
 from Bio.Restriction import *
 from Bio import Restriction
 
+import sys
+import io
+
+# Save the original stdout so you can restore it later
+original_stdout = sys.stdout
+
+# Create a StringIO object to capture print output
+captured_output = io.StringIO()
+sys.stdout = captured_output
+
 # Create a StringIO object to capture logs in memory
 log_stream = io.StringIO()
 
@@ -57,7 +67,11 @@ from streptocad.primers.primer_generation import (
     generate_primer_dataframe,
     create_idt_order_dataframe,
 )
-from streptocad.utils import ProjectDirectory, extract_metadata_to_dataframe
+from streptocad.utils import (
+    ProjectDirectory,
+    extract_metadata_to_dataframe,
+    generate_header,
+)
 
 
 def register_workflow_1_callbacks(app):
@@ -72,27 +86,15 @@ def register_workflow_1_callbacks(app):
             Output("download-data-and-protocols-link_1", "href"),
             Output("error-dialog_1", "message"),
             Output("error-dialog_1", "displayed"),
-            Output(
-                "plasmid-metadata-table_1", "data"
-            ),  # Output for plasmid metadata DataTable
-            Output(
-                "plasmid-metadata-table_1", "columns"
-            ),  # Output for plasmid metadata DataTable columns
+            Output("plasmid-metadata-table_1", "data"),
+            Output("plasmid-metadata-table_1", "columns"),
         ],
         [Input("submit-settings-button_1", "n_clicks")],
         [
-            State(
-                {"type": "upload-component", "index": "sequences"}, "contents"
-            ),  # Corrected ID
-            State(
-                {"type": "upload-component", "index": "plasmid"}, "contents"
-            ),  # Corrected ID
-            State(
-                {"type": "upload-component", "index": "sequences"}, "filename"
-            ),  # Corrected ID
-            State(
-                {"type": "upload-component", "index": "plasmid"}, "filename"
-            ),  # Corrected ID
+            State({"type": "upload-component", "index": "sequences"}, "contents"),
+            State({"type": "upload-component", "index": "plasmid"}, "contents"),
+            State({"type": "upload-component", "index": "sequences"}, "filename"),
+            State({"type": "upload-component", "index": "plasmid"}, "filename"),
             State("forward-overhang-input_1", "value"),
             State("reverse-overhang-input_1", "value"),
             State("chosen-polymerase_1", "value"),
@@ -232,19 +234,28 @@ def register_workflow_1_callbacks(app):
                     {"name": "input_sequences.gb", "content": sequences},
                     {"name": "input_plasmid.gb", "content": plasmid},
                 ]
-                # Before packaging, read out the log file contents
-                with open("assembly_log_file.log", "r") as f:
-                    log_content = f.read()
+
+                # for the assembly overview.
+                header_text = generate_header(
+                    assembled_plasmids,
+                    sequences,
+                    idt_df,
+                    captured_output,
+                    original_stdout,
+                )
 
                 output_files = [
                     {
                         "name": "pOEX-PKasO.gb",
                         "content": assembled_plasmids,
-                    },  # LIST OF Dseqrecords
+                    },
                     {"name": "00_primer_df.csv", "content": primer_df},
                     {"name": "01_full_idt.csv", "content": idt_df},
                     {"name": "02_primers_analyzed.csv", "content": analyzed_primers_df},
-                    {"name": "03_log_file.csv", "content": log_content},
+                    {
+                        "name": "03_assembly_overview_and_log_file.log",
+                        "content": header_text,
+                    },
                 ]
 
                 input_values = {
