@@ -18,54 +18,94 @@ introduction_page = html.Div(
         html.Img(
             src="/assets/StreptoCAD_logo_round1.png",
             style={
-                'width': '150px',
-                'marginBottom': '20px',
-                'display': 'block',
-                'marginLeft': 'auto',
-                'marginRight': 'auto',
-            }
+                "width": "150px",
+                "marginBottom": "20px",
+                "display": "block",
+                "marginLeft": "auto",
+                "marginRight": "auto",
+            },
         ),
         dcc.Markdown(
             introduction_text,
             style={
-                'textAlign': 'center',
-                'fontSize': '1.5rem',
-                'lineHeight': '1.5',
-                'padding': '20px',
-                'borderRadius': '10px',
-                'boxShadow': '0 4px 6px rgba(0, 0, 0, 0.1)',
-                'color': '#ddd',
-                'backgroundColor': '#2C3E50',
-                'width': '80%',
-                'margin': '0 auto'
-            }
+                "textAlign": "center",
+                "fontSize": "1.5rem",
+                "lineHeight": "1.5",
+                "padding": "20px",
+                "borderRadius": "10px",
+                "boxShadow": "0 4px 6px rgba(0, 0, 0, 0.1)",
+                "color": "#ddd",
+                "backgroundColor": "#2C3E50",
+                "width": "80%",
+                "margin": "0 auto",
+            },
         ),
         html.Div(
             [
-                html.I(className="fas fa-brain", style={'fontSize': '5rem', 'color': '#ddd', 'marginRight': '10px'}),
-                html.Span("+", style={'fontSize': '4rem', 'color': '#ddd', 'marginRight': '10px'}),
-                html.I(className="fas fa-laptop-code", style={'fontSize': '5rem', 'color': '#ddd', 'marginRight': '10px'}),
-                html.Span("=", style={'fontSize': '4rem', 'color': '#ddd', 'marginRight': '10px'}),
-                html.I(className="fas fa-dna", style={'fontSize': '5rem', 'color': '#ddd'}),
+                html.I(
+                    className="fas fa-brain",
+                    style={"fontSize": "5rem", "color": "#ddd", "marginRight": "10px"},
+                ),
+                html.Span(
+                    "+",
+                    style={"fontSize": "4rem", "color": "#ddd", "marginRight": "10px"},
+                ),
+                html.I(
+                    className="fas fa-laptop-code",
+                    style={"fontSize": "5rem", "color": "#ddd", "marginRight": "10px"},
+                ),
+                html.Span(
+                    "=",
+                    style={"fontSize": "4rem", "color": "#ddd", "marginRight": "10px"},
+                ),
+                html.I(
+                    className="fas fa-dna", style={"fontSize": "5rem", "color": "#ddd"}
+                ),
             ],
-            style={'textAlign': 'center', 'marginTop': '20px'}
+            style={"textAlign": "center", "marginTop": "20px"},
         ),
-        dbc.Button("Let's get started", id='start-button', color="primary", size="lg", className="d-block mx-auto mt-4"),
+        dbc.Button(
+            "Let's get started",
+            id="start-button",
+            color="primary",
+            size="lg",
+            className="d-block mx-auto mt-4",
+        ),
         html.Div(
             [
                 html.Span("Citation: ", style={"fontSize": "18px", "color": "#ddd"}),
                 html.Span(
-                    "Levassor, Whitford, Petersen, Madsen, Blin, Weber, Frandsen; TBA journal 2024 ",
-                    style={"fontSize": "18px", "color": "#ddd"}
+                    "Levassor, Whitford, Petersen, Blin, Weber, Frandsen; BioXiv 2024 ",
+                    style={"fontSize": "18px", "color": "#ddd"},
                 ),
                 html.A(
-                    "doi: TBA",
-                    href="https://doi.org/TBA",
-                    style={"fontSize": "18px", "color": "#00c39a", "marginLeft": "10px"}
+                    "doi: https://doi.org/10.1101/2024.12.19.629370",
+                    href="https://www.biorxiv.org/content/10.1101/2024.12.19.629370v1",
+                    style={
+                        "fontSize": "18px",
+                        "color": "#00c39a",
+                        "marginLeft": "10px",
+                    },
                 ),
             ],
-            style={'textAlign': 'center', 'marginTop': '40px', 'padding': '20px', 'backgroundColor': '#2C3E50', 'borderRadius': '10px', 'boxShadow': '0 4px 6px rgba(0, 0, 0, 0.1)', 'width': '80%', 'margin': '20px auto'}
-        )
+            style={
+                "textAlign": "center",
+                "marginTop": "40px",
+                "padding": "20px",
+                "backgroundColor": "#2C3E50",
+                "borderRadius": "10px",
+                "boxShadow": "0 4px 6px rgba(0, 0, 0, 0.1)",
+                "width": "80%",
+                "margin": "20px auto",
+            },
+        ),
     ],
-    style={'height': '100vh', 'display': 'flex', 'flexDirection': 'column', 'justifyContent': 'center', 'alignItems': 'center', 'backgroundColor': '#2C3E50'}
+    style={
+        "height": "100vh",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "backgroundColor": "#2C3E50",
+    },
 )
