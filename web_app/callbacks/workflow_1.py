@@ -101,6 +101,7 @@ def register_workflow_1_callbacks(app):
             State("melting-temperature_1", "value"),
             State("primer-concentration_1", "value"),
             State("restriction-enzymes_1", "value"),
+            State("primer-lenght_1", "value"),
         ],
     )
     def run_workflow(
@@ -115,6 +116,7 @@ def register_workflow_1_callbacks(app):
         melting_temperature,
         primer_concentration,
         restriction_enzymes,
+        primer_anneal_len,
     ):
         if n_clicks is None:
             raise PreventUpdate
@@ -170,6 +172,7 @@ def register_workflow_1_callbacks(app):
                     primer_concentration,
                     up_homology,
                     dw_homology,
+                    min_primer_len=primer_anneal_len,
                 )
                 logging.info(f"Primer DataFrame: {primer_df}")
 
