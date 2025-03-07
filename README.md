@@ -1,5 +1,14 @@
 <img src="web_app/assets/StreptoCAD_logo Medium.jpeg" alt="StreptoCAD" width="200">
 
+# Automate your Streptomyces genome engineering workflows 🚀
+
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![Tests Passing](https://github.com/hiyama341/streptocad/actions/workflows/run-tests.yml/badge.svg)
+![Deploy AppRunner Container](https://github.com/hiyama341/streptocad/actions/workflows/deploy_apprunner_container.yml/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+[![code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 **StreptoCAD** is an open-source software toolbox designed to automate and streamline genome engineering in Streptomyces. This tool supports various CRISPR-based techniques and gene overexpression methods, simplifying the genetic engineering process.
 
 ## Features
@@ -14,7 +23,11 @@
 
 Streptomyces is a prolific source of novel bioactive molecules, but current genetic engineering methods are inefficient and time-consuming. StreptoCAD addresses these challenges by automating the design process, reducing errors, and speeding up the development of genetically modified strains. This tool transforms complex genetic engineering tasks into straightforward, reproducible processes, enabling faster scientific advancements and discovery of new natural products.
 
+For more details and an in-depth discussion of our approach, check out our [bioXiv paper](https://www.biorxiv.org/content/10.1101/2024.12.19.629370v1.full).
+
 ## Workflows
+
+<img src="web_app/assets/intro_fig.png" alt="StreptoCAD" width="600">
 
 StreptoCAD offers six distinct workflows for various genetic engineering tasks:
 
