@@ -363,11 +363,11 @@ workflow_1_tab = dcc.Tab(
                 # Primer lenght
                 dbc.Label(
                     [
-                        "Minimum Primer Anneal Lenght",
+                        "Minimum Primer Anneal Length",
                         html.Span(
                             "ⓘ",
                             id="primer-anneal-length-tooltip",
-                            style=link_style,  # TODO
+                            style=link_style,
                         ),
                     ],
                     style={"color": "#ddd"},
