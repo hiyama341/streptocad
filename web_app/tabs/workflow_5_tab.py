@@ -619,6 +619,32 @@ gibson_tab = dcc.Tab(
                                             ],
                                             width=6,
                                         ),
+                                        # Primer length
+                                        dbc.Col(
+                                            [
+                                                dbc.Label(
+                                                    [
+                                                        "Minimum Checking Primer Anneal Length",
+                                                        html.Span(
+                                                            "ⓘ",
+                                                            id="primer-anneal-length-tooltip",
+                                                            style=link_style,
+                                                        ),
+                                                    ],
+                                                    style={"color": "#ddd"},
+                                                ),
+                                                dbc.Input(
+                                                    id="primer-lenght_5",
+                                                    type="number",
+                                                    value=18,
+                                                    style={
+                                                        "color": "#000",
+                                                        "width": "100%",
+                                                    },
+                                                ),
+                                            ],
+                                            width=6,
+                                        ),
                                         dbc.Col(
                                             [
                                                 dbc.Label(
