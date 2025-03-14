@@ -605,7 +605,7 @@ golden_gate_tab = dcc.Tab(
                                                     style={"color": "#ddd"},
                                                 ),
                                                 dbc.Input(
-                                                    id="primer-lenght_3",
+                                                    id="checking-primer-length_3",
                                                     type="number",
                                                     value=18,
                                                     style={

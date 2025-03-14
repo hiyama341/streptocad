@@ -661,7 +661,33 @@ cas3_tab = dcc.Tab(
                                                     style={"color": "#ddd"},
                                                 ),
                                                 dbc.Input(
-                                                    id="primer-lenght_6",
+                                                    id="checking-primer-length_6",
+                                                    type="number",
+                                                    value=18,
+                                                    style={
+                                                        "color": "#000",
+                                                        "width": "100%",
+                                                    },
+                                                ),
+                                            ],
+                                            width=6,
+                                        ),
+                                        # Primer length
+                                        dbc.Col(
+                                            [
+                                                dbc.Label(
+                                                    [
+                                                        "Minimum Gibson Primer Anneal Length",
+                                                        html.Span(
+                                                            "ⓘ",
+                                                            id="gibson-primer-anneal-length-tooltip",
+                                                            style=link_style,
+                                                        ),
+                                                    ],
+                                                    style={"color": "#ddd"},
+                                                ),
+                                                dbc.Input(
+                                                    id="gibson-primer-length_6",
                                                     type="number",
                                                     value=18,
                                                     style={

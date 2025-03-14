@@ -215,4 +215,14 @@ tooltips = [
             """,
         target_id="primer-anneal-length-tooltip",
     ),
+    create_tooltip(
+        """ This setting overrides your desired melting temperature for improved primer specificity.
+            Tip: Use GC enhancers if the melting temperature remains too high.
+            Additional Tips:
+            • Experiment with different minimum primer lengths and melting temperatures to optimize primer design for your specific sequences.
+            • Adjust these parameters to find the best balance between specificity and efficiency for your amplification needs. 
+            
+            """,
+        target_id="gibson-primer-anneal-length-tooltip",
+    ),
 ]

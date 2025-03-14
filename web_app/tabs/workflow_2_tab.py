@@ -675,7 +675,7 @@ crispr_cb_tab = html.Div(
                                                     style={"color": "#ddd"},
                                                 ),
                                                 dbc.Input(
-                                                    id="primer-lenght_2",
+                                                    id="checking-primer-length_2",
                                                     type="number",
                                                     value=18,
                                                     style={
