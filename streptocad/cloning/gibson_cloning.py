@@ -24,8 +24,14 @@ from typing import List
 from teemi.build.PCR import primer_tm_neb, primer_ta_neb
 
 
-def find_up_dw_repair_templates(genome: SeqRecord, repair_templates: List[str], target_tm: int = 65, 
-                                primer_tm_kwargs= None, repair_length= 1000) -> List[dict]:
+def find_up_dw_repair_templates(
+    genome: SeqRecord,
+    repair_templates: List[str],
+    target_tm: int = 65,
+    primer_tm_kwargs=None,
+    repair_length=1000,
+    min_primer_length=13,
+) -> List[dict]:
     """
     Find repair templates upstream and downstream of coding sequences in a genome.
 
@@ -61,54 +67,85 @@ def find_up_dw_repair_templates(genome: SeqRecord, repair_templates: List[str], 
             - location_dw_end: The ending location of the downstream repair template on the genome.
     """
 
-    #if primer_tm_kwargs is None:
+    # if primer_tm_kwargs is None:
     #    primer_tm_kwargs = {'conc': 0.4, 'prodcode': 'onetaq-3'}
-    
+
     repair_DNA_templates = []
     for feature in genome.features:
-        if feature.type == 'CDS': 
+        if feature.type == "CDS":
             # getting the locus tag if we see cds
-            if feature.qualifiers['locus_tag'][0] in repair_templates: 
-
+            if feature.qualifiers["locus_tag"][0] in repair_templates:
                 # get start and end locations
                 start_location = int(feature.location.start)
                 end_location = int(feature.location.end)
 
                 # Fetch 500 upstream to start + end to 500 downstream
-                repair_up = primer_design(Dseqrecord(str(genome.seq[start_location-repair_length:start_location]),
-                                                     name= f"Repair_Template_UPSTREAM{feature.qualifiers['locus_tag'][0]}"),
-                                                     target_tm=target_tm, tm_func=primer_tm_neb, **primer_tm_kwargs)
+                repair_up = primer_design(
+                    Dseqrecord(
+                        str(
+                            genome.seq[start_location - repair_length : start_location]
+                        ),
+                        name=f"Repair_Template_UPSTREAM{feature.qualifiers['locus_tag'][0]}",
+                    ),
+                    target_tm=target_tm,
+                    tm_func=primer_tm_neb,
+                    limit=min_primer_length,
+                    **primer_tm_kwargs,
+                )
 
                 # Fetch 500 downstream to start + end to 500 downstream
-                repair_dw = primer_design(Dseqrecord(str(genome.seq[end_location:end_location+repair_length]), 
-                                                     name= f"Repair_Template_Downstream{feature.qualifiers['locus_tag'][0]}"),
-                                                     target_tm=target_tm, tm_func=primer_tm_neb, **primer_tm_kwargs)
+                repair_dw = primer_design(
+                    Dseqrecord(
+                        str(genome.seq[end_location : end_location + repair_length]),
+                        name=f"Repair_Template_Downstream{feature.qualifiers['locus_tag'][0]}",
+                    ),
+                    target_tm=target_tm,
+                    tm_func=primer_tm_neb,
+                    limit=min_primer_length,
+                    **primer_tm_kwargs,
+                )
                 # MAKE A DICT
-                record = {'name':feature.qualifiers['locus_tag'][0],
-                          # up repair
-                          'up_repair':repair_up,
-                          'up_forwar_p': repair_up.forward_primer, 
-                          'up_reverse_p': repair_up.reverse_primer,
-                          'tm_up_forwar_p': primer_tm_neb(str(repair_up.forward_primer.seq), **primer_tm_kwargs), 
-                          'tm_up_reverse_p': primer_tm_neb(str(repair_up.reverse_primer.seq), **primer_tm_kwargs),
-                          'ta_up': primer_ta_neb(str(repair_up.forward_primer.seq), str(repair_up.reverse_primer.seq), **primer_tm_kwargs),
-                          'location_up_start':start_location-repair_length,
-                          'location_up_end':start_location,
-                        
-                          # dw repair
-                          'dw_repair': repair_dw,
-                          'dw_forwar_p': repair_dw.forward_primer, 
-                          'dw_reverse_p': repair_dw.reverse_primer,
-                          'tm_dw_forwar_p': primer_tm_neb(str(repair_dw.forward_primer.seq), **primer_tm_kwargs), 
-                          'tm_dw_reverse_p': primer_tm_neb(str(repair_dw.reverse_primer.seq), **primer_tm_kwargs), 
-                          'ta_dw': primer_ta_neb(str(repair_dw.forward_primer.seq), str(repair_dw.reverse_primer.seq), **primer_tm_kwargs),
-                          'location_dw_start': end_location, 
-                          'location_dw_end':end_location+repair_length}
-                
-                repair_DNA_templates.append(record )
-                
-    return repair_DNA_templates
+                record = {
+                    "name": feature.qualifiers["locus_tag"][0],
+                    # up repair
+                    "up_repair": repair_up,
+                    "up_forwar_p": repair_up.forward_primer,
+                    "up_reverse_p": repair_up.reverse_primer,
+                    "tm_up_forwar_p": primer_tm_neb(
+                        str(repair_up.forward_primer.seq), **primer_tm_kwargs
+                    ),
+                    "tm_up_reverse_p": primer_tm_neb(
+                        str(repair_up.reverse_primer.seq), **primer_tm_kwargs
+                    ),
+                    "ta_up": primer_ta_neb(
+                        str(repair_up.forward_primer.seq),
+                        str(repair_up.reverse_primer.seq),
+                        **primer_tm_kwargs,
+                    ),
+                    "location_up_start": start_location - repair_length,
+                    "location_up_end": start_location,
+                    # dw repair
+                    "dw_repair": repair_dw,
+                    "dw_forwar_p": repair_dw.forward_primer,
+                    "dw_reverse_p": repair_dw.reverse_primer,
+                    "tm_dw_forwar_p": primer_tm_neb(
+                        str(repair_dw.forward_primer.seq), **primer_tm_kwargs
+                    ),
+                    "tm_dw_reverse_p": primer_tm_neb(
+                        str(repair_dw.reverse_primer.seq), **primer_tm_kwargs
+                    ),
+                    "ta_dw": primer_ta_neb(
+                        str(repair_dw.forward_primer.seq),
+                        str(repair_dw.reverse_primer.seq),
+                        **primer_tm_kwargs,
+                    ),
+                    "location_dw_start": end_location,
+                    "location_dw_end": end_location + repair_length,
+                }
 
+                repair_DNA_templates.append(record)
+
+    return repair_DNA_templates
 
 
 def update_primer_names(list_of_records: list) -> list:
@@ -147,8 +184,13 @@ def update_primer_names(list_of_records: list) -> list:
                 # Find and assign the existing name/id to this primer
                 for existing_record in list_of_records:
                     existing_primer_key = f"{primer_type}_p"
-                    if existing_record[existing_primer_key].seq == record[primer_key].seq:
-                        record[primer_name_key] = existing_record[existing_primer_key].name
+                    if (
+                        existing_record[existing_primer_key].seq
+                        == record[primer_key].seq
+                    ):
+                        record[primer_name_key] = existing_record[
+                            existing_primer_key
+                        ].name
                         break
 
     return list_of_records
@@ -183,14 +225,11 @@ def assemble_single_plasmid_with_repair_templates(
     return new_vector
 
 
-
-
 def assemble_multiple_plasmids_with_repair_templates_for_deletion(
     list_of_gene_names: list,
     list_of_digested_plasmids: list,
     repair_DNA_templates: list,
     overlap=30,
-
 ) -> dict:
     """Assemble plasmids with repair templates via Gibson cloning.
 
@@ -232,8 +271,10 @@ def assemble_multiple_plasmids_with_repair_templates_for_deletion(
                 for repair_template_name in repair_DNA_templates:
                     # double-check that the names are working
                     if repair_template_name["name"] == gene_name:
-                        print(f"Repair template match found for gene: {gene_name}")  # Debugging print
-                        
+                        print(
+                            f"Repair template match found for gene: {gene_name}"
+                        )  # Debugging print
+
                         # making a list of the repair templates
                         repair_templates = [
                             repair_template_name["up_repair"],
@@ -254,16 +295,23 @@ def assemble_multiple_plasmids_with_repair_templates_for_deletion(
                         ## change features
                         contig.features.append(
                             SeqFeature(
-                                FeatureLocation(len(plasmid), len(plasmid) + len(repair_template_name["up_repair"])),
+                                FeatureLocation(
+                                    len(plasmid),
+                                    len(plasmid)
+                                    + len(repair_template_name["up_repair"]),
+                                ),
                                 type="CDS",
                                 qualifiers={"label": f"UP_repair{gene_name}"},
                             )
                         )
                         contig.features.append(
                             SeqFeature(
-                                # # from end of up repair and then 
+                                # # from end of up repair and then
                                 FeatureLocation(
-                                    len(plasmid) + len(repair_template_name["up_repair"]), len(plasmid) + len(repair_template_name["dw_repair"])*2 
+                                    len(plasmid)
+                                    + len(repair_template_name["up_repair"]),
+                                    len(plasmid)
+                                    + len(repair_template_name["dw_repair"]) * 2,
                                 ),
                                 type="CDS",
                                 qualifiers={"label": f"DW_repair{gene_name}"},
@@ -280,34 +328,48 @@ def assemble_multiple_plasmids_with_repair_templates_for_deletion(
                             "up_reverse_p_name": assembled_vector[1].reverse_primer.id,
                             "up_forwar_p": assembled_vector[1].forward_primer,
                             "up_reverse_p": assembled_vector[1].reverse_primer,
-                            "up_forwar_primer_str": str(assembled_vector[1].forward_primer.seq),
-                            "up_reverse_primer_str": str(assembled_vector[1].reverse_primer.seq),
-                            "up_forwar_p_anneal": assembled_vector[1].forward_primer.footprint,
-                            "up_reverse_p_anneal": assembled_vector[1].reverse_primer.footprint,
-                            "tm_up_forwar_p": repair_template_name['tm_up_forwar_p'],
-                            "tm_up_reverse_p": repair_template_name['tm_up_reverse_p'],
-                            "ta_up": repair_template_name['ta_up'],
+                            "up_forwar_primer_str": str(
+                                assembled_vector[1].forward_primer.seq
+                            ),
+                            "up_reverse_primer_str": str(
+                                assembled_vector[1].reverse_primer.seq
+                            ),
+                            "up_forwar_p_anneal": assembled_vector[
+                                1
+                            ].forward_primer.footprint,
+                            "up_reverse_p_anneal": assembled_vector[
+                                1
+                            ].reverse_primer.footprint,
+                            "tm_up_forwar_p": repair_template_name["tm_up_forwar_p"],
+                            "tm_up_reverse_p": repair_template_name["tm_up_reverse_p"],
+                            "ta_up": repair_template_name["ta_up"],
                             # dw repair
                             "dw_forwar_p_name": assembled_vector[2].forward_primer.id,
                             "dw_reverse_p_name": assembled_vector[2].reverse_primer.id,
                             "dw_forwar_p": assembled_vector[2].forward_primer,
                             "dw_reverse_p": assembled_vector[2].reverse_primer,
-                            "dw_forwar_primer_str": str(assembled_vector[2].forward_primer.seq),
-                            "dw_reverse_primer_str": str(assembled_vector[2].reverse_primer.seq),
+                            "dw_forwar_primer_str": str(
+                                assembled_vector[2].forward_primer.seq
+                            ),
+                            "dw_reverse_primer_str": str(
+                                assembled_vector[2].reverse_primer.seq
+                            ),
                             "dw_forwar_p_anneal": assembled_vector[
                                 2
                             ].forward_primer.footprint,
                             "dw_reverse_p_anneal": assembled_vector[
                                 2
                             ].reverse_primer.footprint,
-                            "tm_dw_forwar_p": repair_template_name['tm_dw_forwar_p'],
-                            "tm_dw_reverse_p": repair_template_name['tm_dw_reverse_p'],
-                            "ta_dw": repair_template_name['ta_dw'],
+                            "tm_dw_forwar_p": repair_template_name["tm_dw_forwar_p"],
+                            "tm_dw_reverse_p": repair_template_name["tm_dw_reverse_p"],
+                            "ta_dw": repair_template_name["ta_dw"],
                         }
                         print(f"Record added for gene: {gene_name}")  # Debugging print
                         list_of_records.append(record)
 
         if not match_found:
-            print(f'No match found for gene {gene_name}! Consider renaming your plasmid.')
+            print(
+                f"No match found for gene {gene_name}! Consider renaming your plasmid."
+            )
 
     return list_of_records
