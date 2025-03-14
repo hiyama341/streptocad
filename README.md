@@ -11,6 +11,8 @@
 
 **StreptoCAD** is an open-source software toolbox designed to automate and streamline genome engineering in Streptomyces. This tool supports various CRISPR-based techniques and gene overexpression methods, simplifying the genetic engineering process.
 
+You can find it here: streptocad.bioengineering.dtu.dk
+
 ## Features
 
 - **Automated Primer and sgRNA Design:** Automatically generates necessary DNA primers and sgRNA sequences for your target genes.
