@@ -354,7 +354,7 @@ gibson_tab = dcc.Tab(
                                         dbc.Input(
                                             id="gc-upper_5",
                                             type="number",
-                                            value=0.99,
+                                            value=0.8,
                                             style={"color": "#000", "width": "100%"},
                                         ),
                                         create_tooltip(
@@ -381,7 +381,7 @@ gibson_tab = dcc.Tab(
                                         dbc.Input(
                                             id="gc-lower_5",
                                             type="number",
-                                            value=0.01,
+                                            value=0.2,
                                             style={"color": "#000", "width": "100%"},
                                         ),
                                         create_tooltip(

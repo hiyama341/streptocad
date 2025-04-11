@@ -369,7 +369,7 @@ crispr_cb_tab = html.Div(
                                 dbc.Input(
                                     id="gc-upper_2",
                                     type="number",
-                                    value=0.99,
+                                    value=0.8,
                                     style={"color": "#000", "width": "100%"},
                                 ),
                             ],
@@ -394,7 +394,7 @@ crispr_cb_tab = html.Div(
                                 dbc.Input(
                                     id="gc-lower_2",
                                     type="number",
-                                    value=0.01,
+                                    value=0.2,
                                     style={"color": "#000", "width": "100%"},
                                 ),
                             ],

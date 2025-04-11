@@ -314,7 +314,7 @@ golden_gate_tab = dcc.Tab(
                                         dbc.Input(
                                             id="gc-upper_3",
                                             type="number",
-                                            value=0.99,
+                                            value=0.8,
                                             style={"color": "#000", "width": "100%"},
                                         ),
                                     ],
@@ -337,7 +337,7 @@ golden_gate_tab = dcc.Tab(
                                         dbc.Input(
                                             id="gc-lower_3",
                                             type="number",
-                                            value=0.01,
+                                            value=0.2,
                                             style={"color": "#000", "width": "100%"},
                                         ),
                                     ],
