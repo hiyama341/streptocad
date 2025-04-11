@@ -151,7 +151,7 @@ cas3_tab = dcc.Tab(
                             dbc.Col(
                                 html.A(
                                     dbc.Button(
-                                        "Download Example Plasmid File", color="primary"
+                                        "Download Default Plasmid File", color="primary"
                                     ),
                                     href="/assets/pCRISPR-Cas3.gbk",
                                     download="pCRISPR-Cas3.gbk",
@@ -396,7 +396,7 @@ cas3_tab = dcc.Tab(
             [
                 dbc.Col(
                     [
-                        html.H4("5) Filtering metrics for sgRNAs", style=text_style),
+                        html.H4("5) Filtering metrics for crRNAs", style=text_style),
                         dbc.Row(
                             [
                                 dbc.Col(
@@ -520,7 +520,7 @@ cas3_tab = dcc.Tab(
                                     [
                                         dbc.Label(
                                             [
-                                                "Number of sgRNAs per region/locus tag",
+                                                "Number of crRNAs per region/locus tag",
                                                 html.Span(
                                                     "ⓘ",
                                                     id="number-sgrnas-tooltip",
@@ -853,7 +853,7 @@ cas3_tab = dcc.Tab(
                                         dbc.CardBody(
                                             [
                                                 html.H5(
-                                                    "Filtered sgRNAs",
+                                                    "Filtered crRNAs",
                                                     className="card-title",
                                                     style=text_style,
                                                 ),

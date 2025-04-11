@@ -158,7 +158,7 @@ gibson_tab = dcc.Tab(
                             dbc.Col(
                                 html.A(
                                     dbc.Button(
-                                        "Download Example CRISPR Plasmid File",
+                                        "Download Default CRISPR Plasmid File",
                                         color="primary",
                                     ),
                                     href="/assets/pCRISPR-Cas9.gbk",

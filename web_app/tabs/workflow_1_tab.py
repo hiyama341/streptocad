@@ -177,7 +177,7 @@ workflow_1_tab = dcc.Tab(
                             dbc.Col(
                                 html.A(
                                     dbc.Button(
-                                        "Download Example Plasmid File", color="primary"
+                                        "Download Default Plasmid File", color="primary"
                                     ),
                                     href="/assets/pOEX-PkasO.gb",
                                     download="pOEX-PkasO.gb",

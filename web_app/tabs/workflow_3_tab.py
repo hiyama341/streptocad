@@ -148,7 +148,7 @@ golden_gate_tab = dcc.Tab(
                             dbc.Col(
                                 html.A(
                                     dbc.Button(
-                                        "Download Example CRISPR Plasmid File",
+                                        "Download Default CRISPR Plasmid File",
                                         color="primary",
                                     ),
                                     href="/assets/pCRISPR-MCBE_Csy4_kasopGFP.gb",
@@ -632,7 +632,7 @@ golden_gate_tab = dcc.Tab(
                                                 dbc.Input(
                                                     id="flanking-region-number_3",
                                                     type="number",
-                                                    value=500,
+                                                    value=200,
                                                     style={"color": "#000"},
                                                 ),
                                             ],

@@ -173,7 +173,7 @@ crispr_cb_tab = html.Div(
                             dbc.Col(
                                 html.A(
                                     dbc.Button(
-                                        "Download Example CRISPR Plasmid File",
+                                        "Download Default CRISPR Plasmid File",
                                         color="primary",
                                     ),
                                     href="/assets/pCRISPR-cBEST.gbk",
@@ -702,7 +702,7 @@ crispr_cb_tab = html.Div(
                                                 dbc.Input(
                                                     id="flanking-region-number_2",
                                                     type="number",
-                                                    value=500,
+                                                    value=200,
                                                     style={"color": "#000"},
                                                 ),
                                             ],

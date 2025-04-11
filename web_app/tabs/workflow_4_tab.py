@@ -147,7 +147,7 @@ crispri_tab = html.Div(
                             dbc.Col(
                                 html.A(
                                     dbc.Button(
-                                        "Download Example CRISPRi Plasmid File",
+                                        "Download Default CRISPRi Plasmid File",
                                         color="primary",
                                     ),
                                     href="/assets/pCRISPR-dCas9.gbk",
