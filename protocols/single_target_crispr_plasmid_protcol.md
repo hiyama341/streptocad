@@ -14,16 +14,16 @@
 
 3. **Resuspend Oligonucleotides**:
 
-   - Resuspend the oligonucleotides in 1× NEBuffer at a 100 μM stock concentration.
+   - Resuspend the oligonucleotides to a 100 μM stock concentration.
 
 4. **Dilute Oligonucleotides**:
-   - Before starting the next step, dilute the oligonucleotides to a working concentration of 0.4 μM using 1× NEBuffer.
+   - Before starting the next step, dilute the oligonucleotides to a working concentration of 0.4 μM using NEBuffer 2.
 
 **PAUSE POINT**: The prepared solutions, together with the stocks, can be stored at −20 °C for up to 6 months.
 
 ## 2. Linearize the CRISPR Plasmids by Restriction Enzyme Digestion
 
-**CRITICAL STEP**: Because Thermo Fisher Scientific provides a compatible buffer system, both FastDigest restriction enzymes and FastAP thermosensitive alkaline phosphatase can be added at the same time for a total reaction time of 30 min. Instead of a 20-µL digestion, one can enlarge the volume to yield more linearized plasmid that can be stored at −20 °C for up to 3 months for future use.
+**CRITICAL STEP**: Because synthesized oligos have hydroxyl groups on both the 5’ and 3’ ends, we recommend not dephosphorylation the backbone to allow higher ligation efficiencies.
 
 ### Digesting Non-Multiplexing-Compatible CRISPR Plasmids - ssDNA cloning
 
@@ -39,7 +39,7 @@
 | **Total volume**      | 20          |                     |
 
 2. **Digest Plasmid DNA**:
-   - Ideally, digest 800 ng of plasmid DNA. Incubate at 37 °C for 30 min. Then add 1 µL of FastAP thermosensitive alkaline phosphatase to the reaction and incubate for an additional 10 min at 37 °C.
+   - Ideally, digest 800 ng of plasmid DNA with NcoI. Incubate at 37 °C for 2 h , followed by inactivation for 10 min at 75 C..
 
 **PAUSE POINT**: The linearized plasmids can be stored at −20 °C for up to 3 months.
 
@@ -71,18 +71,18 @@ Measure the concentration using a NanoDrop 2000 spectrophotometer.
 
 3. **Transform E. coli Cells**:
    - Transfer 2 μL of the above reaction mixture to 50 μL of in-house-made (or commercial) electroporation-competent Mach1 E. coli cells. Follow these steps:
-     - Remove the 50-µL tubes containing electroporation-competent E. coli cells from the –80 °C freezer and thaw on ice (~10 min).
-     - Remove the 1-mm electroporation cuvettes from the −20 °C freezer and place them on ice.
-     - Carefully pipette the competent cells into the cuvettes.
-     - Mix the competent cells with 2 μL of the ssDNA oligonucleotide bridging reaction by flicking the tubes with a fingertip 3–5 times (avoid bubble formation).
-     - Use the Ec1 program of a Bio-Rad MicroPulser (alternatively, a similar electroporation program of 1.8 kV with a 1-mm electroporation cuvette with a one-time pulse can be used).
-     - Immediately add 200 µL SOC broth to each cuvette and transfer the reaction to a sterilized 1.5-mL Eppendorf tube.
-     - Incubate the tube in a heating block at 37 °C with shaking at 800 r.p.m. for 1 h.
+   - Remove the 50-µL tubes containing electroporation-competent E. coli cells from the –80 °C freezer and thaw on ice (~10 min).
+   - Remove the 1-mm electroporation cuvettes from the −20 °C freezer and place them on ice.
+   - Carefully pipette the competent cells into the cuvettes.
+   - Mix the competent cells with 2 μL of the ssDNA oligonucleotide bridging reaction by flicking the tubes with a fingertip 3–5 times (avoid bubble formation).
+   - Use the Ec1 program of a Bio-Rad MicroPulser (alternatively, a similar electroporation program of 1.8 kV with a 1-mm electroporation cuvette with a one-time pulse can be used).
+   - Immediately add 200 µL 2xYT medium to each cuvette and transfer the reaction to a sterilized 1.5-mL Eppendorf tube.
+   - Incubate the tube in a heating block at 37 °C with shaking at 800 r.p.m. for 1 h.
 
 **CRITICAL STEP**: Chemically competent cells could also be used in this step with the 42 °C heat-shock protocol.
 
 4. **Plate Cells**:
-   - Plate 100 µL of the reaction onto a selective LB plate supplemented with 50 µg/mL apramycin. Incubate the plate overnight at 37 °C.
+   - Quickly spin down the cell suspension, and resuspend in the flow back. Plate the entire volume onto a selective LB plate supplemented with 50 µg/mL apramycin. Incubate the plate overnight at 37 °C.
 
 **CAUTION**: The transformation efficiency may differ with home-made competent cells. Therefore, we recommend using commercial products if they are available.
 
@@ -133,8 +133,6 @@ Prepare cultures of the above-obtained positive colonies in cultivation tubes co
 ## 10. Perform Plasmid Isolation
 
 Perform plasmid isolation the following day, using the NucleoSpin Plasmid EasyPure Kit and following the manufacturer’s instructions. Submit the plasmids for Sanger sequencing using the sgRNA-TEST-F primer and Cas9-C-terminal-TEST primer. Follow Box 2 to additionally insert the editing template (Fig. 5) after sequencing, if required.
-
-**CRITICAL STEP**: We have observed that instability of the pSG5 replicon–based shuttle plasmid in E. coli is easily triggered by unknown factors. Therefore, it is critical to confirm the integrity of the CRISPR plasmids. We have observed several cases in which the ‘hot region of instability’ lies downstream of the tipA-fd fragment. Therefore, we recommend running an additional Sanger sequencing with the sequencing primer Cas9-C-terminal. Alternatively, a NdeI–BglII double-digestion mapping can also indicate the integrity of the plasmids.
 
 ## 11. Freeze the E. coli Strains
 

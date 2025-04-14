@@ -40,9 +40,9 @@
 **TROUBLESHOOTING**
 
 4. **Purify Positive Fragments**:
-   - Purify the positive fragments using a NucleoSpin Gel and PCR Clean-up Kit according to the manufacturer’s instructions.
+   - Gel purify the positive fragments using a NucleoSpin Gel and PCR Clean-up Kit according to the manufacturer’s instructions.
 
-**CRITICAL STEP**: The reaction can be directly used for the following digestion–ligation processes; however, we recommend first purifying the fragments.
+**CRITICAL STEP**: High quality gel extracted fragments will be critical for successful cloning.
 
 5. **Measure Fragment Concentration**:
 
@@ -89,7 +89,7 @@ Analyze 2 µL of the above digestion reaction (add 1 µL of 6× DNA gel loading 
 
 Clean up the gel-confirmed linearized plasmid with a NucleoSpin Gel and PCR Clean-up Kit according to the manufacturer’s instructions.
 
-**CRITICAL STEP**: Optionally, a gel purification step can also be used for extraction of the linearized plasmid; however, it will typically give a much lower yield.
+**CRITICAL STEP**: High quality gel extracted fragments will be critical for successful cloning.
 
 ## 5. Measure the Concentration
 
@@ -98,7 +98,7 @@ Measure the concentration using a NanoDrop 2000 spectrophotometer.
 ## 6. Insert sgRNA Cassettes into the Multiplexing-Compatible CRISPR Plasmids by a Two-Step Golden Gate Assembly
 
 1. **Set Up Ligation Reaction**:
-   - Set up a 10-µL ligation reaction using T4 ligase (5 U), 100 ng of predigested plasmids, and the required volume of the prepared sgRNA fragments to give a 5:1 molar ratio of insert/vector (use the heat-inactivated digestion reaction). Supplement the reaction with 2 µL of 50% (wt/vol) PEG-4000 (included in the T4 ligase kit) and incubate for 1 h at 22 °C.
+   - Set up a 10µL ligation reaction using T4 ligase (5 U), 100 ng of predigested plasmids, and the required volume of the prepared sgRNA fragments to give a 5:1 molar ratio of insert/vector (use the heat-inactivated digestion reaction). Supplement the reaction with 2 µL of 50% (wt/vol) PEG-4000 (included in the T4 ligase kit) and incubate for 1 h at 22 °C.
 
 **PAUSE POINT**: The reaction can be stored at −20 °C for up to 3 months.
 
@@ -144,21 +144,19 @@ Directly use 1 µL of the culture as template DNA for colony PCR with the follow
 
 Analyze 5 µL of the above PCR reaction (add 1 µL of 6× DNA gel loading dye) along with the GeneRuler 1-kb DNA ladder on a long (10-cm) agarose gel (3% (wt/vol)) with 1× TAE buffer. Run the gel at 100 V for 60 min and visualize the bands using a Gel Doc XR+ Gel Documentation System.
 
-**CRITICAL STEP**: Because the size difference between the positive and the control is only 20 bp, it takes a >2% (wt/vol) agarose gel with a 60-min run time to distinguish the bands. We recommend using a 10-cm 3% (wt/vol) agarose gel and running the gel at 100 V for 60 min.
+**CRITICAL STEP**: Because the size difference between the positive and the control is only 20 bp, it takes a >2% (wt/vol) agarose gel with a 60 min run time to distinguish the bands. We recommend using a 10 cm 3% (wt/vol) agarose gel and running the gel at 100 V for 60 min.
 
 **PAUSE POINT**: The E. coli culture in the deep-well 96-well plate can be stored at 4 °C for up to 1 week.
 
 ## 11. Prepare Cultures of Positive Colonies
 
-Prepare cultures of the above-obtained positive colonies in cultivation tubes containing 5 mL of LB medium supplemented with 50 µg/mL apramycin. Inoculate 50 µL of culture directly from the deep-well 96-well plate and incubate at 37 °C with 200 r.p.m. shaking for ~16 h (overnight).
+Prepare cultures of the above-obtained positive colonies in cultivation tubes containing 5 mL of 2xYT medium supplemented with 50 µg/mL apramycin. Inoculate 50 µL of culture directly from the deep-well 96-well plate and incubate at 37 °C with 200 r.p.m. shaking for ~16 h (overnight).
 
-**CRITICAL STEP**: We always use LB medium for cultivating ET12567 E. coli strains for conjugation but have observed that 2× YT broth performs better than LB medium for plasmid isolation purposes in general. Therefore, we recommend using 5 mL of 2× YT broth for cultivation of each strain that is going to be used for plasmid isolation.
+**CRITICAL STEP**: We always use LB medium for cultivating E. coli ET12567 strains for conjugation but have observed that 2× YT medium results in higher yields for plasmid isolation. Therefore, we recommend using 5 mL of 2× YT broth for cultivation of each strain that is going to be used for plasmid isolation.
 
 ## 12. Perform Plasmid Isolation
 
 Perform plasmid isolation the following day, using the NucleoSpin Plasmid EasyPure Kit and following the manufacturer’s instructions. Submit the plasmids for Sanger sequencing using the sgRNA-TEST-F primer and Cas9-C-terminal-TEST primer. Optionally, follow additional steps to insert the editing template after sequencing, if required.
-
-**CRITICAL STEP**: We have observed that instability of the pSG5 replicon–based shuttle plasmid in E. coli is easily triggered by unknown factors. Therefore, it is critical to confirm the integrity of the CRISPR plasmids. We have observed several cases in which the ‘hot region of instability’ lies downstream of the tipA-fd fragment. We recommend running an additional Sanger sequencing with the sequencing primer Cas9-C-terminal. Alternatively, a NdeI–BglII double-digestion mapping can also indicate the integrity of the plasmids.
 
 ## 13. Freeze E. coli Strains
 

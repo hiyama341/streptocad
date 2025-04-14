@@ -70,49 +70,49 @@
 
 4. **Transformations into E. coli Mach1**
 
-   - Transform 4 ul of the assembly mix into E. coli Mach1 or equivalent cloning strains using chemical transformation, following the manufacturers protocol.
+   - Transform 4 ul of the assembly mix into E. coli Mach1 or equivalent cloning strains using chemical transformation, following the manufacturer's protocol.
    - Plate the transformation on LB plates supplemented with 50 ug/ml Apramycin.
    - Incubate at 37 C overnight.
 
 5. **Colony PCRs**
 
-   - Pick transformants on a fresh LB+Apr plate using wooden toothpicks. After picking, add the toothpicks to PCR tube with 20 ul of ddH20. Twist the toothpicks to dispense remaining biomass into the ddH2O.
+   - Pick transformants on a fresh LB+Apr plate using wooden toothpicks. After picking, add the toothpicks to PCR tubes with 20 ul of ddH20. Twist the toothpicks to dispense remaining biomass into the ddH2O.
    - Use 1 ul of the ddH2O cell suspension as template for colony PCRs.
 
      PCR Protocol:
-     Now we need to check if the gene of interest is correctly integrated into the plasmid. We will do this by PCR. We have a forward and reverse primer for this.
+     To check if the gene of interest is correctly integrated into the plasmid, a colony PCR is performed using the following forward and reverse primers:
 
    - f_primer : gcggtgttgtaaagtcgtggcc
    - r_primer : ccgatcaaccgcgactagcatcg
 
-   Since we use the same primers for all the pcrs we can group the amplicons according to size (keep temp really high).
+We use the Q5 polymerase with high GC buffer. Since we use the same primers for all the PCRs we can group the amplicons according to size (keep temp really high).
 
-   We typically use a touchdown PCR protocol with three distinct steps:
+We typically use a touchdown PCR protocol with three distinct steps:
 
-   1. 72 C for x sec according to the group elongation time
-   2. 70 C for x sec according to the group elongation time
-   3. 66 C for x sec according to the group elongation time
+1.  72 C for x sec according to the group elongation time
+2.  70 C for x sec according to the group elongation time
+3.  66 C for x sec according to the group elongation time
 
-   Note: If you have a lot of PCR to perform it can be advantagous to group amplicons with similar sizes and in the same thermocycler run. We use the function group_amplicons() to group the amplicons into a dataframe with amplicons with similar sizes (See for inspiration: https://github.com/hiyama341/streptocad/blob/main/notebooks/wet_lab_notebooks/02-Integration_of_G%C3%964010_regulators_into_pOEX_PkasO.ipynb)
+Note: If you have many PCRs to perform it can be advantageous to group amplicons with similar sizes and in the same thermocycler run. We use the function group_amplicons() to group the amplicons into a dataframe with amplicons with similar sizes (See for inspiration: https://github.com/hiyama341/streptocad/blob/main/notebooks/wet_lab_notebooks/02-Integration_of_G%C3%964010_regulators_into_pOEX_PkasO.ipynb)
 
 6. **Overnight cultures**
    - Prepare overnight cultures of the positive colonies using the plate with picked colonies. Use culture tubes. Inoculate 4 ml of 2x YT supplemented with 50 ug/ml of apramycin directly from the plate.
    - Incubate overnight at 37 C while shaking.
 7. **Minipreps and glycerol stocks**
-   - Perform minipreps using 2 ml of overnight culture using your preferred kit. Follow the manufacturers instructions.
+   - Perform minipreps using 2 ml of overnight culture using your preferred kit. Follow the manufacturer's instructions.
    - Keep the remaining culture in the cold room until the next day to prepare glycerol stocks of the sequence verified clones.
    - Glycerol stocks are prepared using equal volume of culture and 50 % sterile glycerol.
 8. **Sanger sequencing**
-   - For sequence verification, submit the miniprepped plasmid using your preferred sequencing kit. Follow the manufacturers instructions. Submit 2 samples for each plasmid, one with CW1026 and one with CW1027.
+   - For sequence verification, submit the miniprepped plasmid using your preferred sequencing kit. Follow the manufacturers instructions. Submit 2 samples for each plasmid, one with primer CW1026 and one with CW1027.
 
-## Pre-culture Preparation of E. coli ET122567
+## Preparation of room temperature competent E. coli ET12567
 
 1. **Day 1: Start Pre-culture**
 
    - Inoculate E. coli ET12567 from a cryotube into 5 mL of YT medium supplemented with 50 µg/mL Kanamycin and 25 µg/mL Chloramphenicol. Incubate overnight at 37°C with shaking.
 
-2. **Day 2: Scale-up Culture**
-   - Inoculate a 500 mL flask containing 2×YT medium with the pre-culture to reach an OD600 of approximately 0.075.
+2. **Day 2: Innoculate main culture**
+   - Inoculate a 500 mL flask containing 2×YT medium with the pre-culture to reach an OD600 of approximately 0.075. Use a volume appropriate to the number of transformations you want to perform. Calculate with 3 mL per transformation, this will leave enough buffer for measurements and extra samples in case they are needed.
    - Supplement with Kanamycin (50 µg/mL) and Chloramphenicol (25 µg/mL).
    - Incubate at 37°C with shaking until the culture reaches an OD600 of 0.45–0.5.
 
@@ -135,8 +135,7 @@
 
 2. **Perform Electroporation:**
 
-   - Use the EC1 program on a Bio-Rad MicroPulser to perform electroporation.
-   - Immediately add 1 mL of 2×YT medium and transfer the cells to a sterile tube.
+   - Use the EC1 program on a Bio-Rad MicroPulser to perform electroporation. Use the appropriate protocol for the cuvettes used. - Immediately add 1 mL of 2×YT medium and transfer the cells to a sterile tube.
 
 3. **Incubate:**
    - Incubate the cells for 1–1.5 hours at 37°C with shaking.
@@ -147,11 +146,11 @@
 
    -Spin down the cells at 4000xg for 2 min and decant the supernatant. Resuspend the cells in the flowback.
 
-   - Plate the electroporated cells onto LB agar supplemented with Kanamycin (50 µg/mL), Chloramphenicol (25 µg/mL), and Apramycin (12.5 µg/mL).
+   - Plate the electroporated cells onto LB agar supplemented with Kanamycin (50 µg/mL), Chloramphenicol (25 µg/mL), and Apramycin (50 µg/mL).
    - Incubate overnight at 37°C.
 
 2. **Cell Harvesting:**
-   - Wash all transformants off the plate using an L-spreader and 2-4 ml of 2xYT medium. Use some of the cell suspension to prepare a glycerol stock, and use the left over to inoculate an overnight culture in 5 ml of 2xYT supplemented with Kanamycin (50 µg/mL), Chloramphenicol (25 µg/mL), and Apramycin (12.5 µg/mL). Incubate overnight at 37°C with shaking.
+   - Wash all transformants off the plate using an L-spreader and 2-4 ml of 2xYT medium. Use some of the cell suspension to prepare a glycerol stock, and use the left over to inoculate an overnight culture in 5 ml of 2xYT supplemented with Kanamycin (50 µg/mL), Chloramphenicol (25 µg/mL), and Apramycin (50 µg/mL). Incubate overnight at 37°C with shaking.
 
 ## Conjugations##
 
@@ -160,20 +159,20 @@ To be performed in a LAF bench.
 1. **ET cell preparation**
 
    - Harvest 2 ml of the ET + plasmid overnight cultures and spin down at 2000xg for 2 min. Gently remove the supernatant and wash once with 1ml of 2xYT medium.
-   - Resuspend in 500 ul of 2xYT medium
+   - Resuspend in 500 µl of 2xYT medium
 
 2. **Mixing Spores and ETs**
 
-   - Mix 500 ul of resuspended ET+plasmid cells with 500 ul of spores of the Streptomyces strain of interest.
+   - Mix 500 ul of resuspended ET+plasmid cells with 200 ul of spores of the Streptomyces strain of interest.
    - Plate on the appropriate medium for conjugation (default for us: Mannitol Soy Flour medium supplemented with 10 mM MgCl2)
    - Let the plates dry in the airflow of the LAF bench. Once dried, incubate facing upwards at 30 C.
 
 3. **Overlay with Antibiotics**
-   - After 18-24 h, overlay the plates with 1ml of ddH2O supplemented with 5 ul of 50 mg/ml of Apramycin. Spread without using a spreader by just carefully tilting the plate.
+   - After 18-24 h, overlay the plates with 1ml of ddH2O supplemented with 250 µg of Apramycin. Spread without using a spreader by just carefully tilting the plate.
    - Let the plate dry fully in the airflow of the LAF bench, and rotate occasionally.
    - Once fully dried, return the plates into the incubator and continue incubation at 30 C. Turn the plates upside down now.
 4. **Colony Picking**
-   - After 7-10 days (depening on the strain), pick exconjugants using sterile wooden toothpicks and transfer to ISP2 plates supplemented with 50 ug/ml of Apramycin and 25 ug/ml Nalidixic Acid.
+   - After 7-10 days (depending on the strain), pick exconjugants using sterile wooden toothpicks and transfer to ISP2 plates supplemented with 50 ug/ml of Apramycin and 12.5 ug/ml Nalidixic Acid.
    - Incubate the plates until fully grown at 30 C.
 
 ## Colony PCR to Verify Integration
