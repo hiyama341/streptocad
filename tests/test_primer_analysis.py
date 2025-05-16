@@ -69,10 +69,13 @@ def test_analyze_primers_and_hairpins_edge_cases():
     """
     edge_case_df = pd.DataFrame(
         {
+            "template": ["LLPMBPKK_00292", "LLPMBPKK_00292"],
             "f_primer_sequences(5-3)": ["A" * 61, "TGCATGCATGC"],
             "r_primer_sequences(5-3)": ["G" * 61, "CGTACGTACGT"],
             "f_primer_name": ["forward_long", "forward_valid"],
             "r_primer_name": ["reverse_long", "reverse_valid"],
+            "f_tm": [60, 60],
+            "r_tm": [60, 60],
             "ta": [60.0, 60.0],
         }
     )

@@ -16,6 +16,7 @@ import pandas as pd
 from typing import List, Dict, Any
 import primer3
 
+
 def analyze_primers_and_hairpins(primer_df: pd.DataFrame) -> pd.DataFrame:
     """
     Analyzes primer sequences for homodimers, heterodimers, and hairpins.
@@ -52,22 +53,36 @@ def analyze_primers_and_hairpins(primer_df: pd.DataFrame) -> pd.DataFrame:
     results: List[Dict[str, Any]] = []
 
     for i, row in primer_df.iterrows():
-        f_sequence: str = row['f_primer_sequences(5-3)']
-        r_sequence: str = row['r_primer_sequences(5-3)']
-        f_name: str = row['f_primer_name']
-        r_name: str = row['r_primer_name']
-        ta: float = row['ta']
+        f_sequence: str = row["f_primer_sequences(5-3)"]
+        r_sequence: str = row["r_primer_sequences(5-3)"]
+        f_name: str = row["f_primer_name"]
+        r_name: str = row["r_primer_name"]
+        ta: float = row["ta"]
+        f_tm: float = row["f_tm"]
+        r_tm: float = row["r_tm"]
 
         if len(f_sequence) > 60 or len(r_sequence) > 60:
-            print(f"Skipping analysis for primer pair {f_name} & {r_name} due to length constraints.")
+            print(
+                f"Skipping analysis for primer pair {f_name} & {r_name} due to length constraints."
+            )
             continue
 
         try:
-            homodimer_forward: Dict[str, Any] = primer3.bindings.calc_homodimer(f_sequence, temp_c=ta).todict()
-            homodimer_reverse: Dict[str, Any] = primer3.bindings.calc_homodimer(r_sequence, temp_c=ta).todict()
-            heterodimer: Dict[str, Any] = primer3.bindings.calc_heterodimer(f_sequence, r_sequence, temp_c=ta).todict()
-            hairpin_forward: Dict[str, Any] = primer3.bindings.calc_hairpin(f_sequence, temp_c=ta).todict()
-            hairpin_reverse: Dict[str, Any] = primer3.bindings.calc_hairpin(r_sequence, temp_c=ta).todict()
+            homodimer_forward: Dict[str, Any] = primer3.bindings.calc_homodimer(
+                f_sequence, temp_c=ta
+            ).todict()
+            homodimer_reverse: Dict[str, Any] = primer3.bindings.calc_homodimer(
+                r_sequence, temp_c=ta
+            ).todict()
+            heterodimer: Dict[str, Any] = primer3.bindings.calc_heterodimer(
+                f_sequence, r_sequence, temp_c=ta
+            ).todict()
+            hairpin_forward: Dict[str, Any] = primer3.bindings.calc_hairpin(
+                f_sequence, temp_c=ta
+            ).todict()
+            hairpin_reverse: Dict[str, Any] = primer3.bindings.calc_hairpin(
+                r_sequence, temp_c=ta
+            ).todict()
         except RuntimeError as e:
             print(f"Error during analysis for primer pair {f_name} & {r_name}: {e}")
             continue
@@ -75,24 +90,22 @@ def analyze_primers_and_hairpins(primer_df: pd.DataFrame) -> pd.DataFrame:
         row_result: Dict[str, Any] = {
             "annealing_temperature": ta,
             "primer_pair": f"{f_name} & {r_name}",
-            "homodimer_forward_tm": homodimer_forward['tm'],
-            "homodimer_forward_deltaG (kcal/mol)": homodimer_forward['dg'] / 1000,
-            "homodimer_reverse_tm": homodimer_reverse['tm'],
-            "homodimer_reverse_deltaG (kcal/mol)": homodimer_reverse['dg'] / 1000,
-            "heterodimer_tm": heterodimer['tm'],
-            "heterodimer_deltaG (kcal/mol)": heterodimer['dg'] / 1000,
-            "hairpin_forward_structure_found": hairpin_forward['structure_found'],
-            "hairpin_forward_tm": hairpin_forward['tm'],
-            "hairpin_forward_deltaG (kcal/mol)": hairpin_forward['dg'] / 1000,
-            "hairpin_reverse_structure_found": hairpin_reverse['structure_found'],
-            "hairpin_reverse_tm": hairpin_reverse['tm'],
-            "hairpin_reverse_deltaG (kcal/mol)": hairpin_reverse['dg'] / 1000
+            "homodimer_forward_tm": homodimer_forward["tm"],
+            "homodimer_forward_deltaG (kcal/mol)": homodimer_forward["dg"] / 1000,
+            "homodimer_reverse_tm": homodimer_reverse["tm"],
+            "homodimer_reverse_deltaG (kcal/mol)": homodimer_reverse["dg"] / 1000,
+            "heterodimer_tm": heterodimer["tm"],
+            "heterodimer_deltaG (kcal/mol)": heterodimer["dg"] / 1000,
+            "hairpin_forward_structure_found": hairpin_forward["structure_found"],
+            "hairpin_forward_tm": hairpin_forward["tm"],
+            "hairpin_forward_deltaG (kcal/mol)": hairpin_forward["dg"] / 1000,
+            "hairpin_reverse_structure_found": hairpin_reverse["structure_found"],
+            "hairpin_reverse_tm": hairpin_reverse["tm"],
+            "hairpin_reverse_deltaG (kcal/mol)": hairpin_reverse["dg"] / 1000,
+            "f_tm": f_tm,
+            "r_tm": r_tm,
         }
         results.append(row_result)
 
     df_results: pd.DataFrame = pd.DataFrame(results)
     return df_results
-
-
-
-
