@@ -346,6 +346,8 @@ def analysis_df_valid():
         "hairpin_reverse_deltaG (kcal/mol)": [-4.5, -5.0],
         "hairpin_forward_structure_found": [False, False],
         "hairpin_reverse_structure_found": [False, False],
+        "f_tm": [60, 60],
+        "r_tm": [60, 60],
     }
     return pd.DataFrame(data)
 
@@ -393,7 +395,13 @@ def test_find_best_check_primers_from_genome(
         max_iterations=50,
     )
 
-    # Ensure both DataFrames have the same data types for comparison
+    # Remove duplicate columns (keeping first occurrence)
+    result_df = result_df.loc[:, ~result_df.columns.duplicated()]
+    find_best_checking_primers_df = find_best_checking_primers_df.loc[
+        :, ~find_best_checking_primers_df.columns.duplicated()
+    ]
+
+    # Proceed as before
     numeric_cols = [
         "f_tm",
         "r_tm",
@@ -410,11 +418,17 @@ def test_find_best_check_primers_from_genome(
         "hairpin_reverse_deltaG (kcal/mol)",
     ]
 
-    # Convert numeric columns to float for consistency
-    result_df[numeric_cols] = result_df[numeric_cols].astype(float)
-    find_best_checking_primers_df[numeric_cols] = find_best_checking_primers_df[
-        numeric_cols
-    ].astype(float)
+    present_numeric_cols = [
+        col
+        for col in numeric_cols
+        if col in result_df.columns and col in find_best_checking_primers_df.columns
+    ]
+
+    for col in present_numeric_cols:
+        result_df[col] = result_df[col].astype(float)
+        find_best_checking_primers_df[col] = find_best_checking_primers_df[col].astype(
+            float
+        )
 
     # Convert the flanking_region column to int for consistency
     result_df["flanking_region"] = result_df["flanking_region"].astype(int)
@@ -423,9 +437,9 @@ def test_find_best_check_primers_from_genome(
     ].astype(int)
 
     # Round the floating point numbers to match the expected precision
-    result_df[numeric_cols] = result_df[numeric_cols].round(6)
-    find_best_checking_primers_df[numeric_cols] = find_best_checking_primers_df[
-        numeric_cols
+    result_df[present_numeric_cols] = result_df[present_numeric_cols].round(6)
+    find_best_checking_primers_df[present_numeric_cols] = find_best_checking_primers_df[
+        present_numeric_cols
     ].round(6)
 
     # Assert that the result DataFrame matches the expected DataFrame

@@ -111,6 +111,7 @@ def generate_primer_dataframe(
     return df
 
 
+# TODO merge with the function below and reorder primers
 def create_idt_order_dataframe(
     df: pd.DataFrame, concentration: str = "25nm", purification: str = "STD"
 ) -> pd.DataFrame:
@@ -336,6 +337,9 @@ def validate_primers(analysis_df):
             or row["hairpin_reverse_deltaG (kcal/mol)"] < -9
             or row["hairpin_forward_structure_found"]
             or row["hairpin_reverse_structure_found"]
+            or row["f_tm"] >= 72
+            or row["r_tm"] >= 72
+            or abs(row["f_tm"] - row["r_tm"]) > 4
         ):
             return False
     return True
@@ -404,7 +408,7 @@ def find_best_check_primers_from_genome(
 
             if not valid_primers:
                 flanking_region += (
-                    50  # Increase flanking region only if no valid primers were found
+                    1  # Increase flanking region only if no valid primers were found
                 )
 
         except ValueError as e:
