@@ -139,6 +139,7 @@ def test_find_sgrna_hits_cas9_crispri(
         "sgrna",
         "sgrna_seed_sequence",
         "off_target_count",
+        "region",
     ]
     assert list(sgrna_df.columns) == expected_columns, (
         "The columns do not match the expected output."

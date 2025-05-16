@@ -599,8 +599,6 @@ def find_sgrna_hits_cas3(
     protospacer_len = 34
     pam_len = 3
 
-    # Parse the genbank file again to find sgRNAs
-
     for feature in record.features:
         if feature.type == "CDS":  # Check if feature is a coding sequence
             locus_tag = feature.qualifiers.get("locus_tag", ["NA"])[0]
