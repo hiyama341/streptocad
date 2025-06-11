@@ -3,6 +3,10 @@ from streptocad.crispr.guideRNAcas3_9_12 import (
     extract_sgRNAs,
 )
 
+from streptocad.crispr.guideRNA_crispri import (
+    extract_sgRNAs_for_crispri,
+)
+
 import pytest
 import pandas as pd
 from pydna.dseqrecord import Dseqrecord
@@ -25,15 +29,19 @@ def sgrna_args_cas9(coelicolor_genbank_record):
         gc_upper=0.9999,
         gc_lower=0.0001,
         off_target_seed=13,
-        off_target_upper=0,
+        off_target_upper=100,
         step=["find", "filter"],
+        extension_to_promoter_region=200,
+        upstream_tss=100,
+        dwstream_tss=100,
+        target_non_template_strand=False,
     )
 
 
 @pytest.fixture
 def expected_sgrna_df():
     # load the “CRISPYweb…” CSV
-    filepath = "tests/test_files/CRISPYweb_S_coelicolor_ SCO5087_0_mismatches.csv"
+    filepath = "tests/test_files/CRISPy_web_ SCO5087(+-100bp)_CRISPRi_validation(5529701-5529901).csv"
     df = pd.read_csv(filepath, index_col=0)
     df.reset_index(drop=True, inplace=True)
     return df
@@ -41,7 +49,11 @@ def expected_sgrna_df():
 
 def test_extract_sgRNAs_output(sgrna_args_cas9, expected_sgrna_df):
     # run the function and normalize columns
-    out = extract_sgRNAs(sgrna_args_cas9).copy()
+    out = (
+        extract_sgRNAs_for_crispri(sgrna_args_cas9)
+        .sort_values(by="off_target_count", ascending=True)
+        .copy()
+    )
     out.columns = out.columns.str.lower()
 
     # 0) length must match
