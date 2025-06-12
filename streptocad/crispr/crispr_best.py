@@ -17,21 +17,20 @@ from Bio.Seq import Seq
 
 
 def identify_base_editing_sites(
-    sgrna_df: pd.DataFrame, editing_window_start: int = 4, editing_window_end: int = 10
+    sgrna_df: pd.DataFrame, editing_window_start: int = 3, editing_window_end: int = 10
 ) -> pd.DataFrame:
     """
-    Identify potential base editing sites for C-to-T or G-to-A substitutions in sgRNAs.
-    For -1 strand genes, look for Gs, for +1 genes, look for Cs.
+    Identify potential base editing sites for C-to-T substitutions in sgRNAs.
     """
 
     def find_editable_bases(
         row,
-        editing_window_start=4,
-        editing_window_end=10,
+        editing_window_start=editing_window_start,
+        editing_window_end=editing_window_end,
     ):
         sgrna = row["sgrna"]
         positions = []
-        for i in range(editing_window_start - 1, editing_window_end):
+        for i in range(editing_window_start, editing_window_end):
             if i < len(sgrna) and sgrna[i] == "C":
                 positions.append(i + 1)
 
@@ -39,24 +38,24 @@ def identify_base_editing_sites(
 
     def find_context_dependent_seqs(row):
         sgrna = row["sgrna"]
-        gene_strand = row["gene_strand"]
+        # gene_strand = row["gene_strand"]
         sequence_context_bases = []
-        for i in range(editing_window_start - 1, editing_window_end):
+        for i in range(editing_window_start, editing_window_end):
             if i < len(sgrna):
-                if gene_strand == 1:
-                    if sgrna[i] == "C":
-                        # context: G immediately 5' of C
-                        if i > 0 and sgrna[i - 1] == "G":
-                            sequence_context_bases.append(1)
-                        else:
-                            sequence_context_bases.append(0)
-                elif gene_strand == -1:
-                    if sgrna[i] == "G":
-                        # context: C immediately 5' of G
-                        if i > 0 and sgrna[i - 1] == "C":
-                            sequence_context_bases.append(1)
-                        else:
-                            sequence_context_bases.append(0)
+                # if gene_strand == 1:
+                if sgrna[i] == "C":
+                    # context: G immediately 5' of C
+                    if i > 0 and sgrna[i - 1] == "G":
+                        sequence_context_bases.append(1)
+                    else:
+                        sequence_context_bases.append(0)
+            # elif gene_strand == -1:
+            #     if sgrna[i] == "G":
+            #         # context: C immediately 5' of G
+            #         if i > 0 and sgrna[i - 1] == "C":
+            #             sequence_context_bases.append(1)
+            #         else:
+            #             sequence_context_bases.append(0)
         return ",".join(map(str, sequence_context_bases))
 
     sgrna_df = sgrna_df.copy()
@@ -145,6 +144,7 @@ def process_base_editing(
                 # the first sgRNA base sits at start_idx, so
                 # a base at “pos” from the left of the original
                 # sgRNA is at start_idx + (len- pos) in gene_seq
+
                 gpos = start_idx + (len(sgrna) - pos)
 
             # sanity check bounds
@@ -161,6 +161,25 @@ def process_base_editing(
             else:
                 # nothing to do
                 continue
+
+        # # build your string (e.g. from your `mutated` list)
+        # nuc_seq = "".join(mutated)
+        # # translate (default table, stops=*)
+        # prot = Seq(nuc_seq).translate()
+        # if "*" in prot[:-2]:
+        #     print(
+        #         f"{locus} {ref}{gpos}→{mutated[gpos]} {protospacer} {row['sgrna_strand']}"
+        #     )
+        #     print("".join(gene_seq))
+        #     print(nuc_seq)
+
+        # print(prot)
+        # # print(
+        # #     f"{locus} {ref}{gpos}→{mutated[gpos]} {protospacer} {row['sgrna_strand']}"
+        # # )
+        # # # print the original and mutated sequences for debugging
+        # # print("".join(list(gene_seq)))
+        # # print("".join(mutated))
 
         return "".join(mutated)
 
@@ -179,10 +198,10 @@ def process_base_editing(
 
         mutations = []
         for i, (orig_aa, mut_aa) in enumerate(
-            zip(original_aa_seq, mutated_aa_seq), start=1
+            zip(original_aa_seq, mutated_aa_seq), start=0
         ):
             if orig_aa != mut_aa:
-                mutations.append(f"{orig_aa}{i}{mut_aa}")
+                mutations.append(f"{orig_aa}{i + 1}{mut_aa}")
 
         return ", ".join(mutations)
 

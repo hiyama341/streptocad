@@ -342,7 +342,7 @@ def find_sgrna_hits_cas9_crispri(
             else:
                 # - strand: upstream is after end
                 upstream_start = feature.location.end
-                upstream_end = min(seq_len, feature.location.end + upstream_len)
+                upstream_end = feature.location.end + upstream_len
 
             # Create a new fake CDS feature for upstream
             upstream_feature = SeqFeature(

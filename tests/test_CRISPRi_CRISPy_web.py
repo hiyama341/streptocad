@@ -29,20 +29,20 @@ def sgrna_args_cas9(coelicolor_genbank_record):
         gc_upper=0.9999,
         gc_lower=0.0001,
         off_target_seed=13,
-        off_target_upper=100,
+        off_target_upper=0,
         step=["find", "filter"],
         extension_to_promoter_region=200,
-        upstream_tss=100,
-        dwstream_tss=100,
-        target_non_template_strand=False,
+        upstream_tss=70,
+        dwstream_tss=76,
+        target_non_template_strand=True,
     )
 
 
 @pytest.fixture
 def expected_sgrna_df():
     # load the “CRISPYweb…” CSV
-    filepath = "tests/test_files/CRISPy_web_ SCO5087(+-100bp)_CRISPRi_validation(5529701-5529901).csv"
-    df = pd.read_csv(filepath, index_col=0)
+    filepath = "tests/test_files/CRISPy-web_CRISPRi_region_SCO5087_s_coelicolorA3_0mismatch.csv"
+    df = pd.read_csv(filepath, index_col=0).sort_values(by=["Start"])
     df.reset_index(drop=True, inplace=True)
     return df
 
@@ -75,23 +75,23 @@ def test_extract_sgRNAs_output(sgrna_args_cas9, expected_sgrna_df):
         "Off‐target counts must be ascending"
     )
 
-    # 4) build lookup from expected CSV
-    # note: expected has “Sequence”, “PAM”, “Strand”
-    exp = expected_sgrna_df
-    seq_to_pam = dict(zip(exp["Sequence"], exp["PAM"]))
-    seq_to_strand = dict(zip(exp["Sequence"], exp["Strand"]))
+    # --- THE IMPORTANT PART: row-by-row matching ---
+    # Normalize expected column names for matching
+    exp = expected_sgrna_df.rename(
+        columns={"Sequence": "sgrna", "PAM": "pam", "Strand": "sgrna_strand"}
+    )
 
-    # 5) for each extracted guide, confirm seq, pam, strand
-    for seq, pam, strand in zip(out["sgrna"], out["pam"], out["sgrna_strand"]):
-        assert seq in seq_to_pam, f"Unexpected guide sequence: {seq}"
-        # PAM match
-        assert pam == seq_to_pam[seq], (
-            f"PAM mismatch for {seq!r}: got {pam!r}, expected {seq_to_pam[seq]!r}"
-        )
-        # strand match
-        assert strand == seq_to_strand[seq], (
-            f"Strand mismatch for {seq!r}: got {strand}, expected {seq_to_strand[seq]}"
-        )
+    # Merge to find matching rows (inner join)
+    merged = out.merge(
+        exp, on=["sgrna", "pam", "sgrna_strand"], how="left", indicator=True
+    )
+
+    # Rows in out that didn't find a match in expected will have _merge == 'left_only'
+    not_found = merged[merged["_merge"] == "left_only"]
+
+    assert not not_found.empty == False, (
+        f"The following rows were not found in expected DataFrame:\n{not_found[['sgrna', 'pam', 'sgrna_strand']]}"
+    )
 
     # 6) no duplicate guides
     assert out["sgrna"].is_unique, "Duplicate sgRNAs found in output"
