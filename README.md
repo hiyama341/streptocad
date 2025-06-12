@@ -140,6 +140,28 @@ python3 application.py
 
 This will launch the application locally, and you're ready to go! Follow the URL that your terminal shows.
 
+## Making Your Own Workflow
+
+StreptoCAD is designed to be modular and user-extensible. We’ve created a **comprehensive guide** to help you add your own custom workflows to the application. This guide covers:
+
+- Creating new frontend components (tabs)
+- Developing backend callback functions
+- Writing tests
+- Integrating your changes into the main app via GitHub
+
+You can find the step-by-step guide here:
+
+👉 [**Integrating New Workflows into StreptoCAD**](https://github.com/hiyama341/streptocad/blob/main/web_app/how_to_make_your_own_workflows.md)
+
+Whether you want to adapt StreptoCAD for your research needs or contribute to the community, this documentation walks you through every stage of the process, including code examples and best practices.
+
+**If you need help:**
+
+- Check out the additional resources and documentation in the [docs folder](https://github.com/hiyama341/streptocad/tree/main/docs).
+- Open an issue on GitHub or contact the development team.
+
+We encourage all users to contribute and help make StreptoCAD even more powerful and versatile!
+
 ## License
 
 StreptoCAD is open-source and licensed under the MIT License.
