@@ -423,6 +423,7 @@ def register_workflow_3_callbacks(app):
                 markdown_file_paths = [
                     "protocols/conjugation_protcol.md",
                     "protocols/multi_target_crispr_plasmid_protcol.md",
+                    "protocols/trouble_shooting_tips.md",
                 ]
 
                 project_directory = ProjectDirectory(

@@ -278,6 +278,7 @@ def register_workflow_1_callbacks(app):
                 markdown_file_paths = [
                     "protocols/conjugation_protcol.md",
                     "protocols/overexpression_protocol.md",
+                    "protocols/trouble_shooting_tips.md",
                 ]
 
                 # Data and time

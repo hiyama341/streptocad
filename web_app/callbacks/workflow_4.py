@@ -12,7 +12,7 @@ from Bio import SeqIO
 from Bio.Restriction import NcoI
 from pydna.dseqrecord import Dseqrecord
 from teemi.design.fetch_sequences import read_genbank_files
-from Bio.Restriction import * 
+from Bio.Restriction import *
 from Bio import Restriction
 
 from dash import dcc, html, dash_table, exceptions
@@ -23,22 +23,28 @@ from urllib.parse import quote
 
 import tempfile
 
-module_path = os.path.abspath(os.path.join('..'))
+module_path = os.path.abspath(os.path.join(".."))
 if module_path not in sys.path:
     sys.path.append(module_path)
 
 from streptocad.sequence_loading.sequence_loading import (
-    load_and_process_gene_sequences, 
-    load_and_process_plasmid, 
+    load_and_process_gene_sequences,
+    load_and_process_plasmid,
     load_and_process_genome_sequences,
     check_and_convert_input,
     annotate_dseqrecord,
-    process_specified_gene_sequences_from_record
+    process_specified_gene_sequences_from_record,
 )
 from streptocad.utils import ProjectDirectory, extract_metadata_to_dataframe
 from streptocad.crispr.guideRNA_crispri import extract_sgRNAs_for_crispri, SgRNAargs
-from streptocad.cloning.ssDNA_bridging import assemble_plasmids_by_ssDNA_bridging, make_ssDNA_oligos
-from streptocad.primers.primer_generation import create_idt_order_dataframe, primers_to_IDT
+from streptocad.cloning.ssDNA_bridging import (
+    assemble_plasmids_by_ssDNA_bridging,
+    make_ssDNA_oligos,
+)
+from streptocad.primers.primer_generation import (
+    create_idt_order_dataframe,
+    primers_to_IDT,
+)
 
 # Create a StringIO object to capture logs in memory
 log_stream = io.StringIO()
@@ -50,15 +56,16 @@ for handler in logging.root.handlers[:]:
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-        logging.StreamHandler(log_stream)   # Capture logs in StringIO
-    ]
+        logging.StreamHandler(log_stream),  # Capture logs in StringIO
+    ],
 )
 
 # Create a logger
 logger = logging.getLogger(__name__)
+
 
 def save_file(name, content):
     """Decode and store a file uploaded with Plotly Dash."""
@@ -66,45 +73,65 @@ def save_file(name, content):
     with open(name, "wb") as fp:
         fp.write(base64.decodebytes(data))
 
-def register_workflow_4_callbacks(app):
 
+def register_workflow_4_callbacks(app):
     @app.callback(
         [
-            Output('primer-table_4', 'data'),
-            Output('primer-table_4', 'columns'),
-            Output('download-data-and-protocols-link_4', 'href'),
-            Output('mutated-sgrna-table_4', 'data'),
-            Output('mutated-sgrna-table_4', 'columns'),
-            Output('plasmid-metadata-table_4', 'data'),
-            Output('plasmid-metadata-table_4', 'columns'),
-            Output('error-dialog_4', 'message'),
-            Output('error-dialog_4', 'displayed'),
+            Output("primer-table_4", "data"),
+            Output("primer-table_4", "columns"),
+            Output("download-data-and-protocols-link_4", "href"),
+            Output("mutated-sgrna-table_4", "data"),
+            Output("mutated-sgrna-table_4", "columns"),
+            Output("plasmid-metadata-table_4", "data"),
+            Output("plasmid-metadata-table_4", "columns"),
+            Output("error-dialog_4", "message"),
+            Output("error-dialog_4", "displayed"),
         ],
+        [Input("submit-settings-button_4", "n_clicks")],
         [
-            Input('submit-settings-button_4', 'n_clicks')
+            State(
+                {"type": "upload-component", "index": "genome-file-4"}, "contents"
+            ),  # This matches the layout
+            State(
+                {"type": "upload-component", "index": "single-vector-4"}, "contents"
+            ),  # This matches the layout
+            State(
+                {"type": "upload-component", "index": "genome-file-4"}, "filename"
+            ),  # This matches the layout
+            State(
+                {"type": "upload-component", "index": "single-vector-4"}, "filename"
+            ),  # This matches the layout
+            State("genes-to-KO_4", "value"),
+            State("forward-overhang-input_4", "value"),
+            State("reverse-overhang-input_4", "value"),
+            State("gc-upper_4", "value"),
+            State("gc-lower_4", "value"),
+            State("off-target-seed_4", "value"),
+            State("off-target-upper_4", "value"),
+            State("cas-type_4", "value"),
+            State("number-of-sgRNAs-per-group_4", "value"),
+            State("extension-to-promoter-region_4", "value"),
+            State("restriction-enzymes_4", "value"),
         ],
-        [
-        State({'type': 'upload-component', 'index': 'genome-file-4'}, 'contents'),  # This matches the layout
-        State({'type': 'upload-component', 'index': 'single-vector-4'}, 'contents'),   # This matches the layout
-        State({'type': 'upload-component', 'index': 'genome-file-4'}, 'filename'),  # This matches the layout
-        State({'type': 'upload-component', 'index': 'single-vector-4'}, 'filename'),   # This matches the layout
-            State('genes-to-KO_4', 'value'),
-            State('forward-overhang-input_4', 'value'),
-            State('reverse-overhang-input_4', 'value'),
-            State('gc-upper_4', 'value'),
-            State('gc-lower_4', 'value'),
-            State('off-target-seed_4', 'value'),
-            State('off-target-upper_4', 'value'),
-            State('cas-type_4', 'value'),
-            State('number-of-sgRNAs-per-group_4', 'value'),
-            State('extension-to-promoter-region_4', 'value'),
-            State('restriction-enzymes_4', 'value')
-
-        ]
     )
-    def run_workflow(n_clicks, genome_content, vector_content, genome_filename, vector_filename, genes_to_KO, 
-                     up_homology, dw_homology, gc_upper, gc_lower, off_target_seed, off_target_upper, cas_type, 
-                     number_of_sgRNAs_per_group, extension_to_promoter_region, restriction_enzymes):
+    def run_workflow(
+        n_clicks,
+        genome_content,
+        vector_content,
+        genome_filename,
+        vector_filename,
+        genes_to_KO,
+        up_homology,
+        dw_homology,
+        gc_upper,
+        gc_lower,
+        off_target_seed,
+        off_target_upper,
+        cas_type,
+        number_of_sgRNAs_per_group,
+        extension_to_promoter_region,
+        restriction_enzymes,
+    ):
         if n_clicks is None:
             raise PreventUpdate
 
@@ -124,7 +151,9 @@ def register_workflow_4_callbacks(app):
                 clean_plasmid = load_and_process_plasmid(vector_path)
 
                 logging.info("Processing genes to KO")
-                target_dict, genes_to_KO_list, annotation_input = check_and_convert_input(genes_to_KO)
+                target_dict, genes_to_KO_list, annotation_input = (
+                    check_and_convert_input(genes_to_KO)
+                )
                 if annotation_input:
                     genome = annotate_dseqrecord(genome, target_dict)
                 logging.info(f"Genes to knock out: {genes_to_KO_list}")
@@ -133,40 +162,50 @@ def register_workflow_4_callbacks(app):
                 args = SgRNAargs(
                     genome,
                     genes_to_KO_list,
-                    step=['find', 'filter'],
+                    step=["find", "filter"],
                     gc_upper=gc_upper,
                     gc_lower=gc_lower,
                     off_target_seed=off_target_seed,
                     off_target_upper=off_target_upper,
                     cas_type=cas_type,
                     extension_to_promoter_region=extension_to_promoter_region,
-                    target_non_template_strand=True
+                    target_non_template_strand=True,
                 )
 
                 logging.info("Extracting sgRNAs for CRISPRi")
                 sgrna_df = extract_sgRNAs_for_crispri(args)
                 logging.debug(f"sgRNA DataFrame: {sgrna_df}")
 
-                filtered_df = sgrna_df.groupby('locus_tag').head(number_of_sgRNAs_per_group)
+                filtered_df = sgrna_df.groupby("locus_tag").head(
+                    number_of_sgRNAs_per_group
+                )
                 logging.debug(f"Filtered DataFrame: {filtered_df}")
 
                 logging.info("Making ssDNA oligos")
                 list_of_ssDNAs = make_ssDNA_oligos(
-                    filtered_df, 
+                    filtered_df,
                     upstream_ovh=Dseqrecord(up_homology),
-                    downstream_ovh=Dseqrecord(dw_homology)
+                    downstream_ovh=Dseqrecord(dw_homology),
                 )
                 logging.debug(f"List of ssDNAs: {list_of_ssDNAs}")
 
                 logging.info("Cutting plasmid")
-                restriction_enzymes = restriction_enzymes.split(',')
-                enzymes_for_repair_template_integration = [getattr(Restriction, str(enzyme)) for enzyme in restriction_enzymes]
+                restriction_enzymes = restriction_enzymes.split(",")
+                enzymes_for_repair_template_integration = [
+                    getattr(Restriction, str(enzyme)) for enzyme in restriction_enzymes
+                ]
 
-                linearized_plasmid = sorted(clean_plasmid.cut(enzymes_for_repair_template_integration), key=lambda x: len(x), reverse=True)[0]
+                linearized_plasmid = sorted(
+                    clean_plasmid.cut(enzymes_for_repair_template_integration),
+                    key=lambda x: len(x),
+                    reverse=True,
+                )[0]
                 logging.debug(f"Linearized plasmid: {linearized_plasmid}")
 
                 logging.info("Assembling plasmid")
-                sgRNA_vectors = assemble_plasmids_by_ssDNA_bridging(list_of_ssDNAs, linearized_plasmid)
+                sgRNA_vectors = assemble_plasmids_by_ssDNA_bridging(
+                    list_of_ssDNAs, linearized_plasmid
+                )
                 logging.debug(f"sgRNA vectors: {sgRNA_vectors}")
 
                 targeting_info = []
@@ -175,35 +214,40 @@ def register_workflow_4_callbacks(app):
                     targeting_info.append(formatted_str)
 
                 for i in range(len(sgRNA_vectors)):
-                    sgRNA_vectors[i].name = f'p{targeting_info[i]}_#{i+1}'
+                    sgRNA_vectors[i].name = f"p{targeting_info[i]}_#{i + 1}"
                     sgRNA_vectors[i].id = sgRNA_vectors[i].name
-                    sgRNA_vectors[i].description = f'Assembled plasmid targeting {", ".join(genes_to_KO_list)} for single gene KNOCK-DOWN, assembled using StreptoCAD.'
+                    sgRNA_vectors[
+                        i
+                    ].description = f"Assembled plasmid targeting {', '.join(genes_to_KO_list)} for single gene KNOCK-DOWN, assembled using StreptoCAD."
 
                 logging.info("Generating primers for IDT")
                 idt_primers = primers_to_IDT(list_of_ssDNAs)
                 logging.debug(f"IDT primers DataFrame: {idt_primers}")
 
                 # Prepare DataTables outputs
-                primers_columns = [{"name": col, "id": col} for col in idt_primers.columns]
-                primers_data = idt_primers.to_dict('records')
-
+                primers_columns = [
+                    {"name": col, "id": col} for col in idt_primers.columns
+                ]
+                primers_data = idt_primers.to_dict("records")
 
                 # Metadata df
-                integration_names = filtered_df.apply(lambda row: f"sgRNA_{row['locus_tag']}({row['sgrna_loc']})", axis=1).tolist()
-                plasmid_metadata_df = extract_metadata_to_dataframe(sgRNA_vectors,
-                                                                    clean_plasmid,
-                                                                    integration_names)
+                integration_names = filtered_df.apply(
+                    lambda row: f"sgRNA_{row['locus_tag']}({row['sgrna_loc']})", axis=1
+                ).tolist()
+                plasmid_metadata_df = extract_metadata_to_dataframe(
+                    sgRNA_vectors, clean_plasmid, integration_names
+                )
                 # Prepare download link for the data package
                 input_files = [
                     {"name": "input_genome.gb", "content": genome},
-                    {"name": "input_plasmid.gb", "content": clean_plasmid}
+                    {"name": "input_plasmid.gb", "content": clean_plasmid},
                 ]
 
                 output_files = [
                     {"name": "CRISPRi_w_sgRNAs.gb", "content": sgRNA_vectors},
                     {"name": "01_full_idt.csv", "content": idt_primers},
                     {"name": "02_sgrna_df.csv", "content": sgrna_df},
-                    {"name": "03_filtered_sgrna_df.csv", "content": filtered_df}
+                    {"name": "03_filtered_sgrna_df.csv", "content": filtered_df},
                 ]
 
                 input_values = {
@@ -215,17 +259,18 @@ def register_workflow_4_callbacks(app):
                         "off_target_upper": off_target_upper,
                         "cas_type": cas_type,
                         "number_of_sgRNAs_per_group": number_of_sgRNAs_per_group,
-                        'extension_to_promoter_region': extension_to_promoter_region,
+                        "extension_to_promoter_region": extension_to_promoter_region,
                     },
                     "overlapping_sequences": {
                         "up_homology": str(up_homology),
-                        "dw_homology": str(dw_homology)
-                    }
+                        "dw_homology": str(dw_homology),
+                    },
                 }
 
                 markdown_file_paths = [
                     "protocols/conjugation_protcol.md",
                     "protocols/single_target_crispr_plasmid_protcol.md"
+                    "protocols/trouble_shooting_tips.md",
                 ]
 
                 timestamp = datetime.utcnow().isoformat()
@@ -236,42 +281,49 @@ def register_workflow_4_callbacks(app):
                     input_files=input_files,
                     output_files=output_files,
                     input_values=input_values,
-                    markdown_file_paths=markdown_file_paths
+                    markdown_file_paths=markdown_file_paths,
                 )
 
-                zip_content = project_directory.create_directory_structure(create_directories=True)
-                data_package_encoded = base64.b64encode(zip_content).decode('utf-8')
-                data_package_download_link = f"data:application/zip;base64,{data_package_encoded}"
+                zip_content = project_directory.create_directory_structure(
+                    create_directories=True
+                )
+                data_package_encoded = base64.b64encode(zip_content).decode("utf-8")
+                data_package_download_link = (
+                    f"data:application/zip;base64,{data_package_encoded}"
+                )
 
                 # filtered sgrnas
-                filtered_df_columns = [{"name": col, "id": col} for col in filtered_df.columns]
-                filtered_df_data = filtered_df.to_dict('records')
-
+                filtered_df_columns = [
+                    {"name": col, "id": col} for col in filtered_df.columns
+                ]
+                filtered_df_data = filtered_df.to_dict("records")
 
                 # metadata table
-                plasmid_metadata_df_columns = [{"name": col, "id": col} for col in plasmid_metadata_df.columns]
-                plasmid_metadata_df_data = plasmid_metadata_df.to_dict('records')
+                plasmid_metadata_df_columns = [
+                    {"name": col, "id": col} for col in plasmid_metadata_df.columns
+                ]
+                plasmid_metadata_df_data = plasmid_metadata_df.to_dict("records")
 
                 logging.info("Workflow completed successfully")
 
-                return (primers_data, 
-                        primers_columns, 
-                        data_package_download_link, 
-                        filtered_df_data, 
-                        filtered_df_columns,
-                        plasmid_metadata_df_data, 
-                        plasmid_metadata_df_columns,
-                        "",  # Empty message if no error occurred
-                        False  # Error dialog should not be displayed
-                        )
-        
-        
+                return (
+                    primers_data,
+                    primers_columns,
+                    data_package_download_link,
+                    filtered_df_data,
+                    filtered_df_columns,
+                    plasmid_metadata_df_data,
+                    plasmid_metadata_df_columns,
+                    "",  # Empty message if no error occurred
+                    False,  # Error dialog should not be displayed
+                )
+
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
             print(f"An error occurred: {str(e)}")  # Fallback print
 
-            error_message = f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
+            error_message = (
+                f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
+            )
             display_error = True
             return [], [], [], [], "", [], [], [], [], error_message, display_error
-        
-

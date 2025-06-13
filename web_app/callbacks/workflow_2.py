@@ -361,6 +361,7 @@ def register_workflow_2_callbacks(app):
                 markdown_file_paths = [
                     "protocols/conjugation_protcol.md",
                     "protocols/single_target_crispr_plasmid_protcol.md",
+                    "protocols/trouble_shooting_tips.md",
                 ]
                 timestamp = datetime.utcnow().isoformat()
 
