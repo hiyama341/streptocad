@@ -19,6 +19,13 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import os
 import sys
+import numpy as np
+
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.colors import to_rgb
+
 
 # --- Set a Nature-inspired style via rcParams ---
 mpl.rcParams.update(
@@ -85,44 +92,65 @@ def load_and_process(csv_path: str) -> pd.DataFrame:
     return df
 
 
-def plot_runtimes(df: pd.DataFrame, out_path: str):
-    """
-    Plot a bar chart of runtimes with a publication-ready aesthetic and save to file.
-    """
-    notebooks = df["notebook"]
-    runtimes = df["runtime"]
+def lighten(color, amt):
+    r, g, b = to_rgb(color)
+    return (r + (1 - r) * amt, g + (1 - g) * amt, b + (1 - b) * amt)
+
+
+def plot_runtimes(df, out_path):
+    notebooks = df["notebook"].tolist()
+    runtimes = df["runtime"].tolist()
+    prefixes = df["prefix"].unique().tolist()
+
+    cmap_names = {
+        "W1": "YlGn",  # yellow→green
+        "W2": "PuBu",  # purple→blue
+        "W4": "BuPu",  # blue→purple
+        "W5": "Oranges",  # straight orange
+        "W6": "Reds",  # purple→red (softer coral tones)
+    }
+    workflow_cm = {p: plt.get_cmap(cmap_names[p]) for p in prefixes}
+
+    df["rank"] = df.groupby("prefix")["suffix"].rank(method="first") - 1
+    df["size"] = df.groupby("prefix")["suffix"].transform("count")
+
+    bar_colors = []
+    for _, row in df.iterrows():
+        base = workflow_cm[row["prefix"]](0.5)  # grab mid‐tone from each cmap
+        light_amt = 0.6 * (1 - row["rank"] / (row["size"] - 1))
+        bar_colors.append(lighten(base, light_amt))
 
     fig, ax = plt.subplots()
-    bars = ax.bar(
+    ax.bar(
         notebooks,
         runtimes,
         edgecolor="0.2",
         linewidth=2.0,
-        color=plt.get_cmap("Pastel2")(0.6),
+        color=bar_colors,
     )
+    ax.spines["left"].set_linewidth(2.5)  # ← increase from 1.0 to e.g. 2.5
+    # bold the y-axis tick labels (the numbers)
 
-    # Remove top and right spines
+    for lbl in ax.get_yticklabels():
+        lbl.set_fontweight("bold")
+
+    # styling as before
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
-
-    # Labels and title
-    ax.set_xlabel("Notebook name", labelpad=10)
-    ax.set_ylabel("Runtime (s)", labelpad=10)
-    ax.set_title("The system’s response speed", pad=15)
-
-    # Tick formatting
+    ax.set_xlabel("Notebook name", fontweight="bold")
+    ax.set_ylabel("Runtime (s)", fontweight="bold")
+    ax.set_title("StreptoCAD’s response speed", pad=15, fontweight="bold")
     ax.set_xticks(range(len(notebooks)))
     ax.set_xticklabels(notebooks, rotation=45, ha="right")
-    ax.yaxis.grid(True)  # only horizontal grid lines
-
+    ax.yaxis.grid(False)
     plt.tight_layout()
 
-    # Ensure output directory exists
-    out_dir = os.path.dirname(os.path.abspath(out_path))
-    os.makedirs(out_dir, exist_ok=True)
+    # only mkdir if there *is* a directory part
+    out_dir = os.path.dirname(out_path)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
 
-    # Save high-res and close
-    fig.savefig(out_path, bbox_inches="tight")
+    fig.savefig(out_path, bbox_inches="tight", dpi=300)
     plt.close(fig)
     print(f"✔ Plot saved to {out_path}")
 
