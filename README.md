@@ -66,7 +66,7 @@ Future expansions will include additional genome engineering tools and integrati
 
 ## Get Started
 
-Visit [www.streptocad.bioengineering.dtu.com](www.streptocad.bioengineering.dtu.com) to download StreptoCAD, access detailed documentation, and join the community of users and contributors working to advance Streptomyces research.
+Visit [www.streptocad.bioengineering.dtu.com](www.streptocad.bioengineering.dtu.dk) to try StreptoCAD, access documentation, and join the community of users and contributors working to advance Streptomyces research.
 
 ## Want to run StreptoCAD locally?
 
@@ -107,6 +107,8 @@ python3 application.py
 ```
 
 This will launch the application locally, and you're ready to go! Follow the url that your terminal shows.
+
+Alternatively, you can try running the workflows as Jupyter notebooks after completing the installation above.
 
 ## Running the StreptoCAD App via Docker
 
