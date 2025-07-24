@@ -125,6 +125,10 @@ FEATURES             Location/Qualifiers
                      /label=sgRNA_LLPMBPKK_05956_p-47
                      /label=sgRNA_LLPMBPKK_05956_loc_-47
                      /label=nonstandard type: sgRNA
+     misc_feature    10831..10906
+                     /label=gRNA scaffold
+                     /note="guide RNA scaffold for the Streptococcus pyogenes 
+                     CRISPR/Cas9 system"
      terminator      11076..11110
                      /label=lambda t0 terminator
                      /note="minimal transcription terminator from phage lambda 

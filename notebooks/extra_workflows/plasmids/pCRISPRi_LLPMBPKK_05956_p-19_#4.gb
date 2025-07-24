@@ -1,4 +1,4 @@
-LOCUS       pCRISPRi_LLPMBPKK_05956_p-19       11279 bp    DNA     circular SYN 22-JUL-2025
+LOCUS       pCRISPRi_LLPMBPK       11279 bp    DNA     circular SYN 24-JUL-2025
 DEFINITION  Assembled plasmid targeting LLPMBPKK_05956 for single gene 
             KNOCK-DOWN, assembled using StreptoCAD..
 ACCESSION   pCRISPRi_LLPMBPKK_05956_p-19_#4
@@ -9,12 +9,14 @@ SOURCE      synthetic DNA construct
 REFERENCE   1  (bases 1 to 11279)
   AUTHORS   .
   TITLE     Direct Submission
-  JOURNAL   Exported Jul 22, 2025 from SnapGene 8.0.3
+  JOURNAL   Exported Jul 24, 2025 from SnapGene 8.1.1
             https://www.snapgene.com
 FEATURES             Location/Qualifiers
      source          1..11279
                      /mol_type="other DNA"
                      /organism="synthetic DNA construct"
+     misc_feature    2..76
+                     /label=gRNA scaffold
      terminator      234..268
                      /label=lambda t0 terminator
                      /note="minimal transcription terminator from phage lambda 
