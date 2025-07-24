@@ -66,7 +66,7 @@ Future expansions will include additional genome engineering tools and integrati
 
 ## Get Started
 
-Visit [www.streptocad.bioengineering.dtu.com](www.streptocad.bioengineering.dtu.dk) to try StreptoCAD, access documentation, and join the community of users and contributors working to advance Streptomyces research.
+Visit [www.streptocad.bioengineering.dtu.dk](www.streptocad.bioengineering.dtu.dk) to try StreptoCAD, access documentation, and join the community of users and contributors working to advance Streptomyces research.
 
 ## Want to run StreptoCAD locally?
 
