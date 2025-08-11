@@ -687,7 +687,7 @@ gibson_tab = dcc.Tab(
                                                 dbc.Input(
                                                     id="flanking-region-number_5",
                                                     type="number",
-                                                    value=500,
+                                                    value=1000,
                                                     style={"color": "#000"},
                                                 ),
                                                 create_tooltip(

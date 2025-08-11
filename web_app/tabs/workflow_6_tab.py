@@ -714,7 +714,7 @@ cas3_tab = dcc.Tab(
                                                 dbc.Input(
                                                     id="flanking-region-number_6",
                                                     type="number",
-                                                    value=500,
+                                                    value=1000,
                                                     style={"color": "#000"},
                                                 ),
                                             ],
