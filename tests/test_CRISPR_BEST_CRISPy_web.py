@@ -28,8 +28,9 @@ def coelicolor_genbank_record():
     return Dseqrecord(rec)
 
 
+# CDS +1
 @pytest.fixture
-def sgrna_args_cas9(coelicolor_genbank_record):
+def sgrna_args_cas9_SCO5087(coelicolor_genbank_record):
     """Cas9 guide‐RNA argument for locus SCO5087."""
     return SgRNAargs(
         dseqrecord=coelicolor_genbank_record,
@@ -43,7 +44,25 @@ def sgrna_args_cas9(coelicolor_genbank_record):
     )
 
 
-def test_filter_sgrnas_for_base_editing(coelicolor_genbank_record, sgrna_args_cas9):
+# CDS -1
+@pytest.fixture
+def sgrna_args_cas9_SCO7048(coelicolor_genbank_record):
+    """Cas9 guide‐RNA argument for locus SCO7048."""
+    return SgRNAargs(
+        dseqrecord=coelicolor_genbank_record,
+        locus_tag=["SCO7048"],
+        cas_type="cas9",
+        gc_upper=0.9999,
+        gc_lower=0.0001,
+        off_target_seed=13,
+        off_target_upper=10,
+        step=["find", "filter"],
+    )
+
+
+def test_filter_sgrnas_for_base_editing(
+    coelicolor_genbank_record, sgrna_args_cas9_SCO5087
+):
     # 1) Pick the genes you want to KO
     genes_to_KO = ["SCO5087"]
     genome = coelicolor_genbank_record
@@ -57,7 +76,7 @@ def test_filter_sgrnas_for_base_editing(coelicolor_genbank_record, sgrna_args_ca
         assert len(seq) > 100, "CDS should be at least 100 nt long"
 
     # 3) Extract all Cas9 sgRNAs for SCO5087
-    sgrna_df = extract_sgRNAs(sgrna_args_cas9).copy()
+    sgrna_df = extract_sgRNAs(sgrna_args_cas9_SCO5087).copy()
     sgrna_df.columns = sgrna_df.columns.str.lower()
 
     # 4) Annotate each guide with editable‐C positions
@@ -96,7 +115,7 @@ def expected_only_stop_codons_df():
 
 def test_only_sgrna_and_mutations_match_validation(
     coelicolor_genbank_record,
-    sgrna_args_cas9,
+    sgrna_args_cas9_SCO5087,
     expected_only_stop_codons_df,
 ):
     # 1) extract just the gene sequences we care about
@@ -107,7 +126,7 @@ def test_only_sgrna_and_mutations_match_validation(
     assert set(gene_seqs) == set(genes_to_KO)
 
     # 2) run the full pipeline
-    sgrna_df = extract_sgRNAs(sgrna_args_cas9).copy()
+    sgrna_df = extract_sgRNAs(sgrna_args_cas9_SCO5087).copy()
     sgrna_df.columns = sgrna_df.columns.str.lower()
 
     editing_df = identify_base_editing_sites(sgrna_df)
@@ -145,4 +164,259 @@ def test_only_sgrna_and_mutations_match_validation(
             f"For guide {sgrna!r}:\n"
             f"  actual mutations = {act_list}\n"
             f"  expected mutations = {exp_list}"
+        )
+
+
+# THIS IS A MANUAL CURATION OF THE SCO7048 GENE WHERE WE HAVE ONLY STOP CODONS
+@pytest.fixture
+def curated_manual_curation_df():
+    """Manual curation of base editing results for SCO7048 (slim columns)."""
+    return pd.DataFrame(
+        [
+            # strain_name, locus_tag, gene_loc, gene_strand, sgrna_strand, sgrna_loc, pam, sgrna, mutations
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                -1,
+                92,
+                "GGG",
+                "TCCCGGCGAATAGCCGGCGC",
+                "R26W, R27*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                -1,
+                91,
+                "CGG",
+                "CTCCCGGCGAATAGCCGGCG",
+                "R26W, R27*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                -1,
+                93,
+                "GGG",
+                "CCCGGCGAATAGCCGGCGCG",
+                "R27*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                1,
+                204,
+                "GGG",
+                "CTGGCTCCAGCTGTCCCCCA",
+                "W66*, S67N",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                1,
+                205,
+                "AGG",
+                "GCTGGCTCCAGCTGTCCCCC",
+                "W66*, S67N",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                -1,
+                214,
+                "CGG",
+                "CTGGAGCCAGCTGTTCGTCG",
+                "Q68*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                -1,
+                291,
+                "CGG",
+                "ACCGGCAGGTCTTCACGCGC",
+                "Q93*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                1,
+                445,
+                "GGG",
+                "GCGACCACACCAGGATGTCG",
+                "V146I, W147*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                1,
+                444,
+                "GGG",
+                "CGACCACACCAGGATGTCGG",
+                "V146I, W147*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                1,
+                446,
+                "GGG",
+                "CGCGACCACACCAGGATGTC",
+                "W147*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                1,
+                447,
+                "CGG",
+                "CCGCGACCACACCAGGATGT",
+                "W147*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                -1,
+                467,
+                "CGG",
+                "GGGCAGGCGAGCCGGGCGAC",
+                "Q151*, A152V",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                -1,
+                705,
+                "GGG",
+                "CCGTCCACCAGGGACTGTTC",
+                "H231Y, Q232*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                -1,
+                704,
+                "CGG",
+                "GCCGTCCACCAGGGACTGTT",
+                "H231Y, Q232*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                -1,
+                928,
+                "AGG",
+                "CCGGGCCCAGGCCATCACCG",
+                "A305V, Q306*",
+            ),
+            (
+                "NC_003888.3",
+                "SCO7048",
+                7838003,
+                -1,
+                -1,
+                976,
+                "TGG",
+                "CTACCACCAGACGGGGCTGC",
+                "H321Y, Q322*",
+            ),
+        ],
+        columns=[
+            "strain_name",
+            "locus_tag",
+            "gene_loc",
+            "gene_strand",
+            "sgrna_strand",
+            "sgrna_loc",
+            "pam",
+            "sgrna",
+            "mutations",
+        ],
+    )
+
+
+def test_streptocad_matches_manual_curation(
+    curated_manual_curation_df, coelicolor_genbank_record, sgrna_args_cas9_SCO7048
+):
+    """
+    Test StreptoCAD base editing prediction matches manual curation for each sgRNA.
+    """
+    # Step 1: Annotate editable bases in guides
+    editing_df = identify_base_editing_sites(curated_manual_curation_df)
+
+    # Step 2: Filter for sgRNAs with editable cytosines (should be all in this curation)
+    filtered_df = filter_sgrnas_for_base_editing(editing_df)
+
+    genes_to_KO = ["SCO7048"]
+    sco7048_gene_sequence = process_specified_gene_sequences_from_record(
+        coelicolor_genbank_record, genes_to_KO
+    )
+    # 2) run the full pipeline
+    sgrna_df = extract_sgRNAs(sgrna_args_cas9_SCO7048).copy()
+    sgrna_df.columns = sgrna_df.columns.str.lower()
+
+    editing_df = identify_base_editing_sites(sgrna_df)
+    filtered_df = filter_sgrnas_for_base_editing(editing_df)
+    result_df = process_base_editing(
+        filtered_df,
+        gene_sequences=sco7048_gene_sequence,
+        only_stop_codons=True,
+        editing_context=False,
+    ).reset_index(drop=True)
+
+    # Step 3: Predict amino acid changes
+    result_df = process_base_editing(
+        filtered_df,
+        gene_sequences=sco7048_gene_sequence,
+        only_stop_codons=True,
+        editing_context=False,
+    ).reset_index(drop=True)
+
+    # Step 4: Merge so sgRNA lines up between prediction and manual curation
+    merged = pd.merge(
+        result_df[["sgrna", "mutations"]],
+        curated_manual_curation_df[["sgrna", "mutations"]],
+        on="sgrna",
+        suffixes=("_pred", "_manual"),
+    )
+
+    # Step 5: Compare mutations
+    for _, row in merged.iterrows():
+        pred = [m.strip() for m in str(row["mutations_pred"]).split(",") if m.strip()]
+        manual = [
+            m.strip() for m in str(row["mutations_manual"]).split(",") if m.strip()
+        ]
+        assert pred == manual, (
+            f"For sgRNA {row['sgrna']}: "
+            f"predicted mutations {pred} do not match manual {manual}"
         )
