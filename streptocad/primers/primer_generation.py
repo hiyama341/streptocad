@@ -353,7 +353,7 @@ def find_best_check_primers_from_genome(
     limit=10,
     primer_concentration=0.4,
     polymerase="onetaq-3",
-    max_iterations=50,
+    max_iterations=100,
     **primer_kwargs,
 ):
     if not primer_kwargs:
@@ -413,7 +413,8 @@ def find_best_check_primers_from_genome(
 
         except ValueError as e:
             if "unique PCR product" in str(e):
-                flanking_region += 50
+                # TODO Maybe change this parameter to 1?
+                flanking_region += 1
             else:
                 raise
 
