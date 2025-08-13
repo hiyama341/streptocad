@@ -1,9 +1,9 @@
-LOCUS       pCRISPR-dCas9        11261 bp ds-DNA     circular SYN 12-MAY-2021
+LOCUS       pCRISPR-dCas9          11261 bp    DNA     circular SYN 22-JUL-2025
 DEFINITION  Gene knockdown for actinomycetes.
 ACCESSION   pCRISPR-dCas9(#125687)
-VERSION     pCRISPR-dCas9
-KEYWORDS    pCRISPR-dCas9
-SOURCE      pCRISPR-dCas9(#125687)
+VERSION     pCRISPR-dCas9(#125687)
+KEYWORDS    pCRISPR-dCas9(#125687)
+SOURCE      synthetic DNA construct
   ORGANISM  synthetic DNA construct
 REFERENCE   1  (bases 1 to 11261)
   AUTHORS   Tong Y, Charusanti P, Zhang L, Weber T, Lee SY
@@ -12,21 +12,25 @@ REFERENCE   1  (bases 1 to 11261)
             10.1021/acssynbio.5b00038. Epub 2015 Apr 7.
   PUBMED    25806970
 REFERENCE   2  (bases 1 to 11261)
-  AUTHORS   .
+  AUTHORS   Tong Y, Charusanti P, Zhang L, Weber T, Lee SY
   TITLE     Direct Submission
-  JOURNAL   Exported May 12, 2021 from SnapGene Server 1.1.58
-            http://www.snapgene.com
+  JOURNAL   Exported Jul 22, 2025 from SnapGene 8.0.3
+            https://www.snapgene.com
+COMMENT     SGRef: number: 1; type: "Journal Article"; doi: 
+            "10.1021/acssynbio.5b00038"; journalName: "ACS Synth Biol"; date: 
+            "2015-09-18- 18"; volume: "4"; issue: "9"; pages: "1020-9"
+COMMENT     Sequence Label: pCRISPR-dCas9
 FEATURES             Location/Qualifiers
      source          1..11261
-                     /organism="synthetic DNA construct"
                      /mol_type="other DNA"
+                     /organism="synthetic DNA construct"
      primer_bind     112..129
                      /label=L4440
                      /note="L4440 vector, forward primer"
      protein_bind    246..267
                      /label=CAP binding site
                      /bound_moiety="E. coli catabolite activator protein"
-                     /note="CAP binding activates transcription in the presence 
+                     /note="CAP binding activates transcription in the presence
                      of cAMP."
      promoter        282..312
                      /label=lac promoter
@@ -34,7 +38,7 @@ FEATURES             Location/Qualifiers
      protein_bind    320..336
                      /label=lac operator
                      /bound_moiety="lac repressor encoded by lacI"
-                     /note="The lac repressor binds to the lac operator to 
+                     /note="The lac repressor binds to the lac operator to
                      inhibit transcription in E. coli. This inhibition can be 
                      relieved by adding lactose or 
                      isopropyl-beta-D-thiogalactopyranoside (IPTG)."
@@ -48,6 +52,8 @@ FEATURES             Location/Qualifiers
      primer_bind     344..360
                      /label=M13 Reverse
                      /note="In lacZ gene. Also called M13-rev"
+     misc_feature    378..492
+                     /label=PermE promoter
      misc_RNA        498..573
                      /label=gRNA scaffold
                      /note="guide RNA scaffold for the Streptococcus pyogenes 
@@ -58,11 +64,11 @@ FEATURES             Location/Qualifiers
                      (Scholtissek and Grosse, 1987)"
      CDS             945..5051
                      /codon_start=1
-                     /product="catalytically dead mutant of the Cas9 
+                     /product="catalytically dead mutant of the Cas9
                      endonuclease from the Streptococcus pyogenes Type II 
                      CRISPR/Cas system"
                      /label=dCas9
-                     /note="RNA-guided DNA-binding protein that lacks 
+                     /note="RNA-guided DNA-binding protein that lacks
                      endonuclease activity due to the D10A mutation in the RuvC 
                      catalytic domain and the H840A mutation in the HNH 
                      catalytic domain"
@@ -97,7 +103,7 @@ FEATURES             Location/Qualifiers
      CDS             7001..8443
                      /codon_start=1
                      /gene="rep"
-                     /product="replication initiator protein from the 
+                     /product="replication initiator protein from the
                      Streptomyces ghanaensis plasmid pSG5"
                      /label=pSG5 Rep
                      /translation="MWKPGEATWGNTCRCNNVHTCPWCMSRILAVRGSNVQLAADGLAD
@@ -110,14 +116,15 @@ FEATURES             Location/Qualifiers
                      ARTEELAASLDRVRQPKKEAIRPTISLRKRLKPKPVTVDVKTPPPGAASPVCRRCKGKL
                      APVLQPWGQHPGDCLRVDTAVA"
      oriT            9105..9214
+                     /label=incP origin of transfer
                      /note="incP origin of transfer"
      CDS             9530..10330
                      /codon_start=1
                      /gene="aac(3)IV"
-                     /product="aminoglycoside 3-N-acetyltransferase type IV     
-                               "
+                     /product="aminoglycoside 3-N-acetyltransferase type IV
+                     "
                      /label=ApmR
-                     /note="confers resistance to apramycin (Paget and Davies, 
+                     /note="confers resistance to apramycin (Paget and Davies,
                      1996)"
                      /translation="MSSAVECNVVQYEWRKAELIGQLLNLGVTPGGVLLVHSSFRSVRP
                      LEDGPLGLIEALRAALGPGGTLVMPSWSGLDDEPFDPATSPVTPDLGVVSDSFWRLPNV
