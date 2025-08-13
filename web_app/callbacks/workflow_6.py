@@ -382,10 +382,22 @@ def register_workflow_6_callbacks(app):
                 checking_primers_df_copy = checking_primers_df_copy.rename(
                     columns={"locus tag": "template"}
                 )
+                checking_primers_df_copy = checking_primers_df_copy.loc[
+                    :, ~checking_primers_df_copy.columns.duplicated(keep="first")
+                ]
+
+                unique_df = unique_df.loc[
+                    :, ~unique_df.columns.duplicated(keep="first")
+                ]
+
+                logging.info("Concatenating tables for PCR view.")
+                pcr_table = pd.concat(
+                    [unique_df, checking_primers_df_copy], ignore_index=True
+                )
 
                 logging.info("Generating IDT order DataFrame.")
                 checking_primers_df_idt = create_idt_order_dataframe(
-                    checking_primers_df
+                    checking_primers_df_copy
                 )
 
                 if in_frame_deletion == [1]:

@@ -364,24 +364,59 @@ def register_workflow_5_callbacks(app):
                     limit=checking_primer_length,
                 )
 
-                checking_primers_df_idt = create_idt_order_dataframe(
-                    checking_primers_df
+                logging.info(
+                    "Creating a copy of checking primers DataFrame and renaming columns."
                 )
+                checking_primers_df_copy = checking_primers_df.copy()
+                checking_primers_df_copy = checking_primers_df_copy.rename(
+                    columns={"locus tag": "template"}
+                )
+                checking_primers_df_copy = checking_primers_df_copy.loc[
+                    :, ~checking_primers_df_copy.columns.duplicated(keep="first")
+                ]
+
+                # Build IDT input from the cleaned/renamed DF (not the original)
+                checking_primers_df_idt = create_idt_order_dataframe(
+                    checking_primers_df_copy
+                )
+                checking_primers_df_idt = checking_primers_df_idt.loc[
+                    :, ~checking_primers_df_idt.columns.duplicated(keep="first")
+                ]
 
                 logging.info("Making final IDT order sheet")
                 if 1 in in_frame_deletion:
-                    full_idt = pd.concat([idt_primers, idt_df, checking_primers_df_idt])
+                    # De-dup columns on all frames going into concat
+                    idt_primers = idt_primers.loc[
+                        :, ~idt_primers.columns.duplicated(keep="first")
+                    ]
+                    idt_df = idt_df.loc[:, ~idt_df.columns.duplicated(keep="first")]
 
-                    # Create a copy of checking_primers_df
-                    checking_primers_df_copy = checking_primers_df.copy()
-                    checking_primers_df_copy = checking_primers_df_copy.rename(
-                        columns={"locus tag": "template"}
+                    full_idt = pd.concat(
+                        [idt_primers, idt_df, checking_primers_df_idt],
+                        ignore_index=True,
                     )
-                    pcr_table = pd.concat([unique_df, checking_primers_df_copy])
 
+                    # pcr_table
+                    unique_df = unique_df.loc[
+                        :, ~unique_df.columns.duplicated(keep="first")
+                    ]
+                    pcr_table = pd.concat(
+                        [unique_df, checking_primers_df_copy], ignore_index=True
+                    )
                 else:
-                    full_idt = pd.concat([idt_primers, checking_primers_df_idt])
-                    pcr_table = checking_primers_df.copy()
+                    # Ensure clean columns before concat
+                    idt_primers = idt_primers.loc[
+                        :, ~idt_primers.columns.duplicated(keep="first")
+                    ]
+                    checking_primers_df_idt = checking_primers_df_idt.loc[
+                        :, ~checking_primers_df_idt.columns.duplicated(keep="first")
+                    ]
+                    full_idt = pd.concat(
+                        [idt_primers, checking_primers_df_idt], ignore_index=True
+                    )
+
+                    # For the else branch you previously returned the raw copy; keep it clean too
+                    pcr_table = checking_primers_df_copy
 
                 input_files = [
                     {"name": "input_genome.gb", "content": genome},
