@@ -502,7 +502,7 @@ def register_workflow_6_callbacks(app):
                 timestamp = datetime.utcnow().isoformat()
 
                 project_directory = ProjectDirectory(
-                    project_name=f"CRISPR_cas9_inframe_deletion_workflow_{timestamp}",
+                    project_name=f"CRISPR_cas3_inframe_deletion_workflow_{timestamp}",
                     input_files=input_files,
                     output_files=output_files,
                     input_values=input_values,
