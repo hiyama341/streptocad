@@ -421,8 +421,11 @@ def register_workflow_6_callbacks(app):
 
                 logging.info("Preparing input files for project directory.")
                 input_files = [
-                    {"name": "input_genome.gb", "content": genome},
-                    {"name": "input_plasmid.gb", "content": clean_plasmid},
+                    {"name": "input_genome.gb", "content": genome},  # TODO fix name
+                    {
+                        "name": "input_plasmid.gb",
+                        "content": clean_plasmid,
+                    },  # TODO fix name with f string
                 ]
 
                 if in_frame_deletion:
