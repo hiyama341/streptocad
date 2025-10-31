@@ -75,12 +75,12 @@ introduction_page = html.Div(
             [
                 html.Span("Citation: ", style={"fontSize": "18px", "color": "#ddd"}),
                 html.Span(
-                    "Levassor, Whitford, Petersen, Blin, Weber, Frandsen; BioXiv 2024 ",
+                    "Levassor, Whitford, Petersen, Blin, Weber, Frandsen; ACS Synthetic Biology 2025",
                     style={"fontSize": "18px", "color": "#ddd"},
                 ),
                 html.A(
-                    "doi: https://doi.org/10.1101/2024.12.19.629370",
-                    href="https://www.biorxiv.org/content/10.1101/2024.12.19.629370v1",
+                    "doi: https://doi.org/10.1021/acssynbio.5c00261",
+                    href="https://pubs.acs.org/doi/10.1021/acssynbio.5c00261",
                     style={
                         "fontSize": "18px",
                         "color": "#00c39a",
