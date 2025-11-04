@@ -343,7 +343,7 @@ def register_workflow_6_callbacks(app):
                         assembled_cas3_plasmids,
                         assembled_contigs,
                         restriction_enzymes_2,
-                        ["NcoI", "BstBI"],
+                        ["NdeI", "BstBI"],
                     )
 
                     plasmid_metadata_df = pd.merge(
