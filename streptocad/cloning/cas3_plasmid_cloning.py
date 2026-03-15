@@ -1,4 +1,3 @@
-
 from typing import List
 import pandas as pd
 from Bio.Seq import Seq
@@ -6,12 +5,24 @@ from pydna.dseqrecord import Dseqrecord
 from pydna.primer import Primer
 from pydna.amplify import pcr
 from pydna.assembly import Assembly
-from Bio.Restriction import  BstBI, NdeI
+from Bio.Restriction import BstBI, NdeI
 
 from Bio.Seq import Seq
 import pandas as pd
 
-def generate_cas3_protospacer_primers(spacer_table: pd.DataFrame, fwd_overhang: str = "GTCGCcCggCaaAaccGg", rev_overhang: str = "GTTTCAATCCACGCGCCCGT") -> pd.DataFrame:
+CAS3_PROTOSPACER_FWD_OVERHANG = "GTCGCcCggCaaAaccGg"
+CAS3_PROTOSPACER_REV_OVERHANG = "GTTTCAATCCACGCGCCCGT"
+CAS3_BACKBONE_FWD_PRIMER = "GAGCTCATAAGTTCCTATTCCGAAG"
+CAS3_BACKBONE_REV_PRIMER = "AAGAAGTGGGTGTCGGACGC"
+CAS3_SCREENING_FWD_PRIMER = "GTACGCGGTCGATCTTGACG"
+CAS3_SCREENING_REV_PRIMER = "TGCTGACCGGATCAGCAGTC"
+
+
+def generate_cas3_protospacer_primers(
+    spacer_table: pd.DataFrame,
+    fwd_overhang: str = CAS3_PROTOSPACER_FWD_OVERHANG,
+    rev_overhang: str = CAS3_PROTOSPACER_REV_OVERHANG,
+) -> pd.DataFrame:
     """
     Generate forward and reverse primers for the given spacer sequences.
 
@@ -29,17 +40,26 @@ def generate_cas3_protospacer_primers(spacer_table: pd.DataFrame, fwd_overhang: 
     pd.DataFrame
         DataFrame with additional columns for forward and reverse primers.
     """
-    spacer_table = spacer_table.copy()  # Create a copy to avoid the SettingWithCopyWarning
+    spacer_table = (
+        spacer_table.copy()
+    )  # Create a copy to avoid the SettingWithCopyWarning
     spacer_table.loc[:, "Fwd Primer"] = spacer_table["sgrna"] + fwd_overhang.upper()
-    spacer_table.loc[:, "Rev Primer"] = spacer_table["sgrna"].map(lambda x: str(Seq(x).reverse_complement())) + rev_overhang.upper()
+    spacer_table.loc[:, "Rev Primer"] = (
+        spacer_table["sgrna"].map(lambda x: str(Seq(x).reverse_complement()))
+        + rev_overhang.upper()
+    )
     return spacer_table
 
 
-
-def cas3_plasmid_pcrs(plasmid: Dseqrecord, filtered_df: pd.DataFrame, universal_fwd_seq: str = "GAGCTCATAAGTTCCTATTCCGAAG", universal_rev_seq: str = "aagaagtgggtgtcggacgc") -> List[List[Dseqrecord]]:
+def cas3_plasmid_pcrs(
+    plasmid: Dseqrecord,
+    filtered_df: pd.DataFrame,
+    universal_fwd_seq: str = CAS3_BACKBONE_FWD_PRIMER,
+    universal_rev_seq: str = CAS3_BACKBONE_REV_PRIMER,
+) -> List[List[Dseqrecord]]:
     """
     Build a plasmid using the provided primers and filtered DataFrame of spacer sequences.
-     
+
     Adds fixed primers binding up and downstream from the protospacer integration site
     Parameters
     ----------
@@ -71,30 +91,50 @@ def cas3_plasmid_pcrs(plasmid: Dseqrecord, filtered_df: pd.DataFrame, universal_
     """
     # Generate primers for the filtered DataFrame
     filtered_df = generate_cas3_protospacer_primers(filtered_df)
-    
+
     amplicons_list: List[List[Dseqrecord]] = []
-    
+
     # Define the universal forward and reverse primers
     universal_fwd = Primer(universal_fwd_seq)
     universal_rev = Primer(universal_rev_seq)
-    
+
     # Iterate over each row in the filtered DataFrame
     for index, row in filtered_df.iterrows():
         fwd_primer_seq = row["Fwd Primer"]
         rev_primer_seq = row["Rev Primer"]
-        
+
         # Create Primer objects for the forward and reverse primers from the row
         fwd_primer = Primer(fwd_primer_seq)
         rev_primer = Primer(rev_primer_seq)
-        
+
         # Perform PCR reactions on the plasmid
         pcr1 = pcr(universal_fwd, rev_primer, plasmid)
         pcr2 = pcr(fwd_primer, universal_rev, plasmid)
-        
+
         # Add the amplicons to the list
         amplicons_list.append([pcr1, pcr2])
-    
+
     return amplicons_list
+
+
+def cas3_backbone_primer_order_dataframe(
+    concentration: str = "25nm", purification: str = "STD"
+) -> pd.DataFrame:
+    """Create an IDT-style table for the fixed Cas3 backbone cloning primers."""
+    return pd.DataFrame(
+        {
+            "Name": [
+                "Cas3_backbone_cloning_fwd",
+                "Cas3_backbone_cloning_rev",
+            ],
+            "Sequence": [
+                CAS3_BACKBONE_FWD_PRIMER,
+                CAS3_BACKBONE_REV_PRIMER,
+            ],
+            "Concentration": [concentration, concentration],
+            "Purification": [purification, purification],
+        }
+    )
 
 
 def assemble_cas3_plasmids(plasmid: Dseqrecord, amplicons: list) -> list:
@@ -114,14 +154,15 @@ def assemble_cas3_plasmids(plasmid: Dseqrecord, amplicons: list) -> list:
         A list of assembled sgRNA vectors.
     """
     # Cut the plasmid with restriction enzymes
-    linearized_plasmid = sorted(plasmid.cut(BstBI, NdeI), key=lambda x: len(x), reverse=True)[0]
-    
+    linearized_plasmid = sorted(
+        plasmid.cut(BstBI, NdeI), key=lambda x: len(x), reverse=True
+    )[0]
+
     # assemble plamids w. gibson
     sgRNA_vectors = []
     for pcrs in amplicons:
         list_of_parts = [linearized_plasmid] + pcrs
         new_vector = Assembly(tuple(list_of_parts), limit=20)
         sgRNA_vectors.append(new_vector.assemble_circular()[0])
-    
-    return sgRNA_vectors
 
+    return sgRNA_vectors

@@ -3,7 +3,10 @@ import pandas as pd
 from pydna.dseqrecord import Dseqrecord
 from Bio.Seq import Seq
 from streptocad.cloning.cas3_plasmid_cloning import (
-    generate_cas3_protospacer_primers, 
+    CAS3_BACKBONE_FWD_PRIMER,
+    CAS3_BACKBONE_REV_PRIMER,
+    cas3_backbone_primer_order_dataframe,
+    generate_cas3_protospacer_primers,
     cas3_plasmid_pcrs,
     assemble_cas3_plasmids,
 )
@@ -71,6 +74,23 @@ def test_generate_cas3_primers(sample_spacer_table):
     ]
     assert df_with_primers['Fwd Primer'].tolist() == expected_fwd_primers
     assert df_with_primers['Rev Primer'].tolist() == expected_rev_primers
+
+
+def test_cas3_backbone_primer_order_dataframe():
+    idt_df = cas3_backbone_primer_order_dataframe()
+
+    assert list(idt_df["Name"]) == [
+        "Cas3_backbone_cloning_fwd",
+        "Cas3_backbone_cloning_rev",
+    ]
+    assert list(idt_df["Sequence"]) == [
+        CAS3_BACKBONE_FWD_PRIMER,
+        CAS3_BACKBONE_REV_PRIMER,
+    ]
+    assert (idt_df["Concentration"] == "25nm").all()
+    assert (idt_df["Purification"] == "STD").all()
+
+
 def test_cas3_plasmid_pcrs(pCRISPR_cas3_vector, filtered_spacer_table_with_primers):
     amplicons = cas3_plasmid_pcrs(pCRISPR_cas3_vector, filtered_spacer_table_with_primers)
 

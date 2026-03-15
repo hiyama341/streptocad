@@ -2,6 +2,12 @@ from dash import dcc, html
 import dash_bootstrap_components as dbc
 from dash.dash_table import DataTable
 from styling import text_style, upload_button_style, card_style, link_style, table_style
+from streptocad.cloning.cas3_plasmid_cloning import (
+    CAS3_BACKBONE_FWD_PRIMER,
+    CAS3_BACKBONE_REV_PRIMER,
+    CAS3_PROTOSPACER_FWD_OVERHANG,
+    CAS3_PROTOSPACER_REV_OVERHANG,
+)
 from streptocad.utils import polymerase_dict
 from tooltip import create_tooltip, tooltips
 from components import upload_component_with_display
@@ -16,7 +22,7 @@ reference_content = html.Div(
         ),
         html.A(
             "CASCADE-Cas3 Enables Highly Efficient Genome Engineering in Streptomyces Species",
-            href="https://www.biorxiv.org/content/10.1101/2023.05.09.539971v1.ful",
+            href="https://academic.oup.com/nar/article/53/6/gkaf214/8096272",
             target="_blank",
             style=link_style,
         ),
@@ -299,7 +305,7 @@ cas3_tab = dcc.Tab(
                             id="forward-overhang-input_6",
                             type="text",
                             placeholder="Enter Forward Overhang",
-                            value="GTCGCcCggCaaAaccGg".upper(),
+                            value=CAS3_PROTOSPACER_FWD_OVERHANG.upper(),
                         ),
                     ],
                     width=6,
@@ -326,7 +332,7 @@ cas3_tab = dcc.Tab(
                             id="reverse-overhang-input_6",
                             type="text",
                             placeholder="Enter Reverse Overhang",
-                            value="GTTTCAATCCACGCGCCCGT",
+                            value=CAS3_PROTOSPACER_REV_OVERHANG,
                         ),
                     ],
                     width=6,
@@ -355,7 +361,7 @@ cas3_tab = dcc.Tab(
                             id="backbone-forward-overhang-input_6",
                             type="text",
                             placeholder="Enter Forward Overhang",
-                            value="GAGCTCATAAGTTCCTATTCCGAAG",
+                            value=CAS3_BACKBONE_FWD_PRIMER,
                         ),
                     ],
                     width=6,
@@ -382,7 +388,7 @@ cas3_tab = dcc.Tab(
                             id="backbone-reverse-overhang-input_6",
                             type="text",
                             placeholder="Enter Reverse Overhang",
-                            value="aagaagtgggtgtcggacgc".upper(),
+                            value=CAS3_BACKBONE_REV_PRIMER,
                         ),
                     ],
                     width=6,

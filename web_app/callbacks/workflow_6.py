@@ -45,6 +45,7 @@ from streptocad.primers.primer_generation import (
 )
 from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.cloning.cas3_plasmid_cloning import (
+    cas3_backbone_primer_order_dataframe,
     generate_cas3_protospacer_primers,
     cas3_plasmid_pcrs,
     assemble_cas3_plasmids,
@@ -253,6 +254,7 @@ def register_workflow_6_callbacks(app):
                 logging.info("Making IDT primer records.")
                 primer_records = make_primer_records(filtered_df_w_primers)
                 idt_primers_cas3 = primers_to_IDT(primer_records)
+                fixed_backbone_primers = cas3_backbone_primer_order_dataframe()
 
                 # In-frame deletion logic
                 logging.info("Processing in-frame deletion if enabled.")
@@ -405,7 +407,12 @@ def register_workflow_6_callbacks(app):
                         "Concatenating full IDT DataFrame with in-frame deletion primers."
                     )
                     full_idt = pd.concat(
-                        [idt_primers_cas3, idt_df, checking_primers_df_idt],
+                        [
+                            idt_primers_cas3,
+                            fixed_backbone_primers,
+                            idt_df,
+                            checking_primers_df_idt,
+                        ],
                         ignore_index=True,
                     )
                     pcr_table = pd.concat([unique_df, checking_primers_df_copy])
@@ -415,7 +422,12 @@ def register_workflow_6_callbacks(app):
                         "Concatenating full IDT DataFrame without in-frame deletion primers."
                     )
                     full_idt = pd.concat(
-                        [idt_primers_cas3, checking_primers_df_idt], ignore_index=True
+                        [
+                            idt_primers_cas3,
+                            fixed_backbone_primers,
+                            checking_primers_df_idt,
+                        ],
+                        ignore_index=True,
                     )
                     pcr_table = checking_primers_df_copy.copy()
 
@@ -497,7 +509,7 @@ def register_workflow_6_callbacks(app):
                 logging.info("Preparing Markdown file paths for project directory.")
                 markdown_file_paths = [
                     "protocols/conjugation_protcol.md",
-                    "protocols/single_target_crispr_plasmid_protcol.md",
+                    "protocols/cas3_single_target_crispr_plasmid_protocol.md",
                     "protocols/trouble_shooting_tips.md",
                 ]
 
