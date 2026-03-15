@@ -1,5 +1,7 @@
 How to run StreptoCAD locally or hack your own workflows.
 
+Published paper: https://pubs.acs.org/doi/10.1021/acssynbio.5c00261
+
 ## Run locally
 
 From the project root:
