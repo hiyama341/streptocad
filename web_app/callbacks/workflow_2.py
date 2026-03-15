@@ -66,7 +66,7 @@ from streptocad.utils import (
     ProjectDirectory,
     extract_metadata_to_dataframe,
 )
-from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
+from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.cloning.ssDNA_bridging import (
     assemble_plasmids_by_ssDNA_bridging,
     make_ssDNA_oligos,

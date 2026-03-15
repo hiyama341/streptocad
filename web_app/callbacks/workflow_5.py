@@ -44,7 +44,7 @@ from streptocad.cloning.ssDNA_bridging import (
     assemble_plasmids_by_ssDNA_bridging,
     make_ssDNA_oligos,
 )
-from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
+from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.cloning.gibson_cloning import (
     find_up_dw_repair_templates,
     assemble_multiple_plasmids_with_repair_templates_for_deletion,

@@ -23,7 +23,7 @@ from collections import Counter
 from Bio.Seq import Seq
 from typing import Callable, Dict, Optional, List, Tuple
 from Bio.SeqFeature import SeqFeature
-from ..crispr.guideRNAcas3_9_12 import (
+from ..crispr.guideRNAcas3_9 import (
     find_off_target_hits,
     revcomp,
     parse_genbank_record,

@@ -1,10 +1,9 @@
-from streptocad.crispr.guideRNAcas3_9_12 import (
+from streptocad.crispr.guideRNAcas3_9 import (
     SgRNAargs,
     revcomp,
     parse_genbank_record,
     find_off_target_hits,
     find_sgrna_hits_cas9,
-    find_sgrna_hits_cas12a,
     find_sgrna_hits_cas3,
     filter_guides,
     extract_sgRNAs,
@@ -242,32 +241,6 @@ def test_find_off_target_hits_cas9(coelicolor_genbank_record, sgrna_args_cas9):
     # Check that the counts are integers and make sense
     for count in off_target_counter.values():
         assert isinstance(count, int), "The count for off-targets should be an integer"
-
-
-def test_find_off_target_hits_cas12a(coelicolor_genbank_record):
-    # Extract sequences from the Dseqrecord object
-    sequences = [
-        str(coelicolor_genbank_record.seq),
-        str(coelicolor_genbank_record.reverse_complement().seq),
-    ]
-
-    # Use the function to find off-target hits for Cas12a
-    off_target_counter = find_off_target_hits(
-        sequences, off_target_seed=7, cas_type="cas12a"
-    )
-
-    # Check that the Counter is not empty
-    assert off_target_counter, "The off-target Counter should not be empty for Cas12a"
-
-    # Check if certain expected seed sequences are present for Cas12a
-    expected_seeds = [
-        "ACGTGAA",
-        "TTCGGCA",
-    ]  # Replace with actual expected sequences if known
-    for seed in expected_seeds:
-        assert seed in off_target_counter, (
-            f"Expected seed sequence '{seed}' not found in off-target hits for Cas12a"
-        )
 
 
 def test_find_off_target_hits_cas3(coelicolor_genbank_record):

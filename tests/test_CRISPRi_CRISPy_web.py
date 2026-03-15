@@ -1,4 +1,4 @@
-from streptocad.crispr.guideRNAcas3_9_12 import (
+from streptocad.crispr.guideRNAcas3_9 import (
     SgRNAargs,
     extract_sgRNAs,
 )

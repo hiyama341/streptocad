@@ -5,7 +5,7 @@ import pandas as pd
 from Bio import SeqIO
 from pydna.dseqrecord import Dseqrecord
 
-from streptocad.crispr.guideRNAcas3_9_12 import (
+from streptocad.crispr.guideRNAcas3_9 import (
     SgRNAargs,
     extract_sgRNAs,
 )

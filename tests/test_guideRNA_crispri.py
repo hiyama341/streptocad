@@ -12,7 +12,7 @@ from streptocad.crispr.guideRNA_crispri import (
     find_sgrna_hits_cas9_crispri,
     extract_sgRNAs_for_crispri,
 )
-from streptocad.crispr.guideRNAcas3_9_12 import SgRNAargs, revcomp
+from streptocad.crispr.guideRNAcas3_9 import SgRNAargs, revcomp
 
 
 # Sample fixture for a GenBank record

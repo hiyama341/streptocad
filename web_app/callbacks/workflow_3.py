@@ -71,7 +71,7 @@ from streptocad.utils import (
     ProjectDirectory,
     extract_metadata_to_dataframe,
 )
-from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
+from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.crispr.crispr_best import (
     identify_base_editing_sites,
     filter_sgrnas_for_base_editing,

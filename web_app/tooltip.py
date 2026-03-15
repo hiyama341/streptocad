@@ -52,7 +52,7 @@ tooltips = [
     ),
     # Cas Type
     create_tooltip(
-        "Cas9 has a PAM sequence that is NGG and Cas3 has TTC. Cas12a has a PAM sequence that is TTT[ACG].",
+        "Cas9 has a PAM sequence that is NGG and Cas3 has TTC.",
         target_id="cas-type-tooltip",
     ),
     # Number of sgRNAs per Region

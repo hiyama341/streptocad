@@ -43,7 +43,7 @@ from streptocad.primers.primer_generation import (
     primers_to_IDT,
     find_best_check_primers_from_genome,
 )
-from streptocad.crispr.guideRNAcas3_9_12 import extract_sgRNAs, SgRNAargs
+from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.cloning.cas3_plasmid_cloning import (
     generate_cas3_protospacer_primers,
     cas3_plasmid_pcrs,
