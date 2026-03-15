@@ -4,16 +4,14 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "streptocad"
-version = "0.0.1"
+version = "1.0.0"
 description = "An open-source software toolbox supporting genome engineering workflows in streptomycetes"
-authors = [
-  { name = "Technical University of Denmark, DTU" },
-]
+authors = [{ name = "Technical University of Denmark, DTU" }]
 license = { file = "LICENSE" }
 readme = "README.md"
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License"
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
 ]
 requires-python = "~=3.11"
 
