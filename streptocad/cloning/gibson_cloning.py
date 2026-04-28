@@ -16,10 +16,12 @@ from pydna.dseqrecord import Dseqrecord
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 from pydna.assembly import Assembly
 from Bio.SeqRecord import SeqRecord
+from pydna.amplify import pcr
 from pydna.design import primer_design
 from pydna.design import assembly_fragments
 from pydna.design import primer_design
 from Bio.SeqRecord import SeqRecord
+from pydna.primer import Primer
 from typing import List
 from teemi.build.PCR import primer_tm_neb, primer_ta_neb
 
@@ -197,7 +199,10 @@ def update_primer_names(list_of_records: list) -> list:
 
 
 def assemble_single_plasmid_with_repair_templates(
-    repair_templates: list, digested_vector: Dseqrecord, overlap: int = 35
+    repair_templates: list,
+    digested_vector: Dseqrecord,
+    overlap: int = 35,
+    max_backbone_overlap: int = 25,
 ) -> list:
     """Assembles plasmids based on homology.
 
@@ -209,6 +214,9 @@ def assemble_single_plasmid_with_repair_templates(
         Dseqrecord object representing the digested vector.
     overlap : int, optional
         Length of the overlap between the repair templates. Default is 35.
+    max_backbone_overlap : int, optional
+        Maximum overlap length to use on repair-template primers that anneal to the
+        plasmid backbone. Default is 25.
 
     Returns
     -------
@@ -221,6 +229,49 @@ def assemble_single_plasmid_with_repair_templates(
 
     # assemble them in a circular fashion - we actually do that by adding the digested vector first and last aboved
     new_vector = assembly_fragments(all_parts, overlap=overlap)
+
+    if max_backbone_overlap is not None and len(repair_templates) >= 2:
+        up_repair = new_vector[1]
+        dw_repair = new_vector[-2]
+
+        up_forward_footprint = str(up_repair.forward_primer.footprint)
+        up_forward_tail = str(up_repair.forward_primer.seq)[
+            : len(up_repair.forward_primer.seq) - len(up_forward_footprint)
+        ]
+        if len(up_forward_tail) > max_backbone_overlap:
+            original_up_repair = up_repair
+            up_repair = pcr(
+                Primer(
+                    up_forward_tail[-max_backbone_overlap:] + up_forward_footprint,
+                    id=up_repair.forward_primer.id,
+                    name=up_repair.forward_primer.name,
+                ),
+                up_repair.reverse_primer,
+                up_repair.template,
+            )
+            up_repair.name = original_up_repair.name
+            up_repair.id = original_up_repair.id
+
+        dw_reverse_footprint = str(dw_repair.reverse_primer.footprint)
+        dw_reverse_tail = str(dw_repair.reverse_primer.seq)[
+            : len(dw_repair.reverse_primer.seq) - len(dw_reverse_footprint)
+        ]
+        if len(dw_reverse_tail) > max_backbone_overlap:
+            original_dw_repair = dw_repair
+            dw_repair = pcr(
+                dw_repair.forward_primer,
+                Primer(
+                    dw_reverse_tail[-max_backbone_overlap:] + dw_reverse_footprint,
+                    id=dw_repair.reverse_primer.id,
+                    name=dw_repair.reverse_primer.name,
+                ),
+                dw_repair.template,
+            )
+            dw_repair.name = original_dw_repair.name
+            dw_repair.id = original_dw_repair.id
+
+        new_vector[1] = up_repair
+        new_vector[-2] = dw_repair
 
     return new_vector
 

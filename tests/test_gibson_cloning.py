@@ -9,6 +9,7 @@ from Bio.Restriction import StuI
 from streptocad.utils import list_of_objects_in_a_dir
 import pydna
 from streptocad.utils import polymerase_dict
+from pydna.design import primer_design
 
 # Local module imports
 from streptocad.cloning.gibson_cloning import (
@@ -159,7 +160,7 @@ def test_assemble_single_plasmid_with_repair_templates(
     )
 
     # Length assertions
-    expected_lengths = [11279, 1053, 1053, 11279]
+    expected_lengths = [11279, 1043, 1043, 11279]
     for i, fragment in enumerate(first_vector):
         assert len(fragment) == expected_lengths[i]
 
@@ -169,6 +170,50 @@ def test_assemble_single_plasmid_with_repair_templates(
 
     # Name assertion
     assert first_vector[0].name == "pCRISPR–1_SCO5892"
+
+
+def test_assemble_single_plasmid_caps_backbone_overhangs():
+    vector = Dseqrecord(
+        "ATGCGTACGATCGTTAACGGTACCTGACCTTAGGCTAACCGTACGTTAGCTAGGATCCGAT"
+        "TTGACCGATAGCTTGACCTAGGTCAGTACCGATGCTTAGGACCTTACGATCGTAGCTA"
+    )
+    vector.name = "mock_vector"
+    up_repair = primer_design(
+        Dseqrecord(
+            "GGTACCATCGATGCTTAGCTACCGTTAGGACCTAGTTCGATCGGATCCTTAGGCTAACGT"
+            "TACGATCGTAGGCTTACCGATGGTACCTAAGCTTAGC"
+        ),
+        target_tm=55,
+    )
+    dw_repair = primer_design(
+        Dseqrecord(
+            "CTTAGGACGTTACCGATGATCCGTTAGCTACGATGGCCTTAGATCGTACCGGATTAACGCT"
+            "TAGGCTACCGATGTTACCGATGGCATTAACCGGTA"
+        ),
+        target_tm=55,
+    )
+
+    assembled = assemble_single_plasmid_with_repair_templates(
+        [up_repair, dw_repair], vector, overlap=40
+    )
+
+    up_forward_tail = len(assembled[1].forward_primer.seq) - len(
+        assembled[1].forward_primer.footprint
+    )
+    up_reverse_tail = len(assembled[1].reverse_primer.seq) - len(
+        assembled[1].reverse_primer.footprint
+    )
+    dw_forward_tail = len(assembled[2].forward_primer.seq) - len(
+        assembled[2].forward_primer.footprint
+    )
+    dw_reverse_tail = len(assembled[2].reverse_primer.seq) - len(
+        assembled[2].reverse_primer.footprint
+    )
+
+    assert up_forward_tail == 25
+    assert up_reverse_tail == 20
+    assert dw_forward_tail == 20
+    assert dw_reverse_tail == 25
 
 
 def test_find_up_dw_repair_templates_edge_cases():
