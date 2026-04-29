@@ -47,6 +47,7 @@ EXPOSE 8050
 # Set environment variables
 ENV FLASK_ENV=production
 ENV DOCKER_CONTAINER=true
+ENV PYTHONPATH=/web_app:/web_app/web_app
 
 # Command to run the application
 CMD ["python", "web_app/application.py"]

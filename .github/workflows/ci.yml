@@ -36,6 +36,8 @@ jobs:
         run: uv sync --frozen --group dev --group app
 
       - name: Run deterministic tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: uv run pytest
 
   import-sanity:
@@ -61,6 +63,6 @@ jobs:
 
       - name: Import source tree and Dash app
         env:
-          PYTHONPATH: web_app
+          PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/web_app
         run: |
           uv run python -c "import streptocad; import application"

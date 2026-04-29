@@ -35,10 +35,13 @@ jobs:
         run: uv sync --frozen --all-groups
 
       - name: Run deterministic tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: uv run pytest
 
       - name: Run live NEB integration tests
         env:
+          PYTHONPATH: ${{ github.workspace }}
           STREPTOCAD_RUN_NEB_INTEGRATION: "1"
         run: uv run pytest -o addopts="" -m integration
 

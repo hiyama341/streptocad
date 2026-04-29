@@ -45,12 +45,12 @@ format:
 ## Run deterministic unit tests
 .PHONY: test
 test:
-	pytest
+	PYTHONPATH=. pytest
 
 ## Run live external-service integration tests
 .PHONY: test-integration
 test-integration:
-	STREPTOCAD_RUN_NEB_INTEGRATION=1 pytest -o addopts="" -m integration
+	PYTHONPATH=. STREPTOCAD_RUN_NEB_INTEGRATION=1 pytest -o addopts="" -m integration
 
 
 
