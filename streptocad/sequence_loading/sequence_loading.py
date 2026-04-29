@@ -6,6 +6,7 @@ from teemi.design.fetch_sequences import read_fasta_files, read_genbank_files
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 import re
 import tempfile
+from streptocad.biopython_compat import extract_feature_sequence
 
 
 def load_and_process_genome_sequences(path_to_file: str) -> List[Dseqrecord]:
@@ -117,7 +118,7 @@ def load_and_process_gene_sequences(path_to_genome: str) -> dict:
             if feature.type == "CDS":
                 locus_tag = feature.qualifiers.get("locus_tag", [""])[0]
                 if locus_tag:
-                    gene_seq = feature.extract(record.seq)
+                    gene_seq = extract_feature_sequence(feature, record.seq)
                     gene_sequences[locus_tag] = gene_seq
 
     return gene_sequences
@@ -147,7 +148,7 @@ def process_specified_gene_sequences_from_record(
         if feature.type == "CDS":
             locus_tag = feature.qualifiers.get("locus_tag", [""])[0]
             if locus_tag in specified_locus_tags:
-                gene_seq = feature.extract(seq_record.seq)
+                gene_seq = extract_feature_sequence(feature, seq_record.seq)
                 gene_sequences[locus_tag] = gene_seq
                 print(gene_seq)
 

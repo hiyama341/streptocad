@@ -346,9 +346,8 @@ def find_sgrna_hits_cas9_crispri(
 
             # Create a new fake CDS feature for upstream
             upstream_feature = SeqFeature(
-                FeatureLocation(upstream_start, upstream_end),
+                FeatureLocation(upstream_start, upstream_end, strand=gene_strand),
                 type="CDS",
-                strand=gene_strand,
                 qualifiers={"locus_tag": [locus_tag + "_upstream"]},
             )
 
