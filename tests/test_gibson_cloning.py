@@ -79,6 +79,7 @@ def assembled_records(list_of_gene_names, digested_plasmids, repair_DNA_template
 ##### TEST ####
 
 
+@pytest.mark.integration
 def test_find_up_dw_repair_templates(repair_DNA_templates):
     # Assert the expected output
     assert len(repair_DNA_templates) == 1  # This is a list of dicts
@@ -100,6 +101,7 @@ def test_find_up_dw_repair_templates(repair_DNA_templates):
     assert str(record1["dw_reverse_p"].seq) == "CGGTGCGCCGCAT"
 
 
+@pytest.mark.integration
 def test_assemble_multiple_plasmids_with_repair_templates_for_deletion(
     assembled_records,
 ):
@@ -127,6 +129,7 @@ def test_assemble_multiple_plasmids_with_repair_templates_for_deletion(
     assert str(record["dw_reverse_p_anneal"]) == "CGGTGCGCCGCAT"
 
 
+@pytest.mark.integration
 def test_update_primer_names(assembled_records):
     update_primer_names(assembled_records)
     # Check the details of the gene in the first record
@@ -137,6 +140,7 @@ def test_update_primer_names(assembled_records):
     assert record["dw_reverse_p_name"] == "SCO5892_repair_dw_reverse_p"
 
 
+@pytest.mark.integration
 def test_assemble_single_plasmid_with_repair_templates(
     CRISPR_plasmids_wo_repair, repair_DNA_templates
 ):

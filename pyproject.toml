@@ -1,7 +1,3 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
-
 [project]
 name = "streptocad"
 version = "1.0.0"
@@ -13,7 +9,45 @@ classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
 ]
-requires-python = "~=3.11"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "biopython==1.80",
+  "dnachisel==3.2.11",
+  "numpy==2.1.1",
+  "pandas==2.2.2",
+  "primer3-py==2.0.3",
+  "pydna==5.2.0",
+  "python-codon-tables==0.1.12",
+  "requests==2.32.4",
+  "scipy==1.14.1",
+  "teemi==0.3.4",
+]
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+app = [
+  "dash==3.1.0",
+  "dash-bootstrap-components==1.6.0",
+  "plotly==5.24.1",
+]
+dev = [
+  "pytest==8.3.3",
+  "pytest-cov==4.1.0",
+  "ruff==0.8.6",
+]
+docs = [
+  "mkdocs==1.6.1",
+]
+notebooks = [
+  "ipykernel==6.29.5",
+  "matplotlib==3.9.2",
+  "nbclient==0.10.0",
+  "nbconvert==7.16.4",
+  "nbformat==5.10.4",
+  "openpyxl==3.1.5",
+]
 
 [tool.black]
 line-length = 99
@@ -28,3 +62,11 @@ exclude = '''
 [tool.ruff.lint.isort]
 known_first_party = ["streptocad"]
 force_sort_within_sections = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+  "integration: tests that call live external services such as the NEB Tm API",
+]
+addopts = "-m 'not integration'"

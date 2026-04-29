@@ -16,6 +16,11 @@ PYTHON_INTERPRETER = python
 requirements:
 	$(PYTHON_INTERPRETER) -m pip install -U pip
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+
+## Install development dependencies with uv
+.PHONY: sync
+sync:
+	uv sync --group dev --group app
 	
 
 
@@ -29,14 +34,23 @@ clean:
 ## Lint using flake8 and black (use `make format` to do formatting)
 .PHONY: lint
 lint:
-	flake8 streptocad
-	isort --check --diff --profile black streptocad
-	black --check --config pyproject.toml streptocad
+	ruff check streptocad tests --select E9,F63,F7,F82
 
 ## Format source code with black
 .PHONY: format
 format:
-	black --config pyproject.toml streptocad
+	ruff check --fix streptocad tests
+	ruff format streptocad tests
+
+## Run deterministic unit tests
+.PHONY: test
+test:
+	PYTHONPATH=. pytest
+
+## Run live external-service integration tests
+.PHONY: test-integration
+test-integration:
+	PYTHONPATH=. STREPTOCAD_RUN_NEB_INTEGRATION=1 pytest -o addopts="" -m integration
 
 
 

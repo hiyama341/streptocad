@@ -1,4 +1,5 @@
 import pytest
+import os
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from teemi.build.PCR import primer_tm_neb
@@ -21,6 +22,14 @@ from streptocad.cloning.golden_gate_cloning import (
 
 from streptocad.utils import dataframe_to_seqrecords
 from streptocad.utils import polymerase_dict
+
+pytestmark = pytest.mark.integration
+
+if os.environ.get("STREPTOCAD_RUN_NEB_INTEGRATION") != "1":
+    pytest.skip(
+        "Golden Gate tests call the live NEB Tm API; set STREPTOCAD_RUN_NEB_INTEGRATION=1 to run them.",
+        allow_module_level=True,
+    )
 
 
 # Input

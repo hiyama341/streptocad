@@ -66,6 +66,7 @@ def test_perform_pcr_on_sequences(sample_primer_dataframe, sample_clean_sequence
     assert actual_lengths == expected_lengths
 
 
+@pytest.mark.integration
 def test_make_amplicons(sample_clean_sequences):
     amplicons = make_amplicons(sample_clean_sequences, 
                                target_tm=60, 
