@@ -143,6 +143,7 @@ def checking_primers_df():
     return df
 
 
+@pytest.mark.integration
 def test_generate_primer_dataframe_with_fixture(primer_df, clean_sequences):
     # Define the parameters for the test
     # 3 Choose overlapping sequences for our plasmid we can use the following
@@ -300,6 +301,7 @@ def test_make_primer_records(filtered_df):
         )
 
 
+@pytest.mark.integration
 def test_checking_primers(coelicolor_genbank_record, checking_primers_df):
     # Define the locus tags to check
     locus_tags = ["SCO5087"]
@@ -377,6 +379,7 @@ def test_validate_primers_invalid(analysis_df_invalid):
     assert validate_primers(analysis_df_invalid) == False
 
 
+@pytest.mark.integration
 def test_find_best_check_primers_from_genome(
     coelicolor_genbank_record, find_best_checking_primers_df
 ):
