@@ -267,7 +267,7 @@ if __name__ == "__main__":
     # Check if running in Docker
     if os.environ.get("DOCKER_CONTAINER"):
         # Docker environment
-        app.run_server(host="0.0.0.0", port=8050, debug=False)
+        app.run(host="0.0.0.0", port=8050, debug=False)
     else:
         # Local development
-        app.run_server(debug=True)
+        app.run(debug=True)
