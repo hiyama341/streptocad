@@ -20,7 +20,7 @@ requirements:
 ## Install development dependencies with uv
 .PHONY: sync
 sync:
-	uv sync --extra dev --extra app
+	uv sync --group dev --group app
 	
 
 

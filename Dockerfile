@@ -31,19 +31,15 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /web_app
 
 # Copy dependency metadata first to make Docker layer caching useful.
-COPY pyproject.toml README.md LICENSE ./
-COPY streptocad ./streptocad
+COPY requirements.txt ./
 
 # Upgrade pip, setuptools, and wheel.
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
-RUN pip install --no-cache-dir ".[app]"
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code into the container
 COPY . .
-
-# Install the current project
-RUN pip install --no-cache-dir -e ".[app]"
 
 # Expose the port that Dash runs on (default is 8050)
 EXPOSE 8050

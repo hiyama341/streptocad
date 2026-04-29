@@ -33,7 +33,7 @@ jobs:
           enable-cache: true
 
       - name: Install dependencies
-        run: uv sync --frozen --extra dev --extra app
+        run: uv sync --frozen --group dev --group app
 
       - name: Run deterministic tests
         run: uv run pytest
@@ -56,10 +56,10 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Install package and app dependencies
-        run: uv sync --frozen --extra app
+      - name: Install app dependencies
+        run: uv sync --frozen --group app
 
-      - name: Import package and Dash app
+      - name: Import source tree and Dash app
         env:
           PYTHONPATH: web_app
         run: |

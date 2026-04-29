@@ -1,3 +1,15 @@
-# Compatibility entry point for pip users.
-# Prefer `uv sync --extra dev --extra app` for reproducible development.
--e ".[app,dev]"
+# Runtime and Dash app dependencies for pip users.
+# Prefer `uv sync --group dev --group app` for reproducible development.
+biopython==1.80
+dash==3.1.0
+dash-bootstrap-components==1.6.0
+dnachisel==3.2.11
+numpy==2.1.1
+pandas==2.2.2
+plotly==5.24.1
+primer3-py==2.0.3
+pydna==5.2.0
+python-codon-tables==0.1.12
+requests==2.32.4
+scipy==1.14.1
+teemi==0.3.4

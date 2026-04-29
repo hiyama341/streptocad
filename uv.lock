@@ -1785,7 +1785,7 @@ wheels = [
 [[package]]
 name = "streptocad"
 version = "1.0.0"
-source = { editable = "." }
+source = { virtual = "." }
 dependencies = [
     { name = "biopython" },
     { name = "dnachisel" },
@@ -1799,7 +1799,7 @@ dependencies = [
     { name = "teemi" },
 ]
 
-[package.optional-dependencies]
+[package.dev-dependencies]
 app = [
     { name = "dash" },
     { name = "dash-bootstrap-components" },
@@ -1825,30 +1825,37 @@ notebooks = [
 [package.metadata]
 requires-dist = [
     { name = "biopython", specifier = "==1.80" },
-    { name = "dash", marker = "extra == 'app'", specifier = "==3.1.0" },
-    { name = "dash-bootstrap-components", marker = "extra == 'app'", specifier = "==1.6.0" },
     { name = "dnachisel", specifier = "==3.2.11" },
-    { name = "ipykernel", marker = "extra == 'notebooks'", specifier = "==6.29.5" },
-    { name = "matplotlib", marker = "extra == 'notebooks'", specifier = "==3.9.2" },
-    { name = "mkdocs", marker = "extra == 'docs'", specifier = "==1.6.1" },
-    { name = "nbclient", marker = "extra == 'notebooks'", specifier = "==0.10.0" },
-    { name = "nbconvert", marker = "extra == 'notebooks'", specifier = "==7.16.4" },
-    { name = "nbformat", marker = "extra == 'notebooks'", specifier = "==5.10.4" },
     { name = "numpy", specifier = "==2.1.1" },
-    { name = "openpyxl", marker = "extra == 'notebooks'", specifier = "==3.1.5" },
     { name = "pandas", specifier = "==2.2.2" },
-    { name = "plotly", marker = "extra == 'app'", specifier = "==5.24.1" },
     { name = "primer3-py", specifier = "==2.0.3" },
     { name = "pydna", specifier = "==5.2.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = "==8.3.3" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = "==4.1.0" },
     { name = "python-codon-tables", specifier = "==0.1.12" },
     { name = "requests", specifier = "==2.32.4" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = "==0.8.6" },
     { name = "scipy", specifier = "==1.14.1" },
     { name = "teemi", specifier = "==0.3.4" },
 ]
-provides-extras = ["app", "dev", "docs", "notebooks"]
+
+[package.metadata.requires-dev]
+app = [
+    { name = "dash", specifier = "==3.1.0" },
+    { name = "dash-bootstrap-components", specifier = "==1.6.0" },
+    { name = "plotly", specifier = "==5.24.1" },
+]
+dev = [
+    { name = "pytest", specifier = "==8.3.3" },
+    { name = "pytest-cov", specifier = "==4.1.0" },
+    { name = "ruff", specifier = "==0.8.6" },
+]
+docs = [{ name = "mkdocs", specifier = "==1.6.1" }]
+notebooks = [
+    { name = "ipykernel", specifier = "==6.29.5" },
+    { name = "matplotlib", specifier = "==3.9.2" },
+    { name = "nbclient", specifier = "==0.10.0" },
+    { name = "nbconvert", specifier = "==7.16.4" },
+    { name = "nbformat", specifier = "==5.10.4" },
+    { name = "openpyxl", specifier = "==3.1.5" },
+]
 
 [[package]]
 name = "teemi"

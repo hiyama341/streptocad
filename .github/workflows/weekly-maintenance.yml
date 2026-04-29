@@ -32,7 +32,7 @@ jobs:
           enable-cache: true
 
       - name: Install all dependency groups
-        run: uv sync --frozen --all-extras
+        run: uv sync --frozen --all-groups
 
       - name: Run deterministic tests
         run: uv run pytest
