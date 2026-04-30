@@ -385,12 +385,12 @@ def assemble_multiple_plasmids_with_repair_templates_for_deletion(
                             "up_reverse_primer_str": str(
                                 assembled_vector[1].reverse_primer.seq
                             ),
-                            "up_forwar_p_anneal": assembled_vector[
-                                1
-                            ].forward_primer.footprint,
-                            "up_reverse_p_anneal": assembled_vector[
-                                1
-                            ].reverse_primer.footprint,
+                            "up_fwd_p_anneal": repair_template_name[
+                                "up_forwar_p"
+                            ].footprint,
+                            "up_reverse_p_anneal": repair_template_name[
+                                "up_reverse_p"
+                            ].footprint,
                             "tm_up_forwar_p": repair_template_name["tm_up_forwar_p"],
                             "tm_up_reverse_p": repair_template_name["tm_up_reverse_p"],
                             "ta_up": repair_template_name["ta_up"],
@@ -405,12 +405,12 @@ def assemble_multiple_plasmids_with_repair_templates_for_deletion(
                             "dw_reverse_primer_str": str(
                                 assembled_vector[2].reverse_primer.seq
                             ),
-                            "dw_forwar_p_anneal": assembled_vector[
-                                2
-                            ].forward_primer.footprint,
-                            "dw_reverse_p_anneal": assembled_vector[
-                                2
-                            ].reverse_primer.footprint,
+                            "dw_fwd_p_anneal": repair_template_name[
+                                "dw_forwar_p"
+                            ].footprint,
+                            "dw_reverse_p_anneal": repair_template_name[
+                                "dw_reverse_p"
+                            ].footprint,
                             "tm_dw_forwar_p": repair_template_name["tm_dw_forwar_p"],
                             "tm_dw_reverse_p": repair_template_name["tm_dw_reverse_p"],
                             "ta_dw": repair_template_name["ta_dw"],
