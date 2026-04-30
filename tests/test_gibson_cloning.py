@@ -119,13 +119,13 @@ def test_assemble_multiple_plasmids_with_repair_templates_for_deletion(
     # UP Primer Checks
     assert record["up_forwar_p_name"] == "f1000"
     assert record["up_reverse_p_name"] == "r1000"
-    assert str(record["up_forwar_p_anneal"]) == "CGACGAGCTGGAC"
+    assert str(record["up_fwd_p_anneal"]) == "CGACGAGCTGGAC"
     assert str(record["up_reverse_p_anneal"]) == "CTACCGGGCCGTT"
 
     # DW Primer Checks
     assert record["dw_forwar_p_name"] == "f1000"
     assert record["dw_reverse_p_name"] == "r1000"
-    assert str(record["dw_forwar_p_anneal"]) == "TCCATGTCCTCACTCAG"
+    assert str(record["dw_fwd_p_anneal"]) == "TCCATGTCCTCACTCAG"
     assert str(record["dw_reverse_p_anneal"]) == "CGGTGCGCCGCAT"
 
 

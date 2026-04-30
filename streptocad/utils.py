@@ -120,7 +120,7 @@ def create_primer_df_from_dict(records: List[Dict[str, Any]]) -> pd.DataFrame:
     >>> records = [
     ...     {
     ...         'gene_name': 'gene1',
-    ...         'up_forwar_p_anneal': 'ATCG',
+    ...         'up_fwd_p_anneal': 'ATCG',
     ...         'up_reverse_p_anneal': 'CGTA',
     ...         'tm_up_forwar_p': 60.0,
     ...         'tm_up_reverse_p': 60.0,
@@ -129,7 +129,7 @@ def create_primer_df_from_dict(records: List[Dict[str, Any]]) -> pd.DataFrame:
     ...         'up_reverse_primer_str': 'CGTACGTA',
     ...         'up_forwar_p_name': 'up_fwd1',
     ...         'up_reverse_p_name': 'up_rev1',
-    ...         'dw_forwar_p_anneal': 'GCTA',
+    ...         'dw_fwd_p_anneal': 'GCTA',
     ...         'dw_reverse_p_anneal': 'TAGC',
     ...         'tm_dw_forwar_p': 58.0,
     ...         'tm_dw_reverse_p': 58.0,
@@ -148,7 +148,7 @@ def create_primer_df_from_dict(records: List[Dict[str, Any]]) -> pd.DataFrame:
     for rec in records:
         template = rec["gene_name"]
 
-        f_primer_anneal_up = str(rec["up_forwar_p_anneal"])
+        f_primer_anneal_up = str(rec["up_fwd_p_anneal"])
         r_primer_anneal_up = str(rec["up_reverse_p_anneal"])
         f_tm_up = rec["tm_up_forwar_p"]
         r_tm_up = rec["tm_up_reverse_p"]
@@ -158,7 +158,7 @@ def create_primer_df_from_dict(records: List[Dict[str, Any]]) -> pd.DataFrame:
         f_primer_name_up = rec["up_forwar_p_name"]
         r_primer_name_up = rec["up_reverse_p_name"]
 
-        f_primer_anneal_dw = str(rec["dw_forwar_p_anneal"])
+        f_primer_anneal_dw = str(rec["dw_fwd_p_anneal"])
         r_primer_anneal_dw = str(rec["dw_reverse_p_anneal"])
         f_tm_dw = rec["tm_dw_forwar_p"]
         r_tm_dw = rec["tm_dw_reverse_p"]
@@ -174,11 +174,15 @@ def create_primer_df_from_dict(records: List[Dict[str, Any]]) -> pd.DataFrame:
                 "upstream",
                 f_primer_anneal_up,
                 r_primer_anneal_up,
+                len(f_primer_anneal_up),
+                len(r_primer_anneal_up),
                 f_tm_up,
                 r_tm_up,
                 ta_up,
                 f_primer_seq_up,
                 r_primer_seq_up,
+                len(f_primer_seq_up),
+                len(r_primer_seq_up),
                 f_primer_name_up,
                 r_primer_name_up,
             ]
@@ -190,11 +194,15 @@ def create_primer_df_from_dict(records: List[Dict[str, Any]]) -> pd.DataFrame:
                 "downstream",
                 f_primer_anneal_dw,
                 r_primer_anneal_dw,
+                len(f_primer_anneal_dw),
+                len(r_primer_anneal_dw),
                 f_tm_dw,
                 r_tm_dw,
                 ta_dw,
                 f_primer_seq_dw,
                 r_primer_seq_dw,
+                len(f_primer_seq_dw),
+                len(r_primer_seq_dw),
                 f_primer_name_dw,
                 r_primer_name_dw,
             ]
@@ -207,11 +215,15 @@ def create_primer_df_from_dict(records: List[Dict[str, Any]]) -> pd.DataFrame:
             "direction",
             "f_primer_anneal(5-3)",
             "r_primer_anneal(5-3)",
+            "f_primer_anneal_length",
+            "r_primer_anneal_length",
             "f_tm",
             "r_tm",
             "ta",
             "f_primer_sequences(5-3)",
             "r_primer_sequences(5-3)",
+            "f_primer_length",
+            "r_primer_length",
             "f_primer_name",
             "r_primer_name",
         ],
