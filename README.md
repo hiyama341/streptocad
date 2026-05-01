@@ -3,7 +3,7 @@
 # Automate your Streptomyces genome engineering workflows 🚀
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
-![Tests Passing](https://github.com/hiyama341/streptocad/actions/workflows/run-tests.yml/badge.svg)
+![Tests Passing](https://github.com/hiyama341/streptocad/actions/workflows/ci.yml/badge.svg)
 ![Deploy AppRunner Container](https://github.com/hiyama341/streptocad/actions/workflows/deploy_apprunner_container.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
