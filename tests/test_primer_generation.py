@@ -92,26 +92,32 @@ def filtered_df():
     return filtered_df
 
 
+# These expected primers are one base longer than they were before biopython 1.82.
+# Biopython 1.82 corrected two entropy values in the SantaLucia & Hicks (2004)
+# nearest-neighbour table (DNA_NN4), which earlier releases overestimated melting
+# temperatures by roughly 2.3 C with. pydna's primer_design therefore used to stop one
+# base short of target_tm. Each primer below was checked to be the candidate whose Tm
+# lies closest to target_tm=65 among its n-1, n and n+1 neighbours.
 @pytest.fixture
 def find_best_checking_primers_df():
     data = {
         "locus tag": ["SCO5087"],
         "f_primer_name": ["SCO5087_fwd_checking_primer"],
         "r_primer_name": ["SCO5087_rev_checking_primer"],
-        "f_primer_sequences(5-3)": ["GACGATTCGGCCCGTG"],
-        "r_primer_sequences(5-3)": ["CAGGGCGTCCAGGC"],
-        "f_tm": [59],
-        "r_tm": [58],
-        "ta": [61],
-        "flanking_region": [500],
-        "annealing_temperature": [61],
+        "f_primer_sequences(5-3)": ["TGACGATTCGGCCCGTG"],
+        "r_primer_sequences(5-3)": ["CCAGGGCGTCCAGGC"],
+        "f_tm": [61],
+        "r_tm": [61],
+        "ta": [65],
+        "flanking_region": [501],
+        "annealing_temperature": [65],
         "primer_pair": ["SCO5087_fwd_checking_primer & SCO5087_rev_checking_primer"],
-        "homodimer_forward_tm": [9.596675850895167],
-        "homodimer_forward_deltaG (kcal/mol)": [-0.3393059724374107],
+        "homodimer_forward_tm": [9.884864906825442],
+        "homodimer_forward_deltaG (kcal/mol)": [-0.9339396708719157],
         "homodimer_reverse_tm": [9.70624571345519],
-        "homodimer_reverse_deltaG (kcal/mol)": [-3.4154272069089346],
+        "homodimer_reverse_deltaG (kcal/mol)": [-2.884114050624736],
         "heterodimer_tm": [1.9185669591946635],
-        "heterodimer_deltaG (kcal/mol)": [-2.396641324148026],
+        "heterodimer_deltaG (kcal/mol)": [-1.8854534303775403],
         "hairpin_forward_structure_found": [False],
         "hairpin_forward_tm": [0.0],
         "hairpin_forward_deltaG (kcal/mol)": [0.0],
@@ -131,11 +137,11 @@ def checking_primers_df():
         "locus tag": ["SCO5087"],
         "f_primer_name": ["SCO5087_fwd_checking_primer"],
         "r_primer_name": ["SCO5087_rev_checking_primer"],
-        "f_primer_sequences(5-3)": ["GACGATTCGGCCCGTG"],
-        "r_primer_sequences(5-3)": ["CAGGGCGTCCAGGC"],
-        "f_tm": [59],
-        "r_tm": [58],
-        "ta": [61],
+        "f_primer_sequences(5-3)": ["GACGATTCGGCCCGTGC"],
+        "r_primer_sequences(5-3)": ["CAGGGCGTCCAGGCC"],
+        "f_tm": [63],
+        "r_tm": [61],
+        "ta": [65],
     }
 
     df = pd.DataFrame(data)

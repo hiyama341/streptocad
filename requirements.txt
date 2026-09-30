@@ -8,6 +8,8 @@
 # instead; the library declares compatible ranges in pyproject.toml.
 alabaster==1.0.0
     # via sphinx
+annotated-types==0.8.0
+    # via pydantic
 appdirs==1.4.4
     # via pydna
 attrs==26.1.0
@@ -22,7 +24,7 @@ beautifulsoup4==4.15.0
     #   nbconvert
 benchlingapi==2.1.12
     # via teemi
-biopython==1.80
+biopython==1.88
     # via
     #   dnachisel
     #   pydna
@@ -155,6 +157,8 @@ numpy==2.4.6 ; python_full_version < '3.12'
     #   dnachisel
     #   matplotlib
     #   pandas
+    #   pydivsufsort
+    #   pydna
     #   scipy
     #   streptocad
     #   teemi
@@ -165,9 +169,13 @@ numpy==2.5.3 ; python_full_version >= '3.12'
     #   dnachisel
     #   matplotlib
     #   pandas
+    #   pydivsufsort
+    #   pydna
     #   scipy
     #   streptocad
     #   teemi
+opencloning-linkml==1.0.0
+    # via pydna
 openpyxl==3.1.5
     # via teemi
 packaging==26.3
@@ -201,11 +209,17 @@ proglog==0.1.12
     # via dnachisel
 pycparser==3.0 ; implementation_name == 'pypy'
     # via cffi
-pydna==5.2.0
+pydantic==2.13.5
+    # via opencloning-linkml
+pydantic-core==2.46.5
+    # via pydantic
+pydivsufsort==0.0.20
+    # via pydna
+pydna==5.5.16
     # via
     #   streptocad
     #   teemi
-pyfiglet==1.0.4
+pyfiglet==0.8.post1
     # via pydna
 pygments==2.21.0
     # via
@@ -214,8 +228,6 @@ pygments==2.21.0
     #   sphinx
 pyparsing==3.3.3
     # via matplotlib
-pyperclip==1.11.0
-    # via pydna
 pytest==9.1.1
     # via pytest-cov
 pytest-cov==4.1.0
@@ -239,6 +251,8 @@ referencing==0.37.0
     # via
     #   jsonschema
     #   jsonschema-specifications
+regex==2026.9.29
+    # via pydna
 requests==2.34.2
     # via
     #   benchlingapi
@@ -257,8 +271,12 @@ scipy==1.17.1 ; python_full_version < '3.12'
     # via streptocad
 scipy==1.18.1 ; python_full_version >= '3.12'
     # via streptocad
+seguid==0.2.1
+    # via pydna
 setuptools==84.0.0
     # via dash
+sgffp==0.22.1
+    # via pydna
 six==1.17.0
     # via python-dateutil
 snowballstemmer==3.1.1
@@ -281,7 +299,7 @@ sphinxcontrib-qthelp==2.0.0
     # via sphinx
 sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
-teemi==0.3.4
+teemi==1.0.5
     # via streptocad
 tenacity==9.1.4
     # via plotly
@@ -306,7 +324,12 @@ typing-extensions==4.16.0
     #   beautifulsoup4
     #   dash
     #   jupyter-client
+    #   pydantic
+    #   pydantic-core
     #   referencing
+    #   typing-inspection
+typing-inspection==0.4.4
+    # via pydantic
 tzdata==2026.4
     # via pandas
 urllib3==2.8.0
@@ -324,6 +347,10 @@ werkzeug==3.1.9
     #   dash
     #   flask
 wheel==0.48.0
-    # via teemi
+    # via
+    #   pydivsufsort
+    #   teemi
+xmltodict==1.0.4
+    # via sgffp
 zipp==4.1.0
     # via importlib-metadata
