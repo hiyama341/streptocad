@@ -6,6 +6,9 @@ resolution-markers = [
     "python_full_version < '3.12'",
 ]
 
+[manifest]
+build-constraints = [{ name = "cython", specifier = "<3" }]
+
 [[package]]
 name = "alabaster"
 version = "1.0.0"
@@ -1784,11 +1787,12 @@ wheels = [
 
 [[package]]
 name = "streptocad"
-version = "1.0.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "biopython" },
     { name = "dnachisel" },
+    { name = "nbconvert" },
+    { name = "nbformat" },
     { name = "numpy" },
     { name = "pandas" },
     { name = "primer3-py" },
@@ -1825,15 +1829,17 @@ notebooks = [
 [package.metadata]
 requires-dist = [
     { name = "biopython", specifier = "==1.80" },
-    { name = "dnachisel", specifier = "==3.2.11" },
-    { name = "numpy", specifier = "==2.1.1" },
-    { name = "pandas", specifier = "==2.2.2" },
-    { name = "primer3-py", specifier = "==2.0.3" },
+    { name = "dnachisel", specifier = ">=3.2.11,<4" },
+    { name = "nbconvert", specifier = ">=7.16" },
+    { name = "nbformat", specifier = ">=5.10" },
+    { name = "numpy", specifier = ">=2.1.1,<3" },
+    { name = "pandas", specifier = ">=2.2.2,<3" },
+    { name = "primer3-py", specifier = ">=2.0.3,<3" },
     { name = "pydna", specifier = "==5.2.0" },
-    { name = "python-codon-tables", specifier = "==0.1.12" },
-    { name = "requests", specifier = "==2.32.4" },
-    { name = "scipy", specifier = "==1.14.1" },
-    { name = "teemi", specifier = "==0.3.4" },
+    { name = "python-codon-tables", specifier = ">=0.1.12" },
+    { name = "requests", specifier = ">=2.32.4,<3" },
+    { name = "scipy", specifier = ">=1.14.1,<2" },
+    { name = "teemi", specifier = ">=0.3.4,<0.4" },
 ]
 
 [package.metadata.requires-dev]
