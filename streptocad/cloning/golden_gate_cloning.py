@@ -384,7 +384,12 @@ def make_amplicons(
     # Bind the reaction conditions into the Tm function. pydna's primer_design accepts
     # **kwargs but never forwards them to tm_func, so passing them through there would
     # silently fall back to NEB's q5-0 defaults regardless of the polymerase chosen.
-    if primer_tm_function is None:
+    #
+    # primer_tm_neb is routed through neb_tm_function so it picks up response caching;
+    # the design search re-evaluates overlapping candidates, and callers such as the
+    # multiplexed workflow design primers for many sgRNAs in one pass. Any other
+    # caller-supplied function is bound as-is, since we cannot assume it is pure.
+    if primer_tm_function in (None, primer_tm_neb):
         tm_func = neb_tm_function(
             conc=primer_tm_kwargs.get('conc', primer_concentration),
             prodcode=primer_tm_kwargs.get('prodcode', polymerase),

@@ -11,13 +11,13 @@ apart: designing against one model while reporting another produces primers whos
 reported Tm does not match the requested ``target_tm``.
 """
 
+from collections.abc import Callable
 from functools import lru_cache
-from typing import Callable
 
 from pydna.tm import tm_default
 from teemi.build.PCR import primer_tm_neb
 
-__all__ = ["neb_tm_function", "tm_default", "clear_tm_cache", "tm_cache_info"]
+__all__ = ["clear_tm_cache", "neb_tm_function", "tm_cache_info", "tm_default"]
 
 
 @lru_cache(maxsize=8192)
