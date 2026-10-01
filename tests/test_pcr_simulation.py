@@ -68,11 +68,14 @@ def test_perform_pcr_on_sequences(sample_primer_dataframe, sample_clean_sequence
 
 @pytest.mark.integration
 def test_make_amplicons(sample_clean_sequences):
-    amplicons = make_amplicons(sample_clean_sequences, 
-                               target_tm=60, 
-                               limit=10, 
+    # 'phusion-1' is the NEB product code for Phusion in GC buffer; a bare 'phusion'
+    # is not a valid code and the API returns no melting temperature for it. This went
+    # unnoticed while the product code was being dropped before it reached the API.
+    amplicons = make_amplicons(sample_clean_sequences,
+                               target_tm=60,
+                               limit=10,
                                primer_concentration=0.5,
-                                 polymerase='phusion')
+                               polymerase='phusion-1')
 
     # Check that the correct number of amplicons are generated
     assert len(amplicons) == 3

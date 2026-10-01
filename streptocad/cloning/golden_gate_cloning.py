@@ -12,10 +12,14 @@
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
 
+from functools import partial
+
 from pydna.dseqrecord import Dseqrecord
 from pydna.primer import Primer
 from teemi.build.PCR import primer_ta_neb, primer_tm_neb
 from pydna.design import primer_design
+
+from streptocad.primers.tm import neb_tm_function, tm_default
 from Bio.Seq import Seq
 import pandas as pd
 from typing import List, Callable
@@ -374,10 +378,24 @@ def make_amplicons(
     """Generates amplicons with designed primers, allowing customization of primer TM calculation,
     and reuses primers when possible, including checking reverse primers."""
 
-    if primer_tm_function is None:
-        primer_tm_function = primer_tm_neb
     if primer_tm_kwargs is None:
         primer_tm_kwargs = {'conc': primer_concentration, 'prodcode': polymerase}
+
+    # Bind the reaction conditions into the Tm function. pydna's primer_design accepts
+    # **kwargs but never forwards them to tm_func, so passing them through there would
+    # silently fall back to NEB's q5-0 defaults regardless of the polymerase chosen.
+    #
+    # primer_tm_neb is routed through neb_tm_function so it picks up response caching;
+    # the design search re-evaluates overlapping candidates, and callers such as the
+    # multiplexed workflow design primers for many sgRNAs in one pass. Any other
+    # caller-supplied function is bound as-is, since we cannot assume it is pure.
+    if primer_tm_function in (None, primer_tm_neb):
+        tm_func = neb_tm_function(
+            conc=primer_tm_kwargs.get('conc', primer_concentration),
+            prodcode=primer_tm_kwargs.get('prodcode', polymerase),
+        )
+    else:
+        tm_func = partial(primer_tm_function, **primer_tm_kwargs)
 
     amplicons = []
     previous_forward_primer = None
@@ -409,8 +427,8 @@ def make_amplicons(
                 amplicon_template,
                 target_tm=target_tm,
                 limit=limit,
-                tm_func=primer_tm_function,
-                **primer_tm_kwargs
+                tm_func=tm_func,
+                estimate_function=tm_default,
             )
             amplicon.name = amplicon_template.name + "_amplicon"
             amplicon.id = amplicon_template.id

@@ -25,6 +25,8 @@ from pydna.primer import Primer
 from typing import List
 from teemi.build.PCR import primer_tm_neb, primer_ta_neb
 
+from streptocad.primers.tm import neb_tm_function, tm_default
+
 
 def find_up_dw_repair_templates(
     genome: SeqRecord,
@@ -69,8 +71,13 @@ def find_up_dw_repair_templates(
             - location_dw_end: The ending location of the downstream repair template on the genome.
     """
 
-    # if primer_tm_kwargs is None:
-    #    primer_tm_kwargs = {'conc': 0.4, 'prodcode': 'onetaq-3'}
+    if primer_tm_kwargs is None:
+        primer_tm_kwargs = {"conc": 0.4, "prodcode": "onetaq-3"}
+
+    # Bind the reaction conditions into the Tm function. pydna's primer_design accepts
+    # **kwargs but does not forward them to tm_func, so passing them there would leave
+    # the design running against NEB's q5-0 defaults instead of the chosen polymerase.
+    _tm_func = neb_tm_function(**primer_tm_kwargs)
 
     repair_DNA_templates = []
     for feature in genome.features:
@@ -90,9 +97,9 @@ def find_up_dw_repair_templates(
                         name=f"Repair_Template_UPSTREAM{feature.qualifiers['locus_tag'][0]}",
                     ),
                     target_tm=target_tm,
-                    tm_func=primer_tm_neb,
+                    tm_func=_tm_func,
+                    estimate_function=tm_default,
                     limit=min_primer_length,
-                    **primer_tm_kwargs,
                 )
 
                 # Fetch 500 downstream to start + end to 500 downstream
@@ -102,9 +109,9 @@ def find_up_dw_repair_templates(
                         name=f"Repair_Template_Downstream{feature.qualifiers['locus_tag'][0]}",
                     ),
                     target_tm=target_tm,
-                    tm_func=primer_tm_neb,
+                    tm_func=_tm_func,
+                    estimate_function=tm_default,
                     limit=min_primer_length,
-                    **primer_tm_kwargs,
                 )
                 # MAKE A DICT
                 record = {

@@ -2,7 +2,7 @@
 
 __author__ = """Lucas Levassor"""
 __email__ = "luclev@biosustain.dtu.dk"
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 
 from streptocad.biopython_compat import patch_dseqrecord_linear_argument
 

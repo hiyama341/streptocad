@@ -9,6 +9,8 @@ from pydna.design import primer_design
 from teemi.build.PCR import primer_tm_neb, primer_ta_neb
 from Bio.SeqRecord import SeqRecord
 
+from streptocad.primers.tm import neb_tm_function, tm_default
+
 
 def perform_pcr_on_sequences(
     df: pd.DataFrame, clean_seq: List[Dseqrecord]
@@ -115,14 +117,21 @@ def make_amplicons(
     if not primer_kwargs:
         primer_kwargs = {"conc": primer_concentration, "prodcode": polymerase}
 
+    # Bind the reaction conditions into the Tm function. pydna's primer_design does
+    # not forward **kwargs to the Tm function, so they have to be closed over here.
+    tm_func = neb_tm_function(
+        conc=primer_kwargs.get("conc", primer_concentration),
+        prodcode=primer_kwargs.get("prodcode", polymerase),
+    )
+
     amplicons = []
     for i in range(len(list_of_amplicons)):
         amplicon = primer_design(
             list_of_amplicons[i],
             target_tm=target_tm,
             limit=limit,
-            tm_function=primer_tm_neb,
-            **primer_kwargs,
+            tm_func=tm_func,
+            estimate_function=tm_default,
         )
         amplicon.name = list_of_amplicons[i].name + "_amplicon"
         amplicon.id = list_of_amplicons[i].id

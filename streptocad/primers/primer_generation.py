@@ -12,6 +12,7 @@ from pydna.dseqrecord import Dseqrecord
 from pydna.design import primer_design
 
 from ..primers.primer_analysis import analyze_primers_and_hairpins
+from ..primers.tm import neb_tm_function, tm_default
 from ..cloning.pcr_simulation import make_amplicons
 
 
@@ -265,6 +266,16 @@ def checking_primers(
     if not primer_kwargs:
         primer_kwargs = {"conc": primer_concentration, "prodcode": polymerase}
 
+    # Design against the same NEB model the melting temperatures are reported with.
+    # pydna's primer_design does not forward **kwargs to the Tm function, so the
+    # reaction conditions have to be bound into it here; without this the design
+    # silently ran against pydna's generic Taq-buffer defaults and the primers
+    # missed the requested target_tm.
+    tm_func = neb_tm_function(
+        conc=primer_kwargs.get("conc", primer_concentration),
+        prodcode=primer_kwargs.get("prodcode", polymerase),
+    )
+
     primer_info = []
 
     for locus_tag in locus_tags:
@@ -290,7 +301,11 @@ def checking_primers(
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("always")
             primers = primer_design(
-                dseqrecord, target_tm=target_tm, limit=limit, **primer_kwargs
+                dseqrecord,
+                target_tm=target_tm,
+                limit=limit,
+                tm_func=tm_func,
+                estimate_function=tm_default,
             )
 
             # Check for the specific warning about non-unique PCR products

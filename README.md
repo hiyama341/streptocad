@@ -1,4 +1,4 @@
-<img src="web_app/assets/StreptoCAD_logo Medium.jpeg" alt="StreptoCAD" width="200">
+<img src="https://raw.githubusercontent.com/hiyama341/streptocad/main/web_app/assets/StreptoCAD_logo%20Medium.jpeg" alt="StreptoCAD" width="200">
 
 # Automate your Streptomyces genome engineering workflows 🚀
 
@@ -6,7 +6,7 @@
 ![Tests Passing](https://github.com/hiyama341/streptocad/actions/workflows/ci.yml/badge.svg)
 ![Deploy AppRunner Container](https://github.com/hiyama341/streptocad/actions/workflows/deploy_apprunner_container.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+[![PyPI](https://img.shields.io/pypi/v/streptocad.svg)](https://pypi.org/project/streptocad/)
 [![code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 **StreptoCAD** is an open-source software toolbox designed to automate and streamline genome engineering in Streptomyces. This tool supports various CRISPR-based techniques and gene overexpression methods, simplifying the genetic engineering process.
@@ -29,31 +29,31 @@ For more details and an in-depth discussion of our approach, check out our [bioX
 
 ## Workflows
 
-<img src="web_app/assets/intro_fig.png" alt="StreptoCAD" width="600">
+<img src="https://raw.githubusercontent.com/hiyama341/streptocad/main/web_app/assets/intro_fig.png" alt="StreptoCAD" width="600">
 
 StreptoCAD offers six distinct workflows for various genetic engineering tasks:
 
-1. **[Overexpression Plasmid Library Construction](notebooks/app_workflows/W1_overexpression_workflow.ipynb):**
+1. **[Overexpression Plasmid Library Construction](https://github.com/hiyama341/streptocad/blob/main/notebooks/app_workflows/W1_overexpression_workflow.ipynb):**
 
    - Can be used to overexpress target proteins - we experimentally validated this by overexpressing regulators.
 
-2. **[Single CRISPR-BEST Plasmid Generation](notebooks/app_workflows/W2_CRISPR-BEST-single.ipynb):**
+2. **[Single CRISPR-BEST Plasmid Generation](https://github.com/hiyama341/streptocad/blob/main/notebooks/app_workflows/W2_CRISPR-BEST-single.ipynb):**
 
    - Base editing system in the genome of Streptomyces using single sgRNA for targeting.
 
-3. **[Multiplexed CRISPR-BEST Plasmid Generation](notebooks/app_workflows/W3_multiplexed_CRISPR-BEST.ipynb):**
+3. **[Multiplexed CRISPR-BEST Plasmid Generation](https://github.com/hiyama341/streptocad/blob/main/notebooks/app_workflows/W3_multiplexed_CRISPR-BEST.ipynb):**
 
    - Multiplexed base-editing in the genome for high-throughput genetic studies.
 
-4. **[CRISPRi Plasmid Generation](notebooks/app_workflows/W4_CRISPRi.ipynb):**
+4. **[CRISPRi Plasmid Generation](https://github.com/hiyama341/streptocad/blob/main/notebooks/app_workflows/W4_CRISPRi.ipynb):**
 
    - Uses transcriptional interference to reversibly inactivate genes for functional studies.
 
-5. **[CRISPR-Cas9](notebooks/app_workflows/W5_CRISPR-cas9-inframe-deletion_random_sized_deletion.ipynb):**
+5. **[CRISPR-Cas9](https://github.com/hiyama341/streptocad/blob/main/notebooks/app_workflows/W5_CRISPR-cas9-inframe-deletion_random_sized_deletion.ipynb):**
 
    - Can be used for random-sized or in-frame deletions with Cas9
 
-6. **[CRISPR-Cas3](notebooks/app_workflows/W6_CRISPR-cas3-inframe-deletion_random_sized_deletion.ipynb):**
+6. **[CRISPR-Cas3](https://github.com/hiyama341/streptocad/blob/main/notebooks/app_workflows/W6_CRISPR-cas3-inframe-deletion_random_sized_deletion.ipynb):**
    - Can be used for random-sized or in-frame deletions with Cas3
 
 ## Experimental Validation
@@ -67,6 +67,24 @@ Future expansions will include additional genome engineering tools and integrati
 ## Get Started
 
 Visit [streptocad.bioengineering.dtu.dk](https://streptocad.bioengineering.dtu.dk) to try StreptoCAD, access documentation, and join the community of users and contributors working to advance Streptomyces research.
+
+## Use StreptoCAD as a Python library
+
+The StreptoCAD toolbox is available on [PyPI](https://pypi.org/project/streptocad/) for Python 3.11 and 3.12:
+
+```bash
+pip install streptocad
+```
+
+The workflows can then be scripted directly, for example:
+
+```python
+from streptocad.sequence_loading.sequence_loading import load_and_process_genome_sequences
+
+genome = load_and_process_genome_sequences("my_genome.gbk")[0]
+```
+
+See the [workflow notebooks](https://github.com/hiyama341/streptocad/tree/main/notebooks/app_workflows) for complete examples. The PyPI package contains the library only; to run the web app, follow the steps below.
 
 ## Want to run StreptoCAD locally?
 

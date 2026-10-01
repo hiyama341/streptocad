@@ -1,0 +1,75 @@
+name: Publish to PyPI
+
+# Publishes when a GitHub release is created, or on demand for a TestPyPI dry run.
+# Uses PyPI Trusted Publishing (OIDC), so no API token needs to be stored as a secret.
+# One-time setup: add a trusted publisher on PyPI for this repo with
+# workflow name "publish-pypi.yml" and environment "pypi".
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Where to upload the build"
+        required: true
+        default: testpypi
+        type: choice
+        options: [testpypi, pypi]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build distributions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
+      - name: Build sdist and wheel
+        run: uv build
+
+      - name: Check metadata
+        run: uvx twine check dist/*
+
+      - name: Verify the wheel imports from a clean environment
+        run: |
+          uv venv /tmp/verify --python 3.11
+          uv pip install --python /tmp/verify/bin/python dist/*.whl
+          /tmp/verify/bin/python -c "import streptocad; print(streptocad.__version__)"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    environment: ${{ github.event_name == 'release' && 'pypi' || inputs.target }}
+    permissions:
+      id-token: write # required for trusted publishing
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to TestPyPI
+        if: github.event_name == 'workflow_dispatch' && inputs.target == 'testpypi'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+      - name: Publish to PyPI
+        if: github.event_name == 'release' || inputs.target == 'pypi'
+        uses: pypa/gh-action-pypi-publish@release/v1
