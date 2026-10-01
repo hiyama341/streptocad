@@ -90,15 +90,21 @@ def test_find_up_dw_repair_templates(repair_DNA_templates):
     assert isinstance(record1["up_repair"], Dseqrecord)
 
     # UP Primer Checks
-    assert str(record1["up_forwar_p"].seq) == "CGACGAGCTGGAC"
-    assert str(record1["up_reverse_p"].seq) == "CTACCGGGCCGTT"
+    # These primers are longer than they were before 1.0.0. The reaction conditions
+    # above were previously discarded before reaching the melting temperature
+    # calculation, so design ran against NEB's q5-0 default instead of Phusion GC.
+    # Q5 reads higher, so three of these four primers never grew past the 13 nt
+    # min_primer_length floor and came out around 50 C against a requested 60 C.
+    # Each primer below now reads 60-61 C under the conditions the test specifies.
+    assert str(record1["up_forwar_p"].seq) == "CGACGAGCTGGACGTCG"
+    assert str(record1["up_reverse_p"].seq) == "CTACCGGGCCGTTCCG"
     assert isinstance(record1["up_forwar_p"], pydna.primer.Primer)
     assert isinstance(record1["up_reverse_p"], pydna.primer.Primer)
 
     # DW Primer Checks
     assert len(record1["dw_repair"]) == 1000
-    assert str(record1["dw_forwar_p"].seq) == "TCCATGTCCTCACTCAG"
-    assert str(record1["dw_reverse_p"].seq) == "CGGTGCGCCGCAT"
+    assert str(record1["dw_forwar_p"].seq) == "TCCATGTCCTCACTCAGCC"
+    assert str(record1["dw_reverse_p"].seq) == "CGGTGCGCCGCATG"
 
 
 @pytest.mark.integration
@@ -119,14 +125,14 @@ def test_assemble_multiple_plasmids_with_repair_templates_for_deletion(
     # UP Primer Checks
     assert record["up_forwar_p_name"] == "f1000"
     assert record["up_reverse_p_name"] == "r1000"
-    assert str(record["up_fwd_p_anneal"]) == "CGACGAGCTGGAC"
-    assert str(record["up_reverse_p_anneal"]) == "CTACCGGGCCGTT"
+    assert str(record["up_fwd_p_anneal"]) == "CGACGAGCTGGACGTCG"
+    assert str(record["up_reverse_p_anneal"]) == "CTACCGGGCCGTTCCG"
 
     # DW Primer Checks
     assert record["dw_forwar_p_name"] == "f1000"
     assert record["dw_reverse_p_name"] == "r1000"
-    assert str(record["dw_fwd_p_anneal"]) == "TCCATGTCCTCACTCAG"
-    assert str(record["dw_reverse_p_anneal"]) == "CGGTGCGCCGCAT"
+    assert str(record["dw_fwd_p_anneal"]) == "TCCATGTCCTCACTCAGCC"
+    assert str(record["dw_reverse_p_anneal"]) == "CGGTGCGCCGCATG"
 
 
 @pytest.mark.integration

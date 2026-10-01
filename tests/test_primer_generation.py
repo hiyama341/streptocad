@@ -92,32 +92,41 @@ def filtered_df():
     return filtered_df
 
 
-# These expected primers are one base longer than they were before biopython 1.82.
-# Biopython 1.82 corrected two entropy values in the SantaLucia & Hicks (2004)
-# nearest-neighbour table (DNA_NN4), which earlier releases overestimated melting
-# temperatures by roughly 2.3 C with. pydna's primer_design therefore used to stop one
-# base short of target_tm. Each primer below was checked to be the candidate whose Tm
-# lies closest to target_tm=65 among its n-1, n and n+1 neighbours.
+# These expected primers differ from those produced before 1.0.0, for two reasons.
+#
+# First, biopython 1.82 corrected two entropy values in the SantaLucia & Hicks (2004)
+# nearest-neighbour table (DNA_NN4); earlier releases overestimated melting temperatures
+# by roughly 2.3 C, so pydna's primer_design stopped one base short of target_tm.
+#
+# Second, design now uses the same NEB model that the reported melting temperatures come
+# from, with the chosen polymerase and primer concentration bound into it. Previously the
+# conditions were passed to primer_design as **kwargs, which pydna accepts but never
+# forwards to the Tm function, so design silently ran against pydna's generic Taq-buffer
+# defaults while the reported Tm came from NEB. Primers now reach the requested
+# target_tm instead of landing a few degrees below it.
+#
+# Each primer below was checked to be the candidate whose NEB Tm lies closest to the
+# requested target_tm among its n-1, n and n+1 neighbours.
 @pytest.fixture
 def find_best_checking_primers_df():
     data = {
         "locus tag": ["SCO5087"],
         "f_primer_name": ["SCO5087_fwd_checking_primer"],
         "r_primer_name": ["SCO5087_rev_checking_primer"],
-        "f_primer_sequences(5-3)": ["TGACGATTCGGCCCGTG"],
-        "r_primer_sequences(5-3)": ["CCAGGGCGTCCAGGC"],
-        "f_tm": [61],
-        "r_tm": [61],
-        "ta": [65],
+        "f_primer_sequences(5-3)": ["TGACGATTCGGCCCGTGC"],
+        "r_primer_sequences(5-3)": ["CCAGGGCGTCCAGGCC"],
+        "f_tm": [65],
+        "r_tm": [64],
+        "ta": [68],
         "flanking_region": [501],
-        "annealing_temperature": [65],
+        "annealing_temperature": [68],
         "primer_pair": ["SCO5087_fwd_checking_primer & SCO5087_rev_checking_primer"],
         "homodimer_forward_tm": [9.884864906825442],
-        "homodimer_forward_deltaG (kcal/mol)": [-0.9339396708719157],
+        "homodimer_forward_deltaG (kcal/mol)": [-0.4276608567734852],
         "homodimer_reverse_tm": [9.70624571345519],
-        "homodimer_reverse_deltaG (kcal/mol)": [-2.884114050624736],
+        "homodimer_reverse_deltaG (kcal/mol)": [-2.485629183411588],
         "heterodimer_tm": [1.9185669591946635],
-        "heterodimer_deltaG (kcal/mol)": [-1.8854534303775403],
+        "heterodimer_deltaG (kcal/mol)": [-1.5020625100496758],
         "hairpin_forward_structure_found": [False],
         "hairpin_forward_tm": [0.0],
         "hairpin_forward_deltaG (kcal/mol)": [0.0],
@@ -137,11 +146,11 @@ def checking_primers_df():
         "locus tag": ["SCO5087"],
         "f_primer_name": ["SCO5087_fwd_checking_primer"],
         "r_primer_name": ["SCO5087_rev_checking_primer"],
-        "f_primer_sequences(5-3)": ["GACGATTCGGCCCGTGC"],
-        "r_primer_sequences(5-3)": ["CAGGGCGTCCAGGCC"],
-        "f_tm": [63],
-        "r_tm": [61],
-        "ta": [65],
+        "f_primer_sequences(5-3)": ["TGACGATTCGGCCCGTGC"],
+        "r_primer_sequences(5-3)": ["CCAGGGCGTCCAGGCC"],
+        "f_tm": [65],
+        "r_tm": [64],
+        "ta": [68],
     }
 
     df = pd.DataFrame(data)
@@ -312,11 +321,18 @@ def test_checking_primers(coelicolor_genbank_record, checking_primers_df):
     # Define the locus tags to check
     locus_tags = ["SCO5087"]
 
-    # Call the checking_primers function
+    # flanking_region is 501 rather than 500 because pydna's primer_design reuses the
+    # design `limit` as the annealing stringency for its uniqueness check
+    # (Anneal(..., limit=limit)). With limit=10 it asks whether any 10-mer sub-footprint
+    # recurs, and in 72% GC Streptomyces DNA it does, so the pair at 500 is reported as
+    # non-unique even though both primers anneal exactly once at full length. The
+    # user-facing entry point, find_best_check_primers_from_genome, steps the flanking
+    # region outwards for exactly this reason; this test calls the inner function
+    # directly, so it starts at a region that is accepted.
     result_df = checking_primers(
         coelicolor_genbank_record,
         locus_tags,
-        flanking_region=500,
+        flanking_region=501,
         target_tm=65,
         limit=10,
         primer_concentration=0.4,
