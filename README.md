@@ -76,57 +76,108 @@ The StreptoCAD toolbox is available on [PyPI](https://pypi.org/project/streptoca
 pip install streptocad
 ```
 
-The workflows can then be scripted directly, for example:
+The workflows can then be scripted directly. Here is a complete example that finds and
+filters sgRNAs for a gene with CRISPR-Cas9:
 
 ```python
 from streptocad.sequence_loading.sequence_loading import load_and_process_genome_sequences
+from streptocad.crispr.guideRNAcas3_9 import SgRNAargs, extract_sgRNAs
 
-genome = load_and_process_genome_sequences("my_genome.gbk")[0]
+genome = load_and_process_genome_sequences("Streptomyces_coelicolor_A3_chromosome.gb")[0]
+
+args = SgRNAargs(
+    dseqrecord=genome,
+    locus_tag=["SCO5087"],   # the gene(s) to target
+    cas_type="cas9",         # or "cas3"
+    step=["find", "filter"], # find candidates, then apply the filters below
+    gc_upper=0.8,            # drop guides above 80% GC
+    gc_lower=0.3,            # drop guides below 30% GC
+    off_target_seed=13,      # PAM-adjacent bases used as the off-target seed
+)
+
+sgrnas = extract_sgRNAs(args)
+print(sgrnas.head(3))
 ```
 
-See the [workflow notebooks](https://github.com/hiyama341/streptocad/tree/main/notebooks/app_workflows) for complete examples. The PyPI package contains the library only; to run the web app, follow the steps below.
+This returns a `pandas.DataFrame` of candidate guides, ranked, with the information you
+need to choose between them:
+
+```
+strain_name locus_tag  gene_loc  sgrna_strand  sgrna_loc   gc  pam                 sgrna  off_target_count
+NC_003888.3   SCO5087   5529801            -1         26 0.80  CGG  TCCACCGGCGCCGCGTCCAG                 0
+NC_003888.3   SCO5087   5529801             1       1189 0.80  TGG  GCTGGGCGCGATCGGCTCGC                 0
+NC_003888.3   SCO5087   5529801             1       1181 0.75  CGG  GGCCACTCGCTGGGCGCGAT                 0
+```
+
+From there, `streptocad.crispr.crispr_best` and `streptocad.cloning` take the selected
+guides through base-editing design and plasmid assembly. The
+[workflow notebooks](https://github.com/hiyama341/streptocad/tree/main/notebooks/app_workflows)
+show each of the six workflows end to end.
+
+The PyPI package contains the library only; to run the web app, follow the steps below.
 
 ## Want to run StreptoCAD locally?
 
-#### 1. Set up a Conda virtual environment (Why it's smart)
+StreptoCAD uses [uv](https://docs.astral.sh/uv/) to manage its environment. `uv.lock`
+records the exact versions that CI tests against, so this gets you the same environment
+the project is developed and tested in.
 
-Using a Conda virtual environment is a great way to manage dependencies for your project. Conda makes it easy to create and manage isolated environments, ensuring your project’s libraries are kept separate from other projects and system-wide dependencies. This helps avoid compatibility issues and makes it simpler to reproduce your development environment.
-
-To create a new Conda environment, run:
-
-```bash
-conda create --name streptocad python=3.11
-```
-
-Replace streptocad with your preferred environment name, and replace 3.11 with the specific version of Python you need.
-
-Then activate it:
+#### 1. Install uv
 
 ```bash
-conda activate streptocad
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-#### 2. Install the requirements
+On Windows, or for other installation methods, see the
+[uv installation guide](https://docs.astral.sh/uv/getting-started/installation/). You do
+not need to create a virtual environment or install Python yourself — uv handles both.
 
-Once your Conda environment is active, you can install the required dependencies from requirements.txt. This ensures your environment has all the necessary packages for the project. Use the following command:
+#### 2. Install the dependencies
 
 ```bash
-pip install -r requirements.txt
+uv sync --group app
 ```
 
-(Note: Even though you're using Conda, pip is still used to install from requirements.txt.)
+This creates `.venv` and installs the exact locked versions. Add more groups as needed:
+`--group dev` for the test suite, `--group notebooks` for Jupyter, `--group docs` for the
+documentation.
 
 #### 3. Run the application
 
-Finally, to run the StreptoCAD application, execute the following command:
-
 ```bash
-python3 application.py
+uv run --group app python web_app/application.py
 ```
 
-This will launch the application locally, and you're ready to go! Follow the url that your terminal shows.
+Follow the URL your terminal prints. To run the test suite instead:
 
-Alternatively, you can try running the workflows as Jupyter notebooks after completing the installation above.
+```bash
+uv run --group dev pytest
+```
+
+Tests marked `integration` call the live NEB melting-temperature API and are skipped by
+default; run them with `uv run --group dev pytest -m integration`.
+
+Alternatively, you can run the workflows as Jupyter notebooks with
+`uv sync --group notebooks`.
+
+<details>
+<summary>Prefer conda or plain pip?</summary>
+
+`requirements.txt` is generated from `uv.lock` and pins the full transitive dependency
+set used for the Docker image, so it works as a conventional requirements file:
+
+```bash
+conda create --name streptocad python=3.11
+conda activate streptocad
+pip install -r requirements.txt
+python web_app/application.py
+```
+
+Do not edit `requirements.txt` by hand — regenerate it with the command in its header.
+If you only want the library rather than the web app, `pip install streptocad` is the
+better route.
+
+</details>
 
 ## Running the StreptoCAD App via Docker
 
@@ -150,15 +201,19 @@ docker run -d -p 8050:8050 streptocad
 
 This will start the StreptoCAD application, exposing it on port 8050 of your local machine.
 
-### 3. Run the application
+### 3. Open the application
 
-Finally, to run the StreptoCAD application, execute the following command:
+The container is already running the app, so just open:
 
-```bash
-python3 application.py
+```
+http://localhost:8050
 ```
 
-This will launch the application locally, and you're ready to go! Follow the URL that your terminal shows.
+Use `docker logs -f <container-id>` to follow its output, and `docker stop <container-id>`
+to stop it.
+
+> **Building for AWS:** images built on Apple Silicon default to arm64 and will not run on
+> App Runner. Build with `docker build --platform linux/amd64 -t streptocad .` for deployment.
 
 ## Making Your Own Workflow
 
