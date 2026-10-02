@@ -61,13 +61,14 @@ from streptocad.primers.primer_generation import (
     find_best_check_primers_from_genome,
 )
 
-# Logging setup similar to Workflow 2
-log_stream = io.StringIO()
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.StreamHandler(sys.stdout), logging.StreamHandler(log_stream)],
+from .workflow_logging import (
+    capture_workflow_output,
+    configure_logging,
+    workflow_log,
 )
+
+# Log to stdout, and capture each workflow run's own output for the UI
+configure_logging()
 logger = logging.getLogger(__name__)
 
 
@@ -121,6 +122,7 @@ def register_workflow_5_callbacks(app):
             State("gibson-primer-length_5", "value"),
         ],
     )
+    @capture_workflow_output
     def run_workflow(
         n_clicks,
         genome_content,
@@ -522,10 +524,6 @@ def register_workflow_5_callbacks(app):
 
                 logging.info("Workflow 5 completed successfully")
 
-                # Clear the log stream after successful execution
-                log_stream.truncate(0)
-                log_stream.seek(0)
-
             return (
                 primer_data,  # primers-output-table_5.data
                 primer_columns,  # primers-output-table_5.columns
@@ -542,9 +540,7 @@ def register_workflow_5_callbacks(app):
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
-            error_message = (
-                f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            )
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{workflow_log()}"
             return (
                 [],  # primers-output-table_5.data
                 [],  # primers-output-table_5.columns

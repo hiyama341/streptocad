@@ -46,22 +46,14 @@ from streptocad.primers.primer_generation import (
     primers_to_IDT,
 )
 
-# Create a StringIO object to capture logs in memory
-log_stream = io.StringIO()
-
-# Remove any existing handlers
-for handler in logging.root.handlers[:]:
-    logging.root.removeHandler(handler)
-
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-        logging.StreamHandler(log_stream),  # Capture logs in StringIO
-    ],
+from .workflow_logging import (
+    capture_workflow_output,
+    configure_logging,
+    workflow_log,
 )
+
+# Log to stdout, and capture each workflow run's own output for the UI
+configure_logging()
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -114,6 +106,7 @@ def register_workflow_4_callbacks(app):
             State("restriction-enzymes_4", "value"),
         ],
     )
+    @capture_workflow_output
     def run_workflow(
         n_clicks,
         genome_content,
@@ -269,7 +262,7 @@ def register_workflow_4_callbacks(app):
 
                 markdown_file_paths = [
                     "protocols/conjugation_protcol.md",
-                    "protocols/single_target_crispr_plasmid_protcol.md"
+                    "protocols/single_target_crispr_plasmid_protcol.md",
                     "protocols/trouble_shooting_tips.md",
                 ]
 
@@ -322,8 +315,8 @@ def register_workflow_4_callbacks(app):
             logging.error(f"An error occurred: {str(e)}")
             print(f"An error occurred: {str(e)}")  # Fallback print
 
-            error_message = (
-                f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            )
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{workflow_log()}"
             display_error = True
-            return [], [], [], [], "", [], [], [], [], error_message, display_error
+            # Nine values, matching the nine declared Outputs and the order the
+            # success path returns them in.
+            return [], [], "", [], [], [], [], error_message, display_error

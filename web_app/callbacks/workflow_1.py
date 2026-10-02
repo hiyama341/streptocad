@@ -23,29 +23,14 @@ from Bio import Restriction
 import sys
 import io
 
-# Save the original stdout so you can restore it later
-original_stdout = sys.stdout
-
-# Create a StringIO object to capture print output
-captured_output = io.StringIO()
-sys.stdout = captured_output
-
-# Create a StringIO object to capture logs in memory
-log_stream = io.StringIO()
-
-# Remove any existing handlers
-for handler in logging.root.handlers[:]:
-    logging.root.removeHandler(handler)
-
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-        logging.StreamHandler(log_stream),  # Capture logs in StringIO
-    ],
+from .workflow_logging import (
+    capture_workflow_output,
+    configure_logging,
+    workflow_log,
 )
+
+# Log to stdout, and capture each workflow run's own output for the UI
+configure_logging()
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -104,6 +89,7 @@ def register_workflow_1_callbacks(app):
             State("primer-lenght_1", "value"),
         ],
     )
+    @capture_workflow_output
     def run_workflow(
         n_clicks,
         sequences_content,
@@ -243,8 +229,7 @@ def register_workflow_1_callbacks(app):
                     assembled_plasmids,
                     sequences,
                     idt_df,
-                    captured_output,
-                    original_stdout,
+                    workflow_log(),
                 )
 
                 output_files = [
@@ -307,10 +292,6 @@ def register_workflow_1_callbacks(app):
 
                 logging.info("Workflow 1 completed successfully")
 
-            # Clear the log stream after successful execution
-            log_stream.truncate(0)
-            log_stream.seek(0)
-
             return (
                 primers_data,
                 primers_columns,
@@ -327,7 +308,5 @@ def register_workflow_1_callbacks(app):
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
-            error_message = (
-                f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            )
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{workflow_log()}"
             return [], [], [], [], [], [], "", error_message, True, [], []

@@ -606,34 +606,23 @@ def extract_metadata_to_dataframe(
     return df
 
 
-import sys
-
-
-def generate_header(
-    assembled_plasmids, sequences, idt_df, captured_output, original_stdout
-):
+def generate_header(assembled_plasmids, sequences, idt_df, captured_output):
     """
-    Restores stdout, captures the printed output from captured_output, and generates a header string.
+    Generates a header string and appends the output captured during the run.
 
     Parameters:
         assembled_plasmids (list): A list of assembled plasmid objects.
         sequences (list): A list of input sequence objects.
         idt_df (pandas.DataFrame): The DataFrame containing primer information.
-        captured_output (io.StringIO): A StringIO object capturing printed output.
-        original_stdout: The original sys.stdout object before redirection.
+        captured_output (str): The text printed and logged during the run.
 
     Returns:
         str: A string combining the header and all captured print output.
     """
-    # Restore the original stdout
-    sys.stdout = original_stdout
-    all_printouts = captured_output.getvalue()
-
     header = (
         f"StreptoCAD generated {len(assembled_plasmids)} plasmids from {len(sequences)} sequences "
         f"(beware if there is a discrepancy and check the full log file), and generated {len(idt_df)} primers.\n"
         "\nRest of the output...\n\n\n"
     )
 
-    # You can choose to combine the header with the captured output
-    return header + all_printouts
+    return header + captured_output

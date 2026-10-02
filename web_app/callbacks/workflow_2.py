@@ -29,22 +29,14 @@ import tempfile
 from Bio.Restriction import *
 from Bio import Restriction
 
-# Create a StringIO object to capture logs in memory
-log_stream = io.StringIO()
-
-# Remove any existing handlers
-for handler in logging.root.handlers[:]:
-    logging.root.removeHandler(handler)
-
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-        logging.StreamHandler(log_stream),  # Capture logs in StringIO
-    ],
+from .workflow_logging import (
+    capture_workflow_output,
+    configure_logging,
+    workflow_log,
 )
+
+# Log to stdout, and capture each workflow run's own output for the UI
+configure_logging()
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -143,6 +135,7 @@ def register_workflow_2_callbacks(app):
             State("checking-primer-length_2", "value"),
         ],
     )
+    @capture_workflow_output
     def run_workflow(
         n_clicks,
         genome_content,
@@ -382,10 +375,6 @@ def register_workflow_2_callbacks(app):
 
                 logging.info("Workflow 2 completed successfully")
 
-                # Clear the log stream after successful execution
-                log_stream.truncate(0)
-                log_stream.seek(0)
-
                 # Prepare columns and data for the plasmid metadata DataTable
                 plasmid_metadata_columns = [
                     {"name": col, "id": col} for col in plasmid_metadata_df.columns
@@ -408,8 +397,6 @@ def register_workflow_2_callbacks(app):
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
-            error_message = (
-                f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            )
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{workflow_log()}"
             display_error = True
             return [], [], [], [], "", [], [], error_message, display_error, [], []
