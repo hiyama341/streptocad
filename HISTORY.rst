@@ -1,6 +1,21 @@
 History
 -------
 
+1.0.1
+~~~~~
+Documentation only; no change to the library.
+
+* Corrected the local setup instructions in ``README.md``, which predated the move to
+  uv. They told readers to install ``requirements.txt`` into a conda environment, when
+  that file is generated from ``uv.lock`` for the Docker image, and both the local and
+  Docker sections ended with ``python3 application.py``, which does not exist at the
+  repository root. Replaced with ``uv sync --group app`` and ``uv run --group app
+  python web_app/application.py``; conda and pip remain as a documented fallback.
+* Replaced the library usage example with one that finds and filters Cas9 guide RNAs,
+  including the returned columns and real output.
+* Released so that the project page on PyPI, which renders the README baked into the
+  uploaded artifact, no longer shows the superseded instructions.
+
 1.0.0
 ~~~~~
 
