@@ -224,27 +224,50 @@ def test_create_idt_order_dataframe(primer_df):
         primer_df, concentration=concentration, purification=purification
     )
 
-    # Prepare the expected DataFrame
-    expected_names = (
-        primer_df["f_primer_name"].tolist() + primer_df["r_primer_name"].tolist()
-    )
-    expected_sequences = (
-        primer_df["f_primer_sequences(5-3)"].tolist()
-        + primer_df["r_primer_sequences(5-3)"].tolist()
-    )
-    expected_concentration = [concentration] * len(expected_names)
-    expected_purification = [purification] * len(expected_names)
+    # Each template's forward primer is followed by its own reverse, rather
+    # than every forward and then every reverse.
+    expected_names = []
+    expected_sequences = []
+    for _, row in primer_df.iterrows():
+        expected_names += [row["f_primer_name"], row["r_primer_name"]]
+        expected_sequences += [
+            row["f_primer_sequences(5-3)"],
+            row["r_primer_sequences(5-3)"],
+        ]
 
-    expected_data = {
-        "Name": expected_names,
-        "Sequence": expected_sequences,
-        "Concentration": expected_concentration,
-        "Purification": expected_purification,
-    }
-    expected_df = pd.DataFrame(expected_data)
+    expected_df = pd.DataFrame(
+        {
+            "Name": expected_names,
+            "Sequence": expected_sequences,
+            "Concentration": [concentration] * len(expected_names),
+            "Purification": [purification] * len(expected_names),
+        }
+    )
 
     # Assert that the result DataFrame matches the expected DataFrame
     pd.testing.assert_frame_equal(idt_df, expected_df)
+
+
+def test_create_idt_order_dataframe_pairs_each_template(primer_df):
+    """The pairing is what puts a gene's fwd/rev in neighbouring plate wells."""
+    idt_df = create_idt_order_dataframe(primer_df)
+
+    assert len(idt_df) == 2 * len(primer_df)
+    for i, (_, row) in enumerate(primer_df.iterrows()):
+        assert idt_df["Name"].iloc[2 * i] == row["f_primer_name"]
+        assert idt_df["Name"].iloc[2 * i + 1] == row["r_primer_name"]
+        assert idt_df["Sequence"].iloc[2 * i] == row["f_primer_sequences(5-3)"]
+        assert idt_df["Sequence"].iloc[2 * i + 1] == row["r_primer_sequences(5-3)"]
+
+
+def test_create_idt_order_dataframe_ships_every_primer(primer_df):
+    """Pairing must not drop or duplicate an oligo."""
+    idt_df = create_idt_order_dataframe(primer_df)
+
+    assert set(idt_df["Name"]) == set(primer_df["f_primer_name"]) | set(
+        primer_df["r_primer_name"]
+    )
+    assert not idt_df["Name"].duplicated().any()
 
 
 def test_primers_to_IDT(sgRNAs_p):
