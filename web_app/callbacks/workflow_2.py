@@ -4,11 +4,10 @@
 # Standard library imports
 import sys
 import os
-import io
 import zipfile
 import base64
 import csv
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Third-party imports
 import pandas as pd
@@ -29,12 +28,6 @@ import tempfile
 from Bio.Restriction import *
 from Bio import Restriction
 
-# Create a StringIO object to capture logs in memory
-log_stream = io.StringIO()
-
-# Remove any existing handlers
-for handler in logging.root.handlers[:]:
-    logging.root.removeHandler(handler)
 
 # Setup logging
 logging.basicConfig(
@@ -42,7 +35,6 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-        logging.StreamHandler(log_stream),  # Capture logs in StringIO
     ],
 )
 
@@ -63,9 +55,9 @@ from streptocad.sequence_loading.sequence_loading import (
 )
 from streptocad.utils import (
     polymerase_dict,
-    ProjectDirectory,
     extract_metadata_to_dataframe,
 )
+from streptocad.output_packaging import OutputPackage, RunLogCapture
 from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.cloning.ssDNA_bridging import (
     assemble_plasmids_by_ssDNA_bridging,
@@ -82,6 +74,7 @@ from streptocad.primers.primer_generation import (
     create_idt_order_dataframe,
     primers_to_IDT,
 )
+from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 
 
 def save_file(name, content):
@@ -169,6 +162,9 @@ def register_workflow_2_callbacks(app):
     ):
         if n_clicks is None:
             raise PreventUpdate
+
+        log_capture = RunLogCapture().start()
+        log_stream = log_capture.stream
 
         try:
             logging.info("Workflow 2 started")
@@ -318,25 +314,10 @@ def register_workflow_2_callbacks(app):
                 ]
                 filtered_df_data = filtered_df.to_dict("records")
 
-                # Generate project directory structure
-                input_files = [
-                    {"name": "input_genome.gb", "content": genome},
-                    {"name": "input_plasmid.gb", "content": clean_plasmid},
-                ]
-                output_files = [
-                    {"name": "cBEST_w_sgRNAs.gb", "content": sgRNA_vectors},
-                    {"name": "00_primer_df.csv", "content": checking_primers_df},
-                    {"name": "01_full_idt.csv", "content": full_idt},
-                    {"name": "02_mutated_sgrna_df.csv", "content": mutated_sgrna_df},
-                    {
-                        "name": "03_filtered_sgrna_df.csv",
-                        "content": filtered_sgrna_df_for_base_editing,
-                    },
-                    {
-                        "name": "04_plasmid_metadata_df.csv",
-                        "content": plasmid_metadata_df,
-                    },
-                ]
+                # W2's oligos are ssDNA bridging oligos, so the order sheet has no
+                # forward/reverse columns to pair up across the plate.
+                idt_plates = idt_order_df_to_idt_plates(full_idt)
+
                 input_values = {
                     "genes_to_knockout": genes_to_KO_list,
                     "polymerase_settings": {
@@ -358,23 +339,39 @@ def register_workflow_2_callbacks(app):
                         "dw_homology": str(dw_homology),
                     },
                 }
-                markdown_file_paths = [
-                    "protocols/conjugation_protcol.md",
-                    "protocols/single_target_crispr_plasmid_protcol.md",
-                    "protocols/trouble_shooting_tips.md",
-                ]
-                timestamp = datetime.utcnow().isoformat()
+                timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%SZ")
 
-                project_directory = ProjectDirectory(
-                    project_name=f"CRISPR_cBEST_workflow_{timestamp}",
-                    input_files=input_files,
-                    output_files=output_files,
-                    input_values=input_values,
-                    markdown_file_paths=markdown_file_paths,
+                package = OutputPackage(
+                    workflow_id="w2",
+                    outputs=[
+                        {"role": "plasmid", "content": sgRNA_vectors},
+                        {"role": "plasmid.index", "content": plasmid_metadata_df},
+                        {"role": "primer.check", "content": checking_primers_df},
+                        {"role": "primer.order_idt", "content": full_idt},
+                        {"role": "primer.order_idt_plate", "content": idt_plates},
+                        {
+                            "role": "sgrna.base_edit_predictions",
+                            "content": mutated_sgrna_df,
+                        },
+                        {
+                            "role": "sgrna.all",
+                            "content": filtered_sgrna_df_for_base_editing,
+                        },
+                        {"role": "sgrna.selected", "content": filtered_df},
+                        {"role": "analysis.run_log", "content": log_stream.getvalue()},
+                    ],
+                    inputs=[
+                        {"role": "input.genome", "content": genome},
+                        {"role": "input.plasmid", "content": clean_plasmid},
+                    ],
+                    parameters=input_values,
+                    protocols=[
+                        "conjugation",
+                        "crispr_single_target",
+                        "troubleshooting",
+                    ],
                 )
-                zip_content = project_directory.create_directory_structure(
-                    create_directories=True
-                )
+                zip_content = package.to_zip_bytes(timestamp)
                 data_package_encoded = base64.b64encode(zip_content).decode("utf-8")
                 data_package_download_link = (
                     f"data:application/zip;base64,{data_package_encoded}"
@@ -383,8 +380,6 @@ def register_workflow_2_callbacks(app):
                 logging.info("Workflow 2 completed successfully")
 
                 # Clear the log stream after successful execution
-                log_stream.truncate(0)
-                log_stream.seek(0)
 
                 # Prepare columns and data for the plasmid metadata DataTable
                 plasmid_metadata_columns = [
@@ -413,3 +408,5 @@ def register_workflow_2_callbacks(app):
             )
             display_error = True
             return [], [], [], [], "", [], [], error_message, display_error, [], []
+        finally:
+            log_capture.stop()

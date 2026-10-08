@@ -5,11 +5,10 @@
 # Standard library imports
 import os
 import sys
-import io
 import zipfile
 import base64
 import csv
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Third-party imports
 import pandas as pd
@@ -26,17 +25,9 @@ import tempfile
 from teemi.build.PCR import primer_tm_neb
 import logging
 import sys
-import io
 from Bio.Restriction import *
 from Bio import Restriction
 
-
-# Create a StringIO object to capture logs in memory
-log_stream = io.StringIO()
-
-# Remove any existing handlers
-for handler in logging.root.handlers[:]:
-    logging.root.removeHandler(handler)
 
 # Setup logging
 logging.basicConfig(
@@ -44,7 +35,6 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-        logging.StreamHandler(log_stream),  # Capture logs in StringIO
     ],
 )
 
@@ -68,9 +58,9 @@ from streptocad.sequence_loading.sequence_loading import (
 from streptocad.utils import (
     polymerase_dict,
     dataframe_to_seqrecords,
-    ProjectDirectory,
     extract_metadata_to_dataframe,
 )
+from streptocad.output_packaging import OutputPackage, RunLogCapture
 from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.crispr.crispr_best import (
     identify_base_editing_sites,
@@ -85,6 +75,7 @@ from streptocad.cloning.golden_gate_cloning import (
 )
 
 from streptocad.primers.primer_analysis import analyze_primers_and_hairpins
+from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 from streptocad.primers.primer_generation import (
     create_idt_order_dataframe,
     find_best_check_primers_from_genome,
@@ -185,6 +176,9 @@ def register_workflow_3_callbacks(app):
     ):
         if n_clicks is None:
             raise PreventUpdate
+
+        log_capture = RunLogCapture().start()
+        log_stream = log_capture.stream
 
         try:
             logger.info("Workflow 3 started")
@@ -290,8 +284,7 @@ def register_workflow_3_callbacks(app):
                 primer_df = golden_gate.generate_primer_dataframe()
                 logger.info(f"Primer dataframe generated: {primer_df.shape[0]} rows")
 
-                # TODO maybe remove this redundancy.
-                analyze_primers_and_hairpins(primer_df)
+                primer_analysis_df = analyze_primers_and_hairpins(primer_df)
                 logger.info("Primers analyzed for hairpins.")
 
                 idt_df = create_idt_order_dataframe(
@@ -379,22 +372,6 @@ def register_workflow_3_callbacks(app):
                 plasmid_metadata_data = plasmid_metadata_df.to_dict("records")
 
                 # Generate download link for data package
-                input_files = [
-                    {"name": "input_genome.gb", "content": genome},
-                    {"name": "input_plasmid.gb", "content": clean_plasmid},
-                ]
-                output_files = [
-                    {"name": "mcBEST_w_sgRNAs.gb", "content": rec_vec},
-                    {"name": "01_pcr_df.csv", "content": primer_df},
-                    {"name": "02_full_idt.csv", "content": full_idt},
-                    {"name": "03_mutated_sgrna_df.csv", "content": mutated_sgrna_df},
-                    {"name": "04_filtered_sgrna_df.csv", "content": filtered_df},
-                    {
-                        "name": "05_plasmid_metadata_df.csv",
-                        "content": plasmid_metadata_df,
-                    },
-                    {"name": "06_overhang_df.csv", "content": overhangs},
-                ]
                 input_values = {
                     "genes_to_knockout": genes_to_KO_list,
                     "filtering_metrics": {
@@ -420,23 +397,48 @@ def register_workflow_3_callbacks(app):
                         "sgRNA_handle_cys4_site": str(sgRNA_handle_cys4_sites[0].seq),
                     },
                 }
-                markdown_file_paths = [
-                    "protocols/conjugation_protcol.md",
-                    "protocols/multi_target_crispr_plasmid_protcol.md",
-                    "protocols/trouble_shooting_tips.md",
-                ]
+                timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%SZ")
 
-                project_directory = ProjectDirectory(
-                    project_name=f"CRISPR_mcBEST_workflow_{datetime.utcnow().isoformat()}",
-                    input_files=input_files,
-                    output_files=output_files,
-                    input_values=input_values,
-                    markdown_file_paths=markdown_file_paths,
+                package = OutputPackage(
+                    workflow_id="w3",
+                    outputs=[
+                        {"role": "plasmid", "content": rec_vec},
+                        {"role": "plasmid.index", "content": plasmid_metadata_df},
+                        {"role": "primer.pcr", "content": primer_df},
+                        {"role": "primer.order_idt", "content": full_idt},
+                        {
+                            # Built from full_idt, not primer_df: the tube sheet
+                            # concatenates several oligo sets and the plate must
+                            # list the same ones, or the order is incomplete.
+                            "role": "primer.order_idt_plate",
+                            "content": idt_order_df_to_idt_plates(full_idt),
+                        },
+                        {
+                            "role": "sgrna.base_edit_predictions",
+                            "content": mutated_sgrna_df,
+                        },
+                        {"role": "sgrna.selected", "content": filtered_df},
+                        {"role": "analysis.primer_qc", "content": primer_analysis_df},
+                        {
+                            "role": "analysis.golden_gate_overhangs",
+                            "content": overhangs,
+                        },
+                        # Read last so the log covers the whole run.
+                        {"role": "analysis.run_log", "content": log_stream.getvalue()},
+                    ],
+                    inputs=[
+                        {"role": "input.genome", "content": genome},
+                        {"role": "input.plasmid", "content": clean_plasmid},
+                    ],
+                    parameters=input_values,
+                    protocols=[
+                        "conjugation",
+                        "crispr_multi_target",
+                        "troubleshooting",
+                    ],
                 )
 
-                zip_content = project_directory.create_directory_structure(
-                    create_directories=True
-                )
+                zip_content = package.to_zip_bytes(timestamp)
                 data_package_encoded = base64.b64encode(zip_content).decode("utf-8")
                 data_package_download_link = (
                     f"data:application/zip;base64,{data_package_encoded}"
@@ -483,3 +485,5 @@ def register_workflow_3_callbacks(app):
                 error_message,
                 display_error,
             )
+        finally:
+            log_capture.stop()

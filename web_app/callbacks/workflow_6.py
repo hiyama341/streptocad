@@ -1,12 +1,11 @@
 import sys
 import os
-import io
 import zipfile
 import base64
 import tempfile
 import logging
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone
 from Bio import SeqIO
 from Bio.Restriction import *  # we import all enzymes
 from Bio import Restriction
@@ -34,15 +33,16 @@ from streptocad.sequence_loading.sequence_loading import (
 from streptocad.utils import (
     polymerase_dict,
     create_primer_df_from_dict,
-    ProjectDirectory,
     extract_metadata_to_dataframe,
 )
+from streptocad.output_packaging import OutputPackage, RunLogCapture
 from streptocad.primers.primer_generation import (
     create_idt_order_dataframe,
     make_primer_records,
     primers_to_IDT,
     find_best_check_primers_from_genome,
 )
+from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.cloning.cas3_plasmid_cloning import (
     cas3_backbone_primer_order_dataframe,
@@ -58,12 +58,10 @@ from streptocad.cloning.gibson_cloning import (
 from streptocad.cloning.plasmid_processing import determine_workflow_order_for_plasmids
 
 
-# Logging setup similar to Workflow 2
-log_stream = io.StringIO()
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.StreamHandler(sys.stdout), logging.StreamHandler(log_stream)],
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger(__name__)
 
@@ -149,6 +147,9 @@ def register_workflow_6_callbacks(app):
     ):
         if n_clicks is None:
             raise PreventUpdate
+
+        log_capture = RunLogCapture().start()
+        log_stream = log_capture.stream
 
         try:
             logging.info("Workflow 6 started.")
@@ -431,53 +432,47 @@ def register_workflow_6_callbacks(app):
                     )
                     pcr_table = checking_primers_df_copy.copy()
 
-                logging.info("Preparing input files for project directory.")
-                input_files = [
-                    {"name": "input_genome.gb", "content": genome},  # TODO fix name
-                    {
-                        "name": "input_plasmid.gb",
-                        "content": clean_plasmid,
-                    },  # TODO fix name with f string
+                logging.info("Preparing input files for the output package.")
+                package_inputs = [
+                    {"role": "input.genome", "content": genome},
+                    {"role": "input.plasmid", "content": clean_plasmid},
                 ]
+
+                logging.info("Laying out the oligos for the IDT plate order.")
+                # Always from full_idt: unique_df holds only the repair-template
+                # primers, so laying the plate out from it would drop the sgRNA
+                # bridging oligos and the checking primers, and the user would
+                # order an incomplete set.
+                idt_plates = idt_order_df_to_idt_plates(full_idt)
 
                 if in_frame_deletion:
                     logging.info(
-                        "Preparing output files for project directory with in-frame deletion."
+                        "Preparing outputs for the output package with in-frame deletion."
                     )
-                    output_files = [
-                        {
-                            "name": "Cas3_w_sgRNAs.gb",
-                            "content": assembled_contigs,
-                        },  # LIST OF Dseqrecords
-                        {"name": "01_primer_df.csv", "content": primer_df},
-                        {"name": "02_full_idt.csv", "content": full_idt},
-                        {"name": "03_sgrna_df.csv", "content": sgrna_df},
-                        {"name": "04_filtered_sgrna_df.csv", "content": filtered_df},
-                        {
-                            "name": "05_plasmid_metadata_df.csv",
-                            "content": plasmid_metadata_df,
-                        },
-                        {"name": "06_workflow_order_df.csv", "content": workflow_df},
+                    package_outputs = [
+                        {"role": "plasmid", "content": assembled_contigs},
+                        {"role": "primer.pcr", "content": unique_df},
+                        {"role": "primer.order_idt", "content": full_idt},
+                        {"role": "primer.order_idt_plate", "content": idt_plates},
+                        {"role": "sgrna.all", "content": sgrna_df},
+                        {"role": "sgrna.selected", "content": filtered_df},
+                        {"role": "plasmid.index", "content": plasmid_metadata_df},
+                        {"role": "bench.order", "content": workflow_df},
                     ]
                 else:
                     logging.info(
-                        "Preparing output files for project directory without in-frame deletion."
+                        "Preparing outputs for the output package without in-frame deletion."
                     )
-                    output_files = [
-                        {
-                            "name": "Cas3_sgRNAs.gb",
-                            "content": assembled_cas3_plasmids,
-                        },  # LIST OF Dseqrecords
-                        {"name": "01_full_idt.csv", "content": full_idt},
-                        {"name": "02_sgrna_df.csv", "content": sgrna_df},
-                        {"name": "03_filtered_sgrna_df.csv", "content": filtered_df},
-                        {
-                            "name": "04_plasmid_metadata_df.csv",
-                            "content": plasmid_metadata_df,
-                        },
+                    package_outputs = [
+                        {"role": "plasmid", "content": assembled_cas3_plasmids},
+                        {"role": "primer.order_idt", "content": full_idt},
+                        {"role": "primer.order_idt_plate", "content": idt_plates},
+                        {"role": "sgrna.all", "content": sgrna_df},
+                        {"role": "sgrna.selected", "content": filtered_df},
+                        {"role": "plasmid.index", "content": plasmid_metadata_df},
                     ]
 
-                logging.info("Preparing input values for project directory.")
+                logging.info("Preparing input values for the output package.")
                 input_values = {
                     "genes_to_knockout": genes_to_KO_list,
                     "filtering_metrics": {
@@ -506,28 +501,28 @@ def register_workflow_6_callbacks(app):
                     },
                 }
 
-                logging.info("Preparing Markdown file paths for project directory.")
-                markdown_file_paths = [
-                    "protocols/conjugation_protcol.md",
-                    "protocols/cas3_single_target_crispr_plasmid_protocol.md",
-                    "protocols/trouble_shooting_tips.md",
-                ]
+                logging.info("Creating the output package.")
+                timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%SZ")
 
-                logging.info("Creating project directory structure.")
-                timestamp = datetime.utcnow().isoformat()
-
-                project_directory = ProjectDirectory(
-                    project_name=f"CRISPR_cas3_inframe_deletion_workflow_{timestamp}",
-                    input_files=input_files,
-                    output_files=output_files,
-                    input_values=input_values,
-                    markdown_file_paths=markdown_file_paths,
+                # Appended last so the log covers the whole run.
+                package_outputs.append(
+                    {"role": "analysis.run_log", "content": log_stream.getvalue()}
                 )
 
-                logging.info("Creating ZIP file for project directory.")
-                zip_content = project_directory.create_directory_structure(
-                    create_directories=True
+                package = OutputPackage(
+                    workflow_id="w6",
+                    outputs=package_outputs,
+                    inputs=package_inputs,
+                    parameters=input_values,
+                    protocols=[
+                        "conjugation",
+                        "cas3_single_target",
+                        "troubleshooting",
+                    ],
                 )
+
+                logging.info("Creating ZIP file for the output package.")
+                zip_content = package.to_zip_bytes(timestamp)
                 data_package_encoded = base64.b64encode(zip_content).decode("utf-8")
                 data_package_download_link = (
                     f"data:application/zip;base64,{data_package_encoded}"
@@ -554,8 +549,6 @@ def register_workflow_6_callbacks(app):
                 logging.info("Workflow 6 completed successfully.")
 
                 # Clear the log stream after successful execution
-                log_stream.truncate(0)
-                log_stream.seek(0)
 
             return (
                 primer_data,  # primers-output-table_6.data
@@ -589,3 +582,5 @@ def register_workflow_6_callbacks(app):
                 [],  # plasmid-metadata-table_6.data
                 [],  # plasmid-metadata-table_6.columns
             )
+        finally:
+            log_capture.stop()

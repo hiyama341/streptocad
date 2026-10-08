@@ -14,7 +14,7 @@ from pydna.dseqrecord import Dseqrecord
 import zipfile
 import csv
 from urllib.parse import quote
-from datetime import datetime
+from datetime import datetime, timezone
 import tempfile
 import logging
 from Bio.Restriction import *
@@ -26,16 +26,6 @@ import io
 # Save the original stdout so you can restore it later
 original_stdout = sys.stdout
 
-# Create a StringIO object to capture print output
-captured_output = io.StringIO()
-sys.stdout = captured_output
-
-# Create a StringIO object to capture logs in memory
-log_stream = io.StringIO()
-
-# Remove any existing handlers
-for handler in logging.root.handlers[:]:
-    logging.root.removeHandler(handler)
 
 # Setup logging
 logging.basicConfig(
@@ -43,7 +33,6 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-        logging.StreamHandler(log_stream),  # Capture logs in StringIO
     ],
 )
 
@@ -68,10 +57,11 @@ from streptocad.primers.primer_generation import (
     create_idt_order_dataframe,
 )
 from streptocad.utils import (
-    ProjectDirectory,
     extract_metadata_to_dataframe,
     generate_header,
 )
+from streptocad.output_packaging import OutputPackage, RunLogCapture
+from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 
 
 def register_workflow_1_callbacks(app):
@@ -120,6 +110,15 @@ def register_workflow_1_callbacks(app):
     ):
         if n_clicks is None:
             raise PreventUpdate
+
+        # Captured per run: generate_header restores the real stdout, so a
+        # module-level buffer would keep the first run's printouts forever and
+        # every later run would ship them again.
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        log_capture = RunLogCapture().start()
+        log_stream = log_capture.stream
 
         try:
             logging.info("Workflow 1 started")
@@ -233,11 +232,6 @@ def register_workflow_1_callbacks(app):
                 plasmid_metadata_data = plasmid_metadata_df.to_dict("records")
 
                 ### DATA PACKAGE:
-                input_files = [
-                    {"name": "input_sequences.gb", "content": sequences},
-                    {"name": "input_plasmid.gb", "content": plasmid},
-                ]
-
                 # for the assembly overview.
                 header_text = generate_header(
                     assembled_plasmids,
@@ -246,20 +240,6 @@ def register_workflow_1_callbacks(app):
                     captured_output,
                     original_stdout,
                 )
-
-                output_files = [
-                    {
-                        "name": "pOEX-PKasO.gb",
-                        "content": assembled_plasmids,
-                    },
-                    {"name": "00_primer_df.csv", "content": primer_df},
-                    {"name": "01_full_idt.csv", "content": idt_df},
-                    {"name": "02_primers_analyzed.csv", "content": analyzed_primers_df},
-                    {
-                        "name": "03_assembly_overview_and_log_file.log",
-                        "content": header_text,
-                    },
-                ]
 
                 input_values = {
                     "polymerase_settings": {
@@ -274,30 +254,33 @@ def register_workflow_1_callbacks(app):
                     },
                 }
 
-                # Paths to Markdown files
-                markdown_file_paths = [
-                    "protocols/conjugation_protcol.md",
-                    "protocols/overexpression_protocol.md",
-                    "protocols/trouble_shooting_tips.md",
-                ]
-
                 # Data and time
-                timestamp = datetime.utcnow().isoformat()
-                project_name = f"pOEX-PKasO_workflow_{timestamp}"
+                timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%SZ")
 
-                # Create the ProjectDirectory object
-                project_directory = ProjectDirectory(
-                    project_name=project_name,
-                    input_files=input_files,
-                    output_files=output_files,
-                    input_values=input_values,
-                    markdown_file_paths=markdown_file_paths,
+                package = OutputPackage(
+                    workflow_id="w1",
+                    outputs=[
+                        {"role": "plasmid", "content": assembled_plasmids},
+                        {"role": "plasmid.index", "content": plasmid_metadata_df},
+                        {"role": "primer.pcr", "content": primer_df},
+                        {"role": "primer.order_idt", "content": idt_df},
+                        {
+                            "role": "primer.order_idt_plate",
+                            "content": idt_order_df_to_idt_plates(idt_df),
+                        },
+                        {"role": "analysis.primer_qc", "content": analyzed_primers_df},
+                        {"role": "analysis.assembly_overview", "content": header_text},
+                        {"role": "analysis.run_log", "content": log_stream.getvalue()},
+                    ],
+                    inputs=[
+                        {"role": "input.sequences", "content": sequences},
+                        {"role": "input.plasmid", "content": plasmid},
+                    ],
+                    parameters=input_values,
+                    protocols=["conjugation", "overexpression", "troubleshooting"],
                 )
 
-                # Generate the project directory structure and get the zip content
-                zip_content = project_directory.create_directory_structure(
-                    create_directories=True
-                )
+                zip_content = package.to_zip_bytes(timestamp)
 
                 # Encode the zip content for download
                 data_package_encoded = base64.b64encode(zip_content).decode("utf-8")
@@ -308,8 +291,6 @@ def register_workflow_1_callbacks(app):
                 logging.info("Workflow 1 completed successfully")
 
             # Clear the log stream after successful execution
-            log_stream.truncate(0)
-            log_stream.seek(0)
 
             return (
                 primers_data,
@@ -331,3 +312,7 @@ def register_workflow_1_callbacks(app):
                 f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
             )
             return [], [], [], [], [], [], "", error_message, True, [], []
+
+        finally:
+            sys.stdout = original_stdout
+            log_capture.stop()

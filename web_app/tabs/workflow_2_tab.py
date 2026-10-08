@@ -857,7 +857,7 @@ crispr_cb_tab = html.Div(
                                                 html.A(
                                                     "Download All Data & protocols",
                                                     id="download-data-and-protocols-link_2",
-                                                    download="data_package",
+                                                    download="streptocad_w2-crispr-best-single.zip",
                                                     href="",
                                                     target="_blank",
                                                     className="btn btn-primary",

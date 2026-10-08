@@ -1,12 +1,11 @@
 import sys
 import os
-import io
 import zipfile
 import base64
 import tempfile
 import logging
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone
 from Bio import SeqIO
 from Bio.Restriction import StuI
 from pydna.dseqrecord import Dseqrecord
@@ -36,9 +35,10 @@ from streptocad.sequence_loading.sequence_loading import (
 from streptocad.utils import (
     polymerase_dict,
     create_primer_df_from_dict,
-    ProjectDirectory,
     extract_metadata_to_dataframe,
 )
+from streptocad.output_packaging import OutputPackage, RunLogCapture
+from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 from streptocad.primers.primer_generation import create_idt_order_dataframe
 from streptocad.cloning.ssDNA_bridging import (
     assemble_plasmids_by_ssDNA_bridging,
@@ -61,12 +61,11 @@ from streptocad.primers.primer_generation import (
     find_best_check_primers_from_genome,
 )
 
-# Logging setup similar to Workflow 2
-log_stream = io.StringIO()
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.StreamHandler(sys.stdout), logging.StreamHandler(log_stream)],
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger(__name__)
 
@@ -150,6 +149,9 @@ def register_workflow_5_callbacks(app):
     ):
         if n_clicks is None:
             raise PreventUpdate
+
+        log_capture = RunLogCapture().start()
+        log_stream = log_capture.stream
 
         try:
             logging.info("Workflow 5 started")
@@ -238,7 +240,7 @@ def register_workflow_5_callbacks(app):
                     sgRNA_vectors[i].id = sgRNA_vectors[i].name
                     sgRNA_vectors[
                         i
-                    ].description = f"CRISPR-Cas9 targeting {', '.join(genes_to_KO)} for single gene knockout, assembled using StreptoCAD."
+                    ].description = f"CRISPR-Cas9 targeting {', '.join(genes_to_KO_list)} for single gene knockout, assembled using StreptoCAD."
 
                 logging.info("Processing idt primers")
                 idt_primers = primers_to_IDT(list_of_ssDNAs)
@@ -418,40 +420,46 @@ def register_workflow_5_callbacks(app):
                     # For the else branch you previously returned the raw copy; keep it clean too
                     pcr_table = checking_primers_df_copy
 
-                input_files = [
-                    {"name": "input_genome.gb", "content": genome},
-                    {"name": "input_plasmid.gb", "content": clean_plasmid},
+                package_inputs = [
+                    {"role": "input.genome", "content": genome},
+                    {"role": "input.plasmid", "content": clean_plasmid},
                 ]
 
-                if in_frame_deletion:
-                    output_files = [
+                # Same predicate as the gates that compute assembled_contigs,
+                # unique_df, plasmid_metadata_df and workflow_df.
+                if in_frame_deletion == [1]:
+                    # The repair-template primers come as fwd/rev pairs, so each
+                    # template's pair can sit in adjacent wells.
+                    package_outputs = [
+                        {"role": "plasmid", "content": assembled_contigs},
+                        {"role": "primer.pcr", "content": unique_df},
+                        {"role": "primer.order_idt", "content": full_idt},
                         {
-                            "name": "Cas9_w_sgRNAs.gb",
-                            "content": assembled_contigs,
-                        },  # LIST OF Dseqrecords
-                        {"name": "01_primer_df.csv", "content": unique_df},
-                        {"name": "02_full_idt.csv", "content": full_idt},
-                        {"name": "03_sgrna_df.csv", "content": sgrna_df},
-                        {"name": "04_filtered_sgrna_df.csv", "content": filtered_df},
-                        {
-                            "name": "05_plasmid_metadata_df.csv",
-                            "content": plasmid_metadata_df,
+                            # Built from full_idt, not unique_df: the tube sheet
+                            # also carries the sgRNA bridging oligos and the
+                            # checking primers, and the plate must list the same
+                            # ones, or the order is incomplete.
+                            "role": "primer.order_idt_plate",
+                            "content": idt_order_df_to_idt_plates(full_idt),
                         },
-                        {"name": "06_workflow_order_df.csv", "content": workflow_df},
+                        {"role": "sgrna.all", "content": sgrna_df},
+                        {"role": "sgrna.selected", "content": filtered_df},
+                        {"role": "plasmid.index", "content": plasmid_metadata_df},
+                        {"role": "bench.order", "content": workflow_df},
                     ]
                 else:
-                    output_files = [
+                    # Without repair templates there is only the tube order
+                    # sheet to re-shape.
+                    package_outputs = [
+                        {"role": "plasmid", "content": sgRNA_vectors},
+                        {"role": "primer.order_idt", "content": full_idt},
                         {
-                            "name": "Cas9_sgRNAs.gb",
-                            "content": sgRNA_vectors,
-                        },  # LIST OF Dseqrecords
-                        {"name": "01_full_idt.csv", "content": full_idt},
-                        {"name": "02_sgrna_df.csv", "content": sgrna_df},
-                        {"name": "03_filtered_sgrna_df.csv", "content": filtered_df},
-                        {
-                            "name": "04_plasmid_metadata_df.csv",
-                            "content": plasmid_metadata_df,
+                            "role": "primer.order_idt_plate",
+                            "content": idt_order_df_to_idt_plates(full_idt),
                         },
+                        {"role": "sgrna.all", "content": sgrna_df},
+                        {"role": "sgrna.selected", "content": filtered_df},
+                        {"role": "plasmid.index", "content": plasmid_metadata_df},
                     ]
 
                 input_values = {
@@ -476,27 +484,26 @@ def register_workflow_5_callbacks(app):
                     },
                 }
 
-                # Paths to Markdown files
-                markdown_file_paths = [
-                    "protocols/conjugation_protcol.md",
-                    "protocols/single_target_crispr_plasmid_protcol.md",
-                    "protocols/trouble_shooting_tips.md",
-                ]
+                timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%SZ")
 
-                timestamp = datetime.utcnow().isoformat()
-
-                # Create project directory structure
-                project_directory = ProjectDirectory(
-                    project_name=f"CRISPR_cas9_plasmid_workflow_{timestamp}",
-                    input_files=input_files,
-                    output_files=output_files,
-                    input_values=input_values,
-                    markdown_file_paths=markdown_file_paths,
+                # Appended last so the log covers the whole run.
+                package_outputs.append(
+                    {"role": "analysis.run_log", "content": log_stream.getvalue()}
                 )
 
-                zip_content = project_directory.create_directory_structure(
-                    create_directories=True
+                package = OutputPackage(
+                    workflow_id="w5",
+                    outputs=package_outputs,
+                    inputs=package_inputs,
+                    parameters=input_values,
+                    protocols=[
+                        "conjugation",
+                        "crispr_single_target",
+                        "troubleshooting",
+                    ],
                 )
+
+                zip_content = package.to_zip_bytes(timestamp)
                 data_package_encoded = base64.b64encode(zip_content).decode("utf-8")
                 data_package_download_link = (
                     f"data:application/zip;base64,{data_package_encoded}"
@@ -523,8 +530,6 @@ def register_workflow_5_callbacks(app):
                 logging.info("Workflow 5 completed successfully")
 
                 # Clear the log stream after successful execution
-                log_stream.truncate(0)
-                log_stream.seek(0)
 
             return (
                 primer_data,  # primers-output-table_5.data
@@ -558,3 +563,5 @@ def register_workflow_5_callbacks(app):
                 [],  # plasmid-metadata-table_5.data
                 [],  # plasmid-metadata-table_5.columns
             )
+        finally:
+            log_capture.stop()
