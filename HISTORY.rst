@@ -53,18 +53,15 @@ Fixes
 * Protocol markdown is resolved against the installed package rather than the process
   working directory, which decided which of two diverged copies a user received. The
   stale second copy under ``web_app/protocols/`` is deleted.
-* Log capture is per run rather than per module. Each callback installed its own buffer
-  through ``logging.basicConfig`` at import, but that is a no-op once the root logger has
-  handlers, so only one module's buffer was ever live and which one depended on import
-  order.
+* The run log and the assembly overview are filled by ``web_app.callbacks.workflow_logging``,
+  which captures each run's prints and log records on the thread running it.
 
-Removed
-^^^^^^^
-* ``streptocad.utils.generate_project_directory_structure`` and
-  ``ProjectDirectory.get_zip_file``. Neither had any caller in the repository, the
-  notebooks and web app used ``ProjectDirectory`` instead, and the former had already
-  drifted from the class it duplicated. ``ProjectDirectory`` itself is unchanged and
-  still used by the notebooks.
+Compatibility
+^^^^^^^^^^^^^
+* Nothing is removed from the library API. ``ProjectDirectory``,
+  ``generate_project_directory_structure`` and ``ProjectDirectory.get_zip_file`` are
+  unchanged and still used by the notebooks, which have not moved to
+  ``output_packaging`` yet.
 
 1.0.1
 ~~~~~

@@ -380,69 +380,6 @@ def test_readme_lists_every_shipped_file_with_its_own_blurb():
         assert path.split("/", 1)[-1] in readme, f"{path} missing from README"
 
 
-# -- run log capture ---------------------------------------------------------
-
-
-def test_run_log_capture_collects_records_and_detaches():
-    import logging
-
-    from streptocad.output_packaging import RunLogCapture
-
-    before = len(logging.getLogger().handlers)
-
-    capture = RunLogCapture().start()
-    logging.getLogger("test_wf").info("designing primers")
-    captured = capture.stop()
-
-    assert "designing primers" in captured
-    assert len(logging.getLogger().handlers) == before
-
-
-def test_run_log_capture_isolates_consecutive_runs():
-    """A run's log must hold that run's records, not everything since boot."""
-    import logging
-
-    from streptocad.output_packaging import RunLogCapture
-
-    first = RunLogCapture().start()
-    logging.getLogger("test_wf").info("FIRST RUN")
-    first_text = first.stop()
-
-    second = RunLogCapture().start()
-    logging.getLogger("test_wf").info("SECOND RUN")
-    second_text = second.stop()
-
-    assert "FIRST RUN" in first_text and "SECOND RUN" not in first_text
-    assert "SECOND RUN" in second_text and "FIRST RUN" not in second_text
-
-
-def test_run_log_capture_works_as_a_context_manager():
-    import logging
-
-    from streptocad.output_packaging import RunLogCapture
-
-    with RunLogCapture() as capture:
-        logging.getLogger("test_wf").info("inside the block")
-    assert "inside the block" in capture.getvalue()
-
-
-def test_run_log_capture_lowers_a_quiet_root_logger():
-    import logging
-
-    from streptocad.output_packaging import RunLogCapture
-
-    root = logging.getLogger()
-    original = root.level
-    try:
-        root.setLevel(logging.WARNING)
-        with RunLogCapture() as capture:
-            logging.getLogger("test_wf").info("an info line")
-        assert "an info line" in capture.getvalue()
-        assert root.level == logging.WARNING
-    finally:
-        root.setLevel(original)
-
-
 # -- the plate must cover the whole order ------------------------------------
 
 

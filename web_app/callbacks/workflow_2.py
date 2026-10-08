@@ -4,6 +4,7 @@
 # Standard library imports
 import sys
 import os
+import io
 import zipfile
 import base64
 import csv
@@ -28,15 +29,14 @@ import tempfile
 from Bio.Restriction import *
 from Bio import Restriction
 
-
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-    ],
+from .workflow_logging import (
+    capture_workflow_output,
+    configure_logging,
+    workflow_log,
 )
+
+# Log to stdout, and capture each workflow run's own output for the UI
+configure_logging()
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -57,7 +57,7 @@ from streptocad.utils import (
     polymerase_dict,
     extract_metadata_to_dataframe,
 )
-from streptocad.output_packaging import OutputPackage, RunLogCapture
+from streptocad.output_packaging import OutputPackage
 from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.cloning.ssDNA_bridging import (
     assemble_plasmids_by_ssDNA_bridging,
@@ -136,6 +136,7 @@ def register_workflow_2_callbacks(app):
             State("checking-primer-length_2", "value"),
         ],
     )
+    @capture_workflow_output
     def run_workflow(
         n_clicks,
         genome_content,
@@ -162,9 +163,6 @@ def register_workflow_2_callbacks(app):
     ):
         if n_clicks is None:
             raise PreventUpdate
-
-        log_capture = RunLogCapture().start()
-        log_stream = log_capture.stream
 
         try:
             logging.info("Workflow 2 started")
@@ -314,8 +312,9 @@ def register_workflow_2_callbacks(app):
                 ]
                 filtered_df_data = filtered_df.to_dict("records")
 
-                # W2's oligos are ssDNA bridging oligos, so the order sheet has no
-                # forward/reverse columns to pair up across the plate.
+                # W2's tube order is a concat of the ssDNA bridging oligos and
+                # the checking primers; the plate is built from that same frame
+                # so the two files cannot disagree about what is being ordered.
                 idt_plates = idt_order_df_to_idt_plates(full_idt)
 
                 input_values = {
@@ -358,7 +357,7 @@ def register_workflow_2_callbacks(app):
                             "content": filtered_sgrna_df_for_base_editing,
                         },
                         {"role": "sgrna.selected", "content": filtered_df},
-                        {"role": "analysis.run_log", "content": log_stream.getvalue()},
+                        {"role": "analysis.run_log", "content": workflow_log()},
                     ],
                     inputs=[
                         {"role": "input.genome", "content": genome},
@@ -378,8 +377,6 @@ def register_workflow_2_callbacks(app):
                 )
 
                 logging.info("Workflow 2 completed successfully")
-
-                # Clear the log stream after successful execution
 
                 # Prepare columns and data for the plasmid metadata DataTable
                 plasmid_metadata_columns = [
@@ -403,10 +400,6 @@ def register_workflow_2_callbacks(app):
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
-            error_message = (
-                f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            )
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{workflow_log()}"
             display_error = True
             return [], [], [], [], "", [], [], error_message, display_error, [], []
-        finally:
-            log_capture.stop()

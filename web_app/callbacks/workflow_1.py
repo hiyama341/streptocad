@@ -23,18 +23,14 @@ from Bio import Restriction
 import sys
 import io
 
-# Save the original stdout so you can restore it later
-original_stdout = sys.stdout
-
-
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-    ],
+from .workflow_logging import (
+    capture_workflow_output,
+    configure_logging,
+    workflow_log,
 )
+
+# Log to stdout, and capture each workflow run's own output for the UI
+configure_logging()
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -60,7 +56,7 @@ from streptocad.utils import (
     extract_metadata_to_dataframe,
     generate_header,
 )
-from streptocad.output_packaging import OutputPackage, RunLogCapture
+from streptocad.output_packaging import OutputPackage
 from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 
 
@@ -94,6 +90,7 @@ def register_workflow_1_callbacks(app):
             State("primer-lenght_1", "value"),
         ],
     )
+    @capture_workflow_output
     def run_workflow(
         n_clicks,
         sequences_content,
@@ -110,15 +107,6 @@ def register_workflow_1_callbacks(app):
     ):
         if n_clicks is None:
             raise PreventUpdate
-
-        # Captured per run: generate_header restores the real stdout, so a
-        # module-level buffer would keep the first run's printouts forever and
-        # every later run would ship them again.
-        captured_output = io.StringIO()
-        sys.stdout = captured_output
-
-        log_capture = RunLogCapture().start()
-        log_stream = log_capture.stream
 
         try:
             logging.info("Workflow 1 started")
@@ -237,8 +225,7 @@ def register_workflow_1_callbacks(app):
                     assembled_plasmids,
                     sequences,
                     idt_df,
-                    captured_output,
-                    original_stdout,
+                    workflow_log(),
                 )
 
                 input_values = {
@@ -270,7 +257,7 @@ def register_workflow_1_callbacks(app):
                         },
                         {"role": "analysis.primer_qc", "content": analyzed_primers_df},
                         {"role": "analysis.assembly_overview", "content": header_text},
-                        {"role": "analysis.run_log", "content": log_stream.getvalue()},
+                        {"role": "analysis.run_log", "content": workflow_log()},
                     ],
                     inputs=[
                         {"role": "input.sequences", "content": sequences},
@@ -290,8 +277,6 @@ def register_workflow_1_callbacks(app):
 
                 logging.info("Workflow 1 completed successfully")
 
-            # Clear the log stream after successful execution
-
             return (
                 primers_data,
                 primers_columns,
@@ -308,11 +293,5 @@ def register_workflow_1_callbacks(app):
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
-            error_message = (
-                f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            )
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{workflow_log()}"
             return [], [], [], [], [], [], "", error_message, True, [], []
-
-        finally:
-            sys.stdout = original_stdout
-            log_capture.stop()

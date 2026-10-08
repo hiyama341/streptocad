@@ -1,5 +1,6 @@
 import sys
 import os
+import io
 import zipfile
 import base64
 import tempfile
@@ -37,7 +38,7 @@ from streptocad.utils import (
     create_primer_df_from_dict,
     extract_metadata_to_dataframe,
 )
-from streptocad.output_packaging import OutputPackage, RunLogCapture
+from streptocad.output_packaging import OutputPackage
 from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 from streptocad.primers.primer_generation import create_idt_order_dataframe
 from streptocad.cloning.ssDNA_bridging import (
@@ -61,12 +62,14 @@ from streptocad.primers.primer_generation import (
     find_best_check_primers_from_genome,
 )
 
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.StreamHandler(sys.stdout)],
+from .workflow_logging import (
+    capture_workflow_output,
+    configure_logging,
+    workflow_log,
 )
+
+# Log to stdout, and capture each workflow run's own output for the UI
+configure_logging()
 logger = logging.getLogger(__name__)
 
 
@@ -120,6 +123,7 @@ def register_workflow_5_callbacks(app):
             State("gibson-primer-length_5", "value"),
         ],
     )
+    @capture_workflow_output
     def run_workflow(
         n_clicks,
         genome_content,
@@ -149,9 +153,6 @@ def register_workflow_5_callbacks(app):
     ):
         if n_clicks is None:
             raise PreventUpdate
-
-        log_capture = RunLogCapture().start()
-        log_stream = log_capture.stream
 
         try:
             logging.info("Workflow 5 started")
@@ -488,7 +489,7 @@ def register_workflow_5_callbacks(app):
 
                 # Appended last so the log covers the whole run.
                 package_outputs.append(
-                    {"role": "analysis.run_log", "content": log_stream.getvalue()}
+                    {"role": "analysis.run_log", "content": workflow_log()}
                 )
 
                 package = OutputPackage(
@@ -529,8 +530,6 @@ def register_workflow_5_callbacks(app):
 
                 logging.info("Workflow 5 completed successfully")
 
-                # Clear the log stream after successful execution
-
             return (
                 primer_data,  # primers-output-table_5.data
                 primer_columns,  # primers-output-table_5.columns
@@ -547,9 +546,7 @@ def register_workflow_5_callbacks(app):
 
         except Exception as e:
             logging.error(f"An error occurred: {str(e)}")
-            error_message = (
-                f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            )
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{workflow_log()}"
             return (
                 [],  # primers-output-table_5.data
                 [],  # primers-output-table_5.columns
@@ -563,5 +560,3 @@ def register_workflow_5_callbacks(app):
                 [],  # plasmid-metadata-table_5.data
                 [],  # plasmid-metadata-table_5.columns
             )
-        finally:
-            log_capture.stop()

@@ -5,6 +5,7 @@
 # Standard library imports
 import os
 import sys
+import io
 import zipfile
 import base64
 import csv
@@ -25,18 +26,19 @@ import tempfile
 from teemi.build.PCR import primer_tm_neb
 import logging
 import sys
+import io
 from Bio.Restriction import *
 from Bio import Restriction
 
 
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-    ],
+from .workflow_logging import (
+    capture_workflow_output,
+    configure_logging,
+    workflow_log,
 )
+
+# Log to stdout, and capture each workflow run's own output for the UI
+configure_logging()
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -60,7 +62,7 @@ from streptocad.utils import (
     dataframe_to_seqrecords,
     extract_metadata_to_dataframe,
 )
-from streptocad.output_packaging import OutputPackage, RunLogCapture
+from streptocad.output_packaging import OutputPackage
 from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.crispr.crispr_best import (
     identify_base_editing_sites,
@@ -145,6 +147,7 @@ def register_workflow_3_callbacks(app):
             State("checking-primer-length_3", "value"),
         ],
     )
+    @capture_workflow_output
     def run_workflow(
         n_clicks,
         genome_content,
@@ -176,9 +179,6 @@ def register_workflow_3_callbacks(app):
     ):
         if n_clicks is None:
             raise PreventUpdate
-
-        log_capture = RunLogCapture().start()
-        log_stream = log_capture.stream
 
         try:
             logger.info("Workflow 3 started")
@@ -424,7 +424,7 @@ def register_workflow_3_callbacks(app):
                             "content": overhangs,
                         },
                         # Read last so the log covers the whole run.
-                        {"role": "analysis.run_log", "content": log_stream.getvalue()},
+                        {"role": "analysis.run_log", "content": workflow_log()},
                     ],
                     inputs=[
                         {"role": "input.genome", "content": genome},
@@ -466,9 +466,7 @@ def register_workflow_3_callbacks(app):
             logger.error(f"An error occurred: {str(e)}")
             print(f"An error occurred: {str(e)}")  # Fallback print
 
-            error_message = (
-                f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            )
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{workflow_log()}"
             display_error = True
             return (
                 [],
@@ -485,5 +483,3 @@ def register_workflow_3_callbacks(app):
                 error_message,
                 display_error,
             )
-        finally:
-            log_capture.stop()

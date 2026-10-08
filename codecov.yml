@@ -1,0 +1,25 @@
+coverage:
+  precision: 1
+  round: down
+  range: "70...100"
+
+  status:
+    project:
+      default:
+        # The suite sits just above 90%; allow small dips so unrelated pull
+        # requests are not blocked by rounding.
+        target: 90%
+        threshold: 1%
+    patch:
+      default:
+        target: 80%
+        threshold: 5%
+
+comment:
+  layout: "reach, diff, files"
+  require_changes: true
+
+ignore:
+  - "tests/**"
+  - "notebooks/**"
+  - "docs/**"

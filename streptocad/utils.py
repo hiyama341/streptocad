@@ -301,8 +301,126 @@ polymerase_dict = {
 }
 
 
+def generate_project_directory_structure(
+    project_name,
+    input_files,
+    output_files,
+    input_values,
+    markdown_file_paths=None,
+    create_directories=True,
+):
+    project_dir_structure = {}
+
+    # Define the main project directory
+    project_dir = f"./{project_name}"
+
+    # Define input and output directories
+    inputs_dir = os.path.join(project_dir, "inputs")
+    outputs_dir = os.path.join(project_dir, "outputs")
+
+    # Create directories if specified
+    if create_directories:
+        os.makedirs(inputs_dir, exist_ok=True)
+        os.makedirs(outputs_dir, exist_ok=True)
+
+    # Process and save input files
+    for input_file in input_files:
+        file_save_path = os.path.join(inputs_dir, input_file["name"])
+        if isinstance(input_file["content"], list) and all(
+            isinstance(seq, Dseqrecord) for seq in input_file["content"]
+        ):
+            # Save each Dseqrecord in the list as a separate GenBank file
+            for i, seq in enumerate(input_file["content"]):
+                seq_file_save_path = os.path.join(
+                    inputs_dir, f"{input_file['name'].split('.')[0]}_{i}.gb"
+                )
+                if create_directories:
+                    SeqIO.write(seq, seq_file_save_path, "genbank")
+                project_dir_structure[seq_file_save_path] = str(seq)
+        elif isinstance(input_file["content"], SeqRecord):
+            if create_directories:
+                SeqIO.write(input_file["content"], file_save_path, "genbank")
+            project_dir_structure[file_save_path] = str(input_file["content"])
+        else:
+            if create_directories:
+                with open(file_save_path, "w") as file:
+                    file.write(input_file["content"])
+            project_dir_structure[file_save_path] = input_file["content"]
+
+    # Save the input values as a JSON file
+    input_values_path = os.path.join(inputs_dir, "input_values.json")
+    if create_directories:
+        with open(input_values_path, "w") as json_file:
+            json.dump(input_values, json_file, indent=4)
+    project_dir_structure[input_values_path] = input_values
+
+    # Process and save output files
+    for output_file in output_files:
+        file_save_path = os.path.join(outputs_dir, output_file["name"])
+        if output_file["name"].endswith(".csv"):
+            if isinstance(output_file["content"], pd.DataFrame):
+                if create_directories:
+                    output_file["content"].to_csv(file_save_path, index=False)
+                project_dir_structure[file_save_path] = output_file["content"].to_dict()
+            else:
+                raise TypeError(
+                    f"Expected a DataFrame for {output_file['name']}, but got {type(output_file['content'])}"
+                )
+        elif output_file["name"].endswith(".gb"):
+            if isinstance(output_file["content"], list) and all(
+                isinstance(record, SeqRecord) for record in output_file["content"]
+            ):
+                # Save each SeqRecord in the list separately
+                for i, record in enumerate(output_file["content"]):
+                    record_file_save_path = os.path.join(
+                        outputs_dir, f"{record.id}_{i}.gb"
+                    )
+                    if create_directories:
+                        SeqIO.write(record, record_file_save_path, "genbank")
+                    project_dir_structure[record_file_save_path] = str(record)
+            elif isinstance(output_file["content"], SeqRecord):
+                if create_directories:
+                    SeqIO.write(output_file["content"], file_save_path, "genbank")
+                project_dir_structure[file_save_path] = str(output_file["content"])
+        else:
+            if create_directories:
+                with open(file_save_path, "w") as file:
+                    file.write(output_file["content"])
+            project_dir_structure[file_save_path] = output_file["content"]
+
+    # Process and save markdown files from paths
+    if markdown_file_paths:
+        for md_file_path in markdown_file_paths:
+            md_file_name = os.path.basename(md_file_path)
+            md_file_save_path = os.path.join(outputs_dir, md_file_name)
+            if create_directories:
+                with open(md_file_path, "r") as file:
+                    md_content = file.read()
+                with open(md_file_save_path, "w") as file:
+                    file.write(md_content)
+            project_dir_structure[md_file_save_path] = md_file_path
+
+    if not create_directories:
+        print(f"Project structure for '{project_name}':")
+        for path, content in project_dir_structure.items():
+            print(
+                f"{path}: {str(content)[:100]}"
+            )  # Print first 100 characters of the content
+
+    return project_dir_structure
+
+
 import io
 import zipfile
+
+
+import os
+import io
+import zipfile
+import json
+import pandas as pd
+from Bio import SeqIO
+from Bio.SeqRecord import SeqRecord
 import nbformat
 from nbconvert import HTMLExporter
 
@@ -448,6 +566,10 @@ class ProjectDirectory:
 
         return self.zip_buffer.getvalue()
 
+    def get_zip_file(self):
+        self.zip_buffer.seek(0)
+        return self.zip_buffer
+
 
 def extract_metadata_to_dataframe(
     seqrecords: Dseqrecord, previous_plasmid: Dseqrecord, integration_list
@@ -484,34 +606,23 @@ def extract_metadata_to_dataframe(
     return df
 
 
-import sys
-
-
-def generate_header(
-    assembled_plasmids, sequences, idt_df, captured_output, original_stdout
-):
+def generate_header(assembled_plasmids, sequences, idt_df, captured_output):
     """
-    Restores stdout, captures the printed output from captured_output, and generates a header string.
+    Generates a header string and appends the output captured during the run.
 
     Parameters:
         assembled_plasmids (list): A list of assembled plasmid objects.
         sequences (list): A list of input sequence objects.
         idt_df (pandas.DataFrame): The DataFrame containing primer information.
-        captured_output (io.StringIO): A StringIO object capturing printed output.
-        original_stdout: The original sys.stdout object before redirection.
+        captured_output (str): The text printed and logged during the run.
 
     Returns:
         str: A string combining the header and all captured print output.
     """
-    # Restore the original stdout
-    sys.stdout = original_stdout
-    all_printouts = captured_output.getvalue()
-
     header = (
         f"StreptoCAD generated {len(assembled_plasmids)} plasmids from {len(sequences)} sequences "
         f"(beware if there is a discrepancy and check the full log file), and generated {len(idt_df)} primers.\n"
         "\nRest of the output...\n\n\n"
     )
 
-    # You can choose to combine the header with the captured output
-    return header + all_printouts
+    return header + captured_output

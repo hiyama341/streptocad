@@ -38,7 +38,6 @@ README says why it is absent.
 import copy
 import io
 import json
-import logging
 import os
 import platform
 import posixpath
@@ -341,81 +340,6 @@ def _records_to_genbank(records: Sequence[SeqRecord]) -> str:
     with io.StringIO() as buffer:
         SeqIO.write(prepared, buffer, "genbank")
         return buffer.getvalue()
-
-
-class RunLogCapture:
-    """Collect this run's log records, and only this run's.
-
-    Each callback module used to build its own ``io.StringIO`` and install it
-    through ``logging.basicConfig`` at import time. Because ``basicConfig`` is a
-    no-op once the root logger has handlers -- and because some modules cleared
-    the root handlers first -- only one module's buffer was ever attached, and
-    which one depended on import order. Every other workflow then shipped an
-    empty log.
-
-    Capturing per run instead of per module removes the ordering question, and
-    means a run's log holds that run's records rather than everything since the
-    server started.
-
-    Use it around the body of a callback::
-
-        capture = RunLogCapture().start()
-        try:
-            ...
-        finally:
-            capture.stop()
-
-        ...or as a context manager, which is equivalent::
-
-        with RunLogCapture() as capture:
-            ...
-    """
-
-    FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-
-    def __init__(self, level: int = logging.INFO):
-        self.level = level
-        self.stream = io.StringIO()
-        self._handler: Optional[logging.Handler] = None
-        self._previous_level: Optional[int] = None
-
-    def start(self) -> "RunLogCapture":
-        """Attach to the root logger. Returns self, so it can be chained."""
-        self._handler = logging.StreamHandler(self.stream)
-        self._handler.setFormatter(logging.Formatter(self.FORMAT))
-        self._handler.setLevel(self.level)
-
-        root = logging.getLogger()
-        self._previous_level = root.level
-        # A root logger left at WARNING would drop the INFO lines the
-        # workflows emit, so lower it for the duration and put it back after.
-        if root.level > self.level or root.level == logging.NOTSET:
-            root.setLevel(self.level)
-        root.addHandler(self._handler)
-        return self
-
-    def stop(self) -> str:
-        """Detach from the root logger and return what was captured."""
-        root = logging.getLogger()
-        if self._handler is not None:
-            root.removeHandler(self._handler)
-            self._handler.close()
-            self._handler = None
-        if self._previous_level is not None:
-            root.setLevel(self._previous_level)
-            self._previous_level = None
-        return self.stream.getvalue()
-
-    def getvalue(self) -> str:
-        """What has been captured so far, without detaching."""
-        return self.stream.getvalue()
-
-    def __enter__(self) -> "RunLogCapture":
-        return self.start()
-
-    def __exit__(self, *exc_info) -> bool:
-        self.stop()
-        return False
 
 
 def _markdown_to_html(markdown: str) -> str:

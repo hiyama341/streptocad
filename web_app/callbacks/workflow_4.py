@@ -1,5 +1,6 @@
 import sys
 import os
+import io
 import zipfile
 import base64
 import csv
@@ -35,7 +36,7 @@ from streptocad.sequence_loading.sequence_loading import (
     process_specified_gene_sequences_from_record,
 )
 from streptocad.utils import extract_metadata_to_dataframe
-from streptocad.output_packaging import OutputPackage, RunLogCapture
+from streptocad.output_packaging import OutputPackage
 from streptocad.crispr.guideRNA_crispri import extract_sgRNAs_for_crispri, SgRNAargs
 from streptocad.cloning.ssDNA_bridging import (
     assemble_plasmids_by_ssDNA_bridging,
@@ -47,15 +48,14 @@ from streptocad.primers.primer_generation import (
 )
 from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 
-
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,  # Set to INFO to capture INFO, WARNING, ERROR, and CRITICAL messages
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),  # Log to the console (stdout)
-    ],
+from .workflow_logging import (
+    capture_workflow_output,
+    configure_logging,
+    workflow_log,
 )
+
+# Log to stdout, and capture each workflow run's own output for the UI
+configure_logging()
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -108,6 +108,7 @@ def register_workflow_4_callbacks(app):
             State("restriction-enzymes_4", "value"),
         ],
     )
+    @capture_workflow_output
     def run_workflow(
         n_clicks,
         genome_content,
@@ -128,9 +129,6 @@ def register_workflow_4_callbacks(app):
     ):
         if n_clicks is None:
             raise PreventUpdate
-
-        log_capture = RunLogCapture().start()
-        log_stream = log_capture.stream
 
         try:
             logging.info("Workflow 4 started")
@@ -282,7 +280,7 @@ def register_workflow_4_callbacks(app):
                         },
                         {"role": "sgrna.all", "content": sgrna_df},
                         {"role": "sgrna.selected", "content": filtered_df},
-                        {"role": "analysis.run_log", "content": log_stream.getvalue()},
+                        {"role": "analysis.run_log", "content": workflow_log()},
                     ],
                     inputs=[
                         {"role": "input.genome", "content": genome},
@@ -320,23 +318,8 @@ def register_workflow_4_callbacks(app):
             logging.error(f"An error occurred: {str(e)}")
             print(f"An error occurred: {str(e)}")  # Fallback print
 
-            error_message = (
-                f"An error occurred: {str(e)}\n\nLog:\n{log_stream.getvalue()}"
-            )
+            error_message = f"An error occurred: {str(e)}\n\nLog:\n{workflow_log()}"
             display_error = True
-            # Must match the 9 Outputs declared on this callback, in order:
-            # primer table data/columns, download href, filtered sgRNA data/columns,
-            # plasmid metadata data/columns, error message, error displayed.
-            return (
-                [],
-                [],
-                "",
-                [],
-                [],
-                [],
-                [],
-                error_message,
-                display_error,
-            )
-        finally:
-            log_capture.stop()
+            # Nine values, matching the nine declared Outputs and the order the
+            # success path returns them in.
+            return [], [], "", [], [], [], [], error_message, display_error
