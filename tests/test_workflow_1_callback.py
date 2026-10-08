@@ -112,31 +112,54 @@ def test_download_link_is_a_zip_with_the_expected_members(result):
         names = zf.namelist()
         basenames = {n.rsplit("/", 1)[-1] for n in names}
 
+        # Results are shelved by what each file is, so paths carry the meaning.
+        shelved = {n.split("/", 1)[1] for n in names if "/" in n}
         assert {
-            "00_primer_df.csv",
-            "01_full_idt.csv",
-            "02_primers_analyzed.csv",
-            "03_assembly_overview_and_log_file.log",
-            "input_sequences.gb",
-            "input_plasmid.gb",
-            "input_values.json",
-        } <= basenames
+            "1_plasmids/plasmid_index.csv",
+            "2_primers/pcr_primers.csv",
+            "2_primers/oligo_order_idt.csv",
+            "2_primers/oligo_order_idt_plate.xlsx",
+            "4_analysis/primer_qc_hairpins.csv",
+            "4_analysis/assembly_overview.txt",
+            "4_analysis/run.log",
+            "4_analysis/environment.json",
+            "6_inputs/input_sequences.gb",
+            "6_inputs/input_plasmid.gb",
+            "6_inputs/run_parameters.json",
+            "00_READ_ME_FIRST.md",
+            "00_READ_ME_FIRST.html",
+        } <= shelved
 
-        # One GenBank file per assembled plasmid, and the protocols rendered.
-        assert len([n for n in names if n.endswith("_amplicon_0.gb")]) == 1
+        # Workflow 1 designs no guide RNAs, so that shelf is left out entirely.
+        assert not [n for n in shelved if n.startswith("3_sgrnas/")]
+
+        # One GenBank file per assembled plasmid, numbered from 01 so they sort
+        # in design order and join to plasmid_index.csv row n.
+        plasmids = sorted(
+            n for n in shelved if n.startswith("1_plasmids/") and n.endswith(".gb")
+        )
+        assert len(plasmids) == 18
+        assert plasmids[0].startswith("1_plasmids/01_")
+        assert plasmids[-1].startswith("1_plasmids/18_")
+
+        # 18 plasmids plus the two inputs.
         assert len([n for n in basenames if n.endswith(".gb")]) == 18 + 2
-        assert len([n for n in basenames if n.endswith(".html")]) == 3
+        # Three protocols, each as .html and .md, plus the generated README.
+        assert len([n for n in shelved if n.startswith("5_protocols/")]) == 6
+        assert len([n for n in names if n.endswith(".html")]) == 3 + 1
 
-        log_name = next(n for n in names if n.endswith("_log_file.log"))
-        log = zf.read(log_name).decode()
+        overview = zf.read(
+            next(n for n in names if n.endswith("4_analysis/assembly_overview.txt"))
+        ).decode()
+        log = zf.read(
+            next(n for n in names if n.endswith("4_analysis/run.log"))
+        ).decode()
 
-    # The log file is the user-facing product of the capture: a header, then
-    # this run's own prints and log records.
-    assert log.startswith("StreptoCAD generated ")
+    # The overview is the header plus this run's prints.
+    assert overview.startswith("StreptoCAD generated ")
+    # The log is this run's own records, shipped separately from the overview.
     assert "Workflow 1 started" in log
     assert "Generating primers" in log
-    # The header is built before the zip, so the final "completed" line that
-    # logging emits afterwards is legitimately not in the file.
     assert "Assembling plasmids" in log
 
 
@@ -147,7 +170,9 @@ def test_the_log_file_only_covers_the_current_run():
     def log_of(result):
         archive = base64.b64decode(result["download_link"].split(",", 1)[1])
         with zipfile.ZipFile(io.BytesIO(archive)) as zf:
-            name = next(n for n in zf.namelist() if n.endswith("_log_file.log"))
+            name = next(
+                n for n in zf.namelist() if n.endswith("4_analysis/run.log")
+            )
             return zf.read(name).decode()
 
     # Before the per-run capture, stdout was restored after the first run and

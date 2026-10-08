@@ -948,7 +948,7 @@ gibson_tab = dcc.Tab(
                                                 html.A(
                                                     "Download All Data & Protocols",
                                                     id="download-data-and-protocols-link_5",
-                                                    download="all_data",
+                                                    download="streptocad_w5-cas9-deletion.zip",
                                                     href="",
                                                     target="_blank",
                                                     className="btn btn-primary",

@@ -646,7 +646,7 @@ crispri_tab = html.Div(
                                                 html.A(
                                                     "Download All Data & protocols",
                                                     id="download-data-and-protocols-link_4",
-                                                    download="data_package",
+                                                    download="streptocad_w4-crispri.zip",
                                                     href="",
                                                     target="_blank",
                                                     className="btn btn-primary",

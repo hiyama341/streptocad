@@ -912,7 +912,7 @@ golden_gate_tab = dcc.Tab(
                                                 html.A(
                                                     "Download All Data & protocols",
                                                     id="download-data-and-protocols-link_3",
-                                                    download="data_package",
+                                                    download="streptocad_w3-crispr-best-multiplex.zip",
                                                     href="",
                                                     target="_blank",
                                                     className="btn btn-primary",

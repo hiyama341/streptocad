@@ -1,6 +1,68 @@
 History
 -------
 
+1.1.0
+~~~~~
+
+Ordering oligos
+^^^^^^^^^^^^^^^
+* Added ``streptocad.primers.idt_plates``, which formats an oligo order for IDT's plate
+  upload: ``Well Position`` / ``Name`` / ``Sequence``, wells filled row-major, and a
+  separate worksheet per 96-well plate in one workbook. The web app ships this as
+  ``2_primers/oligo_order_idt_plate.xlsx`` beside the existing tube-format sheet, so a
+  plate order no longer has to be retyped by hand.
+* ``create_idt_order_dataframe`` now returns each template's forward primer followed by
+  its own reverse, rather than every forward and then every reverse. A gene's pair is
+  therefore on consecutive rows, and because the plate layout preserves row order, in
+  neighbouring wells. **This changes the row order of the returned DataFrame.** The same
+  oligos are returned, with the same columns.
+
+Download layout
+^^^^^^^^^^^^^^^
+* Added ``streptocad.output_packaging``. The web app's download is now sorted onto six
+  folders by what each file is -- ``1_plasmids/``, ``2_primers/``, ``3_sgrnas/``,
+  ``4_analysis/``, ``5_protocols/``, ``6_inputs/`` -- instead of one flat ``outputs/``
+  directory, with a generated ``00_READ_ME_FIRST``. A folder a workflow does not use is
+  omitted and the README says why. **Every path and filename in the download changed.**
+* Numeric filename prefixes are gone, since the folder now carries the meaning. They had
+  drifted: two workflows started at ``00_`` and four at ``01_``, the IDT sheet was
+  ``01_`` in three workflows and ``02_`` in three others, and a checkbox in W5/W6 shifted
+  every index by one. Plasmid files keep an index, now leading and zero-padded so twenty
+  of them sort ``01``..``20``.
+* Each workflow's download is named after the workflow instead of ``data_package`` or
+  ``all_data``, so a second download no longer overwrites the first.
+
+Fixes
+^^^^^
+* CRISPRi (W4) could not produce a download at all: a missing comma in the protocol list
+  fused two string literals into a path that does not exist, and the error handler
+  returned 11 values against 9 declared outputs, so it crashed too and the real cause
+  never reached the dialog.
+* W5 built every plasmid's GenBank DEFINITION line by joining the raw input string
+  character by character, giving "targeting S, C, O, 5, 0, 8, 7".
+* W2 shipped the pre-mutation guide RNA table as the filtered one; the table that decided
+  which plasmids were built was never in the download. Both now ship.
+* W6 shipped un-deduplicated primers under the same filename W5 used for deduplicated
+  ones.
+* W1 and W4 computed the plasmid metadata table, displayed it, and left it out of the
+  download. W3 computed a primer hairpin analysis and discarded it.
+* A list of records no longer has its declared filename discarded and rebuilt from
+  ``record.id``, an empty assembly no longer produces a clean-looking archive with no
+  plasmids and no warning, record ids are sanitised before reaching a path, and the
+  archive's root directory no longer contains ISO-8601 colons, which NTFS rejects.
+* Protocol markdown is resolved against the installed package rather than the process
+  working directory, which decided which of two diverged copies a user received. The
+  stale second copy under ``web_app/protocols/`` is deleted.
+* The run log and the assembly overview are filled by ``web_app.callbacks.workflow_logging``,
+  which captures each run's prints and log records on the thread running it.
+
+Compatibility
+^^^^^^^^^^^^^
+* Nothing is removed from the library API. ``ProjectDirectory``,
+  ``generate_project_directory_structure`` and ``ProjectDirectory.get_zip_file`` are
+  unchanged and still used by the notebooks, which have not moved to
+  ``output_packaging`` yet.
+
 1.0.1
 ~~~~~
 Documentation only; no change to the library.

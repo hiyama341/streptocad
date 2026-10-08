@@ -5,7 +5,7 @@ import zipfile
 import base64
 import csv
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pandas as pd
 from Bio import SeqIO
@@ -35,7 +35,8 @@ from streptocad.sequence_loading.sequence_loading import (
     annotate_dseqrecord,
     process_specified_gene_sequences_from_record,
 )
-from streptocad.utils import ProjectDirectory, extract_metadata_to_dataframe
+from streptocad.utils import extract_metadata_to_dataframe
+from streptocad.output_packaging import OutputPackage
 from streptocad.crispr.guideRNA_crispri import extract_sgRNAs_for_crispri, SgRNAargs
 from streptocad.cloning.ssDNA_bridging import (
     assemble_plasmids_by_ssDNA_bridging,
@@ -45,6 +46,7 @@ from streptocad.primers.primer_generation import (
     create_idt_order_dataframe,
     primers_to_IDT,
 )
+from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 
 from .workflow_logging import (
     capture_workflow_output,
@@ -230,18 +232,9 @@ def register_workflow_4_callbacks(app):
                 plasmid_metadata_df = extract_metadata_to_dataframe(
                     sgRNA_vectors, clean_plasmid, integration_names
                 )
-                # Prepare download link for the data package
-                input_files = [
-                    {"name": "input_genome.gb", "content": genome},
-                    {"name": "input_plasmid.gb", "content": clean_plasmid},
-                ]
-
-                output_files = [
-                    {"name": "CRISPRi_w_sgRNAs.gb", "content": sgRNA_vectors},
-                    {"name": "01_full_idt.csv", "content": idt_primers},
-                    {"name": "02_sgrna_df.csv", "content": sgrna_df},
-                    {"name": "03_filtered_sgrna_df.csv", "content": filtered_df},
-                ]
+                # The ssDNA order sheet has Name/Sequence columns, not the
+                # forward/reverse layout of a primer dataframe.
+                idt_primer_plates = idt_order_df_to_idt_plates(idt_primers)
 
                 input_values = {
                     "genes_to_knockout": genes_to_KO_list,
@@ -260,31 +253,6 @@ def register_workflow_4_callbacks(app):
                     },
                 }
 
-                markdown_file_paths = [
-                    "protocols/conjugation_protcol.md",
-                    "protocols/single_target_crispr_plasmid_protcol.md",
-                    "protocols/trouble_shooting_tips.md",
-                ]
-
-                timestamp = datetime.utcnow().isoformat()
-
-                logging.info("Creating project directory structure")
-                project_directory = ProjectDirectory(
-                    project_name=f"CRISPRi_workflow_{timestamp}",
-                    input_files=input_files,
-                    output_files=output_files,
-                    input_values=input_values,
-                    markdown_file_paths=markdown_file_paths,
-                )
-
-                zip_content = project_directory.create_directory_structure(
-                    create_directories=True
-                )
-                data_package_encoded = base64.b64encode(zip_content).decode("utf-8")
-                data_package_download_link = (
-                    f"data:application/zip;base64,{data_package_encoded}"
-                )
-
                 # filtered sgrnas
                 filtered_df_columns = [
                     {"name": col, "id": col} for col in filtered_df.columns
@@ -296,6 +264,41 @@ def register_workflow_4_callbacks(app):
                     {"name": col, "id": col} for col in plasmid_metadata_df.columns
                 ]
                 plasmid_metadata_df_data = plasmid_metadata_df.to_dict("records")
+
+                timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%SZ")
+
+                logging.info("Packaging outputs")
+                package = OutputPackage(
+                    workflow_id="w4",
+                    outputs=[
+                        {"role": "plasmid", "content": sgRNA_vectors},
+                        {"role": "plasmid.index", "content": plasmid_metadata_df},
+                        {"role": "primer.order_idt", "content": idt_primers},
+                        {
+                            "role": "primer.order_idt_plate",
+                            "content": idt_primer_plates,
+                        },
+                        {"role": "sgrna.all", "content": sgrna_df},
+                        {"role": "sgrna.selected", "content": filtered_df},
+                        {"role": "analysis.run_log", "content": workflow_log()},
+                    ],
+                    inputs=[
+                        {"role": "input.genome", "content": genome},
+                        {"role": "input.plasmid", "content": clean_plasmid},
+                    ],
+                    parameters=input_values,
+                    protocols=[
+                        "conjugation",
+                        "crispr_single_target",
+                        "troubleshooting",
+                    ],
+                )
+
+                zip_content = package.to_zip_bytes(timestamp)
+                data_package_encoded = base64.b64encode(zip_content).decode("utf-8")
+                data_package_download_link = (
+                    f"data:application/zip;base64,{data_package_encoded}"
+                )
 
                 logging.info("Workflow completed successfully")
 

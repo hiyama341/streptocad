@@ -213,27 +213,38 @@ def test_every_return_matches_the_declared_outputs(name):
 
 
 @pytest.mark.parametrize("name", list(CASES))
-def test_protocol_paths_exist(name):
-    """A missing comma once concatenated two of workflow 4's protocol paths."""
+def test_protocol_keys_resolve(name):
+    """A missing comma once concatenated two of workflow 4's protocol paths.
+
+    Callbacks no longer carry those paths: they name protocols by key and
+    ``OutputPackage`` resolves them against the repository, so the same mistake
+    is now a ``KeyError`` at construction. This checks the keys each callback
+    asks for are real and that the markdown behind them is on disk.
+    """
     import ast
     import inspect
     from pathlib import Path
 
+    from streptocad.output_packaging import DEFAULT_PROTOCOLS_DIR, PROTOCOLS
+
     module = inspect.getmodule(CASES[name]["register"])
     tree = ast.parse(inspect.getsource(module))
 
-    paths = [
+    keys = [
         element.value
         for node in ast.walk(tree)
-        if isinstance(node, ast.Assign)
-        and any(getattr(t, "id", "") == "markdown_file_paths" for t in node.targets)
-        for element in node.value.elts
+        if isinstance(node, ast.Call)
+        for keyword in node.keywords
+        if keyword.arg == "protocols"
+        for element in getattr(keyword.value, "elts", [])
         if isinstance(element, ast.Constant)
     ]
 
-    assert paths, "no protocol paths found"
-    for path in paths:
-        assert Path(path).is_file(), f"{name} references a missing protocol: {path}"
+    assert keys, f"{name} asks for no protocols"
+    for key in keys:
+        assert key in PROTOCOLS, f"{name} references an unknown protocol key: {key}"
+        source = Path(DEFAULT_PROTOCOLS_DIR) / PROTOCOLS[key][0]
+        assert source.is_file(), f"{name}: {key} points at a missing file: {source}"
 
 
 @pytest.mark.parametrize("name", list(CASES))

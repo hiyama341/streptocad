@@ -135,8 +135,14 @@ def create_idt_order_dataframe(
     Returns
     -------
     pd.DataFrame
-        A new DataFrame with columns 'Name', 'Sequences', 'Concentration', and 'Purification',
-        formatted for IDT orders, with the specified concentration and purification methods.
+        A new DataFrame with columns 'Name', 'Sequence', 'Concentration' and
+        'Purification', formatted for IDT orders.
+
+        Rows are ordered pairwise -- each template's forward primer immediately
+        followed by its reverse -- rather than every forward and then every
+        reverse. That keeps a gene's pair together when the sheet is read by
+        hand, and it is what puts the pair in neighbouring wells when the order
+        is laid out on a plate, so it is one pipetting step per gene.
 
     Examples
     --------
@@ -146,13 +152,19 @@ def create_idt_order_dataframe(
     ...     'f_primer_sequences(5-3)': ['ATCG', 'CGTA'],
     ...     'r_primer_sequences(5-3)': ['GATC', 'TACG']
     ... })
-    >>> idt_df = create_idt_order_dataframe(df, concentration="100nm", purification="PAGE")
-    >>> print(idt_df)
+    >>> create_idt_order_dataframe(df)["Name"].tolist()
+    ['f_primer1', 'r_primer1', 'f_primer2', 'r_primer2']
     """
-    primer_names = df["f_primer_name"].tolist() + df["r_primer_name"].tolist()
-    primer_sequences = (
-        df["f_primer_sequences(5-3)"].tolist() + df["r_primer_sequences(5-3)"].tolist()
-    )
+    primer_names = []
+    primer_sequences = []
+    for f_name, r_name, f_seq, r_seq in zip(
+        df["f_primer_name"],
+        df["r_primer_name"],
+        df["f_primer_sequences(5-3)"],
+        df["r_primer_sequences(5-3)"],
+    ):
+        primer_names += [f_name, r_name]
+        primer_sequences += [f_seq, r_seq]
 
     idt_data = {
         "Name": primer_names,

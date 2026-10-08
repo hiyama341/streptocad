@@ -522,7 +522,7 @@ workflow_1_tab = dcc.Tab(
                                                 html.A(
                                                     "Download All Data & protocols",
                                                     id="download-data-and-protocols-link_1",
-                                                    download="data_package",
+                                                    download="streptocad_w1-overexpression.zip",
                                                     href="",
                                                     target="_blank",
                                                     className="btn btn-primary",

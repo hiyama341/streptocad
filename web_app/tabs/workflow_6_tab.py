@@ -940,7 +940,7 @@ cas3_tab = dcc.Tab(
                                                 html.A(
                                                     "Download All Data & Protocols",
                                                     id="download-data-and-protocols-link_6",
-                                                    download="all_data",
+                                                    download="streptocad_w6-cas3-deletion.zip",
                                                     href="",
                                                     target="_blank",
                                                     className="btn btn-primary",
