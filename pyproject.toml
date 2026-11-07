@@ -48,7 +48,7 @@ dependencies = [
 Homepage = "https://streptocad.bioengineering.dtu.dk"
 Repository = "https://github.com/hiyama341/streptocad"
 Issues = "https://github.com/hiyama341/streptocad/issues"
-Paper = "https://www.biorxiv.org/content/10.1101/2024.12.19.629370v1"
+Paper = "https://doi.org/10.1021/acssynbio.5c00261"
 
 [tool.hatch.version]
 path = "streptocad/__init__.py"

@@ -8,6 +8,7 @@
 ![Deploy AppRunner Container](https://github.com/hiyama341/streptocad/actions/workflows/deploy_apprunner_container.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 [![PyPI](https://img.shields.io/pypi/v/streptocad.svg)](https://pypi.org/project/streptocad/)
+[![DOI](https://img.shields.io/badge/DOI-10.1021%2Facssynbio.5c00261-blue.svg)](https://doi.org/10.1021/acssynbio.5c00261)
 [![code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 **StreptoCAD** is an open-source software toolbox designed to automate and streamline genome engineering in Streptomyces. This tool supports various CRISPR-based techniques and gene overexpression methods, simplifying the genetic engineering process.
@@ -26,7 +27,10 @@ You can find it here: [streptocad.bioengineering.dtu.dk](https://streptocad.bioe
 
 Streptomyces is a prolific source of novel bioactive molecules, but current genetic engineering methods are inefficient and time-consuming. StreptoCAD addresses these challenges by automating the design process, reducing errors, and speeding up the development of genetically modified strains. This tool transforms complex genetic engineering tasks into straightforward, reproducible processes, enabling faster scientific advancements and discovery of new natural products.
 
-For more details and an in-depth discussion of our approach, check out our [bioXiv paper](https://www.biorxiv.org/content/10.1101/2024.12.19.629370v1.full).
+For more details and an in-depth discussion of our approach, see our paper in
+*ACS Synthetic Biology*: [**StreptoCAD: An Open-Source Software Toolbox Automating Genome
+Engineering Workflows in Streptomycetes**](https://doi.org/10.1021/acssynbio.5c00261)
+([free full text on PubMed Central](https://pmc.ncbi.nlm.nih.gov/articles/PMC12646199/)).
 
 ## Workflows
 
@@ -237,6 +241,37 @@ Whether you want to adapt StreptoCAD for your research needs or contribute to th
 - Open an issue on GitHub or contact the development team.
 
 We encourage all users to contribute and help make StreptoCAD even more powerful and versatile!
+
+## Citation
+
+If StreptoCAD is useful in your work, please cite:
+
+> Levassor, L.; Whitford, C. M.; Petersen, S. D.; Blin, K.; Weber, T.; Frandsen, R. J. N.
+> StreptoCAD: An Open-Source Software Toolbox Automating Genome Engineering Workflows in
+> Streptomycetes. *ACS Synthetic Biology* **2025**, *14* (11), 4355-4372.
+> doi: [10.1021/acssynbio.5c00261](https://doi.org/10.1021/acssynbio.5c00261)
+
+<details>
+<summary>BibTeX</summary>
+
+```bibtex
+@article{Levassor2025StreptoCAD,
+  title     = {StreptoCAD: An Open-Source Software Toolbox Automating Genome
+               Engineering Workflows in Streptomycetes},
+  author    = {Levassor, Lucas and Whitford, Christopher M. and
+               Petersen, S{\o}ren D. and Blin, Kai and Weber, Tilmann and
+               Frandsen, Rasmus J. N.},
+  journal   = {ACS Synthetic Biology},
+  volume    = {14},
+  number    = {11},
+  pages     = {4355--4372},
+  year      = {2025},
+  doi       = {10.1021/acssynbio.5c00261},
+  publisher = {American Chemical Society}
+}
+```
+
+</details>
 
 ## License
 
