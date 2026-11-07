@@ -121,7 +121,8 @@ ROLES: Dict[str, tuple] = {
         SHELF_PRIMERS,
         "oligo_order_idt_plate.xlsx",
         "plate",
-        "Plate-format oligo order. Upload directly to IDT; one worksheet per 96-well plate.",
+        "Plate-format oligo order. Upload directly to IDT; one worksheet per "
+        "96-well plate, wells filled down the columns (A1, B1, ... H1, A2).",
     ),
     "primer.pcr": (
         SHELF_PRIMERS,

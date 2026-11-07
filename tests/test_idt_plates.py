@@ -15,25 +15,34 @@ from streptocad.primers.idt_plates import (
 
 
 
-def test_well_positions_fills_row_major():
+def test_well_positions_fills_column_major():
+    """Down column 1 before moving to column 2, so a column is one pipette pass."""
     wells = well_positions()
     assert len(wells) == 96
-    assert wells[:13] == [
+    assert wells[:9] == [
         "A1",
-        "A2",
-        "A3",
-        "A4",
-        "A5",
-        "A6",
-        "A7",
-        "A8",
-        "A9",
-        "A10",
-        "A11",
-        "A12",
         "B1",
+        "C1",
+        "D1",
+        "E1",
+        "F1",
+        "G1",
+        "H1",
+        "A2",
     ]
     assert wells[-1] == "H12"
+    # Every well exactly once, whichever direction the plate is filled.
+    assert len(set(wells)) == 96
+
+
+def test_well_positions_fills_whole_columns_before_starting_another():
+    """A part-full plate's oligos sit in complete columns, not scattered rows."""
+    wells = well_positions()
+
+    # The first 24 oligos of an order occupy columns 1-3 and nothing else.
+    assert {w[1:] for w in wells[:24]} == {"1", "2", "3"}
+    # And each of those columns is complete: all eight rows.
+    assert {w[0] for w in wells[:8]} == set("ABCDEFGH")
 
 
 def test_well_positions_rejects_impossible_geometry():
@@ -47,7 +56,7 @@ def test_assign_plate_wells_uses_idt_headers_in_order():
     plates = assign_plate_wells(["oligo_a", "oligo_b"], ["atgc", "ggcc"])
     assert len(plates) == 1
     assert list(plates[0].columns) == IDT_PLATE_COLUMNS
-    assert plates[0]["Well Position"].tolist() == ["A1", "A2"]
+    assert plates[0]["Well Position"].tolist() == ["A1", "B1"]
     # Sequences are upper-cased; IDT's templates are upper case throughout.
     assert plates[0]["Sequence"].tolist() == ["ATGC", "GGCC"]
 
@@ -62,7 +71,7 @@ def test_assign_plate_wells_splits_at_96_and_restarts_at_a1():
     assert len(plates[0]) == 96
     assert len(plates[1]) == 4
     assert plates[0]["Well Position"].iloc[-1] == "H12"
-    assert plates[1]["Well Position"].tolist() == ["A1", "A2", "A3", "A4"]
+    assert plates[1]["Well Position"].tolist() == ["A1", "B1", "C1", "D1"]
     assert plates[1]["Name"].tolist() == [
         "oligo_96",
         "oligo_97",
@@ -116,7 +125,7 @@ def test_idt_order_df_to_idt_plates_preserves_row_order():
 
     assert list(plate.columns) == IDT_PLATE_COLUMNS
     assert plate["Name"].tolist() == ["sgRNA_1", "sgRNA_2", "sgRNA_3"]
-    assert plate["Well Position"].tolist() == ["A1", "A2", "A3"]
+    assert plate["Well Position"].tolist() == ["A1", "B1", "C1"]
 
 
 def test_idt_order_df_to_idt_plates_reports_missing_columns():
@@ -150,7 +159,7 @@ def test_idt_plates_to_xlsx_bytes_rejects_an_empty_order():
 
 
 def test_plate_layout_matches_idts_sample_template_shape():
-    """The three headers and row-major wells of IDT's own example file."""
+    """The three headers of IDT's own example file, with our column-major wells."""
     plate = assign_plate_wells(
         [
             "CW1060_LLPMBPKK_00293_fwd",
@@ -165,6 +174,33 @@ def test_plate_layout_matches_idts_sample_template_shape():
     )[0]
 
     assert list(plate.columns) == ["Well Position", "Name", "Sequence"]
-    assert plate["Well Position"].tolist() == ["A1", "A2", "A3"]
+    assert plate["Well Position"].tolist() == ["A1", "B1", "C1"]
     assert plate["Name"].iloc[0] == "CW1060_LLPMBPKK_00293_fwd"
     assert plate["Sequence"].iloc[1].startswith("CGCAAGCCGCCACTCGAACGG")
+
+
+def test_a_primer_pair_lands_stacked_in_one_column():
+    """End to end: a gene's fwd/rev sit one above the other, not side by side.
+
+    ``create_idt_order_dataframe`` interleaves each template's pair onto
+    consecutive rows and the plate preserves row order, so with a column-major
+    fill the pair ends up in A1/B1 -- under one tip of an 8-channel pipette --
+    rather than in A1/A2 across the row.
+    """
+    from streptocad.primers.primer_generation import create_idt_order_dataframe
+
+    primer_df = pd.DataFrame(
+        {
+            "f_primer_name": ["geneA_fwd", "geneB_fwd", "geneC_fwd"],
+            "r_primer_name": ["geneA_rev", "geneB_rev", "geneC_rev"],
+            "f_primer_sequences(5-3)": ["AAAA", "CCCC", "GGGG"],
+            "r_primer_sequences(5-3)": ["TTTT", "AAAT", "CCCG"],
+        }
+    )
+
+    plate = idt_order_df_to_idt_plates(create_idt_order_dataframe(primer_df))[0]
+    wells = dict(zip(plate["Name"], plate["Well Position"]))
+
+    assert (wells["geneA_fwd"], wells["geneA_rev"]) == ("A1", "B1")
+    assert (wells["geneB_fwd"], wells["geneB_rev"]) == ("C1", "D1")
+    assert (wells["geneC_fwd"], wells["geneC_rev"]) == ("E1", "F1")

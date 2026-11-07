@@ -3,6 +3,13 @@ History
 
 Unreleased
 ~~~~~~~~~~
+* The IDT plate order now fills wells column-wise -- A1, B1, ... H1, then A2 -- instead
+  of row-wise. A 96-well plate is worked a column at a time, because an 8-channel
+  pipette spans exactly one column, so a part-full plate's oligos now sit in whole
+  columns instead of being spread across every row, and each template's forward/reverse
+  pair lands one well below the other (A1/B1) rather than side by side. The same oligos
+  are ordered with the same names and sequences; only the well each is assigned to
+  changes.
 
 Fixes
 ^^^^^
