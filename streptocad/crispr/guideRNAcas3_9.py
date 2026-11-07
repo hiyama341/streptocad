@@ -505,7 +505,7 @@ def find_sgrna_hits_cas3(
                             strand_sgrna = orientation * gene_strand
                         elif sequence[0] == -1:
                             genome_location = int(location.start) + 1
-                            position_sgrna = match.end() + protospacer_len + 3
+                            position_sgrna = match.end() + protospacer_len
 
                             # ORIENTATION FLAG: To account for when we are looking at the -1 strand
                             orientation = sequence[

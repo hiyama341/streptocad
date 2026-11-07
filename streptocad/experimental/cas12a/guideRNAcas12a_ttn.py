@@ -477,7 +477,7 @@ def find_sgrna_hits_cas12a(
                             strand_sgrna = sequence[0]
                         if sequence[0] == -1:
                             genome_location = int(location.start) + 1
-                            position_sgrna = match.end() + protospacer_len + 3
+                            position_sgrna = match.end() + protospacer_len
                             strand_sgrna = sequence[0]
 
                         # For Cas12a, extract the seed sequence from the beginning of the sgRNA
@@ -640,7 +640,7 @@ def find_sgrna_hits_cas3(
                             strand_sgrna = sequence[0]
                         if sequence[0] == -1:
                             genome_location = int(location.start) + 1
-                            position_sgrna = match.end() + protospacer_len + 3
+                            position_sgrna = match.end() + protospacer_len
                             strand_sgrna = sequence[0]
 
                         # For Cas12a, extract the seed sequence from the beginning of the sgRNA

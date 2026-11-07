@@ -1,6 +1,35 @@
 History
 -------
 
+Unreleased
+~~~~~~~~~~
+
+Fixes
+^^^^^
+* ``sgrna_loc`` was 3 nt too high for every forward-scan guide of the consuming-PAM
+  nucleases. Each finder computes the column in two branches -- ``len(seq) -
+  match.start() - 3`` scanning the reverse complement, ``match.end() + protospacer_len
+  + 3`` scanning the coding sequence -- and whether that ``+ 3`` is right depends on
+  whether the PAM regex consumes its match. For Cas9 and CRISPRi the PAM is the
+  zero-width lookahead ``(?=CC)``, so ``match.end() == match.start()``, the window
+  excludes the PAM and the ``+ 3`` legitimately supplies its length. For Cas3 (``TTC``)
+  and Cas12a (``TT[ACGT]``) the PAM is consumed, so ``match.end()`` already covers it
+  and the ``+ 3`` added it a second time. Fixed in ``find_sgrna_hits_cas3``
+  (``crispr/guideRNAcas3_9.py``) and in ``find_sgrna_hits_cas12a`` and
+  ``find_sgrna_hits_cas3`` (``experimental/cas12a/guideRNAcas12a_ttn.py``).
+
+  ``sgrna_loc`` is one past the protospacer's end in the coordinates of the CDS as
+  extracted 5'->3', so for every guide ``cds[sgrna_loc - protospacer_len : sgrna_loc]``
+  must read back as the reported spacer. Over 300 *S. coelicolor* CDSs that invariant
+  held for 195,112 of 204,650 guides before the fix and for all 204,650 after. Cas9 and
+  CRISPRi were already correct and are unchanged: 0 of their 186,369 guides would have
+  survived the same edit. **Cas3 and Cas12a guide positions shift by 3 nt, so any stored
+  or published coordinates from these two finders change.** The reported spacer, PAM, GC
+  and off-target columns are unaffected.
+
+  The reverse-complement branch was correct everywhere and is left alone -- every PAM
+  StreptoCAD uses is 3 nt, so its literal ``3`` equals ``pam_len`` today.
+
 1.1.0
 ~~~~~
 
