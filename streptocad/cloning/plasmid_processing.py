@@ -44,9 +44,18 @@ def assemble_and_process_plasmids(clean_plasmid: Dseq, list_of_amplicons: List[A
     >>> for plasmid in plasmids:
     >>>     print(plasmid.name)
     """
-    print('########### ENZYMMMMMEEES',enzymes)
-    digested_vector = sorted(Dseqrecord(clean_plasmid, circular=True).cut(enzymes), key=lambda x: len(x), reverse=True)[0]
-    print('########### ENZYMMMMMEEES',enzymes)
+    fragments = Dseqrecord(clean_plasmid, circular=True).cut(enzymes)
+    if not fragments:
+        # Indexing an empty cut used to raise "list index out of range", which
+        # tells the user nothing about the enzyme they picked.
+        names = ", ".join(str(enzyme) for enzyme in enzymes) or str(enzymes)
+        raise ValueError(
+            f"{names} does not cut the plasmid, so there is nothing to assemble "
+            f"the insert into. Choose a restriction enzyme with a site in this "
+            f"plasmid, or check that you uploaded the backbone you meant to."
+        )
+
+    digested_vector = sorted(fragments, key=lambda x: len(x), reverse=True)[0]
 
     list_of_assemblies = [(digested_vector, genetic_part) for genetic_part in list_of_amplicons]
     assembled_plasmids = [Assembly(parts, limit=20) for parts in list_of_assemblies]

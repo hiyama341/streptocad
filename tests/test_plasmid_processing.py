@@ -139,3 +139,24 @@ def test_check_plasmid_restriction_sites(clean_plasmid):
     for enzyme in enzymes:
         assert enzyme in result
         assert isinstance(result[enzyme], int)
+
+def test_an_enzyme_that_does_not_cut_is_named_in_the_error(plasmid_path):
+    """It used to raise "list index out of range" from indexing an empty cut,
+    which told the user nothing about the enzyme they had picked."""
+    from Bio.Restriction import PacI
+
+    plasmid = read_genbank_files(plasmid_path)[0]
+
+    with pytest.raises(ValueError, match="PacI does not cut the plasmid"):
+        assemble_and_process_plasmids(plasmid, [], enzymes=[PacI])
+
+
+def test_an_enzyme_that_cuts_still_assembles(plasmid_path):
+    plasmid = read_genbank_files(plasmid_path)[0]
+
+    # No amplicons, so nothing is built -- but the digest must succeed, which
+    # is what separates this from the case above.
+    assembled, results = assemble_and_process_plasmids(plasmid, [], enzymes=[StuI])
+
+    assert assembled == []
+    assert results == []
