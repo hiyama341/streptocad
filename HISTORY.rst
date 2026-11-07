@@ -10,6 +10,18 @@ Unreleased
   pair lands one well below the other (A1/B1) rather than side by side. The same oligos
   are ordered with the same names and sequences; only the well each is assigned to
   changes.
+* Fixed the experimental Cas12a module (``streptocad.experimental.cas12a.guideRNAcas12a_ttn``)
+  raising ``TypeError: Dseq.reverse_complement() takes 1 positional argument but 2 were
+  given`` on every minus-strand CDS, so no guides at all could be designed against roughly
+  half of a genome -- 3796 of the 7766 single-part CDSs in the *S. coelicolor* test
+  chromosome. Biopython 1.88 reverse-complements with an extra positional argument inside
+  ``feature.extract()``, which a plain ``Seq`` accepts and a pydna ``Dseq`` rejects; the
+  module's three finders (``find_sgrna_hits_cas9``, ``find_sgrna_hits_cas12a`` and
+  ``find_sgrna_hits_cas3``) each extracted the coding sequence directly instead of going
+  through ``streptocad.biopython_compat.extract_feature_sequence``, which the non-experimental
+  ``streptocad.crispr.guideRNAcas3_9`` has used for exactly this since the Biopython bump.
+  Plus-strand output is byte-for-byte unchanged. The suite missed this because the only
+  locus its finder tests used, ``SCO5087``, is on the plus strand.
 
 1.1.0
 ~~~~~
