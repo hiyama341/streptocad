@@ -7,7 +7,7 @@ whole plate in IDT's web form -- and instead names the well each oligo goes in:
 
     Well Position | Name | Sequence
 
-Wells are filled row-major (A1..A12, B1..B12, ... H12) and empty wells are
+Wells are filled column-major (A1..H1, A2..H2, ... H12) and empty wells are
 simply omitted. An order larger than one plate becomes several worksheets in a
 single workbook, which is how IDT expects multi-plate uploads.
 """
@@ -35,8 +35,12 @@ def well_positions(
 ) -> List[str]:
     """List one plate's well labels in fill order.
 
-    Row-major, matching how IDT's sample templates are laid out: A1 through A12,
-    then B1 through B12, and so on.
+    Column-major: A1 down to H1, then A2 down to H2, and so on. A 96-well plate
+    is worked a column at a time at the bench, because an 8-channel pipette
+    spans exactly one column, so filling down the columns means a part-full
+    plate's oligos sit in whole columns rather than being spread across every
+    row. IDT reads the ``Well Position`` column, so this only decides where the
+    oligos physically land in the plate they ship.
 
     Parameters
     ----------
@@ -48,7 +52,8 @@ def well_positions(
     Returns
     -------
     List[str]
-        ``["A1", "A2", ..., "H12"]`` for a default 96-well plate.
+        ``["A1", "B1", ..., "H1", "A2", ..., "H12"]`` for a default 96-well
+        plate.
     """
     if not 1 <= rows <= 26:
         raise ValueError(f"rows must be between 1 and 26, got {rows}")
@@ -57,8 +62,8 @@ def well_positions(
 
     return [
         f"{chr(ord('A') + row)}{col}"
-        for row in range(rows)
         for col in range(1, cols + 1)
+        for row in range(rows)
     ]
 
 
@@ -97,8 +102,8 @@ def assign_plate_wells(
 ) -> List[pd.DataFrame]:
     """Lay oligos out across as many plates as they need.
 
-    Order is preserved: the first oligo lands in A1 of the first plate and
-    overflow starts a new plate at A1 again.
+    Order is preserved: the first oligo lands in A1 of the first plate, the
+    second in B1 below it, and overflow starts a new plate at A1 again.
 
     Parameters
     ----------
@@ -157,8 +162,8 @@ def idt_order_df_to_idt_plates(
     Row order is taken as given, which is what makes this the only layout
     function needed: ``create_idt_order_dataframe`` already emits each
     template's forward primer followed by its reverse, so the pair arrives in
-    neighbouring wells without this function knowing anything about primer
-    pairs. Orders built from ssDNA or sgRNA oligos, which have no pairing to
+    neighbouring wells -- one directly below the other, A1/B1 -- without this
+    function knowing anything about primer pairs. Orders built from ssDNA or sgRNA oligos, which have no pairing to
     preserve, go through unchanged.
 
     Taking the plate from the same frame as the tube sheet also means the two
