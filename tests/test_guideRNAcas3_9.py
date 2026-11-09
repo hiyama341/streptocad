@@ -15,6 +15,7 @@ from Bio.Seq import Seq
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 from Bio.SeqRecord import SeqRecord
 import pandas as pd
+from collections import Counter
 
 import pytest
 from Bio import SeqIO
@@ -513,3 +514,110 @@ def test_extract_sgRNAs_output_cas3(sgrna_args_cas3, expected_cas3_sgrna_df):
 
 
 # TODO make a cas12a test suite
+
+
+### position_sgrna READ-BACK INVARIANT ###
+# These two cases are small enough to work out with pencil and paper.
+#
+# find_sgrna_hits_cas3 reports `sgrna_loc` as ONE PAST the protospacer's end, in
+# the coordinates of the CDS as extracted 5'->3'. So for every guide row the
+# invariant below must hold:
+#
+#     cds[sgrna_loc - protospacer_len : sgrna_loc] == sgrna          (forward scan)
+#     cds[sgrna_loc - protospacer_len : sgrna_loc] == revcomp(sgrna) (revcomp scan)
+#
+# Cas3 uses a CONSUMING PAM regex (r"TTC"), so match.end() == match.start() + 3
+# already accounts for the PAM. The forward branch is therefore
+# `match.end() + protospacer_len`; adding a further `+ 3` would place every
+# forward-scan guide 3 nt too far along. The revcomp branch stays
+# `len(seq) - match.start() - pam_len`.
+
+CAS3_PROTOSPACER_LEN = 34
+
+# --- forward-scan case -------------------------------------------------------
+# Built from {C,G,T} only, so the sequence contains no "A" and its reverse
+# complement contains no "T" -- the revcomp scan therefore finds no "TTC" and
+# this record yields exactly one guide, from the forward scan.
+#
+#   index  0..9    prefix       CGGCGTCGGC                  (10 nt)
+#   index 10..12   PAM          TTC                         -> match.start()=10
+#   index 13..46   protospacer  GTCGTC...GTCG               (34 nt)
+#   index 47..56   suffix       CGGCGGCGGC                  (10 nt)
+#
+#   match.end()  = 10 + 3 = 13
+#   sgrna_loc    = match.end() + 34 = 13 + 34 = 47
+#   read-back    = cds[47 - 34 : 47] = cds[13:47] = the protospacer
+CAS3_FWD_PREFIX = "CGGCGTCGGC"
+CAS3_FWD_SPACER = ("GTC" * 12)[:CAS3_PROTOSPACER_LEN]
+CAS3_FWD_CDS = CAS3_FWD_PREFIX + "TTC" + CAS3_FWD_SPACER + "CGGCGGCGGC"
+CAS3_FWD_EXPECTED_LOC = 47
+
+# --- revcomp-scan case -------------------------------------------------------
+# One "GAA" in the CDS, which is "TTC" on the reverse complement. Again no other
+# TT/GAA, so exactly one guide, from the revcomp scan.
+#
+#   L = 51, the "GAA" sits at CDS index 34, so in the reverse complement
+#   match.start() = L - 34 - 3 = 14 and
+#   sgrna_loc     = L - match.start() - 3 = 51 - 14 - 3 = 34
+#   read-back     = cds[34 - 34 : 34] = cds[0:34] = revcomp(sgrna)
+CAS3_REV_PREFIX = ("CGT" * 12)[:CAS3_PROTOSPACER_LEN]
+CAS3_REV_CDS = CAS3_REV_PREFIX + "GAA" + "CGGCGGCGGCGGCG"
+CAS3_REV_EXPECTED_LOC = 34
+
+
+def _single_cds_record(cds_seq, locus_tag="SYNTH0001", flank="TTCTTCTTCTTCTTCTTCTT"):
+    """A record whose only CDS feature is `cds_seq`, surrounded by TTC-rich flanks.
+
+    The flanks are outside the CDS, so the scan must ignore them entirely.
+    """
+    record = Dseqrecord(Seq(flank + cds_seq + flank), linear=True)
+    record.id = "SYNTH"
+    record.features = [
+        SeqFeature(
+            FeatureLocation(len(flank), len(flank) + len(cds_seq), strand=1),
+            type="CDS",
+            qualifiers={"locus_tag": [locus_tag]},
+        )
+    ]
+    return record
+
+
+def _only_cas3_guide(cds_seq):
+    record = _single_cds_record(cds_seq)
+    df = find_sgrna_hits_cas3(record, record.id, ["SYNTH0001"], Counter(), 8, revcomp)
+    assert len(df) == 1, (
+        f"expected exactly one guide for this synthetic CDS, got {len(df)}:\n{df}"
+    )
+    return df.iloc[0]
+
+
+def test_cas3_sgrna_loc_forward_scan_is_one_past_protospacer():
+    row = _only_cas3_guide(CAS3_FWD_CDS)
+
+    assert row["pam"] == "TTC"
+    assert row["sgrna"] == CAS3_FWD_SPACER
+    assert len(row["sgrna"]) == CAS3_PROTOSPACER_LEN
+    assert row["sgrna_loc"] == CAS3_FWD_EXPECTED_LOC, (
+        "forward-scan sgrna_loc must be match.end() + protospacer_len "
+        f"(= 13 + 34 = {CAS3_FWD_EXPECTED_LOC}); a spurious '+ 3' gives "
+        f"{CAS3_FWD_EXPECTED_LOC + 3}"
+    )
+
+    # The invariant: read the protospacer straight back out of the CDS.
+    loc = row["sgrna_loc"]
+    assert CAS3_FWD_CDS[loc - CAS3_PROTOSPACER_LEN : loc] == row["sgrna"]
+
+
+def test_cas3_sgrna_loc_revcomp_scan_is_one_past_protospacer():
+    row = _only_cas3_guide(CAS3_REV_CDS)
+
+    assert row["pam"] == "TTC"
+    assert len(row["sgrna"]) == CAS3_PROTOSPACER_LEN
+    assert row["sgrna_loc"] == CAS3_REV_EXPECTED_LOC, (
+        "revcomp-scan sgrna_loc must be len(seq) - match.start() - pam_len "
+        f"(= 51 - 14 - 3 = {CAS3_REV_EXPECTED_LOC})"
+    )
+
+    # Same invariant, reverse-complemented because the guide is on the other strand.
+    loc = row["sgrna_loc"]
+    assert CAS3_REV_CDS[loc - CAS3_PROTOSPACER_LEN : loc] == revcomp(row["sgrna"])
