@@ -13,6 +13,7 @@
 # copies or substantial portions of the Software.
 
 from Bio import SeqIO
+from streptocad.biopython_compat import extract_feature_sequence
 import pandas as pd
 from typing import Counter
 import re
@@ -257,7 +258,7 @@ def find_sgrna_hits_cas9(
                 locus_tag in locus_tags or "all" in locus_tags
             ):  # Check if gene tag is in the list of locus tags
                 # Extract the sequence of the coding sequence
-                coding_sequence = str(feature.extract(record.seq))
+                coding_sequence = str(extract_feature_sequence(feature, record.seq))
                 coding_sequence_revcomp = revcomp(coding_sequence)
 
                 # Extract location of the feature
@@ -418,7 +419,7 @@ def find_sgrna_hits_cas12a(
                 locus_tag in locus_tags or "all" in locus_tags
             ):  # Check if gene tag is in the list of locus tags
                 # Extract the sequence of the coding sequence
-                coding_sequence = str(feature.extract(record.seq))
+                coding_sequence = str(extract_feature_sequence(feature, record.seq))
                 coding_sequence_revcomp = revcomp(coding_sequence)
 
                 # Extract location of the feature
@@ -575,7 +576,7 @@ def find_sgrna_hits_cas3(
                 locus_tag in locus_tags or "all" in locus_tags
             ):  # Check if gene tag is in the list of locus tags
                 # Extract the sequence of the coding sequence
-                coding_sequence = str(feature.extract(record.seq))
+                coding_sequence = str(extract_feature_sequence(feature, record.seq))
                 coding_sequence_revcomp = revcomp(coding_sequence)
 
                 # Extract location of the feature

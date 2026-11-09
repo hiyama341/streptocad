@@ -318,3 +318,116 @@ def test_extract_sgrnas_on_an_unknown_locus_returns_no_rows(genome):
 def test_the_predict_step_is_a_placeholder(genome, capsys):
     extract_sgRNAs(args_for(genome, "cas9", step=["find", "predict"]))
     assert "implement this part later" in capsys.readouterr().out
+
+
+# --- the finders on a minus-strand CDS --------------------------------
+#
+# Regression guard for the Biopython 1.88 extraction defect. The finders used
+# to call feature.extract(record.seq) directly; on a minus-strand feature
+# Biopython reverse-complements with an extra positional argument, which a
+# pydna Dseq rejects, so every minus-strand CDS raised TypeError. That is
+# roughly half of any genome. The suite missed it because SCO5087 -- the only
+# locus the other finder tests use -- is on the plus strand.
+
+MINUS_STRAND_LOCUS = "SCO0007"
+
+
+def feature_for(genome, locus):
+    for feature in genome.features:
+        if (
+            feature.type == "CDS"
+            and feature.qualifiers.get("locus_tag", ["NA"])[0] == locus
+        ):
+            return feature
+    raise AssertionError(f"{locus} is not a CDS in the test genome")
+
+
+def test_the_regression_locus_really_is_on_the_minus_strand(genome):
+    assert feature_for(genome, MINUS_STRAND_LOCUS).location.strand == -1
+    assert feature_for(genome, "SCO5087").location.strand == 1, (
+        "the other finder tests only cover the plus strand"
+    )
+
+
+@pytest.mark.parametrize(
+    "finder, needs_revcomp_kwarg",
+    [
+        (find_sgrna_hits_cas9, True),
+        (find_sgrna_hits_cas12a, False),
+        (find_sgrna_hits_cas3, True),
+    ],
+)
+def test_each_finder_handles_a_minus_strand_cds(
+    genome, off_targets, finder, needs_revcomp_kwarg
+):
+    args = (genome, genome.id, [MINUS_STRAND_LOCUS], off_targets, 13)
+    frame = (
+        finder(*args, revcomp=revcomp)
+        if needs_revcomp_kwarg
+        else finder(*args, revcomp)
+    )
+
+    assert not frame.empty, "a minus-strand CDS produced no guides"
+    assert set(frame["locus_tag"]) == {MINUS_STRAND_LOCUS}
+    assert (frame["gene_strand"] == -1).all()
+
+
+@pytest.mark.parametrize(
+    "finder, needs_revcomp_kwarg",
+    [
+        (find_sgrna_hits_cas9, True),
+        (find_sgrna_hits_cas12a, False),
+        (find_sgrna_hits_cas3, True),
+    ],
+)
+def test_minus_strand_spacers_are_read_back_out_of_the_coding_sequence(
+    genome, off_targets, finder, needs_revcomp_kwarg
+):
+    """Every reported spacer must be a real subsequence of the real CDS.
+
+    The expected coding sequence is built here by coercing to Seq explicitly,
+    which is what a version-proof extraction has to agree with -- so this
+    checks the module's own extraction rather than trusting it. An extraction
+    that lost the minus-strand orientation would hand back the plus strand and
+    the spacers would not be found.
+
+    This deliberately asserts membership and not an exact offset: where the
+    spacer sits relative to the reported sgrna_loc is the separate concern of
+    the position arithmetic, which this module gets wrong by 3 on one of its
+    two search branches and which is fixed elsewhere.
+    """
+    feature = feature_for(genome, MINUS_STRAND_LOCUS)
+    coding_sequence = str(feature.extract(Seq(str(genome.seq))))
+
+    args = (genome, genome.id, [MINUS_STRAND_LOCUS], off_targets, 13)
+    frame = (
+        finder(*args, revcomp=revcomp)
+        if needs_revcomp_kwarg
+        else finder(*args, revcomp)
+    )
+
+    assert not frame.empty
+    for row in frame.itertuples():
+        assert (
+            row.sgrna in coding_sequence
+            or revcomp(row.sgrna) in coding_sequence
+        ), f"spacer {row.sgrna} is nowhere in the {MINUS_STRAND_LOCUS} CDS"
+
+
+def test_a_minus_strand_cds_is_extracted_in_its_own_reading_frame(genome):
+    """The guard behind the finders: extraction must flip a minus-strand CDS.
+
+    An extraction that ignored the strand would return the plus-strand slice,
+    which is the same length -- so length alone would not catch it.
+    """
+    from streptocad.biopython_compat import extract_feature_sequence
+
+    feature = feature_for(genome, MINUS_STRAND_LOCUS)
+    extracted = str(extract_feature_sequence(feature, genome.seq))
+
+    plus_strand_slice = str(genome.seq)[
+        int(feature.location.start) : int(feature.location.end)
+    ]
+    assert len(extracted) == len(plus_strand_slice)
+    assert extracted == revcomp(plus_strand_slice)
+    assert extracted != plus_strand_slice
