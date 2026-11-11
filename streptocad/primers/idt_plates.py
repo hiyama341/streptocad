@@ -166,6 +166,13 @@ def idt_order_df_to_idt_plates(
     function knowing anything about primer pairs. Orders built from ssDNA or sgRNA oligos, which have no pairing to
     preserve, go through unchanged.
 
+    That adjacency is a convenience, not a guarantee. An order that went
+    through ``deduplicate_idt_order`` buys a shared oligo once, so every oligo
+    after it shifts up a well and the pairs behind it are no longer adjacent.
+    What the 8-channel pipette actually needs is unaffected: wells still fill
+    down whole columns with no gaps, because that is decided by
+    ``well_positions`` and the number of oligos, not by their order.
+
     Taking the plate from the same frame as the tube sheet also means the two
     files cannot disagree about which oligos are in the order.
 

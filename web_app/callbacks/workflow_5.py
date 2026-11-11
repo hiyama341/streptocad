@@ -38,7 +38,7 @@ from streptocad.utils import (
     create_primer_df_from_dict,
     extract_metadata_to_dataframe,
 )
-from streptocad.output_packaging import OutputPackage
+from streptocad.output_packaging import OutputPackage, optional_table
 from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 from streptocad.primers.primer_generation import create_idt_order_dataframe
 from streptocad.cloning.ssDNA_bridging import (
@@ -57,6 +57,7 @@ from streptocad.cloning.plasmid_processing import (
     determine_workflow_order_for_plasmids,
 )
 from streptocad.primers.primer_generation import (
+    deduplicate_idt_order,
     checking_primers,
     primers_to_IDT,
     find_best_check_primers_from_genome,
@@ -421,6 +422,11 @@ def register_workflow_5_callbacks(app):
                     # For the else branch you previously returned the raw copy; keep it clean too
                     pcr_table = checking_primers_df_copy
 
+                # One tube per distinct oligo. Two targets needing the same
+                # primer previously bought it twice; shared_primers_df names
+                # every target that uses each shared oligo.
+                full_idt, shared_primers_df = deduplicate_idt_order(full_idt)
+
                 package_inputs = [
                     {"role": "input.genome", "content": genome},
                     {"role": "input.plasmid", "content": clean_plasmid},
@@ -443,6 +449,7 @@ def register_workflow_5_callbacks(app):
                             "role": "primer.order_idt_plate",
                             "content": idt_order_df_to_idt_plates(full_idt),
                         },
+                        *optional_table("primer.shared", shared_primers_df),
                         {"role": "sgrna.all", "content": sgrna_df},
                         {"role": "sgrna.selected", "content": filtered_df},
                         {"role": "plasmid.index", "content": plasmid_metadata_df},
@@ -458,6 +465,7 @@ def register_workflow_5_callbacks(app):
                             "role": "primer.order_idt_plate",
                             "content": idt_order_df_to_idt_plates(full_idt),
                         },
+                        *optional_table("primer.shared", shared_primers_df),
                         {"role": "sgrna.all", "content": sgrna_df},
                         {"role": "sgrna.selected", "content": filtered_df},
                         {"role": "plasmid.index", "content": plasmid_metadata_df},

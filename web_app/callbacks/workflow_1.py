@@ -49,6 +49,7 @@ from streptocad.sequence_loading.sequence_loading import (
     load_and_process_genome_sequences,
 )
 from streptocad.primers.primer_generation import (
+    deduplicate_idt_order,
     generate_primer_dataframe,
     create_idt_order_dataframe,
 )
@@ -56,7 +57,7 @@ from streptocad.utils import (
     extract_metadata_to_dataframe,
     generate_header,
 )
-from streptocad.output_packaging import OutputPackage
+from streptocad.output_packaging import OutputPackage, optional_table
 from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 
 
@@ -175,6 +176,11 @@ def register_workflow_1_callbacks(app):
                 )
                 logging.info(f"IDT DataFrame: {idt_df}")
 
+                # One tube per distinct oligo. Two targets needing the same
+                # primer previously bought it twice; shared_primers_df names
+                # every target that uses each shared oligo.
+                idt_df, shared_primers_df = deduplicate_idt_order(idt_df)
+
                 # Analyze primers and hairpins
                 logging.info("Analyzing primers and hairpins")
                 analyzed_primers_df = analyze_primers_and_hairpins(primer_df)
@@ -255,6 +261,7 @@ def register_workflow_1_callbacks(app):
                             "role": "primer.order_idt_plate",
                             "content": idt_order_df_to_idt_plates(idt_df),
                         },
+                        *optional_table("primer.shared", shared_primers_df),
                         {"role": "analysis.primer_qc", "content": analyzed_primers_df},
                         {"role": "analysis.assembly_overview", "content": header_text},
                         {"role": "analysis.run_log", "content": workflow_log()},

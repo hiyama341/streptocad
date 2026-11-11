@@ -36,13 +36,14 @@ from streptocad.sequence_loading.sequence_loading import (
     process_specified_gene_sequences_from_record,
 )
 from streptocad.utils import extract_metadata_to_dataframe
-from streptocad.output_packaging import OutputPackage
+from streptocad.output_packaging import OutputPackage, optional_table
 from streptocad.crispr.guideRNA_crispri import extract_sgRNAs_for_crispri, SgRNAargs
 from streptocad.cloning.ssDNA_bridging import (
     assemble_plasmids_by_ssDNA_bridging,
     make_ssDNA_oligos,
 )
 from streptocad.primers.primer_generation import (
+    deduplicate_idt_order,
     create_idt_order_dataframe,
     primers_to_IDT,
 )
@@ -217,6 +218,11 @@ def register_workflow_4_callbacks(app):
 
                 logging.info("Generating primers for IDT")
                 idt_primers = primers_to_IDT(list_of_ssDNAs)
+
+                # One tube per distinct oligo. Two targets needing the same
+                # primer previously bought it twice; shared_primers_df names
+                # every target that uses each shared oligo.
+                idt_primers, shared_primers_df = deduplicate_idt_order(idt_primers)
                 logging.debug(f"IDT primers DataFrame: {idt_primers}")
 
                 # Prepare DataTables outputs
@@ -278,6 +284,7 @@ def register_workflow_4_callbacks(app):
                             "role": "primer.order_idt_plate",
                             "content": idt_primer_plates,
                         },
+                        *optional_table("primer.shared", shared_primers_df),
                         {"role": "sgrna.all", "content": sgrna_df},
                         {"role": "sgrna.selected", "content": filtered_df},
                         {"role": "analysis.run_log", "content": workflow_log()},
