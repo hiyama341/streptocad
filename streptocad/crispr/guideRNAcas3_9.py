@@ -420,7 +420,7 @@ def find_sgrna_hits_cas3(
     # Counter for genes processed
     gene_counter = 1
 
-    # Cas12a-specific parameters
+    # Cas3-specific parameters
     pam_pattern = r"TTC"
     protospacer_len = 34
     pam_len = 3
@@ -516,7 +516,7 @@ def find_sgrna_hits_cas3(
                             )  # +1 or –1 depending on how the CDS is annotated
                             strand_sgrna = orientation * gene_strand
 
-                        # For Cas12a, extract the seed sequence from the beginning of the sgRNA
+                        # For Cas3, extract the seed sequence from the beginning of the sgRNA
                         sgrna_seed = sgrna[:off_target_seed]
 
                         # Get number of off-target hits for the seed sequence

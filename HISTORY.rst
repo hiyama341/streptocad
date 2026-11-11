@@ -10,18 +10,16 @@ Unreleased
   pair lands one well below the other (A1/B1) rather than side by side. The same oligos
   are ordered with the same names and sequences; only the well each is assigned to
   changes.
-* Fixed the experimental Cas12a module (``streptocad.experimental.cas12a.guideRNAcas12a_ttn``)
-  raising ``TypeError: Dseq.reverse_complement() takes 1 positional argument but 2 were
-  given`` on every minus-strand CDS, so no guides at all could be designed against roughly
-  half of a genome -- 3796 of the 7766 single-part CDSs in the *S. coelicolor* test
-  chromosome. Biopython 1.88 reverse-complements with an extra positional argument inside
-  ``feature.extract()``, which a plain ``Seq`` accepts and a pydna ``Dseq`` rejects; the
-  module's three finders (``find_sgrna_hits_cas9``, ``find_sgrna_hits_cas12a`` and
-  ``find_sgrna_hits_cas3``) each extracted the coding sequence directly instead of going
-  through ``streptocad.biopython_compat.extract_feature_sequence``, which the non-experimental
-  ``streptocad.crispr.guideRNAcas3_9`` has used for exactly this since the Biopython bump.
-  Plus-strand output is byte-for-byte unchanged. The suite missed this because the only
-  locus its finder tests used, ``SCO5087``, is on the plus strand.
+* Removed the experimental Cas12a package, ``streptocad.experimental``. It held two
+  near-duplicate copies of the pre-split three-nuclease guide finder -- about 1650 lines
+  between ``cas12a/guideRNAcas12a_ttn.py`` and ``archive/guideRNAcas3_9_12_copy.py`` --
+  and was the only Cas12a implementation in the repository. Nothing in ``streptocad`` or
+  the web app imported either copy, no workflow offered Cas12a, and the archive copy was
+  already excluded from the built wheel, so no supported behaviour changes. The code is
+  in git history should Cas12a work resume; it would be worth rewriting against the
+  current ``streptocad.crispr.guideRNAcas3_9`` rather than reviving a fork of that
+  module's ancestor. Two stale ``Cas12a`` comments left in ``find_sgrna_hits_cas3`` by
+  the original split are corrected to say Cas3.
 
 Fixes
 ^^^^^
@@ -34,16 +32,17 @@ Fixes
   excludes the PAM and the ``+ 3`` legitimately supplies its length. For Cas3 (``TTC``)
   and Cas12a (``TT[ACGT]``) the PAM is consumed, so ``match.end()`` already covers it
   and the ``+ 3`` added it a second time. Fixed in ``find_sgrna_hits_cas3``
-  (``crispr/guideRNAcas3_9.py``) and in ``find_sgrna_hits_cas12a`` and
-  ``find_sgrna_hits_cas3`` (``experimental/cas12a/guideRNAcas12a_ttn.py``).
+  (``crispr/guideRNAcas3_9.py``). The experimental Cas12a copies of the same bug were
+  fixed too, then removed along with their package (above).
 
   ``sgrna_loc`` is one past the protospacer's end in the coordinates of the CDS as
   extracted 5'->3', so for every guide ``cds[sgrna_loc - protospacer_len : sgrna_loc]``
   must read back as the reported spacer. Over 300 *S. coelicolor* CDSs that invariant
-  held for 195,112 of 204,650 guides before the fix and for all 204,650 after. Cas9 and
-  CRISPRi were already correct and are unchanged: 0 of their 186,369 guides would have
-  survived the same edit. **Cas3 and Cas12a guide positions shift by 3 nt, so any stored
-  or published coordinates from these two finders change.** The reported spacer, PAM, GC
+  held for 195,112 of 204,650 guides before the fix and for all 204,650 after -- counted
+  while the experimental Cas12a finders were still present, so the totals span all four.
+  Cas9 and CRISPRi were already correct and are unchanged: 0 of their 186,369 guides
+  would have survived the same edit. **Cas3 guide positions shift by 3 nt, so any stored
+  or published coordinates from the Cas3 finder change.** The reported spacer, PAM, GC
   and off-target columns are unaffected.
 
   The reverse-complement branch was correct everywhere and is left alone -- every PAM
