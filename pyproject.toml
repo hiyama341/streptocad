@@ -53,9 +53,6 @@ Paper = "https://doi.org/10.1021/acssynbio.5c00261"
 [tool.hatch.version]
 path = "streptocad/__init__.py"
 
-[tool.hatch.build]
-exclude = ["streptocad/experimental/archive"]
-
 [tool.hatch.build.targets.wheel]
 packages = ["streptocad"]
 
