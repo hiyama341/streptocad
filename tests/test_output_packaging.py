@@ -13,6 +13,7 @@ from streptocad.output_packaging import (
     SHELF_ORDER,
     OutputPackage,
     environment_record,
+    optional_table,
     run_id,
     sanitize_path_component,
 )
@@ -418,3 +419,55 @@ def test_a_complete_plate_order_is_not_flagged():
     package.to_zip_bytes(TIMESTAMP)
 
     assert package.warnings == []
+
+
+# -- optional_table --------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "empty", [pd.DataFrame(), pd.DataFrame(columns=["a", "b"]), None]
+)
+def test_optional_table_contributes_nothing_when_there_is_nothing_to_report(empty):
+    """No shared oligos means no file, not an empty one the reader must explain."""
+    assert optional_table("primer.shared", empty) == []
+
+
+def test_optional_table_declares_a_table_that_has_rows():
+    table = pd.DataFrame({"Ordered as": ["primer_fwd_geneA"]})
+
+    assert optional_table("primer.shared", table) == [
+        {"role": "primer.shared", "content": table}
+    ]
+
+
+def test_shared_primers_land_on_the_primer_shelf():
+    shared = pd.DataFrame(
+        {
+            "Sequence": ["ATCG"],
+            "Ordered as": ["primer_fwd_geneA"],
+            "Used for": ["primer_fwd_geneA, primer_fwd_geneB"],
+            "Times used": [2],
+        }
+    )
+    package = OutputPackage(
+        workflow_id="w1",
+        outputs=[*optional_table("primer.shared", shared)],
+    )
+
+    payload = package.to_zip_bytes(TIMESTAMP)
+
+    assert any(
+        name.endswith("2_primers/shared_primers.csv") for name in names_in(payload)
+    )
+    assert not package.warnings
+
+
+def test_an_absent_shared_primer_table_ships_no_file():
+    package = OutputPackage(
+        workflow_id="w1",
+        outputs=[*optional_table("primer.shared", pd.DataFrame())],
+    )
+
+    payload = package.to_zip_bytes(TIMESTAMP)
+
+    assert not any("shared_primers" in name for name in names_in(payload))

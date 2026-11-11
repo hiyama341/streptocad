@@ -62,7 +62,7 @@ from streptocad.utils import (
     dataframe_to_seqrecords,
     extract_metadata_to_dataframe,
 )
-from streptocad.output_packaging import OutputPackage
+from streptocad.output_packaging import OutputPackage, optional_table
 from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.crispr.crispr_best import (
     identify_base_editing_sites,
@@ -79,6 +79,7 @@ from streptocad.cloning.golden_gate_cloning import (
 from streptocad.primers.primer_analysis import analyze_primers_and_hairpins
 from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 from streptocad.primers.primer_generation import (
+    deduplicate_idt_order,
     create_idt_order_dataframe,
     find_best_check_primers_from_genome,
 )
@@ -303,6 +304,11 @@ def register_workflow_3_callbacks(app):
                 )
                 idt_df2 = create_idt_order_dataframe(checking_primers_df)
                 full_idt = pd.concat([idt_df, idt_df2])
+
+                # One tube per distinct oligo. Two targets needing the same
+                # primer previously bought it twice; shared_primers_df names
+                # every target that uses each shared oligo.
+                full_idt, shared_primers_df = deduplicate_idt_order(full_idt)
                 logger.info(f"IDT order dataframe created: {idt_df.shape[0]} rows")
 
                 list_of_amplicons = golden_gate.simulate_pcrs()
@@ -413,6 +419,7 @@ def register_workflow_3_callbacks(app):
                             "role": "primer.order_idt_plate",
                             "content": idt_order_df_to_idt_plates(full_idt),
                         },
+                        *optional_table("primer.shared", shared_primers_df),
                         {
                             "role": "sgrna.base_edit_predictions",
                             "content": mutated_sgrna_df,

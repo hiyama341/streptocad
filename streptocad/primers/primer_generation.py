@@ -1,5 +1,5 @@
 import pandas as pd
-from typing import List
+from typing import Dict, List, Tuple
 from Bio.SeqRecord import SeqRecord
 from teemi.build.PCR import primer_tm_neb, primer_ta_neb
 from pydna.design import primer_design
@@ -176,6 +176,110 @@ def create_idt_order_dataframe(
     idt_df = pd.DataFrame(idt_data)
 
     return idt_df
+
+
+#: Columns of the sharing report returned by :func:`deduplicate_idt_order`.
+SHARED_PRIMER_COLUMNS = ["Sequence", "Ordered as", "Used for", "Times used"]
+
+
+def deduplicate_idt_order(
+    idt_df: pd.DataFrame,
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """Order each distinct oligo once, and record which targets share it.
+
+    Two targets often need the same primer -- neighbouring deletions sharing a
+    flank, the same locus reached from two designs, a checking primer that is
+    already being ordered for cloning -- and each one previously became its own
+    row in the order, so the same oligo was bought, shipped and pipetted twice.
+
+    Oligos are matched on sequence alone, case-insensitively and ignoring
+    surrounding whitespace, because what arrives from IDT is a tube of DNA: a
+    forward primer for one template and a reverse primer for another are the
+    same purchase when the sequence matches, whatever the two are named. When
+    ``Concentration`` or ``Purification`` are present they join the match key,
+    since oligos ordered at different scales or purities cannot share a tube.
+
+    The first occurrence keeps its row, its name and its position, so an order
+    with no shared oligos comes back unchanged and the plate layout is
+    untouched. Later occurrences are dropped from the order and named in the
+    report instead.
+
+    Parameters
+    ----------
+    idt_df : pd.DataFrame
+        An order sheet carrying ``Name`` and ``Sequence`` columns, as produced
+        by :func:`create_idt_order_dataframe` or :func:`primers_to_IDT`,
+        including frames concatenated from several of those.
+
+    Returns
+    -------
+    Tuple[pd.DataFrame, pd.DataFrame]
+        The order with one row per distinct oligo, carrying exactly the columns
+        it came in with so it stays valid for IDT's bulk entry form; and a
+        report with :data:`SHARED_PRIMER_COLUMNS`, one row per oligo used more
+        than once, naming every target that uses it. The report is empty when
+        nothing was shared.
+
+    Raises
+    ------
+    KeyError
+        If ``Name`` or ``Sequence`` is missing.
+
+    Examples
+    --------
+    >>> df = pd.DataFrame({
+    ...     'Name': ['primer_fwd_geneA', 'primer_rev_geneA', 'primer_fwd_geneB'],
+    ...     'Sequence': ['ATCG', 'GGCC', 'atcg'],
+    ... })
+    >>> order, shared = deduplicate_idt_order(df)
+    >>> order['Name'].tolist()
+    ['primer_fwd_geneA', 'primer_rev_geneA']
+    >>> shared[['Ordered as', 'Used for', 'Times used']].values.tolist()
+    [['primer_fwd_geneA', 'primer_fwd_geneA, primer_fwd_geneB', 2]]
+    """
+    missing = [c for c in ("Name", "Sequence") if c not in idt_df.columns]
+    if missing:
+        raise KeyError(
+            f"idt_df is missing the columns {missing}; got {list(idt_df.columns)}"
+        )
+
+    if idt_df.empty:
+        return (
+            idt_df.copy().reset_index(drop=True),
+            pd.DataFrame(columns=SHARED_PRIMER_COLUMNS),
+        )
+
+    # Concatenated order sheets repeat index labels, which would make the
+    # boolean mask below select the wrong rows.
+    frame = idt_df.reset_index(drop=True)
+
+    key_parts = [frame["Sequence"].astype(str).str.strip().str.upper()]
+    key_parts += [
+        frame[column].astype(str)
+        for column in ("Concentration", "Purification")
+        if column in frame.columns
+    ]
+    keys = list(zip(*key_parts))
+
+    names_by_key: Dict[tuple, List[str]] = {}
+    for key, name in zip(keys, frame["Name"].astype(str)):
+        names_by_key.setdefault(key, []).append(name)
+
+    is_first = ~pd.Series(keys, index=frame.index).duplicated(keep="first")
+    order_df = frame[is_first].reset_index(drop=True)
+
+    shared_rows = [
+        {
+            "Sequence": key[0],
+            "Ordered as": names_by_key[key][0],
+            "Used for": ", ".join(names_by_key[key]),
+            "Times used": len(names_by_key[key]),
+        }
+        for key in dict.fromkeys(keys)
+        if len(names_by_key[key]) > 1
+    ]
+
+    return order_df, pd.DataFrame(shared_rows, columns=SHARED_PRIMER_COLUMNS)
 
 
 # TODO almost exactly like the funciton above

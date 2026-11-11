@@ -36,8 +36,9 @@ from streptocad.utils import (
     create_primer_df_from_dict,
     extract_metadata_to_dataframe,
 )
-from streptocad.output_packaging import OutputPackage
+from streptocad.output_packaging import OutputPackage, optional_table
 from streptocad.primers.primer_generation import (
+    deduplicate_idt_order,
     create_idt_order_dataframe,
     make_primer_records,
     primers_to_IDT,
@@ -440,6 +441,11 @@ def register_workflow_6_callbacks(app):
                     {"role": "input.plasmid", "content": clean_plasmid},
                 ]
 
+                # One tube per distinct oligo. Two targets needing the same
+                # primer previously bought it twice; shared_primers_df names
+                # every target that uses each shared oligo.
+                full_idt, shared_primers_df = deduplicate_idt_order(full_idt)
+
                 logging.info("Laying out the oligos for the IDT plate order.")
                 # Always from full_idt: unique_df holds only the repair-template
                 # primers, so laying the plate out from it would drop the sgRNA
@@ -456,6 +462,7 @@ def register_workflow_6_callbacks(app):
                         {"role": "primer.pcr", "content": unique_df},
                         {"role": "primer.order_idt", "content": full_idt},
                         {"role": "primer.order_idt_plate", "content": idt_plates},
+                        *optional_table("primer.shared", shared_primers_df),
                         {"role": "sgrna.all", "content": sgrna_df},
                         {"role": "sgrna.selected", "content": filtered_df},
                         {"role": "plasmid.index", "content": plasmid_metadata_df},
@@ -469,6 +476,7 @@ def register_workflow_6_callbacks(app):
                         {"role": "plasmid", "content": assembled_cas3_plasmids},
                         {"role": "primer.order_idt", "content": full_idt},
                         {"role": "primer.order_idt_plate", "content": idt_plates},
+                        *optional_table("primer.shared", shared_primers_df),
                         {"role": "sgrna.all", "content": sgrna_df},
                         {"role": "sgrna.selected", "content": filtered_df},
                         {"role": "plasmid.index", "content": plasmid_metadata_df},

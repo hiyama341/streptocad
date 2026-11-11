@@ -3,6 +3,32 @@ History
 
 Unreleased
 ~~~~~~~~~~
+* An oligo that two targets both need is now ordered once instead of twice. Neighbouring
+  deletions sharing a flank, the same locus reached from two designs, and a checking
+  primer that cloning is already buying all used to appear as separate rows in
+  ``oligo_order_idt.csv``, so the same tube was bought, shipped and pipetted more than
+  once. ``deduplicate_idt_order`` now runs in all six workflows at the point where the
+  order sheet becomes final, which also means the sgRNA bridging oligos and the checking
+  primers are compared against the cloning primers rather than only among themselves.
+  Oligos match on sequence alone, case-insensitively and ignoring surrounding whitespace,
+  because what arrives from IDT is a tube of DNA -- a forward primer for one template and
+  a reverse for another are one purchase when the sequence matches. ``Concentration`` and
+  ``Purification`` join the match key, since oligos ordered at different scales or
+  purities cannot share a tube.
+
+  Which targets share an oligo is recorded in a new ``2_primers/shared_primers.csv``,
+  naming the oligo as ordered and every target that uses it, so nothing is silently
+  merged away. The file is written only when something was in fact shared. It is kept
+  separate from ``oligo_order_idt.csv`` deliberately: that file is pasted into IDT's bulk
+  entry form, and an extra column is not worth the risk of a rejected order.
+
+  **The plate layout of an order containing shared oligos changes.** The first occurrence
+  keeps its row, its name and its position, so an order with nothing shared is unchanged
+  and plates look exactly as they did; but where an oligo is dropped, every oligo after it
+  shifts up one well, and the forward/reverse adjacency described in the entry below no
+  longer holds behind that point. Wells still fill down whole columns with no gaps, which
+  is what an 8-channel pipette needs -- that is decided by the oligo count, not their
+  order -- and a dedup that takes an order back under 96 oligos saves a plate.
 * The IDT plate order now fills wells column-wise -- A1, B1, ... H1, then A2 -- instead
   of row-wise. A 96-well plate is worked a column at a time, because an 8-channel
   pipette spans exactly one column, so a part-full plate's oligos now sit in whole

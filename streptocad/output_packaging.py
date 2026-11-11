@@ -136,6 +136,13 @@ ROLES: Dict[str, tuple] = {
         "table",
         "Verification primers for colony or junction PCR.",
     ),
+    "primer.shared": (
+        SHELF_PRIMERS,
+        "shared_primers.csv",
+        "table",
+        "Oligos that more than one target needs. Each is in the order once; "
+        "this says which targets use it, so one tube serves them all.",
+    ),
     "sgrna.all": (
         SHELF_SGRNAS,
         "sgrna_all_candidates.csv",
@@ -349,6 +356,35 @@ def _markdown_to_html(markdown: str) -> str:
     notebook.cells.append(nbformat.v4.new_markdown_cell(markdown))
     html, _ = HTMLExporter().from_notebook_node(notebook)
     return html
+
+
+def optional_table(role: str, table: Any) -> List[Dict[str, Any]]:
+    """Declare a table only when it has rows, for splatting into ``outputs``.
+
+    Some tables describe something that usually did not happen -- no oligo was
+    shared, no target was skipped -- and shipping an empty file for those
+    invites the reader to wonder what went wrong. Used as
+    ``*optional_table("primer.shared", shared_df)``, this contributes nothing
+    at all when there is nothing to report, so the shelf simply has no such
+    file, and :meth:`OutputPackage.to_zip_bytes` raises no empty-table warning.
+
+    Parameters
+    ----------
+    role : str
+        A key of :data:`ROLES`.
+    table : Any
+        The table to declare. ``None`` and empty DataFrames contribute nothing.
+
+    Returns
+    -------
+    List[Dict[str, Any]]
+        A one-entry outputs list, or an empty one.
+    """
+    if table is None:
+        return []
+    if isinstance(table, pd.DataFrame) and table.empty:
+        return []
+    return [{"role": role, "content": table}]
 
 
 class OutputPackage:

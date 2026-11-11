@@ -57,7 +57,7 @@ from streptocad.utils import (
     polymerase_dict,
     extract_metadata_to_dataframe,
 )
-from streptocad.output_packaging import OutputPackage
+from streptocad.output_packaging import OutputPackage, optional_table
 from streptocad.crispr.guideRNAcas3_9 import extract_sgRNAs, SgRNAargs
 from streptocad.cloning.ssDNA_bridging import (
     assemble_plasmids_by_ssDNA_bridging,
@@ -70,6 +70,7 @@ from streptocad.crispr.crispr_best import (
 )
 from streptocad.cloning.plasmid_processing import annotate_plasmid_with_sgrnas
 from streptocad.primers.primer_generation import (
+    deduplicate_idt_order,
     find_best_check_primers_from_genome,
     create_idt_order_dataframe,
     primers_to_IDT,
@@ -297,6 +298,11 @@ def register_workflow_2_callbacks(app):
                 idt_df2 = create_idt_order_dataframe(checking_primers_df)
                 full_idt = pd.concat([idt_df1, idt_df2])
 
+                # One tube per distinct oligo. Two targets needing the same
+                # primer previously bought it twice; shared_primers_df names
+                # every target that uses each shared oligo.
+                full_idt, shared_primers_df = deduplicate_idt_order(full_idt)
+
                 # Prepare outputs for the DataTable
                 primers_columns = [{"name": col, "id": col} for col in full_idt.columns]
                 primers_data = full_idt.to_dict("records")
@@ -348,6 +354,7 @@ def register_workflow_2_callbacks(app):
                         {"role": "primer.check", "content": checking_primers_df},
                         {"role": "primer.order_idt", "content": full_idt},
                         {"role": "primer.order_idt_plate", "content": idt_plates},
+                        *optional_table("primer.shared", shared_primers_df),
                         {
                             "role": "sgrna.base_edit_predictions",
                             "content": mutated_sgrna_df,

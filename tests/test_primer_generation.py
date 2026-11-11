@@ -4,7 +4,10 @@ from pydna.dseqrecord import Dseqrecord
 from Bio import SeqIO
 
 
+from streptocad.primers.idt_plates import idt_order_df_to_idt_plates
 from streptocad.primers.primer_generation import (
+    SHARED_PRIMER_COLUMNS,
+    deduplicate_idt_order,
     generate_primer_dataframe,
     create_idt_order_dataframe,
     primers_to_IDT,
@@ -494,3 +497,185 @@ def test_find_best_check_primers_from_genome(
     pd.testing.assert_frame_equal(
         result_df, find_best_checking_primers_df, check_like=True
     )
+
+
+# -- deduplicate_idt_order -------------------------------------------------
+#
+# Two targets often need the same primer, and each one used to become its own
+# row in the order, so the same oligo was bought and pipetted twice.
+
+
+def order_sheet(names, sequences, **columns):
+    """Build an order sheet the way create_idt_order_dataframe shapes one."""
+    data = {"Name": names, "Sequence": sequences}
+    for column, value in columns.items():
+        data[column] = [value] * len(names)
+    return pd.DataFrame(data)
+
+
+def test_an_order_without_duplicates_is_returned_unchanged():
+    """The common case must not move a single well, or plate layouts churn."""
+    sheet = order_sheet(
+        ["primer_fwd_geneA", "primer_rev_geneA", "primer_fwd_geneB"],
+        ["AAAACCCC", "GGGGTTTT", "ACACACAC"],
+        Concentration="25nm",
+        Purification="STD",
+    )
+
+    order, shared = deduplicate_idt_order(sheet)
+
+    pd.testing.assert_frame_equal(order, sheet)
+    assert shared.empty
+    assert list(shared.columns) == SHARED_PRIMER_COLUMNS
+
+
+def test_a_shared_primer_is_ordered_once_and_both_targets_are_named():
+    sheet = order_sheet(
+        ["primer_fwd_geneA", "primer_rev_geneA", "primer_fwd_geneB"],
+        ["AAAACCCC", "GGGGTTTT", "AAAACCCC"],
+    )
+
+    order, shared = deduplicate_idt_order(sheet)
+
+    assert order["Name"].tolist() == ["primer_fwd_geneA", "primer_rev_geneA"]
+    assert len(shared) == 1
+    assert shared.loc[0, "Ordered as"] == "primer_fwd_geneA"
+    assert shared.loc[0, "Used for"] == "primer_fwd_geneA, primer_fwd_geneB"
+    assert shared.loc[0, "Times used"] == 2
+
+
+def test_the_first_occurrence_keeps_its_name_and_position():
+    """Downstream files reference the kept name, so it must be the first one."""
+    sheet = order_sheet(
+        ["first", "unrelated", "second", "third"],
+        ["AAAA", "CCCC", "AAAA", "AAAA"],
+    )
+
+    order, shared = deduplicate_idt_order(sheet)
+
+    assert order["Name"].tolist() == ["first", "unrelated"]
+    assert shared.loc[0, "Ordered as"] == "first"
+    assert shared.loc[0, "Used for"] == "first, second, third"
+    assert shared.loc[0, "Times used"] == 3
+
+
+def test_matching_ignores_case_and_surrounding_whitespace():
+    sheet = order_sheet(["upper", "lower", "padded"], ["ATCG", "atcg", "  ATCG  "])
+
+    order, shared = deduplicate_idt_order(sheet)
+
+    assert len(order) == 1
+    assert shared.loc[0, "Times used"] == 3
+    # The report quotes the normalised sequence, which is what IDT is sent.
+    assert shared.loc[0, "Sequence"] == "ATCG"
+
+
+def test_a_forward_primer_matching_another_targets_reverse_is_one_tube():
+    """What arrives from IDT is a tube of DNA; the name on it does not matter."""
+    sheet = order_sheet(
+        ["primer_fwd_geneA", "primer_rev_geneB"], ["ATCGATCG", "ATCGATCG"]
+    )
+
+    order, shared = deduplicate_idt_order(sheet)
+
+    assert len(order) == 1
+    assert shared.loc[0, "Used for"] == "primer_fwd_geneA, primer_rev_geneB"
+
+
+def test_oligos_at_different_scales_are_not_merged():
+    """Different concentrations cannot share a tube, however equal the sequence."""
+    sheet = pd.DataFrame(
+        {
+            "Name": ["cheap", "concentrated"],
+            "Sequence": ["ATCGATCG", "ATCGATCG"],
+            "Concentration": ["25nm", "100nm"],
+            "Purification": ["STD", "STD"],
+        }
+    )
+
+    order, shared = deduplicate_idt_order(sheet)
+
+    assert len(order) == 2
+    assert shared.empty
+
+
+def test_different_purifications_are_not_merged():
+    sheet = pd.DataFrame(
+        {
+            "Name": ["standard", "purified"],
+            "Sequence": ["ATCGATCG", "ATCGATCG"],
+            "Concentration": ["25nm", "25nm"],
+            "Purification": ["STD", "HPLC"],
+        }
+    )
+
+    order, _ = deduplicate_idt_order(sheet)
+
+    assert len(order) == 2
+
+
+def test_concatenated_order_sheets_are_deduplicated():
+    """Workflows concat several sheets, which repeats index labels."""
+    sheet = order_sheet(["a", "b"], ["AAAA", "CCCC"])
+    doubled = pd.concat([sheet, sheet])
+    assert doubled.index.tolist() == [0, 1, 0, 1]
+
+    order, shared = deduplicate_idt_order(doubled)
+
+    assert order["Name"].tolist() == ["a", "b"]
+    assert order.index.tolist() == [0, 1]
+    assert shared["Times used"].tolist() == [2, 2]
+
+
+def test_the_order_keeps_exactly_the_columns_it_came_in_with():
+    """An extra column would travel into IDT's bulk entry form."""
+    sheet = order_sheet(
+        ["a", "b"], ["AAAA", "AAAA"], Concentration="25nm", Purification="STD"
+    )
+
+    order, _ = deduplicate_idt_order(sheet)
+
+    assert list(order.columns) == ["Name", "Sequence", "Concentration", "Purification"]
+
+
+def test_an_empty_order_gives_an_empty_report_with_its_columns():
+    sheet = order_sheet([], [])
+
+    order, shared = deduplicate_idt_order(sheet)
+
+    assert order.empty
+    assert shared.empty
+    assert list(shared.columns) == SHARED_PRIMER_COLUMNS
+
+
+@pytest.mark.parametrize(
+    "columns", [{"Name": ["a"]}, {"Sequence": ["AAAA"]}, {"Other": ["x"]}]
+)
+def test_a_sheet_without_name_and_sequence_is_rejected(columns):
+    with pytest.raises(KeyError, match="missing the columns"):
+        deduplicate_idt_order(pd.DataFrame(columns))
+
+
+def test_a_deduplicated_order_still_fills_whole_columns():
+    """The 8-channel pipette needs a gapless column-major fill, not pairing."""
+    names = [f"oligo_{i}" for i in range(10)]
+    # Every third oligo repeats the first sequence, so three rows collapse.
+    sequences = ["AAAA" if i % 3 == 0 else f"ACGT{i:04d}" for i in range(10)]
+
+    order, shared = deduplicate_idt_order(order_sheet(names, sequences))
+    plates = idt_order_df_to_idt_plates(order)
+
+    assert shared.loc[0, "Times used"] == 4
+    assert len(order) == 7
+    assert len(plates) == 1
+    # Seven oligos, seven consecutive wells down column 1 -- no gap where the
+    # three dropped rows used to be.
+    assert plates[0]["Well Position"].tolist() == [
+        "A1",
+        "B1",
+        "C1",
+        "D1",
+        "E1",
+        "F1",
+        "G1",
+    ]
