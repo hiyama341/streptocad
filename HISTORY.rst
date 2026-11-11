@@ -1,8 +1,8 @@
 History
 -------
 
-Unreleased
-~~~~~~~~~~
+1.2.0
+~~~~~
 * An oligo that two targets both need is now ordered once instead of twice. Neighbouring
   deletions sharing a flank, the same locus reached from two designs, and a checking
   primer that cloning is already buying all used to appear as separate rows in
@@ -49,6 +49,16 @@ Unreleased
 
 Fixes
 ^^^^^
+* Choosing a restriction enzyme that has no site in the uploaded plasmid now says so.
+  ``assemble_and_process_plasmids`` indexed the result of ``.cut()`` without checking it,
+  so an enzyme that does not cut gave ``IndexError: list index out of range``, which
+  reached the web app's error dialog verbatim and said nothing about what the user had
+  done. It now raises a ``ValueError`` naming the enzyme and suggesting the likelier
+  cause -- the sequences file uploaded into the plasmid field, which loads fine and only
+  fails here. Pre-existing rather than a 1.1.0 regression: the bare ``[0]`` predates both
+  1.0.1 and 1.1.0 and had simply never been hit. Two ``print`` statements bracketing the
+  digest are gone as well; harmless until per-run output capture landed in 1.1.0, after
+  which they were written into users' ``assembly_overview.txt``.
 * ``sgrna_loc`` was 3 nt too high for every forward-scan guide of the consuming-PAM
   nucleases. Each finder computes the column in two branches -- ``len(seq) -
   match.start() - 3`` scanning the reverse complement, ``match.end() + protospacer_len
